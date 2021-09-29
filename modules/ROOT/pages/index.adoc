@@ -94,11 +94,6 @@ This is a complete list of all status codes Neo4j may return, and what they mean
 The transaction used more memory than was allowed.
 The maximum allowed size for a transaction can be configured with 'dbms.memory.transaction.max_size' in the neo4j configuration (normally in 'conf/neo4j.conf' or, if you are using Neo4j Desktop, found through the user interface). 
 
-| Neo.ClientError.General.UpgradeRequired
-|
-This transaction required database to be of a higher kernel version than it is.
-Make sure that dbms has been correctly upgraded before retrying this operation. 
-
 | Neo.ClientError.Procedure.ProcedureCallFailed
 |
 Failed to invoke a procedure.
@@ -237,9 +232,6 @@ Please reconnect.
 | Neo.ClientError.Statement.TypeError
 | The statement is attempting to perform operations on values with types that are not supported by the operation. 
 
-| Neo.ClientError.Statement.UnsupportedAdministrationCommand
-| This administration command is not supported. 
-
 | Neo.ClientError.Transaction.ForbiddenDueToTransactionType
 |
 The transaction is of the wrong type to service the request.
@@ -305,9 +297,6 @@ Hence an exhaustive enumeration of all paths might be used in order to find the 
 | Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 | The database was unable to plan a hinted join. 
 
-| Neo.ClientNotification.Statement.MissingAlias
-| Missing alias in a RETURN clause in a CALL subquery. 
-
 | Neo.ClientNotification.Statement.NoApplicableIndexWarning
 | Adding a schema index may speed up this query. 
 
@@ -316,9 +305,6 @@ Hence an exhaustive enumeration of all paths might be used in order to find the 
 
 | Neo.ClientNotification.Statement.SuboptimalIndexForWildcardQuery
 | Index cannot execute wildcard query efficiently.
-
-| Neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
-| Variable in subquery is shadowing a variable with the same name from the outer scope. 
 
 | Neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning
 | The provided pattern is unbounded, consider adding an upper limit to the number of node hops. 
@@ -403,9 +389,6 @@ A stacktrace can be found in the `debug.log`.
 | Neo.DatabaseError.Statement.RemoteExecutionFailed
 | The database was unable to execute a remote part of the statement. 
 
-| Neo.DatabaseError.Transaction.LinkedTransactionError
-| The transaction was terminated because another transaction executing the same query encountered an error. 
-
 | Neo.DatabaseError.Transaction.TransactionCommitFailed
 | The database was unable to commit the transaction. 
 
@@ -461,9 +444,6 @@ You can retry at a later time or consider increasing max thread pool size for bo
 | Neo.TransientError.Security.ModifiedConcurrently
 | The user was modified concurrently to this request. 
 
-| Neo.TransientError.Statement.ExecutionTimeout
-| The database was unable to execute the statement in a timely fashion. 
-
 | Neo.TransientError.Transaction.BookmarkTimeout
 |
 Bookmark wait timed out.
@@ -503,9 +483,6 @@ Transaction may succeed if retried.
 
 | Neo.TransientError.Transaction.Terminated
 | Explicitly terminated by the user. 
-
-| Neo.TransientError.Transaction.TransientTransactionFailure
-| Unable to complete transaction. 
 
 |===
 
