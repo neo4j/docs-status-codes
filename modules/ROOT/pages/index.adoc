@@ -509,3 +509,124 @@ Transaction may succeed if retried.
 
 |===
 
+
+== Neo4j version changes
+
+
+[discrete]
+=== Neo4j 4.4
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.Statement.UnsupportedAdministrationCommand
+Neo.DatabaseError.Transaction.LinkedTransactionError
+-----
+
+
+[discrete]
+=== Neo4j 4.3
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.General.UpgradeRequired
+Neo.TransientError.Statement.ExecutionTimeout
+-----
+
+
+[discrete]
+=== Neo4j 4.2
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientNotification.Statement.MissingAlias
+Neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
+Neo.TransientError.Transaction.TransientTransactionFailure
+-----
+
+
+[discrete]
+=== Neo4j 4.1
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.Cluster.Routing
+Neo.ClientError.General.TransactionOutOfMemoryError
+Neo.ClientError.Statement.AccessMode
+Neo.DatabaseError.Statement.RemoteExecutionFailed
+Neo.TransientError.General.MemoryPoolOutOfMemoryError
+-----
+
+**Removed:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.Cluster.TransactionSizeExceedsLimit
+Neo.DatabaseError.Cluster.SerializationFailure
+Neo.TransientError.General.TransactionOutOfMemoryError
+-----
+
+
+[discrete]
+=== Neo4j 4.0
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.Cluster.TransactionSizeExceedsLimit
+Neo.ClientError.Database.DatabaseNotFound
+Neo.ClientError.Database.ExistingDatabaseFound
+Neo.ClientError.Fabric.AccessMode
+Neo.ClientError.Schema.ConstraintViolation
+Neo.ClientError.Schema.ConstraintWithNameAlreadyExists
+Neo.ClientError.Schema.EquivalentSchemaRuleAlreadyExists
+Neo.ClientError.Schema.IndexMultipleFound
+Neo.ClientError.Schema.IndexWithNameAlreadyExists
+Neo.ClientError.Statement.NotSystemDatabaseError
+Neo.ClientError.Statement.RuntimeUnsupportedError
+Neo.ClientError.Transaction.InvalidBookmarkMixture
+Neo.DatabaseError.Cluster.SerializationFailure
+Neo.DatabaseError.Database.DatabaseLimitReached
+Neo.DatabaseError.Database.UnableToStartDatabase
+Neo.DatabaseError.Database.Unknown
+Neo.DatabaseError.Fabric.RemoteExecutionFailed
+Neo.DatabaseError.Schema.TokenLimitReached
+Neo.DatabaseError.Statement.CodeGenerationFailed
+Neo.TransientError.Database.DatabaseUnavailable
+Neo.TransientError.General.TransactionMemoryLimit
+Neo.TransientError.General.TransactionOutOfMemoryError
+Neo.TransientError.Transaction.BookmarkTimeout
+Neo.TransientError.Transaction.LeaseExpired
+Neo.TransientError.Transaction.MaximumTransactionLimitReached
+-----
+
+**Removed:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.LegacyIndex.LegacyIndexNotFound
+Neo.ClientError.Request.TransactionRequired
+Neo.ClientError.Schema.ConstraintVerificationFailed
+Neo.ClientError.Security.EncryptionRequired
+Neo.ClientError.Statement.LabelNotFound
+Neo.ClientNotification.Statement.CreateUniqueUnavailableWarning
+Neo.ClientNotification.Statement.JoinHintUnsupportedWarning
+Neo.ClientNotification.Statement.PlannerUnavailableWarning
+Neo.ClientNotification.Statement.PlannerUnsupportedWarning
+Neo.DatabaseError.Schema.LabelLimitReached
+Neo.TransientError.Cluster.NoLeaderAvailable
+Neo.TransientError.General.DatabaseUnavailable
+Neo.TransientError.Network.CommunicationError
+Neo.TransientError.Schema.SchemaModifiedConcurrently
+Neo.TransientError.Transaction.InstanceStateChanged
+Neo.TransientError.Transaction.LockSessionExpired
+-----
+
