@@ -71,6 +71,9 @@ This is a complete list of all status codes Neo4j may return, and what they mean
 | Neo.ClientError.Cluster.NotALeader
 | The request cannot be processed by this server. Write requests can only be processed by the leader. 
 
+| Neo.ClientError.Cluster.TransactionSizeExceedsLimit
+| Transaction size exceeds supported limit.
+
 | Neo.ClientError.Cluster.Routing
 | Unable to route the request to the appropriate server 
 
@@ -332,6 +335,9 @@ Hence an exhaustive enumeration of all paths might be used in order to find the 
 | Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 | The provided relationship type is not in the database. 
 
+| Neo.DatabaseError.Cluster.SerializationFailure
+| Failed to serialise the transaction.
+
 | Neo.DatabaseError.Database.DatabaseLimitReached
 | The limit to number of databases has been reached. 
 
@@ -434,7 +440,7 @@ The corresponding setting can be found in the error message.
 | Neo.TransientError.General.OutOfMemoryError
 |
 There is not enough memory to perform the current task.
-Please try increasing `dbms.memory.heap.max_size` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface) or if you are running an embedded installation increase the heap by using `-Xmx` command line flag, and then restart the database. 
+Please try increasing `dbms.memory.heap.max_size` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface) or if you are running an embedded installation increase the heap by using `-Xmx` command line flag, and then restart the database.
 
 | Neo.TransientError.General.StackOverFlowError
 |
@@ -445,7 +451,12 @@ You could try increasing the stack size: for example to set the stack size to `2
 | Neo.TransientError.General.TransactionMemoryLimit
 |
 There is not enough memory to perform the current task.
-Please try increasing `dbms.memory.off_heap.max_size` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface), and then restart the database. 
+Please try increasing `dbms.tx_state.max_off_heap_memory` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you you are using Neo4j Desktop, found through the user interface), and then restart the database.
+
+| Neo.TransientError.General.TransactionOutOfMemoryError
+|
+The transaction used more memory than was allowed.
+The maximum allowed size for a transaction can be configured with `unsupported.dbms.transaction.memory.max` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface).
 
 | Neo.TransientError.Request.NoThreadsAvailable
 |
