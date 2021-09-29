@@ -261,7 +261,7 @@ You may however chain bookmarks generated from system database with bookmarks fr
 | There were concurrent requests accessing the same transaction, which is not allowed. 
 
 | Neo.ClientError.Transaction.TransactionHookFailed
-| Transaction hook failure. 
+| User-provided transaction event listener failure at transaction commit.
 
 | Neo.ClientError.Transaction.TransactionMarkedAsFailed
 |
