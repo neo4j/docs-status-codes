@@ -463,9 +463,6 @@ You can retry at a later time or consider increasing allowed maximum of concurre
 Transaction has seen state which has been invalidated by applied updates while transaction was active.
 Transaction may succeed if retried.
 
-| Neo.TransientError.Transaction.TransientTransactionFailure
-| Unable to complete transaction.
-
 |===
 
 == Database error
@@ -536,12 +533,7 @@ Please restore from backup.
 | The request referred to a schema rule that is defined multiple times. 
 
 | Neo.DatabaseError.Schema.TokenLimitReached
-| The maximum number of tokens of this type has been reached, no more tokens of this type can be created. 
-
-| Neo.DatabaseError.Statement.CodeGenerationFailed
-|
-The database was unable to generate code for the query.
-A stacktrace can be found in the `debug.log`. 
+| The maximum number of tokens of this type has been reached, no more tokens of this type can be created.
 
 | Neo.DatabaseError.Statement.ExecutionFailed
 | The database was unable to execute the statement. 
@@ -592,7 +584,6 @@ neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 
 -----
 
-
 **Removed:**
 
 [source, status codes, role="noheader"]
@@ -609,6 +600,7 @@ neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
 neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning
 
 -----
+
 
 [discrete]
 === Neo4j 4.4
