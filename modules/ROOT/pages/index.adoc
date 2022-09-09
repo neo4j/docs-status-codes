@@ -60,6 +60,8 @@ What the effect of the status code is can be determined by the classification.
 
 == Client errors
 
+This is a complete list of all client error status codes Neo4j may return, and what they mean.
+
 [options="header", cols="<1m,<1"]
 |===
 
@@ -304,6 +306,8 @@ You may want to retry with a longer timeout.
 
 == Notifications
 
+This is a complete list of all notification status codes Neo4j may return, and what they mean.
+
 [options="header", cols="<1m,<1"]
 |===
 
@@ -378,6 +382,8 @@ Hence an exhaustive enumeration of all paths might be used in order to find the 
 |===
 
 == Transient errors
+
+This is a complete list of all transient error status codes Neo4j may return, and what they mean.
 
 [options="header", cols="<1m,<1"]
 |===
@@ -467,7 +473,7 @@ Transaction may succeed if retried.
 
 == Database error
 
-This is a complete list of all status codes Neo4j may return, and what they mean.
+This is a complete list of all database error status codes Neo4j may return, and what they mean.
 
 [options="header", cols="<1m,<1"]
 |===
