@@ -95,7 +95,7 @@ This is a complete list of all client error status codes Neo4j may return, and w
 | Neo.ClientError.General.TransactionOutOfMemoryError
 |
 The transaction used more memory than was allowed.
-The maximum allowed size for a transaction can be configured with 'dbms.memory.transaction.max_size' in the neo4j configuration (normally in 'conf/neo4j.conf' or, if you are using Neo4j Desktop, found through the user interface).
+The maximum allowed size for a transaction can be configured with `dbms.memory.transaction.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
 
 | Neo.ClientError.General.UpgradeRequired
 |
@@ -251,7 +251,7 @@ Please reconnect.
 | This administration command is not supported.
 
 | Neo.ClientError.Statement.UnsupportedOperationError
-| This query preformed an operation that is not supported in this context.
+| This query performed an operation that is not supported in this context.
 
 | Neo.ClientError.Transaction.ForbiddenDueToTransactionType
 |
@@ -272,8 +272,7 @@ You may however chain bookmarks generated from system database with bookmarks fr
 
 | Neo.ClientError.Transaction.LockClientStopped
 | The transaction has been terminated, so no more locks can be acquired.
-This can occur because the transaction ran longer than the configured transaction timeout,
-or because a human operator manually terminated the transaction, or because the database is shutting down.
+This can occur because the transaction ran longer than the configured transaction timeout, or because a human operator manually terminated the transaction, or because the database is shutting down.
 
 | Neo.ClientError.Transaction.Terminated
 | Explicitly terminated by the user.
@@ -336,12 +335,12 @@ This is a complete list of all notification status codes Neo4j may return, and w
 | Queries using dynamic properties will use neither index seeks nor index scans for those properties.
 
 | Neo.ClientNotification.Statement.EagerOperator
-| The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding
+| The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding.
 
 | Neo.ClientNotification.Statement.ExhaustiveShortestPath
 |
 Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path.
-Hence an exhaustive enumeration of all paths might be used in order to find the requested shortest path.
+Hence, an exhaustive enumeration of all paths might be used in order to find the requested shortest path.
 
 | Neo.ClientNotification.Statement.FeatureDeprecationWarning
 | This feature is deprecated and will be removed in future versions.
@@ -407,23 +406,28 @@ The corresponding setting can be found in the error message.
 | Neo.TransientError.General.OutOfMemoryError
 |
 There is not enough memory to perform the current task.
-Please try increasing `dbms.memory.heap.max_size` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface) or if you are running an embedded installation increase the heap by using `-Xmx` command line flag, and then restart the database.
+Please try increasing `dbms.memory.heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+
+If you are running an embedded installation, you can increase the heap by using the `-Xmx` command line flag, and then restart the database.
 
 | Neo.TransientError.General.StackOverFlowError
 |
 There is not enough stack size to perform the current task.
 This is generally considered to be a database error, so please contact Neo4j support.
-You could try increasing the stack size: for example to set the stack size to `2M`, add `dbms.jvm.additional=-Xss2M` to in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface) or if you are running an embedded installation just add `-Xss2M` as command line flag.
+
+You could try increasing the stack size; for example to set the stack size to `2M`, add `dbms.jvm.additional=-Xss2M` to in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+
+ If you are running an embedded installation, you can add `-Xss2M` as command line flag.
 
 | Neo.TransientError.General.TransactionMemoryLimit
 |
 There is not enough memory to perform the current task.
-Please try increasing `dbms.memory.off_heap.max_size` in the neo4j configuration (normally in `conf/neo4j.conf` or, if you are using Neo4j Desktop, found through the user interface), and then restart the database.
+Please try increasing `dbms.memory.off_heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface), and then restart the database.
 
 | Neo.TransientError.Request.NoThreadsAvailable
 |
 There are no available threads to serve this request at the moment.
-You can retry at a later time or consider increasing max thread pool size for bolt connector(s).
+You can retry at a later time, or consider increasing max thread pool size for bolt connector(s).
 
 | Neo.TransientError.Security.AuthProviderFailed
 | An auth provider request failed.
@@ -466,7 +470,7 @@ You can retry at a later time or consider increasing allowed maximum of concurre
 
 | Neo.TransientError.Transaction.Outdated
 |
-Transaction has seen state which has been invalidated by applied updates while transaction was active.
+Transaction has seen state which has been invalidated by applied updates while the transaction was active.
 Transaction may succeed if retried.
 
 |===
