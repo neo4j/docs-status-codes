@@ -1,13 +1,12 @@
 name: status-codes
 title: Status Codes
-version: '5.0'
-display_version: 5.0-preview
+version: '5'
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/content-nav.adoc
 asciidoc:
   attributes:
     page-origin-private: false
-    neo4j-version: '5.0'
+    neo4j-version: '5'
     neo4j-version-exact: '5.0.0'
     neo4j-buildnumber: '5.0'
