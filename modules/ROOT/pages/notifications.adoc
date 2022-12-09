@@ -1,0 +1,169 @@
+:description: The Neo4j notifications for Neo4j version {neo4j-version}.
+
+[[notifications]]
+= Notifications
+
+[discrete]
+== Neo4j v{neo4j-version}
+
+ifndef::backend-pdf[]
+License: link:{common-license-page-uri}[Creative Commons 4.0]
+endif::[]
+
+ifdef::backend-pdf[]
+License: Creative Commons 4.0
+endif::[]
+
+
+Notifications are the messages, returned by the server, with severity `WARNING` or `INFORMATION`. Contrary to error messages,
+notifications are only returned if the execution of the query was successful.
+
+The notification object, which is part of the result summary, consist of the following fields:
+
+[options="header", cols="<1m,<3"]
+|===
+
+| Field
+| Description
+
+|Code
+|the status code, of the form `Neo.ClientNotification.[Category].[Title]`
+
+|Title
+|the description of the status code
+
+|Description
+|the description of a specific notification, which can contain details about the query being executed.
+
+|Severity
+|The severity can be one of the following: +
+- `WARNING`: We believe there is a problem with your query, which you should act on. +
+- `INFORMATION`: we believe the query is correct, but this information can still be useful.
+
+|Category
+|The category of the notification, see information about all categories <<notification-categories, here>>
+
+|Position
+|the position, given by row and column, where the notification is relevant in the query text.
+
+|===
+
+[[notification-categories]]
+== Category
+
+The category groups the notifications. It is possible to configure which categories you want notifications for, read more about the notification configuration xref:notifications-configuration.adoc[here].
+
+The categories that exist are the following:
+
+[options="header", cols="<1m,<1,<3, <2"]
+|===
+| CATEGORY
+| SEVERITY
+| EXPLANATION
+| RECOMMENDED ACTION
+
+| DEPRECATION
+| WARNING
+| The query or command use deprecated features that should be replaced
+| Update to use new functionality
+
+| HINT
+| WARNING
+| The given hint cannot be satisfied
+| Remove hint or fix query so the hint can be used
+
+| UNRECOGNIZED
+| WARNING OR INFORMATION
+| The query or command mention entities that are unknown to the system.
+| Make sure you have not misspelled the entity.
+
+| UNSUPPORTED
+| WARNING
+| The query or command is trying to use features that are not supported by the current system, or using features that are experimental and should not be used in production.
+| Unsupported features can not be trusted and should not be used in production.
+
+| GENERIC
+| WARNING OR INFORMATION
+| Notifications that are not part of a wider class.
+| Depends on the specific notification.
+
+| PERFORMANCE
+| INFORMATION
+| The query uses costly operations and might be slow. Consider if it is possible to retire the query in a different way.
+|
+|===
+
+== Notifications
+
+This is a complete list of all notification status codes Neo4j may return, and what they mean.
+
+[options="header", cols="<1m,<1"]
+|===
+
+| Status Code
+| Title
+
+| xref:notification-details.adoc#_neo_clientnotification_database_homedatabasenotfound[Neo.ClientNotification.Database.HomeDatabaseNotFound]
+| The request referred to a home database that does not exist.
+
+| xref:notification-details.adoc#_neo_clientnotification_procedure_procedurewarning[Neo.ClientNotification.Procedure.ProcedureWarning]
+| The query used a procedure that generated a warning.
+
+| xref:notification-details.adoc#_neo_clientnotification_request_deprecatedformat[Neo.ClientNotification.Request.DeprecatedFormat]
+| The client made a request for a format which has been deprecated.
+
+| xref:notification-details.adoc#_neo_clientnotification_schema_hintedindexnotfound[Neo.ClientNotification.Schema.HintedIndexNotFound]
+| The request (directly or indirectly) referred to an index that does not exist.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_cartesianproduct[Neo.ClientNotification.Statement.CartesianProduct]
+| This query builds a cartesian product between disconnected patterns.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_codegenerationfailed[Neo.ClientNotification.Statement.CodeGenerationFailed]
+| The database was unable to generate code for the query. A stacktrace can be found in the debug.log.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_dynamicproperty[Neo.ClientNotification.Statement.DynamicProperty]
+| Queries using dynamic properties will use neither index seeks nor index scans for those properties.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_eageroperator[Neo.ClientNotification.Statement.EagerOperator]
+| The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_exhaustiveshortestpath[Neo.ClientNotification.Statement.ExhaustiveShortestPath]
+| Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path.
+Hence, an exhaustive enumeration of all paths might be used in order to find the requested shortest path.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_featuredeprecationwarning[Neo.ClientNotification.Statement.FeatureDeprecationWarning]
+| This feature is deprecated and will be removed in future versions.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_joinhintunfulfillablewarning[Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning]
+| The database was unable to plan a hinted join.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_noapplicableindex[Neo.ClientNotification.Statement.NoApplicableIndex]
+| Adding a schema index may speed up this query.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_parameternotprovided[Neo.ClientNotification.Statement.ParameterNotProvided]
+| The statement refers to a parameter that was not provided in the request.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_runtimeexperimental[Neo.ClientNotification.Statement.RuntimeExperimental]
+| This feature is experimental and should not be used in production systems.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_runtimeunsupportedwarning[Neo.ClientNotification.Statement.RuntimeUnsupportedWarning]
+| This query is not supported by the chosen runtime.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_subqueryvariableshadowing[Neo.ClientNotification.Statement.SubqueryVariableShadowing]
+| Variable in subquery is shadowing a variable with the same name from the outer scope.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_unboundedvariablelengthpattern[Neo.ClientNotification.Statement.UnboundedVariableLengthPattern]
+| The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_unknownlabelwarning[Neo.ClientNotification.Statement.UnknownLabelWarning]
+| The provided label is not in the database.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_unknownpropertykeywarning[Neo.ClientNotification.Statement.UnknownPropertyKeyWarning]
+| The provided property key is not in the database.
+
+| xref:notification-details.adoc#_neo_clientnotification_statement_unknownrelationshiptypewarning[Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning]
+| The provided relationship type is not in the database.
+
+|===
+
+
