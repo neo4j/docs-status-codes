@@ -1,0 +1,1112 @@
+[[notifications-details]]
+:description: The Neo4j notifications for Neo4j version {neo4j-version}.
+
+= Notification details
+
+Here we describe all notifications, which can be returned by neo4j, in more detail and give example of when they can occur.
+
+== Performance notifications
+
+Performance notifications are returned whenever the query uses costly operations and the performance may be improved by changing the query or adding an index.
+
+[#_neo_clientnotification_statement_cartesianproduct]
+=== Neo.ClientNotification.Statement.CartesianProduct
+
+[options="header",cols="<1m,<3"]
+|===
+
+| Field
+| Value
+
+|Code
+|Neo.ClientNotification.Statement.CartesianProduct
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|This query builds a cartesian product between disconnected patterns.
+|===
+
+.Cartesian product
+======
+
+The cartesian product notification is returned whenever there is a cartesian product in the plan.
+
+.Query
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child), (p:Parent) RETURN c, p
+----
+
+[NOTE]
+====
+**Description of notification** +
+If a part of a query contains multiple disconnected patterns, this will build a cartesian product between all those parts. This may produce a large amount of data and slow down query processing. While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product, perhaps by adding a relationship between the different parts or by using OPTIONAL MATCH (identifier is: (p))
+====
+
+.Suggestions of improvement
+
+In case a cartesian product is needed, nothing can be done to improve this query. In many cases you might not need a combination of all children and parents and that is when this query could be improved.
+If for example, we need the children and the childrens parent we could improve this query by rewriting it to the following.
+
+.Query
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
+----
+======
+
+[#_neo_clientnotification_statement_unboundedvariablelengthpattern]
+=== Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
+|===
+
+.Shortest path
+======
+
+A notification will be given if no upper bound is specified on the variable length relationship.
+
+.Query
+[source, cypher, role="noplay"]
+----
+MATCH p=shortestPath((n)-[*]->(m)) RETURN p
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using shortest path with an unbounded pattern will likely result in long execution times. It is recommended to use an upper limit to the number of node hops in your pattern.
+====
+
+.Suggestions of improvement
+
+If you have a big graph, this query might be very slow. If possible, you should add an upper limit.
+
+.Query
+[source, cypher, role="noplay"]
+----
+MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
+----
+======
+
+[#_neo_clientnotification_statement_exhaustiveshortestpath]
+=== Neo.ClientNotification.Statement.ExhaustiveShortestPath
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.ExhaustiveShortestPath
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path. Hence an exhaustive enumeration of all paths might be used in order to find the requested shortest path
+|===
+
+.Shortest path
+======
+
+Some predicates will make the execution of shortest path fall back to the exhaustive search algorithm. In those cases, it might be worth to add a `WITH` clause to separate the match of the shortest path and the predicates.
+
+.Query
+[source, cypher, role="noplay"]
+----
+MATCH p = shortestPath(()-[*..42]-())
+WHERE ANY(n in nodes(p) WHERE n:Label)
+RETURN p
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using shortest path with an exhaustive search fallback might cause query slow down since shortest path graph algorithms might not work for this use case. It is recommended to introduce a WITH to separate the MATCH containing the shortest path from the existential predicates on that path.
+====
+
+.Suggestions of improvement
+
+Separate the predicate by introducing a with after the match clause.
+
+.Query
+[source, cypher, role="noplay"]
+----
+MATCH p = shortestPath(()-[*..42]-())
+WITH p
+WHERE ANY(n in nodes(p) WHERE n:Label)
+RETURN p
+----
+======
+
+
+[#_neo_clientnotification_statement_noapplicableindex]
+=== Neo.ClientNotification.Statement.NoApplicableIndex
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.NoApplicableIndex
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|Adding a schema index may speed up this query
+|===
+
+.Load CSV with Match or Merge
+======
+
+Given a larger number of nodes, Load CSV together with a MATCH or MERGE may speed up if we add an index.
+
+.Query
+[source, cypher, role="noplay"]
+----
+EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:line[0]}) RETURN line, n
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using LOAD CSV followed by a MATCH or MERGE that matches a non-indexed label will most likely not perform well on large data sets.Please consider using a schema index.
+====
+
+.Suggestions of improvement
+
+Create an index on the label and property you match on.
+
+.Query
+[source, cypher, role="noplay"]
+----
+CREATE INDEX FOR (n:Person) ON (n.name)
+----
+======
+
+[#_neo_clientnotification_statement_eageroperator]
+=== Neo.ClientNotification.Statement.EagerOperator
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.EagerOperator
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceedin
+|===
+
+.Load CSV with Match or Merge
+======
+
+Load CSV together with an EAGER operator can take up a lot of memory.
+
+.Query
+[source, cypher, role="noplay"]
+----
+EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]}) DELETE n RETURN line
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using LOAD CSV with a large data set in a query where the execution plan contains the Eager operator could potentially consume a lot of memory and is likely to not perform well.See the Neo4j Manual entry on the Eager operator for more information and hints on how problems could be avoided.
+====
+
+.Suggestions of improvement
+
+See the Neo4j Manual entry on the Eager operator for more information and hints on how you can improve the performance.
+
+.Query
+[source, cypher, role="noplay"]
+----
+EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line
+CALL {
+    WITH line
+    MATCH (n:Person{name:line[0]}) DELETE n
+}
+RETURN line
+----
+======
+
+[#_neo_clientnotification_statement_dynamicproperty]
+=== Neo.ClientNotification.Statement.DynamicProperty
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.DynamicProperty
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|Queries using dynamic properties will use neither index seeks nor index scans for those properties
+|===
+
+.Using dynamic node property key makes it impossible to use indexes.
+======
+
+[source, cypher]
+----
+MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed label is: (Person))
+====
+
+.Suggestions of improvement
+
+If there is an index for `(n:Person) ON (n.name)` it will not be used for the query above, as it is using a dynamic property.
+If there is an index, it is therefor better to use the constant value. For example, if `prop` is equal to `name` the following query would be able to use the index:
+
+[source, cypher]
+----
+MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
+----
+
+======
+
+.Using dynamic relationship property key makes it impossible to use indexes.
+======
+
+[source,cypher]
+----
+MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed relationship type is: (Knows))
+====
+
+.Suggestions of improvement
+
+Similar to dynamic node properties, use the constant value if possible, especially when there is an index on the property.
+For example, if `$prop` is equal to `since`, you can rewrite the query to:
+
+[source, cypher]
+----
+MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
+----
+
+======
+
+[#_neo_clientnotification_statement_codegenerationfailed]
+=== Neo.ClientNotification.Statement.CodeGenerationFailed
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.CodeGenerationFailed
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|PERFORMANCE
+
+|Title
+|The database was unable to generate code for the query. A stacktrace can be found in the debug.log
+|===
+
+The `CodeGenerationFailed` notification will be created when it is not possible to generate code for the query.
+This could for example be if a query part is too big. Please see stacktrace to find more information about the specific query.
+
+== Hint notifications
+
+[#_neo_clientnotification_statement_joinhintunfulfillablewarning]
+=== Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|HINT
+
+|Title
+|The database was unable to plan a hinted join.
+|===
+
+.A join hint was given, but it was not possible to fulfill the hint.
+======
+
+[source, cypher]
+----
+EXPLAIN MATCH (a:A)
+WITH a, 1 AS horizon
+OPTIONAL MATCH (a)-[r]->(b:B)
+USING JOIN ON a
+OPTIONAL MATCH (a)--(c)
+RETURN *
+----
+
+[NOTE]
+====
+**Description of notification** +
+The hinted join was not planned. This could happen because no generated plan contained the join key, please try using a different join key or restructure your query. (hinted join key identifier is: a)
+====
+
+======
+
+[#_neo_clientnotification_schema_hintedindexnotfound]
+=== Neo.ClientNotification.Schema.HintedIndexNotFound
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Schema.HintedIndexNotFound
+
+|SeverityLevel
+|WARNING
+
+|Category
+|HINT
+
+|Title
+|The request (directly or indirectly) referred to an index that does not exist.
+|===
+
+.An index hint was given, but it was not possible to use the index.
+======
+
+[source, cypher]
+----
+EXPLAIN MATCH (a: Label)
+USING INDEX a:Label(id)
+WHERE a.id = 1
+RETURN a
+----
+
+[NOTE]
+====
+**Description of notification** +
+The hinted index does not exist, please check the schema (index is: INDEX FOR (`a`:`Label`) ON (`a`.`id`))
+====
+
+======
+
+.A relationship index hint was given, but it was not possible to use the index.
+======
+
+[source, cypher]
+----
+EXPLAIN MATCH ()-[r:Rel]-()
+USING INDEX r:Rel(id)
+WHERE r.id = 1
+RETURN r
+----
+
+[NOTE]
+====
+**Description of notification** +
+The hinted index does not exist, please check the schema (index is: INDEX FOR ()-[`r`:`Rel`]-() ON (`r`.`id`))
+====
+
+======
+
+== Unrecognized
+
+[#_neo_clientnotification_database_homedatabasenotfound]
+=== Neo.ClientNotification.Database.HomeDatabaseNotFound
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Database.HomeDatabaseNotFound
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|UNRECOGNIZED
+
+|Title
+|The request referred to a home database that does not exist.
+|===
+
+.Set home database to a database that does not yet exist.
+======
+
+[source,cypher]
+----
+CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE NonExistingDatabase
+----
+
+[NOTE]
+====
+**Description of notification** +
+The home database provided does not currently exist in the DBMS.This command will not take effect until this database is created.(HOME DATABASE: NonExistingDatabase)
+====
+
+======
+
+[#_neo_clientnotification_statement_unknownlabelwarning]
+=== Neo.ClientNotification.Statement.UnknownLabelWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.UnknownLabelWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|UNRECOGNIZED
+
+|Title
+|The provided label is not in the database.
+|===
+
+.Match on a node with a label that does not exist in the database.
+======
+
+[source,cypher]
+----
+MATCH (n:Perso) RETURN n
+----
+
+[NOTE]
+====
+**Description of notification** +
+One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing label name is: Perso)
+====
+
+.Suggestions of improvement
+
+Make sure you didn't misspell the label. If nodes with the given label will be created in the future, then no change is needed.
+
+======
+
+[#_neo_clientnotification_statement_unknownrelationshiptypewarning]
+=== Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|UNRECOGNIZED
+
+|Title
+|The provided relationship type is not in the database.
+|===
+
+.Match on a relationship, where there are no relationships in the database with the given relationship type.
+======
+
+[source,cypher]
+----
+MATCH (n)-[:NonExistingType]->() RETURN n
+----
+
+[NOTE]
+====
+**Description of notification** +
+One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: NonExistingType)
+====
+
+.Suggestions of improvement
+
+Make sure you didn't misspell the relationship type. If relationships will be created, with the given relationship type, in the future, then no change to the query is needed.
+
+======
+
+[#_neo_clientnotification_statement_unknownpropertykeywarning]
+=== Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|UNRECOGNIZED
+
+|Title
+|The provided property key is not in the database.
+|===
+
+.Match on a property that does not exist.
+======
+
+[source,cypher]
+----
+MATCH (n {nonExistingProp:1}) RETURN n
+----
+
+[NOTE]
+====
+**Description of notification** +
+One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: nonExistingProp)
+====
+
+.Suggestions of improvement
+
+Make sure you didn't misspell the property. If the property will be created in the future, then no change is needed to the query.
+
+======
+
+
+== Unsupported
+
+[#_neo_clientnotification_statement_runtimeunsupportedwarning]
+=== Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|UNSUPPORTED
+
+|Title
+|This query is not supported by the chosen runtime.
+|===
+
+.The chosen runtime is not supported for the given query
+======
+
+[source,cypher]
+----
+CYPHER runtime=pipelined SHOW INDEXES YIELD *
+----
+
+[NOTE]
+====
+**Description of notification** +
+Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.(Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.)
+====
+
+.Suggestions of improvement
+
+Use a different runtime or remove the runtime option to run the query with the default runtime:
+
+[source,cypher]
+----
+SHOW INDEXES YIELD *
+----
+======
+
+[#_neo_clientnotification_statement_runtimeexperimental]
+=== Neo.ClientNotification.Statement.RuntimeExperimental
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.RuntimeExperimental
+
+|SeverityLevel
+|WARNING
+
+|Category
+|UNSUPPORTED
+
+|Title
+|This feature is experimental and should not be used in production systems.
+|===
+
+.example
+======
+
+[source,cypher]
+----
+CYPHER runtime=parallel MATCH (n) RETURN (n)
+----
+
+[NOTE]
+====
+**Description of notification** +
+You are using an experimental feature (The parallel runtime is experimental and might suffer from instability and potentially correctness issues.)
+====
+
+.Suggestions of improvement
+
+The parallel runtime should not be used in production. Choose another runtime or remove the option to use the default runtime:
+
+[source,cypher]
+----
+MATCH (n) RETURN (n)
+----
+======
+
+== Deprecation
+
+[#_neo_clientnotification_statement_featuredeprecationwarning]
+=== Neo.ClientNotification.Statement.FeatureDeprecationWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|DEPRECATION
+
+|Title
+|This feature is deprecated and will be removed in future versions.
+|===
+
+.Repeated variable length relationship variable inside the same pattern, with same relationship type
+======
+
+[source,cypher]
+----
+MATCH ()-[r:Parent*]-(), ()-[r:Parent*]-() RETURN *
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+
+====
+
+.Suggestions of improvement
+
+Inside a single pattern, we have relationship uniqueness, which means that this query never will return any rows and should therefor be rewritten to the wanted behaviour.
+
+
+[source,cypher]
+----
+query
+----
+======
+
+.Repeated variable length relationship across patterns, with same relationship type
+======
+
+[source,cypher]
+----
+MATCH ({name:"Molly"})-[r:Knows*]->({name:"Kalle"})
+MATCH ({age:25})-[r:Knows*]->({age:21})
+RETURN r
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+====
+
+.Suggestions of improvement
+
+Since the relationships in the first and second match must be the same, we know that the start node and the end node are the same.
+In the query above, we could therefor concatenate the predicates from the two matches and create a single match:
+
+[source,cypher]
+----
+MATCH ({name:"Molly", age:25})-[r:Knows*]->({name:"Kalle", age:21})
+RETURN r
+----
+
+======
+
+.Repeated variable length relationship across patterns with different relationship types
+======
+
+[source,cypher]
+----
+MATCH ()-[r:Parent*]-()
+MATCH ()-[r:Child*]-()
+RETURN *
+----
+
+[NOTE]
+====
+**Description of notification** +
+Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+====
+
+.Suggestions of improvement
+
+Since the relationships in the first and second match must be the same, and a single relationship can't have multiple relationships, this query will never return any rows.
+
+======
+
+.Colon after the | in a relationship pattern
+======
+
+[source,cypher]
+----
+MATCH (a)-[:A|:B|:C]-() RETURN *
+----
+
+[NOTE]
+====
+**Description of notification** +
+The semantics of using colon in the separation of alternative relationship types will change in a future version.
+====
+
+.Suggestions of improvement
+
+Replace
+
+[source,cypher]
+----
+MATCH (a)-[:A|B|C]-() RETURN *
+----
+======
+
+.Setting properties using a node
+======
+
+[source,cypher]
+----
+MATCH (a)-[]-(b)
+SET a = b
+----
+
+[NOTE]
+====
+**Description of notification** +
+The use of nodes or relationships for setting properties is deprecated and will be removed in a future version. Please use properties() instead.
+====
+
+.Suggestions of improvement
+
+Use the `properties()` function in order to get all properties from `b`.
+
+[source,cypher]
+----
+MATCH (a)-[]-(b)
+SET a = properties(b)
+----
+======
+
+.Setting properties using a relationship
+======
+
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += r
+----
+
+[NOTE]
+====
+**Description of notification** +
+The use of nodes or relationships for setting properties is deprecated and will be removed in a future version. Please use properties() instead.
+====
+
+.Suggestions of improvement
+
+Use the `properties()` function to get all properties from `r`
+
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += properties(r)
+----
+======
+
+.Shortest path with a fixed relationship length
+======
+
+[source,cypher]
+----
+MATCH (a:Start), (b:End), shortestPath((a)-[r]->(b)) RETURN b
+----
+
+[NOTE]
+====
+**Description of notification** +
+The use of shortestPath and allShortestPaths with fixed length relationships is deprecated and will be removed in a future version. Please use a path with a length of 1 [r*1..1] instead or a Match with a limit.
+====
+
+.Suggestions of improvement
+
+If the relationship length is fixed, there is no reason to search for the shortest path. Instead, it could be rewritten to the following:
+
+[source,cypher]
+----
+MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
+----
+======
+
+
+.Create a database with an unescaped name containing a dot
+======
+
+[source,cypher]
+----
+CREATE DATABASE foo.bar
+----
+
+[NOTE]
+====
+**Description of notification** +
+Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
+====
+
+.Suggestions of improvement
+
+If not intended for a composite database, escape the name with the character ```.
+
+[source,cypher]
+----
+CREATE DATABASE `foo.bar`
+----
+======
+
+.A procedure has been deprecated or renamed
+======
+
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown
+----
+
+[NOTE]
+====
+**Description of notification** +
+The query used a deprecated procedure. ('unsupported.dbms.shutdown' is no longer supported)
+====
+
+======
+
+.Using a deprecated runtime option
+======
+
+[source,cypher]
+----
+CYPHER runtime = interpreted MATCH (n) RETURN n
+----
+
+[NOTE]
+====
+**Description of notification** +
+The query used a deprecated runtime option. ('runtime=interpreted' is deprecated, please use 'runtime=slotted' instead)
+====
+
+.Suggestions of improvement
+
+Runtime `interpreted` is deprecated, use another runtime or remove the runtime option in order to use the default runtime.
+
+[source,cypher]
+----
+MATCH (n) RETURN n
+----
+======
+
+.Using the text-1.0 index provider when creating a text index
+======
+
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
+----
+
+[NOTE]
+====
+**Description of notification** +
+The `text-1.0` provider for text indexes is deprecated and will be removed in a future version.Please use `text-2.0` instead.
+====
+
+.Suggestions of improvement
+
+Update the option `indexProvider` to have the value `text-2.0`.
+
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
+----
+======
+
+[#_neo_clientnotification_request_deprecatedformat]
+=== Neo.ClientNotification.Request.DeprecatedFormat
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Request.DeprecatedFormat
+
+|SeverityLevel
+|WARNING
+
+|Category
+|DEPRECATION
+
+|Title
+|The client made a request for a format which has been deprecated.
+|===
+
+=== Generic
+
+[#_neo_clientnotification_statement_subqueryvariableshadowing]
+=== Neo.ClientNotification.Statement.SubqueryVariableShadowing
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.SubqueryVariableShadowing
+
+|SeverityLevel
+|INFORMATION
+
+|Category
+|GENERIC
+
+|Title
+|Variable in subquery is shadowing a variable with the same name from the outer scope.
+|===
+
+.Shadowing of a variable from the outer scope
+======
+
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
+
+[NOTE]
+====
+**Description of notification** +
+Variable in subquery is shadowing a variable with the same name from the outer scope.If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (the shadowing variable is: n)
+====
+
+.Suggestions of improvement
+
+If the intended behaviour of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
+If the intended behaviour is to use the variable from the outer query, it needs to be imported to the subquery using the with clause.
+
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  WITH n
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
+======
+
+
+[#_neo_clientnotification_statement_parameternotprovided]
+=== Neo.ClientNotification.Statement.ParameterNotProvided
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Statement.ParameterNotProvided
+
+|SeverityLevel
+|WARNING
+
+|Category
+|GENERIC
+
+|Title
+|The statement refers to a parameter that was not provided in the request.
+|===
+
+.Using an EXPLAIN query with parameters without providing those parameters
+======
+
+[source,cypher]
+----
+EXPLAIN WITH $param as param RETURN param
+----
+
+[NOTE]
+====
+**Description of notification** +
+Did not supply query with enough parameters.The produced query plan will not be cached and is not executable without EXPLAIN.(Missing parameters: param)
+====
+======
+
+[#_neo_clientnotification_procedure_procedurewarning]
+=== Neo.ClientNotification.Procedure.ProcedureWarning
+
+[options="header",cols="<1m,<3"]
+|===
+
+|Code
+|Neo.ClientNotification.Procedure.ProcedureWarning
+
+|SeverityLevel
+|WARNING
+
+|Category
+|GENERIC
+
+|Title
+|The query used a procedure that generated a warning.
+|===
