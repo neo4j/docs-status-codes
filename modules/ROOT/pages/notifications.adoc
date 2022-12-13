@@ -471,6 +471,10 @@ This could for example be if a query part is too big. Please see the stacktrace 
 
 == Hint notifications
 
+If a query contains a join or index hint, the planner might still not be able to create a plan which fulfills the given hint.
+By default, this will generate a notification with the hint category.
+However, if the system configuration option `dbms.cypher.hints_error` is set to `true`, the query will return an error instead.
+
 [#_neo_clientnotification_statement_joinhintunfulfillablewarning]
 ==== Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 
@@ -568,7 +572,9 @@ The hinted index does not exist, please check the schema (index is: INDEX FOR ()
 
 ======
 
-== Unrecognized
+== Unrecognized notifications
+
+A notification has the unrecognized category if the query or command mention entities that are unknown to the system.
 
 [#_neo_clientnotification_database_homedatabasenotfound]
 ==== Neo.ClientNotification.Database.HomeDatabaseNotFound
@@ -723,7 +729,9 @@ Make sure you didn't misspell the property. If the property will be created in t
 ======
 
 
-== Unsupported
+== Unsupported notifications
+
+Notifications with the unsupported category are created if the query or command is trying to use features that are not supported by the current system, or using features that are experimental and should not be used in production.
 
 [#_neo_clientnotification_statement_runtimeunsupportedwarning]
 ==== Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
@@ -812,6 +820,8 @@ MATCH (n) RETURN (n)
 ======
 
 == Deprecation
+
+Notifications within the deprecation category contains information about a feature or functionality which has been deprecated. It is important to change to the new functionality, otherwise the query might break in a future version.
 
 [#_neo_clientnotification_statement_featuredeprecationwarning]
 ==== Neo.ClientNotification.Statement.FeatureDeprecationWarning
@@ -1114,6 +1124,8 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 |===
 
 === Generic
+
+A notification which has the generic category, does not belong to any wider category. The notifications in this group does not have any connection to each other.
 
 [#_neo_clientnotification_statement_subqueryvariableshadowing]
 ==== Neo.ClientNotification.Statement.SubqueryVariableShadowing
