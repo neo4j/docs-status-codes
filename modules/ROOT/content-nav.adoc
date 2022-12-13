@@ -1,5 +1,3 @@
 * xref:index.adoc[]
 ** xref:errors.adoc[]
 ** xref:notifications.adoc[]
-** xref:notification-details.adoc[]
-** xref:notifications-configuration.adoc[]
