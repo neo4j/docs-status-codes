@@ -264,7 +264,7 @@ Using shortest path with an exhaustive search fallback might cause query slow do
 
 .Suggestions of improvement
 
-Separate the predicate by introducing a with after the match clause.
+Separate the predicate by introducing a `WITH` after the `MATCH` clause.
 
 .Query
 [source, cypher, role="noplay"]
@@ -310,7 +310,7 @@ EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person
 [NOTE]
 ====
 **Description of notification** +
-Using LOAD CSV followed by a MATCH or MERGE that matches a non-indexed label will most likely not perform well on large data sets.Please consider using a schema index.
+Using LOAD CSV followed by a `MATCH` or `MERGE` that matches a non-indexed label will most likely not perform well on large data sets.Please consider using a schema index.
 ====
 
 .Suggestions of improvement
@@ -340,13 +340,13 @@ CREATE INDEX FOR (n:Person) ON (n.name)
 |PERFORMANCE
 
 |Title
-|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceedin
+|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding
 |===
 
 .Load CSV with Match or Merge
 ======
 
-Load CSV together with an EAGER operator can take up a lot of memory.
+Load CSV together with an Eager operator can take up a lot of memory.
 
 .Query
 [source, cypher, role="noplay"]
@@ -412,7 +412,7 @@ Using a dynamic property makes it impossible to use an index lookup for this que
 .Suggestions of improvement
 
 If there is an index for `(n:Person) ON (n.name)` it will not be used for the query above, as it is using a dynamic property.
-If there is an index, it is therefor better to use the constant value. For example, if `prop` is equal to `name` the following query would be able to use the index:
+If there is an index, it is therefore better to use the constant value. For example, if `prop` is equal to `name` the following query would be able to use the index:
 
 [source, cypher]
 ----
@@ -432,7 +432,7 @@ MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
 [NOTE]
 ====
 **Description of notification** +
-Using a dynamic property makes it impossible to use an index lookup for this query (indexed relationship type is: (Knows))
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed relationship type is: (KNOWS))
 ====
 
 .Suggestions of improvement
@@ -467,7 +467,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 |===
 
 The `CodeGenerationFailed` notification will be created when it is not possible to generate code for the query.
-This could for example be if a query part is too big. Please see stacktrace to find more information about the specific query.
+This could for example be if a query part is too big. Please see the stacktrace to find more information about the specific query.
 
 == Hint notifications
 
@@ -600,7 +600,7 @@ CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE NonExistingDatabase
 [NOTE]
 ====
 **Description of notification** +
-The home database provided does not currently exist in the DBMS.This command will not take effect until this database is created.(HOME DATABASE: NonExistingDatabase)
+The home database provided does not currently exist in the DBMS. This command will not take effect until this database is created. (HOME DATABASE: NonExistingDatabase)
 ====
 
 ======
@@ -755,7 +755,7 @@ CYPHER runtime=pipelined SHOW INDEXES YIELD *
 [NOTE]
 ====
 **Description of notification** +
-Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.(Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.)
+Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default. (Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.)
 ====
 
 .Suggestions of improvement
@@ -837,7 +837,7 @@ MATCH (n) RETURN (n)
 
 [source,cypher]
 ----
-MATCH ()-[r:Parent*]-(), ()-[r:Parent*]-() RETURN *
+MATCH ()-[r:PARENT*]-(), ()-[r:PARENT*]-() RETURN *
 ----
 
 [NOTE]
@@ -849,7 +849,7 @@ Using an already bound variable for a variable length relationship is deprecated
 
 .Suggestions of improvement
 
-Inside a single pattern, we have relationship uniqueness, which means that this query never will return any rows and should therefor be rewritten to the wanted behaviour.
+Inside a single pattern, we have relationship uniqueness, which means that this query never will return any rows and should therefore be rewritten to the wanted behaviour.
 
 ======
 
@@ -858,8 +858,8 @@ Inside a single pattern, we have relationship uniqueness, which means that this 
 
 [source,cypher]
 ----
-MATCH ({name:"Molly"})-[r:Knows*]->({name:"Kalle"})
-MATCH ({age:25})-[r:Knows*]->({age:21})
+MATCH ({name:"Molly"})-[r:KNOWS*]->({name:"Kalle"})
+MATCH ({age:25})-[r:KNOWS*]->({age:21})
 RETURN r
 ----
 
@@ -876,7 +876,7 @@ In the query above, we could therefor concatenate the predicates from the two ma
 
 [source,cypher]
 ----
-MATCH ({name:"Molly", age:25})-[r:Knows*]->({name:"Kalle", age:21})
+MATCH ({name:"Molly", age:25})-[r:KNOWS*]->({name:"Kalle", age:21})
 RETURN r
 ----
 
@@ -887,8 +887,8 @@ RETURN r
 
 [source,cypher]
 ----
-MATCH ()-[r:Parent*]-()
-MATCH ()-[r:Child*]-()
+MATCH ()-[r:PARENTt*]-()
+MATCH ()-[r:CHILD*]-()
 RETURN *
 ----
 
@@ -900,7 +900,8 @@ Using an already bound variable for a variable length relationship is deprecated
 
 .Suggestions of improvement
 
-Since the relationships in the first and second match must be the same, and a single relationship can't have multiple relationships, this query will never return any rows.
+Since the relationships in the first and second match must be the same, and a single relationship can't have multiple relationship types, this query will never return any rows.
+
 
 ======
 
@@ -1080,7 +1081,7 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
 [NOTE]
 ====
 **Description of notification** +
-The `text-1.0` provider for text indexes is deprecated and will be removed in a future version.Please use `text-2.0` instead.
+The `text-1.0` provider for text indexes is deprecated and will be removed in a future version. Please use `text-2.0` instead.
 ====
 
 .Suggestions of improvement
@@ -1149,7 +1150,7 @@ RETURN *
 [NOTE]
 ====
 **Description of notification** +
-Variable in subquery is shadowing a variable with the same name from the outer scope.If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (the shadowing variable is: n)
+Variable in subquery is shadowing a variable with the same name from the outer scope. If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (the shadowing variable is: n)
 ====
 
 .Suggestions of improvement
@@ -1200,7 +1201,7 @@ EXPLAIN WITH $param as param RETURN param
 [NOTE]
 ====
 **Description of notification** +
-Did not supply query with enough parameters.The produced query plan will not be cached and is not executable without EXPLAIN.(Missing parameters: param)
+Did not supply query with enough parameters. The produced query plan will not be cached and is not executable without EXPLAIN. (Missing parameters: param)
 ====
 ======
 
