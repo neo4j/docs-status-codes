@@ -183,6 +183,9 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 
@@ -230,6 +233,9 @@ MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.ExhaustiveShortestPath
 
@@ -246,7 +252,8 @@ MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 .Shortest path
 ======
 
-Some predicates will make the execution of shortest path fall back to the exhaustive search algorithm. In those cases, it might be worth to add a `WITH` clause to separate the match of the shortest path and the predicates.
+If a predicate is given on the shortest path, where the predicate need to inspect the whole path before deciding on whether it is valid or not, the shortest path might fall back to the exhaustive search algorithm.
+For more information, see `Shortest path planning` in the Cypher manual.
 
 .Query
 [source, cypher, role="noplay"]
@@ -282,6 +289,9 @@ RETURN p
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.NoApplicableIndex
@@ -330,6 +340,9 @@ CREATE INDEX FOR (n:Person) ON (n.name)
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.EagerOperator
 
@@ -362,7 +375,7 @@ Using LOAD CSV with a large data set in a query where the execution plan contain
 
 .Suggestions of improvement
 
-See the Neo4j Manual entry on the Eager operator for more information and hints on how you can improve the performance.
+See the Neo4j Manual entry on the Eager operator for more information and hints on how you can improve the performance. In this specific case, the query could be rewritten to the following:
 
 .Query
 [source, cypher, role="noplay"]
@@ -381,6 +394,9 @@ RETURN line
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.DynamicProperty
@@ -453,6 +469,9 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.CodeGenerationFailed
 
@@ -480,6 +499,9 @@ However, if the system configuration option `dbms.cypher.hints_error` is set to 
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
@@ -513,6 +535,9 @@ RETURN *
 The hinted join was not planned. This could happen because no generated plan contained the join key, please try using a different join key or restructure your query. (hinted join key identifier is: a)
 ====
 
+.Suggestions of improvement
+Remove the hint
+
 ======
 
 [#_neo_clientnotification_schema_hintedindexnotfound]
@@ -520,6 +545,9 @@ The hinted join was not planned. This could happen because no generated plan con
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Schema.HintedIndexNotFound
@@ -582,6 +610,9 @@ A notification has the unrecognized category if the query or command mention ent
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Database.HomeDatabaseNotFound
 
@@ -616,6 +647,9 @@ The home database provided does not currently exist in the DBMS. This command wi
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.UnknownLabelWarning
@@ -656,6 +690,9 @@ Make sure you didn't misspell the label. If nodes with the given label will be c
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 
@@ -695,6 +732,9 @@ Make sure you didn't misspell the relationship type. If relationships will be cr
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 
@@ -708,7 +748,7 @@ Make sure you didn't misspell the relationship type. If relationships will be cr
 |The provided property key is not in the database.
 |===
 
-.Match on a property that does not exist.
+.Match on a property key that does not exist.
 ======
 
 [source,cypher]
@@ -724,7 +764,7 @@ One of the property names in your query is not available in the database, make s
 
 .Suggestions of improvement
 
-Make sure you didn't misspell the property. If the property will be created in the future, then no change is needed to the query.
+Make sure you didn't misspell the property key. If the property key will be created in the future, then no change is needed to the query.
 
 ======
 
@@ -738,6 +778,9 @@ Notifications with the unsupported category are created if the query or command 
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
@@ -931,7 +974,7 @@ The semantics of using colon in the separation of alternative relationship types
 
 .Suggestions of improvement
 
-Replace
+Remove the colon inside the relationship type expression.
 
 [source,cypher]
 ----
