@@ -133,7 +133,7 @@ Performance notifications are returned whenever the query uses costly operations
 |===
 
 | Field
-| Value
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.CartesianProduct
@@ -825,6 +825,9 @@ SHOW INDEXES YIELD *
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.RuntimeExperimental
 
@@ -871,6 +874,9 @@ Notifications within the deprecation category contains information about a featu
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.FeatureDeprecationWarning
@@ -940,7 +946,7 @@ RETURN r
 
 [source,cypher]
 ----
-MATCH ()-[r:PARENTt*]-()
+MATCH ()-[r:PARENT*]-()
 MATCH ()-[r:CHILD*]-()
 RETURN *
 ----
@@ -1153,6 +1159,9 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Request.DeprecatedFormat
 
@@ -1175,6 +1184,9 @@ A notification which has the generic category, does not belong to any wider cate
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Statement.SubqueryVariableShadowing
@@ -1232,6 +1244,9 @@ RETURN *
 [options="header",cols="<1m,<3"]
 |===
 
+| Field
+| Description
+
 |Code
 |Neo.ClientNotification.Statement.ParameterNotProvided
 
@@ -1265,6 +1280,9 @@ Did not supply query with enough parameters. The produced query plan will not be
 
 [options="header",cols="<1m,<3"]
 |===
+
+| Field
+| Description
 
 |Code
 |Neo.ClientNotification.Procedure.ProcedureWarning
