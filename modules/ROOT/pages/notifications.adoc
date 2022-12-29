@@ -536,7 +536,8 @@ The hinted join was not planned. This could happen because no generated plan con
 ====
 
 .Suggestions of improvement
-Remove the hint
+The join hint can not be fulfilled, because the given join variable was introduced before the optional match and is therefor already bound.
+The only option for this query is to remove the hint or change the query so it is possible to use the hint.
 
 ======
 
@@ -579,6 +580,11 @@ RETURN a
 The hinted index does not exist, please check the schema (index is: INDEX FOR (`a`:`Label`) ON (`a`.`id`))
 ====
 
+.Suggestions of improvement
+
+The hinted index does not exist, make sure the label and property are spelled correct.
+If the spelling is correct, either create the index or remove the hint from the query.
+
 ======
 
 .A relationship index hint was given, but it was not possible to use the index.
@@ -597,6 +603,12 @@ RETURN r
 **Description of notification** +
 The hinted index does not exist, please check the schema (index is: INDEX FOR ()-[`r`:`Rel`]-() ON (`r`.`id`))
 ====
+
+.Suggestions of improvement
+
+The hinted index does not exist, make sure the label and property are spelled correctly.
+If the spelling is correct, either create the index or remove the hint from the query.
+
 
 ======
 
@@ -639,6 +651,10 @@ CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE NonExistingDatabase
 **Description of notification** +
 The home database provided does not currently exist in the DBMS. This command will not take effect until this database is created. (HOME DATABASE: NonExistingDatabase)
 ====
+
+.Suggestions of improvement
+
+Make sure the home database has not been misspelled.
 
 ======
 
@@ -1103,6 +1119,10 @@ CALL unsupported.dbms.shutdown
 The query used a deprecated procedure. ('unsupported.dbms.shutdown' is no longer supported)
 ====
 
+.Suggestions of improvement
+
+Remove the use of the deprecated procedure. If there is a suggested replacement, update to use the replacement instead.
+
 ======
 
 .Using a deprecated runtime option
@@ -1273,6 +1293,11 @@ EXPLAIN WITH $param as param RETURN param
 **Description of notification** +
 Did not supply query with enough parameters. The produced query plan will not be cached and is not executable without EXPLAIN. (Missing parameters: param)
 ====
+
+.Suggestions of improvement
+
+Provide the parameter in order to be able to cache the plan.
+
 ======
 
 [#_neo_clientnotification_procedure_procedurewarning]
