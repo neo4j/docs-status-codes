@@ -24,7 +24,7 @@ Each status code follows the same format:
 Neo.[Classification].[Category].[Title]
 -----
 
-The fact that a status code is returned by the server does always mean there is a fatal error.
+The fact that a status code is returned by the server does not always mean there is a fatal error.
 Status codes can also indicate transient problems that may go away if you retry the request.
 
 What the effect of the status code is can be determined by the classification.
