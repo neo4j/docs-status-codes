@@ -1,0 +1,5 @@
+:description: 
+[essential-notifications]
+= Essential notification codes
+
+This is a list of some essential `ClientNotification` codes that you should be aware of.
