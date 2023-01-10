@@ -1,0 +1,29 @@
+:description: 
+[[configure_notifications]]
+= Configuring notifications
+
+You can configure for which categories you want to receive notifications in the driver using the following configuration options:
+
+[[notification_level]]
+.notification_level
+[cols="<1s,<4"]
+|===
+|Description
+a|Sets the minimum level of which notifications to get.
+|Valid values
+a|`WARNING`, `INFORMATION`
+|Default value
+m|`INFORMATION`
+|===
+
+[[disable_notifications]]
+.disable_notifications
+[cols="<1s,<4"]
+|===
+|Description
+a|Disable notifications for the given categories.
+|Valid values
+a|`PERFORMANCE`, `UNRECOGNIZED`, `UNSUPPORTED`, `GENERIC`, `DEPRECATION`, `HINT`
+|Default value
+m|`[]` - an empty list
+|===
