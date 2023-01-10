@@ -1,21 +1,11 @@
 :description: The Neo4j status codes for Neo4j version {neo4j-version}.
-
+:neo4j-buildnumber: {neo4j-version}
 [[status-codes]]
-= Status Codes
+= Neo4j Status Codes v5
 
-[discrete]
-== Neo4j v{neo4j-version}
+This document details all status codes that a Neo4j DBMS may return to indicate the outcome of a request.
 
-ifndef::backend-pdf[]
-License: link:{common-license-page-uri}[Creative Commons 4.0]
-endif::[]
-
-ifdef::backend-pdf[]
-License: Creative Commons 4.0
-endif::[]
-
-
-The Neo4j status codes for Neo4j v{neo4j-version}.
+== Format
 
 Each status code follows the same format:
 
@@ -24,196 +14,43 @@ Each status code follows the same format:
 Neo.[Classification].[Category].[Title]
 -----
 
+== Classification
+
 The fact that a status code is returned by the server does not always mean there is a fatal error.
 Status codes can also indicate transient problems that may go away if you retry the request.
+The classification of the status code determines the effect on the transaction.
 
-What the effect of the status code is can be determined by the classification.
-
-
-== Classifications
-
+.Neo4j status code classification
 [options="header", cols="<1m,<2,<1"]
 |===
 
 | Classification
 | Description
-| Effect on transaction 
+| Effect on the transaction 
 
-| xref:errors.adoc#_client_errors[ClientError]
+| xref:errors/all-errors.adoc#_client_errors[ClientError]
 | The Client sent a bad request - changing the request might yield a successful outcome.
 | Rollback
 
-| xref:notifications.adoc[ClientNotifications]
-| The query execution was successful, but there are notifications about the request sent by the client.
-| None
-
-| xref:errors.adoc#_client_errors[TransientError]
+| xref:errors/all-errors#_transient_errors[TransientError]
 | The database cannot service the request right now, retrying later might yield a successful outcome.
 | Rollback 
 
-| xref:errors.adoc#_database_error[DatabaseError]
+| xref:errors/all-errors#_database_error[DatabaseError]
 | The database failed to service the request.
 | Rollback 
 
+| xref:notifications/index.adoc[ClientNotifications]
+| The query execution was successful, but there are notifications about the request sent by the client.
+| None
+
 |===
 
-== Neo4j version changes
 
+ifndef::backend-pdf[]
+License: link:{common-license-page-uri}[Creative Commons 4.0]
+endif::[]
 
-[discrete]
-=== Neo4j 5.0
-
-**New:**
-
-[source, status codes, role="noheader"]
------
-neo.ClientNotification.Database.HomeDatabaseNotFound
-Neo.ClientNotification.Request.DeprecatedFormat
-neo.ClientNotification.Schema.HintedIndexNotFound
-neo.ClientNotification.Statement.CartesianProduct
-neo.ClientNotification.Statement.CodeGenerationFailed
-neo.ClientNotification.Statement.DynamicProperty
-neo.ClientNotification.Statement.EagerOperator
-neo.ClientNotification.Statement.ExhaustiveShortestPath
-neo.ClientNotification.Statement.NoApplicableIndex
-neo.ClientNotification.Statement.RuntimeExperimental
-neo.ClientNotification.Statement.SubqueryVariableShadowing
-neo.ClientNotification.Statement.UnboundedVariableLengthPattern
-
------
-
-**Removed:**
-
-[source, status codes, role="noheader"]
------
-neo.ClientError.Statement.CodeGenerationFailed
-neo.ClientNotification.Statement.CartesianProductWarning
-neo.ClientNotification.Statement.DynamicPropertyWarning
-neo.ClientNotification.Statement.EagerOperatorWarning
-neo.ClientNotification.Statement.ExhaustiveShortestPathWarning
-neo.ClientNotification.Statement.ExperimentalFeature
-Neo.ClientNotification.Statement.MissingAlias
-neo.ClientNotification.Statement.NoApplicableIndexWarning
-neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
-neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning
-
------
-
-
-[discrete]
-=== Neo4j 4.4
-
-**New:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientError.Statement.UnsupportedAdministrationCommand
-Neo.DatabaseError.Transaction.LinkedTransactionError
------
-
-
-[discrete]
-=== Neo4j 4.3
-
-**New:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientError.General.UpgradeRequired
-Neo.TransientError.Statement.ExecutionTimeout
------
-
-
-[discrete]
-=== Neo4j 4.2
-
-**New:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientNotification.Statement.MissingAlias
-Neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
-Neo.TransientError.Transaction.TransientTransactionFailure
------
-
-
-[discrete]
-=== Neo4j 4.1
-
-**New:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientError.Cluster.Routing
-Neo.ClientError.General.TransactionOutOfMemoryError
-Neo.ClientError.Statement.AccessMode
-Neo.DatabaseError.Statement.RemoteExecutionFailed
-Neo.TransientError.General.MemoryPoolOutOfMemoryError
------
-
-**Removed:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientError.Cluster.TransactionSizeExceedsLimit
-Neo.DatabaseError.Cluster.SerializationFailure
-Neo.TransientError.General.TransactionOutOfMemoryError
------
-
-
-[discrete]
-=== Neo4j 4.0
-
-**New:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientError.Cluster.TransactionSizeExceedsLimit
-Neo.ClientError.Database.DatabaseNotFound
-Neo.ClientError.Database.ExistingDatabaseFound
-Neo.ClientError.Fabric.AccessMode
-Neo.ClientError.Schema.ConstraintViolation
-Neo.ClientError.Schema.ConstraintWithNameAlreadyExists
-Neo.ClientError.Schema.EquivalentSchemaRuleAlreadyExists
-Neo.ClientError.Schema.IndexMultipleFound
-Neo.ClientError.Schema.IndexWithNameAlreadyExists
-Neo.ClientError.Statement.NotSystemDatabaseError
-Neo.ClientError.Statement.RuntimeUnsupportedError
-Neo.ClientError.Transaction.InvalidBookmarkMixture
-Neo.DatabaseError.Cluster.SerializationFailure
-Neo.DatabaseError.Database.DatabaseLimitReached
-Neo.DatabaseError.Database.UnableToStartDatabase
-Neo.DatabaseError.Database.Unknown
-Neo.DatabaseError.Fabric.RemoteExecutionFailed
-Neo.DatabaseError.Schema.TokenLimitReached
-Neo.DatabaseError.Statement.CodeGenerationFailed
-Neo.TransientError.Database.DatabaseUnavailable
-Neo.TransientError.General.TransactionMemoryLimit
-Neo.TransientError.General.TransactionOutOfMemoryError
-Neo.TransientError.Transaction.BookmarkTimeout
-Neo.TransientError.Transaction.LeaseExpired
-Neo.TransientError.Transaction.MaximumTransactionLimitReached
------
-
-**Removed:**
-
-[source, status codes, role="noheader"]
------
-Neo.ClientError.LegacyIndex.LegacyIndexNotFound
-Neo.ClientError.Request.TransactionRequired
-Neo.ClientError.Schema.ConstraintVerificationFailed
-Neo.ClientError.Security.EncryptionRequired
-Neo.ClientError.Statement.LabelNotFound
-Neo.ClientNotification.Statement.CreateUniqueUnavailableWarning
-Neo.ClientNotification.Statement.JoinHintUnsupportedWarning
-Neo.ClientNotification.Statement.PlannerUnavailableWarning
-Neo.ClientNotification.Statement.PlannerUnsupportedWarning
-Neo.DatabaseError.Schema.LabelLimitReached
-Neo.TransientError.Cluster.NoLeaderAvailable
-Neo.TransientError.General.DatabaseUnavailable
-Neo.TransientError.Network.CommunicationError
-Neo.TransientError.Schema.SchemaModifiedConcurrently
-Neo.TransientError.Transaction.InstanceStateChanged
-Neo.TransientError.Transaction.LockSessionExpired
------
-
+ifdef::backend-pdf[]
+License: Creative Commons 4.0
+endif::[]
