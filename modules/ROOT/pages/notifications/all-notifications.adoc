@@ -4,16 +4,16 @@
 
 The following are all Neo4j notifications, grouped by category, when they are returned, and an example of improvement.
 
-* <<_performance_notifications, `PERFORMANCE` notification codes>>
-* <<_hint_notifications, `HINT` notification codes>>
-* <<_unrecognized_notifications, `UNRECOGNIZED` notification codess>>
-* <<_unsupported_notifications, `UNSUPPORTED` notification codes>>
-* <<_deprecated_notifications, `DEPRECATION` notification codes>>
-* <<_generic, `GENERIC` notifications>>
+* <<_performance_notifications, `PERFORMANCE` category>>
+* <<_hint_notifications, `HINT` category>>
+* <<_unrecognized_notifications, `UNRECOGNIZED` category>>
+* <<_unsupported_notifications, `UNSUPPORTED` category>>
+* <<_deprecated_notifications, `DEPRECATION` category>>
+* <<_generic, `GENERIC` category>>
 
 
 [#_performance_notifications]
-== `PERFORMANCE` notification codes
+== `PERFORMANCE` category
 
 Performance notifications are returned whenever the query uses costly operations and the performance may be improved by changing the query or adding an index.
 
@@ -187,7 +187,7 @@ Query::
 +
 [source, cypher, role="noplay"]
 ----
-EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:line[0]}) RETURN line, n
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:line[0]}) RETURN line, n
 ----
 
 Description of the returned code::
@@ -234,7 +234,7 @@ Query::
 +
 [source, cypher, role="noplay"]
 ----
-EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]}) DELETE n RETURN line
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]}) DELETE n RETURN line
 ----
 
 Description of the returned code::
@@ -246,7 +246,7 @@ In this specific case, the query could be rewritten to the following:
 +
 [source, cypher, role="noplay"]
 ----
-EXPLAIN LOAD CSV FROM 'file:///ignore/ignore.csv' AS line
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line
 CALL {
     WITH line
     MATCH (n:Person{name:line[0]}) DELETE n
@@ -365,7 +365,7 @@ Query::
 +
 [source, cypher]
 ----
-EXPLAIN MATCH (a:A)
+MATCH (a:A)
 WITH a, 1 AS horizon
 OPTIONAL MATCH (a)-[r]->(b:B)
 USING JOIN ON a
@@ -406,7 +406,7 @@ Query::
 +
 [source, cypher]
 ----
-EXPLAIN MATCH (a: Label)
+MATCH (a: Label)
 USING INDEX a:Label(id)
 WHERE a.id = 1
 RETURN a
@@ -427,7 +427,7 @@ Query::
 +
 [source, cypher]
 ----
-EXPLAIN MATCH ()-[r:Rel]-()
+MATCH ()-[r:Rel]-()
 USING INDEX r:Rel(id)
 WHERE r.id = 1
 RETURN r
@@ -444,7 +444,7 @@ If the spelling is correct, either create the index or remove the hint from the 
 ====
 
 [#_unrecognized_notifications]
-== `UNRECOGNIZED` notifications
+== `UNRECOGNIZED` category
 
 A notification has the unrecognized category if the query or command mentions entities that are unknown to the system.
 
@@ -582,8 +582,8 @@ Make sure you didn't misspell the property key. If the property key will be crea
 
 ====
 
-[#unsupported_notifications]
-== `UNSUPPORTED` notifications
+[#_unsupported_notifications]
+== `UNSUPPORTED` category
 
 Notifications with the unsupported category are created if the query or command is trying to use features that are not supported by the current system or using experimental features that should not be used in production.
 
@@ -663,7 +663,7 @@ MATCH (n) RETURN (n)
 ====
 
 [#_deprecated_notifications]
-== `DEPRECATION` notifications
+== `DEPRECATION` category
 
 Notifications within the deprecation category contain information about a feature or functionality which has been deprecated. It is important to change to the new functionality, otherwise, the query might break in a future version.
 
@@ -689,7 +689,9 @@ Query::
 +
 [source,cypher]
 ----
-MATCH ()-[r:PARENT*]-(), ()-[r:PARENT*]-() RETURN *
+MATCH ()-[r:PARENT*]-()
+MATCH ()-[r:PARENT*]-()
+RETURN *
 ----
 
 Description of the returned code::
@@ -816,7 +818,7 @@ Query::
 +
 [source,cypher]
 ----
-MATCH (a:Start), (b:End), shortestPath((a)-[r]->(b)) RETURN b
+MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
 ----
 
 Description of the returned code::
@@ -844,7 +846,7 @@ CREATE DATABASE foo.bar
 ----
 
 Description of the returned code::
-Databases and aliases with unescaped `.` are deprecated unless indicated that they belong to a composite database. Names containing `.` should be escaped. 
+Databases and aliases with unescaped `.` are deprecated unless indicated that they belong to a composite database. Names containing `.` should be escaped.
 (The database name is `foo.bar`.)
 
 Suggestions for improvement::
@@ -865,7 +867,7 @@ CALL unsupported.dbms.shutdown
 ----
 
 Description of the returned code::
-The query uses a deprecated procedure. 
+The query uses a deprecated procedure.
 (`unsupported.dbms.shutdown` is no longer supported.)
 
 Suggestions for improvement::
@@ -937,7 +939,7 @@ m|DEPRECATION
 
 
 [#_generic]
-== `GENERIC` notification codes
+== `GENERIC` category
 
 `GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
 

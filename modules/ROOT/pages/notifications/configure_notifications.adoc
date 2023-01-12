@@ -2,7 +2,7 @@
 [[configure_notifications]]
 = Configuring notifications
 
-You can configure for which categories you want to receive notifications in the driver using the following configuration options:
+If you do not configure which notifications to receive, all notifications will be returned. You can configure which notifications to receive in the driver using the following configuration options:
 
 [[notification_level]]
 .notification_level

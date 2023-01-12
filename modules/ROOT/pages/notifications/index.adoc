@@ -61,6 +61,6 @@ The following categories exist, ordered by severity:
 
 | PERFORMANCE
 | INFORMATION
-| The query uses costly operations and might be slow. Consider if it is possible to retire the query in a different way.
+| The query uses costly operations and might be slow. Consider if it is possible to rewrite the query in a different way.
 |
 |===
