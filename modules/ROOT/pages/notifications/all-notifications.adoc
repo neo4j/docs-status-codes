@@ -820,10 +820,12 @@ MATCH (a:Start), (b:End), shortestPath((a)-[r]->(b)) RETURN b
 ----
 
 Description of the returned code::
-The use of `shortestPath` and `allShortestPaths` with fixed length relationships is deprecated and will be removed in a future version. Please use a path with a length of `1 [r*1..1]` instead or `MATCH` with a limit.
+The use of `shortestPath` and `allShortestPaths` with fixed-length relationships is deprecated.
+Use a path with a length of `1 [r*1..1]` instead or `MATCH` with a limit.
 
 Suggestions for improvement::
-If the relationship length is fixed, there is no reason to search for the shortest path. Instead, it could be rewritten to the following:
+If the relationship length is fixed, there is no reason to search for the shortest path.
+Instead, you can rewrite it to the following:
 +
 [source,cypher]
 ----
@@ -842,7 +844,8 @@ CREATE DATABASE foo.bar
 ----
 
 Description of the returned code::
-Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
+Databases and aliases with unescaped `.` are deprecated unless indicated that they belong to a composite database. Names containing `.` should be escaped. 
+(The database name is `foo.bar`.)
 
 Suggestions for improvement::
 If not intended for a composite database, escape the name with the character ```.
@@ -862,10 +865,12 @@ CALL unsupported.dbms.shutdown
 ----
 
 Description of the returned code::
-The query used a deprecated procedure. ('unsupported.dbms.shutdown' is no longer supported)
+The query uses a deprecated procedure. 
+(`unsupported.dbms.shutdown` is no longer supported.)
 
 Suggestions for improvement::
-Remove the use of the deprecated procedure. If there is a suggested replacement, update to use the replacement instead.
+Remove the use of the deprecated procedure.
+If there is a suggested replacement, update to use the replacement instead.
 
 ====
 
@@ -879,10 +884,11 @@ CYPHER runtime = interpreted MATCH (n) RETURN n
 ----
 
 Description of the returned code::
-The query used a deprecated runtime option. ('runtime=interpreted' is deprecated, please use 'runtime=slotted' instead).
+The query uses a deprecated runtime option.
+(`runtime=interpreted` is deprecated, use `runtime=slotted` instead.)
 
 Suggestions for improvement::
-Runtime `interpreted` is deprecated, use another runtime or remove the runtime option in order to use the default runtime.
+Runtime `interpreted` is deprecated, use another runtime or remove the runtime option to use the default runtime.
 +
 [source,cypher]
 ----
@@ -890,7 +896,7 @@ MATCH (n) RETURN n
 ----
 ====
 
-.Using the text-1.0 index provider when creating a text index
+.Using the `text-1.0` index provider when creating a text index
 ====
 Query::
 +
@@ -900,10 +906,11 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
 ----
 
 Description of the returned code::
-The `text-1.0` provider for text indexes is deprecated and will be removed in a future version. Please use `text-2.0` instead.
+The `text-1.0` provider for text indexes is deprecated.
+Use `text-2.0` instead.
 
 Suggestions for improvement::
-Update the option `indexProvider` to have the value `text-2.0`.
+Update the option `indexProvider` with the value `text-2.0`.
 +
 [source,cypher]
 ----
@@ -921,7 +928,7 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 |Code
 m|Neo.ClientNotification.Request.DeprecatedFormat
 |Title
-a|The client did a request for a format that has been deprecated.
+a|The client requested a deprecated format.
 |Severity
 m|WARNING
 |Category
@@ -930,10 +937,9 @@ m|DEPRECATION
 
 
 [#_generic]
-== `GENERIC` notifications
+== `GENERIC` notification codes
 
-A notification that has the generic category, does not belong to any wider category.
-The notifications in this group do not have any connection to each other.
+`GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
 
 [#_neo_clientnotification_statement_subqueryvariableshadowing]
 === Neo.ClientNotification.Statement.SubqueryVariableShadowing
@@ -966,7 +972,8 @@ RETURN *
 ----
 
 Description of the returned code::
-A variable in a subquery is shadowing a variable with the same name from the outer scope. If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (the shadowing variable is: n)
+A variable in a subquery is shadowing a variable with the same name from the outer scope.
+If you want to use that variable instead, it must be imported into the subquery using the importing `WITH` clause. (The shadowing variable is `n`.)
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
@@ -1001,7 +1008,7 @@ m|WARNING
 m|GENERIC
 |===
 
-.Using an EXPLAIN query with parameters without providing those parameters
+.Using an `EXPLAIN` query with parameters without providing them
 ====
 Query::
 +
@@ -1011,7 +1018,9 @@ EXPLAIN WITH $param as param RETURN param
 ----
 
 Description of the returned code::
-Did not supply query with enough parameters. The produced query plan will not be cached and is not executable without EXPLAIN. (Missing parameters: param)
+You need to supply the query with parameters.
+The produced query plan cannot be cached and is not executable without `EXPLAIN`.
+(The missing parameters are `param`.)
 
 Suggestions for improvement::
 Provide the parameter to be able to cache the plan.
