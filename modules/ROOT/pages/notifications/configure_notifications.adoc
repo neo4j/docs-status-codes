@@ -2,7 +2,7 @@
 [[configure_notifications]]
 = Configuring notifications
 
-If you do not configure which notifications to receive, all notifications will be returned. You can configure which notifications to receive in the driver using the following configuration options:
+By default, all notifications are returned in the result summary. It is possible to filter on which notifications to receive using the following configuration options:
 
 [[notification_level]]
 .notification_level
