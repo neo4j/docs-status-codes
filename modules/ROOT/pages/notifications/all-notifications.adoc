@@ -340,7 +340,7 @@ The `CodeGenerationFailed` notification is created when it is not possible to ge
 To find more information about the specific query, see the stack trace in the _debug.log_ file.
 
 [#_hint_notifications]
-== `HINT` notifications
+== `HINT` category
 
 `HINT` notifications are returned by default when the Cypher planner or runtime cannot create a query plan to fulfill a specified hint, for example, `JOIN` or `INDEX`.
 This behavior of the Cypher planner or runtime can be changed by setting the configuration `dbms.cypher.hints_error` to `true`, in which case, the query will return an error instead.
