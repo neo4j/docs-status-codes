@@ -6,7 +6,25 @@
 Error codes are returned by the server when the execution of a query fails.
 Error codes have severity `ERROR`.
 
-[[error-format]]
-== Error code fields
+// [[error-format]]
+// == Error code fields
 
-The error code format is as follows:
+// The error code format is as follows:
+
+
+[[error-types]]
+== Types of error codes
+
+All errors returned are classified into one of the following categories:
+
+Client errors::
+    These errors are caused by the client and are usually related to the request itself.
+    Client errors have the prefix `Neo.ClientError`.
+
+Transient errors::
+    These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
+    Transient errors have the prefix `Neo.TransientError`.
+
+Database errors::
+    These errors are caused by the database and are usually related to the database state.
+    Database errors have the prefix `Neo.DatabaseError`.
