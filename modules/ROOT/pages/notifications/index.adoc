@@ -1,0 +1,66 @@
+:description: The Neo4j notifications for Neo4j version {neo4j-version}.
+
+[[notifications]]
+= Notification codes
+
+`ClientNotification` codes are messages returned by the server with severity `WARNING` or `INFORMATION`.
+Contrary to error messages, notifications are only returned if the execution of the query is successful.
+
+[[notification-format]]
+== Notification code fields
+
+The notification object, which is part of the result summary, consists of the following fields:
+
+* *Code* -- The status code in the form of `Neo.ClientNotification.[Category].[Title]`.
+* *Title* -- The description of the status code.
+* *Description* -- The description of a specific notification, which can contain details about the query being executed.
+* *Severity* -- The severity can be one of the following: +
+  ** `WARNING`: There might be a problem with your query. Please, take a look. +
+  ** `INFORMATION`: The query is correct, but this information can still be useful.
+* *Category* -- The category of the notification.
+* *Position* -- The position, given by row and column, where the notification is relevant in the query text.
+
+[[notification-categories]]
+== Notification code categories
+
+All notifications are grouped by category, which can have severity `WARNING`, `WARNING OR INFORMATION`, or `INFORMATION`.
+
+The following categories exist, ordered by severity:
+
+[options="header", cols="<1m,<1m,<3,<2"]
+|===
+| CATEGORY
+| SEVERITY
+| EXPLANATION
+| RECOMMENDED ACTION
+
+| DEPRECATION
+| WARNING
+| The query or command uses deprecated features that should be replaced.
+| Update to use the new functionality.
+
+| HINT
+| WARNING
+| The given hint cannot be satisfied.
+| Remove the hint or fix the query so the hint can be used.
+
+| UNSUPPORTED
+| WARNING
+| The query or command is trying to use features not supported by the current system or using experimental features that should not be used in production.
+| Unsupported features cannot be trusted and should not be used in production.
+
+| UNRECOGNIZED
+| WARNING OR INFORMATION
+| The query or command mentions entities that are unknown to the system.
+| Make sure you have not misspelled the entity.
+
+| GENERIC
+| WARNING OR INFORMATION
+| Notifications that are not part of a wider class.
+| Depends on the specific notification.
+
+| PERFORMANCE
+| INFORMATION
+| The query uses costly operations and might be slow. Consider if it is possible to rewrite the query in a different way.
+|
+|===
