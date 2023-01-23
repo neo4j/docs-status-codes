@@ -1,0 +1,440 @@
+:description: The Neo4j error codes for Neo4j version {neo4j-version}.
+
+
+[[neo4j-errors]]
+= List of all error codes
+
+This page contains lists of all neo4j errors, grouped by classification.
+
+== Client errors
+
+This is a complete list of all client error status codes Neo4j may return, and what they mean.
+
+[options="header", cols="<1m,<1"]
+|===
+
+| Status Code
+| Description
+
+| Neo.ClientError.Cluster.NotALeader
+| The request cannot be processed by this server. Write requests can only be processed by the leader.
+
+| Neo.ClientError.Cluster.Routing
+| Unable to route the request to the appropriate server
+
+| Neo.ClientError.Database.DatabaseNotFound
+| The request referred to a database that does not exist.
+
+| Neo.ClientError.Database.ExistingAliasFound
+| The request referred to a database with an alias.
+
+| Neo.ClientError.Database.ExistingDatabaseFound
+| The request referred to a database that already exists.
+
+| Neo.ClientError.Fabric.AccessMode
+| The request could not be completed due to an access mode violation
+
+| Neo.ClientError.General.ForbiddenOnReadOnlyDatabase
+| This is a read-only database, writing or modifying the database is not allowed.
+
+| Neo.ClientError.General.InvalidArguments
+| The request contained fields that were empty or are not allowed.
+
+| Neo.ClientError.General.TransactionOutOfMemoryError
+|
+The transaction used more memory than was allowed.
+The maximum allowed size for a transaction can be configured with `dbms.memory.transaction.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+
+| Neo.ClientError.General.UpgradeRequired
+|
+This transaction required the database to be of a higher kernel version than it is.
+Make sure that the Neoj4 DBMS has been correctly upgraded before retrying this operation.
+
+| Neo.ClientError.General.WriteOnReadOnlyAccessDatabase
+|
+This database is in read-only mode, writing or modifying the database is not allowed.
+
+| Neo.ClientError.Procedure.ProcedureCallFailed
+|
+Failed to invoke a procedure.
+See the detailed error description for the exact cause.
+
+| Neo.ClientError.Procedure.ProcedureNotFound
+|
+A request referred to a procedure that is not registered with this database instance.
+If you are deploying custom procedures in a cluster setup, ensure all instances in the cluster have the procedure jar file deployed.
+
+| Neo.ClientError.Procedure.ProcedureRegistrationFailed
+| The database failed to register a procedure, refer to the associated error message for details.
+
+| Neo.ClientError.Procedure.ProcedureTimedOut
+|
+The procedure did not complete within the specified timeout.
+You may want to retry with a longer timeout.
+
+| Neo.ClientError.Procedure.TypeError
+| A procedure is using or receiving a value of an invalid type.
+
+| Neo.ClientError.Request.Invalid
+| The client provided an invalid request.
+
+| Neo.ClientError.Request.InvalidFormat
+| The client provided a request that was missing required fields or had values that are not allowed.
+
+| Neo.ClientError.Request.InvalidUsage
+| The client made a request but did not consume outgoing buffers in a timely fashion.
+
+| Neo.ClientError.Schema.ConstraintAlreadyExists
+| Unable to perform this operation because it will clash with a pre-existing constraint.
+
+| Neo.ClientError.Schema.ConstraintNotFound
+| The request (directly or indirectly) referred to a constraint that does not exist.
+
+| Neo.ClientError.Schema.ConstraintValidationFailed
+| A constraint imposed by the database was violated.
+
+| Neo.ClientError.Schema.ConstraintViolation
+| Added or changed index entry violates a constraint.
+
+| Neo.ClientError.Schema.ConstraintWithNameAlreadyExists
+| Unable to perform this operation because a constraint with that name already exists.
+
+| Neo.ClientError.Schema.EquivalentSchemaRuleAlreadyExists
+| Unable to perform this operation because an equivalent schema rule already exists.
+
+| Neo.ClientError.Schema.ForbiddenOnConstraintIndex
+|
+A requested operation cannot be performed on the specified index because the index is part of a constraint.
+If you want to drop the index, you must also drop the constraint.
+
+| Neo.ClientError.Schema.IndexAlreadyExists
+| Unable to perform this operation because it will clash with a pre-existing index.
+
+| Neo.ClientError.Schema.IndexMultipleFound
+| The request referenced an index by its schema and multiple matching indexes were found.
+
+| Neo.ClientError.Schema.IndexNotApplicable
+| The request did not contain the properties required by the index.
+
+| Neo.ClientError.Schema.IndexNotFound
+| The request (directly or indirectly) referred to an index that does not exist.
+
+| Neo.ClientError.Schema.IndexWithNameAlreadyExists
+| Unable to perform this operation because an index with that name already exists.
+
+| Neo.ClientError.Schema.RepeatedLabelInSchema
+| Unable to create an index or a constraint because the schema had a repeated label.
+
+| Neo.ClientError.Schema.RepeatedPropertyInCompositeSchema
+| Unable to create an index or a constraint because the schema had a repeated property.
+
+| Neo.ClientError.Schema.RepeatedRelationshipTypeInSchema
+| Unable to create an index or a constraint because the schema had a repeated relationship type.
+
+| Neo.ClientError.Schema.TokenNameError
+|
+An invalid name is used for a token (label, relationship type, property key).
+Tokens cannot be empty strings and cannot be null.
+
+| Neo.ClientError.Security.AuthenticationRateLimit
+| The client has provided incorrect authentication details too many times in a row.
+
+| Neo.ClientError.Security.AuthorizationExpired
+|
+The stored authorization info has expired.
+Please reconnect.
+
+| Neo.ClientError.Security.CredentialsExpired
+| The credentials have expired and need to be updated.
+
+| Neo.ClientError.Security.Forbidden
+| An attempt was made to perform an unauthorized action.
+
+| Neo.ClientError.Security.TokenExpired
+| The auth provider token has expired.
+
+| Neo.ClientError.Security.Unauthorized
+| The client is unauthorized due to authentication failure.
+
+| Neo.ClientError.Statement.AccessMode
+| The request could not be completed due to an access mode violation.
+
+| Neo.ClientError.Statement.ArgumentError
+| The statement is attempting to perform operations using invalid arguments.
+
+| Neo.ClientError.Statement.ArithmeticError
+| Invalid use of arithmetic, such as dividing by zero.
+
+| Neo.ClientError.Statement.ConstraintVerificationFailed
+| A constraint imposed by the statement is violated by the data in the database.
+
+| Neo.ClientError.Statement.EntityNotFound
+| The statement refers to a non-existent entity.
+
+| Neo.ClientError.Statement.ExternalResourceFailed
+| Access to an external resource failed.
+
+| Neo.ClientError.Statement.NotSystemDatabaseError
+| This is an administration command and it should be executed against the `system` database.
+
+| Neo.ClientError.Statement.ParameterMissing
+| The statement refers to a parameter that was not provided in the request.
+
+| Neo.ClientError.Statement.PropertyNotFound
+| The statement refers to a non-existent property.
+
+| Neo.ClientError.Statement.RuntimeUnsupportedError
+| This query is not supported by the chosen runtime.
+
+| Neo.ClientError.Statement.SemanticError
+| The statement is syntactically valid but expresses something that the database cannot do.
+
+| Neo.ClientError.Statement.SyntaxError
+| The statement contains invalid or unsupported syntax.
+
+| Neo.ClientError.Statement.TypeError
+| The statement is attempting to perform operations on values with types that are not supported by the operation.
+
+| Neo.ClientError.Statement.UnsupportedAdministrationCommand
+| This administration command is not supported.
+
+| Neo.ClientError.Statement.UnsupportedOperationError
+| This query performed an operation that is not supported in this context.
+
+| Neo.ClientError.Transaction.ForbiddenDueToTransactionType
+|
+The transaction is of the wrong type to service the request.
+For instance, a transaction that has had schema modifications performed in it cannot be used to subsequently perform data operations, and vice versa.
+
+| Neo.ClientError.Transaction.InvalidBookmark
+|
+The supplied bookmark cannot be interpreted.
+You should only supply a bookmark that was previously generated by Neo4j.
+Maybe you have generated your own bookmark, or modified a bookmark since it was generated by Neo4j.
+
+| Neo.ClientError.Transaction.InvalidBookmarkMixture
+|
+Mixing bookmarks generated by different databases is forbidden.
+You should only chain bookmarks that are generated from the same database.
+You may however chain bookmarks generated from the `system` database with bookmarks from another database.
+
+| Neo.ClientError.Transaction.LockClientStopped
+| The transaction has been terminated, so no more locks can be acquired.
+This may occur because the transaction ran longer than the configured transaction timeout, a human operator manually terminated the transaction, or the database shut down.
+
+| Neo.ClientError.Transaction.Terminated
+| Explicitly terminated by the user.
+
+| Neo.ClientError.Transaction.TransactionAccessedConcurrently
+| There were concurrent requests accessing the same transaction, which is not allowed.
+
+| Neo.ClientError.Transaction.TransactionHookFailed
+| Transaction hook failure.
+
+| Neo.ClientError.Transaction.TransactionMarkedAsFailed
+|
+The transaction was marked as both successful and failed.
+Because failure takes precedence, the transaction was rolled back.
+
+| Neo.ClientError.Transaction.TransactionNotFound
+| The request referred to a transaction that does not exist.
+
+| Neo.ClientError.Transaction.TransactionTimedOut
+|
+The transaction has not completed within the specified timeout (`dbms.transaction.timeout`).
+You may want to retry with a longer timeout.
+
+| Neo.ClientError.Transaction.TransactionValidationFailed
+| Transaction changes did not pass validation checks.
+
+
+|===
+
+== Transient errors
+
+This is a complete list of all transient error status codes Neo4j may return, and what they mean.
+
+[options="header", cols="<1m,<1"]
+|===
+
+| Status Code
+| Description
+
+| Neo.TransientError.Cluster.ReplicationFailure
+| Replication failure.
+
+| Neo.TransientError.Database.DatabaseUnavailable
+|
+The database is not currently available to serve your request, refer to the database logs for more details.
+Retrying your request at a later time may succeed.
+
+| Neo.TransientError.General.MemoryPoolOutOfMemoryError
+|
+The memory pool limit was exceeded.
+The corresponding setting can be found in the error message.
+
+| Neo.TransientError.General.OutOfMemoryError
+|
+There is not enough memory to perform the current task.
+Please try increasing `dbms.memory.heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+
+If you are running an embedded installation, you can increase the heap by using the `-Xmx` command line flag, and then restart the database.
+
+| Neo.TransientError.General.StackOverFlowError
+|
+There is not enough stack size to perform the current task.
+This is generally considered to be a database error, so please contact Neo4j support.
+
+You could try increasing the stack size; for example to set the stack size to `2M`, add `dbms.jvm.additional=-Xss2M` to in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+
+ If you are running an embedded installation, you can add `-Xss2M` as command line flag.
+
+| Neo.TransientError.General.TransactionMemoryLimit
+|
+There is not enough memory to perform the current task.
+Please try increasing `dbms.memory.off_heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface), and then restart the database.
+
+| Neo.TransientError.Request.NoThreadsAvailable
+|
+There are no available threads to serve this request at the moment.
+You can retry at a later time, or consider increasing max thread pool size for bolt connector(s).
+
+| Neo.TransientError.Security.AuthProviderFailed
+| An auth provider request failed.
+
+| Neo.TransientError.Security.AuthProviderTimeout
+| An auth provider request timed out.
+
+| Neo.TransientError.Security.ModifiedConcurrently
+| The user was modified concurrently to this request.
+
+| Neo.TransientError.Statement.ExecutionTimeout
+| The database was unable to execute the statement in a timely fashion.
+
+| Neo.TransientError.Transaction.BookmarkTimeout
+|
+Bookmark wait timed out.
+Database has not reached the specified version.
+
+| Neo.TransientError.Transaction.ConstraintsChanged
+| Database constraints changed since the start of this transaction.
+
+| Neo.TransientError.Transaction.DeadlockDetected
+|
+This transaction, and at least one more transaction, has acquired locks in a way that it will wait indefinitely, and the database has aborted it.
+Retrying this transaction will most likely be successful.
+
+| Neo.TransientError.Transaction.Interrupted
+| Interrupted while waiting.
+
+| Neo.TransientError.Transaction.LeaseExpired
+| The lease under which this transaction was started is no longer valid.
+
+| Neo.TransientError.Transaction.LockAcquisitionTimeout
+| Unable to acquire lock within configured timeout (`dbms.lock.acquisition.timeout`).
+
+| Neo.TransientError.Transaction.MaximumTransactionLimitReached
+|
+Unable to start new transaction since the maximum number of concurrently executing transactions is reached (`dbms.transaction.concurrent.maximum`).
+You can retry at a later time or consider increasing allowed maximum of concurrent transactions.
+
+| Neo.TransientError.Transaction.Outdated
+|
+Transaction has seen state which has been invalidated by applied updates while the transaction was active.
+Transaction may succeed if retried.
+
+|===
+
+== Database error
+
+This is a complete list of all database error status codes Neo4j may return, and what they mean.
+
+[options="header", cols="<1m,<1"]
+|===
+
+| Status Code
+| Description 
+
+| Neo.DatabaseError.Database.DatabaseLimitReached
+| The limit to number of databases has been reached. 
+
+| Neo.DatabaseError.Database.UnableToStartDatabase
+| Unable to start database. 
+
+| Neo.DatabaseError.Database.Unknown
+| Unknown database management error.
+
+| Neo.DatabaseError.Fabric.RemoteExecutionFailed
+| The database was unable to execute a remote part of the statement. 
+
+| Neo.DatabaseError.General.IndexCorruptionDetected
+|
+The request (directly or indirectly) referred to an index that is in a failed state.
+The index needs to be dropped and recreated manually. 
+
+| Neo.DatabaseError.General.SchemaCorruptionDetected
+|
+A malformed schema rule was encountered.
+Please contact your support representative. 
+
+| Neo.DatabaseError.General.StorageDamageDetected
+|
+Expected set of files not found on disk.
+Please restore from backup. 
+
+| Neo.DatabaseError.General.UnknownError
+| An unknown error occurred. 
+
+| Neo.DatabaseError.Schema.ConstraintCreationFailed
+| Creating a requested constraint failed. 
+
+| Neo.DatabaseError.Schema.ConstraintDropFailed
+| The database failed to drop a requested constraint. 
+
+| Neo.DatabaseError.Schema.IndexCreationFailed
+| Failed to create an index. 
+
+| Neo.DatabaseError.Schema.IndexDropFailed
+| The database failed to drop a requested index. 
+
+| Neo.DatabaseError.Schema.LabelAccessFailed
+| The request accessed a label that did not exist. 
+
+| Neo.DatabaseError.Schema.PropertyKeyAccessFailed
+| The request accessed a property that does not exist. 
+
+| Neo.DatabaseError.Schema.RelationshipTypeAccessFailed
+| The request accessed a relationship type that does not exist. 
+
+| Neo.DatabaseError.Schema.SchemaRuleAccessFailed
+| The request referred to a schema rule that does not exist. 
+
+| Neo.DatabaseError.Schema.SchemaRuleDuplicateFound
+| The request referred to a schema rule that is defined multiple times. 
+
+| Neo.DatabaseError.Schema.TokenLimitReached
+| The maximum number of tokens of this type has been reached, no more tokens of this type can be created.
+
+| Neo.DatabaseError.Statement.ExecutionFailed
+| The database was unable to execute the statement. 
+
+| Neo.DatabaseError.Statement.RemoteExecutionFailed
+| The database was unable to execute a remote part of the statement. 
+
+| Neo.DatabaseError.Transaction.LinkedTransactionError
+| The transaction was terminated because another transaction executing the same query encountered an error. 
+
+| Neo.DatabaseError.Transaction.TransactionCommitFailed
+| The database was unable to commit the transaction. 
+
+| Neo.DatabaseError.Transaction.TransactionLogError
+| The database was unable to write transaction to log. 
+
+| Neo.DatabaseError.Transaction.TransactionRollbackFailed
+| The database was unable to roll back the transaction. 
+
+| Neo.DatabaseError.Transaction.TransactionStartFailed
+| The database was unable to start the transaction. 
+
+|===
+
