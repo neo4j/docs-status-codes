@@ -933,7 +933,7 @@ RETURN 'val' as two, 'val' as one
 
 Description of the returned code::
 All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will not be possible in future versions.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
 Suggestions for improvement::
 Use the same order for the return columns in all subqueries combined by a `UNION` clause.
