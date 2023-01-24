@@ -22,7 +22,8 @@ Client errors::
     Client errors have the prefix `Neo.ClientError`.
 
 Transient errors::
-    These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
+    These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc. 
+    The error can be temporary and could therefore succeed if retrying the request.
     Transient errors have the prefix `Neo.TransientError`.
 
 Database errors::
