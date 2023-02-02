@@ -1043,3 +1043,40 @@ m|WARNING
 |Category
 m|GENERIC
 |===
+
+[#_neo_clientnotification_statement_repeatedrelationshipreference]
+=== Neo.ClientNotification.Statement.RepeatedRelationshipReference
+
+.Notification category details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
+|Title
+a|The query returns no results due to repeated references to a relationship.
+|Severity
+m|WARNING
+|Category
+m|GENERIC
+|===
+
+.Repeating a relationship variable
+====
+Query::
++
+[source,cypher]
+----
+MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
+----
+
+Description of the returned code::
+A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
+
+Suggestions for improvement::
+In order to find all relationships which have a start node with label `A` and end node with label `B`, it could be rewritten to the following:
++
+[source, cypher, role="noplay"]
+----
+MATCH (:A)-[r]->(:B) RETURN r
+----
+
