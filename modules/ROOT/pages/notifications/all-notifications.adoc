@@ -920,6 +920,33 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 ----
 ====
 
+.Using differently ordered return items in a `UNION` clause
+====
+Query::
++
+[source,cypher]
+----
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as two, 'val' as one
+----
+
+Description of the returned code::
+All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+
+Suggestions for improvement::
+Use the same order for the return columns in all subqueries combined by a `UNION` clause.
+
++
+[source,cypher]
+----
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as one, 'val' as two
+----
+====
+
 [#_neo_clientnotification_request_deprecatedformat]
 === Neo.ClientNotification.Request.DeprecatedFormat
 
