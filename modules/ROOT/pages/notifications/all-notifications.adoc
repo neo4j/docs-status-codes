@@ -1045,7 +1045,7 @@ m|GENERIC
 |===
 
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
-=== Neo.ClientNotification.Statement.RepeatedRelationshipReference
+=== Neo.ClientNotification.Statement.RepeatedRelationshipReference (when run on version 5.5 or newer)
 
 .Notification category details
 [cols="<1s,<4"]

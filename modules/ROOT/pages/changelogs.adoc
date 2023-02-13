@@ -8,7 +8,7 @@
 
 [source, status codes, role="noheader"]
 -----
-Status.Statement.RepeatedRelationshipReference
+Neo.ClientNotification.Statement.RepeatedRelationshipReference
 -----
 
 == Neo4j 5.0
