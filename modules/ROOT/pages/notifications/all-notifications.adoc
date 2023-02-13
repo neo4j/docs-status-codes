@@ -685,68 +685,6 @@ m|WARNING
 m|DEPRECATION
 |===
 
-.Repeated variable length relationship variable inside the same pattern, with same relationship type (when run on a 5.x release)
-====
-Query::
-+
-[source,cypher]
-----
-MATCH ()-[r:PARENT*]-()
-MATCH ()-[r:PARENT*]-()
-RETURN *
-----
-
-Description of the returned code::
-Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: `r`)
-
-Suggestions for improvement::
-Inside a single pattern, we have relationship uniqueness, which means that this query never will return any rows and should therefore be rewritten to the wanted behavior.
-
-====
-
-.Repeated variable length relationship across patterns, with the same relationship type
-====
-Query::
-+
-[source,cypher]
-----
-MATCH ({name:"Molly"})-[r:KNOWS*]->({name:"Kalle"})
-MATCH ({age:25})-[r:KNOWS*]->({age:21})
-RETURN r
-----
-
-Description of the returned code::
-Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: `r`)
-
-Suggestions for improvement::
-Since the relationships in the first and second match must be the same, we know that the start node and the end node are the same.
-In the query above, we could therefore concatenate the predicates from the two matches and create a single match:
-+
-[source,cypher]
-----
-MATCH ({name:"Molly", age:25})-[r:KNOWS*]->({name:"Kalle", age:21})
-RETURN r
-----
-====
-
-.Repeated variable length relationship across patterns with different relationship types
-====
-Query::
-+
-[source,cypher]
-----
-MATCH ()-[r:PARENT*]-()
-MATCH ()-[r:CHILD*]-()
-RETURN *
-----
-
-Description of the returned code::
-Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: `r`)
-
-Suggestions for improvement::
-Since the relationships in the first and second match must be the same, and a single relationship can't have multiple relationship types, this query will never return any rows.
-====
-
 .Colon after the | in a relationship pattern
 ====
 Query::
@@ -1072,7 +1010,7 @@ m|GENERIC
 |===
 
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
-=== Neo.ClientNotification.Statement.RepeatedRelationshipReference (when run on version 5.5 or newer)
+=== Neo.ClientNotification.Statement.RepeatedRelationshipReference
 
 .Notification category details
 [cols="<1s,<4"]
@@ -1087,7 +1025,7 @@ m|WARNING
 m|GENERIC
 |===
 
-.Binding a relationship variable more than once.
+.Binding a relationship variable more than once (when run on version 5.5 or newer)
 ====
 Query::
 +
@@ -1105,4 +1043,16 @@ Use one pattern to match all relationships that start with a node with the label
 ----
 MATCH (:A)-[r]->(:B) RETURN r
 ----
+====
+
+.Binding a variable-length relationship variable more than once (when run on version 5.6 or newer)
+====
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
+----
+Description of the returned code::
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
 ====
