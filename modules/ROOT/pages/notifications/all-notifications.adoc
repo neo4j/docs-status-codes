@@ -1072,7 +1072,7 @@ Description of the returned code::
 A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
 
 Suggestions for improvement::
-In order to find all relationships which have a start node with label `A` and end node with label `B`, it could be rewritten to the following:
+Use one pattern to match all relationships that start with a node with the label `A` and end with a node with the label `B`:
 +
 [source, cypher, role="noplay"]
 ----
