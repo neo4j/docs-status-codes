@@ -3,12 +3,21 @@
 
 == Neo4j 5.5
 
-
 **New:**
 
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Statement.RepeatedRelationshipReference
+-----
+
+== Neo4j 5.4
+
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 -----
 
 == Neo4j 5.0
