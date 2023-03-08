@@ -1031,7 +1031,7 @@ m|GENERIC
 |===
 
 [#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
-=== Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
+=== Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression (when run on version 5.4 or newer)
 
 .When is this notification returned?
 [TIP]
@@ -1052,7 +1052,7 @@ m|WARNING
 m|GENERIC
 |===
 
-.Matching on a relationship type expression that can never be satisfied (when run on version 5.4 or newer)
+.Matching on a relationship type expression that can never be satisfied
 ====
 Query::
 +
@@ -1065,7 +1065,7 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 ====
 
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
-=== Neo.ClientNotification.Statement.RepeatedRelationshipReference
+=== Neo.ClientNotification.Statement.RepeatedRelationshipReference (when run on version 5.5 or newer)
 
 .Notification category details
 [cols="<1s,<4"]
@@ -1080,7 +1080,7 @@ m|WARNING
 m|GENERIC
 |===
 
-.Binding a relationship variable more than once (when run on version 5.5 or newer)
+.Binding a relationship variable more than once
 ====
 Query::
 +
