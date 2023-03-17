@@ -917,7 +917,7 @@ CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
 Description of the returned code::
 The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
-For more information, see Cypher Manual -> Cypher planner.
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
 ====
 
 [#_neo_clientnotification_request_deprecatedformat]
