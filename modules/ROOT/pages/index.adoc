@@ -11,7 +11,7 @@ Each status code follows the same format:
 
 [source, status code format, role="noheader"]
 -----
-Neo.[Classification].[Category].[Title]
+Neo.[Class].[Subclass].[Name]
 -----
 
 == Classification
@@ -24,7 +24,7 @@ The classification of the status code determines the effect on the transaction.
 [options="header", cols="<1m,<2,<1"]
 |===
 
-| Classification
+| Class
 | Description
 | Effect on the transaction 
 
