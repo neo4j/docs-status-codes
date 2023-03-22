@@ -947,6 +947,41 @@ RETURN 'val' as one, 'val' as two
 ----
 ====
 
+.Using id() function
+====
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+Description of the returned code::
+The query used a deprecated function. ('id' is no longer supported)
+Suggestions for improvement::
+Use the function `elementId()` instead.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN elementId(a)
+----
+====
+
+.Using Cypher query option connectComponentsPlanner
+====
+Query::
++
+[source,cypher]
+----
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
+----
+Description of the returned code::
+The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
+The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
+====
+
 [#_neo_clientnotification_request_deprecatedformat]
 === Neo.ClientNotification.Request.DeprecatedFormat
 
@@ -1071,6 +1106,40 @@ m|WARNING
 m|GENERIC
 |===
 
+[#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
+=== Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression (when run on version 5.4 or newer)
+
+.When is this notification returned?
+[TIP]
+====
+When matching on a relationship type expression that can never be satisfied, for example asking for zero, more than one or contradictory types.
+====
+
+.Notification category details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
+|Title
+a|The query contains a relationship type expression that cannot be satisfied.
+|Severity
+m|WARNING
+|Category
+m|GENERIC
+|===
+
+.Matching on a relationship type expression that can never be satisfied
+====
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r:R1&R2]->() RETURN r
+----
+Description of the returned code::
+Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be fulfilled by any relationship. Relationships must have exactly one type.)
+====
+
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
 === Neo.ClientNotification.Statement.RepeatedRelationshipReference (when run on version 5.5 or newer)
 
@@ -1087,7 +1156,7 @@ m|WARNING
 m|GENERIC
 |===
 
-.Binding a relationship variable more than once.
+.Binding a relationship variable more than once
 ====
 Query::
 +
