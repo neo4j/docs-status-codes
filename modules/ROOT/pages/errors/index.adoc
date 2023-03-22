@@ -4,18 +4,7 @@
 = Error codes
 
 Error codes are returned by the server when the execution of a query fails.
-Error codes have severity `ERROR`.
-
-// [[error-format]]
-// == Error code fields
-
-// The error code format is as follows:
-
-
-[[error-types]]
-== Types of error codes
-
-All errors returned are classified into one of the following categories:
+They all have severity level `ERROR` and are grouped into one of the following classes:
 
 Client errors::
     These errors are caused by the client and are usually related to the request itself.
