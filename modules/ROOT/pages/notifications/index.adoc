@@ -54,6 +54,11 @@ The following categories exist, ordered by severity:
 | The query or command mentions entities that are unknown to the system.
 | Make sure you have not misspelled the entity.
 
+| SECURITY
+| WARNING OR INFORMATION
+| The result of the query or command indicates a potential security issue.
+| Make sure that the behaviour is what you intended.
+
 | GENERIC
 | WARNING OR INFORMATION
 | Notifications that are not part of a wider class.
