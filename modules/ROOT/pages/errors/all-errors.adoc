@@ -4,7 +4,7 @@
 [[neo4j-errors]]
 = List of all error codes
 
-This page contains lists of all neo4j errors, grouped by classification.
+This page contains lists of all neo4j errors, grouped by class.
 
 == Client errors
 
