@@ -39,3 +39,154 @@ Your branch should be prefixed with the version number, for example `4.3-new-exa
 When you are finished with your changes push the branch to your fork and create a Pull Request.
 Please add at least one approver.
 
+== Guidelines for writing Neo4j notifications
+
+When you want to add a new Notification code, you update the `neo4j` repo and this repo `docs-status-codes` by adding the notification details and examples.
+Each notification comprises the following components, some of which are documented only here in this repo.
+
+|===
+| Code| Neo.ClientNotification.Statement.CartesianProduct
+| Title|This query builds a cartesian product between disconnected patterns.
+| SeverityLevel| INFORMATION
+| Category| PERFORMANCE
+(For all categories and severity levels, see xref:notifications/index.adoc#notification-categories[])
+| Description |(Causes, consequences, a simple solution, or a reference to the Status Codes documentation)
+| Example| (Status Codes documentation only)
+| Suggestions for improvement| (Status Codes documentation only)
+|===
+
+The following are guidelines on how to write each of the notification components.
+
+=== General guidelines
+
+Regardless of the notification category, each notification should include all the components.
+
+* Always use Present Simple tense and active voice if possible.
+* Be specific and try to use only words that count.
+* Avoid repeating content from other notification parts, such as title, description, code, etc.
+* Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”..
+* Avoid blaming the user.
+Focus the notification on the problem that could be fixed.
+For example, “Did not supply query with enough parameters.“ could be rewritten to “The query does not have enough parameters”.
+“You are using an experimental feature.” is another example of focusing on the user instead of what the notification is about.
+It could be omitted as the title already says that it is an experimental feature.
+* Avoid using “please”.
+* Avoid the phrase “It is recommended to” when proposing a solution.
+* Capitalize all Cypher keywords, i.e., `MATCH` rather than `match` or `Match`.
+
+=== Code
+
+All Neo4j codes follow the syntax `Neo.[Classification].[Type].[Name]`.
+The notification codes’ Classification is `ClientNotification`.
+Therefore, they all start with `Neo.ClientNotification`.
+The [Type] is one of `Statement`, `Procedure`, `Schema`, `Database`, `SECURITY`, or `Request`.
+Code’s [Name] should be specific and explain what this code refers to.
+
+✅Examples:
+Code: Neo.ClientNotification.Statement.RepeatedRelationshipVariableInPattern
+
+⛔Examples:
+Code: Neo.ClientNotification.Statement.RepeatedRelationshipReference
+
+=== Title
+
+The title should be brief (one short sentence), scannable, and inform on the current situation and what code of the query triggered the notification (add it within backticks to show that it’s a code snippet).
+
+* Do not use exclamation marks.
+* Use sentence case (you capitalize the first letter, proper nouns, and names, just like you would in a normal sentence) and punctuation.
+* Avoid explaining:
+** the consequences of the returned code.
+** what causes the code to be returned.
+** possible solutions.
+
+⛔Example (contains a possible solution):
+      The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
+✅Example:
+     The pattern `<pattern>` is unbounded.
+
+⛔Example:
+This feature is deprecated and will be removed in future versions.
+
+✅Example:
+(Deprecated) The repeated variable length relationship r is bound more than once.
+
+⛔Example (contains a possible solution):
+      The provided label is not in the database.
+✅Example:
+     The label `Perso` does not exist.
+
+
+
+=== Description
+
+This is the description of the returned code.
+
+The description should contain the following:
+
+* What caused the notification to be returned
+* Why it might be a problem - what the consequences are
+* If possible, a simple solution, otherwise, a reference to the docs using the sentence:
+_See Status Codes documentation for suggestions for improvement._
+
+
+⛔Example:
+Using shortest path with an unbounded pattern will likely result in long execution times.
+It is recommended to use an upper limit to the number of node hops in your pattern.
+
+✅Rewrite:
+Shortest path with an unbounded pattern may result in long execution times.
+Use an upper limit to the number of node hops in your pattern.
+
+⛔Example:
+Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+✅Rewrite:
+A variable length relationship that is bound more than once does not return any result. See Status Codes documentation for suggestions for improvement.
+
+⛔Example:
+One of the labels in your query is not available in the database, make sure you didn’t misspell it or that the label is available when you run this statement in your application (the missing label name is: Perso)
+✅Rewrite:
+Non-existing labels yield no result. Verify that the label is spelled correctly.
+
+=== Example
+
+The examples and suggestions for improvement are written only in the Status Codes doc.
+
+Add one or more example queries to illustrate the possible scenarios when this notification code would be returned.
+They should look similar to the following:
+
+.<Add a caption that explains the example>
+====
+Query::
++
+[source, cypher, role="noplay"]
+----
+Here write the query.
+----
+
+Description of the returned code::
+Same as in the `ne4j` repo.
+
+Suggestions for improvement::
+
+Give a possible solution for the provided example query.
+
+⛔Example:
+
+In case a cartesian product is needed, nothing can be done to improve this query.
+In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
+If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
+
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
+----
+
+
+✅Rewrite:
+
+If you only need the children and the children's parents, and not all combinations between them, add `[:ChildOf]` between the `Child` and the `Parent` nodes:
+
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
+====
