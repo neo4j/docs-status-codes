@@ -77,7 +77,7 @@ It could be omitted as the title already says that it is an experimental feature
 === Code
 
 All Neo4j codes follow the syntax `Neo.[Classification].[Type].[Name]`.
-The notification codes’ Classification is `ClientNotification`.
+The notification codes’ [Classification] is `ClientNotification`.
 Therefore, they all start with `Neo.ClientNotification`.
 The [Type] is one of `Statement`, `Procedure`, `Schema`, `Database`, `SECURITY`, or `Request`.
 Code’s [Name] should be specific and explain what this code refers to.
@@ -101,6 +101,7 @@ The title should be brief (one short sentence), scannable, and inform on the cur
 
 ⛔Example (contains a possible solution):
       The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
+
 ✅Example:
      The pattern `<pattern>` is unbounded.
 
@@ -112,6 +113,7 @@ This feature is deprecated and will be removed in future versions.
 
 ⛔Example (contains a possible solution):
       The provided label is not in the database.
+
 ✅Example:
      The label `Perso` does not exist.
 
@@ -139,11 +141,13 @@ Use an upper limit to the number of node hops in your pattern.
 
 ⛔Example:
 Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+
 ✅Rewrite:
 A variable length relationship that is bound more than once does not return any result. See Status Codes documentation for suggestions for improvement.
 
 ⛔Example:
 One of the labels in your query is not available in the database, make sure you didn’t misspell it or that the label is available when you run this statement in your application (the missing label name is: Perso)
+
 ✅Rewrite:
 Non-existing labels yield no result. Verify that the label is spelled correctly.
 
