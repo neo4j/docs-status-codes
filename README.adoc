@@ -49,7 +49,7 @@ Each notification comprises the following components, some of which are document
 | Title|This query builds a cartesian product between disconnected patterns.
 | SeverityLevel| INFORMATION
 | Category| PERFORMANCE
-(For all categories and severity levels, see xref:notifications/index.adoc#notification-categories[])
+(For all categories and severity levels, see https://github.com/neo4j/docs-status-codes/blob/dev/modules/ROOT/pages/notifications/index.adoc)
 | Description |(Causes, consequences, a simple solution, or a reference to the Status Codes documentation)
 | Example| (Status Codes documentation only)
 | Suggestions for improvement| (Status Codes documentation only)
