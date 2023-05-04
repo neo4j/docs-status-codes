@@ -59,15 +59,16 @@ The following are guidelines on how to write each of the notification components
 
 === General guidelines
 
-Regardless of the notification category, each notification should include all the components.
-
+* Regardless of the notification category, each notification should include all the components.
 * Always use Present Simple tense and active voice if possible.
 * Be specific and try to use only words that count.
 * Avoid repeating content from other notification parts, such as title, description, code, etc.
 * Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”..
 * Avoid blaming the user.
 Focus the notification on the problem that could be fixed.
++
 For example, “Did not supply query with enough parameters.“ could be rewritten to “The query does not have enough parameters”.
++
 “You are using an experimental feature.” is another example of focusing on the user instead of what the notification is about.
 It could be omitted as the title already says that it is an experimental feature.
 * Avoid using “please”.
