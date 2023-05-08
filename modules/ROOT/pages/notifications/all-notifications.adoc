@@ -807,7 +807,7 @@ CALL unsupported.dbms.shutdown
 ----
 
 Description of the returned code::
-The query used a deprecated procedure. (`'unsupported.dbms.shutdown'` is no longer supported)
+The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
 
 Suggestions for improvement::
 Remove the use of the deprecated procedure.
@@ -895,7 +895,7 @@ MATCH (a)
 RETURN id(a)
 ----
 Description of the returned code::
-The query used a deprecated function. ('id' is no longer supported)
+The query used a deprecated function: `id`.
 Suggestions for improvement::
 Use the function `elementId()` instead.
 +
