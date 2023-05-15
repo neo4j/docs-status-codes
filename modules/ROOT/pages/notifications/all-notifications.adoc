@@ -970,11 +970,11 @@ Command::
 +
 [source, cypher]
 ----
-GRANT ROLE admin TO neo4j
+GRANT ROLE admin TO john
 ----
 
 Full title of the returned code::
-`GRANT ROLE admin TO neo4j` has no effect.
+`GRANT ROLE admin TO john` has no effect.
 
 Description of the returned code::
 The user already has the role. See Status Codes documentation for more information.
@@ -989,11 +989,11 @@ Command::
 +
 [source, cypher]
 ----
-REVOKE ROLE admin, reader FROM neo4j
+REVOKE ROLE admin, reader FROM jane
 ----
 
 Full title of the returned code::
-`REVOKE ROLE reader FROM neo4j` has no effect.
+`REVOKE ROLE reader FROM jane` has no effect.
 
 Description of the returned code::
 The user does not have the role. See Status Codes documentation for more information.
@@ -1028,11 +1028,11 @@ Command::
 +
 [source, cypher]
 ----
-REVOKE WRITE ON GRAPH * FROM editor
+REVOKE WRITE ON GRAPH * FROM reader
 ----
 
 Full title of the returned code::
-`REVOKE DENY WRITE ON GRAPH * FROM editor` has no effect.
+`REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
 
 Description of the returned code::
 The role does not have the privilege. See Status Codes documentation for more information.
@@ -1066,11 +1066,11 @@ Command::
 +
 [source, cypher]
 ----
-REVOKE ROLE Foo, reader FROM neo4j
+REVOKE ROLE manager, reader FROM jane
 ----
 
 Full title of the returned code::
-`REVOKE ROLE Foo FROM neo4j` has no effect.
+`REVOKE ROLE manager FROM jane` has no effect.
 
 Description of the returned code::
 Role does not exist. Make sure nothing is misspelled.
@@ -1078,7 +1078,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that nothing is misspelled and that this is the intended role and user.
+Verify that this is the intended role and that it was not misspelled.
 ====
 
 .Revoking a role from a non-existing user
@@ -1087,11 +1087,11 @@ Command::
 +
 [source, cypher]
 ----
-REVOKE ROLE reader FROM Foo
+REVOKE ROLE reader FROM alice
 ----
 
 Full title of the returned code::
-`REVOKE ROLE reader FROM Foo` has no effect.
+`REVOKE ROLE reader FROM alice` has no effect.
 
 Description of the returned code::
 User does not exist. Make sure nothing is misspelled.
@@ -1099,7 +1099,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that nothing is misspelled and that this is the intended role and user.
+Verify that this is the intended user and that it was not misspelled.
 ====
 
 .Revoking a privilege from a non-existing role
@@ -1108,11 +1108,11 @@ Command::
 +
 [source, cypher]
 ----
-REVOKE GRANT WRITE ON GRAPH * FROM Foo
+REVOKE GRANT WRITE ON GRAPH * FROM manager
 ----
 
 Full title of the returned code::
-`REVOKE GRANT WRITE ON GRAPH * FROM Foo` has no effect.
+`REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
 
 Description of the returned code::
 Role does not exist. Make sure nothing is misspelled.
@@ -1120,31 +1120,81 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify nothing is misspelled and that this is the intended role.
+Verify that this is the intended role and that it was not misspelled.
 ====
 
-.Revoking a privilege on a non-existing graph/database from a role
+.Revoking a privilege on a non-existing graph from a role
 ====
 Command::
 +
 [source, cypher]
 ----
-REVOKE GRANT WRITE ON GRAPH Foo FROM editor
+REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
 ----
 
 Full title of the returned code::
-`REVOKE GRANT WRITE ON GRAPH Foo FROM editor` has no effect.
+`REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
 
 Description of the returned code::
-Database 'Foo' does not exist. Make sure nothing is misspelled.
+Graph 'neo3j' does not exist. Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure nothing is misspelled and that this was the intended graph/database.
+Verify that this is the intended graph and that it was not misspelled.
 ====
 
-.Revoking a privilege from a role with wildcard graph/database parameter
+.Revoking a privilege on a non-existing database from a role
+====
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
+----
+
+Full title of the returned code::
+`REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
+
+Description of the returned code::
+Database 'neo3j' does not exist. Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended database and that it was not misspelled.
+====
+
+.Revoking a privilege from a role with wildcard graph parameter
+====
+Parameter::
++
+[source, javascript]
+----
+{
+    "graph": "*"
+}
+----
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
+----
+
+Full title of the returned code::
+`REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
+
+Description of the returned code::
+Parameterized database and graph names do not support wildcards. Verify that nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Use `GRAPH *` without parameter to revoke the privilege on all databases.
+====
+
+.Revoking a privilege from a role with wildcard database parameter
 ====
 Parameter::
 +
@@ -1165,7 +1215,7 @@ Full title of the returned code::
 `REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
 
 Description of the returned code::
-Parameterized database and graph names do not support wildcards. Make sure nothing is misspelled.
+Parameterized database and graph names do not support wildcards. Verify that nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
