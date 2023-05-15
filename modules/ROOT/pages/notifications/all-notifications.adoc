@@ -942,8 +942,8 @@ m|DEPRECATION
 [#_security_notifications]
 == `SECURITY` category
 
-Notifications in the security category indicates that the result of the query or command might have a potential security issue.
-Make sure that the behaviour is what was intended.
+Security notifications indicate that the result of the query or command might have a potential security issue.
+Verify that this is the intended behavior of your query or command.
 
 [#_neo_clientnotification_security_commandhadnoeffect]
 === Neo.ClientNotification.Security.CommandHadNoEffect
@@ -964,7 +964,7 @@ m|SECURITY
 The `<command>` in the title is the part of the command which had no effect.
 This could be either the full command given by the user or a subset of the given command.
 
-.Granting a role to a user who already have that role
+.Granting a role to a user who already has that role
 ====
 Command::
 +
@@ -980,7 +980,7 @@ Description of the returned code::
 The user already has the role. See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure this was the intended role and user.
+Verify that this is the intended role and user.
 ====
 
 .Revoking a role from a user who does not have that role
@@ -999,10 +999,10 @@ Description of the returned code::
 The user does not have the role. See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure this was the intended role and user.
+Verify that this is the intended role and user.
 ====
 
-.Granting or denying a privilege to a role that already have that privilege
+.Granting or denying a privilege to a role that already has that privilege
 ====
 // This command will actually give 2 notifications, one for NODES and one for RELATIONSHIPS
 Command::
@@ -1019,7 +1019,7 @@ Description of the returned code::
 The role already has the privilege. See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure this was the intended privilege and role.
+Verify that this is the intended privilege and role.
 ====
 
 .Revoking a privilege from a role that does not have that privilege
@@ -1038,7 +1038,7 @@ Description of the returned code::
 The role does not have the privilege. See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure this was the intended privilege and role.
+Verify that this is the intended privilege and role.
 ====
 
 [#_neo_clientnotification_security_impossiblerevokecommand]
@@ -1078,7 +1078,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure nothing is misspelled and that this was the intended role and user.
+Verify that nothing is misspelled and that this is the intended role and user.
 ====
 
 .Revoking a role from a non-existing user
@@ -1099,7 +1099,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure nothing is misspelled and that this was the intended role and user.
+Verify that nothing is misspelled and that this is the intended role and user.
 ====
 
 .Revoking a privilege from a non-existing role
@@ -1120,7 +1120,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Make sure nothing is misspelled and that this was the intended role.
+Verify nothing is misspelled and that this is the intended role.
 ====
 
 .Revoking a privilege on a non-existing graph/database from a role
