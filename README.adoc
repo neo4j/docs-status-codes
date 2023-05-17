@@ -60,7 +60,7 @@ The following are guidelines on how to write each of the notification components
 === General guidelines
 
 * Regardless of the notification category, each notification should include all the components.
-* Always use Present Simple tense and active voice if possible.
+* Always use Present Simple tense (it refers to an action or event that happens regularly or to facts, general realities, and unchanging situations) and active voice (when the subject of the sentence is the one doing the action, see https://www.merriam-webster.com/words-at-play/active-vs-passive-voice-difference) if possible.
 * Be specific and try to use only words that count.
 * Avoid repeating content from other notification parts, such as title, description, code, etc.
 * Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”..
