@@ -77,10 +77,10 @@ It could be omitted as the title already says that it is an experimental feature
 
 === Code
 
-All Neo4j codes follow the syntax `Neo.[Classification].[Type].[Name]`.
-The notification codes’ [Classification] is `ClientNotification`.
+All Neo4j codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
+The notification codes’ [Class] is `ClientNotification`.
 Therefore, they all start with `Neo.ClientNotification`.
-The [Type] is one of `Statement`, `Procedure`, `Schema`, `Database`, `SECURITY`, or `Request`.
+The [Subclass] is one of `Statement`, `Procedure`, `Schema`, `Database`, `Security`, or `Request`.
 Code’s [Name] should be specific and explain what this code refers to.
 
 ✅Examples:
