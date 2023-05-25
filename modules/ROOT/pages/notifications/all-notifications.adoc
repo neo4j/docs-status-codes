@@ -1136,7 +1136,11 @@ Full title of the returned code::
 `REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
 
 Description of the returned code::
-Graph 'neo3j' does not exist. Make sure nothing is misspelled.
+// We use 'Database' here for multiple reasons
+// - The user fixes the issue by doing 'create database', not 'create graph'.
+// - This matches the existing behaviour when granting the privilege.
+// - It is easier to implement this way.
+Database 'neo3j' does not exist. Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
@@ -1150,11 +1154,11 @@ Command::
 +
 [source, cypher]
 ----
-REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
+REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
 ----
 
 Full title of the returned code::
-`REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
+`REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
 
 Description of the returned code::
 Database 'neo3j' does not exist. Make sure nothing is misspelled.
