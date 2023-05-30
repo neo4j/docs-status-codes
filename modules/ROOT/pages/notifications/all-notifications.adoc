@@ -1,4 +1,5 @@
 :description: This section describes the notifications that Neo4j can return, grouped by category, and an example of when they can occur.
+
 [[listOfNnotifications]]
 = List of all notification codes
 
@@ -18,7 +19,7 @@ The following are all Neo4j notifications, grouped by category, when they are re
 Performance notifications are returned whenever the query uses costly operations and the performance may be improved by changing the query or adding an index.
 
 [#_neo_clientnotification_statement_cartesianproduct]
-=== Neo.ClientNotification.Statement.CartesianProduct
+=== CartesianProduct
 
 .When is this notification returned?
 [TIP]
@@ -67,7 +68,7 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 ====
 
 [#_neo_clientnotification_statement_unboundedvariablelengthpattern]
-=== Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
+=== UnboundedVariableLengthPattern
 
 .When is this notification returned?
 [TIP]
@@ -112,7 +113,7 @@ MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 ====
 
 [#_neo_clientnotification_statement_exhaustiveshortestpath]
-=== Neo.ClientNotification.Statement.ExhaustiveShortestPath
+=== ExhaustiveShortestPath
 
 .When is this notification returned?
 [TIP]
@@ -161,7 +162,7 @@ RETURN p
 ====
 
 [#_neo_clientnotification_statement_noapplicableindex]
-=== Neo.ClientNotification.Statement.NoApplicableIndex
+=== NoApplicableIndex
 
 .When is this notification returned?
 [TIP]
@@ -205,7 +206,7 @@ CREATE INDEX FOR (n:Person) ON (n.name)
 ====
 
 [#_neo_clientnotification_statement_eageroperator]
-=== Neo.ClientNotification.Statement.EagerOperator
+=== EagerOperator
 
 .When is this notification returned?
 [TIP]
@@ -258,7 +259,7 @@ RETURN line
 ====
 
 [#_neo_clientnotification_statement_dynamicproperty]
-=== Neo.ClientNotification.Statement.DynamicProperty
+=== DynamicProperty
 
 .Notification details
 [cols="<1s,<4"]
@@ -321,7 +322,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 ====
 
 [#_neo_clientnotification_statement_codegenerationfailed]
-=== Neo.ClientNotification.Statement.CodeGenerationFailed
+=== CodeGenerationFailed
 
 .Notification details
 [cols="<1s,<4"]
@@ -346,7 +347,7 @@ To find more information about the specific query, see the stack trace in the _d
 This behavior of the Cypher planner or runtime can be changed by setting the configuration `dbms.cypher.hints_error` to `true`, in which case, the query will return an error instead.
 
 [#_neo_clientnotification_statement_joinhintunfulfillablewarning]
-=== Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
+=== JoinHintUnfulfillableWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -386,7 +387,7 @@ The only option for this query is to remove the hint or change the query so it i
 ====
 
 [#_neo_clientnotification_schema_hintedindexnotfound]
-=== Neo.ClientNotification.Schema.HintedIndexNotFound
+=== HintedIndexNotFound
 
 .Notification details
 [cols="<1s,<4"]
@@ -449,7 +450,7 @@ If the spelling is correct, either create the index or remove the hint from the 
 A notification has the unrecognized category if the query or command mentions entities that are unknown to the system.
 
 [#_neo_clientnotification_database_homedatabasenotfound]
-=== Neo.ClientNotification.Database.HomeDatabaseNotFound
+=== HomeDatabaseNotFound
 
 .Notification details
 [cols="<1s,<4"]
@@ -483,7 +484,7 @@ Make sure the home database has not been misspelled.
 ====
 
 [#_neo_clientnotification_statement_unknownlabelwarning]
-=== Neo.ClientNotification.Statement.UnknownLabelWarning
+=== UnknownLabelWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -516,7 +517,7 @@ Make sure you didn't misspell the label. If nodes with the given label will be c
 ====
 
 [#_neo_clientnotification_statement_unknownrelationshiptypewarning]
-=== Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
+=== UnknownRelationshipTypeWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -551,7 +552,7 @@ If relationships will be created, with the given relationship type, in the futur
 ====
 
 [#_neo_clientnotification_statement_unknownpropertykeywarning]
-=== Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
+=== UnknownPropertyKeyWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -590,7 +591,7 @@ Make sure you didn't misspell the property key. If the property key will be crea
 Notifications with the unsupported category are created if the query or command is trying to use features that are not supported by the current system or using experimental features that should not be used in production.
 
 [#_neo_clientnotification_statement_runtimeunsupportedwarning]
-=== Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
+=== RuntimeUnsupportedWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -628,7 +629,7 @@ SHOW INDEXES YIELD *
 ====
 
 [#_neo_clientnotification_statement_runtimeexperimental]
-=== Neo.ClientNotification.Statement.RuntimeExperimental
+=== RuntimeExperimental
 
 .Notification details
 [cols="<1s,<4"]
@@ -670,7 +671,7 @@ MATCH (n) RETURN (n)
 Notifications within the deprecation category contain information about a feature or functionality which has been deprecated. It is important to change to the new functionality, otherwise, the query might break in a future version.
 
 [#_neo_clientnotification_statement_featuredeprecationwarning]
-=== Neo.ClientNotification.Statement.FeatureDeprecationWarning
+=== FeatureDeprecationWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -983,7 +984,7 @@ For more information, see link:https://neo4j.com/docs/cypher-manual/current/quer
 ====
 
 [#_neo_clientnotification_request_deprecatedformat]
-=== Neo.ClientNotification.Request.DeprecatedFormat
+=== DeprecatedFormat
 
 
 .Notification details
@@ -1006,7 +1007,7 @@ m|DEPRECATION
 `GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
 
 [#_neo_clientnotification_statement_subqueryvariableshadowing]
-=== Neo.ClientNotification.Statement.SubqueryVariableShadowing
+=== SubqueryVariableShadowing
 
 .Notification details
 [cols="<1s,<4"]
@@ -1057,7 +1058,7 @@ RETURN *
 
 
 [#_neo_clientnotification_statement_parameternotprovided]
-=== Neo.ClientNotification.Statement.ParameterNotProvided
+=== ParameterNotProvided
 
 .Notification details
 [cols="<1s,<4"]
@@ -1091,7 +1092,7 @@ Provide the parameter to be able to cache the plan.
 ====
 
 [#_neo_clientnotification_procedure_procedurewarning]
-=== Neo.ClientNotification.Procedure.ProcedureWarning
+=== ProcedureWarning
 
 .Notification details
 [cols="<1s,<4"]
@@ -1107,7 +1108,9 @@ m|GENERIC
 |===
 
 [#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
-=== Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression (when run on version 5.4 or newer)
+=== UnsatisfiableRelationshipTypeExpression
+
+label:introduced-in-Neo4j-5.4[Introduced in Neo4j 5.4]
 
 .When is this notification returned?
 [TIP]
@@ -1141,7 +1144,9 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 ====
 
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
-=== Neo.ClientNotification.Statement.RepeatedRelationshipReference (when run on version 5.5 or newer)
+=== RepeatedRelationshipReference
+
+label:introduced-in-Neo4j-5.5[Introduced in Neo4j 5.5]
 
 .Notification category details
 [cols="<1s,<4"]
