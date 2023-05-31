@@ -946,23 +946,22 @@ Security notifications indicate that the result of the query or command might ha
 Verify that this is the intended behavior of your query or command.
 
 [#_neo_clientnotification_security_commandhadnoeffect]
-=== Neo.ClientNotification.Security.CommandHadNoEffect
+=== Neo.ClientNotification.Security.CommandHasNoEffect
 
 .Notification details
 [cols="<1s,<4"]
 |===
 |Code
-m|Neo.ClientNotification.Security.CommandHadNoEffect
+m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
-a|`<command>` has no effect.
+a|`<command>` has no effect.*
 |Severity
 m|INFORMATION
 |Category
 m|SECURITY
 |===
 
-The `<command>` in the title is the part of the command which had no effect.
-This could be either the full command given by the user or a subset of the given command.
+*_`<command>` could be either the full command given by the user or a subset of the given command._
 
 .Granting a role to a user who already has that role
 ====
@@ -1004,7 +1003,7 @@ Verify that this is the intended role and user.
 
 .Granting or denying a privilege to a role that already has that privilege
 ====
-// This command will actually give 2 notifications, one for NODES and one for RELATIONSHIPS
+// This command returns 2 notifications, one for NODES and one for RELATIONSHIPS.
 Command::
 +
 [source, cypher]
@@ -1050,15 +1049,14 @@ Verify that this is the intended privilege and role.
 |Code
 m|Neo.ClientNotification.Security.ImpossibleRevokeCommand
 |Title
-a|`<command>` has no effect.
+a|`<command>` has no effect.*
 |Severity
 m|WARNING
 |Category
 m|SECURITY
 |===
 
-The `<command>` in the title is the part of the command which had no effect.
-This could be either the full command given by the user or a subset of the given command.
+*_`<command>` could be either the full command given by the user or a subset of the given command._
 
 .Revoking a non-existing role from a user
 ====
@@ -1078,7 +1076,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended role and that it was not misspelled.
+Verify that this is the intended role and that it is spelled correctly.
 ====
 
 .Revoking a role from a non-existing user
@@ -1099,7 +1097,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended user and that it was not misspelled.
+Verify that this is the intended user and that it is spelled correctly.
 ====
 
 .Revoking a privilege from a non-existing role
@@ -1120,7 +1118,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended role and that it was not misspelled.
+Verify that this is the intended role and that it is spelled correctly.
 ====
 
 .Revoking a privilege on a non-existing graph from a role
@@ -1145,7 +1143,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended graph and that it was not misspelled.
+Verify that this is the intended graph and that it is spelled correctly.
 ====
 
 .Revoking a privilege on a non-existing database from a role
@@ -1166,7 +1164,7 @@ This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended database and that it was not misspelled.
+Verify that this is the intended database and that it is spelled correctly.
 ====
 
 .Revoking a privilege from a role with wildcard graph parameter
@@ -1190,12 +1188,13 @@ Full title of the returned code::
 `REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
 
 Description of the returned code::
-Parameterized database and graph names do not support wildcards. Verify that nothing is misspelled.
+Parameterized database and graph names do not support wildcards. 
+Verify that everything is spelled correctly.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Use `GRAPH *` without parameter to revoke the privilege on all databases.
+Use `GRAPH *` without the parameter to revoke the privilege on all databases.
 ====
 
 .Revoking a privilege from a role with wildcard database parameter
@@ -1219,12 +1218,13 @@ Full title of the returned code::
 `REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
 
 Description of the returned code::
-Parameterized database and graph names do not support wildcards. Verify that nothing is misspelled.
+Parameterized database and graph names do not support wildcards. 
+Verify that everything is spelled correctly.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Use `DATABASE *` without parameter to revoke the privilege on all databases.
+Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 ====
 
 
