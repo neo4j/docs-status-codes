@@ -7,7 +7,7 @@
 
 [source, status codes, role="noheader"]
 -----
-Neo.ClientNotification.Security.CommandHadNoEffect
+Neo.ClientNotification.Security.CommandHasNoEffect
 Neo.ClientNotification.Security.ImpossibleRevokeCommand
 -----
 

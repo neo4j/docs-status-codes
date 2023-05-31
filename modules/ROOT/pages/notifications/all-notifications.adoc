@@ -945,7 +945,7 @@ m|DEPRECATION
 Security notifications indicate that the result of the query or command might have a potential security issue.
 Verify that this is the intended behavior of your query or command.
 
-[#_neo_clientnotification_security_commandhadnoeffect]
+[#_neo_clientnotification_security_commandhasnoeffect]
 === CommandHasNoEffect
 
 .Notification details
@@ -1008,7 +1008,7 @@ Command::
 +
 [source, cypher]
 ----
-GRANT MATCH {*} ON GRAPH * TO reader
+GRANT TRAVERSE ON GRAPH * TO reader
 ----
 
 Full title of the returned code::
@@ -1189,12 +1189,12 @@ Full title of the returned code::
 
 Description of the returned code::
 Parameterized database and graph names do not support wildcards. 
-Verify that everything is spelled correctly.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Use `GRAPH *` without the parameter to revoke the privilege on all databases.
+Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
 ====
 
 .Revoking a privilege from a role with wildcard database parameter
@@ -1219,7 +1219,7 @@ Full title of the returned code::
 
 Description of the returned code::
 Parameterized database and graph names do not support wildcards. 
-Verify that everything is spelled correctly.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
