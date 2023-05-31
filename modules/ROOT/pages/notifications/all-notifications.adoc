@@ -946,7 +946,7 @@ Security notifications indicate that the result of the query or command might ha
 Verify that this is the intended behavior of your query or command.
 
 [#_neo_clientnotification_security_commandhadnoeffect]
-=== Neo.ClientNotification.Security.CommandHasNoEffect
+=== CommandHasNoEffect
 
 .Notification details
 [cols="<1s,<4"]
@@ -1041,7 +1041,7 @@ Verify that this is the intended privilege and role.
 ====
 
 [#_neo_clientnotification_security_impossiblerevokecommand]
-=== Neo.ClientNotification.Security.ImpossibleRevokeCommand
+=== ImpossibleRevokeCommand
 
 .Notification details
 [cols="<1s,<4"]
