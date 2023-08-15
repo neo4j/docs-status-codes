@@ -7,6 +7,6 @@ nav:
 asciidoc:
   attributes:
     page-origin-private: false
-    neo4j-version: '5.11'
-    neo4j-version-exact: '5.11.0'
-    neo4j-buildnumber: '5.11'
+    neo4j-version: '5.12'
+    neo4j-version-exact: '5.12.0'
+    neo4j-buildnumber: '5.12'
