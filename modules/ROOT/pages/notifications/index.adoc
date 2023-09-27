@@ -59,6 +59,11 @@ The following categories exist, ordered by severity:
 | The result of the query or command indicates a potential security issue.
 | Make sure that the behaviour is what you intended.
 
+| TOPOLOGY
+| INFORMATION
+| Information provided while executing database and server related commands.
+|
+
 | GENERIC
 | WARNING OR INFORMATION
 | Notifications that are not part of a wider class.
