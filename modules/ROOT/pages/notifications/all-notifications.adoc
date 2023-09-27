@@ -11,6 +11,7 @@ The following are all Neo4j notifications, grouped by category, when they are re
 * <<_unsupported_notifications, `UNSUPPORTED` category>>
 * <<_deprecated_notifications, `DEPRECATION` category>>
 * <<_security_notifications, `SECURITY` category>>
+* <<_topology_notifications, `TOPOLOGY` category>>
 * <<_generic, `GENERIC` category>>
 
 
@@ -1227,6 +1228,41 @@ Suggestions for improvement::
 Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 ====
 
+[#_topology_notifications]
+== `TOPOLOGY` category
+
+Topology notifications provide additional information related to managing databases and servers.
+
+[#_neo_clientnotification_cluster_serveralreadyenabled]
+=== ServerAlreadyEnabled
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Cluster.ServerAlreadyEnabled
+|Title
+a| `<command>` has no effect.
+|Severity
+m|INFORMATION
+|Category
+m|TOPOLOGY
+|===
+
+.Enabling an already enabled server
+====
+Command::
++
+[source, cypher]
+----
+ENABLE SERVER "123e4567-e89b-12d3-a456-426614174000"
+----
+
+Description of the returned code::
+Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
+Verify that this is the intended server.
+
+====
 
 [#_generic]
 == `GENERIC` category

@@ -1,6 +1,15 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
+== Neo4j 5.13
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientNotification.Cluster.ServerAlreadyEnabled
+-----
+
 == Neo4j 5.9
 
 **New:**
