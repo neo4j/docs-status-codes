@@ -121,7 +121,7 @@ MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 [TIP]
 ====
 When a predicate, given on the shortest path, needs to inspect the whole path before deciding whether it is valid, the shortest path might fall back to the exhaustive search algorithm.
-For more information, see link:https://neo4j.com/docs/cypher-manual/current/execution-plans/shortestpath-planning[ Cypher manual -> Shortest path planning].
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/execution-plans/shortestpath-planning#_shortest_pathadditional_predicate_checks_on_the_paths[Cypher manual -> Shortest path - additional predicate checks on the paths].
 ====
 
 .Notification details
