@@ -8,6 +8,7 @@
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Cluster.ServerAlreadyEnabled
+Neo.ClientNotification.Cluster.NoDatabasesReallocated
 -----
 
 == Neo4j 5.9

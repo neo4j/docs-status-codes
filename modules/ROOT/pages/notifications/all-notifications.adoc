@@ -1233,6 +1233,36 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 
 Topology notifications provide additional information related to managing databases and servers.
 
+[#_neo_clientnotification_cluster_nodatabasesreallocated]
+=== NoDatabasesReallocated
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Cluster.NoDatabasesReallocated
+|Title
+a| `<command>` has no effect.
+|Severity
+m|INFORMATION
+|Category
+m|TOPOLOGY
+|===
+
+.Reallocating databases resulted in no allocation changes 
+====
+Command::
++
+[source, cypher]
+----
+REALLOCATE DATABASES
+----
+
+Description of the returned code::
+No databases were reallocated.
+
+====
+
 [#_neo_clientnotification_cluster_serveralreadyenabled]
 === ServerAlreadyEnabled
 
