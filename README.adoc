@@ -4,7 +4,7 @@
 
 This repository contains the AsciiDoc and other sources to build the link:{docs-uri}/status-codes[Neo4j Status Codes].
 
-
+[[local-build]]
 == Installation
 
 To build these docs locally you will need link:https://nodejs.org/en/download/package-manager/[Node & NPM^] installed.
@@ -16,7 +16,7 @@ To install the dependencies run:
 npm install
 ----
 
-
+[[live-preview]]
 == Live Preview
 
 To preview the docs, run:
@@ -30,7 +30,7 @@ This will build a set of HTML files in `build/site` and then serve them through 
 The start script will also listen for changes and automatically rebuild the files automatically.
 You will still need to refresh the page to view the changes.
 
-
+[[contributing]]
 == Contributing
 
 To make changes to this repository, please create a fork of this repo and a new branch to stage your changes.
@@ -39,19 +39,22 @@ Your branch should be prefixed with the version number, for example, `dev-new-ex
 When you are finished with your changes push the branch to your fork and create a Pull Request.
 Please add at least one approver.
 
-== Guidelines for writing status codes in 5.x
+[[guidelines]]
+== Guidelines for writing errors and notifications
 
-When you want to add a new status code (notification or error), you update the `neo4j` repo and this repo `docs-status-codes` by adding the notification or error details and examples.
+The new errors and notifications are written in the `neo4j` repo and then added to this repo `docs-status-codes` by adding the notification or error details and examples.
 
-
+[[general-guidelines]]
 === General guidelines
 
-* Always use Present Simple tense (it refers to an action or event that happens regularly or to facts, general realities, and unchanging situations) and active voice (when the subject of the sentence is the one doing the action, see https://www.merriam-webster.com/words-at-play/active-vs-passive-voice-difference) if possible.
+* Use sentence case (you capitalize the first letter, proper nouns, and names, just like you would in a normal sentence) and punctuation.
+* Always use present tense and active voice (when the subject of the sentence is the one doing the action, see https://www.merriam-webster.com/words-at-play/active-vs-passive-voice-difference) if possible.
 * Be specific and try to use only words that count.
-* Avoid repeating content from other status code parts, such as title, description, code, etc.
-* Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”..
+* Avoid repeating content from other parts, such as title, description, code, etc.
+* Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”.
+* Do not use exclamation marks.
 * Avoid blaming the user.
-Focus the code on the problem that could be fixed.
+Focus the message on the problem that could be fixed.
 +
 For example, “Did not supply query with enough parameters.“ could be rewritten to “The query does not have enough parameters”.
 +
@@ -61,46 +64,59 @@ It could be omitted as the title already says that it is an experimental feature
 * Avoid the phrase “It is recommended to” when proposing a solution.
 * Capitalize all Cypher keywords, i.e., `MATCH` rather than `match` or `Match`.
 
+[[error-notification-components]]
+=== Error and notification components
 
-=== Status code elements
+Each error and notification comprises the following components, some of which are documented only here in this repo.
 
-Each status code comprises the following components, some of which are documented only here in this repo.
-
-[options="header",cols="h,2,2",]
+[options="header",cols="h,2,2,2"]
 |===
 | Element
+| More information
 | Notification
 | Error
 
-| Status code (`Neo.[Class].[Subclass].[Name]`)
-| `Neo.ClientNotification.Statement.CartesianProduct`.
-| `Neo.DatabaseError.Statement.RemoteExecutionFailed`.
+| StatusCode (`Neo.[Class].[Subclass].[Name]`)
+| See <<statuscode-syntax, StatusCode syntax>>.
+| For example, `Neo.ClientNotification.Statement.CartesianProduct`.
+| For example, `Neo.DatabaseError.Statement.RemoteExecutionFailed`.
 
-| Title/Description of the status code
-| `This query builds a cartesian product between disconnected patterns.`
-| `The database was unable to execute a remote part of the statement.`
+| Notification title/ Error description (Will be removed in 6.0)
+| See <<notification-title-error-description, Notification title/Error description>>.
+| For example, `This query builds a cartesian product between disconnected patterns.`
+| For example, `The database was unable to execute a remote part of the statement.`
 
 | SeverityLevel
+|
 | One of `INFORMATION`\|`WARNING`
 m| ERROR
 
 | Category
+|
 | One of `DEPRECATION`\|`HINT`\|`UNSUPPORTED`\|`UNRECOGNIZED`\|`SECURITY`\|`GENERIC`\|`PERFORMANCE`\|`TOPOLOGY`
 | N/A
 
-| Description/Message
+| Notification description (Will be removed in 6.0)
+| See <<notification-description-error-message, Notification description>>.
+| Contains the main information, such as the problem, cause, consequences, a simple solution, or a reference to the Status Codes documentation.
+| N/A
+
+| Message (A new component that will replace the notification title and description, and the error description in 6.0)
+| See <<message, Message>>.
 2+| Contains the main information, such as the problem, cause, consequences, a simple solution, or a reference to the Status Codes documentation.
 
 | Example (only in Status Codes documentation)
+| See <<example, Example>>.
 2+| Contains one or more example queries to illustrate the possible scenarios when this notification code would be returned.
 
 | Suggestions for improvement (only in Status Codes documentation)
+| See <<example, Example>>.
 2+| Contains a possible solution for the provided example query.
 |===
 
 The following are guidelines on how to write each of the notification components.
 
-
+[[statuscode-syntax]]
 ==== StatusCode syntax
 
 All Neo4j status codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
@@ -129,23 +145,22 @@ All Neo4j status codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
 | `Neo.DatabaseError.Statement.RemoteExecutionFailed`
 |===
 
-
-==== Notification title/Error description
+[[notification-title-error-description]]
+==== Notification title/error description
 
 The notification title and the error description contain similar information.
 Therefore, they follow the same guidelines.
 Both should be brief (one short sentence), specific, and inform on the current situation and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
-
-* Do not use exclamation marks.
-* Use sentence case (you capitalize the first letter, proper nouns, and names, just like you would in a normal sentence) and punctuation.
-* Avoid explaining the cause, consequences, or solution.
+Avoid explaining the cause, consequences, or solution.
+The notification title and description will be merged in 6.0, and the error description will be replaced by the message.
+See <<message, Message>>.
 
 .Examples for notification title and error description
 [options="header",cols="h,2,2",]
 |===
 | Example
-| ⛔ Old title/description
-| ✅ New title/description
+| ⛔ Don't
+| ✅ Do
 
 | Notification title 1
 | The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
@@ -154,29 +169,26 @@ Both should be brief (one short sentence), specific, and inform on the current s
 | Notification title 2
 | The provided label is not in the database.
 | The label `Perso` does not exist.
-
-| Notification title 3
-| This feature is deprecated and will be removed in future versions.
-| (Deprecated) The repeated variable length relationship `r` is bound more than once.
 |===
 
+[[notification-description]]
+==== Notification description
 
-==== Notification description/error message
-
-The Notification description and error message should contain the most important information for the user.
+The Notification description should contain the most important information for the user.
 They should be brief, scannable, specific, and contain the following details (if applicable):
 
-* Problem -- what happened (if not already mentioned in the title).
 * Cause -- what triggered the code to be returned.
 * Consequences (for notifications only) -- why it might be a problem.
-* A simple solution or a reference to the docs where further examples and details are provided, using the sentence: _See Status Codes documentation for suggestions._
+* A simple solution if possible.
 
-.Examples for notification description/error message
+The notification description will be removed in 6.0, and the message will be used instead.
+
+.Examples of notification descriptions
 [options="header",cols="h,2,2",]
 |===
 | Example
-| ⛔ Old description/message
-| ✅ New description/message
+| ⛔ Don't
+| ✅ Do
 
 | Notification description 1
 | Using shortest path with an unbounded pattern will likely result in long execution times.
@@ -186,31 +198,53 @@ Use an upper limit to the number of node hops in your pattern.
 
 | Notification description 2
 | Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
-| A variable length relationship that is bound more than once does not return any result. See Status Codes documentation for suggestions for improvement.
+| A variable length relationship that is bound more than once does not return any result.
 
 | Notification description 3
 | One of the labels in your query is not available in the database, make sure you didn’t misspell it or that the label is available when you run this statement in your application (the missing label name is: Perso)
 | Non-existing labels yield no result. Verify that the label is spelled correctly.
-
-| Error message 1
-| Given change identifier does not belong to this database
-| Change identifier `$param` does not belong to this database.
-
-| Error message 2
-| Given ChangeIdentifier has an invalid sequence number: <internalId.seq()>
-| Change identifier `$param1` has an invalid sequence number `$param2`.
-
-| Error message 3
-| Default database not found: %s
-| `$param` default database not found. Verify that the spelling is correct.
 |===
 
+[[message]]
+==== Message
 
+The notification and error message will replace the notification title and description, and the error description in 6.0.
+It should follow the same guidelines as the notification description, namely:
+
+The message should contain the most important information for the user.
+It should be brief, scannable, specific, and contain the following details (if applicable):
+
+* Problem -- what happened and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
+* Cause -- what triggered the code to be returned.
+* Consequences (for notifications only) -- why it might be a problem.
+* A simple solution if possible.
+
+.Examples of error messages
+[options="header",cols="h,2,2",]
+|===
+| Example
+| ⛔ Don't
+| ✅ Do
+
+| Error message 1
+| Failed to create the specified database '%s':  The total limit of databases is already reached. To create more you need to either drop databases or change the limit via the config setting 'dbms.max_databases'
+| Failed to create the database `$param1`. The limit of databases is reached. Either increase the limit using the config setting `$param2` or drop a database.
+
+| Error message 2
+| Database does not exist. Database name: '%s'
+| `$param` database not found. Verify that the spelling is correct.
+
+| Error message 3
+| The allocation of an extra %s would use more than the limit %s. Currently using %s. %s threshold reached
+| Failed to allocate `$param1`. Currently using $param2`. Increase the memory pool limit using `$param3`.
+|===
+
+[[example]]
 ==== Example
 
-The examples and possible solutions are written only here in the repo, for the Status Codes doc.
+The examples and possible solutions are written only here in this repo, for the Status Codes doc.
 
-Add one or more example queries to illustrate the possible scenarios when this notification or error code would be returned.
+Add one or more example queries to illustrate the possible scenarios when this notification or error would be returned.
 They should look similar to the following:
 
 .<Add a caption that explains the example>
@@ -223,7 +257,7 @@ Here write the query.
 ----
 
 Description of the returned code::
-Same as in the `ne4j` repo.
+Same as in the `neo4j` repo.
 
 Suggestions for improvement::
 
@@ -235,8 +269,8 @@ For example:
 [options="header",cols="h,2,2",]
 |===
 | Example
-| ⛔ Old example
-| ✅ New example
+| ⛔ Don't
+| ✅ Do
 
 | Notification example
 a| .Cartesian product
@@ -275,7 +309,7 @@ MATCH (c:Child), (p:Parent) RETURN c, p
 ----
 
 Description of the returned code::
-The disconnected patterns `$param` build a cartesian product. A cartesian product may produce a large amount of data and slow down query processing. See Status Codes documentation for suggestions.
+The disconnected patterns `$param` build a cartesian product. A cartesian product may produce a large amount of data and slow down query processing.
 
 Suggestions for improvement::
 If you only need the children and the children's parents, and not all combinations between them, add `[:ChildOf]` between the `Child` and the `Parent` nodes:
