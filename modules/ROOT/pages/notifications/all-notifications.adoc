@@ -1263,7 +1263,7 @@ No databases were reallocated. No better allocation is currently possible.
 
 To illustrate when the above code would be returned consider the case when there are three servers each hosting databases `foo` and `bar`, that is, all databases are allocated to all servers. In such a situation the allocation in the cluster is already balanced. 
 
-Another example of when this notification will be surfaced is when the cluster appears unbalanced but server constraints prevent us moving to a better, more balanced, allocation. For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases. Then a better allocation would move `foo` from server 1 to server 2, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
+Another example of when this notification will be surfaced is when the cluster appears unbalanced but server constraints prevent us moving to a better, more balanced, allocation. For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases. Then a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ====
 
 [#_neo_clientnotification_cluster_serveralreadyenabled]
