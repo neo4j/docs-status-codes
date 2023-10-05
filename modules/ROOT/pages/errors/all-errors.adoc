@@ -4,7 +4,7 @@
 [[neo4j-errors]]
 = List of all error codes
 
-This page contains lists of all neo4j errors, grouped by class.
+This page contains lists of all Neo4j errors, grouped by class.
 
 == Client errors
 
@@ -30,6 +30,11 @@ This is a complete list of all client error status codes Neo4j may return, and w
 
 | Neo.ClientError.Database.ExistingDatabaseFound
 | The request referred to a database that already exists.
+
+| Neo.ClientError.Database.IllegalAliasChain
+|
+An illegal chain of aliases has been detected.
+This request cannot be executed.
 
 | Neo.ClientError.Fabric.AccessMode
 | The request could not be completed due to an access mode violation
@@ -83,6 +88,12 @@ You may want to retry with a longer timeout.
 
 | Neo.ClientError.Request.InvalidUsage
 | The client made a request but did not consume outgoing buffers in a timely fashion.
+
+| Neo.ClientError.Routing.DbmsInPanic
+| Server is in panic.
+
+| Neo.ClientError.Routing.RoutingFailed
+| Failed to route.
 
 | Neo.ClientError.Schema.ConstraintAlreadyExists
 | Unable to perform this operation because it will clash with a pre-existing constraint.
@@ -183,6 +194,9 @@ Please reconnect.
 | Neo.ClientError.Statement.PropertyNotFound
 | The statement refers to a non-existent property.
 
+| Neo.ClientError.Statement.RemoteExecutionClientError
+| The database was unable to execute a remote part of the statement due to a client error.
+
 | Neo.ClientError.Statement.RuntimeUnsupportedError
 | This query is not supported by the chosen runtime.
 
@@ -244,6 +258,11 @@ Because failure takes precedence, the transaction was rolled back.
 The transaction has not completed within the specified timeout (`dbms.transaction.timeout`).
 You may want to retry with a longer timeout.
 
+| Neo.ClientError.Transaction.TransactionTimedOutClientConfiguration
+|
+The transaction has not completed within the timeout specified at its start by the client.
+You may want to retry with a longer timeout.
+
 | Neo.ClientError.Transaction.TransactionValidationFailed
 | Transaction changes did not pass validation checks.
 
@@ -263,7 +282,7 @@ This is a complete list of all transient error status codes Neo4j may return, an
 | Neo.TransientError.Cluster.ReplicationFailure
 | Replication failure.
 
-| Neo.TransientError.Database.DatabaseUnavailable
+| Neo.TransientError.General.DatabaseUnavailable
 |
 The database is not currently available to serve your request, refer to the database logs for more details.
 Retrying your request at a later time may succeed.
@@ -311,6 +330,9 @@ You can retry at a later time, or consider increasing max thread pool size for b
 | Neo.TransientError.Statement.ExecutionTimeout
 | The database was unable to execute the statement in a timely fashion.
 
+| Neo.TransientError.Statement.RemoteExecutionTransientError
+| The database was unable to execute a remote part of the statement due to a transient failure.
+
 | Neo.TransientError.Transaction.BookmarkTimeout
 |
 Bookmark wait timed out.
@@ -327,6 +349,9 @@ Retrying this transaction will most likely be successful.
 | Neo.TransientError.Transaction.Interrupted
 | Interrupted while waiting.
 
+| Neo.TransientError.Transaction.LeaderSwitch
+| The request could not be completed due to cluster leader switch.
+
 | Neo.TransientError.Transaction.LeaseExpired
 | The lease under which this transaction was started is no longer valid.
 
@@ -342,6 +367,9 @@ You can retry at a later time or consider increasing allowed maximum of concurre
 |
 Transaction has seen state which has been invalidated by applied updates while the transaction was active.
 Transaction may succeed if retried.
+
+| Neo.TransientError.Transaction.QueryExecutionFailedOnTransaction
+| The transaction was marked as failed because a query failed.
 
 |===
 
@@ -434,7 +462,10 @@ Please restore from backup.
 | The database was unable to roll back the transaction. 
 
 | Neo.DatabaseError.Transaction.TransactionStartFailed
-| The database was unable to start the transaction. 
+| The database was unable to start the transaction.
+
+| Neo.DatabaseError.Transaction.TransactionTerminationFailed
+| The database was unable to terminate the transaction.
 
 |===
 
