@@ -285,7 +285,7 @@ This is a complete list of all transient error status codes Neo4j may return, an
 | Neo.TransientError.Cluster.ReplicationFailure
 | Replication failure.
 
-| Neo.TransientError.Database.DatabaseUnavailable
+| Neo.TransientError.General.DatabaseUnavailable
 |
 The database is not currently available to serve your request, refer to the database logs for more details.
 Retrying your request at a later time may succeed.
