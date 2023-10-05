@@ -279,9 +279,6 @@ This is a complete list of all transient error status codes Neo4j may return, an
 | Status Code
 | Description
 
-| Neo.TransientError.ChangeDataCapture.FutureIdentifier
-| Change identifier points to a future transaction that has not yet happened on this database instance.
-
 | Neo.TransientError.Cluster.ReplicationFailure
 | Replication failure.
 
