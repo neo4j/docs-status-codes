@@ -242,6 +242,14 @@ It should be brief, scannable, specific, and contain the following details (if a
 [[example]]
 ==== Example
 
+[NOTE]
+====
+This component is currently documented only for notifications.
+If you are updating an error, you can skip this section.
+If you are adding a new error, please add the example section as well but comment it out.
+When we update the Status Codes documentation to 6.0, we will uncomment all examples for errors.
+====
+
 The examples and possible solutions are written only here in this repo, for the Status Codes doc.
 
 Add one or more example queries to illustrate the possible scenarios when this notification or error would be returned.
