@@ -165,6 +165,10 @@ RETURN p
 
 [#_neo_clientnotification_statement_noapplicableindex]
 === NoApplicableIndex
+label:deprecated[Deprecated in 5.14]
+
+Deprecation reason::
+This notification is deprecated without a replacement from Neo4j 5.14 onwards. Be aware that the notification produces both false positives and negatives and thus cannot not be relied on for all cases.
 
 .When is this notification returned?
 [TIP]
