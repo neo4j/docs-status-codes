@@ -181,7 +181,7 @@ The Notification description should contain the most important information for t
 They should be brief, scannable, specific, and contain the following details (if applicable):
 
 * Cause -- what triggered the code to be returned.
-* Consequences (for notifications only) -- why it might be a problem.
+* Consequences -- why it might be a problem.
 * A simple solution if possible.
 
 .Examples of notification descriptions
