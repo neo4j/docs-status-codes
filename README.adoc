@@ -98,7 +98,7 @@ m| ERROR
 
 | Notification description (Will be removed in 6.0)
 | See <<notification-description-error-message, Notification description>>.
-| Contains the main information, such as the problem, cause, consequences, a simple solution, or a reference to the Status Codes documentation.
+| Contains the main information, such as the problem, cause, consequences, and a simple solution (if possible).
 | N/A
 
 | Message (It will replace the notification title and description, and the error description and message in 6.0.)
@@ -107,11 +107,13 @@ m| ERROR
 
 | Example (only in Status Codes documentation)
 | See <<example, Example>>.
-2+| Contains one or more example queries to illustrate the possible scenarios when this notification or error (in 6.0) would be returned.
+| Contains one or more example queries to illustrate the possible scenarios when this notification would be returned.
+| N/A for 5.x
 
 | Suggestions for improvement (only in Status Codes documentation)
 | See <<example, Example>>.
-2+| Contains a possible solution for the provided example query.
+| Contains a possible solution for the provided example query.
+| N/A for 5.x
 |===
 
 The following are guidelines on how to write each of the notification and error components.
