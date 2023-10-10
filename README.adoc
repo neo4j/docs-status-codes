@@ -218,7 +218,6 @@ It should be brief, scannable, specific, and contain the following details (if a
 
 * Problem -- what happened and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
 * Cause -- what triggered the code to be returned.
-* Consequences (for notifications only) -- why it might be a problem.
 * A simple solution if possible.
 
 .Examples of error messages
