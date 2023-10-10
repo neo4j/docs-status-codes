@@ -107,14 +107,14 @@ m| ERROR
 
 | Example (only in Status Codes documentation)
 | See <<example, Example>>.
-2+| Contains one or more example queries to illustrate the possible scenarios when this notification or error would be returned.
+2+| Contains one or more example queries to illustrate the possible scenarios when this notification or error (in 6.0) would be returned.
 
 | Suggestions for improvement (only in Status Codes documentation)
 | See <<example, Example>>.
 2+| Contains a possible solution for the provided example query.
 |===
 
-The following are guidelines on how to write each of the notification components.
+The following are guidelines on how to write each of the notification and error components.
 
 [[statuscode-syntax]]
 ==== StatusCode syntax
