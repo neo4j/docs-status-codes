@@ -97,7 +97,7 @@ m| ERROR
 | N/A
 
 | Notification description (Will be removed in 6.0)
-| See <<notification-description-error-message, Notification description>>.
+| See <<notification-description, Notification description>>.
 | Contains the main information, such as the problem, cause, consequences, and a simple solution (if possible).
 | N/A
 
@@ -135,7 +135,7 @@ All Neo4j status codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
 | Notification
 | `Neo`
 | `ClientNotification`
-| One of `Statement`, `Procedure`, `Schema`, `Database`, `Security`, or `Request`
+| One of `Statement`, `Procedure`, `Schema`, `Database`, `Security`, `Cluster`, or `Request`.
 | Should be specific and explains what this code refers to, e.g., `ExhaustiveShortestPath`.
 | `Neo.ClientNotification.Statement.ExhaustiveShortestPath`
 
