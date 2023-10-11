@@ -82,7 +82,7 @@ Each error and notification comprises the following components, some of which ar
 | For example, `Neo.DatabaseError.Statement.RemoteExecutionFailed`.
 
 | Notification title/ Error description (Will be removed in 6.0)
-| See <<title-description, Notification title/error description>>.
+| See <<notification-titleerror-description, Notification title/error description>>.
 | For example, `This query builds a cartesian product between disconnected patterns.`
 | For example, `The database was unable to execute a remote part of the statement.`
 
@@ -147,7 +147,7 @@ All Neo4j status codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
 | `Neo.DatabaseError.Statement.RemoteExecutionFailed`
 |===
 
-[[title-description]]
+[[notification-titleerror-description]]
 ==== Notification title/error description
 
 The notification title and the error description contain similar information.
