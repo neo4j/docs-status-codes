@@ -147,7 +147,7 @@ All Neo4j status codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
 | `Neo.DatabaseError.Statement.RemoteExecutionFailed`
 |===
 
-
+[[notification-titleerror-description]]
 ==== Notification title/error description
 
 The notification title and the error description contain similar information.
