@@ -4,7 +4,7 @@
 
 This repository contains the AsciiDoc and other sources to build the link:{docs-uri}/status-codes[Neo4j Status Codes].
 
-
+[[local-build]]
 == Installation
 
 To build these docs locally you will need link:https://nodejs.org/en/download/package-manager/[Node & NPM^] installed.
@@ -16,7 +16,7 @@ To install the dependencies run:
 npm install
 ----
 
-
+[[live-preview]]
 == Live Preview
 
 To preview the docs, run:
@@ -30,42 +30,31 @@ This will build a set of HTML files in `build/site` and then serve them through 
 The start script will also listen for changes and automatically rebuild the files automatically.
 You will still need to refresh the page to view the changes.
 
-
+[[contributing]]
 == Contributing
 
 To make changes to this repository, please create a fork of this repo and a new branch to stage your changes.
-Your branch should be prefixed with the version number, for example `4.3-new-examples`.
+Your branch should be prefixed with the version number, for example, `dev-new-examples`.
 
 When you are finished with your changes push the branch to your fork and create a Pull Request.
 Please add at least one approver.
 
-== Guidelines for writing Neo4j notifications
+[[guidelines]]
+== Guidelines for writing errors and notifications
 
-When you want to add a new Notification code, you update the `neo4j` repo and this repo `docs-status-codes` by adding the notification details and examples.
-Each notification comprises the following components, some of which are documented only here in this repo.
+The new errors and notifications are written in the `neo4j` repo and then added to this repo `docs-status-codes` by adding the notification or error details and examples.
 
-|===
-| Code| Neo.ClientNotification.Statement.CartesianProduct
-| Title|This query builds a cartesian product between disconnected patterns.
-| SeverityLevel| INFORMATION
-| Category| PERFORMANCE
-(For all categories and severity levels, see https://github.com/neo4j/docs-status-codes/blob/dev/modules/ROOT/pages/notifications/index.adoc)
-| Description |(Causes, consequences, a simple solution, or a reference to the Status Codes documentation)
-| Example| (Status Codes documentation only)
-| Suggestions for improvement| (Status Codes documentation only)
-|===
-
-The following are guidelines on how to write each of the notification components.
-
+[[general-guidelines]]
 === General guidelines
 
-* Regardless of the notification category, each notification should include all the components.
-* Always use Present Simple tense (it refers to an action or event that happens regularly or to facts, general realities, and unchanging situations) and active voice (when the subject of the sentence is the one doing the action, see https://www.merriam-webster.com/words-at-play/active-vs-passive-voice-difference) if possible.
+* Use sentence case (you capitalize the first letter, proper nouns, and names, just like you would in a normal sentence) and punctuation.
+* Always use present tense and active voice (when the subject of the sentence is the one doing the action, see https://www.merriam-webster.com/words-at-play/active-vs-passive-voice-difference) if possible.
 * Be specific and try to use only words that count.
-* Avoid repeating content from other notification parts, such as title, description, code, etc.
-* Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”..
+* Avoid repeating content from other parts, such as title, description, code, etc.
+* Avoid using verbs or verb derivatives, for example, “Using”, “Running”, “The use of”, “Adding”.
+* Do not use exclamation marks.
 * Avoid blaming the user.
-Focus the notification on the problem that could be fixed.
+Focus the message on the problem that could be fixed.
 +
 For example, “Did not supply query with enough parameters.“ could be rewritten to “The query does not have enough parameters”.
 +
@@ -75,88 +64,194 @@ It could be omitted as the title already says that it is an experimental feature
 * Avoid the phrase “It is recommended to” when proposing a solution.
 * Capitalize all Cypher keywords, i.e., `MATCH` rather than `match` or `Match`.
 
-=== Code
+[[error-notification-components]]
+=== Error and notification components
 
-All Neo4j codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
-The notification codes’ [Class] is `ClientNotification`.
-Therefore, they all start with `Neo.ClientNotification`.
-The [Subclass] is one of `Statement`, `Procedure`, `Schema`, `Database`, `Security`, or `Request`.
-Code’s [Name] should be specific and explain what this code refers to.
+Each error and notification comprises the following components, some of which are documented only here in this repo.
 
-✅Examples:
-Code: Neo.ClientNotification.Statement.RepeatedRelationshipVariableInPattern
+[options="header",cols="h,2,2,2"]
+|===
+| Element
+| More information
+| Notification
+| Error
 
-⛔Examples:
-Code: Neo.ClientNotification.Statement.RepeatedRelationshipReference
+| StatusCode (`Neo.[Class].[Subclass].[Name]`)
+| See <<statuscode-syntax, StatusCode syntax>>.
+| For example, `Neo.ClientNotification.Statement.CartesianProduct`.
+| For example, `Neo.DatabaseError.Statement.RemoteExecutionFailed`.
 
-=== Title
+| Notification title/ Error description (Will be removed in 6.0)
+| See <<title-description, Notification title/error description>>.
+| For example, `This query builds a cartesian product between disconnected patterns.`
+| For example, `The database was unable to execute a remote part of the statement.`
 
-The title should be brief (one short sentence), scannable, and inform on the current situation and what code of the query triggered the notification (add it within backticks to show that it’s a code snippet).
+| SeverityLevel
+|
+| One of `INFORMATION`\|`WARNING`
+m| ERROR
 
-* Do not use exclamation marks.
-* Use sentence case (you capitalize the first letter, proper nouns, and names, just like you would in a normal sentence) and punctuation.
-* Avoid explaining:
-** the consequences of the returned code.
-** what causes the code to be returned.
-** possible solutions.
+| Category
+|
+| One of `DEPRECATION`\|`HINT`\|`UNSUPPORTED`\|`UNRECOGNIZED`\|`SECURITY`\|`GENERIC`\|`PERFORMANCE`\|`TOPOLOGY`
+| N/A
 
-⛔Example (contains a possible solution):
-      The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
+| Notification description (Will be removed in 6.0)
+| See <<notification-description, Notification description>>.
+| Contains the main information, such as the problem, cause, consequences, and a simple solution (if possible).
+| N/A
 
-✅Example:
-     The pattern `<pattern>` is unbounded.
+| Message (It will replace the notification title and description, and the error description and message in 6.0.)
+| See <<message, Message>>.
+2+| Contains the main information, such as the problem, cause, consequences, a simple solution, or a reference to the Status Codes documentation.
 
-⛔Example:
-This feature is deprecated and will be removed in future versions.
+| Example (only in Status Codes documentation)
+| See <<example, Example>>.
+| Contains one or more example queries to illustrate the possible scenarios when this notification would be returned.
+| N/A for 5.x
 
-✅Example:
-(Deprecated) The repeated variable length relationship r is bound more than once.
+| Suggestions for improvement (only in Status Codes documentation)
+| See <<example, Example>>.
+| Contains a possible solution for the provided example query.
+| N/A for 5.x
+|===
 
-⛔Example (contains a possible solution):
-      The provided label is not in the database.
+The following are guidelines on how to write each of the notification and error components.
 
-✅Example:
-     The label `Perso` does not exist.
+[[statuscode-syntax]]
+==== StatusCode syntax
 
+All Neo4j status codes follow the syntax `Neo.[Class].[Subclass].[Name]`.
 
+[options="header",cols="h,1,2,3,3,2",]
+|===
+| StatusCode
+| `Neo`
+| `[Class]`
+| `[Subclass]`
+| `[Name]`
+| Example
 
-=== Description
+| Notification
+| `Neo`
+| `ClientNotification`
+| One of `Statement`, `Procedure`, `Schema`, `Database`, `Security`, `Cluster`, or `Request`.
+| Should be specific and explains what this code refers to, e.g., `ExhaustiveShortestPath`.
+| `Neo.ClientNotification.Statement.ExhaustiveShortestPath`
 
-This is the description of the returned code.
+| Error
+| `Neo`
+| One of `ClientError`, `TransientError`, `DatabaseError`
+| One of `ChangeDataCapture`, `Cluster`, `Database`, `Fabric` (deprecated), `General`, `Procedure`, `Request`, `Routing`, `Schema`, `Security`, `Statement`, `Transaction`.
+| Should be specific and explains what this code refers to, e.g., `RemoteExecutionFailed`.
+| `Neo.DatabaseError.Statement.RemoteExecutionFailed`
+|===
 
-The description should contain the following:
+[[title-description]]
+==== Notification title/error description
 
-* What caused the notification to be returned
-* Why it might be a problem - what the consequences are
-* If possible, a simple solution, otherwise, a reference to the docs using the sentence:
-_See Status Codes documentation for suggestions for improvement._
+The notification title and the error description contain similar information.
+Therefore, they follow the same guidelines.
+Both should be brief (one short sentence), specific, and inform on the current situation and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
+Avoid explaining the cause, consequences, or solution.
+The notification title and description will be replaced by a single field `message` in 6.0.
+The error description in 5.x is used just as a fallback error message in some specific cases, and in 6.0, it will no longer be used.
+See <<message, Message>>.
 
+.Examples for notification title and error description
+[options="header",cols="h,2,2",]
+|===
+| Example
+| ⛔ Don't
+| ✅ Do
 
-⛔Example:
-Using shortest path with an unbounded pattern will likely result in long execution times.
+| Notification title 1
+| The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
+| The pattern `<pattern>` is unbounded.
+
+| Notification title 2
+| The provided label is not in the database.
+| The label `Perso` does not exist.
+|===
+
+[[notification-description]]
+==== Notification description
+
+The Notification description should contain the most important information for the user.
+They should be brief, scannable, specific, and contain the following details (if applicable):
+
+* Cause -- what triggered the code to be returned.
+* Consequences -- why it might be a problem.
+* A simple solution if possible.
+
+.Examples of notification descriptions
+[options="header",cols="h,2,2",]
+|===
+| Example
+| ⛔ Don't
+| ✅ Do
+
+| Notification description 1
+| Using shortest path with an unbounded pattern will likely result in long execution times.
 It is recommended to use an upper limit to the number of node hops in your pattern.
-
-✅Rewrite:
-Shortest path with an unbounded pattern may result in long execution times.
+| Shortest path with an unbounded pattern may result in long execution times.
 Use an upper limit to the number of node hops in your pattern.
 
-⛔Example:
-Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+| Notification description 2
+| Using an already bound variable for a variable length relationship is deprecated and will be removed in a future version. (the repeated variable is: r)
+| A variable length relationship that is bound more than once does not return any result.
 
-✅Rewrite:
-A variable length relationship that is bound more than once does not return any result. See Status Codes documentation for suggestions for improvement.
+| Notification description 3
+| One of the labels in your query is not available in the database, make sure you didn’t misspell it or that the label is available when you run this statement in your application (the missing label name is: Perso)
+| Non-existing labels yield no result. Verify that the label is spelled correctly.
+|===
 
-⛔Example:
-One of the labels in your query is not available in the database, make sure you didn’t misspell it or that the label is available when you run this statement in your application (the missing label name is: Perso)
+[[message]]
+==== Message
 
-✅Rewrite:
-Non-existing labels yield no result. Verify that the label is spelled correctly.
+In 6.0, the notifications and errors will have only a message, which will be used instead of the notification title and description, and the error description and message.
 
-=== Example
+The message should follow the same guidelines as the notification description, namely:
 
-The examples and suggestions for improvement are written only in the Status Codes doc.
+The message should contain the most important information for the user.
+It should be brief, scannable, specific, and contain the following details (if applicable):
 
-Add one or more example queries to illustrate the possible scenarios when this notification code would be returned.
+* Problem -- what happened and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
+* Cause -- what triggered the code to be returned.
+* A simple solution if possible.
+
+.Examples of error messages
+[options="header",cols="h,2,2",]
+|===
+| Example
+| ⛔ Don't
+| ✅ Do
+
+| Error message 1
+| Failed to create the specified database '%s':  The total limit of databases is already reached. To create more you need to either drop databases or change the limit via the config setting 'dbms.max_databases'
+| Failed to create the database `$param1`. The limit of databases is reached. Either increase the limit using the config setting `$param2` or drop a database.
+
+| Error message 2
+| Database does not exist. Database name: '%s'
+| `$param` database not found. Verify that the spelling is correct.
+
+| Error message 3
+| The allocation of an extra %s would use more than the limit %s. Currently using %s. %s threshold reached
+| Failed to allocate `$param1`. Currently using $param2`. Increase the memory pool limit using `$param3`.
+|===
+
+[[example]]
+==== Example
+
+[NOTE]
+====
+This component is currently documented only for notifications.
+If you are updating an error, you can skip this section.
+====
+
+The examples and possible solutions are written only here in this repo, for the Status Codes doc.
+
+Add one or more example queries to illustrate the possible scenarios when this notification would be returned.
 They should look similar to the following:
 
 .<Add a caption that explains the example>
@@ -169,29 +264,64 @@ Here write the query.
 ----
 
 Description of the returned code::
-Same as in the `ne4j` repo.
+Same as in the `neo4j` repo.
 
 Suggestions for improvement::
 
 Give a possible solution for the provided example query.
+====
 
-⛔Example:
+For example:
 
+[options="header",cols="2,2",]
+|===
+| ⛔ Don't
+| ✅ Do
+
+a| .Cartesian product
+====
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child), (p:Parent) RETURN c, p
+----
+
+Description of the returned code::
+If a part of a query contains multiple disconnected patterns,
+this will build a cartesian product between all those parts.
+This may produce a large amount of data and slow down query processing.
+While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product,
+perhaps by adding a relationship between the different parts or by using `OPTIONAL MATCH` (identifier is: (`p`))
+
+Suggestions for improvement::
 In case a cartesian product is needed, nothing can be done to improve this query.
 In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
 If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
-
++
 [source, cypher, role="noplay"]
 ----
 MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 ----
+====
+a| .Cartesian product
+====
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child), (p:Parent) RETURN c, p
+----
 
+Description of the returned code::
+The disconnected patterns `$param` build a cartesian product. A cartesian product may produce a large amount of data and slow down query processing.
 
-✅Rewrite:
-
+Suggestions for improvement::
 If you only need the children and the children's parents, and not all combinations between them, add `[:ChildOf]` between the `Child` and the `Parent` nodes:
 
 [source, cypher, role="noplay"]
 ----
 MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
+----
 ====
+|===
