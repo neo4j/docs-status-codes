@@ -4,14 +4,14 @@
 = Notification codes
 
 `ClientNotification` codes are messages returned by the server with severity `WARNING` or `INFORMATION`.
-Contrary to error messages, notifications are only returned if the execution of the query is successful.
+Contrary to errors, notifications are only returned if the execution of the query is successful.
 
 [[notification-format]]
-== Notification code fields
+== Notification object fields
 
 The notification object, which is part of the result summary, consists of the following fields:
 
-* *Code* -- The status code in the form of `Neo.ClientNotification.[Subclass].[Name]`.
+* *Code* -- The status code in the form of `Neo.ClientNotification.[SubType].[Name]`.
 * *Title* -- The description of the status code.
 * *Description* -- The description of a specific notification, which can contain details about the query being executed.
 * *Severity* -- The severity can be one of the following: +
@@ -57,11 +57,11 @@ The following categories exist, ordered by severity:
 | SECURITY
 | WARNING OR INFORMATION
 | The result of the query or command indicates a potential security issue.
-| Make sure that the behaviour is what you intended.
+| Make sure that the behavior is what you intended.
 
 | TOPOLOGY
 | INFORMATION
-| Information provided while executing database and server related commands.
+| Information provided while executing database and server-related commands.
 |
 
 | GENERIC
@@ -71,6 +71,6 @@ The following categories exist, ordered by severity:
 
 | PERFORMANCE
 | INFORMATION
-| The query uses costly operations and might be slow. Consider if it is possible to rewrite the query in a different way.
+| The query uses costly operations and might be slow. Consider if it is possible to rewrite the query differently.
 |
 |===

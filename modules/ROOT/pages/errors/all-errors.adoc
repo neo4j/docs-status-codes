@@ -4,16 +4,16 @@
 [[neo4j-errors]]
 = List of all error codes
 
-This page contains lists of all Neo4j errors, grouped by class.
+This page contains lists of all Neo4j errors, grouped by type.
 
 == Client errors
 
-This is a complete list of all client error status codes Neo4j may return, and what they mean.
+This is a complete list of all client error codes Neo4j may return, and what they mean.
 
 [options="header", cols="<1m,<1"]
 |===
 
-| Status Code
+| Neo4j error code
 | Description
 
 | Neo.ClientError.Cluster.NotALeader
@@ -381,85 +381,85 @@ This is a complete list of all database error status codes Neo4j may return, and
 |===
 
 | Status Code
-| Description 
+| Description
 
 | Neo.DatabaseError.Database.DatabaseLimitReached
-| The limit to number of databases has been reached. 
+| The limit to number of databases has been reached.
 
 | Neo.DatabaseError.Database.UnableToStartDatabase
-| Unable to start database. 
+| Unable to start database.
 
 | Neo.DatabaseError.Database.Unknown
 | Unknown database management error.
 
 | Neo.DatabaseError.Fabric.RemoteExecutionFailed
-| The database was unable to execute a remote part of the statement. 
+| The database was unable to execute a remote part of the statement.
 
 | Neo.DatabaseError.General.IndexCorruptionDetected
 |
 The request (directly or indirectly) referred to an index that is in a failed state.
-The index needs to be dropped and recreated manually. 
+The index needs to be dropped and recreated manually.
 
 | Neo.DatabaseError.General.SchemaCorruptionDetected
 |
 A malformed schema rule was encountered.
-Please contact your support representative. 
+Please contact your support representative.
 
 | Neo.DatabaseError.General.StorageDamageDetected
 |
 Expected set of files not found on disk.
-Please restore from backup. 
+Please restore from backup.
 
 | Neo.DatabaseError.General.UnknownError
-| An unknown error occurred. 
+| An unknown error occurred.
 
 | Neo.DatabaseError.Schema.ConstraintCreationFailed
-| Creating a requested constraint failed. 
+| Creating a requested constraint failed.
 
 | Neo.DatabaseError.Schema.ConstraintDropFailed
-| The database failed to drop a requested constraint. 
+| The database failed to drop a requested constraint.
 
 | Neo.DatabaseError.Schema.IndexCreationFailed
-| Failed to create an index. 
+| Failed to create an index.
 
 | Neo.DatabaseError.Schema.IndexDropFailed
-| The database failed to drop a requested index. 
+| The database failed to drop a requested index.
 
 | Neo.DatabaseError.Schema.LabelAccessFailed
-| The request accessed a label that did not exist. 
+| The request accessed a label that did not exist.
 
 | Neo.DatabaseError.Schema.PropertyKeyAccessFailed
-| The request accessed a property that does not exist. 
+| The request accessed a property that does not exist.
 
 | Neo.DatabaseError.Schema.RelationshipTypeAccessFailed
-| The request accessed a relationship type that does not exist. 
+| The request accessed a relationship type that does not exist.
 
 | Neo.DatabaseError.Schema.SchemaRuleAccessFailed
-| The request referred to a schema rule that does not exist. 
+| The request referred to a schema rule that does not exist.
 
 | Neo.DatabaseError.Schema.SchemaRuleDuplicateFound
-| The request referred to a schema rule that is defined multiple times. 
+| The request referred to a schema rule that is defined multiple times.
 
 | Neo.DatabaseError.Schema.TokenLimitReached
 | The maximum number of tokens of this type has been reached, no more tokens of this type can be created.
 
 | Neo.DatabaseError.Statement.ExecutionFailed
-| The database was unable to execute the statement. 
+| The database was unable to execute the statement.
 
 | Neo.DatabaseError.Statement.RemoteExecutionFailed
-| The database was unable to execute a remote part of the statement. 
+| The database was unable to execute a remote part of the statement.
 
 | Neo.DatabaseError.Transaction.LinkedTransactionError
-| The transaction was terminated because another transaction executing the same query encountered an error. 
+| The transaction was terminated because another transaction executing the same query encountered an error.
 
 | Neo.DatabaseError.Transaction.TransactionCommitFailed
-| The database was unable to commit the transaction. 
+| The database was unable to commit the transaction.
 
 | Neo.DatabaseError.Transaction.TransactionLogError
-| The database was unable to write transaction to log. 
+| The database was unable to write transaction to log.
 
 | Neo.DatabaseError.Transaction.TransactionRollbackFailed
-| The database was unable to roll back the transaction. 
+| The database was unable to roll back the transaction.
 
 | Neo.DatabaseError.Transaction.TransactionStartFailed
 | The database was unable to start the transaction.
