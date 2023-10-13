@@ -103,14 +103,14 @@ m| ERROR
 
 | Message (It will replace the notification title and description, and the error description and message in 6.0.)
 | See <<message, Message>>.
-2+| Contains the main information, such as the problem, cause, consequences, a simple solution, or a reference to the Status Codes documentation.
+2+| Contains the main information, such as the problem, cause, consequences, a simple solution if possible.
 
-| Example (only in Status Codes documentation)
+| Example (only in the Neo4j Status Codes documentation)
 | See <<example, Example>>.
 | Contains one or more example queries to illustrate the possible scenarios when this notification would be returned.
 | N/A for 5.x
 
-| Suggestions for improvement (only in Status Codes documentation)
+| Suggestions for improvement (only in the Neo4j Status Codes documentation)
 | See <<example, Example>>.
 | Contains a possible solution for the provided example query.
 | N/A for 5.x
@@ -249,7 +249,7 @@ This component is currently documented only for notifications.
 If you are updating an error, you can skip this section.
 ====
 
-The examples and possible solutions are written only here in this repo, for the Status Codes doc.
+The examples and possible solutions are written only here in this repo, for the Neo4j Status Codes documentatio.
 
 Add one or more example queries to illustrate the possible scenarios when this notification would be returned.
 They should look similar to the following:

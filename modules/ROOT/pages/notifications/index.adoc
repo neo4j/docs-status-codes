@@ -11,8 +11,8 @@ Contrary to errors, notifications are only returned if the execution of the quer
 
 The notification object, which is part of the result summary, consists of the following fields:
 
-* *Code* -- The status code in the form of `Neo.ClientNotification.[SubType].[Name]`.
-* *Title* -- The description of the status code.
+* *Code* -- The Neo4j status code in the form of `Neo.ClientNotification.[SubType].[Name]`.
+* *Title* -- The description of the Neo4j status code.
 * *Description* -- The description of a specific notification, which can contain details about the query being executed.
 * *Severity* -- The severity can be one of the following: +
   ** `WARNING`: There might be a problem with your query. Please, take a look. +

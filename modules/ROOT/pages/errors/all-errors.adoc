@@ -8,12 +8,12 @@ This page contains lists of all Neo4j errors, grouped by type.
 
 == Client errors
 
-This is a complete list of all client error codes Neo4j may return, and what they mean.
+This is a complete list of all client errors Neo4j may return, and what they mean.
 
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j error code
+| Neo4j status code
 | Description
 
 | Neo.ClientError.Cluster.NotALeader
@@ -271,12 +271,12 @@ You may want to retry with a longer timeout.
 
 == Transient errors
 
-This is a complete list of all transient error status codes Neo4j may return, and what they mean.
+This is a complete list of all transient errors Neo4j may return, and what they mean.
 
 [options="header", cols="<1m,<1"]
 |===
 
-| Status Code
+| Neo4j status code
 | Description
 
 | Neo.TransientError.Cluster.ReplicationFailure
@@ -375,12 +375,12 @@ Transaction may succeed if retried.
 
 == Database error
 
-This is a complete list of all database error status codes Neo4j may return, and what they mean.
+This is a complete list of all database errors Neo4j may return, and what they mean.
 
 [options="header", cols="<1m,<1"]
 |===
 
-| Status Code
+| Neo4j status code
 | Description
 
 | Neo.DatabaseError.Database.DatabaseLimitReached

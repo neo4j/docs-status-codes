@@ -7,7 +7,7 @@ This document details all status codes that a Neo4j DBMS may return to indicate 
 
 == Format
 
-Each status code follows the same format:
+Each Neo4j status code follows the same format:
 
 [source, status code format, role="noheader"]
 -----
@@ -16,7 +16,7 @@ Neo.[Type].[SubType].[Name]
 
 == Types of Neo4j status codes
 
-The fact that a status code is returned by the server does not always mean there is a fatal error.
+The fact that a Neo4j status code is returned by the server does not always mean there is a fatal error.
 Neo4j status codes can also indicate transient problems that may go away if you retry the request.
 The type of the status code determines the effect on the transaction.
 
