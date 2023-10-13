@@ -923,7 +923,7 @@ The product's default behavior of using a cost-based IDP search algorithm when c
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
 ====
 
-.Using a subquery expression within a mutating statement has implications for its side-effect visibility.
+.Using a subquery expression within a mutating statement has implications for its side-effect visibility
 ====
 Query::
 +
@@ -931,10 +931,13 @@ Query::
 ----
 CREATE ( { prop : COUNT { () } } )
 ----
+
 Description of the returned code::
 The semantics of this statement may change in later versions.
+
 Suggestions for improvement::
-Extract the subquery expression into a preceding WITH and/or wrap the mutating statement into a CALL subquery. For further explanation please contact support.
+Extract the subquery expression into a preceding `WITH` and/or wrap the mutating statement into a `CALL` subquery.
+For further explanation please contact support.
 +
 [source,cypher]
 ----
