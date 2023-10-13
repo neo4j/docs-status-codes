@@ -57,11 +57,11 @@ The following categories exist, ordered by severity:
 | SECURITY
 | WARNING OR INFORMATION
 | The result of the query or command indicates a potential security issue.
-| Make sure that the behavior is what you intended.
+| Make sure that the behaviour is what you intended.
 
 | TOPOLOGY
 | INFORMATION
-| Information provided while executing database and server-related commands.
+| Information provided while executing database and server related commands.
 |
 
 | GENERIC
@@ -71,6 +71,6 @@ The following categories exist, ordered by severity:
 
 | PERFORMANCE
 | INFORMATION
-| The query uses costly operations and might be slow. Consider if it is possible to rewrite the query differently.
+| The query uses costly operations and might be slow. Consider if it is possible to rewrite the query in a different way.
 |
 |===
