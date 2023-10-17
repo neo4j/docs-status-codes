@@ -7,6 +7,7 @@
 
 [source, status codes, role="noheader"]
 -----
+Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
 Neo.ClientNotification.Cluster.NoDatabasesReallocated
 Neo.ClientNotification.Statement.SideEffectVisibility
 -----
