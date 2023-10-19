@@ -1189,7 +1189,7 @@ Full title of the returned code::
 `REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
 
 Description of the returned code::
-Parameterized database and graph names do not support wildcards. 
+Parameterized database and graph names do not support wildcards.
 Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
@@ -1219,7 +1219,7 @@ Full title of the returned code::
 `REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
 
 Description of the returned code::
-Parameterized database and graph names do not support wildcards. 
+Parameterized database and graph names do not support wildcards.
 Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
@@ -1249,7 +1249,7 @@ m|INFORMATION
 m|TOPOLOGY
 |===
 
-.Reallocating databases resulted in no allocation changes 
+.Reallocating databases resulted in no allocation changes
 ====
 Command::
 +
@@ -1259,11 +1259,11 @@ REALLOCATE DATABASES
 ----
 
 Description of the returned code::
-No databases were reallocated. No better allocation is currently possible. 
+No databases were reallocated. No better allocation is currently possible.
 
 
 Example scenarios::
-**Scenario 1:** The cluster is already balanced. 
+**Scenario 1:** The cluster is already balanced.
 For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
 +
 
