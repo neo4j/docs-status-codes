@@ -7,26 +7,26 @@ This document details all status codes that a Neo4j DBMS may return to indicate 
 
 == Format
 
-Each status code follows the same format:
+Each Neo4j status code follows the same format:
 
 [source, status code format, role="noheader"]
 -----
-Neo.[Class].[Subclass].[Name]
+Neo.[Type].[SubType].[Name]
 -----
 
-== Classification
+== Types of Neo4j status codes
 
-The fact that a status code is returned by the server does not always mean there is a fatal error.
-Status codes can also indicate transient problems that may go away if you retry the request.
-The classification of the status code determines the effect on the transaction.
+The fact that a Neo4j status code is returned by the server does not always mean there is a fatal error.
+Neo4j status codes can also indicate transient problems that may go away if you retry the request.
+The type of the status code determines the effect on the transaction.
 
-.Neo4j status code classification
+.Neo4j status code types
 [options="header", cols="<1m,<2,<1"]
 |===
 
-| Class
+| Type
 | Description
-| Effect on the transaction 
+| Effect on the transaction
 
 | xref:errors/all-errors.adoc#_client_errors[ClientError]
 | The Client sent a bad request - changing the request might yield a successful outcome.
@@ -34,11 +34,11 @@ The classification of the status code determines the effect on the transaction.
 
 | xref:errors/all-errors#_transient_errors[TransientError]
 | The database cannot service the request right now, retrying later might yield a successful outcome.
-| Rollback 
+| Rollback
 
 | xref:errors/all-errors#_database_error[DatabaseError]
 | The database failed to service the request.
-| Rollback 
+| Rollback
 
 | xref:notifications/index.adoc[ClientNotifications]
 | The query execution was successful, but there are notifications about the request sent by the client.
