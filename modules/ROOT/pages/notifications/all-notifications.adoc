@@ -937,7 +937,6 @@ The semantics of this statement may change in later versions.
 
 Suggestions for improvement::
 Extract the subquery expression into a preceding `WITH` and/or wrap the mutating statement into a `CALL` subquery.
-For further explanation please contact support.
 +
 [source,cypher]
 ----
