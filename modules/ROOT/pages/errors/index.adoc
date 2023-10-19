@@ -4,7 +4,8 @@
 = Error codes
 
 Error codes are Neo4j status codes returned by the server when the execution of a query fails.
- They always have the severity level `ERROR`. Errors are grouped based on the type of the error code:
+They always have the severity level `ERROR`.
+Errors are grouped based on the type of the error code:
 
 Client errors::
     These errors are caused by the client and are usually related to the request itself.
