@@ -1299,7 +1299,7 @@ m|TOPOLOGY
 .Cordoned servers existed during an allocation decision
 ====
 This notification will be returned by any command that triggers an allocation decision. Examples are `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SERVER`, `ALTER DATABASE`.
-Note, `REALLOCATE DATABASES` requires there to be no cordoned servers to be executed successfully thus will never not return this notification.
+Note, `REALLOCATE DATABASES` requires there to be no cordoned servers to be executed successfully thus will never return this notification.
 
 For example, consider a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` has been cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
 
