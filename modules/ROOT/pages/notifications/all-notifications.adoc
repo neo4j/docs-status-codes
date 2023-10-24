@@ -1291,7 +1291,7 @@ m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
 |Title
 a| Cordoned servers existed when making an allocation decision.
 |Severity
-m|WARNING
+m|INFORMATION
 |Category
 m|TOPOLOGY
 |===
