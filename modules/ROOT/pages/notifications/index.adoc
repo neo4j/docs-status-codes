@@ -60,7 +60,7 @@ The following categories exist, ordered by severity:
 | Make sure that the behaviour is what you intended.
 
 | TOPOLOGY
-| WARNING OR INFORMATION
+| INFORMATION
 | Information provided while executing database and server related commands.
 |
 
