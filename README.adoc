@@ -87,7 +87,7 @@ Each error and notification comprises the following components, some of which ar
 | For example, `The database was unable to execute a remote part of the statement.`
 
 | SeverityLevel
-|
+| See <<severity-level, Severity level>>.
 | One of `INFORMATION`\|`WARNING`
 m| ERROR
 
@@ -173,6 +173,15 @@ See <<message, Message>>.
 | The provided label is not in the database.
 | The label `Perso` does not exist.
 |===
+
+[[severity-level]]
+==== Severity level
+
+The severity can be one of the following:
+
+* `WARNING`: The query may have issues. Please review it. We might be able to give you a suggestion on how to improve it.
+* `INFORMATION`: The query may have issues, even though it is correct. The provided information can still be helpful.
+* `ERROR`: The query execution failed. Please review the query. We might be able to give you a suggestion on how to improve it.
 
 [[notification-description]]
 ==== Notification description
