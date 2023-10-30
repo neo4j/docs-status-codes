@@ -932,7 +932,7 @@ For more information, see link:https://neo4j.com/docs/cypher-manual/current/quer
 |Code
 m|Neo.ClientNotification.Statement.SideEffectVisibility
 |Title
-a| Using a subquery expression within a mutating statement has implications for its side-effect visibility
+a| A subquery expression within a mutating statement has implications for its side-effect visibility.
 |Severity
 m|WARNING
 |Category
@@ -952,14 +952,16 @@ Description of the returned code::
 The semantics of this statement may change in later versions.
 
 Suggestions for improvement::
-Extract the subquery expression into a preceding `WITH`
+Extract the subquery expression into a preceding `WITH`:
 +
 [source,cypher]
 ----
 WITH COUNT {()} AS i
 CREATE ( { prop : i } )
 ----
-and potentially wrap the mutating statement into a `CALL` subquery if changes from previous executions should be observable
+
+and potentially wrap the mutating statement into a `CALL` subquery if changes from previous executions should be observable:
+
 [source,cypher]
 ----
 CALL{
