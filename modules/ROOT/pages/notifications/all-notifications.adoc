@@ -923,6 +923,54 @@ The product's default behavior of using a cost-based IDP search algorithm when c
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
 ====
 
+[#_neo_clientnotification_statement_sideeffectvisibility]
+=== SideEffectVisibility
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Statement.SideEffectVisibility
+|Title
+a| A subquery expression within a mutating statement has implications for its side-effect visibility.
+|Severity
+m|WARNING
+|Category
+m|DEPRECATION
+|===
+
+.Subquery expression within a mutating statement
+====
+Query::
++
+[source,cypher]
+----
+CREATE ( { prop : COUNT { () } } )
+----
+
+Description of the returned code::
+The semantics of this statement may change in later versions.
+
+Suggestions for improvement::
+Extract the subquery expression into a preceding `WITH`:
++
+[source,cypher]
+----
+WITH COUNT {()} AS i
+CREATE ( { prop : i } )
+----
+
+and potentially wrap the mutating statement into a `CALL` subquery if changes from previous executions should be observable:
+
+[source,cypher]
+----
+CALL{
+WITH COUNT {()} AS i
+CREATE ( { prop : i } )
+}
+----
+====
+
 [#_neo_clientnotification_request_deprecatedformat]
 === DeprecatedFormat
 
