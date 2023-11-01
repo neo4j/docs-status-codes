@@ -179,9 +179,14 @@ See <<message, Message>>.
 
 The severity can be one of the following:
 
-* `WARNING`: The query may have issues. Please review it. We might be able to give you a suggestion on how to improve it.
-* `INFORMATION`: The query may have issues, even though it is correct. The provided information can still be helpful.
-* `ERROR`: The query execution failed. Please review the query. We might be able to give you a suggestion on how to improve it.
+* `WARNING`: It is about queries/commands that may have structural, syntactic, semantic, or spelling issues that prevent them from being executed in an optimal way.
+It's good to tell the user what the problem is, the possible cause, and the consequences, as well as give an example(s) and suggestion(s) for improvement.
+
+* `INFORMATION`: It is about queries/commands that are correct but may have some performance issues or that have no effect because they try to do something already done.
+Depending on the case, we may give an example(s) and suggestion(s) for improvement.
+
+* `ERROR`: It is about queries/commands that fail to succeed.
+It's good to tell the user what triggers the error, an example, and a possible solution(s).
 
 [[notification-description]]
 ==== Notification description
