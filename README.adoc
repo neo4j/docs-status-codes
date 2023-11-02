@@ -87,7 +87,7 @@ Each error and notification comprises the following components, some of which ar
 | For example, `The database was unable to execute a remote part of the statement.`
 
 | SeverityLevel
-|
+| See <<severity-level, Severity level>>.
 | One of `INFORMATION`\|`WARNING`
 m| ERROR
 
@@ -173,6 +173,27 @@ See <<message, Message>>.
 | The provided label is not in the database.
 | The label `Perso` does not exist.
 |===
+
+[[severity-level]]
+==== Severity level
+
+The severity can be one of the following:
+
+* `WARNING`: It is about queries/commands that may have structural, syntactic, semantic, or spelling issues where the query most probably is wrong and/or should be updated.
+This includes deprecations, experimental features, trying to match entities with non-existing labels, etc.
+It should be clear what the problem is and it is also good to tell the possible cause, and the consequences, as well as give an example(s) and suggestion(s) for improvement.
+The most important part is that "we are (almost) certain it is a problem" and we know how to fix their query.
+For example:
+
+** Deprecations – The users need to update the query with new functionality.
+** Experimental features – These cannot be trusted and should be updated if used in production.
+** Non-existing label – This query will never give any result, so it's either useless to run OR a misspelled label (unless they add a node with the label, but then the notification would disappear).
+
+* `INFORMATION`: It is about queries/commands that are correct but may have some performance issues or that have no effect because they try to do something already done.
+Depending on the case, we may give an example(s) and suggestion(s) for improvement.
+
+* `ERROR`: It is about queries/commands that fail to succeed.
+It's good to tell the user what triggers the error, an example, and a possible solution(s).
 
 [[notification-description]]
 ==== Notification description
