@@ -180,13 +180,14 @@ See <<message, Message>>.
 The severity can be one of the following:
 
 * `WARNING`: It is about queries/commands that may have structural, syntactic, semantic, or spelling issues where the query most probably is wrong and/or should be updated.
-This includes deprecations, experimental features, trying to match on entities with non-existing labels, etc.
+This includes deprecations, experimental features, trying to match entities with non-existing labels, etc.
 It should be clear what the problem is and it is also good to tell the possible cause, and the consequences, as well as give an example(s) and suggestion(s) for improvement.
-I think the most important part is that "we are (almost) certain it is a problem" and we know how to fix your query. So for:
+The most important part is that "we are (almost) certain it is a problem" and we know how to fix their query.
+For example:
 
-** Deprecations – you need to update the query with new functionallity.
-** Experimental features – These can not be trusted and should be updated if used in production.
-** Non-existing label – This query will never give any result, so it's either useless to run OR a misspelled label (unless you add a node with the label, but then the notification would disappear).
+** Deprecations – The users need to update the query with new functionality.
+** Experimental features – These cannot be trusted and should be updated if used in production.
+** Non-existing label – This query will never give any result, so it's either useless to run OR a misspelled label (unless they add a node with the label, but then the notification would disappear).
 
 * `INFORMATION`: It is about queries/commands that are correct but may have some performance issues or that have no effect because they try to do something already done.
 Depending on the case, we may give an example(s) and suggestion(s) for improvement.
