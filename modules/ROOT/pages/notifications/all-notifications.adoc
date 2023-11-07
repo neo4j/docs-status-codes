@@ -1316,7 +1316,7 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
 ----
 
 Description of the returned code::
-The following server(s) are cordoned `123e4567-e89b-12d3-a456-426614174000`. This can impact allocation decisions.
+Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
 ====
 
 [#_neo_clientnotification_cluster_nodatabasesreallocated]
