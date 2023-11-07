@@ -1306,7 +1306,7 @@ m|TOPOLOGY
 
 .Cordoned servers existed during an allocation decision
 ====
-For example, consider a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` has been cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
+The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
 
 Command::
 +
