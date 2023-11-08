@@ -1281,6 +1281,44 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 
 Topology notifications provide additional information related to managing databases and servers.
 
+[#_neo_clientnotification_cluster_cordonedserversexistedduringallocation]
+=== CordonedServersExistedDuringAllocation
+
+.When is this notification returned?
+[TIP]
+====
+When a Cypher administration command triggers an allocation decision and some of the servers are cordoned.
+For example, `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SERVER[S]`, and `ALTER DATABASE` return this notification. However, `REALLOCATE DATABASES` requires that there are no cordoned servers and, therefore, does not return it.
+====
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
+|Title
+a| Cordoned servers existed when making an allocation decision.
+|Severity
+m|INFORMATION
+|Category
+m|TOPOLOGY
+|===
+
+.Cordoned servers existed during an allocation decision
+====
+The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
+
+Command::
++
+[source, cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
+----
+
+Description of the returned code::
+Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
+====
+
 [#_neo_clientnotification_cluster_nodatabasesreallocated]
 === NoDatabasesReallocated
 
