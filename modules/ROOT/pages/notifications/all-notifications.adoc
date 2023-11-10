@@ -933,7 +933,6 @@ RETURN 1 as my\u0085identifier
 ----
 Description of the returned code::
 The unicode `\\u0061` is deprecated in unescaped identifiers.
-Suggestions for improvement::
 If you want to continue to use this unicode, please escape the identifier instead.
 ====
 
