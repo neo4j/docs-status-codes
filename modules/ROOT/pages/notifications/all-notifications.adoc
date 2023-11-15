@@ -932,8 +932,7 @@ Query::
 RETURN 1 as my\u0085identifier
 ----
 Description of the returned code::
-The unicode `\u0085` is deprecated in unescaped identifiers.
-If you want to continue to use this unicode, please escape the identifier instead.
+The Unicode character \`\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier \`myidentifier`.
 ====
 
 [#_neo_clientnotification_statement_sideeffectvisibility]
