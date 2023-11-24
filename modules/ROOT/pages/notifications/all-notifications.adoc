@@ -923,6 +923,18 @@ The product's default behavior of using a cost-based IDP search algorithm when c
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
 ====
 
+.Using the unicode \u0085 in an unescaped identifier
+====
+Query::
++
+[source,cypher]
+----
+RETURN 1 as my\u0085identifier
+----
+Description of the returned code::
+The Unicode character \`\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier \`myidentifier`.
+====
+
 [#_neo_clientnotification_statement_sideeffectvisibility]
 === SideEffectVisibility
 
