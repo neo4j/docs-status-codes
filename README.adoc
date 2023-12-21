@@ -95,6 +95,13 @@ This will help developers to debug issues without exposing sensitive information
 
 * Regularly review and update error messages to ensure they remain relevant, accurate, and secure.
 
+.Optional further reading
+[TIP]
+====
+* link:https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html[OWASP Cheat Sheet Series: Application Logging Vocabulary Cheat Sheet]
+* link:https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html[OWASP Cheat Sheet Series: Logging Cheat Sheet]
+====
+
 [[error-notification-components]]
 === Error and notification components
 
