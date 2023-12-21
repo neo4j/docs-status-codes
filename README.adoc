@@ -83,9 +83,7 @@ For example, use "Login failed" instead of specifying whether the username or pa
 Never reveal information about the internal state of the application, like file paths, database information, or stack traces, as these can provide attackers with clues about potential vulnerabilities.
 Stack traces are safe to have in debug.log but nowhere else.
 
-* Do not use error messages from underlying libraries/dependencies (e.g. Java runtime errors) but always catch the error and throw your own error message.
-
-* For wrapped errors, it is safe to reuse error messages only if they are coming from Neo4j, i.e. have a status.
+* Do not use error messages from underlying libraries/dependencies (e.g. Java runtime errors) but always catch the error and throw your own error message. It is safe to reuse error messages only if they are coming from Neo4j, i.e. have a Neo4j status code.
 
 * Guide users towards resolution.
 Where appropriate, guide users on how to rectify the error.
