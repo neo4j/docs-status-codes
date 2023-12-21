@@ -81,8 +81,11 @@ For example, use "Login failed" instead of specifying whether the username or pa
 
 * Do not expose internal information.
 Never reveal information about the internal state of the application, like file paths, database information, or stack traces, as these can provide attackers with clues about potential vulnerabilities.
+Stack traces are safe to have in debug.log but nowhere else.
 
 * Do not use error messages from underlying libraries/dependencies (e.g. Java runtime errors) but always catch the error and throw your own error message.
+
+* For wrapped errors, it is safe to reuse error messages only if they are coming from Neo4j, i.e. have a status.
 
 * Guide users towards resolution.
 Where appropriate, guide users on how to rectify the error.
@@ -93,7 +96,6 @@ While showing generic error messages to users, log detailed error information in
 This will help developers to debug issues without exposing sensitive information to users.
 
 * Regularly review and update error messages to ensure they remain relevant, accurate, and secure.
-
 
 [[error-notification-components]]
 === Error and notification components
