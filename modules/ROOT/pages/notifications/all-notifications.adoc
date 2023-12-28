@@ -1368,6 +1368,38 @@ For example, when there are three servers, each hosting databases `foo` and `bar
 **Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation. For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases. Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ====
 
+[#_neo_clientnotification_cluster_requestedtopologymatchedcurrenttopology]
+=== RequestedTopologyMatchedCurrentTopology
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
+|Title
+a| `<command>` has no effect.
+|Severity
+m|INFORMATION
+|Category
+m|TOPOLOGY
+|===
+
+.Requested topology matched current topology 
+====
+The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary. Then the below command will return this notification.
+
+Command::
++
+[source, cypher]
+----
+ALTER DATABASE foo SET TOPOLOGY 2 PRIMARIES 1 SECONDARY
+----
+
+Description of the returned code::
+The requested topology matched the current topology. No allocations were changed.
+====
+
+
 [#_neo_clientnotification_cluster_serveralreadyenabled]
 === ServerAlreadyEnabled
 

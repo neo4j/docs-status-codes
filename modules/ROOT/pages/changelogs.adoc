@@ -1,6 +1,15 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
+== Neo4j 5.17
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
+-----
+
 == Neo4j 5.15
 
 **New:**
