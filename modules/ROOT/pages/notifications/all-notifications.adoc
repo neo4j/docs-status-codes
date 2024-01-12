@@ -1388,7 +1388,7 @@ m|TOPOLOGY
 
 .Requested topology matched current topology 
 ====
-The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary. Then the below command will return this notification.
+The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary. 
 
 Command::
 +
