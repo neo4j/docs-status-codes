@@ -1365,7 +1365,9 @@ Example scenarios::
 For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
 +
 
-**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation. For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases. Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
+**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation. 
+For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
+Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ====
 
 [#_neo_clientnotification_cluster_requestedtopologymatchedcurrenttopology]
