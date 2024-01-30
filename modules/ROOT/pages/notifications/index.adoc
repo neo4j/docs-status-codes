@@ -64,6 +64,11 @@ The following categories exist, ordered by severity:
 | Information provided while executing database and server related commands.
 |
 
+| SCHEMA
+| INFORMATION
+| Information provided while managing indexes and constraints.
+|
+
 | GENERIC
 | WARNING OR INFORMATION
 | Notifications that are not part of a wider class.
