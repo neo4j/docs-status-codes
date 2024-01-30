@@ -1426,9 +1426,6 @@ Full title of the returned code::
 Full description of the returned code::
 `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
 
-Suggestions for improvement::
-The existing index is likely what was wanted, no further actions needed.
-
 ====
 
 .Creating an index when another unrelated index using that name already exists
@@ -1449,7 +1446,7 @@ Full description of the returned code::
 `RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
 
 Suggestions for improvement::
-Chose a different name for the new index and try again as the existing index was not similar to the one attempting to be created.
+Choose a different name for the new index and try again.
 +
 [source, cypher]
 ----
@@ -1475,9 +1472,6 @@ Full title of the returned code::
 Full description of the returned code::
 `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
-Suggestions for improvement::
-The existing constraint is likely what was wanted, no further actions needed.
-
 ====
 
 .Creating a constraint when another unrelated constraint using that name already exists
@@ -1498,7 +1492,7 @@ Full description of the returned code::
 `CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 Suggestions for improvement::
-Chose a different name for the new constraint and try again as the existing constraint was not similar to the one attempting to be created.
+Choose a different name for the new constraint and try again.
 +
 [source, cypher]
 ----
