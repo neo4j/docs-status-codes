@@ -246,7 +246,7 @@ Using `LOAD CSV` with a large data set in a query where the execution plan conta
 See the Neo4j Manual entry on the Eager operator for more information and hints on how problems could be avoided.
 
 Suggestions for improvement::
-See the link:https://neo4j.com/docs/cypher-manual/current/execution-plans/operators/#query-plan-eager[Cypher Manual -> Eager operator] for more information and hints on how to avoid problems.
+See the link:https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/operators/operators-detail/#query-plan-eager[Cypher Manual -> Eager operator] for more information and hints on how to avoid problems.
 In this specific case, the query could be rewritten to the following:
 +
 [source, cypher, role="noplay"]
