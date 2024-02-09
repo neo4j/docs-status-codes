@@ -12,6 +12,7 @@ The following are all Neo4j notifications, grouped by category, when they are re
 * <<_deprecated_notifications, `DEPRECATION` category>>
 * <<_security_notifications, `SECURITY` category>>
 * <<_topology_notifications, `TOPOLOGY` category>>
+* <<_schema_notifications, `SCHEMA` category>>
 * <<_generic, `GENERIC` category>>
 
 
@@ -1387,6 +1388,182 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
 Verify that this is the intended server.
 
 ====
+
+[#_schema_notifications]
+== `SCHEMA` category
+
+Schema notifications provide additional information related to indexes and constraints.
+
+[#_neo_clientnotification_schema_indexorconstraintalreadyexists]
+=== IndexOrConstraintAlreadyExists
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
+|Title
+a|`<command>` has no effect.
+|Description
+a|`<conflicting>` already exists.
+|Severity
+m|INFORMATION
+|Category
+m|SCHEMA
+|===
+
+.Creating an index when an equivalent index already exists
+====
+Given a range index on `(:Label \{property})` named `existingRangeIndex`.
+
+Command::
++
+[source, cypher]
+----
+CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
+----
+
+Full title of the returned code::
+`CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
+
+Full description of the returned code::
+`RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
+
+====
+
+.Creating an index when another unrelated index using that name already exists
+====
+Given a range index on `(:Label \{property})` named `myIndex`.
+
+Command::
++
+[source, cypher]
+----
+CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
+----
+
+Full title of the returned code::
+`CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
+
+Full description of the returned code::
+`RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
+
+Suggestions for improvement::
+Choose a different name for the new index and try again.
++
+[source, cypher]
+----
+CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
+----
+
+====
+
+.Creating a constraint when an identical constraint already exists
+====
+Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
+
+Command::
++
+[source, cypher]
+----
+CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQUIRE (n.property) IS NODE KEY
+----
+
+Full title of the returned code::
+`CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
+
+Full description of the returned code::
+`CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+
+====
+
+.Creating a constraint when another unrelated constraint using that name already exists
+====
+Given a node key constraint on `(:Label \{property})` named `myConstraint`.
+
+Command::
++
+[source, cypher]
+----
+CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
+----
+
+Full title of the returned code::
+`CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
+
+Full description of the returned code::
+`CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+
+Suggestions for improvement::
+Choose a different name for the new constraint and try again.
++
+[source, cypher]
+----
+CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
+----
+
+====
+
+[#_neo_clientnotification_schema_indexorconstraintdoesnotexist]
+=== IndexOrConstraintDoesNotExist
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
+|Title
+a|`<command>` has no effect.
+|Description
+a|`<name>` does not exist.
+|Severity
+m|INFORMATION
+|Category
+m|SCHEMA
+|===
+
+.Attempting to drop a non-existing index
+====
+
+Command::
++
+[source, cypher]
+----
+DROP INDEX nonExistingIndex IF EXISTS
+----
+
+Full title of the returned code::
+`DROP INDEX nonExistingIndex IF EXISTS` has no effect.
+
+Full description of the returned code::
+`nonExistingIndex` does not exist.
+
+Suggestions for improvement::
+Verify that this is the intended index and that it is spelled correctly.
+
+====
+
+.Attempting to drop a non-existing constraint
+====
+
+Command::
++
+[source, cypher]
+----
+DROP CONSTRAINT nonExistingConstraint IF EXISTS
+----
+
+Full title of the returned code::
+`DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
+
+Full description of the returned code::
+`nonExistingConstraint` does not exist.
+
+Suggestions for improvement::
+Verify that this is the intended constraint and that it is spelled correctly.
+
+====
+
 
 [#_generic]
 == `GENERIC` category
