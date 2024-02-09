@@ -152,7 +152,7 @@ All Neo4j status codes follow the syntax `Neo.[Type].[SubType].[Name]`.
 
 The notification title and the error description contain similar information.
 Therefore, they follow the same guidelines.
-Both should be brief (one short sentence), specific, and inform on the current situation and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
+Both should be brief (one short sentence), specific, and inform on the current situation and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet, e.g. \`dbname`).
 Avoid explaining the cause, consequences, or solution.
 The notification title and description will be replaced by a single field `message` in 6.0.
 The error description in 5.x is used just as a fallback error message in some specific cases, and in 6.0, it will no longer be used.
@@ -237,7 +237,7 @@ The message should follow the same guidelines as the notification description, n
 The message should contain the most important information for the user.
 It should be brief, scannable, specific, and contain the following details (if applicable):
 
-* Problem -- what happened and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet).
+* Problem -- what happened and what code of the query triggered the notification/error (add it within backticks to show that it’s a code snippet, e.g. \`dbname`).
 * Cause -- what triggered the code to be returned.
 * A simple solution if possible.
 
