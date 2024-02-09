@@ -131,7 +131,7 @@ m| ERROR
 
 | Category
 |
-| One of `DEPRECATION`\|`HINT`\|`UNSUPPORTED`\|`UNRECOGNIZED`\|`SECURITY`\|`GENERIC`\|`PERFORMANCE`\|`TOPOLOGY`
+| One of `DEPRECATION`\|`HINT`\|`UNSUPPORTED`\|`UNRECOGNIZED`\|`SECURITY`\|`GENERIC`\|`PERFORMANCE`\|`TOPOLOGY`\|`SCHEMA`
 | N/A
 
 | Notification description (Will be removed in 6.0)

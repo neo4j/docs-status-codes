@@ -8,6 +8,8 @@
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
+Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
+Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
 -----
 
 == Neo4j 5.15
