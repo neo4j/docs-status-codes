@@ -16,6 +16,9 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 | Neo4j status code
 | Description
 
+| Neo.ClientError.ChangeDataCapture.InvalidIdentifier
+| Invalid change identifier.
+
 | Neo.ClientError.Cluster.NotALeader
 | The request cannot be processed by this server. Write requests can only be processed by the leader.
 
@@ -279,6 +282,9 @@ This is a complete list of all transient errors Neo4j may return, and what they 
 | Neo4j status code
 | Description
 
+| Neo.TransientError.ChangeDataCapture.FutureIdentifier
+| Change identifier points to a future transaction that has not yet happened on this database instance.
+
 | Neo.TransientError.Cluster.ReplicationFailure
 | Replication failure.
 
@@ -382,6 +388,12 @@ This is a complete list of all database errors Neo4j may return, and what they m
 
 | Neo4j status code
 | Description
+
+| Neo.DatabaseError.ChangeDataCapture.Disabled
+| Change Data Capture is not currently enabled for this database.
+
+| Neo.DatabaseError.ChangeDataCapture.ScanFailure
+| Unable to read the Change Data Capture data for this database.
 
 | Neo.DatabaseError.Database.DatabaseLimitReached
 | The limit to number of databases has been reached.

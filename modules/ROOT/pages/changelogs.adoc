@@ -26,6 +26,10 @@ Neo.ClientNotification.Cluster.NoDatabasesReallocated
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Cluster.ServerAlreadyEnabled
+Neo.ClientError.ChangeDataCapture.InvalidIdentifier
+Neo.TransientError.ChangeDataCapture.FutureIdentifier
+Neo.DatabaseError.ChangeDataCapture.Disabled
+Neo.DatabaseError.ChangeDataCapture.ScanFailure
 -----
 
 == Neo4j 5.9
