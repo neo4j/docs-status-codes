@@ -51,7 +51,7 @@ This request cannot be executed.
 | Neo.ClientError.General.TransactionOutOfMemoryError
 |
 The transaction used more memory than was allowed.
-The maximum allowed size for a transaction can be configured with `dbms.memory.transaction.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+The maximum allowed size for a transaction can be configured with `db.memory.transaction.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
 
 | Neo.ClientError.General.UpgradeRequired
 |
@@ -258,7 +258,7 @@ Because failure takes precedence, the transaction was rolled back.
 
 | Neo.ClientError.Transaction.TransactionTimedOut
 |
-The transaction has not completed within the specified timeout (`dbms.transaction.timeout`).
+The transaction has not completed within the specified timeout (`db.transaction.timeout`).
 You may want to retry with a longer timeout.
 
 | Neo.ClientError.Transaction.TransactionTimedOutClientConfiguration
@@ -301,7 +301,7 @@ The corresponding setting can be found in the error message.
 | Neo.TransientError.General.OutOfMemoryError
 |
 There is not enough memory to perform the current task.
-Please try increasing `dbms.memory.heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+Please try increasing `server.memory.heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
 
 If you are running an embedded installation, you can increase the heap by using the `-Xmx` command line flag, and then restart the database.
 
@@ -310,14 +310,14 @@ If you are running an embedded installation, you can increase the heap by using 
 There is not enough stack size to perform the current task.
 This is generally considered to be a database error, so please contact Neo4j support.
 
-You could try increasing the stack size; for example to set the stack size to `2M`, add `dbms.jvm.additional=-Xss2M` to in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
+You could try increasing the stack size; for example to set the stack size to `2M`, add `server.jvm.additional=-Xss2M` to in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface).
 
  If you are running an embedded installation, you can add `-Xss2M` as command line flag.
 
 | Neo.TransientError.General.TransactionMemoryLimit
 |
 There is not enough memory to perform the current task.
-Please try increasing `dbms.memory.off_heap.max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface), and then restart the database.
+Please try increasing `server.memory.off_heap.transaction_max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface), and then restart the database.
 
 | Neo.TransientError.Request.NoThreadsAvailable
 |
@@ -362,11 +362,11 @@ Retrying this transaction will most likely be successful.
 | The lease under which this transaction was started is no longer valid.
 
 | Neo.TransientError.Transaction.LockAcquisitionTimeout
-| Unable to acquire lock within configured timeout (`dbms.lock.acquisition.timeout`).
+| Unable to acquire lock within configured timeout (`db.lock.acquisition.timeout`).
 
 | Neo.TransientError.Transaction.MaximumTransactionLimitReached
 |
-Unable to start new transaction since the maximum number of concurrently executing transactions is reached (`dbms.transaction.concurrent.maximum`).
+Unable to start new transaction since the maximum number of concurrently executing transactions is reached (`db.transaction.concurrent.maximum`).
 You can retry at a later time or consider increasing allowed maximum of concurrent transactions.
 
 | Neo.TransientError.Transaction.Outdated
