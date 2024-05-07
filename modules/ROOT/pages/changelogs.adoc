@@ -9,6 +9,8 @@
 -----
 Neo.ClientNotification.Statement.RedundantOptionalProcedure
 Neo.ClientNotification.Statement.RedundantOptionalSubquery
+Neo.ClientNotification.Security.AuthProviderNotDefined
+Neo.ClientNotification.Security.ExternalAuthNotEnabled
 -----
 
 == Neo4j 5.23
