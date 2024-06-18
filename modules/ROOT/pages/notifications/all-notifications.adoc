@@ -210,7 +210,7 @@ MATCH p=shortestPath((n)-[*]->(m)) RETURN p
 ----
 
 Returned GQLSTATUS code::
-03N90
+03N91
 
 Returned Status Description::
 info: unbounded variable length pattern.
