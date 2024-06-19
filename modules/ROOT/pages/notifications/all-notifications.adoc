@@ -262,7 +262,7 @@ m|PERFORMANCE
 m|03N92
 |StatusDescription
 a|info: exhaustive shortest path.
-The query runs with exhaustive shortest path due to the existential predicate(s) `%pred_list`.
+The query runs with exhaustive shortest path due to the existential predicate(s) `$pred_list`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
 |Severity
 m|INFORMATION
