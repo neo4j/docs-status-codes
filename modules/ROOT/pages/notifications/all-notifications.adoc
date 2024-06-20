@@ -24,16 +24,18 @@ Performance notifications are returned whenever the query uses costly operations
 [#_neo_clientnotification_statement_cartesianproduct]
 === CartesianProduct
 
-.When is this notification returned?
-[TIP]
-====
-Whenever there is a cartesian product in the plan.
-====
+This notification is returned when there is a Cartesian product in the plan.
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.CartesianProduct
 |Title
 a|This query builds a cartesian product between disconnected patterns.
@@ -43,8 +45,34 @@ m|INFORMATION
 m|PERFORMANCE
 |===
 
-.Cartesian product
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|03N90
+|StatusDescription
+a|info: cartesian product.
+The disconnected patterns `$pat` build a cartesian product.
+A cartesian product may produce a large amount of data and slow down query processing.
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+
+======
+=====
+
+==== Example of a Cartesian product
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source, cypher, role="noplay"]
@@ -68,21 +96,54 @@ If for example, you need the children and the children's parents, you can improv
 ----
 MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 ----
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child), (p:Parent) RETURN c, p
+----
+
+Returned GQLSTATUS code::
+03N90
+
+Returned Status Description::
+info: cartesian product.
+The disconnected patterns `(c:Child), (p:Parent)` build a cartesian product.
+A cartesian product may produce a large amount of data and slow down query processing.
+
+Suggestions for improvement::
+In case a cartesian product is needed, nothing can be done to improve this query.
+In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
+If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
++
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
+----
+
+======
+=====
 
 [#_neo_clientnotification_statement_unboundedvariablelengthpattern]
 === UnboundedVariableLengthPattern
 
-.When is this notification returned?
-[TIP]
-====
-When there is no upper bound specified on the variable length relationship.
-====
+This notification is returned when there is no upper bound specified on the variable length relationship.
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 |Title
 a|The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
@@ -92,8 +153,32 @@ m|INFORMATION
 m|PERFORMANCE
 |===
 
-.Shortest path with an unbounded pattern
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|03N91
+|StatusDescription
+a|info: unbounded variable length pattern. The provided pattern `$pat` is unbounded. Shortest path with an unbounded pattern may result in long execution times. Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+
+======
+=====
+
+==== Example of a shortest path with an unbounded pattern
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source, cypher, role="noplay"]
@@ -113,22 +198,52 @@ Consider adding an upper limit.
 ----
 MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 ----
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH p=shortestPath((n)-[*]->(m)) RETURN p
+----
+
+Returned GQLSTATUS code::
+03N91
+
+Returned Status Description::
+info: unbounded variable length pattern.
+The provided pattern `(n)-[\*]->(m)` is unbounded.
+Shortest path with an unbounded pattern may result in long execution times.
+Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
+
+Suggestions for improvement::
+If you have a big graph, this query might be very slow.
+Consider adding an upper limit.
++
+[source, cypher, role="noplay"]
+----
+MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
+----
+======
+=====
 
 [#_neo_clientnotification_statement_exhaustiveshortestpath]
 === ExhaustiveShortestPath
 
-.When is this notification returned?
-[TIP]
-====
-When a predicate, given on the shortest path, needs to inspect the whole path before deciding whether it is valid, the shortest path might fall back to the exhaustive search algorithm.
+This notification is returned when a predicate, given on the shortest path, needs to inspect the whole path before deciding whether it is valid, the shortest path might fall back to the exhaustive search algorithm.
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/execution-plans/shortestpath-planning#_shortest_pathadditional_predicate_checks_on_the_paths[Cypher manual -> Shortest path - additional predicate checks on the paths].
-====
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.ExhaustiveShortestPath
 |Title
 a|Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path.
@@ -138,9 +253,32 @@ m|INFORMATION
 |Category
 m|PERFORMANCE
 |===
+======
+[.include-with-GQLSTATUS-code]
+======
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|03N92
+|StatusDescription
+a|info: exhaustive shortest path.
+The query runs with exhaustive shortest path due to the existential predicate(s) `$pred_list`.
+It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+======
+=====
+==== Example of an exhaustive shortest path
 
-.Exhaustive shortest path
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
 [source, cypher, role="noplay"]
 ----
 MATCH p = shortestPath(()-[*..42]-())
@@ -162,7 +300,38 @@ WITH p
 WHERE ANY(n in nodes(p) WHERE n:Label)
 RETURN p
 ----
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH p = shortestPath(()-[*..42]-())
+WHERE ANY(n in nodes(p) WHERE n:Label)
+RETURN p
+----
+
+Returned GQLSTATUS code::
+03N92
+
+Returned Status Description::
+info: exhaustive shortest path.
+The query runs with exhaustive shortest path due to the existential predicate(s) `ANY(n in nodes(p) WHERE n:Label)`.
+It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
+
+Suggestions for improvement::
+Separate the predicate by introducing a `WITH` after the `MATCH` clause.
++
+[source, cypher, role="noplay"]
+----
+MATCH p = shortestPath(()-[*..42]-())
+WITH p
+WHERE ANY(n in nodes(p) WHERE n:Label)
+RETURN p
+----
+======
+=====
 
 [#_neo_clientnotification_statement_noapplicableindex]
 === NoApplicableIndex
@@ -176,7 +345,7 @@ Given a larger number of nodes, `LOAD CSV` together with a `MATCH` or a `MERGE` 
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.NoApplicableIndex
 |Title
 a|Adding a schema index may speed up this query.
@@ -220,7 +389,7 @@ When the execution plan for a query contains an eager operator.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.EagerOperator
 |Title
 a|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding
@@ -267,7 +436,7 @@ RETURN line
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.DynamicProperty
 |Title
 a|Queries using dynamic properties will use neither index seeks nor index scans for those properties
@@ -330,7 +499,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.CodeGenerationFailed
 |Title
 a|The database was unable to generate code for the query. A stack trace can be found in the _debug.log_.
@@ -355,7 +524,7 @@ This behavior of the Cypher planner or runtime can be changed by setting the con
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 |Title
 a|The database was unable to plan a hinted join.
@@ -395,7 +564,7 @@ The only option for this query is to remove the hint or change the query so it i
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Schema.HintedIndexNotFound
 |Title
 a|The request (directly or indirectly) referred to an index that does not exist.
@@ -458,7 +627,7 @@ A notification has the unrecognized category if the query or command mentions en
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Database.HomeDatabaseNotFound
 |Title
 a|The request referred to a home database that does not exist.
@@ -492,7 +661,7 @@ Make sure the home database has not been misspelled.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.UnknownLabelWarning
 |Title
 a|The provided label is not in the database.
@@ -525,7 +694,7 @@ Make sure you didn't misspell the label. If nodes with the given label will be c
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 |Title
 a|The provided relationship type is not in the database.
@@ -560,7 +729,7 @@ If relationships will be created, with the given relationship type, in the futur
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 |Title
 a|The provided property key is not in the database
@@ -599,7 +768,7 @@ Notifications with the unsupported category are created if the query or command 
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
 |Title
 a|This query is not supported by the chosen runtime.
@@ -637,7 +806,7 @@ SHOW INDEXES YIELD *
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.RuntimeExperimental
 |Title
 a|This feature is experimental and should not be used in production systems.
@@ -679,7 +848,7 @@ Notifications within the deprecation category contain information about a featur
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -943,7 +1112,7 @@ The Unicode character \`\u0085` is deprecated for unescaped identifiers and will
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Request.DeprecatedFormat
 |Title
 a|The client requested a deprecated format.
@@ -965,7 +1134,7 @@ Verify that this is the intended behavior of your query or command.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
 a|`<command>` has no effect.*
@@ -1060,7 +1229,7 @@ Verify that this is the intended privilege and role.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Security.ImpossibleRevokeCommand
 |Title
 a|`<command>` has no effect.*
@@ -1259,7 +1428,7 @@ For example, `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SER
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
 |Title
 a| Cordoned servers existed when making an allocation decision.
@@ -1290,7 +1459,7 @@ Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact a
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Cluster.NoDatabasesReallocated
 |Title
 a| `<command>` has no effect.
@@ -1318,7 +1487,7 @@ Example scenarios::
 For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
 +
 
-**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation. 
+**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation.
 For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
 Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ====
@@ -1329,7 +1498,7 @@ Then, a better allocation would move `foo` from server 1 to server 3, but if ser
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
 |Title
 a| `<command>` has no effect.
@@ -1339,9 +1508,9 @@ m|INFORMATION
 m|TOPOLOGY
 |===
 
-.Requested topology matched current topology 
+.Requested topology matched current topology
 ====
-The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary. 
+The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
 
 Command::
 +
@@ -1361,7 +1530,7 @@ The requested topology matched the current topology. No allocations were changed
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Cluster.ServerAlreadyEnabled
 |Title
 a| `<command>` has no effect.
@@ -1397,7 +1566,7 @@ Schema notifications provide additional information related to indexes and const
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
 |Title
 a|`<command>` has no effect.
@@ -1507,7 +1676,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
 |Title
 a|`<command>` has no effect.
@@ -1573,7 +1742,7 @@ Verify that this is the intended constraint and that it is spelled correctly.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 |Title
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
@@ -1624,7 +1793,7 @@ RETURN *
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.ParameterNotProvided
 |Title
 a|The statement refers to a parameter that was not provided in the request.
@@ -1658,7 +1827,7 @@ Provide the parameter to be able to cache the plan.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Procedure.ProcedureWarning
 |Title
 a|The query used a procedure that generated a warning.
@@ -1682,7 +1851,7 @@ When matching on a relationship type expression that can never be satisfied, for
 .Notification category details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 |Title
 a|The query contains a relationship type expression that cannot be satisfied.
@@ -1712,7 +1881,7 @@ label:introduced-in-Neo4j-5.5[Introduced in Neo4j 5.5]
 .Notification category details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
 |Title
 a|The query returns no results because a relationship variable is bound more than once.
