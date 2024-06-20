@@ -433,7 +433,13 @@ RETURN line
 [#_neo_clientnotification_statement_dynamicproperty]
 === DynamicProperty
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -446,8 +452,35 @@ m|INFORMATION
 m|PERFORMANCE
 |===
 
-.Using a dynamic node property key makes it impossible to use indexes
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|03N95
+|StatusDescription
+a|info: dynamic property.
+An index exists on label/type(s) `$label/$type`.
+It is not possible to use indexes for dynamic properties.
+Consider using static properties.
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+
+======
+=====
+
+
+==== Example of when using a dynamic node property key makes it impossible to use indexes
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 
 Query::
 +
@@ -468,10 +501,47 @@ For example, if `prop` is equal to `name`, the following query would be able to 
 ----
 MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
 ----
-====
 
-.Using dynamic relationship property key makes it impossible to use indexes
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher]
+----
+MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
+----
+
+Returned GQLSTATUS code::
+03N95
+
+Returned Status Description::
+info: dynamic property.
+An index exists on label/type(s) `Person`.
+It is not possible to use indexes for dynamic properties.
+Consider using static properties.
+
+Suggestions for improvement::
+If there is an index for `(n:Person) ON (n.name)`, it will not be used for the above query because the query is using a dynamic property.
+Therefore, if there is an index, it is better to use the constant value.
+For example, if `prop` is equal to `name`, the following query would be able to use the index:
++
+[source, cypher]
+----
+MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
+----
+
+======
+=====
+
+==== Example of when using a dynamic relationship property key makes it impossible to use indexes
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source,cypher]
@@ -491,12 +561,51 @@ For example, if `$prop` is equal to `since`, you can rewrite the query to:
 MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 ----
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
+----
+
+Returned GQLSTATUS code::
+03N95
+
+Returned Status Description::
+info: dynamic property.
+An index exists on label/type(s) `KNOWS`.
+It is not possible to use indexes for dynamic properties.
+Consider using static properties.
+
+Suggestions for improvement::
+Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
+For example, if `$prop` is equal to `since`, you can rewrite the query to:
++
+[source, cypher]
+----
+MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
+----
+
+======
+=====
 
 [#_neo_clientnotification_statement_codegenerationfailed]
 === CodeGenerationFailed
 
-.Notification details
+The `CodeGenerationFailed` notification is created when it is not possible to generate a code for a query, for example, when the query is too big.
+For more information about the specific query, see the stack trace in the _debug.log_ file.
+
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -509,8 +618,25 @@ m|INFORMATION
 m|PERFORMANCE
 |===
 
-The `CodeGenerationFailed` notification is created when it is not possible to generate a code for a query, for example, when the query is too big.
-To find more information about the specific query, see the stack trace in the _debug.log_ file.
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N40
+|StatusDescription
+a|info: runtime unsupported.
+The query cannot be executed `runtime=pipelined operatorEngine=compiled expressionEngine=compiled`, `runtime=pipelined operatorEngine=interpreted expressionEngine=compiled` is used. Cause: `method too big`.
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+
+======
+=====
 
 [#_hint_notifications]
 == `HINT` category
