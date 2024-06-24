@@ -337,8 +337,8 @@ RETURN p
 === NoApplicableIndex
 
 This notification is returned when using `LOAD CSV` with a `MATCH` or a `MERGE` clause that matches a non-indexed label.
-This will most likely not perform well on large data sets.
-If you add an index, `LOAD CSV` together with a `MATCH` or a `MERGE` clause may speed up the query.
+This may not perform well on large data sets.
+Adding an index could improve the query speed.
 
 ==== Notification details
 
