@@ -336,13 +336,17 @@ RETURN p
 [#_neo_clientnotification_statement_noapplicableindex]
 === NoApplicableIndex
 
-.When is this notification returned?
-[TIP]
-====
-Given a larger number of nodes, `LOAD CSV` together with a `MATCH` or a `MERGE` clause may speed up the query if you add an index.
-====
+This notification is returned when using `LOAD CSV` with a `MATCH` or a `MERGE` clause that matches a non-indexed label.
+This may not perform well on large data sets.
+Adding an index could improve the query speed.
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -355,8 +359,34 @@ m|INFORMATION
 m|PERFORMANCE
 |===
 
-.Load CSV with `MATCH` or `MERGE`
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|03N93
+|StatusDescription
+a|info: no applicable index.
+`LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
+Consider adding an index for label `$label`.
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+
+======
+=====
+
+==== Example of `LOAD CSV` with `MATCH` or `MERGE`
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source, cypher, role="noplay"]
@@ -375,18 +405,48 @@ Create an index on the label and property you match.
 ----
 CREATE INDEX FOR (n:Person) ON (n.name)
 ----
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:line[0]}) RETURN line, n
+----
+
+Returned GQLSTATUS code::
+03N93
+
+Returned Status Description::
+info: no applicable index.
+`LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
+Consider adding an index for label `Person`.
+
+Suggestions for improvement::
+Create an index on the label and property you match.
++
+[source, cypher, role="noplay"]
+----
+CREATE INDEX FOR (n:Person) ON (n.name)
+----
+======
+=====
 
 [#_neo_clientnotification_statement_eageroperator]
 === EagerOperator
 
-.When is this notification returned?
-[TIP]
-====
-When the execution plan for a query contains an eager operator.
-====
+This notification is returned when the execution plan for a query contains the `Eager` operator.
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -399,8 +459,33 @@ m|INFORMATION
 m|PERFORMANCE
 |===
 
-.Load CSV with `MATCH` or `MERGE`
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|03N94
+|StatusDescription
+a|info: eager operator.
+The query execution plan contains the `Eager` operator.
+`LOAD CSV` in combination with `Eager` can consume a lot of memory.
+|Severity
+m|INFORMATION
+|Classification
+m|PERFORMANCE
+|===
+
+======
+=====
+
+==== Example of `LOAD CSV` with `MATCH` or `MERGE`
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 
 `LOAD CSV` together with an Eager operator can take up a lot of memory.
 
@@ -428,7 +513,42 @@ CALL {
 }
 RETURN line
 ----
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]}) DELETE n RETURN line
+----
+
+Returned GQLSTATUS code::
+03N94
+
+Returned Status Description::
+info: eager operator.
+The query execution plan contains the `Eager` operator.
+`LOAD CSV` in combination with `Eager` can consume a lot of memory.
+
+Suggestions for improvement::
+See the link:https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/operators/operators-detail/#query-plan-eager[Cypher Manual -> Eager operator] for more information and hints on how to avoid problems.
+In this specific case, the query could be rewritten to the following:
++
+[source, cypher, role="noplay"]
+----
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line
+CALL {
+    WITH line
+    MATCH (n:Person{name:line[0]}) DELETE n
+}
+RETURN line
+----
+======
+=====
+
 
 [#_neo_clientnotification_statement_dynamicproperty]
 === DynamicProperty
