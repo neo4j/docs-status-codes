@@ -462,7 +462,7 @@ m|PERFORMANCE
 m|03N95
 |StatusDescription
 a|info: dynamic property.
-An index exists on label/type(s) `$label/$type`.
+An index exists on label/type(s) `$label_list`.
 It is not possible to use indexes for dynamic properties.
 Consider using static properties.
 |Severity
@@ -627,8 +627,8 @@ m|PERFORMANCE
 |GQLSTATUS code
 m|01N40
 |StatusDescription
-a|info: runtime unsupported.
-The query cannot be executed `runtime=pipelined operatorEngine=compiled expressionEngine=compiled`, `runtime=pipelined operatorEngine=interpreted expressionEngine=compiled` is used. Cause: `method too big`.
+a|warn: runtime unsupported.
+The query cannot be executed with `preparser_input1`, `preparser_input2` is used. Cause: `$msg`.
 |Severity
 m|INFORMATION
 |Classification
