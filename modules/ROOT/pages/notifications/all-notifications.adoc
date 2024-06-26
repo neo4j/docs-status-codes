@@ -896,7 +896,7 @@ m|HINT
 |GQLSTATUS code
 m|01N31
 |StatusDescription
-a|warn: hinted index not found. Unable to create a plan with `$index` because the index does not exist.
+a|warn: hinted index not found. Unable to create a plan with `$index_descr` because the index does not exist.
 |Severity
 m|WARNING
 |Classification
