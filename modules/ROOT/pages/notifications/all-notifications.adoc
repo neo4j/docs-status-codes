@@ -1069,7 +1069,7 @@ m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N51
 |StatusDescription
-a|warn: unknown relationship type. The relationship type `$rel` does not exist. Verify that the spelling is correct.
+a|warn: unknown relationship type. The relationship type `$reltype` does not exist. Verify that the spelling is correct.
 |Severity
 m|WARNING
 |Classification
@@ -1152,7 +1152,7 @@ m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N52
 |StatusDescription
-a|warn: unknown property key. The property `$prop` does not exist. Verify that the spelling is correct.
+a|warn: unknown property key. The property `$propkey` does not exist. Verify that the spelling is correct.
 |Severity
 m|WARNING
 |Classification
