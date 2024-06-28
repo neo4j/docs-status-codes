@@ -64,6 +64,44 @@ It could be omitted as the title already says that it is an experimental feature
 * Avoid the phrase “It is recommended to” when proposing a solution.
 * Capitalize all Cypher keywords, i.e., `MATCH` rather than `match` or `Match`.
 
+[[security-guidelines]]
+=== Security guidelines for writing error messages
+
+* Be informative but not too revealing.
+Error messages should provide enough information for users to understand what went wrong and possibly how to correct it, but they should not disclose sensitive information that could aid an attacker.
+For instance, instead of saying "Invalid username," use "Invalid username or password."
+
+* Avoid technical jargon.
+Use plain language that is easily understandable by all users.
+Avoid technical terms that could confuse users or reveal too much about the underlying architecture.
+
+* Use generic responses for security-related errors.
+For login errors, password validations, or any security-related processes, use generic error messages.
+For example, use "Login failed" instead of specifying whether the username or password was incorrect.
+
+* Do not expose internal information.
+Never reveal information about the internal state of the application, like file paths, database information, or stack traces, as these can provide attackers with clues about potential vulnerabilities.
+Stack traces are safe to have in debug.log but nowhere else.
+
+* Do not use error messages from underlying libraries/dependencies (e.g. Java runtime errors) but always catch the error and throw your own error message. It is safe to reuse error messages only if they are coming from Neo4j, i.e. have a Neo4j status code.
+
+* Guide users towards resolution.
+Where appropriate, guide users on how to rectify the error.
+For instance, if a user inputs an invalid format in a form, the error message should indicate the expected format.
+
+* Log detailed errors for internal use.
+While showing generic error messages to users, log detailed error information internally.
+This will help developers to debug issues without exposing sensitive information to users.
+
+* Regularly review and update error messages to ensure they remain relevant, accurate, and secure.
+
+.Optional further reading
+[TIP]
+====
+* link:https://cheatsheetseries.owasp.org/cheatsheets/Logging_Vocabulary_Cheat_Sheet.html[OWASP Cheat Sheet Series: Application Logging Vocabulary Cheat Sheet]
+* link:https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html[OWASP Cheat Sheet Series: Logging Cheat Sheet]
+====
+
 [[error-notification-components]]
 === Error and notification components
 

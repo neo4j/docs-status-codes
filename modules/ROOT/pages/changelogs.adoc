@@ -28,6 +28,7 @@ Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Cluster.NoDatabasesReallocated
+Neo.ClientNotification.Statement.SideEffectVisibility
 -----
 
 == Neo4j 5.13

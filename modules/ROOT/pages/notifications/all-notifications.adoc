@@ -1300,7 +1300,7 @@ m|INFORMATION
 m|TOPOLOGY
 |===
 
-.Reallocating databases resulted in no allocation changes 
+.Reallocating databases resulted in no allocation changes
 ====
 Command::
 +
@@ -1310,15 +1310,15 @@ REALLOCATE DATABASES
 ----
 
 Description of the returned code::
-No databases were reallocated. No better allocation is currently possible. 
+No databases were reallocated. No better allocation is currently possible.
 
 
 Example scenarios::
-**Scenario 1:** The cluster is already balanced. 
+**Scenario 1:** The cluster is already balanced.
 For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
 +
 
-**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation. 
+**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation.
 For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
 Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ====
@@ -1339,9 +1339,9 @@ m|INFORMATION
 m|TOPOLOGY
 |===
 
-.Requested topology matched current topology 
+.Requested topology matched current topology
 ====
-The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary. 
+The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
 
 Command::
 +
@@ -1705,7 +1705,9 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 ====
 
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
-=== Neo.ClientNotification.Statement.RepeatedRelationshipReference
+=== RepeatedRelationshipReference
+
+label:introduced-in-Neo4j-5.5[Introduced in Neo4j 5.5]
 
 .Notification category details
 [cols="<1s,<4"]
@@ -1720,7 +1722,7 @@ m|WARNING
 m|GENERIC
 |===
 
-.Binding a relationship variable more than once (when run on version 5.5 or newer)
+.Binding a relationship variable more than once
 ====
 Query::
 +
