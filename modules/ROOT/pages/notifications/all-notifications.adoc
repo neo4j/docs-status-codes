@@ -1208,7 +1208,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated.
-Names containing `.` should be escaped.
+Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
 
 Suggestions for improvement::
 If not intended for a composite database, escape the name with the character ```.
@@ -1267,7 +1267,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated.
-All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+All subqueries in a UNION [ALL] should have the same ordering for the return columns. Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
 Suggestions for improvement::
 Use the same order for the return columns in all subqueries combined by a `UNION` clause.
