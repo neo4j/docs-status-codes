@@ -795,7 +795,7 @@ m|HINT
 |GQLSTATUS code
 m|01N30
 |StatusDescription
-a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON $label`. Try to change the join key(s) or restructure your query.
+a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON $var_list`. Try to change the join key(s) or restructure your query.
 |Severity
 m|WARNING
 |Classification
@@ -906,7 +906,7 @@ m|HINT
 ======
 =====
 
-==== Example of when an index hint was given, but it was not possible to use the index
+==== Example of inability to use the label index despite the given index hint
 
 [.tabbed-example]
 =====
@@ -949,7 +949,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: hinted index not found.
-Unable to create a plan with `INDEX a:Label(id)` because the index does not exist.
+Unable to create a plan with `INDEX :Label(id)` because the index does not exist.
 
 Suggestions for improvement::
 The hinted index does not exist, make sure the label and property are spelled correctly.
@@ -957,7 +957,7 @@ If the spelling is correct, either create the index or remove the hint from the 
 ======
 =====
 
-==== Example of when a relationship index hint was given, but it was not possible to use the index
+==== Example of inability to use the relationship index despite the given index hint
 
 [.tabbed-example]
 =====
@@ -1000,7 +1000,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: hinted index not found.
-Unable to create a plan with `INDEX r:Rel(id)` because the index does not exist.
+Unable to create a plan with `INDEX :Rel(id)` because the index does not exist.
 
 Suggestions for improvement::
 The hinted index does not exist, make sure the relationship type and property are spelled correctly.
