@@ -1713,7 +1713,7 @@ If there is a suggested replacement, update to use the replacement instead.
 ======
 [source,cypher]
 ----
-CALL unsupported.dbms.shutdown
+CALL cdc.query
 ----
 
 Returned GQLSTATUS code::
@@ -1721,8 +1721,8 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated with replacement.
-`unsupported.dbms.shutdown` is deprecated.
-It is replaced by `supported.dbms.shutdown`.
+`cdc.query` is deprecated.
+It is replaced by `db.cdc.query`.
 
 ======
 [.include-with-GQLSTATUS-deprecated-without-replacement]
