@@ -1039,7 +1039,7 @@ m|UNSUPPORTED
 |GQLSTATUS code
 m|01N40
 |StatusDescription
-a|warn: runtime unsupported. The query cannot be executed with `$preparser_input1`, `preparser_input2` is used. Cause: `$msg`.
+a|warn: unsupported runtime. The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used. Cause: `$msg`.
 |Severity
 m|WARNING
 |Classification
