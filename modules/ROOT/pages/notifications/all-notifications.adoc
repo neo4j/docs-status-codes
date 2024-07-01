@@ -1088,7 +1088,7 @@ Returned GQLSTATUS code::
 01N40
 
 Returned Status Description::
-warn: runtime unsupported.
+warn: unsupported runtime.
 The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
 Cause: `PIPELINED`.
 
