@@ -762,12 +762,19 @@ m|PERFORMANCE
 == `HINT` category
 
 `HINT` notifications are returned by default when the Cypher planner or runtime cannot create a query plan to fulfill a specified hint, for example, `JOIN` or `INDEX`.
-This behavior of the Cypher planner or runtime can be changed by setting the configuration `dbms.cypher.hints_error` to `true`, in which case, the query will return an error instead.
+This behavior of the Cypher planner or runtime can be changed by setting the configuration link:https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#config_dbms.cypher.hints_error[`dbms.cypher.hints_error`] to `true`.
+In this case, the query will return an error.
 
 [#_neo_clientnotification_statement_joinhintunfulfillablewarning]
 === JoinHintUnfulfillableWarning
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -780,8 +787,32 @@ m|WARNING
 m|HINT
 |===
 
-.A `JOIN` hint was given, but it was not possible to fulfill the hint.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N30
+|StatusDescription
+a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON $var_list`. Try to change the join key(s) or restructure your query.
+|Severity
+m|WARNING
+|Classification
+m|HINT
+|===
+
+======
+=====
+
+==== Example of inability to fulfill the hint despite the `JOIN` hint was given
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source, cypher]
@@ -802,12 +833,49 @@ please try using a different join key or restructure your query. (hinted join ke
 Suggestions for improvement::
 The join hint cannot be fulfilled because the given `JOIN` variable was introduced before the optional match and is therefore already bound.
 The only option for this query is to remove the hint or change the query so it is possible to use the hint.
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher]
+----
+MATCH (a:A)
+WITH a, 1 AS horizon
+OPTIONAL MATCH (a)-[r]->(b:B)
+USING JOIN ON a
+OPTIONAL MATCH (a)--(c)
+RETURN *
+----
+
+Returned GQLSTATUS code::
+01N30
+
+Returned Status Description::
+warn: joint hint unfulfillable.
+Unable to create a plan with `JOIN ON a`.
+Try to change the join key(s) or restructure your query.
+
+Suggestions for improvement::
+The join hint cannot be fulfilled because the given `JOIN` variable was introduced before the optional match and is therefore already bound.
+The only option for this query is to remove the hint or change the query so it is possible to use the hint.
+
+======
+=====
+
 
 [#_neo_clientnotification_schema_hintedindexnotfound]
 === HintedIndexNotFound
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -820,8 +888,32 @@ m|WARNING
 m|HINT
 |===
 
-.An index hint was given, but it was not possible to use the index.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N31
+|StatusDescription
+a|warn: hinted index not found. Unable to create a plan with `$index_descr` because the index does not exist.
+|Severity
+m|WARNING
+|Classification
+m|HINT
+|===
+
+======
+=====
+
+==== Example of inability to use the label index despite the given index hint
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source, cypher]
@@ -839,10 +931,40 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the label and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
 
-.A relationship index hint was given, but it was not possible to use the index
-====
+Query::
++
+[source, cypher]
+----
+MATCH (a: Label)
+USING INDEX a:Label(id)
+WHERE a.id = 1
+RETURN a
+----
+
+Returned GQLSTATUS code::
+01N31
+
+Returned Status Description::
+warn: hinted index not found.
+Unable to create a plan with `INDEX :Label(id)` because the index does not exist.
+
+Suggestions for improvement::
+The hinted index does not exist, make sure the label and property are spelled correctly.
+If the spelling is correct, either create the index or remove the hint from the query.
+======
+=====
+
+==== Example of inability to use the relationship index despite the given index hint
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source, cypher]
@@ -857,10 +979,35 @@ Description of the returned code::
 The hinted index does not exist, please check the schema (index is: INDEX FOR ()-[`r`:`Rel`]-() ON (`r`.`id`))
 
 Suggestions for improvement::
-The hinted index does not exist, make sure the label and property are spelled correctly.
+The hinted index does not exist, make sure the relationship type and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Query::
++
+[source, cypher]
+----
+MATCH ()-[r:Rel]-()
+USING INDEX r:Rel(id)
+WHERE r.id = 1
+RETURN r
+----
+
+Returned GQLSTATUS code::
+01N31
+
+Returned Status Description::
+warn: hinted index not found.
+Unable to create a plan with `INDEX :Rel(id)` because the index does not exist.
+
+Suggestions for improvement::
+The hinted index does not exist, make sure the relationship type and property are spelled correctly.
+If the spelling is correct, either create the index or remove the hint from the query.
+======
+=====
 
 [#_unrecognized_notifications]
 == `UNRECOGNIZED` category
