@@ -1090,7 +1090,7 @@ Returned GQLSTATUS code::
 Returned Status Description::
 warn: unsupported runtime.
 The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
-Cause: `PIPELINED`.
+Cause: `Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.`.
 
 Suggestions for improvement::
 Use a different runtime or remove the runtime option to run the query with the default runtime:
