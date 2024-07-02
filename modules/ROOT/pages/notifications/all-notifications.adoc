@@ -1362,7 +1362,13 @@ Notifications with the unsupported category are created if the query or command 
 [#_neo_clientnotification_statement_runtimeunsupportedwarning]
 === RuntimeUnsupportedWarning
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -1375,8 +1381,31 @@ m|WARNING
 m|UNSUPPORTED
 |===
 
-.The chosen runtime is not supported for the given query
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N40
+|StatusDescription
+a|warn: unsupported runtime. The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used. Cause: `$msg`.
+|Severity
+m|WARNING
+|Classification
+m|UNSUPPORTED
+|===
+======
+=====
+
+==== Example of a runtime not supported by a Cypher command
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 Query::
 +
 [source,cypher]
@@ -1395,10 +1424,42 @@ Use a different runtime or remove the runtime option to run the query with the d
 ----
 SHOW INDEXES YIELD *
 ----
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+EXPLAIN CYPHER runtime=pipelined SHOW INDEXES YIELD *
+----
+
+Returned GQLSTATUS code::
+01N40
+
+Returned Status Description::
+warn: unsupported runtime.
+The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
+Cause: `Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.`.
+
+Suggestions for improvement::
+Use a different runtime or remove the runtime option to run the query with the default runtime:
++
+[source,cypher]
+----
+SHOW INDEXES YIELD *
+----
+======
+=====
 
 [#_neo_clientnotification_statement_runtimeexperimental]
 === RuntimeExperimental
+
+[NOTE]
+====
+The usage of this notification has been removed since Neo4j 5.14.
+====
 
 .Notification details
 [cols="<1s,<4"]
