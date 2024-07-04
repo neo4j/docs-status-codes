@@ -1084,10 +1084,10 @@ MATCH (n) RETURN (n)
 ====
 
 [#_deprecated_notifications]
-== `DEPRECATION` category
+== `DEPRECATION` notifications
 
-Notifications within the deprecation category contain information about a feature or functionality which has been deprecated.
-It is important to change to the new functionality, otherwise, the query might break in a future version.
+Notifications within this group contain information about a deprecated feature or functionality.
+It is important to change to the new functionality; otherwise, the query might break in a future version.
 
 [#_neo_clientnotification_statement_featuredeprecationwarning]
 === FeatureDeprecationWarning
@@ -1168,8 +1168,7 @@ m|DEPRECATION
 
 ==== Examples of using deprecated features
 
-===== Create a database with an unescaped name containing a dot
-
+.Create a database with an unescaped name containing a dot
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1220,8 +1219,7 @@ CREATE DATABASE `foo.bar`
 ======
 =====
 
-===== Using differently ordered return items in a `UNION` clause
-
+.Using differently ordered return items in a `UNION` clause
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1282,7 +1280,7 @@ RETURN 'val' as one, 'val' as two
 ======
 =====
 
-===== Using the unicode \u0085 in an unescaped identifier
+.Using the Unicode \u0085 in an unescaped identifier
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1291,11 +1289,10 @@ Query::
 +
 [source,cypher]
 ----
-RETURN 1 as my\u0085identifier
+RETURN 1 as ana\u0061identifier
 ----
 Description of the returned code::
-The Unicode character \`\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
-To continue using it, escape the identifier by adding backticks around the identifier \`myidentifier`.
+The Unicode character `\\u0061` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `ana`.
 
 ======
 [.include-with-GQLSTATUS-code]
@@ -1304,7 +1301,7 @@ Query::
 +
 [source,cypher]
 ----
-RETURN 1 as my\u0085identifier
+RETURN 1 as ana\u0061identifier
 ----
 
 Returned GQLSTATUS code::
@@ -1312,16 +1309,14 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated.
-The Unicode character \`\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
-To continue using it, escape the identifier by adding backticks around the identifier \`myidentifier`.
+The Unicode character `\\u0061` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `ana`.
 ======
 =====
 
 
-==== Examples of using deprecated features without replacement in future
+==== Examples of using deprecated features without a future replacement
 
-===== Using Cypher query option connectComponentsPlanner
-
+.Using Cypher query option `connectComponentsPlanner`
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1351,15 +1346,14 @@ Returned GQLSTATUS code::
 01N02
 
 Returned Status Description::
-warn: feature deprecated without replacement. 
+warn: feature deprecated without replacement.
 `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 ======
 =====
 
-==== Examples of using a deprecated feature that will be replaced in future
+==== Examples of using a deprecated feature that will be replaced in the future
 
-===== Colon after the vertical bar (|) in a relationship pattern
-
+.Colon after the vertical bar `|:` in a relationship pattern
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1397,7 +1391,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated with replacement.
-`:A:|B` is deprecated.
+`:A|:B` is deprecated.
 It is replaced by `:A|B`.
 
 Suggestions for improvement::
@@ -1411,8 +1405,7 @@ MATCH (a)-[:A|B|C]-() RETURN *
 ======
 =====
 
-===== Setting properties using a node
-
+.Setting properties using a node
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1470,8 +1463,7 @@ SET a = properties(b)
 =====
 
 
-===== Setting properties using a relationship
-
+.Setting properties using a relationship
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1489,7 +1481,7 @@ The use of nodes or relationships for setting properties is deprecated and will 
 Please use `properties()` instead.
 
 Suggestions for improvement::
-Use the `properties()` function to get all properties from `r`
+Use the `properties()` function to get all properties from `r`.
 +
 [source,cypher]
 ----
@@ -1517,7 +1509,7 @@ warn: feature deprecated with replacement.
 It is replaced by `SET a += properties(r)`.
 
 Suggestions for improvement::
-Use the `properties()` function to get all properties from `r`
+Use the `properties()` function to get all properties from `r`.
 +
 [source,cypher]
 ----
@@ -1527,8 +1519,8 @@ SET a += properties(r)
 ======
 =====
 
-===== Shortest path with a fixed relationship length
 
+.Shortest path with a fixed relationship length
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1568,8 +1560,8 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated with replacement.
-`shortestPath((n)-[r]->(m))` is deprecated.
-It is replaced by `shortestPath((n)-[r*1..1]->(m))`.
+`shortestPath\((a)-[r]->())` is deprecated.
+It is replaced by `shortestPath\((n)-[r*1..1]->(m))`.
 
 Suggestions for improvement::
 If the relationship length is fixed, there is no reason to search for the shortest path.
@@ -1582,8 +1574,7 @@ MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
 ======
 =====
 
-===== Using a deprecated runtime option
-
+.Using a deprecated runtime option
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1599,7 +1590,8 @@ Description of the returned code::
 The query used a deprecated runtime option. (`'runtime=interpreted'` is deprecated, please use `'runtime=slotted'` instead)
 
 Suggestions for improvement::
-Runtime `interpreted` is deprecated, use another runtime or remove the runtime option to use the default runtime.
+Runtime `interpreted` is deprecated and another runtime is used instead.
+Alternatively, you can remove the runtime option to use the default runtime.
 +
 [source,cypher]
 ----
@@ -1625,7 +1617,8 @@ warn: feature deprecated with replacement.
 It is replaced by `runtime=slotted`.
 
 Suggestions for improvement::
-Runtime `interpreted` is deprecated, use another runtime or remove the runtime option to use the default runtime.
+Runtime `interpreted` is deprecated and another runtime is used instead.
+Alternatively, you can remove the runtime option to use the default runtime.
 +
 [source,cypher]
 ----
@@ -1634,8 +1627,7 @@ MATCH (n) RETURN n
 ======
 =====
 
-===== Using the `text-1.0` index provider when creating a text index
-
+.Using the `text-1.0` index provider when creating a text index
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1689,8 +1681,7 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 
 
 
-===== Using a renamed or a deprecated procedure
-
+.Using a renamed or a deprecated procedure
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1741,8 +1732,7 @@ warn: feature deprecated without replacement.
 ======
 =====
 
-===== Using id() function
-
+.Using id() function
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
