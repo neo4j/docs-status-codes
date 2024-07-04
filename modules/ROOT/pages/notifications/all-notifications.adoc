@@ -1289,10 +1289,10 @@ Query::
 +
 [source,cypher]
 ----
-RETURN 1 as ana\u0061identifier
+RETURN 1 as my\u0085identifier
 ----
 Description of the returned code::
-The Unicode character `\\u0061` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `ana`.
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 
 ======
 [.include-with-GQLSTATUS-code]
@@ -1301,7 +1301,7 @@ Query::
 +
 [source,cypher]
 ----
-RETURN 1 as ana\u0061identifier
+RETURN 1 as my\u0085identifier
 ----
 
 Returned GQLSTATUS code::
@@ -1309,7 +1309,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated.
-The Unicode character `\\u0061` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `ana`.
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 ======
 =====
 
