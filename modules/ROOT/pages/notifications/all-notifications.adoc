@@ -1391,8 +1391,8 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: feature deprecated with replacement.
-`:A|:B` is deprecated.
-It is replaced by `:A|B`.
+`:A|:B|:C` is deprecated.
+It is replaced by `:A|B|C`.
 
 Suggestions for improvement::
 Remove the colon inside the relationship type expression.
