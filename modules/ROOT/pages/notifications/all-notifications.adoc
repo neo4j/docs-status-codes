@@ -641,6 +641,9 @@ The query cannot be executed with `preparser_input1`, `preparser_input2` is used
 m|PERFORMANCE
 |===
 
+//TO ADD EXAMPLES
+//To update the description when the code is spit out
+
 [#_hint_notifications]
 == `HINT` notifications
 
@@ -651,31 +654,19 @@ In this case, the query will return an error.
 [#_neo_clientnotification_statement_joinhintunfulfillablewarning]
 === JoinHintUnfulfillableWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 |Title
 a|The database was unable to plan a hinted join.
-|SeverityLevel
-m|WARNING
+|Description
+|The hinted join was not planned.
+This could happen because no generated plan contained the join key,
+please try using a different join key or restructure your query. (%s)
 |Category
 m|HINT
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N30
 |StatusDescription
@@ -686,11 +677,7 @@ m|WARNING
 m|HINT
 |===
 
-======
-=====
-
-==== Example of inability to fulfill the hint despite the `JOIN` hint was given
-
+.Inability to fulfill the hint despite the given `JOIN` hint
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -714,8 +701,8 @@ This could happen because no generated plan contained the join key,
 please try using a different join key or restructure your query. (hinted join key identifier is: `a`)
 
 Suggestions for improvement::
-The join hint cannot be fulfilled because the given `JOIN` variable was introduced before the optional match and is therefore already bound.
-The only option for this query is to remove the hint or change the query so it is possible to use the hint.
+The `JOIN` hint cannot be applied because its specified variable is before the `OPTIONAL MATCH` and, therefore, is already bound.
+The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
 [.include-with-GQLSTATUS-code]
@@ -742,8 +729,8 @@ Unable to create a plan with `JOIN ON a`.
 Try to change the join key(s) or restructure your query.
 
 Suggestions for improvement::
-The join hint cannot be fulfilled because the given `JOIN` variable was introduced before the optional match and is therefore already bound.
-The only option for this query is to remove the hint or change the query so it is possible to use the hint.
+The `JOIN` hint cannot be applied because its specified variable is before the `OPTIONAL MATCH` and, therefore, is already bound.
+The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
 =====
@@ -752,31 +739,17 @@ The only option for this query is to remove the hint or change the query so it i
 [#_neo_clientnotification_schema_hintedindexnotfound]
 === HintedIndexNotFound
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Schema.HintedIndexNotFound
 |Title
 a|The request (directly or indirectly) referred to an index that does not exist.
-|SeverityLevel
-m|WARNING
+|Description
+|The hinted index does not exist, please check the schema (%s)
 |Category
 m|HINT
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N31
 |StatusDescription
@@ -787,11 +760,7 @@ m|WARNING
 m|HINT
 |===
 
-======
-=====
-
-==== Example of inability to use the label index despite the given index hint
-
+.Inability to use the label index despite the given index hint
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -841,8 +810,7 @@ If the spelling is correct, either create the index or remove the hint from the 
 ======
 =====
 
-==== Example of inability to use the relationship index despite the given index hint
-
+.Inability to use the relationship index despite the given index hint
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -900,45 +868,31 @@ Unrecognized notifications are returned when the query or command mentions entit
 [#_neo_clientnotification_database_homedatabasenotfound]
 === HomeDatabaseNotFound
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Database.HomeDatabaseNotFound
 |Title
 a|The request referred to a home database that does not exist.
-|SeverityLevel
-m|INFORMATION
+|Description
+|The home database provided does not currently exist in the DBMS.
+This command will not take effect until this database is created. (%s`)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|00N50
 |StatusDescription
-a|note: successful completion - home database not found. The database `$db` does not exist. Verify that the spelling is correct or create the database for the command to take effect.
+a|note: successful completion - home database not found.
+The database `$db` does not exist.
+Verify that the spelling is correct or create the database for the command to take effect.
 |SeverityLevel
 m|INFORMATION
 |Classification
 m|UNRECOGNIZED
 |===
-======
-=====
 
-==== Example of setting the `home` database to a database that does not yet exist
-
+.Setting the `home` database to a database that does not exist
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -948,12 +902,12 @@ Query::
 +
 [source,cypher]
 ----
-CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE NonExistingDatabase
+CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
 ----
 
 Description of the returned code::
 The home database provided does not currently exist in the DBMS.
-This command will not take effect until this database is created. (HOME DATABASE: `nonexistingdatabase`)
+This command will not take effect until this database is created. (HOME DATABASE: `nej4`)
 
 Suggestions for improvement::
 Verify that the home database name is not misspelled.
@@ -966,7 +920,7 @@ Query::
 +
 [source,cypher]
 ----
-CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE Nej4
+CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
 ----
 
 Returned GQLSTATUS code::
@@ -974,7 +928,7 @@ Returned GQLSTATUS code::
 
 Returned StatusDescription::
 note: successful completion - home database not found.
-The database `Ne4j` does not exist.
+The database `ne4j` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
 
 Suggestions for improvement::
@@ -985,45 +939,30 @@ Verify that the home database name is not misspelled.
 [#_neo_clientnotification_statement_unknownlabelwarning]
 === UnknownLabelWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnknownLabelWarning
 |Title
 a|The provided label is not in the database.
-|SeverityLevel
-m|WARNING
+|Description
+|One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N50
 |StatusDescription
-a|warn: unknown label. The label `$label` does not exist. Verify that the spelling is correct.
+a|warn: unknown label.
+The label `$label` does not exist.
+Verify that the spelling is correct.
 |SeverityLevel
 m|WARNING
 |Classification
 m|UNRECOGNIZED
 |===
-======
-=====
 
-==== Example of matching on a node with a label that does not exist in the database
-
+.Matching on a node with a label that does not exist in the database
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1071,45 +1010,31 @@ If you plan to create nodes with that label in the future, no change is needed.
 [#_neo_clientnotification_statement_unknownrelationshiptypewarning]
 === UnknownRelationshipTypeWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 |Title
 a|The provided relationship type is not in the database.
-|SeverityLevel
-m|WARNING
+|Description
+|One of the relationship types in your query is not available in the database,
+make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N51
 |StatusDescription
-a|warn: unknown relationship type. The relationship type `$reltype` does not exist. Verify that the spelling is correct.
+a|warn: unknown relationship type.
+The relationship type `$reltype` does not exist.
+Verify that the spelling is correct.
 |SeverityLevel
 m|WARNING
 |Classification
 m|UNRECOGNIZED
 |===
-======
-=====
 
-==== Example of matching on a relationship, when there are no relationships in the database with the given relationship type
-
+.Matching a relationship with a type that does not exist
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1156,43 +1081,31 @@ If you plan to create relationships of this type in the future, no change is nee
 [#_neo_clientnotification_statement_unknownpropertykeywarning]
 === UnknownPropertyKeyWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 |Title
 a|The provided property key is not in the database
-|SeverityLevel
-m|WARNING
+|Description
+|One of the property names in your query is not available in the database,
+make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N52
 |StatusDescription
-a|warn: unknown property key. The property `$propkey` does not exist. Verify that the spelling is correct.
+a|warn: unknown property key.
+The property `$propkey` does not exist.
+Verify that the spelling is correct.
 |SeverityLevel
 m|WARNING
 |Classification
 m|UNRECOGNIZED
 |===
-======
-=====
 
-==== Example of matching on a property key that does not exist
-
+.Matching a property key that does not exist
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1201,12 +1114,13 @@ Query::
 +
 [source,cypher]
 ----
-MATCH (n {nonExistingProp:1}) RETURN n
+MATCH (n:Person {nme:”Tom”})
+RETURN n
 ----
 
 Description of the returned code::
 One of the property names in your query is not available in the database,
-make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: `nonExistingProp`)
+make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: `nme`)
 
 Suggestions for improvement::
 Verify that the property key is not misspelled.
@@ -1245,31 +1159,18 @@ Unsupported notifications are returned when the query or command is trying to us
 [#_neo_clientnotification_statement_runtimeunsupportedwarning]
 === RuntimeUnsupportedWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
 |Title
 a|This query is not supported by the chosen runtime.
-|SeverityLevel
-m|WARNING
+|Description
+|Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.
+(%s)
 |Category
 m|UNSUPPORTED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N40
 |StatusDescription
@@ -1279,11 +1180,8 @@ m|WARNING
 |Classification
 m|UNSUPPORTED
 |===
-======
-=====
 
-==== Example of a runtime not supported by a Cypher command
-
+.A runtime is not supported by a Cypher command
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1324,7 +1222,7 @@ Returned GQLSTATUS code::
 Returned StatusDescription::
 warn: unsupported runtime.
 The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
-Cause: `Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.`.
+Cause: Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.
 
 Suggestions for improvement::
 Use a different runtime or remove the runtime option to run the query with the default runtime:
@@ -1336,6 +1234,7 @@ SHOW INDEXES YIELD *
 ======
 =====
 
+label:deprecated[]
 [#_neo_clientnotification_statement_runtimeexperimental]
 === RuntimeExperimental
 
@@ -1351,6 +1250,8 @@ The usage of this notification has been removed since Neo4j 5.14.
 m|Neo.ClientNotification.Statement.RuntimeExperimental
 |Title
 a|This feature is experimental and should not be used in production systems.
+|Description
+|You are using an experimental feature (%s)
 |SeverityLevel
 m|WARNING
 |Category
@@ -1384,84 +1285,40 @@ MATCH (n) RETURN (n)
 Deprecation notifications contain information about a feature or functionality that has been deprecated.
 It is important to change to the new functionality, otherwise, the query might break in a future version.
 
-[#_neo_clientnotification_statement_featuredeprecationwarning]
-=== FeatureDeprecationWarning
+[#_neo_clientnotification_statement_featuredeprecated]
+=== Feature deprecated
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
-|SeverityLevel
-m|WARNING
+|Description
+|The procedure has a deprecated field. (%s) +
+The function has a deprecated field. (%s) +
+Creating an entity (%s) and referencing that entity in a property definition in the same CREATE is deprecated. +
+Merging an entity (%s) and referencing that entity in a property definition in the same MERGE is deprecated. +
+The Unicode character `%s` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
+To continue using it, escape the identifier by adding backticks around the identifier `%s`. +
+The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
+To continue using it, escape the identifier by adding backticks around the identifier `%s`. +
+All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version. +
+Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
+Names containing `.` should be escaped. (%s)
 |Category
 m|DEPRECATION
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N00
 |StatusDescription
 a|warn: feature deprecated. $msg
-|Severity
+|SeverityLevel
 m|WARNING
 |Classification
 m|DEPRECATION
 |===
-
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|01N01
-|StatusDescription
-a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
-|Severity
-m|WARNING
-|Classification
-m|DEPRECATION
-|===
-
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|01N02
-|StatusDescription
-a|warn: feature deprecated without replacement. `$thing` is deprecated and will be removed without a replacement.
-|Severity
-m|WARNING
-|Classification
-m|DEPRECATION
-|===
-
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|01N03
-|StatusDescription
-a|warn: procedure result column deprecated. `$field` returned by procedure `$proc` is deprecated.
-|Severity
-m|WARNING
-|Classification
-m|DEPRECATION
-|===
-
-======
-=====
-
-==== Examples of using deprecated features
 
 .Create a database with an unescaped name containing a dot
 [.tabbed-example]
@@ -1608,45 +1465,38 @@ The Unicode character `\u0085` is deprecated for unescaped identifiers and will 
 ======
 =====
 
+[#_deprecated-feature-with-replacement]
+=== Feature deprecated with a replacement
 
-==== Examples of using deprecated features without a future replacement
-
-.Using Cypher query option `connectComponentsPlanner`
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
-----
-Description of the returned code::
-The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
-The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
-For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
-
-======
-[.include-with-GQLSTATUS-code]
-======
-Query::
-+
-[source,cypher]
-----
-CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
-----
-
-Returned GQLSTATUS code::
-01N02
-
-Returned Status Description::
-warn: feature deprecated without replacement.
-`connectComponentsPlanner` is deprecated and will be removed without a replacement.
-======
-=====
-
-==== Examples of using a deprecated feature that will be replaced in the future
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Descriptions
+|The semantics of using colon in the separation of alternative relationship types will change in a future version. (%s) +
+The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
+Please use properties() instead. +
+The use of shortestPath and allShortestPaths with fixed length relationships is deprecated and will be removed in a future version.
+Please use a path with a length of 1 [r*1..1] instead or a Match with a limit. +
+The query used a deprecated function. (%s) +
+The query used a deprecated procedure. (%s) +
+The query used a deprecated runtime option. (%s) +
+The `TextIndexProvider.DESCRIPTOR.name()` provider for text indexes is deprecated and will be removed in a future version.
+Please use `TrigramIndexProvider.DESCRIPTOR.name()` instead.
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N01
+|StatusDescription
+a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
+|SeverityLevel
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
 
 .Colon after the vertical bar `|:` in a relationship pattern
 [.tabbed-example]
@@ -1974,8 +1824,6 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 ======
 =====
 
-
-
 .Using a renamed or a deprecated procedure
 [.tabbed-example]
 =====
@@ -2099,6 +1947,93 @@ warn: feature deprecated without replacement.
 ======
 =====
 
+[#_deprecated-notifications-without-replacement]
+=== Deprecated features without a future replacement
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Descriptions
+|The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
+The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
+For more information, see Cypher Manual -> Cypher planner. +
+The query used a deprecated function%s +
+The query used a deprecated procedure%s
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N02
+|StatusDescription
+a|warn: feature deprecated without replacement. `$thing` is deprecated and will be removed without a replacement.
+|SeverityLevel
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
+
+.Using Cypher query option `connectComponentsPlanner`
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
+----
+Description of the returned code::
+The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
+The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned Status Description::
+warn: feature deprecated without replacement.
+`connectComponentsPlanner` is deprecated and will be removed without a replacement.
+======
+=====
+
+[[_deprecated-procedure-result-column]]
+=== Procedure field deprecated
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Description
+|The query used a deprecated field from a procedure. (%s)
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N03
+|StatusDescription
+a|warn: procedure field deprecated. `$field` for procedure `$proc` is deprecated.
+|SeverityLevel
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
+
 [#_neo_clientnotification_request_deprecatedformat]
 === DeprecatedFormat
 
@@ -2129,7 +2064,7 @@ m|DEPRECATION
 m|01N01
 |StatusDescription
 a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
-|Severity
+|SeverityLevel
 m|WARNING
 |Classification
 m|DEPRECATION
