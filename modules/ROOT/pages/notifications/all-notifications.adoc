@@ -1496,14 +1496,21 @@ MATCH (n) RETURN (n)
 ====
 
 [#_deprecated_notifications]
-== `DEPRECATION` category
+== `DEPRECATION` notifications
 
-Notifications within the deprecation category contain information about a feature or functionality which has been deprecated. It is important to change to the new functionality, otherwise, the query might break in a future version.
+Notifications within this group contain information about a deprecated feature or functionality.
+It is important to change to the new functionality; otherwise, the query might break in a future version.
 
 [#_neo_clientnotification_statement_featuredeprecationwarning]
 === FeatureDeprecationWarning
 
-.Notification details
+==== Notification details
+
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -1516,99 +1523,68 @@ m|WARNING
 m|DEPRECATION
 |===
 
-.Colon after the | in a relationship pattern
-====
-Query::
-+
-[source,cypher]
-----
-MATCH (a)-[:A|:B|:C]-() RETURN *
-----
+======
+[.include-with-GQLSTATUS-code]
+======
 
-Description of the returned code::
-The semantics of using colon in the separation of alternative relationship types will change in a future version. (Please use ':A|B|C' instead)
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N00
+|StatusDescription
+a|warn: feature deprecated. $msg
+|Severity
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
 
-Suggestions for improvement::
-Remove the colon inside the relationship type expression.
-+
-[source,cypher]
-----
-MATCH (a)-[:A|B|C]-() RETURN *
-----
-====
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N01
+|StatusDescription
+a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
+|Severity
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
 
-.Setting properties using a node
-====
-Query::
-+
-[source,cypher]
-----
-MATCH (a)-[]-(b)
-SET a = b
-----
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N02
+|StatusDescription
+a|warn: feature deprecated without replacement. `$thing` is deprecated and will be removed without a replacement.
+|Severity
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
 
-Description of the returned code::
-The use of nodes or relationships for setting properties is deprecated and will be removed in a future version. Please use `properties()` instead.
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N03
+|StatusDescription
+a|warn: procedure result column deprecated. `$field` returned by procedure `$proc` is deprecated.
+|Severity
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
 
-Suggestions for improvement::
-Use the `properties()` function to get all properties from `b`.
-+
-[source,cypher]
-----
-MATCH (a)-[]-(b)
-SET a = properties(b)
-----
-====
+======
+=====
 
-.Setting properties using a relationship
-====
-Query::
-+
-[source,cypher]
-----
-MATCH (a)-[r]-(b)
-SET a += r
-----
-
-Description of the returned code::
-The use of nodes or relationships for setting properties is deprecated and will be removed in a future version. Please use `properties()` instead.
-
-Suggestions for improvement::
-Use the `properties()` function to get all properties from `r`
-+
-[source,cypher]
-----
-MATCH (a)-[r]-(b)
-SET a += properties(r)
-----
-====
-
-.Shortest path with a fixed relationship length
-====
-Query::
-+
-[source,cypher]
-----
-MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
-----
-
-Description of the returned code::
-The use of `shortestPath` and `allShortestPaths` with fixed length relationships is deprecated and will be removed in a future version.
-Please use a path with a length of `1 [r*1..1]` instead or a `Match` with a `limit`.
-
-Suggestions for improvement::
-If the relationship length is fixed, there is no reason to search for the shortest path.
-Instead, you can rewrite it to the following:
-+
-[source,cypher]
-----
-MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
-----
-====
-
+==== Examples of using deprecated features
 
 .Create a database with an unescaped name containing a dot
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -1627,70 +1603,39 @@ If not intended for a composite database, escape the name with the character ```
 ----
 CREATE DATABASE `foo.bar`
 ----
-====
 
-.A procedure has been deprecated or renamed
-====
-
-[source,cypher]
-----
-CALL unsupported.dbms.shutdown
-----
-
-Description of the returned code::
-The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
-
-Suggestions for improvement::
-Remove the use of the deprecated procedure.
-If there is a suggested replacement, update to use the replacement instead.
-
-====
-
-.Using a deprecated runtime option
-====
+======
+[.include-with-GQLSTATUS-code]
+======
 Query::
 +
 [source,cypher]
 ----
-CYPHER runtime = interpreted MATCH (n) RETURN n
+CREATE DATABASE foo.bar
 ----
 
-Description of the returned code::
-The query used a deprecated runtime option. (`'runtime=interpreted'` is deprecated, please use `'runtime=slotted'` instead)
+Returned GQLSTATUS code::
+01N00
 
-Suggestions for improvement::
-Runtime `interpreted` is deprecated, use another runtime or remove the runtime option to use the default runtime.
-+
-[source,cypher]
-----
-MATCH (n) RETURN n
-----
-====
-
-.Using the `text-1.0` index provider when creating a text index
-====
-Query::
-+
-[source,cypher]
-----
-CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
-----
-
-Description of the returned code::
-The `text-1.0` provider for text indexes is deprecated and will be removed in a future version.
-Please use `text-2.0` instead.
+Returned Status Description::
+warn: feature deprecated.
+Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
 
 Suggestions for improvement::
-Update the option `indexProvider` with the value `text-2.0`.
+If not intended for a composite database, escape the name with the character ```.
 +
 [source,cypher]
 ----
-CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
+CREATE DATABASE `foo.bar`
 ----
-====
+======
+=====
 
 .Using differently ordered return items in a `UNION` clause
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -1714,31 +1659,80 @@ RETURN 'val' as one, 'val' as two
 UNION
 RETURN 'val' as one, 'val' as two
 ----
-====
 
-.Using id() function
-====
+======
+[.include-with-GQLSTATUS-code]
+======
 Query::
 +
 [source,cypher]
 ----
-MATCH (a)
-RETURN id(a)
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as two, 'val' as one
 ----
-Description of the returned code::
-The query used a deprecated function: `id`.
+
+Returned GQLSTATUS code::
+01N00
+
+Returned Status Description::
+warn: feature deprecated.
+All subqueries in a UNION [ALL] should have the same ordering for the return columns. Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+
 Suggestions for improvement::
-Use the function `elementId()` instead.
+Use the same order for the return columns in all subqueries combined by a `UNION` clause.
+
 +
 [source,cypher]
 ----
-MATCH (a)
-RETURN elementId(a)
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as one, 'val' as two
 ----
-====
+======
+=====
 
-.Using Cypher query option connectComponentsPlanner
-====
+.Using the Unicode \u0085 in an unescaped identifier
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN 1 as my\u0085identifier
+----
+Description of the returned code::
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN 1 as my\u0085identifier
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned Status Description::
+warn: feature deprecated.
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+======
+=====
+
+
+==== Examples of using deprecated features without a future replacement
+
+.Using Cypher query option `connectComponentsPlanner`
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -1749,25 +1743,488 @@ Description of the returned code::
 The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
-====
 
-.Using the unicode \u0085 in an unescaped identifier
-====
+======
+[.include-with-GQLSTATUS-code]
+======
 Query::
 +
 [source,cypher]
 ----
-RETURN 1 as my\u0085identifier
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
 ----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned Status Description::
+warn: feature deprecated without replacement.
+`connectComponentsPlanner` is deprecated and will be removed without a replacement.
+======
+=====
+
+==== Examples of using a deprecated feature that will be replaced in the future
+
+.Colon after the vertical bar `|:` in a relationship pattern
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[:A|:B|:C]-() RETURN *
+----
+
 Description of the returned code::
-The Unicode character \`\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier \`myidentifier`.
-====
+The semantics of using colon in the separation of alternative relationship types will change in a future version. (Please use ':A|B|C' instead)
+
+Suggestions for improvement::
+Remove the colon inside the relationship type expression.
++
+[source,cypher]
+----
+MATCH (a)-[:A|B|C]-() RETURN *
+----
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[:A|:B|:C]-() RETURN *
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`:A|:B|:C` is deprecated.
+It is replaced by `:A|B|C`.
+
+Suggestions for improvement::
+Remove the colon inside the relationship type expression.
++
+[source,cypher]
+----
+MATCH (a)-[:A|B|C]-() RETURN *
+----
+
+======
+=====
+
+.Setting properties using a node
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[]-(b)
+SET a = b
+----
+
+Description of the returned code::
+The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
+Please use `properties()` instead.
+
+Suggestions for improvement::
+Use the `properties()` function to get all properties from `b`.
++
+[source,cypher]
+----
+MATCH (a)-[]-(b)
+SET a = properties(b)
+----
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[]-(b)
+SET a = b
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`SET a = b` is deprecated.
+It is replaced by `SET a = properties(b)`.
+
+Suggestions for improvement::
+Use the `properties()` function to get all properties from `b`.
++
+[source,cypher]
+----
+MATCH (a)-[]-(b)
+SET a = properties(b)
+----
+
+======
+=====
+
+
+.Setting properties using a relationship
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += r
+----
+
+Description of the returned code::
+The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
+Please use `properties()` instead.
+
+Suggestions for improvement::
+Use the `properties()` function to get all properties from `r`.
++
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += properties(r)
+----
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += r
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`SET a += r` is deprecated.
+It is replaced by `SET a += properties(r)`.
+
+Suggestions for improvement::
+Use the `properties()` function to get all properties from `r`.
++
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += properties(r)
+----
+======
+=====
+
+
+.Shortest path with a fixed relationship length
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
+----
+
+Description of the returned code::
+The use of `shortestPath` and `allShortestPaths` with fixed length relationships is deprecated and will be removed in a future version.
+Please use a path with a length of `1 [r*1..1]` instead or a `Match` with a `limit`.
+
+Suggestions for improvement::
+If the relationship length is fixed, there is no reason to search for the shortest path.
+Instead, you can rewrite it to the following:
++
+[source,cypher]
+----
+MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
+----
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`shortestPath\((a)-[r]->())` is deprecated.
+It is replaced by `shortestPath\((n)-[r*1..1]->(m))`.
+
+Suggestions for improvement::
+If the relationship length is fixed, there is no reason to search for the shortest path.
+Instead, you can rewrite it to the following:
++
+[source,cypher]
+----
+MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
+----
+======
+=====
+
+.Using a deprecated runtime option
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER runtime = interpreted MATCH (n) RETURN n
+----
+
+Description of the returned code::
+The query used a deprecated runtime option. (`'runtime=interpreted'` is deprecated, please use `'runtime=slotted'` instead)
+
+Suggestions for improvement::
+Runtime `interpreted` is deprecated and another runtime is used instead.
+Alternatively, you can remove the runtime option to use the default runtime.
++
+[source,cypher]
+----
+MATCH (n) RETURN n
+----
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER runtime = interpreted MATCH (n) RETURN n
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`runtime=interpreted` is deprecated.
+It is replaced by `runtime=slotted`.
+
+Suggestions for improvement::
+Runtime `interpreted` is deprecated and another runtime is used instead.
+Alternatively, you can remove the runtime option to use the default runtime.
++
+[source,cypher]
+----
+MATCH (n) RETURN n
+----
+======
+=====
+
+.Using the `text-1.0` index provider when creating a text index
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
+----
+
+Description of the returned code::
+The `text-1.0` provider for text indexes is deprecated and will be removed in a future version.
+Please use `text-2.0` instead.
+
+Suggestions for improvement::
+Update the option `indexProvider` with the value `text-2.0`.
++
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
+----
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`text-1.0` is deprecated.
+It is replaced by `text-2.0`.
+
+Suggestions for improvement::
+Update the option `indexProvider` with the value `text-2.0`.
++
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
+----
+======
+=====
+
+
+
+.Using a renamed or a deprecated procedure
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown
+----
+
+Description of the returned code::
+The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
+
+Suggestions for improvement::
+Remove the use of the deprecated procedure.
+If there is a suggested replacement, update to use the replacement instead.
+
+======
+[.include-with-GQLSTATUS-deprecated-with-replacement]
+======
+[source,cypher]
+----
+CALL cdc.query
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`cdc.query` is deprecated.
+It is replaced by `db.cdc.query`.
+
+======
+[.include-with-GQLSTATUS-deprecated-without-replacement]
+======
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned Status Description::
+warn: feature deprecated without replacement.
+`unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
+======
+=====
+
+.Using id() function
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+
+Description of the returned code::
+The query used a deprecated function: `id`.
+
+Suggestions for improvement::
+Use the function `elementId()` instead.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN elementId(a)
+----
+======
+[.include-with-GQLSTATUS-deprecated-with-replacement]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned Status Description::
+warn: feature deprecated with replacement.
+`id` is deprecated.
+It is replaced by `elementId()`.
+
+Suggestions for improvement::
+Use the function `elementId()` instead.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN elementId(a)
+----
+======
+[.include-with-GQLSTATUS-deprecated-without-replacement]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned Status Description::
+warn: feature deprecated without replacement.
+`id` is deprecated and will be removed without a replacement.
+======
+=====
 
 [#_neo_clientnotification_request_deprecatedformat]
 === DeprecatedFormat
 
+==== Notification details
 
-.Notification details
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -1779,6 +2236,23 @@ m|WARNING
 |Category
 m|DEPRECATION
 |===
+
+======
+[.include-with-GQLSTATUS-code]
+======
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|01N01
+|StatusDescription
+a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
+|Severity
+m|WARNING
+|Classification
+m|DEPRECATION
+|===
+======
+=====
 
 [#_security_notifications]
 == `SECURITY` category
