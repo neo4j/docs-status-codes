@@ -2037,8 +2037,7 @@ m|DEPRECATION
 [#_neo_clientnotification_request_deprecatedformat]
 === DeprecatedFormat
 
-==== Notification details
-
+.Notification details
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
