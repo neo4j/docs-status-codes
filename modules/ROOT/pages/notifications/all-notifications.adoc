@@ -1295,7 +1295,7 @@ It is important to change to the new functionality, otherwise, the query might b
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
-|Description
+|Descriptions
 |The procedure has a deprecated field. (%s) +
 The function has a deprecated field. (%s) +
 Creating an entity (%s) and referencing that entity in a property definition in the same CREATE is deprecated. +
