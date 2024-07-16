@@ -3115,7 +3115,7 @@ Verify that this is the intended constraint and that it is spelled correctly.
 =====
 
 [#_generic]
-== `GENERIC` category
+== `GENERIC` notifications
 
 `GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
 
@@ -3129,10 +3129,21 @@ Verify that this is the intended constraint and that it is spelled correctly.
 m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 |Title
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
-|SeverityLevel
-m|INFORMATION
+|Description
+|Variable in subquery is shadowing a variable with the same name from the outer scope.
+If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (the shadowing variable is: v)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|03N60
+|StatusDescription
+a|info: subquery variable shadowing.
+The variable `v` in the subquery uses the same name as a variable from the outer query.
+Use `WITH v` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
 |===
 
 .Shadowing of a variable from the outer scope
@@ -3158,7 +3169,7 @@ If you want to use that variable instead, it must be imported into the subquery 
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the with clause.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
 +
 [source,cypher]
 ----
@@ -3173,8 +3184,40 @@ RETURN *
 ======
 [.include-with-GQLSTATUS-code]
 ======
+Query::
++
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
 
+Returned GQLSTATUS code::
+03N60
 
+Returned Status Description::
+info: subquery variable shadowing.
+The variable `n` in the subquery uses the same name as a variable from the outer query.
+Use `WITH n` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
++
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  WITH n
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
 ======
 =====
 
@@ -3188,11 +3231,24 @@ RETURN *
 m|Neo.ClientNotification.Statement.ParameterNotProvided
 |Title
 a|The statement refers to a parameter that was not provided in the request.
-|SeverityLevel
-m|WARNING
+|Description
+|Did not supply query with enough parameters.
+The produced query plan will not be cached and is not executable without EXPLAIN.
+(Missing parameters: param1, param2)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N60
+|StatusDescription
+a|warn: parameter missing.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param1, $param2`.
+Provide the parameter(s).
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
+
 
 .Using an `EXPLAIN` query with parameters without providing them
 [.tabbed-example]
@@ -3203,7 +3259,8 @@ Query::
 +
 [source,cypher]
 ----
-EXPLAIN WITH $param as param RETURN param
+EXPLAIN WITH $param as param
+RETURN param
 ----
 
 Description of the returned code::
@@ -3216,7 +3273,24 @@ Provide the parameter to be able to cache the plan.
 ======
 [.include-with-GQLSTATUS-code]
 ======
+Query::
++
+[source,cypher]
+----
+EXPLAIN WITH $param as param
+RETURN param
+----
 
+Returned GQLSTATUS code::
+01N60
+
+Returned Status Description::
+warn: parameter missing.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param`.
+Provide the parameter(s).
+
+Suggestions for improvement::
+Provide the parameter to be able to cache the plan.
 ======
 =====
 
@@ -3231,11 +3305,21 @@ Provide the parameter to be able to cache the plan.
 m|Neo.ClientNotification.Procedure.ProcedureWarning
 |Title
 a|The query used a procedure that generated a warning.
-|SeverityLevel
-m|WARNING
+|Description
+|The query used a procedure that generated a warning. (warning from procedure my.proc)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N62
+|StatusDescription
+a|warn: procedure execution warning.
+The procedure `my.proc` generates the warning `warning from procedure`.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
+
 
 [role=label--new-5.4]
 [#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
@@ -3250,11 +3334,22 @@ When matching on a relationship type expression that can never be satisfied, for
 m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 |Title
 a|The query contains a relationship type expression that cannot be satisfied.
-|SeverityLevel
-m|WARNING
+|Description
+|Relationship type expression cannot possibly be satisfied.
+(`!%` can never be satisfied by any relationship. Relationships must have exactly one relationship type.)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N61
+|StatusDescription
+a|warn: unsatisfiable relationship type expression.
+The expression `!%` cannot be satisfied because relationships must have exactly one type.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
+
 
 .Matching on a relationship type expression that can never be satisfied
 [.tabbed-example]
@@ -3269,11 +3364,23 @@ MATCH ()-[r:R1&R2]->() RETURN r
 ----
 Description of the returned code::
 Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be fulfilled by any relationship. Relationships must have exactly one type.)
+
 ======
 [.include-with-GQLSTATUS-code]
 ======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r:R1&R2]->() RETURN r
+----
 
+Returned GQLSTATUS code::
+01N61
 
+Returned Status Description::
+warn: unsatisfiable relationship type expression.
+The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
 ======
 =====
 
@@ -3288,11 +3395,24 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
 |Title
 a|The query returns no results because a relationship variable is bound more than once.
-|SeverityLevel
-m|WARNING
+|Description
+a|
+- A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
+- A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N63
+|StatusDescription
+a|
+- warn: repeated relationship reference. `r` is repeated in `()-[r]->()<-[r]-()`, which leads to no results.
+- warn: repeated relationship reference. `r` is repeated in `()-[r*]->()-[r*]->()`, which leads to no results.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
+
 
 .Binding a relationship variable more than once
 [.tabbed-example]
@@ -3318,7 +3438,27 @@ MATCH (:A)-[r]->(:B) RETURN r
 ======
 [.include-with-GQLSTATUS-code]
 ======
+Query::
++
+[source,cypher]
+----
+MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
+----
 
+Returned GQLSTATUS code::
+01N63
+
+Returned Status Description::
+warn: repeated relationship reference. 
+`r` is repeated in `(:A)-[r]->()-[r]->(:B)`, which leads to no results.
+
+Suggestions for improvement::
+Use one pattern to match all relationships that start with a node with the label `A` and end with a node with the label `B`:
++
+[source, cypher, role="noplay"]
+----
+MATCH (:A)-[r]->(:B) RETURN r
+----
 ======
 =====
 
@@ -3334,11 +3474,24 @@ Query::
 MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 ----
 Description of the returned code::
-A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
+
 ======
 [.include-with-GQLSTATUS-code]
 ======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
+----
 
+Returned GQLSTATUS code::
+01N63
 
+Returned Status Description::
+warn: repeated relationship reference.
+`r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
 =====
+
