@@ -3138,8 +3138,8 @@ m|GENERIC
 m|03N60
 |StatusDescription
 a|info: subquery variable shadowing.
-The variable `v` in the subquery uses the same name as a variable from the outer query.
-Use `WITH v` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+The variable `$var` in the subquery uses the same name as a variable from the outer query.
+ Use `WITH $var` in the subquery to import the one from the outer scope unless you want it to be a new variable.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -3234,14 +3234,13 @@ a|The statement refers to a parameter that was not provided in the request.
 |Description
 |Did not supply query with enough parameters.
 The produced query plan will not be cached and is not executable without EXPLAIN.
-(Missing parameters: param1, param2)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|01N60
 |StatusDescription
 a|warn: parameter missing.
-The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param1, $param2`.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param_list`.
 Provide the parameter(s).
 |Classification
 m|GENERIC
@@ -3313,7 +3312,7 @@ m|GENERIC
 m|01N62
 |StatusDescription
 a|warn: procedure execution warning.
-The procedure `my.proc` generates the warning `warning from procedure`.
+The procedure `$proc` generates the warning `$msg`.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -3336,14 +3335,13 @@ m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 a|The query contains a relationship type expression that cannot be satisfied.
 |Description
 |Relationship type expression cannot possibly be satisfied.
-(`!%` can never be satisfied by any relationship. Relationships must have exactly one relationship type.)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|01N61
 |StatusDescription
 a|warn: unsatisfiable relationship type expression.
-The expression `!%` cannot be satisfied because relationships must have exactly one type.
+The expression `$label_expr` cannot be satisfied because relationships must have exactly one type.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -3364,7 +3362,6 @@ MATCH ()-[r:R1&R2]->() RETURN r
 ----
 Description of the returned code::
 Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be fulfilled by any relationship. Relationships must have exactly one type.)
-
 ======
 [.include-with-GQLSTATUS-code]
 ======
@@ -3405,7 +3402,7 @@ m|GENERIC
 m|01N63
 |StatusDescription
 a|
-- warn: repeated relationship reference. `r` is repeated in `()-[r]->()<-[r]-()`, which leads to no results.
+warn: repeated relationship reference. `$var` is repeated in `$pat`, which leads to no results.
 - warn: repeated relationship reference. `r` is repeated in `()-[r*]->()-[r*]->()`, which leads to no results.
 |Classification
 m|GENERIC
@@ -3450,7 +3447,7 @@ Returned GQLSTATUS code::
 
 Returned Status Description::
 warn: repeated relationship reference. 
-`r` is repeated in `(:A)-[r]->()-[r]->(:B)`, which leads to no results.
+`r` is repeated in `(:A)-[r]->(), ()-[r]->(:B)`, which leads to no results.
 
 Suggestions for improvement::
 Use one pattern to match all relationships that start with a node with the label `A` and end with a node with the label `B`:
