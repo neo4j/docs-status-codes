@@ -3403,7 +3403,6 @@ m|01N63
 |StatusDescription
 a|
 warn: repeated relationship reference. `$var` is repeated in `$pat`, which leads to no results.
-- warn: repeated relationship reference. `r` is repeated in `()-[r*]->()-[r*]->()`, which leads to no results.
 |Classification
 m|GENERIC
 |SeverityLevel
