@@ -22,7 +22,7 @@ The following are all Neo4j notifications, grouped by category, when they are re
 Performance notifications are returned whenever the query uses costly operations and the performance may be improved by changing the query or adding an index.
 
 [#_neo_clientnotification_statement_cartesianproduct]
-=== CartesianProduct
+=== Cartesian product
 
 This notification is returned when there is a Cartesian product in the plan.
 
@@ -130,7 +130,7 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 =====
 
 [#_neo_clientnotification_statement_unboundedvariablelengthpattern]
-=== UnboundedVariableLengthPattern
+=== Unbounded variable length pattern
 
 This notification is returned when there is no upper bound specified on the variable length relationship.
 
@@ -230,7 +230,7 @@ MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 =====
 
 [#_neo_clientnotification_statement_exhaustiveshortestpath]
-=== ExhaustiveShortestPath
+=== Exhaustive shortest path
 
 This notification is returned when a predicate, given on the shortest path, needs to inspect the whole path before deciding whether it is valid, the shortest path might fall back to the exhaustive search algorithm.
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/execution-plans/shortestpath-planning#_shortest_pathadditional_predicate_checks_on_the_paths[Cypher manual -> Shortest path - additional predicate checks on the paths].
@@ -334,7 +334,7 @@ RETURN p
 =====
 
 [#_neo_clientnotification_statement_noapplicableindex]
-=== NoApplicableIndex
+=== No applicable index
 
 This notification is returned when using `LOAD CSV` with a `MATCH` or a `MERGE` clause that matches a non-indexed label.
 This may not perform well on large data sets.
@@ -436,7 +436,7 @@ CREATE INDEX FOR (n:Person) ON (n.name)
 =====
 
 [#_neo_clientnotification_statement_eageroperator]
-=== EagerOperator
+=== Eager operator
 
 This notification is returned when the execution plan for a query contains the `Eager` operator.
 
@@ -551,7 +551,7 @@ RETURN line
 
 
 [#_neo_clientnotification_statement_dynamicproperty]
-=== DynamicProperty
+=== Dynamic property
 
 ==== Notification details
 
@@ -714,7 +714,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 =====
 
 [#_neo_clientnotification_statement_codegenerationfailed]
-=== CodeGenerationFailed
+=== Unsupported runtime - CodeGenerationFailed
 
 The `CodeGenerationFailed` notification is created when it is not possible to generate a code for a query, for example, when the query is too big.
 For more information about the specific query, see the stack trace in the _debug.log_ file.
@@ -766,7 +766,7 @@ This behavior of the Cypher planner or runtime can be changed by setting the con
 In this case, the query will return an error.
 
 [#_neo_clientnotification_statement_joinhintunfulfillablewarning]
-=== JoinHintUnfulfillableWarning
+=== Join hint unfulfillable
 
 ==== Notification details
 
@@ -867,7 +867,7 @@ The only option for this query is to remove the hint or change the query so it i
 
 
 [#_neo_clientnotification_schema_hintedindexnotfound]
-=== HintedIndexNotFound
+=== Hinted index not found
 
 ==== Notification details
 
@@ -1015,7 +1015,7 @@ If the spelling is correct, either create the index or remove the hint from the 
 A notification has the unrecognized category if the query or command mentions entities that are unknown to the system.
 
 [#_neo_clientnotification_database_homedatabasenotfound]
-=== HomeDatabaseNotFound
+=== Home database not found
 
 ==== Notification details
 
@@ -1100,7 +1100,7 @@ Verify that the home database name is not misspelled.
 =====
 
 [#_neo_clientnotification_statement_unknownlabelwarning]
-=== UnknownLabelWarning
+=== Unknown label
 
 ==== Notification details
 
@@ -1186,7 +1186,7 @@ If you plan to create nodes with that label in the future, no change is needed.
 =====
 
 [#_neo_clientnotification_statement_unknownrelationshiptypewarning]
-=== UnknownRelationshipTypeWarning
+=== Unknown relationship type
 
 ==== Notification details
 
@@ -1271,7 +1271,7 @@ If you plan to create relationships of this type in the future, no change is nee
 =====
 
 [#_neo_clientnotification_statement_unknownpropertykeywarning]
-=== UnknownPropertyKeyWarning
+=== Unknown property key
 
 ==== Notification details
 
@@ -1360,7 +1360,7 @@ If you plan to create that property key in the future, no change is needed.
 Notifications with the unsupported category are created if the query or command is trying to use features that are not supported by the current system or using experimental features that should not be used in production.
 
 [#_neo_clientnotification_statement_runtimeunsupportedwarning]
-=== RuntimeUnsupportedWarning
+=== Unsupported runtime
 
 ==== Notification details
 
@@ -2217,7 +2217,7 @@ warn: feature deprecated without replacement.
 =====
 
 [#_neo_clientnotification_request_deprecatedformat]
-=== DeprecatedFormat
+=== Feature deprecated with replacement - DeprecatedFormat
 
 ==== Notification details
 
@@ -2356,7 +2356,7 @@ Verify that this is the intended privilege and role.
 ====
 
 [#_neo_clientnotification_security_impossiblerevokecommand]
-=== ImpossibleRevokeCommand
+=== Impossible revoke command
 
 .Notification details
 [cols="<1s,<4"]
@@ -2548,7 +2548,7 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 Topology notifications provide additional information related to managing databases and servers.
 
 [#_neo_clientnotification_cluster_cordonedserversexistedduringallocation]
-=== CordonedServersExistedDuringAllocation
+=== Cordoned servers existed during allocation
 
 .When is this notification returned?
 [TIP]
@@ -2586,7 +2586,7 @@ Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact a
 ====
 
 [#_neo_clientnotification_cluster_nodatabasesreallocated]
-=== NoDatabasesReallocated
+=== No databases reallocated
 
 .Notification details
 [cols="<1s,<4"]
@@ -2625,7 +2625,7 @@ Then, a better allocation would move `foo` from server 1 to server 3, but if ser
 ====
 
 [#_neo_clientnotification_cluster_requestedtopologymatchedcurrenttopology]
-=== RequestedTopologyMatchedCurrentTopology
+=== Requested topology matched current topology
 
 .Notification details
 [cols="<1s,<4"]
@@ -2657,7 +2657,7 @@ The requested topology matched the current topology. No allocations were changed
 
 
 [#_neo_clientnotification_cluster_serveralreadyenabled]
-=== ServerAlreadyEnabled
+=== Server already enabled
 
 .Notification details
 [cols="<1s,<4"]
@@ -2693,7 +2693,7 @@ Verify that this is the intended server.
 Schema notifications provide additional information related to indexes and constraints.
 
 [#_neo_clientnotification_schema_indexorconstraintalreadyexists]
-=== IndexOrConstraintAlreadyExists
+=== Index or constraint already exists
 
 .Notification details
 [cols="<1s,<4"]
@@ -2803,7 +2803,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 ====
 
 [#_neo_clientnotification_schema_indexorconstraintdoesnotexist]
-=== IndexOrConstraintDoesNotExist
+=== Index or constraint does not exist
 
 .Notification details
 [cols="<1s,<4"]
@@ -2869,7 +2869,7 @@ Verify that this is the intended constraint and that it is spelled correctly.
 `GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
 
 [#_neo_clientnotification_statement_subqueryvariableshadowing]
-=== SubqueryVariableShadowing
+=== Subquery variable shadowing
 
 .Notification details
 [cols="<1s,<4"]
@@ -2920,7 +2920,7 @@ RETURN *
 
 
 [#_neo_clientnotification_statement_parameternotprovided]
-=== ParameterNotProvided
+=== Parameter missing
 
 .Notification details
 [cols="<1s,<4"]
@@ -2954,7 +2954,7 @@ Provide the parameter to be able to cache the plan.
 ====
 
 [#_neo_clientnotification_procedure_procedurewarning]
-=== ProcedureWarning
+=== Procedure or function execution warning
 
 .Notification details
 [cols="<1s,<4"]
@@ -2970,7 +2970,7 @@ m|GENERIC
 |===
 
 [#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
-=== UnsatisfiableRelationshipTypeExpression
+=== Unsatisfiable relationship type expression
 
 label:introduced-in-Neo4j-5.4[Introduced in Neo4j 5.4]
 
@@ -3006,7 +3006,7 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 ====
 
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
-=== RepeatedRelationshipReference
+=== Repeated relationship reference
 
 label:introduced-in-Neo4j-5.5[Introduced in Neo4j 5.5]
 
