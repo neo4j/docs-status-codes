@@ -39,7 +39,7 @@ a|This query builds a cartesian product between disconnected patterns.
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N90
-|StatusDescription
+|Status description
 a|info: cartesian product.
 The disconnected patterns `$pat` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
@@ -94,7 +94,7 @@ MATCH (c:Child), (p:Parent) RETURN c, p
 Returned GQLSTATUS code::
 03N90
 
-Returned StatusDescription::
+Returned Status description::
 info: cartesian product.
 The disconnected patterns `(c:Child), (p:Parent)` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
@@ -131,8 +131,10 @@ It is recommended to use an upper limit to the number of node hops in your patte
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N91
-|StatusDescription
-a|info: unbounded variable length pattern. The provided pattern `$pat` is unbounded. Shortest path with an unbounded pattern may result in long execution times. Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
+|Status description
+a|info: unbounded variable length pattern. The provided pattern `$pat` is unbounded.
+Shortest path with an unbounded pattern may result in long execution times.
+Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
@@ -178,7 +180,7 @@ MATCH p=shortestPath((n)-[*]->(m)) RETURN p
 Returned GQLSTATUS code::
 03N91
 
-Returned StatusDescription::
+Returned Status description::
 info: unbounded variable length pattern.
 The provided pattern `(n)-[\*]->(m)` is unbounded.
 Shortest path with an unbounded pattern may result in long execution times.
@@ -216,7 +218,7 @@ It is recommended to introduce a `WITH` to separate the `MATCH` containing the s
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N92
-|StatusDescription
+|Status description
 a|info: exhaustive shortest path.
 The query runs with exhaustive shortest path due to the existential predicate(s) `$pred_list`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
@@ -269,7 +271,7 @@ RETURN p
 Returned GQLSTATUS code::
 03N92
 
-Returned StatusDescription::
+Returned Status description::
 info: exhaustive shortest path.
 The query runs with exhaustive shortest path due to the existential predicate(s) `ANY(n in nodes(p) WHERE n:Label)`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
@@ -308,7 +310,7 @@ Please consider using a schema index.
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N93
-|StatusDescription
+|Status description
 a|info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
 Consider adding an index for label `$label`.
@@ -357,7 +359,7 @@ LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:li
 Returned GQLSTATUS code::
 03N93
 
-Returned StatusDescription::
+Returned Status description::
 info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
 Consider adding an index for label `Person`.
@@ -391,7 +393,7 @@ See the Neo4j Manual entry on the Eager operator for more information and hints 
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N94
-|StatusDescription
+|Status description
 a|info: eager operator.
 The query execution plan contains the `Eager` operator.
 `LOAD CSV` in combination with `Eager` can consume a lot of memory.
@@ -448,7 +450,7 @@ LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]})
 Returned GQLSTATUS code::
 03N94
 
-Returned StatusDescription::
+Returned Status description::
 info: eager operator.
 The query execution plan contains the `Eager` operator.
 `LOAD CSV` in combination with `Eager` can consume a lot of memory.
@@ -486,7 +488,7 @@ a|Queries using dynamic properties will use neither index seeks nor index scans 
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N95
-|StatusDescription
+|Status description
 a|info: dynamic property.
 An index exists on label/type(s) `$label_list`.
 It is not possible to use indexes for dynamic properties.
@@ -537,7 +539,7 @@ MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
 Returned GQLSTATUS code::
 03N95
 
-Returned StatusDescription::
+Returned Status description::
 info: dynamic property.
 An index exists on label/type(s) `Person`.
 It is not possible to use indexes for dynamic properties.
@@ -595,7 +597,7 @@ MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
 Returned GQLSTATUS code::
 03N95
 
-Returned StatusDescription::
+Returned Status description::
 info: dynamic property.
 An index exists on label/type(s) `KNOWS`.
 It is not possible to use indexes for dynamic properties.
@@ -632,7 +634,7 @@ a|The database was unable to generate code for the query. A stacktrace can be fo
 m|PERFORMANCE
 |GQLSTATUS code
 m|01N40
-|StatusDescription
+|Status description
 a|warn: unsupported runtime.
 The query cannot be executed with `preparser_input1`, `preparser_input2` is used. Cause: `$msg`.
 |Classification
@@ -669,7 +671,7 @@ please try using a different join key or restructure your query. (%s)
 m|HINT
 |GQLSTATUS code
 m|01N30
-|StatusDescription
+|Status description
 a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON $var_list`. Try to change the join key(s) or restructure your query.
 |Classification
 m|HINT
@@ -723,7 +725,7 @@ RETURN *
 Returned GQLSTATUS code::
 01N30
 
-Returned StatusDescription::
+Returned Status description::
 warn: joint hint unfulfillable.
 Unable to create a plan with `JOIN ON a`.
 Try to change the join key(s) or restructure your query.
@@ -752,8 +754,9 @@ a|The request (directly or indirectly) referred to an index that does not exist.
 m|HINT
 |GQLSTATUS code
 m|01N31
-|StatusDescription
-a|warn: hinted index not found. Unable to create a plan with `$index_descr` because the index does not exist.
+|Status description
+a|warn: hinted index not found.
+Unable to create a plan with `$index_descr` because the index does not exist.
 |Classification
 m|HINT
 |SeverityLevel
@@ -800,7 +803,7 @@ RETURN a
 Returned GQLSTATUS code::
 01N31
 
-Returned StatusDescription::
+Returned Status description::
 warn: hinted index not found.
 Unable to create a plan with `INDEX :Label(id)` because the index does not exist.
 
@@ -850,7 +853,7 @@ RETURN r
 Returned GQLSTATUS code::
 01N31
 
-Returned StatusDescription::
+Returned Status description::
 warn: hinted index not found.
 Unable to create a plan with `INDEX :Rel(id)` because the index does not exist.
 
@@ -882,7 +885,7 @@ This command will not take effect until this database is created. (%s`)
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|00N50
-|StatusDescription
+|Status description
 a|note: successful completion - home database not found.
 The database `$db` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
@@ -926,7 +929,7 @@ CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
 Returned GQLSTATUS code::
 00N50
 
-Returned StatusDescription::
+Returned Status description::
 note: successful completion - home database not found.
 The database `ne4j` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
@@ -952,7 +955,7 @@ a|The provided label is not in the database.
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N50
-|StatusDescription
+|Status description
 a|warn: unknown label.
 The label `$label` does not exist.
 Verify that the spelling is correct.
@@ -996,7 +999,7 @@ MATCH (n:Perso) RETURN n
 Returned GQLSTATUS code::
 01N50
 
-Returned StatusDescription::
+Returned Status description::
 warn: unknown label.
 The label `Perso` does not exist.
 Verify that the spelling is correct.
@@ -1024,7 +1027,7 @@ make sure you didn't misspell it or that the label is available when you run thi
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N51
-|StatusDescription
+|Status description
 a|warn: unknown relationship type.
 The relationship type `$reltype` does not exist.
 Verify that the spelling is correct.
@@ -1067,7 +1070,7 @@ MATCH (n)-[:NonExistingType]->() RETURN n
 Returned GQLSTATUS code::
 01N51
 
-Returned StatusDescription::
+Returned Status description::
 warn: unknown relationship type.
 The relationship type `NonExistingType` does not exist.
 Verify that the spelling is correct.
@@ -1095,7 +1098,7 @@ make sure you didn't misspell it or that the label is available when you run thi
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N52
-|StatusDescription
+|Status description
 a|warn: unknown property key.
 The property `$propkey` does not exist.
 Verify that the spelling is correct.
@@ -1140,7 +1143,7 @@ RETURN n
 Returned GQLSTATUS code::
 01N52
 
-Returned StatusDescription::
+Returned Status description::
 warn: unknown property key.
 The property `nme` does not exist.
 Verify that the spelling is correct.
@@ -1173,8 +1176,10 @@ a|This query is not supported by the chosen runtime.
 m|UNSUPPORTED
 |GQLSTATUS code
 m|01N40
-|StatusDescription
-a|warn: unsupported runtime. The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used. Cause: `$msg`.
+|Status description
+a|warn: unsupported runtime.
+The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used.
+Cause: `$msg`.
 |Classification
 m|UNSUPPORTED
 |SeverityLevel
@@ -1219,7 +1224,7 @@ EXPLAIN CYPHER runtime=pipelined SHOW INDEXES YIELD *
 Returned GQLSTATUS code::
 01N40
 
-Returned StatusDescription::
+Returned Status description::
 warn: unsupported runtime.
 The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
 Cause: Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.
@@ -1313,7 +1318,7 @@ Names containing `.` should be escaped. (%s)
 m|DEPRECATION
 |GQLSTATUS code
 m|01N00
-|StatusDescription
+|Status description
 a|warn: feature deprecated. $msg
 |Classification
 m|DEPRECATION
@@ -1358,7 +1363,7 @@ CREATE DATABASE foo.bar
 Returned GQLSTATUS code::
 01N00
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated.
 Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
 
@@ -1416,9 +1421,10 @@ RETURN 'val' as two, 'val' as one
 Returned GQLSTATUS code::
 01N00
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated.
-All subqueries in a UNION [ALL] should have the same ordering for the return columns. Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
 Suggestions for improvement::
 Use the same order for the return columns in all subqueries combined by a `UNION` clause.
@@ -1460,9 +1466,10 @@ RETURN 1 as my\u0085identifier
 Returned GQLSTATUS code::
 01N00
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated.
-The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
+To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 ======
 =====
 
@@ -1492,8 +1499,10 @@ Please use `TrigramIndexProvider.DESCRIPTOR.name()` instead.
 m|DEPRECATION
 |GQLSTATUS code
 m|01N01
-|StatusDescription
-a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
+|Status description
+a|warn: feature deprecated with replacement.
+`$thing1` is deprecated.
+It is replaced by `$thing2`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -1536,7 +1545,7 @@ MATCH (a)-[:A|:B|:C]-() RETURN *
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `:A|:B|:C` is deprecated.
 It is replaced by `:A|B|C`.
@@ -1592,7 +1601,7 @@ SET a = b
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `SET a = b` is deprecated.
 It is replaced by `SET a = properties(b)`.
@@ -1650,7 +1659,7 @@ SET a += r
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `SET a += r` is deprecated.
 It is replaced by `SET a += properties(r)`.
@@ -1705,7 +1714,7 @@ MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `shortestPath\((a)-[r]->())` is deprecated.
 It is replaced by `shortestPath\((n)-[r*1..1]->(m))`.
@@ -1758,7 +1767,7 @@ CYPHER runtime = interpreted MATCH (n) RETURN n
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `runtime=interpreted` is deprecated.
 It is replaced by `runtime=slotted`.
@@ -1811,7 +1820,7 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `text-1.0` is deprecated.
 It is replaced by `text-2.0`.
@@ -1855,7 +1864,7 @@ CALL cdc.query
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `cdc.query` is deprecated.
 It is replaced by `db.cdc.query`.
@@ -1871,7 +1880,7 @@ CALL unsupported.dbms.shutdown
 Returned GQLSTATUS code::
 01N02
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated without replacement.
 `unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
@@ -1916,7 +1925,7 @@ RETURN id(a)
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated with replacement.
 `id` is deprecated.
 It is replaced by `elementId()`.
@@ -1943,7 +1952,7 @@ RETURN id(a)
 Returned GQLSTATUS code::
 01N02
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated without replacement.
 `id` is deprecated and will be removed without a replacement.
 ======
@@ -1970,8 +1979,9 @@ For more information, see Cypher Manual -> Cypher planner.
 m|DEPRECATION
 |GQLSTATUS code
 m|01N02
-|StatusDescription
-a|warn: feature deprecated without replacement. `$thing` is deprecated and will be removed without a replacement.
+|Status description
+a|warn: feature deprecated without replacement.
+`$thing` is deprecated and will be removed without a replacement.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2007,7 +2017,7 @@ CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
 Returned GQLSTATUS code::
 01N02
 
-Returned Status Description::
+Returned Status description::
 warn: feature deprecated without replacement.
 `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 ======
@@ -2029,8 +2039,9 @@ a|The query used a deprecated field from a procedure. (%s)
 m|DEPRECATION
 |GQLSTATUS code
 m|01N03
-|StatusDescription
-a|warn: procedure field deprecated. `$field` for procedure `$proc` is deprecated.
+|Status description
+a|warn: procedure field deprecated.
+`$field` for procedure `$proc` is deprecated.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2053,8 +2064,10 @@ a|The client made a request for a format which has been deprecated.
 m|DEPRECATION
 |GQLSTATUS code
 m|01N01
-|StatusDescription
-a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
+|Status description
+a|warn: feature deprecated with replacement.
+`$thing1` is deprecated.
+It is replaced by `$thing2`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2087,8 +2100,10 @@ a|
 m|SECURITY
 |GQLSTATUS code
 m|00N71
-|StatusDescription
-|note: successful completion - role or privilege not assigned. `$cmd` has no effect. The role or privilege is not assigned.
+|Status description
+|note: successful completion - role or privilege not assigned.
+`$cmd` has no effect.
+The role or privilege is not assigned.
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -2130,8 +2145,10 @@ GRANT ROLE admin TO john
 Returned GQLSTATUS code::
 00N71
 
-Returned Status Description::
-note: successful completion - role or privilege not assigned. `GRANT ROLE admin TO john` has no effect. The role or privilege is not assigned.
+Returned Status description::
+note: successful completion - role or privilege not assigned.
+`GRANT ROLE admin TO john` has no effect.
+The role or privilege is not assigned.
 
 Suggestions for improvement::
 Verify that this is the intended role and user.
@@ -2172,8 +2189,10 @@ REVOKE ROLE admin, reader FROM jane
 Returned GQLSTATUS code::
 00N71
 
-Returned Status Description::
-note: successful completion - role or privilege not assigned. `REVOKE ROLE reader FROM jane` has no effect. The role or privilege is not assigned.
+Returned Status description::
+note: successful completion - role or privilege not assigned.
+`REVOKE ROLE reader FROM jane` has no effect.
+The role or privilege is not assigned.
 
 Suggestions for improvement::
 Verify that this is the intended role and user.
@@ -2215,8 +2234,10 @@ GRANT TRAVERSE ON GRAPH * TO reader
 Returned GQLSTATUS code::
 00N71
 
-Returned Status Description::
-note: successful completion - role or privilege not assigned. `GRANT TRAVERSE ON GRAPH * TO reader` has no effect. The role or privilege is not assigned.
+Returned Status description::
+note: successful completion - role or privilege not assigned.
+`GRANT TRAVERSE ON GRAPH * TO reader` has no effect.
+The role or privilege is not assigned.
 
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
@@ -2257,8 +2278,10 @@ REVOKE WRITE ON GRAPH * FROM reader
 Returned GQLSTATUS code::
 00N71
 
-Returned Status Description::
-note: successful completion - role or privilege not assigned. `REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect. The role or privilege is not assigned.
+Returned Status description::
+note: successful completion - role or privilege not assigned.
+`REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
+The role or privilege is not assigned.
 
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
@@ -2284,8 +2307,10 @@ See Status Codes documentation for more information.
 m|SECURITY
 |GQLSTATUS code
 m|01N70
-|StatusDescription
-a|warn: impossible revoke command. `cmd` has no effect. %msg Make sure nothing is misspelled. This notification will become an error in a future major version.
+|Status description
+a|warn: impossible revoke command. `cmd` has no effect. $msg
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -2329,10 +2354,11 @@ REVOKE ROLE manager, reader FROM jane
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE ROLE manager FROM jane` has no effect.
-Role does not exist. Make sure nothing is misspelled.
+Role does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 
 Suggestions for improvement::
@@ -2356,9 +2382,9 @@ Title of the returned code::
 `REVOKE ROLE reader FROM alice` has no effect.
 
 Description of the returned code::
-User does not exist. Make sure nothing is misspelled.
+User does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
-See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended user and that it is spelled correctly.
@@ -2376,12 +2402,14 @@ REVOKE ROLE reader FROM alice
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE ROLE reader FROM alice` has no effect.
-User does not exist. Make sure nothing is misspelled.
+User does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
-
+See Status Codes documentation for more information.
+o
 Suggestions for improvement::
 Verify that this is the intended user and that it is spelled correctly.
 ======
@@ -2424,10 +2452,11 @@ REVOKE GRANT WRITE ON GRAPH * FROM manager
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
-Role does not exist. Make sure nothing is misspelled.
+Role does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 
 Suggestions for improvement::
@@ -2470,10 +2499,11 @@ REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
-Database `neo3j` does not exist. Make sure nothing is misspelled.
+Database `neo3j` does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 
 Suggestions for improvement::
@@ -2516,10 +2546,11 @@ REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
-Database `neo3j` does not exist. Make sure nothing is misspelled.
+Database `neo3j` does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 
 Suggestions for improvement::
@@ -2581,10 +2612,11 @@ REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
-Database `*` does not exist. Make sure nothing is misspelled.
+Database `*` does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 
 Suggestions for improvement::
@@ -2647,10 +2679,11 @@ REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC
 Returned GQLSTATUS code::
 01N70
 
-Returned Status Description::
+Returned Status description::
 warn: impossible revoke command.
 `REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
-Database `*` does not exist. Make sure nothing is misspelled.
+Database `*` does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 
 Suggestions for improvement::
@@ -2683,8 +2716,11 @@ a| Server(s) `%s` are cordoned. This can impact allocation decisions.
 m|TOPOLOGY
 |GQLSTATUS code
 m|00N83
-|StatusDescription
-a|note: successful completion - cordoned servers existed during allocation. Cordoned servers existed when making an allocation decision. Server(s) `$server_list` are cordoned. This can impact allocation decisions.
+|Status description
+a|note: successful completion - cordoned servers existed during allocation.
+Cordoned servers existed when making an allocation decision.
+Server(s) `$server_list` are cordoned.
+This can impact allocation decisions.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -2722,8 +2758,11 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
 Returned GQLSTATUS code::
 00N83
 
-Returned Status Description::
-note: successful completion - cordoned servers existed during allocation. Cordoned servers existed when making an allocation decision. Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
+Returned Status description::
+note: successful completion - cordoned servers existed during allocation.
+Cordoned servers existed when making an allocation decision.
+Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned.
+This can impact allocation decisions.
 
 ======
 =====
@@ -2744,8 +2783,11 @@ a| No databases were reallocated. No better allocation is currently possible.
 m|TOPOLOGY
 |GQLSTATUS code
 m|00N82
-|StatusDescription
-a|note: successful completion - no databases reallocated. `REALLOCATE DATABASES` has no effect. No databases were reallocated. No better allocation is currently possible.
+|Status description
+a|note: successful completion - no databases reallocated.
+`REALLOCATE DATABASES` has no effect.
+No databases were reallocated.
+No better allocation is currently possible.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -2789,8 +2831,11 @@ REALLOCATE DATABASES
 Returned GQLSTATUS code::
 00N82
 
-Returned Status Description::
-note: successful completion - no databases reallocated. `REALLOCATE DATABASES` has no effect. No databases were reallocated. No better allocation is currently possible.
+Returned Status description::
+note: successful completion - no databases reallocated.
+`REALLOCATE DATABASES` has no effect.
+No databases were reallocated.
+No better allocation is currently possible.
 
 Example scenarios::
 **Scenario 1:** The cluster is already balanced.
@@ -2908,8 +2953,10 @@ a|
 m|SCHEMA
 |GQLSTATUS code
 m|00NA0
-|StatusDescription
-a|note: successful completion - index or constraint already exists. `$cmd` has no effect. `$index_constr_pat` already exists.
+|Status description
+a|note: successful completion - index or constraint already exists.
+`$cmd` has no effect.
+`$index_constr_pat` already exists.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -2951,8 +2998,10 @@ CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status Description::
-note: successful completion - index or constraint already exists. `CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect. `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
+Returned Status description::
+note: successful completion - index or constraint already exists.
+`CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
+`RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
 
 ======
 =====
@@ -3000,8 +3049,10 @@ CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status Description::
-note: successful completion - index or constraint already exists. `CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect. `RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
+Returned Status description::
+note: successful completion - index or constraint already exists.
+`CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
+`RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
 
 Suggestions for improvement::
 Choose a different name for the new index and try again.
@@ -3049,8 +3100,10 @@ CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQ
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status Description::
-note: successful completion - index or constraint already exists. `CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect. `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+Returned Status description::
+note: successful completion - index or constraint already exists.
+`CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
+`CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 ======
 =====
@@ -3099,8 +3152,10 @@ CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status Description::
-note: successful completion - index or constraint already exists. `CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect. `CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+Returned Status description::
+note: successful completion - index or constraint already exists.
+`CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
+`CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 Suggestions for improvement::
 Choose a different name for the new constraint and try again.
@@ -3131,8 +3186,10 @@ a|
 m|SCHEMA
 |GQLSTATUS code
 m|00NA1
-|StatusDescription
-a|note: successful completion - index or constraint does not exist. `$cmd` has no effect. `$index_constr_name` does not exist.
+|Status description
+a|note: successful completion - index or constraint does not exist.
+`$cmd` has no effect.
+`$index_constr_name` does not exist.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -3172,8 +3229,10 @@ DROP INDEX nonExistingIndex IF EXISTS
 Returned GQLSTATUS code::
 00NA1
 
-Returned Status Description::
-note: successful completion - index or constraint does not exist. `DROP INDEX nonExistingIndex IF EXISTS` has no effect. `nonExistingIndex` does not exist.
+Returned Status description::
+note: successful completion - index or constraint does not exist.
+`DROP INDEX nonExistingIndex IF EXISTS` has no effect.
+`nonExistingIndex` does not exist.
 
 Suggestions for improvement::
 Verify that this is the intended index and that it is spelled correctly.
@@ -3216,8 +3275,10 @@ DROP CONSTRAINT nonExistingConstraint IF EXISTS
 Returned GQLSTATUS code::
 00NA1
 
-Returned Status Description::
-note: successful completion - index or constraint does not exist. `DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect. `nonExistingConstraint` does not exist.
+Returned Status description::
+note: successful completion - index or constraint does not exist.
+`DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
+`nonExistingConstraint` does not exist.
 
 Suggestions for improvement::
 Verify that this is the intended constraint and that it is spelled correctly.
@@ -3247,10 +3308,10 @@ If you want to use that variable instead, it must be imported into the subquery 
 m|GENERIC
 |GQLSTATUS code
 m|03N60
-|StatusDescription
+|Status description
 a|info: subquery variable shadowing.
 The variable `$var` in the subquery uses the same name as a variable from the outer query.
- Use `WITH $var` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+Use `WITH $var` in the subquery to import the one from the outer scope unless you want it to be a new variable.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -3310,7 +3371,7 @@ RETURN *
 Returned GQLSTATUS code::
 03N60
 
-Returned StatusDescription::
+Returned Status description::
 info: subquery variable shadowing.
 The variable `n` in the subquery uses the same name as a variable from the outer query.
 Use `WITH n` in the subquery to import the one from the outer scope unless you want it to be a new variable.
@@ -3349,7 +3410,7 @@ The produced query plan will not be cached and is not executable without EXPLAIN
 m|GENERIC
 |GQLSTATUS code
 m|01N60
-|StatusDescription
+|Status description
 a|warn: parameter missing.
 The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param_list`.
 Provide the parameter(s).
@@ -3394,7 +3455,7 @@ RETURN param
 Returned GQLSTATUS code::
 01N60
 
-Returned StatusDescription::
+Returned Status description::
 warn: parameter missing.
 The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param`.
 Provide the parameter(s).
@@ -3421,7 +3482,7 @@ a|The query used a procedure that generated a warning.
 m|GENERIC
 |GQLSTATUS code
 m|01N62
-|StatusDescription
+|Status description
 a|warn: procedure execution warning.
 The procedure `$proc` generates the warning `$msg`.
 |Classification
@@ -3450,7 +3511,7 @@ a|The query contains a relationship type expression that cannot be satisfied.
 m|GENERIC
 |GQLSTATUS code
 m|01N61
-|StatusDescription
+|Status description
 a|warn: unsatisfiable relationship type expression.
 The expression `$label_expr` cannot be satisfied because relationships must have exactly one type.
 |Classification
@@ -3486,7 +3547,7 @@ MATCH ()-[r:R1&R2]->() RETURN r
 Returned GQLSTATUS code::
 01N61
 
-Returned StatusDescription::
+Returned Status description::
 warn: unsatisfiable relationship type expression.
 The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
 ======
@@ -3511,7 +3572,7 @@ a|
 m|GENERIC
 |GQLSTATUS code
 m|01N63
-|StatusDescription
+|Status description
 a|
 warn: repeated relationship reference. `$var` is repeated in `$pat`, which leads to no results.
 |Classification
@@ -3555,8 +3616,8 @@ MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
 Returned GQLSTATUS code::
 01N63
 
-Returned StatusDescription::
-warn: repeated relationship reference. 
+Returned Status description::
+warn: repeated relationship reference.
 `r` is repeated in `(:A)-[r]->(), ()-[r]->(:B)`, which leads to no results.
 
 Suggestions for improvement::
@@ -3596,7 +3657,7 @@ MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 Returned GQLSTATUS code::
 01N63
 
-Returned StatusDescription::
+Returned Status description::
 warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
