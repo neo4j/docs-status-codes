@@ -94,7 +94,7 @@ MATCH (c:Child), (p:Parent) RETURN c, p
 Returned GQLSTATUS code::
 03N90
 
-Returned Status description::
+Returned status description::
 info: cartesian product.
 The disconnected patterns `(c:Child), (p:Parent)` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
@@ -180,7 +180,7 @@ MATCH p=shortestPath((n)-[*]->(m)) RETURN p
 Returned GQLSTATUS code::
 03N91
 
-Returned Status description::
+Returned status description::
 info: unbounded variable length pattern.
 The provided pattern `(n)-[\*]->(m)` is unbounded.
 Shortest path with an unbounded pattern may result in long execution times.
@@ -271,7 +271,7 @@ RETURN p
 Returned GQLSTATUS code::
 03N92
 
-Returned Status description::
+Returned status description::
 info: exhaustive shortest path.
 The query runs with exhaustive shortest path due to the existential predicate(s) `ANY(n in nodes(p) WHERE n:Label)`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
@@ -359,7 +359,7 @@ LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:li
 Returned GQLSTATUS code::
 03N93
 
-Returned Status description::
+Returned status description::
 info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
 Consider adding an index for label `Person`.
@@ -450,7 +450,7 @@ LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]})
 Returned GQLSTATUS code::
 03N94
 
-Returned Status description::
+Returned status description::
 info: eager operator.
 The query execution plan contains the `Eager` operator.
 `LOAD CSV` in combination with `Eager` can consume a lot of memory.
@@ -539,7 +539,7 @@ MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
 Returned GQLSTATUS code::
 03N95
 
-Returned Status description::
+Returned status description::
 info: dynamic property.
 An index exists on label/type(s) `Person`.
 It is not possible to use indexes for dynamic properties.
@@ -597,7 +597,7 @@ MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
 Returned GQLSTATUS code::
 03N95
 
-Returned Status description::
+Returned status description::
 info: dynamic property.
 An index exists on label/type(s) `KNOWS`.
 It is not possible to use indexes for dynamic properties.
@@ -725,7 +725,7 @@ RETURN *
 Returned GQLSTATUS code::
 01N30
 
-Returned Status description::
+Returned status description::
 warn: joint hint unfulfillable.
 Unable to create a plan with `JOIN ON a`.
 Try to change the join key(s) or restructure your query.
@@ -803,7 +803,7 @@ RETURN a
 Returned GQLSTATUS code::
 01N31
 
-Returned Status description::
+Returned status description::
 warn: hinted index not found.
 Unable to create a plan with `INDEX :Label(id)` because the index does not exist.
 
@@ -853,7 +853,7 @@ RETURN r
 Returned GQLSTATUS code::
 01N31
 
-Returned Status description::
+Returned status description::
 warn: hinted index not found.
 Unable to create a plan with `INDEX :Rel(id)` because the index does not exist.
 
@@ -929,7 +929,7 @@ CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
 Returned GQLSTATUS code::
 00N50
 
-Returned Status description::
+Returned status description::
 note: successful completion - home database not found.
 The database `ne4j` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
@@ -999,7 +999,7 @@ MATCH (n:Perso) RETURN n
 Returned GQLSTATUS code::
 01N50
 
-Returned Status description::
+Returned status description::
 warn: unknown label.
 The label `Perso` does not exist.
 Verify that the spelling is correct.
@@ -1070,7 +1070,7 @@ MATCH (n)-[:NonExistingType]->() RETURN n
 Returned GQLSTATUS code::
 01N51
 
-Returned Status description::
+Returned status description::
 warn: unknown relationship type.
 The relationship type `NonExistingType` does not exist.
 Verify that the spelling is correct.
@@ -1143,7 +1143,7 @@ RETURN n
 Returned GQLSTATUS code::
 01N52
 
-Returned Status description::
+Returned status description::
 warn: unknown property key.
 The property `nme` does not exist.
 Verify that the spelling is correct.
@@ -1224,7 +1224,7 @@ EXPLAIN CYPHER runtime=pipelined SHOW INDEXES YIELD *
 Returned GQLSTATUS code::
 01N40
 
-Returned Status description::
+Returned status description::
 warn: unsupported runtime.
 The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
 Cause: Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.
@@ -1363,7 +1363,7 @@ CREATE DATABASE foo.bar
 Returned GQLSTATUS code::
 01N00
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated.
 Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
 
@@ -1421,7 +1421,7 @@ RETURN 'val' as two, 'val' as one
 Returned GQLSTATUS code::
 01N00
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated.
 All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
@@ -1466,7 +1466,7 @@ RETURN 1 as my\u0085identifier
 Returned GQLSTATUS code::
 01N00
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated.
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
@@ -1545,7 +1545,7 @@ MATCH (a)-[:A|:B|:C]-() RETURN *
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `:A|:B|:C` is deprecated.
 It is replaced by `:A|B|C`.
@@ -1601,7 +1601,7 @@ SET a = b
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `SET a = b` is deprecated.
 It is replaced by `SET a = properties(b)`.
@@ -1659,7 +1659,7 @@ SET a += r
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `SET a += r` is deprecated.
 It is replaced by `SET a += properties(r)`.
@@ -1714,7 +1714,7 @@ MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `shortestPath\((a)-[r]->())` is deprecated.
 It is replaced by `shortestPath\((n)-[r*1..1]->(m))`.
@@ -1767,7 +1767,7 @@ CYPHER runtime = interpreted MATCH (n) RETURN n
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `runtime=interpreted` is deprecated.
 It is replaced by `runtime=slotted`.
@@ -1820,7 +1820,7 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `text-1.0` is deprecated.
 It is replaced by `text-2.0`.
@@ -1864,7 +1864,7 @@ CALL cdc.query
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `cdc.query` is deprecated.
 It is replaced by `db.cdc.query`.
@@ -1880,7 +1880,7 @@ CALL unsupported.dbms.shutdown
 Returned GQLSTATUS code::
 01N02
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated without replacement.
 `unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
@@ -1925,7 +1925,7 @@ RETURN id(a)
 Returned GQLSTATUS code::
 01N01
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated with replacement.
 `id` is deprecated.
 It is replaced by `elementId()`.
@@ -1952,7 +1952,7 @@ RETURN id(a)
 Returned GQLSTATUS code::
 01N02
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated without replacement.
 `id` is deprecated and will be removed without a replacement.
 ======
@@ -2017,7 +2017,7 @@ CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
 Returned GQLSTATUS code::
 01N02
 
-Returned Status description::
+Returned status description::
 warn: feature deprecated without replacement.
 `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 ======
@@ -2145,7 +2145,7 @@ GRANT ROLE admin TO john
 Returned GQLSTATUS code::
 00N71
 
-Returned Status description::
+Returned status description::
 note: successful completion - role or privilege not assigned.
 `GRANT ROLE admin TO john` has no effect.
 The role or privilege is not assigned.
@@ -2189,7 +2189,7 @@ REVOKE ROLE admin, reader FROM jane
 Returned GQLSTATUS code::
 00N71
 
-Returned Status description::
+Returned status description::
 note: successful completion - role or privilege not assigned.
 `REVOKE ROLE reader FROM jane` has no effect.
 The role or privilege is not assigned.
@@ -2234,7 +2234,7 @@ GRANT TRAVERSE ON GRAPH * TO reader
 Returned GQLSTATUS code::
 00N71
 
-Returned Status description::
+Returned status description::
 note: successful completion - role or privilege not assigned.
 `GRANT TRAVERSE ON GRAPH * TO reader` has no effect.
 The role or privilege is not assigned.
@@ -2278,7 +2278,7 @@ REVOKE WRITE ON GRAPH * FROM reader
 Returned GQLSTATUS code::
 00N71
 
-Returned Status description::
+Returned status description::
 note: successful completion - role or privilege not assigned.
 `REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
 The role or privilege is not assigned.
@@ -2354,7 +2354,7 @@ REVOKE ROLE manager, reader FROM jane
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE ROLE manager FROM jane` has no effect.
 Role does not exist.
@@ -2402,7 +2402,7 @@ REVOKE ROLE reader FROM alice
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE ROLE reader FROM alice` has no effect.
 User does not exist.
@@ -2452,7 +2452,7 @@ REVOKE GRANT WRITE ON GRAPH * FROM manager
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
 Role does not exist.
@@ -2499,7 +2499,7 @@ REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
 Database `neo3j` does not exist.
@@ -2546,7 +2546,7 @@ REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
 Database `neo3j` does not exist.
@@ -2612,7 +2612,7 @@ REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
 Database `*` does not exist.
@@ -2679,7 +2679,7 @@ REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC
 Returned GQLSTATUS code::
 01N70
 
-Returned Status description::
+Returned status description::
 warn: impossible revoke command.
 `REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
 Database `*` does not exist.
@@ -2758,7 +2758,7 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
 Returned GQLSTATUS code::
 00N83
 
-Returned Status description::
+Returned status description::
 note: successful completion - cordoned servers existed during allocation.
 Cordoned servers existed when making an allocation decision.
 Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned.
@@ -2831,7 +2831,7 @@ REALLOCATE DATABASES
 Returned GQLSTATUS code::
 00N82
 
-Returned Status description::
+Returned status description::
 note: successful completion - no databases reallocated.
 `REALLOCATE DATABASES` has no effect.
 No databases were reallocated.
@@ -2998,7 +2998,7 @@ CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status description::
+Returned status description::
 note: successful completion - index or constraint already exists.
 `CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
 `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
@@ -3049,7 +3049,7 @@ CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status description::
+Returned status description::
 note: successful completion - index or constraint already exists.
 `CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
 `RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
@@ -3100,7 +3100,7 @@ CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQ
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status description::
+Returned status description::
 note: successful completion - index or constraint already exists.
 `CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
 `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
@@ -3152,7 +3152,7 @@ CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2
 Returned GQLSTATUS code::
 00NA0
 
-Returned Status description::
+Returned status description::
 note: successful completion - index or constraint already exists.
 `CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
 `CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
@@ -3229,7 +3229,7 @@ DROP INDEX nonExistingIndex IF EXISTS
 Returned GQLSTATUS code::
 00NA1
 
-Returned Status description::
+Returned status description::
 note: successful completion - index or constraint does not exist.
 `DROP INDEX nonExistingIndex IF EXISTS` has no effect.
 `nonExistingIndex` does not exist.
@@ -3275,7 +3275,7 @@ DROP CONSTRAINT nonExistingConstraint IF EXISTS
 Returned GQLSTATUS code::
 00NA1
 
-Returned Status description::
+Returned status description::
 note: successful completion - index or constraint does not exist.
 `DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
 `nonExistingConstraint` does not exist.
@@ -3371,7 +3371,7 @@ RETURN *
 Returned GQLSTATUS code::
 03N60
 
-Returned Status description::
+Returned status description::
 info: subquery variable shadowing.
 The variable `n` in the subquery uses the same name as a variable from the outer query.
 Use `WITH n` in the subquery to import the one from the outer scope unless you want it to be a new variable.
@@ -3455,7 +3455,7 @@ RETURN param
 Returned GQLSTATUS code::
 01N60
 
-Returned Status description::
+Returned status description::
 warn: parameter missing.
 The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param`.
 Provide the parameter(s).
@@ -3547,7 +3547,7 @@ MATCH ()-[r:R1&R2]->() RETURN r
 Returned GQLSTATUS code::
 01N61
 
-Returned Status description::
+Returned status description::
 warn: unsatisfiable relationship type expression.
 The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
 ======
@@ -3616,7 +3616,7 @@ MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
 Returned GQLSTATUS code::
 01N63
 
-Returned Status description::
+Returned status description::
 warn: repeated relationship reference.
 `r` is repeated in `(:A)-[r]->(), ()-[r]->(:B)`, which leads to no results.
 
@@ -3657,7 +3657,7 @@ MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 Returned GQLSTATUS code::
 01N63
 
-Returned Status description::
+Returned status description::
 warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
