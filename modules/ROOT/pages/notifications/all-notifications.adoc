@@ -1454,7 +1454,7 @@ SHOW INDEXES YIELD *
 =====
 
 [#_neo_clientnotification_statement_runtimeexperimental]
-=== RuntimeExperimental
+=== RuntimeExperimental  
 
 [NOTE]
 ====
