@@ -2698,7 +2698,7 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 Topology notifications provide additional information related to managing databases and servers.
 
 [#_neo_clientnotification_cluster_serveralreadyenabled]
-=== ServerAlreadyEnabled
+=== Server already enabled
 
 
 .Notification details
