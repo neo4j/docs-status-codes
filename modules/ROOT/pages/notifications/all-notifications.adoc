@@ -2765,7 +2765,7 @@ Verify that this is the intended server.
 =====
 
 [#_neo_clientnotification_cluster_serveralreadycordoned]
-=== ServerAlreadyCordoned
+=== Server already cordoned
 
 .Notification details
 [cols="<1s,<4"]
