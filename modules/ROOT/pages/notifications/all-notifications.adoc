@@ -3,21 +3,21 @@
 [[listOfNnotifications]]
 = List of all notification codes
 
-The following are all Neo4j notifications, grouped by category, when they are returned, and an example of improvement.
+The following page provides an overview of all notifications in Neo4j, along with some scenarios and their possible solutions.
 
-* <<_performance_notifications, `PERFORMANCE` category>>
-* <<_hint_notifications, `HINT` category>>
-* <<_unrecognized_notifications, `UNRECOGNIZED` category>>
-* <<_unsupported_notifications, `UNSUPPORTED` category>>
-* <<_deprecated_notifications, `DEPRECATION` category>>
-* <<_security_notifications, `SECURITY` category>>
-* <<_topology_notifications, `TOPOLOGY` category>>
-* <<_schema_notifications, `SCHEMA` category>>
-* <<_generic, `GENERIC` category>>
+* <<_performance_notifications, `PERFORMANCE` notifications>>
+* <<_hint_notifications, `HINT` notifications>>
+* <<_unrecognized_notifications, `UNRECOGNIZED` notifications>>
+* <<_unsupported_notifications, `UNSUPPORTED` notifications>>
+* <<_deprecated_notifications, `DEPRECATION` notifications>>
+* <<_security_notifications, `SECURITY` notifications>>
+* <<_topology_notifications, `TOPOLOGY` notifications>>
+* <<_schema_notifications, `SCHEMA` notifications>>
+* <<_generic, `GENERIC` notifications>>
 
 
 [#_performance_notifications]
-== `PERFORMANCE` category
+== `PERFORMANCE` notifications
 
 Performance notifications are returned whenever the query uses costly operations and the performance may be improved by changing the query or adding an index.
 
@@ -26,48 +26,31 @@ Performance notifications are returned whenever the query uses costly operations
 
 This notification is returned when there is a Cartesian product in the plan.
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.CartesianProduct
 |Title
 a|This query builds a cartesian product between disconnected patterns.
-|Severity
-m|INFORMATION
+|Description
+|If a part of a query contains multiple disconnected patterns, this will build a cartesian product between all those parts. This may produce a large amount of data and slow down query processing. While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product, perhaps by adding a relationship between the different parts or by using OPTIONAL MATCH (%s)
 |Category
 m|PERFORMANCE
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|03N90
-|StatusDescription
+|Status description
 a|info: cartesian product.
 The disconnected patterns `$pat` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
-|Severity
-m|INFORMATION
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
 
-======
-=====
 
-==== Example of a Cartesian product
-
+.A query that contains many disconnected patterns
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -88,7 +71,7 @@ While occasionally intended, it may often be possible to reformulate the query t
 perhaps by adding a relationship between the different parts or by using `OPTIONAL MATCH` (identifier is: (`p`))
 
 Suggestions for improvement::
-In case a cartesian product is needed, nothing can be done to improve this query.
+In case a Cartesian product is needed, nothing can be done to improve this query.
 In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
 If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
 +
@@ -111,13 +94,13 @@ MATCH (c:Child), (p:Parent) RETURN c, p
 Returned GQLSTATUS code::
 03N90
 
-Returned Status Description::
+Returned status description::
 info: cartesian product.
 The disconnected patterns `(c:Child), (p:Parent)` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
 
 Suggestions for improvement::
-In case a cartesian product is needed, nothing can be done to improve this query.
+In case a Cartesian product is needed, nothing can be done to improve this query.
 In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
 If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
 +
@@ -134,46 +117,31 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 
 This notification is returned when there is no upper bound specified on the variable length relationship.
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 |Title
 a|The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
-|Severity
-m|INFORMATION
+|Description
+|Using shortest path with an unbounded pattern will likely result in long execution times.
+It is recommended to use an upper limit to the number of node hops in your pattern.
 |Category
 m|PERFORMANCE
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|03N91
-|StatusDescription
-a|info: unbounded variable length pattern. The provided pattern `$pat` is unbounded. Shortest path with an unbounded pattern may result in long execution times. Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
-|Severity
-m|INFORMATION
+|Status description
+a|info: unbounded variable length pattern. The provided pattern `$pat` is unbounded.
+Shortest path with an unbounded pattern may result in long execution times.
+Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
 
-======
-=====
-
-==== Example of a shortest path with an unbounded pattern
-
+.Shortest path with an unbounded pattern
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -212,7 +180,7 @@ MATCH p=shortestPath((n)-[*]->(m)) RETURN p
 Returned GQLSTATUS code::
 03N91
 
-Returned Status Description::
+Returned status description::
 info: unbounded variable length pattern.
 The provided pattern `(n)-[\*]->(m)` is unbounded.
 Shortest path with an unbounded pattern may result in long execution times.
@@ -235,12 +203,7 @@ MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 This notification is returned when a predicate, given on the shortest path, needs to inspect the whole path before deciding whether it is valid, the shortest path might fall back to the exhaustive search algorithm.
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/execution-plans/shortestpath-planning#_shortest_pathadditional_predicate_checks_on_the_paths[Cypher manual -> Shortest path - additional predicate checks on the paths].
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -248,31 +211,24 @@ m|Neo.ClientNotification.Statement.ExhaustiveShortestPath
 |Title
 a|Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path.
 Hence an exhaustive enumeration of all paths might be used in order to find the requested shortest path.
-|Severity
-m|INFORMATION
+|Description
+|Using shortest path with an exhaustive search fallback might cause query slow down since shortest path graph algorithms might not work for this use case.
+It is recommended to introduce a `WITH` to separate the `MATCH` containing the shortest path from the existential predicates on that path.
 |Category
 m|PERFORMANCE
-|===
-======
-[.include-with-GQLSTATUS-code]
-======
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|03N92
-|StatusDescription
+|Status description
 a|info: exhaustive shortest path.
 The query runs with exhaustive shortest path due to the existential predicate(s) `$pred_list`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
-|Severity
-m|INFORMATION
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
-======
-=====
-==== Example of an exhaustive shortest path
 
+.A query that runs with an exhaustive shortest path
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -315,7 +271,7 @@ RETURN p
 Returned GQLSTATUS code::
 03N92
 
-Returned Status Description::
+Returned status description::
 info: exhaustive shortest path.
 The query runs with exhaustive shortest path due to the existential predicate(s) `ANY(n in nodes(p) WHERE n:Label)`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
@@ -340,48 +296,31 @@ This notification is returned when using `LOAD CSV` with a `MATCH` or a `MERGE` 
 This may not perform well on large data sets.
 Adding an index could improve the query speed.
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.NoApplicableIndex
 |Title
 a|Adding a schema index may speed up this query.
-|Severity
-m|INFORMATION
+|Description
+|Using `LOAD CSV` followed by a `MATCH` or `MERGE` that matches a non-indexed label will most likely not perform well on large data sets.
+Please consider using a schema index.
 |Category
 m|PERFORMANCE
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|03N93
-|StatusDescription
+|Status description
 a|info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
 Consider adding an index for label `$label`.
-|Severity
-m|INFORMATION
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
 
-======
-=====
-
-==== Example of `LOAD CSV` with `MATCH` or `MERGE`
-
+.`LOAD CSV` with `MATCH` or `MERGE`
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -420,7 +359,7 @@ LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:li
 Returned GQLSTATUS code::
 03N93
 
-Returned Status Description::
+Returned status description::
 info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
 Consider adding an index for label `Person`.
@@ -440,48 +379,31 @@ CREATE INDEX FOR (n:Person) ON (n.name)
 
 This notification is returned when the execution plan for a query contains the `Eager` operator.
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.EagerOperator
 |Title
 a|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding
-|Severity
-m|INFORMATION
+|Description
+|Using `LOAD CSV` with a large data set in a query where the execution plan contains the Eager operator could potentially consume a lot of memory and is likely to not perform well.
+See the Neo4j Manual entry on the Eager operator for more information and hints on how problems could be avoided.
 |Category
 m|PERFORMANCE
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|03N94
-|StatusDescription
+|Status description
 a|info: eager operator.
 The query execution plan contains the `Eager` operator.
 `LOAD CSV` in combination with `Eager` can consume a lot of memory.
-|Severity
-m|INFORMATION
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
 
-======
-=====
-
-==== Example of `LOAD CSV` with `MATCH` or `MERGE`
-
+.`LOAD CSV` with an Eager operator
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -528,7 +450,7 @@ LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]})
 Returned GQLSTATUS code::
 03N94
 
-Returned Status Description::
+Returned status description::
 info: eager operator.
 The query execution plan contains the `Eager` operator.
 `LOAD CSV` in combination with `Eager` can consume a lot of memory.
@@ -553,50 +475,31 @@ RETURN line
 [#_neo_clientnotification_statement_dynamicproperty]
 === DynamicProperty
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.DynamicProperty
 |Title
 a|Queries using dynamic properties will use neither index seeks nor index scans for those properties
-|Severity
-m|INFORMATION
+|Description
+|Using a dynamic property makes it impossible to use an index lookup for this query (%s)
 |Category
 m|PERFORMANCE
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|03N95
-|StatusDescription
+|Status description
 a|info: dynamic property.
 An index exists on label/type(s) `$label_list`.
 It is not possible to use indexes for dynamic properties.
 Consider using static properties.
-|Severity
-m|INFORMATION
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
 
-======
-=====
-
-
-==== Example of when using a dynamic node property key makes it impossible to use indexes
-
+.A dynamic node property key makes it impossible to use indexes
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -610,7 +513,7 @@ MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
 ----
 
 Description of the returned code::
-Did not supply query with enough parameters. The produced query plan will not be cached and is not executable without `EXPLAIN`. (Missing parameters: `prop`)
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed label is: `Person`)
 
 Suggestions for improvement::
 If there is an index for `(n:Person) ON (n.name)`, it will not be used for the above query because the query is using a dynamic property.
@@ -636,7 +539,7 @@ MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
 Returned GQLSTATUS code::
 03N95
 
-Returned Status Description::
+Returned status description::
 info: dynamic property.
 An index exists on label/type(s) `Person`.
 It is not possible to use indexes for dynamic properties.
@@ -655,8 +558,7 @@ MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
 ======
 =====
 
-==== Example of when using a dynamic relationship property key makes it impossible to use indexes
-
+.A dynamic relationship property key makes it impossible to use indexes
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -670,7 +572,7 @@ MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
 ----
 
 Description of the returned code::
-Did not supply query with enough parameters. The produced query plan will not be cached and is not executable without `EXPLAIN`. (Missing parameters: `prop`)
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed type is: `KNOWS`)
 
 Suggestions for improvement::
 Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
@@ -695,7 +597,7 @@ MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
 Returned GQLSTATUS code::
 03N95
 
-Returned Status Description::
+Returned status description::
 info: dynamic property.
 An index exists on label/type(s) `KNOWS`.
 It is not possible to use indexes for dynamic properties.
@@ -719,47 +621,33 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 The `CodeGenerationFailed` notification is created when it is not possible to generate a code for a query, for example, when the query is too big.
 For more information about the specific query, see the stack trace in the _debug.log_ file.
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.CodeGenerationFailed
 |Title
-a|The database was unable to generate code for the query. A stack trace can be found in the _debug.log_.
-|Severity
-m|INFORMATION
+a|The database was unable to generate code for the query. A stacktrace can be found in the _debug.log_.
+|Description
+|The database was unable to generate code for the query. A stacktrace can be found in the debug.log. (method too big)
 |Category
 m|PERFORMANCE
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N40
-|StatusDescription
-a|warn: runtime unsupported.
+|Status description
+a|warn: unsupported runtime.
 The query cannot be executed with `preparser_input1`, `preparser_input2` is used. Cause: `$msg`.
-|Severity
-m|INFORMATION
 |Classification
 m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
 |===
 
-======
-=====
+//TO ADD EXAMPLES
+//To update the description when the code is spit out
 
 [#_hint_notifications]
-== `HINT` category
+== `HINT` notifications
 
 `HINT` notifications are returned by default when the Cypher planner or runtime cannot create a query plan to fulfill a specified hint, for example, `JOIN` or `INDEX`.
 This behavior of the Cypher planner or runtime can be changed by setting the configuration link:https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#config_dbms.cypher.hints_error[`dbms.cypher.hints_error`] to `true`.
@@ -768,46 +656,30 @@ In this case, the query will return an error.
 [#_neo_clientnotification_statement_joinhintunfulfillablewarning]
 === JoinHintUnfulfillableWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 |Title
 a|The database was unable to plan a hinted join.
-|Severity
-m|WARNING
+|Description
+|The hinted join was not planned.
+This could happen because no generated plan contained the join key,
+please try using a different join key or restructure your query. (%s)
 |Category
 m|HINT
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N30
-|StatusDescription
+|Status description
 a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON $var_list`. Try to change the join key(s) or restructure your query.
-|Severity
-m|WARNING
 |Classification
 m|HINT
+|SeverityLevel
+m|WARNING
 |===
 
-======
-=====
-
-==== Example of inability to fulfill the hint despite the `JOIN` hint was given
-
+.Inability to fulfill the hint despite the given `JOIN` hint
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -831,8 +703,8 @@ This could happen because no generated plan contained the join key,
 please try using a different join key or restructure your query. (hinted join key identifier is: `a`)
 
 Suggestions for improvement::
-The join hint cannot be fulfilled because the given `JOIN` variable was introduced before the optional match and is therefore already bound.
-The only option for this query is to remove the hint or change the query so it is possible to use the hint.
+The `JOIN` hint cannot be applied because its specified variable is before the `OPTIONAL MATCH` and, therefore, is already bound.
+The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
 [.include-with-GQLSTATUS-code]
@@ -853,14 +725,14 @@ RETURN *
 Returned GQLSTATUS code::
 01N30
 
-Returned Status Description::
+Returned status description::
 warn: joint hint unfulfillable.
 Unable to create a plan with `JOIN ON a`.
 Try to change the join key(s) or restructure your query.
 
 Suggestions for improvement::
-The join hint cannot be fulfilled because the given `JOIN` variable was introduced before the optional match and is therefore already bound.
-The only option for this query is to remove the hint or change the query so it is possible to use the hint.
+The `JOIN` hint cannot be applied because its specified variable is before the `OPTIONAL MATCH` and, therefore, is already bound.
+The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
 =====
@@ -869,46 +741,29 @@ The only option for this query is to remove the hint or change the query so it i
 [#_neo_clientnotification_schema_hintedindexnotfound]
 === HintedIndexNotFound
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Schema.HintedIndexNotFound
 |Title
 a|The request (directly or indirectly) referred to an index that does not exist.
-|Severity
-m|WARNING
+|Description
+|The hinted index does not exist, please check the schema (%s)
 |Category
 m|HINT
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N31
-|StatusDescription
-a|warn: hinted index not found. Unable to create a plan with `$index_descr` because the index does not exist.
-|Severity
-m|WARNING
+|Status description
+a|warn: hinted index not found.
+Unable to create a plan with `$index_descr` because the index does not exist.
 |Classification
 m|HINT
+|SeverityLevel
+m|WARNING
 |===
 
-======
-=====
-
-==== Example of inability to use the label index despite the given index hint
-
+.Inability to use the label index despite the given index hint
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -948,7 +803,7 @@ RETURN a
 Returned GQLSTATUS code::
 01N31
 
-Returned Status Description::
+Returned status description::
 warn: hinted index not found.
 Unable to create a plan with `INDEX :Label(id)` because the index does not exist.
 
@@ -958,8 +813,7 @@ If the spelling is correct, either create the index or remove the hint from the 
 ======
 =====
 
-==== Example of inability to use the relationship index despite the given index hint
-
+.Inability to use the relationship index despite the given index hint
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -999,7 +853,7 @@ RETURN r
 Returned GQLSTATUS code::
 01N31
 
-Returned Status Description::
+Returned status description::
 warn: hinted index not found.
 Unable to create a plan with `INDEX :Rel(id)` because the index does not exist.
 
@@ -1010,52 +864,38 @@ If the spelling is correct, either create the index or remove the hint from the 
 =====
 
 [#_unrecognized_notifications]
-== `UNRECOGNIZED` category
+== `UNRECOGNIZED` notifications
 
-A notification has the unrecognized category if the query or command mentions entities that are unknown to the system.
+Unrecognized notifications are returned when the query or command mentions entities that are unknown to the system.
 
 [#_neo_clientnotification_database_homedatabasenotfound]
 === HomeDatabaseNotFound
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Database.HomeDatabaseNotFound
 |Title
 a|The request referred to a home database that does not exist.
-|Severity
-m|INFORMATION
+|Description
+|The home database provided does not currently exist in the DBMS.
+This command will not take effect until this database is created. (%s`)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|00N50
-|StatusDescription
-a|note: successful completion - home database not found. The database `$db` does not exist. Verify that the spelling is correct or create the database for the command to take effect.
-|Severity
-m|INFORMATION
+|Status description
+a|note: successful completion - home database not found.
+The database `$db` does not exist.
+Verify that the spelling is correct or create the database for the command to take effect.
 |Classification
 m|UNRECOGNIZED
+|SeverityLevel
+m|WARNING
 |===
-======
-=====
 
-==== Example of setting the `home` database to a database that does not yet exist
-
+.Setting the `home` database to a database that does not exist
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1065,12 +905,12 @@ Query::
 +
 [source,cypher]
 ----
-CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE NonExistingDatabase
+CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
 ----
 
 Description of the returned code::
 The home database provided does not currently exist in the DBMS.
-This command will not take effect until this database is created. (HOME DATABASE: `nonexistingdatabase`)
+This command will not take effect until this database is created. (HOME DATABASE: `nej4`)
 
 Suggestions for improvement::
 Verify that the home database name is not misspelled.
@@ -1083,15 +923,15 @@ Query::
 +
 [source,cypher]
 ----
-CREATE USER linnea SET PASSWORD "password" SET HOME DATABASE Nej4
+CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
 ----
 
 Returned GQLSTATUS code::
 00N50
 
-Returned Status Description::
+Returned status description::
 note: successful completion - home database not found.
-The database `Ne4j` does not exist.
+The database `ne4j` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
 
 Suggestions for improvement::
@@ -1102,45 +942,30 @@ Verify that the home database name is not misspelled.
 [#_neo_clientnotification_statement_unknownlabelwarning]
 === UnknownLabelWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnknownLabelWarning
 |Title
 a|The provided label is not in the database.
-|Severity
-m|WARNING
+|Description
+|One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N50
-|StatusDescription
-a|warn: unknown label. The label `$label` does not exist. Verify that the spelling is correct.
-|Severity
-m|WARNING
+|Status description
+a|warn: unknown label.
+The label `$label` does not exist.
+Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
+|SeverityLevel
+m|WARNING
 |===
-======
-=====
 
-==== Example of matching on a node with a label that does not exist in the database
-
+.Matching on a node with a label that does not exist in the database
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1174,7 +999,7 @@ MATCH (n:Perso) RETURN n
 Returned GQLSTATUS code::
 01N50
 
-Returned Status Description::
+Returned status description::
 warn: unknown label.
 The label `Perso` does not exist.
 Verify that the spelling is correct.
@@ -1188,45 +1013,31 @@ If you plan to create nodes with that label in the future, no change is needed.
 [#_neo_clientnotification_statement_unknownrelationshiptypewarning]
 === UnknownRelationshipTypeWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 |Title
 a|The provided relationship type is not in the database.
-|Severity
-m|WARNING
+|Description
+|One of the relationship types in your query is not available in the database,
+make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N51
-|StatusDescription
-a|warn: unknown relationship type. The relationship type `$reltype` does not exist. Verify that the spelling is correct.
-|Severity
-m|WARNING
+|Status description
+a|warn: unknown relationship type.
+The relationship type `$reltype` does not exist.
+Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
+|SeverityLevel
+m|WARNING
 |===
-======
-=====
 
-==== Example of matching on a relationship, when there are no relationships in the database with the given relationship type
-
+.Matching a relationship with a type that does not exist
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1259,7 +1070,7 @@ MATCH (n)-[:NonExistingType]->() RETURN n
 Returned GQLSTATUS code::
 01N51
 
-Returned Status Description::
+Returned status description::
 warn: unknown relationship type.
 The relationship type `NonExistingType` does not exist.
 Verify that the spelling is correct.
@@ -1273,43 +1084,31 @@ If you plan to create relationships of this type in the future, no change is nee
 [#_neo_clientnotification_statement_unknownpropertykeywarning]
 === UnknownPropertyKeyWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 |Title
 a|The provided property key is not in the database
-|Severity
-m|WARNING
+|Description
+|One of the property names in your query is not available in the database,
+make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
 |Category
 m|UNRECOGNIZED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N52
-|StatusDescription
-a|warn: unknown property key. The property `$propkey` does not exist. Verify that the spelling is correct.
-|Severity
-m|WARNING
+|Status description
+a|warn: unknown property key.
+The property `$propkey` does not exist.
+Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
+|SeverityLevel
+m|WARNING
 |===
-======
-=====
 
-==== Example of matching on a property key that does not exist
-
+.Matching a property key that does not exist
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1318,12 +1117,13 @@ Query::
 +
 [source,cypher]
 ----
-MATCH (n {nonExistingProp:1}) RETURN n
+MATCH (n:Person {nme:”Tom”})
+RETURN n
 ----
 
 Description of the returned code::
 One of the property names in your query is not available in the database,
-make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: `nonExistingProp`)
+make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: `nme`)
 
 Suggestions for improvement::
 Verify that the property key is not misspelled.
@@ -1336,14 +1136,14 @@ Query::
 +
 [source,cypher]
 ----
-MATCH (n:Person {nme:”Tom”}) 
+MATCH (n:Person {nme:”Tom”})
 RETURN n
 ----
 
 Returned GQLSTATUS code::
 01N52
 
-Returned Status Description::
+Returned status description::
 warn: unknown property key.
 The property `nme` does not exist.
 Verify that the spelling is correct.
@@ -1357,50 +1157,36 @@ If you plan to create that property key in the future, no change is needed.
 [#_unsupported_notifications]
 == `UNSUPPORTED` category
 
-Notifications with the unsupported category are created if the query or command is trying to use features that are not supported by the current system or using experimental features that should not be used in production.
+Unsupported notifications are returned when the query or command is trying to use features that are not supported by the current system or using experimental features that should not be used in production.
 
 [#_neo_clientnotification_statement_runtimeunsupportedwarning]
 === RuntimeUnsupportedWarning
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
 |Title
 a|This query is not supported by the chosen runtime.
-|Severity
-m|WARNING
+|Description
+|Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.
+(%s)
 |Category
 m|UNSUPPORTED
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N40
-|StatusDescription
-a|warn: unsupported runtime. The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used. Cause: `$msg`.
-|Severity
-m|WARNING
+|Status description
+a|warn: unsupported runtime.
+The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used.
+Cause: `$msg`.
 |Classification
 m|UNSUPPORTED
+|SeverityLevel
+m|WARNING
 |===
-======
-=====
 
-==== Example of a runtime not supported by a Cypher command
-
+.A runtime is not supported by a Cypher command
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -1438,10 +1224,10 @@ EXPLAIN CYPHER runtime=pipelined SHOW INDEXES YIELD *
 Returned GQLSTATUS code::
 01N40
 
-Returned Status Description::
+Returned status description::
 warn: unsupported runtime.
 The query cannot be executed with `runtime=pipelined`, `runtime=slotted` is used.
-Cause: `Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.`.
+Cause: Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.
 
 Suggestions for improvement::
 Use a different runtime or remove the runtime option to run the query with the default runtime:
@@ -1453,6 +1239,7 @@ SHOW INDEXES YIELD *
 ======
 =====
 
+[role=label--deprecated-5.14]
 [#_neo_clientnotification_statement_runtimeexperimental]
 === RuntimeExperimental
 
@@ -1468,10 +1255,12 @@ The usage of this notification has been removed since Neo4j 5.14.
 m|Neo.ClientNotification.Statement.RuntimeExperimental
 |Title
 a|This feature is experimental and should not be used in production systems.
-|Severity
-m|WARNING
+|Description
+|You are using an experimental feature (%s)
 |Category
 m|UNSUPPORTED
+|SeverityLevel
+m|WARNING
 |===
 
 .Use of the parallel runtime
@@ -1498,87 +1287,44 @@ MATCH (n) RETURN (n)
 [#_deprecated_notifications]
 == `DEPRECATION` notifications
 
-Notifications within this group contain information about a deprecated feature or functionality.
-It is important to change to the new functionality; otherwise, the query might break in a future version.
+Deprecation notifications contain information about a feature or functionality that has been deprecated.
+It is important to change to the new functionality, otherwise, the query might break in a future version.
 
-[#_neo_clientnotification_statement_featuredeprecationwarning]
-=== FeatureDeprecationWarning
+[#_neo_clientnotification_statement_featuredeprecated]
+=== Feature deprecated
 
-==== Notification details
-
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
-|Severity
-m|WARNING
+|Descriptions
+a|
+- The procedure has a deprecated field. (%s)
+- The function has a deprecated field. (%s)
+- Creating an entity (%s) and referencing that entity in a property definition in the same CREATE is deprecated.
+- Merging an entity (%s) and referencing that entity in a property definition in the same MERGE is deprecated.
+- The Unicode character `%s` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
+To continue using it, escape the identifier by adding backticks around the identifier `%s`.
+- The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
+To continue using it, escape the identifier by adding backticks around the identifier `%s`.
+- All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+- Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
+Names containing `.` should be escaped. (%s)
 |Category
 m|DEPRECATION
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N00
-|StatusDescription
+|Status description
 a|warn: feature deprecated. $msg
-|Severity
-m|WARNING
 |Classification
 m|DEPRECATION
-|===
-
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|01N01
-|StatusDescription
-a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
-|Severity
+|SeverityLevel
 m|WARNING
-|Classification
-m|DEPRECATION
 |===
-
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|01N02
-|StatusDescription
-a|warn: feature deprecated without replacement. `$thing` is deprecated and will be removed without a replacement.
-|Severity
-m|WARNING
-|Classification
-m|DEPRECATION
-|===
-
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|01N03
-|StatusDescription
-a|warn: procedure result column deprecated. `$field` returned by procedure `$proc` is deprecated.
-|Severity
-m|WARNING
-|Classification
-m|DEPRECATION
-|===
-
-======
-=====
-
-==== Examples of using deprecated features
 
 .Create a database with an unescaped name containing a dot
 [.tabbed-example]
@@ -1617,7 +1363,7 @@ CREATE DATABASE foo.bar
 Returned GQLSTATUS code::
 01N00
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated.
 Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database. Names containing `.` should be escaped. (Name: foo.bar)
 
@@ -1675,9 +1421,10 @@ RETURN 'val' as two, 'val' as one
 Returned GQLSTATUS code::
 01N00
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated.
-All subqueries in a UNION [ALL] should have the same ordering for the return columns. Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
 Suggestions for improvement::
 Use the same order for the return columns in all subqueries combined by a `UNION` clause.
@@ -1719,51 +1466,48 @@ RETURN 1 as my\u0085identifier
 Returned GQLSTATUS code::
 01N00
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated.
-The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
+To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 ======
 =====
 
+[#_deprecated-feature-with-replacement]
+=== Feature deprecated with a replacement
 
-==== Examples of using deprecated features without a future replacement
-
-.Using Cypher query option `connectComponentsPlanner`
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
-----
-Description of the returned code::
-The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
-The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
-For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
-
-======
-[.include-with-GQLSTATUS-code]
-======
-Query::
-+
-[source,cypher]
-----
-CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
-----
-
-Returned GQLSTATUS code::
-01N02
-
-Returned Status Description::
-warn: feature deprecated without replacement.
-`connectComponentsPlanner` is deprecated and will be removed without a replacement.
-======
-=====
-
-==== Examples of using a deprecated feature that will be replaced in the future
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Descriptions
+a|
+- The semantics of using colon in the separation of alternative relationship types will change in a future version. (%s)
+- The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
+Please use properties() instead.
+- The use of shortestPath and allShortestPaths with fixed length relationships is deprecated and will be removed in a future version.
+Please use a path with a length of 1 [r*1..1] instead or a Match with a limit.
+- The query used a deprecated function. (%s)
+- The query used a deprecated procedure. (%s)
+- The query used a deprecated runtime option. (%s)
+- The `TextIndexProvider.DESCRIPTOR.name()` provider for text indexes is deprecated and will be removed in a future version.
+Please use `TrigramIndexProvider.DESCRIPTOR.name()` instead.
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N01
+|Status description
+a|warn: feature deprecated with replacement.
+`$thing1` is deprecated.
+It is replaced by `$thing2`.
+|Classification
+m|DEPRECATION
+|SeverityLevel
+m|WARNING
+|===
 
 .Colon after the vertical bar `|:` in a relationship pattern
 [.tabbed-example]
@@ -1801,7 +1545,7 @@ MATCH (a)-[:A|:B|:C]-() RETURN *
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `:A|:B|:C` is deprecated.
 It is replaced by `:A|B|C`.
@@ -1857,7 +1601,7 @@ SET a = b
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `SET a = b` is deprecated.
 It is replaced by `SET a = properties(b)`.
@@ -1915,7 +1659,7 @@ SET a += r
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `SET a += r` is deprecated.
 It is replaced by `SET a += properties(r)`.
@@ -1970,7 +1714,7 @@ MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `shortestPath\((a)-[r]->())` is deprecated.
 It is replaced by `shortestPath\((n)-[r*1..1]->(m))`.
@@ -2023,7 +1767,7 @@ CYPHER runtime = interpreted MATCH (n) RETURN n
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `runtime=interpreted` is deprecated.
 It is replaced by `runtime=slotted`.
@@ -2076,7 +1820,7 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `text-1.0` is deprecated.
 It is replaced by `text-2.0`.
@@ -2090,8 +1834,6 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 ----
 ======
 =====
-
-
 
 .Using a renamed or a deprecated procedure
 [.tabbed-example]
@@ -2122,7 +1864,7 @@ CALL cdc.query
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `cdc.query` is deprecated.
 It is replaced by `db.cdc.query`.
@@ -2138,7 +1880,7 @@ CALL unsupported.dbms.shutdown
 Returned GQLSTATUS code::
 01N02
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated without replacement.
 `unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
@@ -2183,7 +1925,7 @@ RETURN id(a)
 Returned GQLSTATUS code::
 01N01
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated with replacement.
 `id` is deprecated.
 It is replaced by `elementId()`.
@@ -2210,49 +1952,127 @@ RETURN id(a)
 Returned GQLSTATUS code::
 01N02
 
-Returned Status Description::
+Returned status description::
 warn: feature deprecated without replacement.
 `id` is deprecated and will be removed without a replacement.
 ======
 =====
 
-[#_neo_clientnotification_request_deprecatedformat]
-=== DeprecatedFormat
+[#_deprecated-notifications-without-replacement]
+=== Deprecated features without a future replacement
 
-==== Notification details
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Descriptions
+a|
+- The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
+The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
+For more information, see Cypher Manual -> Cypher planner.
+- The query used a deprecated function%s
+- The query used a deprecated procedure%s
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N02
+|Status description
+a|warn: feature deprecated without replacement.
+`$thing` is deprecated and will be removed without a replacement.
+|Classification
+m|DEPRECATION
+|SeverityLevel
+m|WARNING
+|===
 
+.Using Cypher query option `connectComponentsPlanner`
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
 ======
+Query::
++
+[source,cypher]
+----
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
+----
+Description of the returned code::
+The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
+The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned status description::
+warn: feature deprecated without replacement.
+`connectComponentsPlanner` is deprecated and will be removed without a replacement.
+======
+=====
+
+[[_deprecated-procedure-result-column]]
+=== Procedure field deprecated
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Description
+a|The query used a deprecated field from a procedure. (%s)
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N03
+|Status description
+a|warn: procedure field deprecated.
+`$field` for procedure `$proc` is deprecated.
+|Classification
+m|DEPRECATION
+|SeverityLevel
+m|WARNING
+|===
+
+[#_neo_clientnotification_request_deprecatedformat]
+=== DeprecatedFormat
+
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
 m|Neo.ClientNotification.Request.DeprecatedFormat
 |Title
-a|The client requested a deprecated format.
-|Severity
-m|WARNING
+a|The client made a request for a format which has been deprecated.
+|Description
+|The requested format has been deprecated. (%s)
 |Category
 m|DEPRECATION
-|===
-
-======
-[.include-with-GQLSTATUS-code]
-======
-[cols="<1s,<4"]
-|===
 |GQLSTATUS code
 m|01N01
-|StatusDescription
-a|warn: feature deprecated with replacement. `$thing1` is deprecated. It is replaced by `$thing2`.
-|Severity
-m|WARNING
+|Status description
+a|warn: feature deprecated with replacement.
+`$thing1` is deprecated.
+It is replaced by `$thing2`.
 |Classification
 m|DEPRECATION
+|SeverityLevel
+m|WARNING
 |===
-======
-=====
 
 [#_security_notifications]
 == `SECURITY` category
@@ -2270,24 +2090,40 @@ Verify that this is the intended behavior of your query or command.
 m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
 a|`<command>` has no effect.*
-|Severity
-m|INFORMATION
+|Descriptions
+a|
+- The user already has the role. See Status Codes documentation for more information.
+- The user does not have the role. See Status Codes documentation for more information.
+- The role already has the privilege. See Status Codes documentation for more information.
+- The role does not have the privilege. See Status Codes documentation for more information.
 |Category
 m|SECURITY
+|GQLSTATUS code
+m|00N71
+|Status description
+|note: successful completion - role or privilege not assigned.
+`$cmd` has no effect.
+The role or privilege is not assigned.
+|Classification
+m|SECURITY
+|SeverityLevel
+m|INFORMATION
 |===
 
-*_`<command>` could be either the full command given by the user or a subset of the given command._
+*_``<command>`` and `cmd` could be either the full command given by the user or a subset of the given command._
 
 .Granting a role to a user who already has that role
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
-[source, cypher]
+[source,cypher]
 ----
 GRANT ROLE admin TO john
 ----
-
-Full title of the returned code::
+Title of the returned code::
 `GRANT ROLE admin TO john` has no effect.
 
 Description of the returned code::
@@ -2295,10 +2131,36 @@ The user already has the role. See Status Codes documentation for more informati
 
 Suggestions for improvement::
 Verify that this is the intended role and user.
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source,cypher]
+----
+GRANT ROLE admin TO john
+----
+
+Returned GQLSTATUS code::
+00N71
+
+Returned status description::
+note: successful completion - role or privilege not assigned.
+`GRANT ROLE admin TO john` has no effect.
+The role or privilege is not assigned.
+
+Suggestions for improvement::
+Verify that this is the intended role and user.
+
+======
+=====
 
 .Revoking a role from a user who does not have that role
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2306,7 +2168,7 @@ Command::
 REVOKE ROLE admin, reader FROM jane
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE ROLE reader FROM jane` has no effect.
 
 Description of the returned code::
@@ -2314,11 +2176,35 @@ The user does not have the role. See Status Codes documentation for more informa
 
 Suggestions for improvement::
 Verify that this is the intended role and user.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE admin, reader FROM jane
+----
+
+Returned GQLSTATUS code::
+00N71
+
+Returned status description::
+note: successful completion - role or privilege not assigned.
+`REVOKE ROLE reader FROM jane` has no effect.
+The role or privilege is not assigned.
+
+Suggestions for improvement::
+Verify that this is the intended role and user.
+======
+=====
 
 .Granting or denying a privilege to a role that already has that privilege
-====
 // This command returns 2 notifications, one for NODES and one for RELATIONSHIPS.
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2326,7 +2212,7 @@ Command::
 GRANT TRAVERSE ON GRAPH * TO reader
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `GRANT TRAVERSE ON GRAPH * NODE * TO reader` has no effect.
 
 Description of the returned code::
@@ -2334,10 +2220,35 @@ The role already has the privilege. See Status Codes documentation for more info
 
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
-====
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+GRANT TRAVERSE ON GRAPH * TO reader
+----
+
+Returned GQLSTATUS code::
+00N71
+
+Returned status description::
+note: successful completion - role or privilege not assigned.
+`GRANT TRAVERSE ON GRAPH * TO reader` has no effect.
+The role or privilege is not assigned.
+
+Suggestions for improvement::
+Verify that this is the intended privilege and role.
+======
+=====
 
 .Revoking a privilege from a role that does not have that privilege
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2345,7 +2256,7 @@ Command::
 REVOKE WRITE ON GRAPH * FROM reader
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
 
 Description of the returned code::
@@ -2353,7 +2264,30 @@ The role does not have the privilege. See Status Codes documentation for more in
 
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Command::
++
+[source, cypher]
+----
+REVOKE WRITE ON GRAPH * FROM reader
+----
+
+Returned GQLSTATUS code::
+00N71
+
+Returned status description::
+note: successful completion - role or privilege not assigned.
+`REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
+The role or privilege is not assigned.
+
+Suggestions for improvement::
+Verify that this is the intended privilege and role.
+
+======
+=====
 
 [#_neo_clientnotification_security_impossiblerevokecommand]
 === ImpossibleRevokeCommand
@@ -2365,16 +2299,31 @@ Verify that this is the intended privilege and role.
 m|Neo.ClientNotification.Security.ImpossibleRevokeCommand
 |Title
 a|`<command>` has no effect.*
-|Severity
-m|WARNING
+|Description
+|Role does not exist. Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
 |Category
 m|SECURITY
+|GQLSTATUS code
+m|01N70
+|Status description
+a|warn: impossible revoke command. `cmd` has no effect. $msg
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+|Classification
+m|SECURITY
+|SeverityLevel
+m|WARNING
 |===
 
-*_`<command>` could be either the full command given by the user or a subset of the given command._
+*_``<command>`` and `cmd` could be either the full command given by the user or a subset of the given command._
 
 .Revoking a non-existing role from a user
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2382,7 +2331,7 @@ Command::
 REVOKE ROLE manager, reader FROM jane
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE ROLE manager FROM jane` has no effect.
 
 Description of the returned code::
@@ -2392,10 +2341,36 @@ See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE manager, reader FROM jane
+----
+
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE ROLE manager FROM jane` has no effect.
+Role does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Verify that this is the intended role and that it is spelled correctly.
+======
+=====
 
 .Revoking a role from a non-existing user
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2403,20 +2378,49 @@ Command::
 REVOKE ROLE reader FROM alice
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE ROLE reader FROM alice` has no effect.
 
 Description of the returned code::
-User does not exist. Make sure nothing is misspelled.
+User does not exist.
+Make sure nothing is misspelled.
 This notification will become an error in a future major version.
-See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended user and that it is spelled correctly.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE reader FROM alice
+----
+
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE ROLE reader FROM alice` has no effect.
+User does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
+o
+Suggestions for improvement::
+Verify that this is the intended user and that it is spelled correctly.
+======
+=====
+
 
 .Revoking a privilege from a non-existing role
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2424,7 +2428,7 @@ Command::
 REVOKE GRANT WRITE ON GRAPH * FROM manager
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
 
 Description of the returned code::
@@ -2434,10 +2438,37 @@ See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT WRITE ON GRAPH * FROM manager
+----
+
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
+Role does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Verify that this is the intended role and that it is spelled correctly.
+======
+=====
 
 .Revoking a privilege on a non-existing graph from a role
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2445,24 +2476,46 @@ Command::
 REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
 
 Description of the returned code::
-// We use 'Database' here for multiple reasons
-// - The user fixes the issue by doing 'create database', not 'create graph'.
-// - This matches the existing behaviour when granting the privilege.
-// - It is easier to implement this way.
-Database 'neo3j' does not exist. Make sure nothing is misspelled.
+Database `neo3j` does not exist. Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended graph and that it is spelled correctly.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
+----
+
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
+Database `neo3j` does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Verify that this is the intended graph and that it is spelled correctly.
+======
+=====
 
 .Revoking a privilege on a non-existing database from a role
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2470,20 +2523,48 @@ Command::
 REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
 
 Description of the returned code::
-Database 'neo3j' does not exist. Make sure nothing is misspelled.
+Database `neo3j` does not exist. Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended database and that it is spelled correctly.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
+----
+
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
+Database `neo3j` does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Verify that this is the intended database and that it is spelled correctly.
+
+======
+=====
+
 
 .Revoking a privilege from a role with wildcard graph parameter
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Parameter::
 +
 [source, javascript]
@@ -2499,7 +2580,7 @@ Command::
 REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
 
 Description of the returned code::
@@ -2510,10 +2591,46 @@ See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Parameter::
++
+[source, javascript]
+----
+{
+    "graph": "*"
+}
+----
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
+----
 
-.Revoking a privilege from a role with wildcard database parameter
-====
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
+Database `*` does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
+
+
+======
+=====
+
+.Revoking a privilege from a role with a wildcard database parameter
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Parameter::
 +
 [source, javascript]
@@ -2529,7 +2646,7 @@ Command::
 REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
 
 Description of the returned code::
@@ -2540,50 +2657,177 @@ See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Use `DATABASE *` without the parameter to revoke the privilege on all databases.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+
+Parameter::
++
+[source, javascript]
+----
+{
+    "database": "*"
+}
+----
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC
+----
+
+Returned GQLSTATUS code::
+01N70
+
+Returned status description::
+warn: impossible revoke command.
+`REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
+Database `*` does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Use `DATABASE *` without the parameter to revoke the privilege on all databases.
+
+======
+=====
 
 [#_topology_notifications]
 == `TOPOLOGY` category
 
 Topology notifications provide additional information related to managing databases and servers.
 
-[#_neo_clientnotification_cluster_cordonedserversexistedduringallocation]
-=== CordonedServersExistedDuringAllocation
-
-.When is this notification returned?
-[TIP]
-====
-When a Cypher administration command triggers an allocation decision and some of the servers are cordoned.
-For example, `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SERVER[S]`, and `ALTER DATABASE` return this notification. However, `REALLOCATE DATABASES` requires that there are no cordoned servers and, therefore, does not return it.
-====
+[#_neo_clientnotification_cluster_serveralreadyenabled]
+=== ServerAlreadyEnabled
 
 .Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j code
-m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
+m|Neo.ClientNotification.Cluster.ServerAlreadyEnabled
 |Title
-a| Cordoned servers existed when making an allocation decision.
-|Severity
-m|INFORMATION
+a| `<command>` has no effect.
+|Description
+a|Server `%s` is already enabled.
+Verify that this is the intended server.
 |Category
 m|TOPOLOGY
+|GQLSTATUS code
+m|00N80
+|Status description
+a|note: successful completion - server already enabled.
+`ENABLE SERVER` has no effect.
+Server `$server` is already enabled.
+Verify that this is the intended server.
+|Classification
+m|TOPOLOGY
+|SeverityLevel
+m|INFORMATION
 |===
 
-.Cordoned servers existed during an allocation decision
-====
-The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
-
+.Enabling an already enabled server
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
 ----
-CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
+ENABLE SERVER "123e4567-e89b-12d3-a456-426614174000"
 ----
 
 Description of the returned code::
-Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
-====
+Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
+Verify that this is the intended server.
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+ENABLE SERVER "123e4567-e89b-12d3-a456-426614174000"
+----
+
+Returned GQLSTATUS code::
+00N80
+
+Returned status description::
+note: successful completion - server already enabled.
+`ENABLE SERVER` has no effect.
+Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
+Verify that this is the intended server.
+
+======
+=====
+
+[#_neo_clientnotification_cluster_serveralreadycordoned]
+=== ServerAlreadyCordoned
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Cluster.ServerAlreadyCordoned
+|Title
+a| `<command>` has no effect.
+|Description
+a|Server `%s` is already cordoned.
+Verify that this is the intended server.
+|Category
+m|TOPOLOGY
+|GQLSTATUS code
+m|00N81
+|Status description
+a|note: successful completion - server already cordoned.
+`CORDON SERVER` has no effect.
+Server `$server` is already cordoned.
+Verify that this is the intended server.
+|Classification
+m|TOPOLOGY
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Cordoning an already cordoned server
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+CORDON SERVER "123e4567-e89b-12d3-a456-426614174000"
+----
+
+Description of the returned code::
+Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
+Verify that this is the intended server.
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+CORDON SERVER "123e4567-e89b-12d3-a456-426614174000"
+----
+
+Returned GQLSTATUS code::
+00N81
+
+Returned status description::
+note: successful completion - server already cordoned.
+`CORDON SERVER` has no effect.
+Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
+Verify that this is the intended server.
+
+======
+=====
 
 [#_neo_clientnotification_cluster_nodatabasesreallocated]
 === NoDatabasesReallocated
@@ -2595,14 +2839,28 @@ Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact a
 m|Neo.ClientNotification.Cluster.NoDatabasesReallocated
 |Title
 a| `<command>` has no effect.
-|Severity
-m|INFORMATION
+|Description
+a| No databases were reallocated. No better allocation is currently possible.
 |Category
 m|TOPOLOGY
+|GQLSTATUS code
+m|00N82
+|Status description
+a|note: successful completion - no databases reallocated.
+`REALLOCATE DATABASES` has no effect.
+No databases were reallocated.
+No better allocation is currently possible.
+|Classification
+m|TOPOLOGY
+|SeverityLevel
+m|INFORMATION
 |===
 
 .Reallocating databases resulted in no allocation changes
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2622,7 +2880,107 @@ For example, when there are three servers, each hosting databases `foo` and `bar
 **Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation.
 For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
 Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REALLOCATE DATABASES
+----
+
+Returned GQLSTATUS code::
+00N82
+
+Returned status description::
+note: successful completion - no databases reallocated.
+`REALLOCATE DATABASES` has no effect.
+No databases were reallocated.
+No better allocation is currently possible.
+
+Example scenarios::
+**Scenario 1:** The cluster is already balanced.
+For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
++
+
+**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation.
+For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
+Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
+
+======
+=====
+
+[#_neo_clientnotification_cluster_cordonedserversexistedduringallocation]
+=== CordonedServersExistedDuringAllocation
+
+This notification is returned when a Cypher administration command triggers an allocation decision and some of the servers are cordoned.
+For example, `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SERVER[S]`, and `ALTER DATABASE` return this notification. However, `REALLOCATE DATABASES` requires that there are no cordoned servers and, therefore, does not return it.
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
+|Title
+a| Cordoned servers existed when making an allocation decision.
+|Description
+a| Server(s) `%s` are cordoned. This can impact allocation decisions.
+|Category
+m|TOPOLOGY
+|GQLSTATUS code
+m|00N83
+|Status description
+a|note: successful completion - cordoned servers existed during allocation.
+Cordoned servers existed when making an allocation decision.
+Server(s) `$server_list` are cordoned.
+This can impact allocation decisions.
+|Classification
+m|TOPOLOGY
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Cordoned servers existed during an allocation decision
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
+
+Command::
++
+[source, cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
+----
+
+Description of the returned code::
+Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
+======
+[.include-with-GQLSTATUS-code]
+======
+The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
+
+Command::
++
+[source, cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
+----
+
+Returned GQLSTATUS code::
+00N83
+
+Returned status description::
+note: successful completion - cordoned servers existed during allocation.
+Cordoned servers existed when making an allocation decision.
+Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned.
+This can impact allocation decisions.
+
+======
+=====
+
 
 [#_neo_clientnotification_cluster_requestedtopologymatchedcurrenttopology]
 === RequestedTopologyMatchedCurrentTopology
@@ -2634,14 +2992,29 @@ Then, a better allocation would move `foo` from server 1 to server 3, but if ser
 m|Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
 |Title
 a| `<command>` has no effect.
-|Severity
-m|INFORMATION
+|Description
+a|The requested topology matched the current topology.
+No allocations were changed.
 |Category
 m|TOPOLOGY
+|GQLSTATUS code
+m|00N84
+|Status description
+a|note: successful completion - requested topology matched current topology.
+`ALTER DATABASE` has no effect.
+The requested topology matched the current topology.
+No allocations were changed.
+|Classification
+m|TOPOLOGY
+|SeverityLevel
+m|INFORMATION
 |===
 
 .Requested topology matched current topology
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
 
 Command::
@@ -2653,39 +3026,29 @@ ALTER DATABASE foo SET TOPOLOGY 2 PRIMARIES 1 SECONDARY
 
 Description of the returned code::
 The requested topology matched the current topology. No allocations were changed.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
 
-
-[#_neo_clientnotification_cluster_serveralreadyenabled]
-=== ServerAlreadyEnabled
-
-.Notification details
-[cols="<1s,<4"]
-|===
-|Neo4j code
-m|Neo.ClientNotification.Cluster.ServerAlreadyEnabled
-|Title
-a| `<command>` has no effect.
-|Severity
-m|INFORMATION
-|Category
-m|TOPOLOGY
-|===
-
-.Enabling an already enabled server
-====
 Command::
 +
 [source, cypher]
 ----
-ENABLE SERVER "123e4567-e89b-12d3-a456-426614174000"
+ALTER DATABASE foo SET TOPOLOGY 2 PRIMARIES 1 SECONDARY
 ----
 
-Description of the returned code::
-Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
-Verify that this is the intended server.
+Returned GQLSTATUS code::
+00N84
 
-====
+Returned status description::
+note: successful completion - requested topology matched current topology.
+`ALTER DATABASE` has no effect.
+The requested topology matched the current topology.
+No allocations were changed.
+
+======
+=====
 
 [#_schema_notifications]
 == `SCHEMA` category
@@ -2704,14 +3067,27 @@ m|Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
 a|`<command>` has no effect.
 |Description
 a|`<conflicting>` already exists.
-|Severity
-m|INFORMATION
+|Description
+a|`%s` already exists.
 |Category
 m|SCHEMA
+|GQLSTATUS code
+m|00NA0
+|Status description
+a|note: successful completion - index or constraint already exists.
+`$cmd` has no effect.
+`$index_constr_pat` already exists.
+|SeverityLevel
+m|INFORMATION
 |===
 
+*_``<command>`` and `cmd` could be either the full command given by the user or a subset of the given command._
+
 .Creating an index when an equivalent index already exists
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Given a range index on `(:Label \{property})` named `existingRangeIndex`.
 
 Command::
@@ -2721,16 +3097,40 @@ Command::
 CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
 
 Full description of the returned code::
 `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Given a range index on `(:Label \{property})` named `existingRangeIndex`.
+
+Command::
++
+[source, cypher]
+----
+CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
+----
+
+Returned GQLSTATUS code::
+00NA0
+
+Returned status description::
+note: successful completion - index or constraint already exists.
+`CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
+`RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
+
+======
+=====
 
 .Creating an index when another unrelated index using that name already exists
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Given a range index on `(:Label \{property})` named `myIndex`.
 
 Command::
@@ -2740,7 +3140,7 @@ Command::
 CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
 
 Full description of the returned code::
@@ -2754,10 +3154,42 @@ Choose a different name for the new index and try again.
 CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Given a range index on `(:Label \{property})` named `myIndex`.
+
+Command::
++
+[source, cypher]
+----
+CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
+----
+
+Returned GQLSTATUS code::
+00NA0
+
+Returned status description::
+note: successful completion - index or constraint already exists.
+`CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
+`RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
+
+Suggestions for improvement::
+Choose a different name for the new index and try again.
++
+[source, cypher]
+----
+CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
+----
+
+======
+=====
 
 .Creating a constraint when an identical constraint already exists
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
 
 Command::
@@ -2767,16 +3199,41 @@ Command::
 CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQUIRE (n.property) IS NODE KEY
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
 
 Full description of the returned code::
 `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
+
+Command::
++
+[source, cypher]
+----
+CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQUIRE (n.property) IS NODE KEY
+----
+
+Returned GQLSTATUS code::
+00NA0
+
+Returned status description::
+note: successful completion - index or constraint already exists.
+`CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
+`CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+
+======
+=====
+
 
 .Creating a constraint when another unrelated constraint using that name already exists
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Given a node key constraint on `(:Label \{property})` named `myConstraint`.
 
 Command::
@@ -2786,7 +3243,7 @@ Command::
 CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
 
 Full description of the returned code::
@@ -2800,7 +3257,36 @@ Choose a different name for the new constraint and try again.
 CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
 ----
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Given a node key constraint on `(:Label \{property})` named `myConstraint`.
+
+Command::
++
+[source, cypher]
+----
+CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
+----
+
+Returned GQLSTATUS code::
+00NA0
+
+Returned status description::
+note: successful completion - index or constraint already exists.
+`CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
+`CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+
+Suggestions for improvement::
+Choose a different name for the new constraint and try again.
++
+[source, cypher]
+----
+CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
+----
+
+======
+=====
 
 [#_neo_clientnotification_schema_indexorconstraintdoesnotexist]
 === IndexOrConstraintDoesNotExist
@@ -2813,15 +3299,24 @@ m|Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
 |Title
 a|`<command>` has no effect.
 |Description
-a|`<name>` does not exist.
-|Severity
-m|INFORMATION
+a|`%s` does not exist.
 |Category
 m|SCHEMA
+|GQLSTATUS code
+m|00NA1
+|Status description
+a|note: successful completion - index or constraint does not exist.
+`$cmd` has no effect.
+`$index_constr_name` does not exist.
+|SeverityLevel
+m|INFORMATION
 |===
 
 .Attempting to drop a non-existing index
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 
 Command::
 +
@@ -2830,7 +3325,7 @@ Command::
 DROP INDEX nonExistingIndex IF EXISTS
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `DROP INDEX nonExistingIndex IF EXISTS` has no effect.
 
 Full description of the returned code::
@@ -2839,10 +3334,35 @@ Full description of the returned code::
 Suggestions for improvement::
 Verify that this is the intended index and that it is spelled correctly.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+DROP INDEX nonExistingIndex IF EXISTS
+----
+
+Returned GQLSTATUS code::
+00NA1
+
+Returned status description::
+note: successful completion - index or constraint does not exist.
+`DROP INDEX nonExistingIndex IF EXISTS` has no effect.
+`nonExistingIndex` does not exist.
+
+Suggestions for improvement::
+Verify that this is the intended index and that it is spelled correctly.
+
+======
+=====
 
 .Attempting to drop a non-existing constraint
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 
 Command::
 +
@@ -2851,7 +3371,7 @@ Command::
 DROP CONSTRAINT nonExistingConstraint IF EXISTS
 ----
 
-Full title of the returned code::
+Title of the returned code::
 `DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
 
 Full description of the returned code::
@@ -2860,11 +3380,32 @@ Full description of the returned code::
 Suggestions for improvement::
 Verify that this is the intended constraint and that it is spelled correctly.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+DROP CONSTRAINT nonExistingConstraint IF EXISTS
+----
 
+Returned GQLSTATUS code::
+00NA1
+
+Returned status description::
+note: successful completion - index or constraint does not exist.
+`DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
+`nonExistingConstraint` does not exist.
+
+Suggestions for improvement::
+Verify that this is the intended constraint and that it is spelled correctly.
+
+======
+=====
 
 [#_generic]
-== `GENERIC` category
+== `GENERIC` notifications
 
 `GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
 
@@ -2878,14 +3419,28 @@ Verify that this is the intended constraint and that it is spelled correctly.
 m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 |Title
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
-|Severity
-m|INFORMATION
+|Description
+|Variable in subquery is shadowing a variable with the same name from the outer scope.
+If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (%s)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|03N60
+|Status description
+a|info: subquery variable shadowing.
+The variable `$var` in the subquery uses the same name as a variable from the outer query.
+Use `WITH $var` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
 |===
 
 .Shadowing of a variable from the outer scope
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -2904,7 +3459,7 @@ If you want to use that variable instead, it must be imported into the subquery 
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the with clause.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
 +
 [source,cypher]
 ----
@@ -2916,8 +3471,45 @@ CALL {
 }
 RETURN *
 ----
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
 
+Returned GQLSTATUS code::
+03N60
+
+Returned status description::
+info: subquery variable shadowing.
+The variable `n` in the subquery uses the same name as a variable from the outer query.
+Use `WITH n` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
++
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  WITH n
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
+======
+=====
 
 [#_neo_clientnotification_statement_parameternotprovided]
 === ParameterNotProvided
@@ -2929,19 +3521,35 @@ RETURN *
 m|Neo.ClientNotification.Statement.ParameterNotProvided
 |Title
 a|The statement refers to a parameter that was not provided in the request.
-|Severity
-m|WARNING
+|Description
+|Did not supply query with enough parameters.
+The produced query plan will not be cached and is not executable without EXPLAIN. (%s)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N60
+|Status description
+a|warn: parameter missing.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param_list`.
+Provide the parameter(s).
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
 
+
 .Using an `EXPLAIN` query with parameters without providing them
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
 ----
-EXPLAIN WITH $param as param RETURN param
+EXPLAIN WITH $param as param
+RETURN param
 ----
 
 Description of the returned code::
@@ -2951,7 +3559,30 @@ The produced query plan will not be cached and is not executable without `EXPLAI
 Suggestions for improvement::
 Provide the parameter to be able to cache the plan.
 
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+EXPLAIN WITH $param as param
+RETURN param
+----
+
+Returned GQLSTATUS code::
+01N60
+
+Returned status description::
+warn: parameter missing.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param`.
+Provide the parameter(s).
+
+Suggestions for improvement::
+Provide the parameter to be able to cache the plan.
+======
+=====
+
 
 [#_neo_clientnotification_procedure_procedurewarning]
 === ProcedureWarning
@@ -2963,22 +3594,27 @@ Provide the parameter to be able to cache the plan.
 m|Neo.ClientNotification.Procedure.ProcedureWarning
 |Title
 a|The query used a procedure that generated a warning.
-|Severity
-m|WARNING
+|Description
+|The query used a procedure that generated a warning. (%s)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N62
+|Status description
+a|warn: procedure execution warning.
+The procedure `$proc` generates the warning `$msg`.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
 
+
+[role=label--new-5.4]
 [#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
 === UnsatisfiableRelationshipTypeExpression
 
-label:introduced-in-Neo4j-5.4[Introduced in Neo4j 5.4]
-
-.When is this notification returned?
-[TIP]
-====
 When matching on a relationship type expression that can never be satisfied, for example asking for zero, more than one or contradictory types.
-====
 
 .Notification category details
 [cols="<1s,<4"]
@@ -2987,14 +3623,27 @@ When matching on a relationship type expression that can never be satisfied, for
 m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 |Title
 a|The query contains a relationship type expression that cannot be satisfied.
-|Severity
-m|WARNING
+|Description
+|Relationship type expression cannot possibly be satisfied. (%s)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N61
+|Status description
+a|warn: unsatisfiable relationship type expression.
+The expression `$label_expr` cannot be satisfied because relationships must have exactly one type.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
 
+
 .Matching on a relationship type expression that can never be satisfied
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -3003,12 +3652,28 @@ MATCH ()-[r:R1&R2]->() RETURN r
 ----
 Description of the returned code::
 Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be fulfilled by any relationship. Relationships must have exactly one type.)
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r:R1&R2]->() RETURN r
+----
 
+Returned GQLSTATUS code::
+01N61
+
+Returned status description::
+warn: unsatisfiable relationship type expression.
+The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
+======
+=====
+
+[role=label--new-5.5]
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
 === RepeatedRelationshipReference
-
-label:introduced-in-Neo4j-5.5[Introduced in Neo4j 5.5]
 
 .Notification category details
 [cols="<1s,<4"]
@@ -3017,14 +3682,29 @@ label:introduced-in-Neo4j-5.5[Introduced in Neo4j 5.5]
 m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
 |Title
 a|The query returns no results because a relationship variable is bound more than once.
-|Severity
-m|WARNING
+|Description
+a|
+- A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (%s)
+- A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (%s)
 |Category
 m|GENERIC
+|GQLSTATUS code
+m|01N63
+|Status description
+a|
+warn: repeated relationship reference. `$var` is repeated in `$pat`, which leads to no results.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
 |===
 
+
 .Binding a relationship variable more than once
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -3041,10 +3721,38 @@ Use one pattern to match all relationships that start with a node with the label
 ----
 MATCH (:A)-[r]->(:B) RETURN r
 ----
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
+----
+
+Returned GQLSTATUS code::
+01N63
+
+Returned status description::
+warn: repeated relationship reference.
+`r` is repeated in `(:A)-[r]->(), ()-[r]->(:B)`, which leads to no results.
+
+Suggestions for improvement::
+Use one pattern to match all relationships that start with a node with the label `A` and end with a node with the label `B`:
++
+[source, cypher, role="noplay"]
+----
+MATCH (:A)-[r]->(:B) RETURN r
+----
+======
+=====
 
 .Binding a variable-length relationship variable more than once (when run on version 5.6 or newer)
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Query::
 +
 [source,cypher]
@@ -3052,5 +3760,24 @@ Query::
 MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 ----
 Description of the returned code::
-A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
-====
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
+----
+
+Returned GQLSTATUS code::
+01N63
+
+Returned status description::
+warn: repeated relationship reference.
+`r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
+======
+=====
+
