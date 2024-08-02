@@ -2081,7 +2081,7 @@ Security notifications indicate that the result of the query or command might ha
 Verify that this is the intended behavior of your query or command.
 
 [#_neo_clientnotification_security_commandhasnoeffect]
-=== CommandHasNoEffect
+=== Role or privilege not assigned
 
 .Notification details
 [cols="<1s,<4"]
@@ -2092,9 +2092,7 @@ m|Neo.ClientNotification.Security.CommandHasNoEffect
 a|`<command>` has no effect.*
 |Descriptions
 a|
-- The user already has the role. See Status Codes documentation for more information.
 - The user does not have the role. See Status Codes documentation for more information.
-- The role already has the privilege. See Status Codes documentation for more information.
 - The role does not have the privilege. See Status Codes documentation for more information.
 |Category
 m|SECURITY
@@ -2112,49 +2110,6 @@ m|INFORMATION
 
 *_``<command>`` and `cmd` could be either the full command given by the user or a subset of the given command._
 
-.Granting a role to a user who already has that role
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source,cypher]
-----
-GRANT ROLE admin TO john
-----
-Title of the returned code::
-`GRANT ROLE admin TO john` has no effect.
-
-Description of the returned code::
-The user already has the role. See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended role and user.
-
-======
-[.include-with-GQLSTATUS-code]
-======
-Command::
-+
-[source,cypher]
-----
-GRANT ROLE admin TO john
-----
-
-Returned GQLSTATUS code::
-00N71
-
-Returned status description::
-note: successful completion - role or privilege not assigned.
-`GRANT ROLE admin TO john` has no effect.
-The role or privilege is not assigned.
-
-Suggestions for improvement::
-Verify that this is the intended role and user.
-
-======
-=====
 
 .Revoking a role from a user who does not have that role
 [.tabbed-example]
@@ -2196,51 +2151,6 @@ The role or privilege is not assigned.
 
 Suggestions for improvement::
 Verify that this is the intended role and user.
-======
-=====
-
-.Granting or denying a privilege to a role that already has that privilege
-// This command returns 2 notifications, one for NODES and one for RELATIONSHIPS.
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-GRANT TRAVERSE ON GRAPH * TO reader
-----
-
-Title of the returned code::
-`GRANT TRAVERSE ON GRAPH * NODE * TO reader` has no effect.
-
-Description of the returned code::
-The role already has the privilege. See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended privilege and role.
-
-======
-[.include-with-GQLSTATUS-code]
-======
-Command::
-+
-[source, cypher]
-----
-GRANT TRAVERSE ON GRAPH * TO reader
-----
-
-Returned GQLSTATUS code::
-00N71
-
-Returned status description::
-note: successful completion - role or privilege not assigned.
-`GRANT TRAVERSE ON GRAPH * TO reader` has no effect.
-The role or privilege is not assigned.
-
-Suggestions for improvement::
-Verify that this is the intended privilege and role.
 ======
 =====
 
@@ -2288,6 +2198,130 @@ Verify that this is the intended privilege and role.
 
 ======
 =====
+
+
+[#_neo_clientnotification_security_roleorprivilegealreadyassigned]
+=== Role or privilege already assigned
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Security.CommandHasNoEffect
+|Title
+a|`<command>` has no effect.*
+|Descriptions
+a|
+- The user already has the role. See Status Codes documentation for more information.
+- The role already has the privilege. See Status Codes documentation for more information.
+|Category
+m|SECURITY
+|GQLSTATUS code
+m|00N70
+|Status description
+|note: successful completion - role or privilege already assigned.
+`$cmd` has no effect.
+The role or privilege is already assigned.
+|Classification
+m|SECURITY
+|SeverityLevel
+m|INFORMATION
+|===
+
+*_``<command>`` and `cmd` could be either the full command given by the user or a subset of the given command._
+
+
+.Granting a role to a user who already has that role
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Command::
++
+[source,cypher]
+----
+GRANT ROLE admin TO john
+----
+Title of the returned code::
+`GRANT ROLE admin TO john` has no effect.
+
+Description of the returned code::
+The user already has the role. See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended role and user.
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source,cypher]
+----
+GRANT ROLE admin TO john
+----
+
+Returned GQLSTATUS code::
+00N70
+
+Returned status description::
+note: successful completion - role or privilege already assigned.
+`GRANT ROLE admin TO john` has no effect.
+The role or privilege is already assigned.
+
+Suggestions for improvement::
+Verify that this is the intended role and user.
+
+======
+=====
+
+
+.Granting or denying a privilege to a role that already has that privilege
+// This command returns 2 notifications, one for NODES and one for RELATIONSHIPS.
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+GRANT TRAVERSE ON GRAPH * TO reader
+----
+
+Title of the returned code::
+`GRANT TRAVERSE ON GRAPH * NODE * TO reader` has no effect.
+
+Description of the returned code::
+The role already has the privilege. See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended privilege and role.
+
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+GRANT TRAVERSE ON GRAPH * TO reader
+----
+
+Returned GQLSTATUS code::
+00N70
+
+Returned status description::
+note: successful completion - role or privilege already assigned.
+`GRANT TRAVERSE ON GRAPH * TO reader` has no effect.
+The role or privilege is already assigned.
+
+Suggestions for improvement::
+Verify that this is the intended privilege and role.
+======
+=====
+
+
 
 [#_neo_clientnotification_security_impossiblerevokecommand]
 === Impossible revoke command
