@@ -892,7 +892,7 @@ Verify that the spelling is correct or create the database for the command to ta
 |Classification
 m|UNRECOGNIZED
 |SeverityLevel
-m|WARNING
+m|INFORMATION
 |===
 
 .Setting the `home` database to a database that does not exist
@@ -1241,7 +1241,7 @@ SHOW INDEXES YIELD *
 
 [role=label--deprecated-5.14]
 [#_neo_clientnotification_statement_runtimeexperimental]
-=== RuntimeExperimental  
+=== RuntimeExperimental
 
 [NOTE]
 ====
