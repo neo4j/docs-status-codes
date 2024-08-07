@@ -3,6 +3,7 @@
 *** xref:errors/all-errors.adoc[]
 ** xref:notifications/index.adoc[]
 *** xref:notifications/all-notifications.adoc[]
+*** xref:notifications/gqlstatus-info-codes.adoc[]
 ** xref:changelogs.adoc[]
 
 
