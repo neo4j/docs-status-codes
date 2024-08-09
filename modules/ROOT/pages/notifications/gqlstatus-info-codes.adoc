@@ -26,29 +26,18 @@ GQL requires several new statuses that are not covered by the current Neo4j noti
 | 02000
 | No data
 | 
-| Successful completion with an empty result 
-
-| 01000
-| Warning
-| 
-|
-
-| 03000
-| Informational
-| 
-| 
-
+| Successful completion with an empty result
 |===
 
 In summary:
 
 * _successful completion_ (00000) is raised to indicate successful completion with a regular non-empty result.
-* _no data_ (02000) is raised to indicate successful completion with an empty result.
 * _successful completion — omitted result_ (00001) is raised to indicate successful completion with an omitted result.
+* _no data_ (02000) is raised to indicate successful completion with an empty result.
 
 In the documentation, we call them `SUCCESS`, `OMITTED RESULT`, and `NO DATA`
 
-All query executions always return one of `SUCCESS`, `OMITTED RESULT`, or `NO DATA` results.
+All query executions always either return one of `SUCCESS`, `OMITTED RESULT`, or `NO DATA` results or result in an error.
 
 link:https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/[`EXPLAIN` queries] always give `OMITTED RESULT`.
 
