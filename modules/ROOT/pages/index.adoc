@@ -1,9 +1,17 @@
+
+[[status-codes]]
+ifdef::backend-pdf[]
+= Neo4j 5 Status Codes
+endif::[]
+ifndef::backend-pdf[]
+= Introduction
+endif::[]
 :description: The Neo4j status codes for Neo4j version {neo4j-version}.
 :neo4j-buildnumber: {neo4j-version}
-[[status-codes]]
-= Neo4j Status Codes v5
+
 
 This document details all status codes that a Neo4j DBMS may return to indicate the outcome of a request.
+
 
 == Format
 
@@ -13,6 +21,7 @@ Each Neo4j status code follows the same format:
 -----
 Neo.[Type].[SubType].[Name]
 -----
+
 
 == Types of Neo4j status codes
 
