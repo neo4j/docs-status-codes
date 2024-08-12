@@ -616,7 +616,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 =====
 
 [#_neo_clientnotification_statement_codegenerationfailed]
-=== Unsupported runtime - CodeGenerationFailed
+=== Failed code generation
 
 The `CodeGenerationFailed` notification is created when it is not possible to generate a code for a query, for example, when the query is too big.
 For more information about the specific query, see the stack trace in the _debug.log_ file.
@@ -633,10 +633,10 @@ a|The database was unable to generate code for the query. A stacktrace can be fo
 |Category
 m|PERFORMANCE
 |GQLSTATUS code
-m|01N40
+m|03N96
 |Status description
-a|warn: unsupported runtime.
-The query cannot be executed with `preparser_input1`, `preparser_input2` is used. Cause: `$msg`.
+a|info: failed code generation.
+The database was unable to generate code for the query. A stacktrace can be found in the debug.log. Cause: $msg.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
