@@ -35,7 +35,7 @@ In summary:
 * _successful completion — omitted result_ (00001) is raised to indicate successful completion with an omitted result.
 * _no data_ (02000) is raised to indicate successful completion with an empty result.
 
-In the documentation, we call them `SUCCESS`, `OMITTED RESULT`, and `NO DATA`
+In the documentation, these results are referred to as `SUCCESS`, `OMITTED RESULT`, and `NO DATA`.
 
 All query executions always either return one of `SUCCESS`, `OMITTED RESULT`, or `NO DATA` results or result in an error.
 
