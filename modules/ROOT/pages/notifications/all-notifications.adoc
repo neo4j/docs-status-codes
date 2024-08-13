@@ -636,7 +636,7 @@ m|PERFORMANCE
 m|03N96
 |Status description
 a|info: failed code generation.
-The database was unable to generate code for the query. A stacktrace can be found in the debug.log. Cause: $msg.
+Failed to generate code, falling back to interpreted $enginetype engine. A stacktrace can be found in the debug.log. Cause: $msg.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
