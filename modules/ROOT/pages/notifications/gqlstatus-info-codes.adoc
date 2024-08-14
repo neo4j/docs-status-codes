@@ -1,7 +1,7 @@
 :description: The page contains GQLSTATUS info codes producing results such as SUCCESS, NO DATA, and OMITTED RESULT.
 
 [[gql-status-info-codes]]
-= Primary GQLSTATUS codes
+= General GQLSTATUS codes
 
 GQL requires several new statuses that are not covered by the current Neo4j notification framework.
 
