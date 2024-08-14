@@ -3,7 +3,7 @@
 [[notifications]]
 = Notification codes
 
-Notification codes are Neo4j status codes of type `ClientNotification`and are returned by the server with severity `WARNING` or `INFORMATION`.
+Notification codes are Neo4j status codes of type `ClientNotification` and are returned by the server with severity `WARNING` or `INFORMATION`.
 Contrary to errors, notifications are only returned if the execution of the query is successful.
 
 [[notification-format]]
