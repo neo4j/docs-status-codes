@@ -9,6 +9,9 @@ The driver receives these notifications and sends them to the client, which disp
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
 The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the GQL standard.
 
+This page describes both the Neo4j Notification and the GQL-status object frameworks, how they are structured, the objects they provide for notifications, and how to interpret them.
+It also explains the server notification grouping and filtering, the notification internals, and the server-driver compatibility for both the Notification and GqlStatusObject APIs.
+
 [[neo4j-notification-object]]
 == Neo4j notification object
 
@@ -245,8 +248,8 @@ The following notification groups exist in Neo4j, ordered by severity:
 |
 |===
 
-[[server-driver-communication]]
-== Server-driver communication
+[[notification-internals]]
+== Notification internals
 
 The server and driver communicate with each other through the Bolt protocol.
 During the handshake process, they agree on using the newest possible Bolt protocol version that both the server and the driver support.
@@ -261,14 +264,10 @@ Driver-side notification configuration filters notifications by severity and/or 
 For more information, see <<notification-grouping-and-filtering, Server notification grouping and filtering>>.
 
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
-This can be used using the `.getGqlStatusObjects()` method in the Result Core API or by using the latest Neo4j drivers. +
-The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the GQL standard.
-It includes GQLSTATUS code, StatusDescription (which contains the status of the execution - successful completion, warnings, no data, or information, and a message), and DiagnosticRecord.
-
-This page describes both the Neo4j Notification and the GQL-status object frameworks, how they are structured, the objects they provide for notifications, how to interpret them, and the server and driver compatibility for both frameworks.
+This can be used using the `.getGqlStatusObjects()` method in the Result Core API or by using the latest Neo4j drivers.
 
 [[server-driver-compatibility]]
-== Server-driver compatibility
+== Server-driver version compatibility
 
 The GqlStatusObject API is available in Neo4j 5.22 and later versions on the server side and in the 5.23 driver and later versions on the driver side.
 The current Notification API is still present, and the GqlStatusObject API can be used in parallel with it.
