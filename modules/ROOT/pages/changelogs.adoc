@@ -1,6 +1,13 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
+== Neo4j 5.23
+
+From version 5.23, Neo4j supports GQLSTATUS codes in addition to the existing Neo4j `ClientNotification` codes when used with the latest drivers and configured to use both the Neo4j and GQLSTATUS framework. +
+GQLSTATUS codes provide diagnostic information about the status of a Cypher query or command execution in compliance with the GQL standard.
+It includes the GQLSTATUS code, the execution outcome (successful completion, warnings, no data, information), the status description, and the diagnostic record.
+For more information, see xref:notifications/index.adoc[Server notifications] and xref:notifications/all-notifications.adoc[List of all server notification codes].
+
 == Neo4j 5.17
 
 **New:**

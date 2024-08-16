@@ -1,29 +1,26 @@
 :description: The Neo4j notifications for Neo4j version {neo4j-version}.
 
 [[notifications]]
-= Returned server notifications
+= Server notifications
 
-The Neo4j server returns codes of type `ClientNotification` in response to successful query execution.
-All notifications have a severity level, which can be `WARNING`, `WARNING OR INFORMATION`, or `INFORMATION` and can be used to improve the quality of the query or to provide additional information about the query execution.
+The Neo4j server returns notifications in response to successful query execution to give the users some advice on how to improve the quality of the query or to provide additional information about the query execution.
 
-From Neo4j 5.23, Neo4j supports GQLSTATUS codes in addition to the existing Neo4j codes.
-GQLSTATUS codes are returned as part of the result summary and provide diagnostic information about the status of a Cypher query or command execution, including the outcome of the execution (successful completion, warnings, no data, information), the diagnostic code, and the diagnostic message.
+From version 5.23, Neo4j supports GQL-status notifications in addition to the existing Neo4j client notifications when used with the latest drivers and configured to use both the Neo4j and GQLSTATUS framework. +
+GQL-status notifications provide diagnostic information about the status of a Cypher query or command execution in compliance with the GQL standard.
+It includes the GQLSTATUS code, the execution outcome (successful completion, warnings, no data, information), the status description, and the diagnostic record.
 
-The following sections describe the Neo4j and the GQLSTATUS notification codes.
+This page describes both the Neo4j and the GQL-status notification frameworks, how they are structured, their notification objects, and how to interpret them.
 
-[[notification-object]]
-== Notification object
 
-The notification object contains diagnostic information representing the status of a Cypher query or command execution, including the outcome of the execution, the diagnostic code, and the diagnostic message.
-The notification object is part of the result summary and is returned by the server with severity `WARNING` or `INFORMATION`.
+[[neo4j-notification-object]]
+== Neo4j notification object
+
+The Neo4j notification object contains diagnostic information representing the status of a Cypher query or command execution, including the neo4j `ClientNotification` code, title, severity level, category, and position in the query text where the notification is relevant.
+Depending on the application, some of the fields from the notification object might not be visible.
 
 The notification object consists of the following fields:
 
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-
+.Neo4j notification object
 [cols="<1s,<4"]
 |===
 |Neo4j code
@@ -40,37 +37,164 @@ a|The category of the notification.
 |Position
 a|The position, given by row and column, where the notification is relevant in the query text.
 |===
-======
 
-[.include-with-GQLSTATUS-code]
-======
+
+[role=label--version-5.23]
+[[gqlstatus-notification-object]]
+== GQL-status notification object
+
+The Neo4j GQL-status notifications are an implementation-defined subset of the GQL-status objects that cover informational notes and warnings, but not errors, `SUCCESS`, `NO DATA`, or `OMITTED RESULT`.
+For the latter, see <<general-codes-for-success, General codes for success>>.
+
+Each GQL-status object contains diagnostic information about the execution outcome.
+This information includes the GQLSTATUS code, the execution outcome (successful completion, warnings, no data, information), the status description, and the diagnostic record. +
+The main GQL-status object, describing the condition with the greatest precedence, is called the primary GQL-status object.
+The primary GQL-status object is always present in the execution outcome and follows the GQL precedence rules:
+
+. `NO DATA` has precedence over `WARNING`.
+. `WARNING` has precedence over the `SUCCESSFUL COMPLETION` subclass.
+. `SUCCESSFUL COMPLETION` subclass has precedence over `INFORMATIONAL`.
+. `INFORMATIONAL` is the condition with the least precedence.
+
+The primary GQL-status object also includes the Neo4j-specific information, such as the severity level and the classification of the notification, which can be used for filtering.
+For more information about notification grouping and filtering, see <<notification-grouping-and-filtering>>.
+
+The additional GQL-status objects are part of the list of additional GQL-status objects of the execution outcome.
+The list does not follow any specific order and might be empty as well.
+
+The GQL-status object consists of the following fields:
+
+.GQLSTATUS notification object
 [cols="<1s,<4"]
 |===
 |GQLSTATUS code
 a| A 5-character string that is the concatenation of a 2-character class code followed by a 3-character subclass code.
-|Status description
-a|
-|Severity level
-a|The severity can be one of the following:
+|GQLSTATUS description
+a| A human-readable description of the GQLSTATUS, which consists of a condition, a subcondition, and a description.
+The condition and subcondition are the class and subclass codes, respectively.
+| Diagnostic record
+a| Extra information about the status, given as key-value pairs, both on the server and driver side.
+The full diagnostic record can be returned by the `getDiagnosticRecord()` method on the server side and the `diagnosticRecord()` methods on the driver side.
+Additional helper methods are exposed for some useful fields.
+[cols="<1s,<4"]
+!===
+! Field ! Description
+! OPERATION ! The operation that the notification is related to.
+! OPERATION_CODE ! The operation code that the notification is related to.
+! CURRENT_SCHEMA ! The current schema that the notification is related to.
+! severity ! The Neo4j severity level, which can be one of the following:
 
 - `WARNING`: There might be a problem with your query. Please, take a look.
 - `INFORMATION`: The query is correct, but this information can still be useful.
-|Classification
-a|The category of the notification.
-|Position
-a|The position, given by row and column, where the notification is relevant in the query text.
+! classification ! The Neo4j category of the notification.
+! position ! The position, given by row and column, where the notification is relevant in the query text.
+! status_parameters ! A map that contains all variable parts of the status description.
+!===
 |===
-======
-=====
 
-[[notification-categories]]
-== Notification code grouping
 
-All Neo4j notification codes are grouped by category/classification and severity `WARNING`, `WARNING OR INFORMATION`, or `INFORMATION`.
+[[general-codes-for-success]]
+=== General codes for success
 
-The following groups exist, ordered by severity:
+GQL has three general codes for success, indicated by different GQLSTATUS codes in categories S (successful completion) and N (no data), which are not covered by the Neo4j notification framework and are considered to be the default statuses for successful completion, omitted result, and no data, respectively.
+The Neo4j classification, severity, position, and status parameters are not meaningful for these GQL statuses, so they are not included in the diagnostic record and are set to default values either by the server or by the driver.
 
-.Neo4j notification categories
+.GQLSTATUS general codes
+[cols="1,2,1,4", options="header"]
+|===
+|GQLSTATUS
+|Condition
+|Subcondition
+|Description
+
+| 00000
+| Successful completion
+|
+| Successful completion with a regular non-empty result (n > 0 columns, m > 0 rows), for example, a `RETURN` clause with matches.
+
+| 00001
+| Successful completion
+| Omitted result
+| Successful completion with no return columns (n = 0 columns, m = 0 rows), for example, link:https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/[`EXPLAIN` queries].
+
+| 02000
+| No data
+|
+| Successful completion with an empty result (n > 0 columns, m = 0 rows), for example, a `MATCH` clause with no matches.
+|===
+
+GQLSTATUS general codes are filled in by the server unless the server is too old to be aware of GQL-status objects, in which case, it is polyfilled by the driver (see <<server-driver-compatibility, Server - driver compatibility>>).
+The driver tries to deduce `SUCCESS`, `OMITTED RESULT`, or `NO DATA` from the returned number of records and columns.
+If that fails, it uses the GQLSTATUS 02N42 (`no data: unknown subcondition. Unknown GQLSTATUS from old server.`) to indicate that the server did not provide a GQL-status object.
+Then, it poly-fills statuses from the notifications and merges the two lists according to the GQL precedence rules described in <<gqlstatus-notification-object, GQL-status notification object>>.
+
+[[gqlstatus-codes]]
+=== Neo4j-defined GQLSTATUS codes
+
+The Neo4j-defined GQLSTATUS codes are divided into classes and subclasses, where the class code is a 2-character string (one of `00`, `01`, or `03`) and the subclass code is a 3-character string.
+The class code indicates the general condition of the status (such as successful completion, warning, or information), and the subclass code provides more detailed information about the condition, such as classification and messages.
+
+The following table lists the Neo4j-defined groups of GQLSTATUS codes and their meanings:
+
+.GQLSTATUS groups of codes as defined by Neo4j
+[frame="topbot", stripes=odd, grid="cols", cols="<1s,<4"]
+|===
+|GQLSTATUS code
+|*Description*
+
+| 01N0[y]
+| Deprecation warnings
+
+| 01N3[y]
+| Hint warnings
+
+| 01N4[y]
+| Unsupported warnings
+
+| 01N5[y]
+| Unrecognized warnings
+
+| 01N6[y]
+| Generic warnings
+
+| 01N7[y]
+| Security warnings
+
+| 03N9[y]
+| Performance information
+
+| 03N6[y]
+| Generic information
+
+| 00N5[y]
+| Unrecognized information under successful completion
+
+| 00N6[y]
+| Generic information under successful completion
+
+| 00N7[y]
+| Security information under successful completion
+
+| 00N8[y]
+| Topology information under successful completion
+
+|===
+
+[[notification-grouping-and-filtering]]
+== Server notification grouping and filtering
+
+All server notifications are grouped by category (which is called classification in the GQLSTATUS framework) and severity level, which can be one of `WARNING`, `WARNING OR INFORMATION`, or `INFORMATION`.
+
+The driver-side notification configuration used for filtering notifications by category and severity is the same for both Neo4j and GQLSTATUS notifications.
+The driver can filter notifications by category/classification and severity level, and the server will only send notifications that match the driver-side configuration.
+
+The driver can also choose to ignore notifications.
+However, as per the GQLSTATUS framework, the server must always send the primary GQL-status object.
+Therefore, if notifications are off or the notification configuration filtering is set to filter out all notifications, the server will still send the primary GQL-status object with the status `SUCCESSFUL COMPLETION`, `OMITTED RESULT` or `NO DATA`.
+
+The following notification groups exist in Neo4j, ordered by severity:
+
+.Notification groups and severity levels
 [options="header", cols="<1m,<1m,<3,<2"]
 |===
 | CATEGORY/CLASSIFICATION
@@ -124,17 +248,28 @@ The following groups exist, ordered by severity:
 |
 |===
 
-[[role=label--version-5.23]]
-[[gqlstatus-codes]]
-== GQLSTATUS notifications
+[[server-driver-compatibility]]
+== Server-driver compatibility
+
+The server and driver communicate with each other through the Bolt protocol.
+During the handshake process, they agree on using the newest possible Bolt protocol version that both the server and the driver support.
+For more information on the Bolt versions supported by different server versions, see the link:https://neo4j.com/docs/bolt/current/bolt-compatibility[Bolt Protocol documentation].
+
+The GqlStatusObject API is available in Neo4j 5.22 and later versions on the server side and in the 5.23 driver and later versions on the driver side.
+The current Notification API is still present, and the GqlStatusObject API can be used in parallel with it.
+
+To receive the Gql-status notifications, both your server and the driver must support the GqlStatusObject API.
+Drivers that are older than 5.23 send only notifications from the Notification API, even if the server is 5.22 or later.
+
+If the 5.23 driver talks to a server that is too old to be aware of GQL-status objects, the driver tries to deduce `SUCCESS`, `OMITTED RESULT`, or `NO DATA` from the returned number of records and columns.
+If that fails, it uses the GQLSTATUS 02N42 (`no data: unknown subcondition. Unknown GQLSTATUS from old server.`) to indicate that the server did not provide a GQL-status object.
+Then, it poly-fills statuses from the notifications and merges the two lists according to the GQL precedence rules described in <<gqlstatus-notification-object, GQL-status notification object>>.
+
+// The following table illustrates the compatibility between the different server and driver versions for both the current Notification API and the GqlStatusObject API:
+
+// TODO
 
 
 
 
-[[gqlstatus-notification-format]]
-== GQL-status object
-
-In full, the execution outcome succeeds or fails, GQL mandates that it contains an object, called a GQL-status object, representing the diagnostic information. The GQL-status object can be also accompanied with a list of other additional GQL-status objects describing additional diagnostic information related to the execution of the same GQL-request. The list is empty by default, unless the implementation chooses to make the additional GQL-status objects available. The main GQL-status object is called the primary GQL-status object.
-are the GQLSTATUS code and the status description.
-The notification object, which is part of the result summary, consists of the following fields:
 
