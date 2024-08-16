@@ -183,7 +183,7 @@ The following table lists the Neo4j-defined groups of GQLSTATUS codes and their 
 [[notification-grouping-and-filtering]]
 == Server notification grouping and filtering
 
-All server notifications are grouped by category (which is called classification in the GQLSTATUS framework) and severity level, which can be one of `WARNING`, `WARNING OR INFORMATION`, or `INFORMATION`.
+All server notifications are grouped by category (which is called classification in the GqlStatusObject framework) and severity level, which can be one of `WARNING`, `WARNING OR INFORMATION`, or `INFORMATION`.
 
 The driver-side notification configuration used for filtering notifications by category and severity is the same for both Neo4j and GQLSTATUS notifications.
 The driver can filter notifications by category/classification and severity level, and the server will only send notifications that match the driver-side configuration.
