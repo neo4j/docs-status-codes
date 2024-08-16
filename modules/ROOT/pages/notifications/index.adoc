@@ -43,7 +43,7 @@ a|The position, given by row and column, where the notification is relevant in t
 [[gqlstatus-notification-object]]
 == GQL-status notification object
 
-The Neo4j GQL-status notifications are an implementation-defined subset of the GQL-status objects that cover informational notes and warnings, but not errors, `SUCCESS`, `NO DATA`, or `OMITTED RESULT`.
+In the GQL-status object framework, notifications are an implementation-defined subset of the GQL-status objects that cover informational notes and warnings, but not errors, `SUCCESS`, `NO DATA`, or `OMITTED RESULT`.
 For the latter, see <<general-codes-for-success, General codes for success>>.
 
 Each GQL-status object contains diagnostic information about the execution outcome.
