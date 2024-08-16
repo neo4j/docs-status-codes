@@ -9,7 +9,7 @@ From version 5.23, Neo4j supports GQL-status notifications in addition to the ex
 GQL-status notifications provide diagnostic information about the status of a Cypher query or command execution in compliance with the GQL standard.
 It includes the GQLSTATUS code, the execution outcome (successful completion, warnings, no data, information), the status description, and the diagnostic record.
 
-This page describes both the Neo4j and the GQL-status notification frameworks, how they are structured, their notification objects, and how to interpret them.
+This page describes both the Neo4j Notification and the GQL-status object frameworks, how they are structured, the objects they provide for notifications, and how to interpret them.
 
 
 [[neo4j-notification-object]]
