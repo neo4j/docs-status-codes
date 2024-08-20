@@ -26,9 +26,9 @@ The notification object consists of the following fields:
 |Neo4j code
 a|The Neo4j status code in the form of `Neo.ClientNotification.[SubType].[Name]`.
 |Title
-a|The title of the notification.
+a|The title of the Neo4j status code.
 |Description
-a|The description of the Neo4j status code.
+a|The description of the specific notification.
 |Severity level
 a|The severity can be one of the following:
 
