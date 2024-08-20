@@ -82,10 +82,11 @@ Additional helper methods are exposed for some useful fields.
 ! `OPERATION` ! The operation that the notification is related to. Always defaults to empty.
 ! `OPERATION_CODE` ! The operation code that the notification is related to. Always defaults to `0`.
 ! `CURRENT_SCHEMA` ! The current schema that the notification is related to. Always defaults to `/`.
-! `_severity` ! The Neo4j severity level, which can be one of the following:
+! `_severity` a! The Neo4j severity level, which can be one of the following:
 
 - `WARNING`: There might be a problem with your query. Please, take a look.
 - `INFORMATION`: The query is correct, but this information can still be useful.
+
 !`_classification` ! The Neo4j category of the notification.
 ! `_position` ! The position, given by row and column, where the notification is relevant in the query text.
 ! `_status_parameters`! A map that contains all variable parts of the status description.
