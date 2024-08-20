@@ -55,6 +55,14 @@ The type of the status code determines the effect on the transaction.
 
 |===
 
+[NOTE]
+====
+From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
+
+The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the GQL standard.
+It includes GQLSTATUS code, StatusDescription, and DiagnosticRecord.
+For more information, see xref:notifications/index.adoc#gqlstatus-notification-object[GQL-status notification object].
+====
 
 ifndef::backend-pdf[]
 License: link:{common-license-page-uri}[Creative Commons 4.0]

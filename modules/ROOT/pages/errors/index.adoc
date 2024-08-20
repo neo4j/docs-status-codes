@@ -1,7 +1,7 @@
 :description: The Neo4j error codes for Neo4j version {neo4j-version}.
 
-[[notifications]]
-= Error codes
+[[error-codes]]
+= Server errors
 
 Error codes are Neo4j status codes returned by the server when the execution of a query fails.
 They always have the severity level `ERROR`.
