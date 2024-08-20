@@ -74,7 +74,7 @@ a| A human-readable description of the GQLSTATUS, which consists of a condition,
 The condition and subcondition are textual representations of the class and subclass codes, respectively.
 | DiagnosticRecord
 a| Extra information about the status, given as key-value pairs, both on the server and driver side.
-The full diagnostic record can be returned by the `getDiagnosticRecord()` method on the server side and the `diagnosticRecord()` methods on the driver side.
+To retrieve the full diagnostic record, you can use the `diagnosticRecord()` method on both the server and driver sides.
 Additional helper methods are exposed for some useful fields.
 [cols="<1s,<4"]
 !===
