@@ -4049,24 +4049,17 @@ Query::
 MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 ----
 Description of the returned code::
-A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
+====
 
-======
-[.include-with-GQLSTATUS-code]
-======
+.Aggregation skipping a NULL value(when run on version 5.24 or newer)
+====
 Query::
 +
 [source,cypher]
 ----
-MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
+UNWIND [1, NULL, 2] AS i RETURN count(i)
 ----
-
-Returned GQLSTATUS code::
-01N63
-
-Returned status description::
-warn: repeated relationship reference.
-`r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
-======
-=====
-
+Description of the returned code::
+null value eliminated in set function.
+====
