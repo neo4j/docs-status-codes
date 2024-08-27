@@ -248,8 +248,6 @@ The following notification groups exist in Neo4j, ordered by severity:
 | The query uses costly operations and might be slow. Consider if it is possible to rewrite the query in a different way.
 |
 |===
-<<<<<<< HEAD
-=======
 
 [[notification-internals]]
 == Notification internals
