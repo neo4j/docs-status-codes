@@ -125,9 +125,6 @@ The Neo4j classification, severity, position, and status parameters are not mean
 |===
 
 GQLSTATUS general codes are filled in by the server unless the server is too old to be aware of GQL-status objects, in which case, it is polyfilled by the driver (see <<server-driver-compatibility, Server - driver compatibility>>).
-The driver tries to deduce `SUCCESS`, `OMITTED RESULT`, or `NO DATA` from the returned number of records and columns.
-If that fails, it uses the GQLSTATUS 02N42 (`no data: unknown subcondition. Unknown GQLSTATUS from old server.`) to indicate that the server did not provide a GQL-status object.
-Then, it poly-fills statuses from the notifications and merges the two lists according to the GQL precedence rules described in <<gqlstatus-notification-object, GQL-status notification object>>.
 
 [[gqlstatus-codes]]
 === Neo4j-defined GQLSTATUS codes
@@ -276,10 +273,36 @@ The current Notification API is still present, and the GqlStatusObject API can b
 To fully utilize the GqlStatusObject API, both your server and the driver must support it.
 Drivers that are older than 5.23 send only notifications from the Notification API, even if the server is 5.22 or later.
 
-If the 5.23 driver talks to a server that is too old to be aware of GQL-status objects, the driver tries to deduce `SUCCESS`, `OMITTED RESULT`, or `NO DATA` from the returned number of records and columns.
-If that fails, it uses the GQLSTATUS 02N42 (`no data: unknown subcondition. Unknown GQLSTATUS from old server.`) to indicate that the server did not provide a GQL-status object.
-Then, it poly-fills statuses from the notifications and merges the two lists according to the GQL precedence rules described in <<gqlstatus-notification-object, GQL-status notification object>>.
+If a driver of version 5.23 or later talks to a server that is too old to be aware of GQL-status objects, the driver needs to poly-fill the GqlStatusObject API with information.
+The driver tries to deduce `SUCCESS`, `OMITTED RESULT`, or `NO DATA` from the returned number of records and columns.
+If that fails, the general GQLSTATUS code will be set to `02N42` .
+Then, the driver poly-fills the rest of the GQL-status object list with the notifications from the old notification API.
+These will get GQLSTATUS `01N42` for notifictions with severity `WARNING` and `03N42` for notifications with severity `INFORMATION`.
+Finally, the list of poly-filled GQL-status objects is sorted according to the GQL precedence rules described in <<gqlstatus-notification-object, GQL-status notification object>>.
 
+.GQLSTATUS compatibility codes
+[cols="1,2,1,4", options="header"]
+|===
+|GQLSTATUS
+|Condition
+|Subcondition
+|Description
+
+| 01N42
+| Warning
+| Unknown warning
+| Poly-filled notification with severity `WARNING`.
+
+| 02N42
+| No data
+| Unknown subcondition
+| Poly-filled general status when `SUCCESS`, `OMITTED RESULT`, or `NO DATA` cannot be deduced.
+
+| 03N42
+| Informational
+| Unknown notification
+| Poly-filled notification with severity `INFORMATION`.
+|===
 // The following table illustrates the compatibility between the different server and driver versions for both the current Notification API and the GqlStatusObject API:
 
 // TODO
