@@ -2,7 +2,7 @@
 
 
 [[neo4j-errors]]
-= List of all error codes
+= List of all server error codes
 
 This page contains lists of all Neo4j errors, grouped by type.
 
