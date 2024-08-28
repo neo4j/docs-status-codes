@@ -275,9 +275,9 @@ Drivers that are older than 5.23 send only notifications from the Notification A
 
 If a driver of version 5.23 or later talks to a server that is too old to be aware of GQL-status objects, the driver needs to poly-fill the GqlStatusObject API with information.
 The driver tries to deduce `SUCCESS`, `OMITTED RESULT`, or `NO DATA` from the returned number of records and columns.
-If that fails, the general GQLSTATUS code will be set to `02N42` .
+If that fails, the general GQLSTATUS code will be set to `02N42`.
 Then, the driver poly-fills the rest of the GQL-status object list with the notifications from the old notification API.
-These will get GQLSTATUS `01N42` for notifictions with severity `WARNING` and `03N42` for notifications with severity `INFORMATION`.
+These will get GQLSTATUS `01N42` for notifications with severity `WARNING` and `03N42` for notifications with severity `INFORMATION`.
 Finally, the list of poly-filled GQL-status objects is sorted according to the GQL precedence rules described in <<gqlstatus-notification-object, GQL-status notification object>>.
 
 .GQLSTATUS compatibility codes
