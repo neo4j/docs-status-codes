@@ -1163,9 +1163,9 @@ If you plan to create that property key in the future, no change is needed.
 |Neo4j code
 m|Neo.ClientNotification.Statement.AggregationSkippedNull
 |Title
-a|
+a|The query contains an aggregation function that skips null values.
 |Description
-|null value eliminated in set function.
+|The query contains an aggregation function that skips null values.
 |Category
 m|UNRECOGNIZED
 |GQLSTATUS code
@@ -1190,7 +1190,7 @@ Query::
 UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
 ----
 Description of the returned code::
-null value eliminated in set function.
+The query contains an aggregation function that skips null values.
 ======
 [.include-with-GQLSTATUS-code]
 ======
