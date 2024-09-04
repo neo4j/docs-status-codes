@@ -3544,6 +3544,30 @@ RETURN *
 ======
 =====
 
+[#_neo_clientnotification_statement_superfluousoptional]
+=== Superfluous Optional
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.SuperfluousOptional
+|Title
+a|The use of OPTIONAL is superfluous when `CALL` is a unit subquery or a void procedure.
+|Description
+|The use of OPTIONAL is superfluous when `CALL` is a unit subquery or a void procedure.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N61
+|Status description
+a|info: superfluous optional. The use of optional is superfluous when `CALL` is a unit subquery or a void procedure.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
 [#_neo_clientnotification_statement_parameternotprovided]
 === Parameter missing
 
