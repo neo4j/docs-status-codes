@@ -7,7 +7,8 @@
 
 [source, status codes, role="noheader"]
 -----
-Neo.ClientNotification.Statement.SuperfluousOptional
+Neo.ClientNotification.Statement.RedundantOptionalProcedure
+Neo.ClientNotification.Statement.RedundantOptionalSubquery
 -----
 
 == Neo4j 5.23
