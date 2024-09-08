@@ -1,14 +1,100 @@
 :description: The Neo4j error codes for Neo4j version {neo4j-version}.
 
-
 [[neo4j-errors]]
-= List of all server error codes
+= List of all Neo4j 5 server error codes
+
+Error codes are Neo4j status codes returned by the server when the execution of a query fails.
+They always have the severity level `ERROR`.
+Errors are grouped based on the type of the error code:
+
+Client errors::
+    These errors are caused by the client and are usually related to the request itself.
+    Client errors have the prefix `Neo.ClientError`.
+
+Transient errors::
+    These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
+    The error can be temporary and could therefore succeed if retrying the request.
+    Transient errors have the prefix `Neo.TransientError`.
+
+Database errors::
+    These errors are caused by the database and are usually related to the database state.
+    Database errors have the prefix `Neo.DatabaseError`.
 
 This page contains lists of all Neo4j errors, grouped by type.
 
+[[neo4j-client-errors]]
 == Client errors
 
 This is a complete list of all client errors Neo4j may return, and what they mean.
+
+[[Neo.ClientError.ChangeDataCapture.InvalidIdentifier]]
+===  `Neo.ClientError.ChangeDataCapture.InvalidIdentifier`
+
+This error occurs when the given change identifier is invalid.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|Description
+a| Invalid change identifier.
+|GQLSTATUS code(s)
+m|52N16
+| Returned message(s)
+a|
+[options="header", cols="<4,<1"]
+!===
+! Message ! GQLSTATUS code
+! Invalid change identifier. ! 52N26
+! Given change identifier does not belong to this database ! 52N31
+! Given ChangeIdentifier describes a transaction that hasn't yet occurred ! 52N30
+! Unable to find the transaction entry for the given change identifier ! 52N28
+!Given ChangeIdentifier describes a transaction that occurred before any enrichment records exist ! 52N29
+!===
+|===
+
+[[Neo.ClientError.Cluster.NotALeader]]
+===  `Neo.ClientError.Cluster.NotALeader`
+
+This error occurs when the request cannot be processed by this server.
+Write requests can only be processed by the leader.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|Description
+a| The request cannot be processed by this server. Write requests can only be processed by the leader.
+|GQLSTATUS code(s)
+m|08N07
+| Returned message(s)
+a|
+[options="header", cols="<4,<1"]
+!===
+! Message ! GQLSTATUS code
+! Failed to acquire lease since it was taken by another candidate!08N07
+! Local instance lost lease. !08N07
+! Should only attempt to acquire lease when leader. !08N07
+!===
+|===
+
+
+[[Neo.ClientError.Cluster.Routing]]
+===  `Neo.ClientError.Cluster.Routing`
+
+This error occurs when the request cannot be routed to the appropriate server.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|Description
+a| Unable to route the request to the appropriate server
+|GQLSTATUS code(s)
+m|08N02
+| Returned message(s)
+a|Unable to route to database `$dbName`. Server-side routing is disabled. Either connect to the database directly using the driver (or interactively with the :use command), or enable server-side routing by setting `$routingEnabledSetting=true`.
+|===
+
+//================================================================
+// Current list of all errors to be used as a reference
 
 [options="header", cols="<1m,<1"]
 |===
@@ -16,14 +102,8 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 | Neo4j status code
 | Description
 
-| Neo.ClientError.ChangeDataCapture.InvalidIdentifier
-| Invalid change identifier.
-
-| Neo.ClientError.Cluster.NotALeader
-| The request cannot be processed by this server. Write requests can only be processed by the leader.
-
-| Neo.ClientError.Cluster.Routing
-| Unable to route the request to the appropriate server
+|
+|
 
 | Neo.ClientError.Database.DatabaseNotFound
 | The request referred to a database that does not exist.
