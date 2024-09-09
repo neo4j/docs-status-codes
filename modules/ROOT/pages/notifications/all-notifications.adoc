@@ -3545,30 +3545,30 @@ RETURN *
 =====
 
 [#_neo_clientnotification_statement_redundantoptionalprocedure]
-=== Redundant Optional Procedure
+=== Redundant optional procedure
 
-.notification details
+.Notification details
 [cols="<1s,<4"]
 |===
-|neo4j code
-m|neo.clientnotification.statement.redundantoptionalprocedure
-|title
+|Neo4j code
+m|Neo.ClientNotification.Statement.RedundantOptionalProcedure
+|Title
 a|The use of `OPTIONAL` is redundant when the procedure calls a void procedure.
-|description
-|The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
-|category
-m|generic
-|gqlstatus code
-m|03n61
-|status description
-a|info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
-|classification
-m|generic
-|severitylevel
-m|information
+|Description
+|The use of `OPTIONAL` is redundant as `CALL $s` is a void procedure.
+|Category
+m|GENERIC
+||GQLSTATUS code
+m|03N61
+|Status description
+a|info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL $s` is a void procedure.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
 |===
 
-.Redundant use of optional on a procedure call.
+.Redundant use of `OPTIONAL` in a procedure call
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -3584,7 +3584,7 @@ Description of the returned code::
 Optional is redundant in the case of void procedures. The use of `OPTIONAL` on void procedures have no effect and can be removed.
 
 Suggestions for improvement::
-If the intended behavior of the query is to use a void procedure the `OPTIONAL` keyword can be removed without impacting the query.
+If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
 +
 [source,cypher]
 ----
@@ -3594,30 +3594,30 @@ CALL db.createLabel("A")
 =====
 
 [#_neo_clientnotification_statement_redundantoptionalsubquery]
-=== Redundant Optional Subquery
+=== Redundant optional subquery
 
-.notification details
+.Notification details
 [cols="<1s,<4"]
 |===
-|neo4j code
-m|neo.clientnotification.statement.redundantoptionalsubquery
-|title
+|Neo4j code
+m|Neo.ClientNotification.Statement.RedundantOptionalSubquery
+|Title
 a|The use of `OPTIONAL` is redundant when `CALL` is a unit subquery.
-|description
+|Description
 |The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
-|category
-m|generic
-|gqlstatus code
-m|03n62
-|status description
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N62
+|Status description
 a|info: redundant optional subquery. The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
-|classification
-m|generic
-|severitylevel
-m|information
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
 |===
 
-.Redundant use of optional on a call subquery.
+.Redundant use of `OPTIONAL` in a `CALL` subquery
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
@@ -3636,7 +3636,7 @@ Description of the returned code::
 Optional is redundant in the case of a unit subquery. The use of `OPTIONAL` on unit subqueries have no effect and can be removed.
 
 Suggestions for improvement::
-If the intended behavior of the query is for the subquery not to return any values the `OPTIONAL` keyword can be removed without impacting the query.
+If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
 +
 [source,cypher]
 ----
