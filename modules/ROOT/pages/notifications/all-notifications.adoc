@@ -2726,6 +2726,107 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 ======
 =====
 
+[#_neo_clientnotification_security_authprovidernotdefined]
+=== AuthProviderNotDefined
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Security.AuthProviderNotDefined
+|Title
+a|The auth provider is not defined.
+|Description
+a|The auth provider `<provider>` is not defined in the configuration.
+Verify that the spelling is correct or define `<provider>` in the configuration.
+|Severity
+m|INFORMATION
+|Category
+m|SECURITY
+|===
+
+.Create a user with an auth provider that is not defined in the configuration
+====
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Description of the returned code::
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+====
+
+.Alter a user to add an auth provider that is not defined in the configuration
+====
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Description of the returned code::
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+====
+
+[#_neo_clientnotification_security_externalauthnotenabled]
+=== ExternalAuthNotEnabled
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Security.ExternalAuthNotEnabled
+|Title
+a|External auth for user is not enabled.
+|Description
+a|Use setting `dbms.security.require_local_user` to enable external auth.
+|Severity
+m|WARNING
+|Category
+m|SECURITY
+|===
+
+.Create a user with an external auth provider when linked users are not enabled
+====
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
+====
+
+.Alter a user to add an external auth provider when linked users are not enabled
+====
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
+====
+
 [#_topology_notifications]
 == `TOPOLOGY` category
 
