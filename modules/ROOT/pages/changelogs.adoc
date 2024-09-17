@@ -1,6 +1,16 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
+== Neo4j 5.24
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientNotification.Statement.RedundantOptionalProcedure
+Neo.ClientNotification.Statement.RedundantOptionalSubquery
+-----
+
 == Neo4j 5.23
 
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.

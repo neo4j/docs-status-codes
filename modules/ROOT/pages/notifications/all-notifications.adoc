@@ -3544,6 +3544,161 @@ RETURN *
 ======
 =====
 
+[#_neo_clientnotification_statement_redundantoptionalprocedure]
+=== Redundant optional procedure
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.RedundantOptionalProcedure
+|Title
+a|The use of `OPTIONAL` is redundant when the procedure calls a void procedure.
+|Description
+|The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N61
+|Status description
+a|info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Redundant use of `OPTIONAL` in a procedure call
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+OPTIONAL CALL db.createLabel("A")
+----
+
+Description of the returned code::
+The use of `OPTIONAL` is redundant as `CALL db.createLabel` is a void procedure.
+
+Suggestions for improvement::
+If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+CALL db.createLabel("A")
+----
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+OPTIONAL CALL db.createLabel("A")
+----
+Returned GQLSTATUS code::
+03N61
+
+Returned status description::
+info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL db.createLabel` is a void procedure.
+
+Suggestions for improvement::
+If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+CALL db.createLabel("A")
+----
+======
+=====
+
+[#_neo_clientnotification_statement_redundantoptionalsubquery]
+=== Redundant optional subquery
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.RedundantOptionalSubquery
+|Title
+a|The use of `OPTIONAL` is redundant when `CALL` is a unit subquery.
+|Description
+|The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N62
+|Status description
+a|info: redundant optional subquery. The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Redundant use of `OPTIONAL` in a `CALL` subquery
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+OPTIONAL CALL (x) {
+   CREATE({i:x})
+}
+----
+
+Description of the returned code::
+Optional is redundant in the case of a unit subquery. The use of `OPTIONAL` on unit subqueries have no effect and can be removed.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+CALL (x) {
+   CREATE({i:x})
+}
+----
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+OPTIONAL CALL (x) {
+   CREATE({i:x})
+}
+----
+
+Returned GQLSTATUS code::
+03N62
+
+Description of the returned code::
+info: redundant optional subquery. The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+CALL (x) {
+   CREATE({i:x})
+}
+----
+======
+=====
+
 [#_neo_clientnotification_statement_parameternotprovided]
 === Parameter missing
 
