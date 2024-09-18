@@ -4105,9 +4105,8 @@ MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 ----
 Description of the returned code::
 A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
-====
-
 ======
+
 [.include-with-GQLSTATUS-code]
 ======
 Query::
