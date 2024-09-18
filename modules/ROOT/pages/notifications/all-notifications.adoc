@@ -1154,6 +1154,61 @@ If you plan to create that property key in the future, no change is needed.
 ======
 =====
 
+[#_neo_clientnotification_statement_AggregationSkippedNull]
+=== Aggregation skipped null
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.AggregationSkippedNull
+|Title
+a|The query contains an aggregation function that skips null values.
+|Description
+|The query contains an aggregation function that skips null values.
+|Category
+m|UNRECOGNIZED
+|GQLSTATUS code
+m|01G11
+|Status description
+a|warn: null value eliminated in set function.
+|Classification
+m|UNRECOGNIZED
+|SeverityLevel
+m|WARNING
+|===
+
+.Aggregation skipping a NULL value
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
+
+[source,cypher]
+----
+UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
+----
+Description of the returned code::
+The query contains an aggregation function that skips null values.
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
+----
+
+Returned GQLSTATUS code::
+01G11
+
+Returned status description::
+warn: null value eliminated in set function.
+======
+=====
+
 [#_unsupported_notifications]
 == `UNSUPPORTED` category
 
@@ -4049,9 +4104,9 @@ Query::
 MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 ----
 Description of the returned code::
-A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
-
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
 ======
+
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -4069,4 +4124,3 @@ warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
 =====
-
