@@ -1,21 +1,91 @@
-:description: The Neo4j error codes for Neo4j version {neo4j-version}.
-
-[[error-codes]]
+:description: The Neo4j error codes for Neo4j version.
+[[neo4j-errors]]
 = Server errors
 
-Error codes are Neo4j status codes returned by the server when the execution of a query fails.
-They always have the severity level `ERROR`.
-Errors are grouped based on the type of the error code:
+[role=label--version-5.25]
+[[gqlstatus-error-object]]
+== GQL-status error object
 
-Client errors::
-    These errors are caused by the client and are usually related to the request itself.
-    Client errors have the prefix `Neo.ClientError`.
+[[gqlstatus-standard-defined-codes]]
+=== Standard-defined GQLSTATUS codes
 
-Transient errors::
-    These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
-    The error can be temporary and could therefore succeed if retrying the request.
-    Transient errors have the prefix `Neo.TransientError`.
+.Standard-defined GQLSTATUS error codes
+[options="header", cols="<1s,<4"]
+|===
+|GQLSTATUS code | StatusDescription
+| 08000	        | error: connection exception
+| 08007	        | error: connection exception - transaction resolution unknown
+| 22000	        | error: data exception
+| 22001	        | error: data exception - string data, right truncation
+| 22003	        | error: data exception - numeric value out of range. The numeric value `$value` is outside the required range.
+| 22004	        | error: data exception - null value not allowed
+| 22007	        | error: data exception - invalid date, time, or datetime format
+| 22008	        | error: data exception - datetime field overflow
+| 22011	        | error: data exception - substring error
+| 22012	        | error: data exception - division by zero
+| 22015	        | error: data exception - interval field overflow
+| 22018	        | error: data exception - invalid character value for cast. The character value `$value` is an invalid argument for the specified cast.
+| 2201E	        | error: data exception - invalid argument for natural logarithm. The value `$value` is an invalid argument for the specified natural logarithm.
+| 2201F	        | error: data exception - invalid argument for power function. The value `$value` is an invalid argument for the specified power function.
+| 22027	        | error: data exception - trim error
+| 2202F	        | error: data exception - array data, right truncation
+| 22G02	        | error: data exception - negative limit value
+| 22G03	        | error: data exception - invalid value type
+| 22G04	        | error: data exception - values not comparable
+| 22G05	        | error: data exception - invalid date, time, or datetime function field name
+| 22G06	        | error: data exception - invalid datetime function value
+| 22G07	        | error: data exception - invalid duration function field name
+| 22G0B	        | error: data exception - list data, right truncation
+| 22G0C	        | error: data exception - list element error
+| 22G0F	        | error: data exception - invalid number of paths or groups
+| 22G0H	        | error: data exception - invalid duration format. The duration format `$format` is invalid.
+| 22G0M	        | error: data exception - multiple assignments to a graph element property
+| 22G0N	        | error: data exception - number of node labels below supported minimum
+| 22G0P	        | error: data exception - number of node labels exceeds supported maximum
+| 22G0Q	        | error: data exception - number of edge labels below supported minimum
+| 22G0R	        | error: data exception - number of edge labels exceeds supported maximum
+| 22G0S	        | error: data exception - number of node properties exceeds supported maximum
+| 22G0T	        | error: data exception - number of edge properties exceeds supported maximum
+| 22G0U	        | error: data exception - record fields do not match
+| 22G0V	        | error: data exception - reference value, invalid base type
+| 22G0W	        | error: data exception - reference value, invalid constrained type
+| 22G0X	        | error: data exception - record data, field unassignable
+| 22G0Y	        | error: data exception - record data, field missing
+| 22G0Z	        | error: data exception - malformed path
+| 22G10	        | error: data exception - path data, right truncation
+| 22G11	        | error: data exception - reference value, referent deleted
+| 22G12	        | error: data exception - invalid value type
+| 22G13	        | error: data exception - invalid group variable value
+| 22G14	        | error: data exception - incompatible temporal instant unit groups
+| 25000	        | error: invalid transaction state
+| 25G01	        | error: invalid transaction state - active GQL-transaction
+| 25G02	        | error: invalid transaction state - catalog and data statement mixing not supported
+| 25G03	        | error: invalid transaction state - read-only GQL-transaction
+| 25G04	        | error: invalid transaction state - accessing multiple graphs not supported
+| 2D000	        | error: invalid transaction termination
+| 40000	        | error: transaction rollback
+| 40003	        | error: transaction rollback - statement completion unknown
+| 42000	        | error: syntax error or access rule violation
+| 42001	        | error: syntax error or access rule violation - invalid syntax
+| 42002	        | error: syntax error or access rule violation - invalid reference
+| 42004	        | error: syntax error or access rule violation - use of visually confusable identifiers
+| 42006	        | error: syntax error or access rule violation - number of edge labels below supported minimum
+| 42007	        | error: syntax error or access rule violation - number of edge labels exceeds supported maximum
+| 42008	        | error: syntax error or access rule violation - number of edge properties exceeds supported maximum
+| 42009	        | error: syntax error or access rule violation - number of node labels below supported minimum
+| 42010	        | error: syntax error or access rule violation - number of node labels exceeds supported maximum
+| 42011	        | error: syntax error or access rule violation - number of node properties exceeds supported maximum
+| 42012	        | error: syntax error or access rule violation - number of node type key labels below supported minimum
+| 42013	        | error: syntax error or access rule violation - number of node type key labels exceeds supported maximum
+| 42014	        | error: syntax error or access rule violation - number of edge type key labels below supported minimum
+| 42015	        | error: syntax error or access rule violation - number of edge type key labels exceeds supported maximum
+| G1000	        | error: dependent object error
+| G1001	        | error: dependent object error - edges still exist
+| G1002	        | error: dependent object error - endpoint node is deleted
+| G1003	        | error: dependent object error - endpoint node not in current working graph
+| G2000	        | error: graph type violation
+|===
 
-Database errors::
-    These errors are caused by the database and are usually related to the database state.
-    Database errors have the prefix `Neo.DatabaseError`.
+[[gqlstatus-neo4j-defined-codes]]
+=== Neo4j-defined GQLSTATUS error codes
+

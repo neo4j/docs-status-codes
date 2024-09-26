@@ -1,0 +1,119 @@
+:description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
+
+[[neo4j-gqlstatus-errors]]
+= List of all GQLSTATUS server error codes
+
+The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+
+* <<_connection-exceptions, Connection exceptions>>
+* <<_database-exceptions, Database exceptions>>
+
+
+[[_connection-exceptions]]
+== Connection exceptions
+
+The following table lists the connection exceptions that can occur in Neo4j.
+
+=== 08000
+
+Notifies the client that an exception occurred during the connection.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|0800
+|Status description
+a|error: connection exception
+|Classification
+m|CLIENT_ERROR
+|SeverityLevel
+m|ERROR
+|===
+
+=== 08007
+
+Notifies the client that an exception occurred during the resolution of a transaction.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|08007
+|Status description
+|error: connection exception - transaction resolution unknown.
+|Classification
+m|CLIENT_ERROR
+|SeverityLevel
+m|ERROR
+|===
+
+=== 08N00
+
+Notifies the client that an exception occurred while trying to connect to a specified database.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|08N00
+|Status description
+a|error: connection exception - unable to connect to database. Unable to connect to database `$db`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
+|Classification
+m|CLIENT_ERROR
+|SeverityLevel
+m|ERROR
+|===
+
+=== 08N01
+
+Notifies the client that an exception occurred while trying to write to a specified database.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|08N01
+|Status description
+a|error: connection exception - unable to write to database. Unable to write to database `$db` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting `$cfgSetting=true`.
+|Classification
+m|CLIENT_ERROR
+|SeverityLevel
+m|ERROR
+|===
+
+=== 08N02
+
+Notifies the client that an exception occurred while trying to connect to a specified database.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|08N02
+|Status description
+a|error: connection exception - unable to route to database. Unable to connect to database `$db`. Server-side routing is disabled. Either connect to `$db` directly, or enable server-side routing by setting `$cfgSetting=true`.
+|Classification
+m|CLIENT_ERROR
+|SeverityLevel
+m|ERROR
+|===
+
+=== 08N03
+
+Notifies the client that an exception occurred while trying to connect to a specified database.
+
+.Error details
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+m|08N03
+|Status description
+a|error: connection exception - failed to write to graph. Failed to write to graph `$graph`. Check the defined access mode in both driver and database.
+|Classification
+m|CLIENT_ERROR
+|SeverityLevel
+m|ERROR
+|===
+
+
