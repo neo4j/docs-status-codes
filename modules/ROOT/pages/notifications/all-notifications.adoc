@@ -1154,6 +1154,61 @@ If you plan to create that property key in the future, no change is needed.
 ======
 =====
 
+[#_neo_clientnotification_statement_AggregationSkippedNull]
+=== Aggregation skipped null
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.AggregationSkippedNull
+|Title
+a|The query contains an aggregation function that skips null values.
+|Description
+|The query contains an aggregation function that skips null values.
+|Category
+m|UNRECOGNIZED
+|GQLSTATUS code
+m|01G11
+|Status description
+a|warn: null value eliminated in set function.
+|Classification
+m|UNRECOGNIZED
+|SeverityLevel
+m|WARNING
+|===
+
+.Aggregation skipping a NULL value
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
+
+[source,cypher]
+----
+UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
+----
+Description of the returned code::
+The query contains an aggregation function that skips null values.
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
+----
+
+Returned GQLSTATUS code::
+01G11
+
+Returned status description::
+warn: null value eliminated in set function.
+======
+=====
+
 [#_unsupported_notifications]
 == `UNSUPPORTED` category
 
@@ -2726,6 +2781,107 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 ======
 =====
 
+[#_neo_clientnotification_security_authprovidernotdefined]
+=== AuthProviderNotDefined
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Security.AuthProviderNotDefined
+|Title
+a|The auth provider is not defined.
+|Description
+a|The auth provider `<provider>` is not defined in the configuration.
+Verify that the spelling is correct or define `<provider>` in the configuration.
+|Severity
+m|INFORMATION
+|Category
+m|SECURITY
+|===
+
+.Create a user with an auth provider that is not defined in the configuration
+====
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Description of the returned code::
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+====
+
+.Alter a user to add an auth provider that is not defined in the configuration
+====
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Description of the returned code::
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+====
+
+[#_neo_clientnotification_security_externalauthnotenabled]
+=== ExternalAuthNotEnabled
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Code
+m|Neo.ClientNotification.Security.ExternalAuthNotEnabled
+|Title
+a|External auth for user is not enabled.
+|Description
+a|Use setting `dbms.security.require_local_user` to enable external auth.
+|Severity
+m|WARNING
+|Category
+m|SECURITY
+|===
+
+.Create a user with an external auth provider when linked users are not enabled
+====
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
+====
+
+.Alter a user to add an external auth provider when linked users are not enabled
+====
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
+====
+
 [#_topology_notifications]
 == `TOPOLOGY` category
 
@@ -3544,6 +3700,161 @@ RETURN *
 ======
 =====
 
+[#_neo_clientnotification_statement_redundantoptionalprocedure]
+=== Redundant optional procedure
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.RedundantOptionalProcedure
+|Title
+a|The use of `OPTIONAL` is redundant when the procedure calls a void procedure.
+|Description
+|The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N61
+|Status description
+a|info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Redundant use of `OPTIONAL` in a procedure call
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+OPTIONAL CALL db.createLabel("A")
+----
+
+Description of the returned code::
+The use of `OPTIONAL` is redundant as `CALL db.createLabel` is a void procedure.
+
+Suggestions for improvement::
+If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+CALL db.createLabel("A")
+----
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+OPTIONAL CALL db.createLabel("A")
+----
+Returned GQLSTATUS code::
+03N61
+
+Returned status description::
+info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL db.createLabel` is a void procedure.
+
+Suggestions for improvement::
+If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+CALL db.createLabel("A")
+----
+======
+=====
+
+[#_neo_clientnotification_statement_redundantoptionalsubquery]
+=== Redundant optional subquery
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.RedundantOptionalSubquery
+|Title
+a|The use of `OPTIONAL` is redundant when `CALL` is a unit subquery.
+|Description
+|The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N62
+|Status description
+a|info: redundant optional subquery. The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Redundant use of `OPTIONAL` in a `CALL` subquery
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+OPTIONAL CALL (x) {
+   CREATE({i:x})
+}
+----
+
+Description of the returned code::
+Optional is redundant in the case of a unit subquery. The use of `OPTIONAL` on unit subqueries have no effect and can be removed.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+CALL (x) {
+   CREATE({i:x})
+}
+----
+======
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+OPTIONAL CALL (x) {
+   CREATE({i:x})
+}
+----
+
+Returned GQLSTATUS code::
+03N62
+
+Description of the returned code::
+info: redundant optional subquery. The use of `OPTIONAL` is redundant as `CALL` is a unit subquery.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+CALL (x) {
+   CREATE({i:x})
+}
+----
+======
+=====
+
 [#_neo_clientnotification_statement_parameternotprovided]
 === Parameter missing
 
@@ -3793,9 +4104,9 @@ Query::
 MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
 ----
 Description of the returned code::
-A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
-
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
 ======
+
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -3813,4 +4124,3 @@ warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
 =====
-
