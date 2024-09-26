@@ -12,8 +12,12 @@ endif::[]
 
 This document details all status codes that a Neo4j DBMS may return to indicate the outcome of a request.
 
+== GQL status codes
 
-== Format
+
+== Neo4j status codes
+
+=== Format
 
 Each Neo4j status code follows the same format:
 
@@ -23,7 +27,7 @@ Neo.[Type].[SubType].[Name]
 -----
 
 
-== Types of Neo4j status codes
+=== Types of Neo4j status codes
 
 The fact that a Neo4j status code is returned by the server does not always mean there is a fatal error.
 Neo4j status codes can also indicate transient problems that may go away if you retry the request.
