@@ -4,15 +4,15 @@
 = List of all GQLSTATUS server error codes
 
 The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+All errors in Neo4j have severity level `ERROR`.
 
 * <<_connection-exceptions, Connection exceptions>>
-* <<_database-exceptions, Database exceptions>>
 
 
 [[_connection-exceptions]]
 == Connection exceptions
 
-The following table lists the connection exceptions that can occur in Neo4j.
+The following is a list of the connection exceptions that can occur in Neo4j.
 
 === 08000
 
@@ -27,8 +27,6 @@ m|0800
 a|error: connection exception
 |Classification
 m|CLIENT_ERROR
-|SeverityLevel
-m|ERROR
 |===
 
 === 08007
@@ -44,8 +42,6 @@ m|08007
 |error: connection exception - transaction resolution unknown.
 |Classification
 m|CLIENT_ERROR
-|SeverityLevel
-m|ERROR
 |===
 
 === 08N00
@@ -61,8 +57,6 @@ m|08N00
 a|error: connection exception - unable to connect to database. Unable to connect to database `$db`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
 |Classification
 m|CLIENT_ERROR
-|SeverityLevel
-m|ERROR
 |===
 
 === 08N01
@@ -78,8 +72,6 @@ m|08N01
 a|error: connection exception - unable to write to database. Unable to write to database `$db` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting `$cfgSetting=true`.
 |Classification
 m|CLIENT_ERROR
-|SeverityLevel
-m|ERROR
 |===
 
 === 08N02
@@ -95,8 +87,6 @@ m|08N02
 a|error: connection exception - unable to route to database. Unable to connect to database `$db`. Server-side routing is disabled. Either connect to `$db` directly, or enable server-side routing by setting `$cfgSetting=true`.
 |Classification
 m|CLIENT_ERROR
-|SeverityLevel
-m|ERROR
 |===
 
 === 08N03
@@ -112,8 +102,6 @@ m|08N03
 a|error: connection exception - failed to write to graph. Failed to write to graph `$graph`. Check the defined access mode in both driver and database.
 |Classification
 m|CLIENT_ERROR
-|SeverityLevel
-m|ERROR
 |===
 
 
