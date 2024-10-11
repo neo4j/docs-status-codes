@@ -3,7 +3,8 @@
 [[neo4j-gqlstatus-errors]]
 = List of all GQLSTATUS server error codes
 
-The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+//The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
 All errors in Neo4j have severity level `ERROR`.
 
 * <<_connection-exceptions, Connection exceptions>>
@@ -12,96 +13,88 @@ All errors in Neo4j have severity level `ERROR`.
 [[_connection-exceptions]]
 == Connection exceptions
 
-The following is a list of the connection exceptions that can occur in Neo4j.
+Connection exceptions occur when the client is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
 
 === 08000
 
-Notifies the client that an exception occurred during the connection.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|0800
-|Status description
-a|error: connection exception
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: connection exception
 
 === 08007
 
-Notifies the client that an exception occurred during the resolution of a transaction.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|08007
-|Status description
-|error: connection exception - transaction resolution unknown.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: connection exception - transaction resolution unknown
 
 === 08N00
 
-Notifies the client that an exception occurred while trying to connect to a specified database.
+Status description:: error: connection exception - unable to connect to database. Unable to connect to database { $db }. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
 
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|08N00
-|Status description
-a|error: connection exception - unable to connect to database. Unable to connect to database `$db`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
-|Classification
-m|CLIENT_ERROR
-|===
 
 === 08N01
 
-Notifies the client that an exception occurred while trying to write to a specified database.
+Status description:: error: connection exception - unable to write to database. Unable to write to database { $db } on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting '{ $cfgSetting }=true'.
 
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|08N01
-|Status description
-a|error: connection exception - unable to write to database. Unable to write to database `$db` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting `$cfgSetting=true`.
-|Classification
-m|CLIENT_ERROR
-|===
+//Possible solutions:
+//Either connect to the database directly using the driver or interactively with the `:use { $db }` command), or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
 
 === 08N02
 
-Notifies the client that an exception occurred while trying to connect to a specified database.
+Status description:: error: connection exception - unable to write to database. Unable to connect to database { $db }. Server-side routing is disabled. Either connect to { $db } directly, or enable server-side routing by setting '{ $cfgSetting }=true'.
 
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|08N02
-|Status description
-a|error: connection exception - unable to route to database. Unable to connect to database `$db`. Server-side routing is disabled. Either connect to `$db` directly, or enable server-side routing by setting `$cfgSetting=true`.
-|Classification
-m|CLIENT_ERROR
-|===
+Example error description:: error: connection exception - unable to route to database. Unable to connect to database `my_db`. Server-side routing is disabled. Either connect to `my_db` directly, or enable server-side routing by setting 'dbms.routing.enabled=true'.
+
+//Possible solutions:
+//Either connect to the database directly using the driver or interactively with the `:use { $db }` command), or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
 
 === 08N03
 
-Notifies the client that an exception occurred while trying to connect to a specified database.
+Status description:: error: connection exception - failed to write to graph. Failed to write to graph `$graph`. Check the defined access mode in both driver and database.
 
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|08N03
-|Status description
-a|error: connection exception - failed to write to graph. Failed to write to graph `$graph`. Check the defined access mode in both driver and database.
-|Classification
-m|CLIENT_ERROR
-|===
+=== 08N04
 
+Status description:: error: unable to route use clause. Routing with { $clause } is not supported in embedded sessions. Connect to the database directly or try running the query using a Neo4j driver or the HTTP API.
 
+=== 08N05
+
+Status description:: error: connection exception - unable to route administration command. Routing administration commands is not supported in embedded sessions. Connect to the system database directly or try running the query using a Neo4j driver or the HTTP API.
+
+=== 08N06
+
+Status description:: error: connection exception - protocol error. General network protocol error.
+
+=== 08N07
+
+Status description:: error: connection exception - not the leader. This member is not the leader.
+
+//Possible solutions:
+//No write operations are allowed directly on this database. Connect to the leader directly or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
+
+=== 08N08
+
+Status description:: error: connection exception - database is read only. This database is read only on this server.
+
+=== 08N09
+
+Status description:: error: connection exception - database unavailable. The database { $db } is currently unavailable. Check the database status. Retry your request at a later time.
+
+=== 08N10
+
+Status description:: error: connection exception - invalid server state. The server is not in a state that can process a message of type: { $boltMsgType }.
+
+=== 08N11
+
+Status description:: error: connection exception - request error. The request is invalid and could not be processed by the server. See cause for further details.
+
+=== 08N12
+
+Status description:: error: connection exception - failed to parse bookmark. Failed to parse the supplied bookmark. Verify it is correct or check the debug log for more information.
+
+=== 08N13
+
+Status description:: error: connection exception - database not up to requested bookmark. The database { $db } is not up to the requested bookmark { $transactionId1 }. The latest transaction ID is { $transactionId2 }.
+
+=== 08N14
+
+Status description:: error: connection exception - alias chains are not permitted. Unable to provide a routing table for the database identifed by the alias { $alias1 } because the request comes from another alias { $alias2 } and alias chains are not permitted.
+
+=== 08N15
+
+Status description:: error: connection exception - no such routing policy. Policy definition of the routing policy { $routingPolicy } could not be found. Verify that the spelling is correct.

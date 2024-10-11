@@ -12,7 +12,7 @@ endif::[]
 
 This document details all status codes that a Neo4j DBMS may return to indicate the outcome of a request.
 
-== GQL status codes
+//== GQL status codes
 
 
 == Neo4j status codes
@@ -42,7 +42,7 @@ The type of the status code determines the effect on the transaction.
 | Effect on the transaction
 
 | xref:errors/all-errors.adoc#_client_errors[ClientError]
-| The Client sent a bad request - changing the request might yield a successful outcome.
+| The client sent a bad request - changing the request might yield a successful outcome.
 | Rollback
 
 | xref:errors/all-errors#_transient_errors[TransientError]
