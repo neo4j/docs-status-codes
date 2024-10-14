@@ -2792,16 +2792,28 @@ m|Neo.ClientNotification.Security.AuthProviderNotDefined
 |Title
 a|The auth provider is not defined.
 |Description
-a|The auth provider `<provider>` is not defined in the configuration.
-Verify that the spelling is correct or define `<provider>` in the configuration.
-|Severity
-m|INFORMATION
+a|The auth provider `$provider` is not defined in the configuration.
+Verify that the spelling is correct or define `$provider` in the configuration.
 |Category
 m|SECURITY
+|GQLSTATUS code
+m|00N72
+|Status description
+a|note: successful completion - undefined auth provider.
+The auth provider { $auth } is not defined in the configuration.
+Verify that the spelling is correct or define { $auth } in the configuration.
+|Classification
+m|SECURITY
+|SeverityLevel
+m|INFORMATION
 |===
 
+
 .Create a user with an auth provider that is not defined in the configuration
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2816,10 +2828,35 @@ Verify that the spelling is correct or define `unknownProvider` in the configura
 Suggestions for improvement::
 Make sure that the given provider is correct, or replace it if not.
 If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Returned GQLSTATUS code::
+00N72
+
+Returned status description::
+note: successful completion - undefined auth provider.
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+======
+=====
 
 .Alter a user to add an auth provider that is not defined in the configuration
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2834,7 +2871,31 @@ Verify that the spelling is correct or define `unknownProvider` in the configura
 Suggestions for improvement::
 Make sure that the given provider is correct, or replace it if not.
 If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
-====
+======
+
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Returned GQLSTATUS code::
+00N72
+
+Returned status description::
+note: successful completion - undefined auth provider.
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+======
+=====
+
 
 [#_neo_clientnotification_security_externalauthnotenabled]
 === ExternalAuthNotEnabled
@@ -2848,14 +2909,22 @@ m|Neo.ClientNotification.Security.ExternalAuthNotEnabled
 a|External auth for user is not enabled.
 |Description
 a|Use setting `dbms.security.require_local_user` to enable external auth.
-|Severity
-m|WARNING
 |Category
 m|SECURITY
+|GQLSTATUS code
+m|01N71
+|Status description
+|warn: external auth disabled.
+Use the setting 'dbms.security.require_local_user' to enable external auth.
+|SeverityLevel
+m|WARNING
 |===
 
 .Create a user with an external auth provider when linked users are not enabled
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2866,10 +2935,35 @@ CREATE USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
 Suggestions for improvement::
 Enable linked users through the `dbms.security.require_local_user` setting.
 Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
-====
+======
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Returned GQLSTATUS code::
+01N71
+
+Returned status description::
+warn: external auth disabled.
+Use the setting 'dbms.security.require_local_user' to enable external auth.
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
+
+======
+=====
 
 .Alter a user to add an external auth provider when linked users are not enabled
-====
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
 Command::
 +
 [source, cypher]
@@ -2880,7 +2974,31 @@ ALTER USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
 Suggestions for improvement::
 Enable linked users through the `dbms.security.require_local_user` setting.
 Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
-====
+======
+
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Returned GQLSTATUS code::
+01N71
+
+Returned status description::
+warn: external auth disabled.
+Use the setting 'dbms.security.require_local_user' to enable external auth.
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
+
+======
+=====
+
 
 [#_topology_notifications]
 == `TOPOLOGY` category
