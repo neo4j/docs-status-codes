@@ -2787,7 +2787,7 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Security.AuthProviderNotDefined
 |Title
 a|The auth provider is not defined.
@@ -2903,7 +2903,7 @@ If it is correct, make sure to add it as a known auth provider in one or both of
 .Notification details
 [cols="<1s,<4"]
 |===
-|Code
+|Neo4j code
 m|Neo.ClientNotification.Security.ExternalAuthNotEnabled
 |Title
 a|External auth for user is not enabled.
@@ -2916,6 +2916,8 @@ m|01N71
 |Status description
 |warn: external auth disabled.
 Use the setting 'dbms.security.require_local_user' to enable external auth.
+|Classification
+m|SECURITY
 |SeverityLevel
 m|WARNING
 |===
