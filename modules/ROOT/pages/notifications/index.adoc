@@ -93,6 +93,25 @@ Additional helper methods are exposed for some useful fields.
 !===
 |===
 
+=== Standard-defined GQLSTATUS notification codes
+
+The GQL standard defines a set of GQLSTATUS codes that are used to represent successful completion, warnings, and informational messages.
+The following table lists the standard-defined GQLSTATUS codes and their meanings:
+
+.Standard-defined GQLSTATUS notification codes
+[options="header", cols="<1s,<4"]
+|===
+|GQLSTATUS code | StatusDescription
+| 00000	        | note: successful completion
+| 00001	        | note: successful completion - omitted result
+| 01000	        | warn: warning
+| 01004	        | warn: string data, right truncation
+| 01G03	        | warn: graph does not exist
+| 01G04	        | warn: graph type does not exist
+| 01G11	        | warn: null value eliminated in set function
+| 02000	        | note: no data
+| 03000	        | info: informational
+|===
 
 [[general-codes-for-success]]
 === General codes for success
@@ -306,9 +325,3 @@ Finally, the list of poly-filled GQL-status objects is sorted according to the G
 // The following table illustrates the compatibility between the different server and driver versions for both the current Notification API and the GqlStatusObject API:
 
 // TODO
-
-
-
-
-
->>>>>>> gql-notifications
