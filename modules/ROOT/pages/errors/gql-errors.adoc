@@ -20,430 +20,120 @@ The following is a list of the connection exceptions that can occur in Neo4j.
 [[_data-exceptions]]
 == Data exceptions
 
-
 The following is a list of the data exceptions that can occur in Neo4j.
 
 === 22N00 
 
-Notifies the client that an unsupported value has been provided in a query.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N00
-|Status description
-a|error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
-|Classification
-m|CLIENT_ERROR
-|===
-
+Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
 
 === 22N01 
 
-Notifies the client that the provided value is of unexpected type.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N01
-|Status description
-a|error: data exception - invalid type.
+Status description:: error: data exception - invalid type.
 Expected the value `$value` to be of type `$valueTypeOredList`, but was of type `$valueType`.
-|Classification
-m|CLIENT_ERROR
-|===
 
 === 22N02 
 
-Notifies the client that the negative number is provided instead of expected positive.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N02
-|Status description
-a|error: data exception - specified negative numeric value. Expected `$option` to be a positive number but found `$value` instead.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - specified negative numeric value. Expected `$option` to be a positive number but found `$value` instead.
 
 === 22N03 
 
-Notifies the client that the component's value is out of expected range.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N03
-|Status description
-a|error: data exception - specified numeric value out of range. Expected `$component` to be of type `$valueType` and in the range `$lower` to `$upper` but found `$value`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - specified numeric value out of range. Expected `$component` to be of type `$valueType` and in the range `$lower` to `$upper` but found `$value`.
 
 === 22N04 
 
-???? Notifies the client that the provided input is invalid in the context of request.
+Status description:: error: data exception - invalid input value. Invalid input `$input` for `$context`. Expected one of `$inputOredList`.
 
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N04
-|Status description
-a|error: data exception - invalid input value. Invalid input `$input` for `$context`. Expected one of `$inputOredList`.
-|Classification
-m|CLIENT_ERROR
-|===
+=== 22N05
 
-=== 22N05 ????? 
-
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N05
-|Status description
-a|error: data exception - input failed validation. Invalid input `$input` for `$context`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - input failed validation. Invalid input `$input` for `$context`.
 
 === 22N06 
 
-Notifies the client that the expected data is not provided.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N06
-|Status description
-a|error: data exception - empty input string. Invalid input. `$option` needs to be specified.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - empty input string. Invalid input. `$option` needs to be specified.
 
 === 22N07 
 
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N07
-|Status description
-a|error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): `$optionList`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): `$optionList`.
 
 === 22N08 
 
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N08
-|Status description
-a|error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `$option1` with `$option2`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `$option1` with `$option2`.
 
 === 22N09 
 
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N09
-|Status description
-a|error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for `$option`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for `$option`.
 
 === 22N10 
 
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N10
-|Status description
-a|error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `$input` is not valid for option `$option`. Valid options are: `$optionAndedList`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `$input` is not valid for option `$option`. Valid options are: `$optionAndedList`.
 
 === 22N11 
 
-Notifies the client that an invalid argument is provided.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N11
-|Status description
-a|error: data exception - invalid argument. Invalid argument: cannot process `$input`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid argument. Invalid argument: cannot process `$input`.
 
 === 22N12 
 
-Notifies the client that an invalid date, time, or datetime format is provided.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N12
-|Status description
-a|error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `$input`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `$input`.
 
 === 22N13 
 
-Notifies the client that a date component was not provided for the specified time zones.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N13
-|Status description
-a|error: data exception - invalid time zone. Specified time zones must include a date component.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid time zone. Specified time zones must include a date component.
 
 === 22N14 
 
-Notifies the client that the provided data type and its value cannot be combined.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N14
-|Status description
-a|error: data exception - invalid temporal value combination. Cannot select both `$temporal` and `$component`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid temporal value combination. Cannot select both `$temporal` and `$component`.
 
 === 22N15 
 
-Notifies the client that the provided data types contain an unsupported value.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N15
-|Status description
-a|error: data exception - invalid temporal component. Cannot read the specified `$component` component from `$temporal`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid temporal component. Cannot read the specified `$component` component from `$temporal`.
 
 === 22N16 
 
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N16
-|Status description
-a|error: data exception - invalid import value. Importing entity values to a graph with a `USE` clause is not supported. Attempted to import `$expr` to `$graph`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid import value. Importing entity values to a graph with a `USE` clause is not supported. Attempted to import `$expr` to `$graph`.
 
 === 22N17 
 
-Notifies the client that .
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N17
-|Status description
-a|error: data exception - invalid date, time, or datetime function field name. Cannot read the specified `$component` component from `$temporal`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified `$component` component from `$temporal`.
 
 === 22N18 
 
-Notifies the client that the provided spatial value is incomplete.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N18
-|Status description
-a|error: data exception - incomplete spatial value. A `$crs` `POINT` must contain `$mapKeyAndedList`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - incomplete spatial value. A `$crs` `POINT` must contain `$mapKeyAndedList`.
 
 === 22N19 
 
-Notifies the client that the provided spatial value is invalid.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N19
-|Status description
-a|error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
 
 === 22N20 
 
-Notifies the client that the provided spatial value has invalid dimensions.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N20
-|Status description
-a|error: data exception - invalid spatial value dimensions. Cannot create `POINT` with `$crs` coordinate reference system (CRS) and `$coordinates` coordinates. Use the equivalent `$crs2` coordinate reference system instead.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create `POINT` with `$crs` coordinate reference system (CRS) and `$coordinates` coordinates. Use the equivalent `$crs2` coordinate reference system instead.
 
 === 22N21 
 
-Notifies the client that the unsupported coordinate reference system is used.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N21
-|Status description
-a|error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `$crs`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `$crs`.
 
 === 22N22 
 
-Notifies the client that invalid spatial value combination is used.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N22
-|Status description
-a|error: data exception - invalid spatial value combination. Cannot specify both coordinate reference system (CRS) and spatial reference identifier (SRID).
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid spatial value combination. Cannot specify both coordinate reference system (CRS) and spatial reference identifier (SRID).
 
 === 22N23 
 
-Notifies the client that the provided latitude value is invalid.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N23
-|Status description
-a|error: data exception - invalid latitude value. Cannot create `WGS84 POINT` with invalid coordinate: `$coordinates`. The valid range for the latitude coordinate is [-90, 90].
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid latitude value. Cannot create `WGS84 POINT` with invalid coordinate: `$coordinates`. The valid range for the latitude coordinate is [-90, 90].
 
 === 22N24 
 
-Notifies the client that the used coordinate arguments are invalid.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N24
-|Status description
-a|error: data exception - invalid coordinate arguments. Cannot construct a `$valueType` from `$coordinates`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid coordinate arguments. Cannot construct a `$valueType` from `$coordinates`.
 
 === 22N25 
 
-Notifies the client that the used temporal arguments are invalid.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N25
-|Status description
-a|error: data exception - invalid temporal arguments. Cannot construct a `$valueType` from `$temporal`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid temporal arguments. Cannot construct a `$valueType` from `$temporal`.
 
 === 22N26 
 
-Notifies the client that unsupported rounding mode is provided.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N26
-|Status description
-a|error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: `CEILING`, `FLOOR`, `UP`, `DOWN`, `HALF_EVEN`, `HALF_UP`, `HALF_DOWN`, `UNNECESSARY`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: `CEILING`, `FLOOR`, `UP`, `DOWN`, `HALF_EVEN`, `HALF_UP`, `HALF_DOWN`, `UNNECESSARY`.
 
 === 22N27 
 
-Notifies the client that the incorrect entity type is used.
-
-.Error details
-[cols="<1s,<4"]
-|===
-|GQLSTATUS code
-m|22N27
-|Status description
-a|error: data exception - invalid entity type. Invalid input `$input` for `$var`. Expected to be one of `$valueTypeOredList`.
-|Classification
-m|CLIENT_ERROR
-|===
+Status description:: error: data exception - invalid entity type. Invalid input `$input` for `$var`. Expected to be one of `$valueTypeOredList`.
 
 ////
 === 22N28 
