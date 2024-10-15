@@ -111,51 +111,51 @@ Status description:: error: data exception - unsupported value. The provided val
 === 22N01 
 
 Status description:: error: data exception - invalid type.
-Expected the value `$value` to be of type `$valueTypeOredList`, but was of type `$valueType`.
+Expected the value { $value } to be of type { $valueTypeOredList }, but was of type { $valueType }.
 
 === 22N02 
 
-Status description:: error: data exception - specified negative numeric value. Expected `$option` to be a positive number but found `$value` instead.
+Status description:: error: data exception - specified negative numeric value. Expected { $option } to be a positive number but found { $value } instead.
 
 === 22N03 
 
-Status description:: error: data exception - specified numeric value out of range. Expected `$component` to be of type `$valueType` and in the range `$lower` to `$upper` but found `$value`.
+Status description:: error: data exception - specified numeric value out of range. Expected { $component } to be of type { $valueType } and in the range { $lower }  to { $upper } but found { $value }.
 
 === 22N04 
 
-Status description:: error: data exception - invalid input value. Invalid input `$input` for `$context`. Expected one of `$inputOredList`.
+Status description:: error: data exception - invalid input value. Invalid input { $input } for { $context }. Expected one of { $inputOredList }.
 
 === 22N05
 
-Status description:: error: data exception - input failed validation. Invalid input `$input` for `$context`.
+Status description:: error: data exception - input failed validation. Invalid input { $input } for { $context }.
 
 === 22N06 
 
-Status description:: error: data exception - empty input string. Invalid input. `$option` needs to be specified.
+Status description:: error: data exception - empty input string. Invalid input. { $option } needs to be specified.
 
 === 22N07 
 
-Status description:: error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): `$optionList`.
+Status description:: error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): { $optionList }.
 
 === 22N08 
 
-Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `$option1` with `$option2`.
+Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine { $option1 } with { $option2 }.
 
 === 22N09 
 
-Status description:: error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for `$option`.
+Status description:: error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for { $option }.
 
 === 22N10 
 
-Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `$input` is not valid for option `$option`. Valid options are: `$optionAndedList`.
+Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified { $input } is not valid for option { $option }. Valid options are: { $optionAndedList }.
 
 === 22N11 
 
-Status description:: error: data exception - invalid argument. Invalid argument: cannot process `$input`.
+Status description:: error: data exception - invalid argument. Invalid argument: cannot process { $input }.
 
 === 22N12 
 
-Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `$input`.
+Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process { $input }.
 
 === 22N13 
 
@@ -163,35 +163,35 @@ Status description:: error: data exception - invalid time zone. Specified time z
 
 === 22N14 
 
-Status description:: error: data exception - invalid temporal value combination. Cannot select both `$temporal` and `$component`.
+Status description:: error: data exception - invalid temporal value combination. Cannot select both { $temporal } and { $component }.
 
 === 22N15 
 
-Status description:: error: data exception - invalid temporal component. Cannot read the specified `$component` component from `$temporal`.
+Status description:: error: data exception - invalid temporal component. Cannot read the specified { $component } component from { $temporal }.
 
 === 22N16 
 
-Status description:: error: data exception - invalid import value. Importing entity values to a graph with a `USE` clause is not supported. Attempted to import `$expr` to `$graph`.
+Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import { $expr } to { $graph }.
 
 === 22N17 
 
-Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified `$component` component from `$temporal`.
+Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified { $component } component from { $temporal }.
 
 === 22N18 
 
-Status description:: error: data exception - incomplete spatial value. A `$crs` `POINT` must contain `$mapKeyAndedList`.
+Status description:: error: data exception - incomplete spatial value. A { $crs } POINT must contain { $mapKeyAndedList }.
 
 === 22N19 
 
-Status description:: error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
+Status description:: error: data exception - invalid spatial value. A POINT must contain either 'x' and 'y', or 'latitude' and 'longitude'.
 
 === 22N20 
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create `POINT` with `$crs` coordinate reference system (CRS) and `$coordinates` coordinates. Use the equivalent `$crs2` coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with { $crs } coordinate reference system (CRS) and { $coordinates } coordinates. Use the equivalent { $crs2 } coordinate reference system instead.
 
 === 22N21 
 
-Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `$crs`.
+Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): { $crs }.
 
 === 22N22 
 
@@ -199,23 +199,23 @@ Status description:: error: data exception - invalid spatial value combination. 
 
 === 22N23 
 
-Status description:: error: data exception - invalid latitude value. Cannot create `WGS84 POINT` with invalid coordinate: `$coordinates`. The valid range for the latitude coordinate is [-90, 90].
+Status description:: error: data exception - invalid latitude value. Cannot create WGS84 POINT with invalid coordinate: { $coordinates }. The valid range for the latitude coordinate is [-90, 90].
 
 === 22N24 
 
-Status description:: error: data exception - invalid coordinate arguments. Cannot construct a `$valueType` from `$coordinates`.
+Status description:: error: data exception - invalid coordinate arguments. Cannot construct a { $valueType } from { $coordinates }.
 
 === 22N25 
 
-Status description:: error: data exception - invalid temporal arguments. Cannot construct a `$valueType` from `$temporal`.
+Status description:: error: data exception - invalid temporal arguments. Cannot construct a { $valueType } from { $temporal }.
 
 === 22N26 
 
-Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: `CEILING`, `FLOOR`, `UP`, `DOWN`, `HALF_EVEN`, `HALF_UP`, `HALF_DOWN`, `UNNECESSARY`.
+Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: CEILING, FLOOR, UP, DOWN, HALF_EVEN, HALF_UP, HALF_DOWN, UNNECESSARY.
 
 === 22N27 
 
-Status description:: error: data exception - invalid entity type. Invalid input `$input` for `$var`. Expected to be one of `$valueTypeOredList`.
+Status description:: error: data exception - invalid entity type. Invalid input { $input } for { $var }. Expected to be one of { $valueTypeOredList }.
 
 ////
 === 22N28 
