@@ -3,15 +3,14 @@
 [[neo4j-gqlstatus-errors]]
 = List of all GQLSTATUS server error codes
 
-The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+//The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
+All errors in Neo4j have severity level `ERROR`.
 All errors in Neo4j have severity level `ERROR`.
 
 * <<_connection-exceptions, Connection exceptions>>
 * <<_data-exceptions, Data exceptions>>
 
-//The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
-The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
-All errors in Neo4j have severity level `ERROR`.
 
 
 [[_connection-exceptions]]
