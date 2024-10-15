@@ -7,10 +7,7 @@
 The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
 All errors in Neo4j have severity level `ERROR`.
 
-* <<_connection-exceptions, Connection exceptions>>
 
-
-[[_connection-exceptions]]
 == Connection exceptions
 
 Connection exceptions occur when the client is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
@@ -98,3 +95,216 @@ Status description:: error: connection exception - alias chains are not permitte
 === 08N15
 
 Status description:: error: connection exception - no such routing policy. Policy definition of the routing policy { $routingPolicy } could not be found. Verify that the spelling is correct.
+
+== Invalid transaction state
+
+Invalid transaction state errors occur when the client attempts to perform an operation that is not allowed in the current transaction state.
+
+=== 25N01
+
+Status description:: error: invalid transaction state - invalid combination of statement types.Failed to execute the query { $query } due to conflicting statement types (read query, write query, schema modification, or administration command). To execute queries in the same transaction, they must be either of the same type, or be a combination of schema modifications and read commands.
+
+=== 25N02
+
+Status description:: error: invalid transaction state - unable to complete transaction. Unable to complete transaction. See debug log for details.
+
+=== 25N03
+
+Status description:: error: invalid transaction state - concurrent access violation. Transaction is being used concurrently by another request.
+
+=== 25N04
+
+Status description:: error: invalid transaction state - specified transaction does not exist.
+Transaction { $transactionId } does not exist.
+
+=== 25N05
+
+Status description:: error: invalid transaction state - transaction terminated or closed. The transaction has been terminated or closed.
+
+=== 25N06
+
+Status description:: error: invalid transaction state - transaction start failed. Failed to start transaction. See debug log for details.
+
+=== 25N07
+
+Status description:: error: invalid transaction state - constituent transaction start failed. Failed to start constituent transaction. See debug log for details.
+
+=== 25N08
+
+Status description:: error: invalid transaction state - invalid transaction lease. The lease for the transaction is no longer valid.
+
+=== 25N09
+
+Status description:: error: invalid transaction state - internal transaction failure. The transaction failed due to an internal error.
+
+=== 25N11
+
+Status description:: error: invalid transaction state - conflicting transaction state. There was a conflict detected between the transaction state and applied updates. Please retry the transaction.
+
+=== 25N12
+
+Status description:: error: invalid transaction state - index was dropped. Index { $idx } was dropped in this transaction and cannot be used.
+
+=== 25N13
+
+Status description:: error: invalid transaction state - cannot access entity after removal. A { $entityType } was accessed after being deleted in this transaction. Verify the transaction statements.
+
+== Invalid transaction termination
+
+=== 2DN01
+
+Status description:: error: invalid transaction termination - commit failed. Failed to commit transaction. See debug log for details.
+
+=== 2DN02
+
+Status description:: error: invalid transaction termination - constituent commit failed. Failed to commit constituent transaction. See debug log for details.
+
+=== 2DN03
+
+Status description:: error: invalid transaction termination - transaction termination failed. Failed to terminate transaction. See debug log for details.
+
+=== 2DN04
+
+Status description:: error: invalid transaction termination - constituent transaction termination failed. Failed to terminate constituent transaction. See debug log for details.
+
+=== 2DN05
+
+Status description:: error: invalid transaction termination - failed to apply transaction. There was an error on applying the transaction. See logs for more information.
+
+=== 2DN06
+
+Status description:: error: invalid transaction termination - failed to append transaction. There was an error on appending the transaction. See logs for more information.
+
+=== 2DN07
+
+Status description:: error: invalid transaction termination - inner transactions still open. Unable to commit transaction because it still have non-closed inner transactions.
+
+[[transaction-rollback]]
+== Transaction rollback
+
+=== 40N01
+
+Status description:: error: transaction rollback - rollback failed. Failed to rollback transaction. See debug log for details.
+
+=== 40N02
+
+Status description:: error: transaction rollback - constituent rollback failed. Failed to rollback constituent transaction. See debug log for details.
+
+[[syntax-error-access-rule-violation]]
+== Syntax error or access rule violation
+
+=== 42N01
+
+Status description:: error: syntax error or access rule violation - no such constituent graph exists in composite database. The constituent graph { $graph } was not found in the in composite database { $db }. Verify that the spelling is correct.
+
+=== 42N02
+
+Status description:: error: syntax error or access rule violation - writing in read access mode. Writing in read access mode not allowed.
+
+=== 42N03
+
+Status description:: error: syntax error or access rule violation - writing to multiple graphs. Writing to multiple graphs in the same transaction is not allowed. Use CALL IN TRANSACTION or create separate transactions in your application.
+
+=== 42N04
+
+Status description:: error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by { $db1 } while connected to session database { $db2 }. Connect to { $db3 } directly.
+
+=== 42N05
+
+Status description:: error: syntax error or access rule violation - unsupported access of standard database. Failed to access database identified by { $db1 } while connected to composite session database { $db2 }. Connect to { $db3 } directly or create an alias in the composite database.
+
+=== 42N06
+
+Status description:: error: syntax error or access rule violation - unsupported action on composite database. { $action } is not supported on composite databases.
+
+=== 42N07
+
+Status description:: error: syntax error or access rule violation - variable already defined. The variable { $var } is shadowing a variable with the same name from the outer scope and needs to be renamed.
+
+=== 42N08
+
+Status description:: error: syntax error or access rule violation - no such procedure or function. The procedure or function { $procFun } was not registered for this database instance. Verify that the spelling is correct.
+
+=== 42N09
+
+Status description:: error: syntax error or access rule violation - no such user. A user with the name { $user } was not found. Verify that the spelling is correct.
+
+=== 42N10
+
+Status description:: error: syntax error or access rule violation - no such role. A role with the name { $role } was not found. Verify that the spelling is correct.
+
+=== 42N11
+
+Status description:: error: syntax error or access rule violation - database or alias already exists. A [composite] database or alias with the name { $db } already exists.
+
+=== 42N12
+
+Status description:: error: syntax error or access rule violation - user already exists. A user with the name { $user } already exists.
+
+=== 42N13
+
+Status description:: error: syntax error or access rule violation - role already exists. A role with the name { $role } already exists.
+
+=== 42N14
+
+Status description:: error: syntax error or access rule violation - invalid use of command. { $clause } cannot be used together with `$cmd`.
+
+=== 42N15
+
+Status description:: error: syntax error or access rule violation - invalid use of reserved keyword. { $syntax } is a reserved keyword and cannot be used in this place.
+
+=== 42N16
+
+Status description:: error: syntax error or access rule violation - unsupported index or constraint. Only single property { $idxType } are supported.
+
+=== 42N17
+
+Status description:: error: syntax error or access rule violation - unsupported request. { $input } is not allowed on the system database.
+
+=== 42N49
+
+Status description:: error: syntax error or access rule violation - unsupported normal form. Unknown Normal Form: { $input }.
+
+=== 42N75
+
+Status description:: error: syntax error or access rule violation - invalid use of graph function. A call to the graph function { $fun } is only allowed as the top-level argument of a USE clause.
+
+=== 42N83
+
+Status description:: error: syntax error or access rule violation - impersonation disallowed while password change required. Cannot impersonate a user while password change required.
+
+=== 42N84
+
+Status description:: error: syntax error or access rule violation - TERMINATE TRANSACTION misses YIELD clause. WHERE clause without YIELD clause. Use 'TERMINATE TRANSACTION ... YIELD ... WHERE ...'.
+
+=== 42N85
+
+Status description:: error: syntax error or access rule violation - cannot specify both allowed and denied databases. Allowed and denied database options are mutually exclusive.
+
+=== 42N88
+
+Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for 'REMOVE IMMUTABLE PRIVILEGE'.
+
+=== 42N89
+
+Status description:: error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. { $cause }
+
+=== 42N90
+
+Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: { $db }).
+
+=== 42I50
+
+Status description:: error: syntax error or access rule violation - token name too long. Invalid input { $input }. A { $tokenType } name cannot be longer than { $maxTokenLength }.
+
+=== 42NFD
+
+Status description:: error: syntax error or access rule violation - credentials expired. Permission denied. The credentials you provided were valid, but must be changed before you can use this instance.
+
+=== 42NFE
+
+Status description:: error: syntax error or access rule violation - auth info expired. Authentication and/or authorization info expired.
+
+=== 42NFF
+
+Status description:: error: syntax error or access rule violation - permission/access denied. Access denied, see the security logs for details.
