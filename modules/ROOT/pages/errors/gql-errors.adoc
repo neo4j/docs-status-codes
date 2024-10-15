@@ -37,7 +37,7 @@ Status description:: error: connection exception - unable to write to database. 
 
 === 08N02
 
-Status description:: error: connection exception - unable to write to database. Unable to connect to database { $db }. Server-side routing is disabled. Either connect to { $db } directly, or enable server-side routing by setting '{ $cfgSetting }=true'.
+Status description:: error: connection exception - unable to connect to database. Unable to connect to database { $db }. Server-side routing is disabled. Either connect to { $db } directly, or enable server-side routing by setting '{ $cfgSetting }=true'.
 
 Example error description:: error: connection exception - unable to route to database. Unable to connect to database `my_db`. Server-side routing is disabled. Either connect to `my_db` directly, or enable server-side routing by setting 'dbms.routing.enabled=true'.
 
