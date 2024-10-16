@@ -346,7 +346,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === 42N07
 
-Status description:: error: syntax error or access rule violation - variable already defined. The variable { $var } is shadowing a variable with the same name from the outer scope and needs to be renamed.
+Status description:: error: syntax error or access rule violation - variable shadowing. The variable { $variable } is shadowing a variable with the same name from the outer scope and needs to be renamed.
 
 === 42N08
 
