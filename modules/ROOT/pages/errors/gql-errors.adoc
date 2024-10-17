@@ -112,7 +112,7 @@ Status description:: error: data exception - unsupported value. The provided val
 === 22N01 
 
 Status description:: error: data exception - invalid type.
-Expected the value { $value } to be of type { $valueTypeOredList }, but was of type { $valueType }.
+Expected the value { $value } to be of type { $valueTypeList }, but was of type { $valueType }.
 
 === 22N02 
 
@@ -124,7 +124,7 @@ Status description:: error: data exception - specified numeric value out of rang
 
 === 22N04 
 
-Status description:: error: data exception - invalid input value. Invalid input { $input } for { $context }. Expected one of { $inputOredList }.
+Status description:: error: data exception - invalid input value. Invalid input { $input } for { $context }. Expected one of { $inputList }.
 
 === 22N05
 
@@ -148,7 +148,7 @@ Status description:: error: data exception - conflicting pre-parser combination.
 
 === 22N10 
 
-Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified { $input } is not valid for option { $option }. Valid options are: { $optionAndedList }.
+Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified { $input } is not valid for option { $option }. Valid options are: { $optionList }.
 
 === 22N11 
 
@@ -180,7 +180,7 @@ Status description:: error: data exception - invalid import value. Importing ent
 
 === 22N18 
 
-Status description:: error: data exception - incomplete spatial value. A { $crs } POINT must contain { $mapKeyAndedList }.
+Status description:: error: data exception - incomplete spatial value. A { $crs } POINT must contain { $mapKeyList }.
 
 === 22N19 
 
@@ -216,6 +216,6 @@ Status description:: error: data exception - unsupported rounding mode. Unknown 
 
 === 22N27 
 
-Status description:: error: data exception - invalid entity type. Invalid input { $input } for { $variable }. Expected to be one of { $valueTypeOredList }.
+Status description:: error: data exception - invalid entity type. Invalid input { $input } for { $variable }. Expected to be one of { $valueTypeList }.
 
 
