@@ -187,7 +187,7 @@ Status description:: error: data exception - invalid spatial value. A POINT must
 
 === 22N20 
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with { $crs } coordinate reference system (CRS) and { $coordinates } coordinates. Use the equivalent { $crs2 } coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with { $dim1 }D coordinate reference system (CRS) and { $value } coordinates. Use the equivalent { $dim2 }D coordinate reference system instead.
 
 === 22N21 
 
@@ -215,6 +215,6 @@ Status description:: error: data exception - unsupported rounding mode. Unknown 
 
 === 22N27 
 
-Status description:: error: data exception - invalid entity type. Invalid input { $input } for { $var }. Expected to be one of { $valueTypeOredList }.
+Status description:: error: data exception - invalid entity type. Invalid input { $input } for { $variable }. Expected to be one of { $valueTypeOredList }.
 
 
