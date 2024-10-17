@@ -41,7 +41,7 @@ m|PERFORMANCE
 m|03N90
 |Status description
 a|info: cartesian product.
-The disconnected patterns `{ $pat }`build a cartesian product.
+The disconnected patterns `{ $pat }` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
 |Classification
 m|PERFORMANCE
@@ -132,7 +132,7 @@ m|PERFORMANCE
 |GQLSTATUS code
 m|03N91
 |Status description
-a|info: unbounded variable length pattern. The provided pattern `{ $pat }`is unbounded.
+a|info: unbounded variable length pattern. The provided pattern `{ $pat }` is unbounded.
 Shortest path with an unbounded pattern may result in long execution times.
 Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
 |Classification
