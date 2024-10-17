@@ -2028,8 +2028,8 @@ a|
 - The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
 For more information, see Cypher Manual -> Cypher planner.
-- The query used a deprecated functions
-- The query used a deprecated procedures
+- The query used a deprecated function%s
+- The query used a deprecated procedure%s
 |Category
 m|DEPRECATION
 |GQLSTATUS code
