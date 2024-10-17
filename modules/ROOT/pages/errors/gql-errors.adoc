@@ -95,7 +95,6 @@ Status description:: error: connection exception - alias chains are not permitte
 
 Status description:: error: connection exception - no such routing policy. Policy definition of the routing policy { $routingPolicy } could not be found. Verify that the spelling is correct.
 
-[[_data-exceptions]]
 == Data exceptions
 
 Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
