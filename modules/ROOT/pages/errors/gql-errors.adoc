@@ -8,7 +8,7 @@ The following page provides an overview of all GQLSTATUS server error codes in N
 All errors in Neo4j have severity level `ERROR`.
 
 * <<_connection-exceptions, Connection exceptions>>
-
+* <<_data-exceptions, Data exceptions>>
 
 [[_connection-exceptions]]
 == Connection exceptions
@@ -98,3 +98,124 @@ Status description:: error: connection exception - alias chains are not permitte
 === 08N15
 
 Status description:: error: connection exception - no such routing policy. Policy definition of the routing policy { $routingPolicy } could not be found. Verify that the spelling is correct.
+
+[[_data-exceptions]]
+== Data exceptions
+
+Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
+
+=== 22N00 
+
+Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
+
+=== 22N01 
+
+Status description:: error: data exception - invalid type.
+Expected the value { $value } to be of type { $valueTypeList }, but was of type { $valueType }.
+
+=== 22N02 
+
+Status description:: error: data exception - specified negative numeric value. Expected { $option } to be a positive number but found { $value } instead.
+
+=== 22N03 
+
+Status description:: error: data exception - specified numeric value out of range. Expected { $component } to be of type { $valueType } and in the range { $lower }  to { $upper } but found { $value }.
+
+=== 22N04 
+
+Status description:: error: data exception - invalid input value. Invalid input { $input } for { $context }. Expected one of { $inputList }.
+
+=== 22N05
+
+Status description:: error: data exception - input failed validation. Invalid input { $input } for { $context }.
+
+=== 22N06 
+
+Status description:: error: data exception - empty input string. Invalid input. { $option } needs to be specified.
+
+=== 22N07 
+
+Status description:: error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): { $optionList }.
+
+=== 22N08 
+
+Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine { $option1 } with { $option2 }.
+
+=== 22N09 
+
+Status description:: error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for { $option }.
+
+=== 22N10 
+
+Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified { $input } is not valid for option { $option }. Valid options are: { $optionList }.
+
+=== 22N11 
+
+Status description:: error: data exception - invalid argument. Invalid argument: cannot process { $input }.
+
+=== 22N12 
+
+Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process { $input }.
+
+=== 22N13 
+
+Status description:: error: data exception - invalid time zone. Specified time zones must include a date component.
+
+=== 22N14 
+
+Status description:: error: data exception - invalid temporal value combination. Cannot select both { $temporal } and { $component }.
+
+=== 22N15 
+
+Status description:: error: data exception - invalid temporal component. Cannot read the specified { $component } component from { $temporal }.
+
+=== 22N16 
+
+Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import { $expr } to { $graph }.
+
+// === 22N17 
+
+// Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified { $component } component from { $temporal }.
+
+=== 22N18 
+
+Status description:: error: data exception - incomplete spatial value. A { $crs } POINT must contain { $mapKeyList }.
+
+=== 22N19 
+
+Status description:: error: data exception - invalid spatial value. A POINT must contain either 'x' and 'y', or 'latitude' and 'longitude'.
+
+=== 22N20 
+
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with { $dim1 }D coordinate reference system (CRS) and { $value } coordinates. Use the equivalent { $dim2 }D coordinate reference system instead.
+
+=== 22N21 
+
+Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): { $crs }.
+
+=== 22N22 
+
+Status description:: error: data exception - invalid spatial value combination. Cannot specify both coordinate reference system (CRS) and spatial reference identifier (SRID).
+
+=== 22N23 
+
+Status description:: error: data exception - invalid latitude value. Cannot create WGS84 POINT with invalid coordinate: { $coordinates }. The valid range for the latitude coordinate is [-90, 90].
+
+=== 22N24 
+
+Status description:: error: data exception - invalid coordinate arguments. Cannot construct a { $valueType } from { $coordinates }.
+
+=== 22N25 
+
+Status description:: error: data exception - invalid temporal arguments. Cannot construct a { $valueType } from { $temporal }.
+
+=== 22N26 
+
+Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: CEILING, FLOOR, UP, DOWN, HALF_EVEN, HALF_UP, HALF_DOWN, UNNECESSARY.
+
+=== 22N27 
+
+Status description:: error: data exception - invalid entity type. Invalid input { $input } for { $variable }. Expected to be one of { $valueTypeList }.
+
+
