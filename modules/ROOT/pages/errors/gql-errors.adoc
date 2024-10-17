@@ -173,9 +173,9 @@ Status description:: error: data exception - invalid temporal component. Cannot 
 
 Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import { $expr } to { $graph }.
 
-=== 22N17 
+// === 22N17 
 
-Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified { $component } component from { $temporal }.
+// Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified { $component } component from { $temporal }.
 
 === 22N18 
 
