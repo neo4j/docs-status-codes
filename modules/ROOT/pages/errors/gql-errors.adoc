@@ -225,7 +225,7 @@ Status description:: error: data exception - invalid entity type. Invalid input 
 
 == Invalid transaction state
 
-Invalid transaction state errors occur when the client attempts to perform an operation that is not allowed in the current transaction state.
+Invalid transaction state errors occur when the transaction is in an invalid state, such as when the transaction is terminated or closed, or when there is a conflict between the transaction state and applied updates.
 
 === 25N01
 
@@ -278,6 +278,8 @@ Status description:: error: invalid transaction state - cannot access entity aft
 
 == Invalid transaction termination
 
+Invalid transaction termination errors occur when the transaction termination fails, such as when the transaction or constituent transaction fails to commit, or when the transaction termination fails to apply or append the transaction.
+
 === 2DN01
 
 Status description:: error: invalid transaction termination - commit failed. Failed to commit transaction. See debug log for details.
@@ -309,6 +311,8 @@ Status description:: error: invalid transaction termination - inner transactions
 [[transaction-rollback]]
 == Transaction rollback
 
+Transaction rollback errors occur when the transaction is rolled back due to an error, such as when the transaction rollback fails, or when the constituent rollback fails.
+
 === 40N01
 
 Status description:: error: transaction rollback - rollback failed. Failed to rollback transaction. See debug log for details.
@@ -319,6 +323,12 @@ Status description:: error: transaction rollback - constituent rollback failed. 
 
 [[syntax-error-access-rule-violation]]
 == Syntax error or access rule violation
+
+Syntax error or access rule violation errors occur when there is a syntax error in the query, or when the query violates the access rules, such as when the query contains an invalid syntax, or when the query tries to access a database that does not exist, etc.
+
+=== 42I50
+
+Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ $input }`... A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
 
 === 42N01
 
@@ -419,10 +429,6 @@ Status description:: error: syntax error or access rule violation - invalid driv
 === 42N90
 
 Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: { $db }).
-
-=== 42I50
-
-Status description:: error: syntax error or access rule violation - token name too long. Invalid input { $input }. A { $tokenType } name cannot be longer than { $maxTokenLength }.
 
 === 42NFD
 
