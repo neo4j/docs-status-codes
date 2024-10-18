@@ -315,7 +315,7 @@ Status description:: error: transaction rollback - constituent rollback failed. 
 [[syntax-error-access-rule-violation]]
 == Syntax error or access rule violation
 
-Syntax error or access rule violation errors occur when there is a syntax error in the query, or when the query violates the access rules, such as when the query contains an invalid syntax, or when the query tries to access a database that does not exist, etc.
+Syntax error or access rule violation errors occur when a Cypher query contains invalid syntax or when a client request violates the access rules, such as when a query tries to access a database without enough privileges, etc.
 
 === 42I50
 
