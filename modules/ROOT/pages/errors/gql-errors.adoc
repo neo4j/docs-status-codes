@@ -319,7 +319,7 @@ Syntax error or access rule violation errors occur when there is a syntax error 
 
 === 42I50
 
-Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ $input }`... A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
+Status description:: error: syntax error or access rule violation - token name too long. Invalid input { $input }... A { $tokenType } name cannot be longer than { $maxTokenLength }.
 
 === 42N01
 
