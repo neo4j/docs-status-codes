@@ -302,7 +302,7 @@ Status description:: error: invalid transaction termination - inner transactions
 [[transaction-rollback]]
 == Transaction rollback
 
-Transaction rollback errors occur when the transaction is rolled back due to an error, such as when the transaction rollback fails, or when the constituent rollback fails.
+Transaction rollback errors occur when there is a failure in a transaction or a constituent transaction rollback.
 
 === 40N01
 
