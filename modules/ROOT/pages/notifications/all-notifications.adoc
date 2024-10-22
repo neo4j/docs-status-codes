@@ -34,14 +34,14 @@ m|Neo.ClientNotification.Statement.CartesianProduct
 |Title
 a|This query builds a cartesian product between disconnected patterns.
 |Description
-|If a part of a query contains multiple disconnected patterns, this will build a cartesian product between all those parts. This may produce a large amount of data and slow down query processing. While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product, perhaps by adding a relationship between the different parts or by using OPTIONAL MATCH (%s)
+|If a part of a query contains multiple disconnected patterns, this will build a cartesian product between all those parts. This may produce a large amount of data and slow down query processing. While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product, perhaps by adding a relationship between the different parts or by using OPTIONAL MATCH (`%s`)
 |Category
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N90
 |Status description
 a|info: cartesian product.
-The disconnected patterns `$pat` build a cartesian product.
+The disconnected patterns `{ $pat }` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
 |Classification
 m|PERFORMANCE
@@ -132,7 +132,7 @@ m|PERFORMANCE
 |GQLSTATUS code
 m|03N91
 |Status description
-a|info: unbounded variable length pattern. The provided pattern `$pat` is unbounded.
+a|info: unbounded variable length pattern. The provided pattern `{ $pat }` is unbounded.
 Shortest path with an unbounded pattern may result in long execution times.
 Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
 |Classification
@@ -228,7 +228,7 @@ m|PERFORMANCE
 m|03N92
 |Status description
 a|info: exhaustive shortest path.
-The query runs with exhaustive shortest path due to the existential predicate(s) `$pred_list`.
+The query runs with exhaustive shortest path due to the existential predicate(s) `{ $pred_list }`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
 |Classification
 m|PERFORMANCE
@@ -321,7 +321,7 @@ m|03N93
 |Status description
 a|info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
-Consider adding an index for label `$label`.
+Consider adding an index for label `{ $label }`.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
@@ -491,14 +491,14 @@ m|Neo.ClientNotification.Statement.DynamicProperty
 |Title
 a|Queries using dynamic properties will use neither index seeks nor index scans for those properties
 |Description
-|Using a dynamic property makes it impossible to use an index lookup for this query (%s)
+|Using a dynamic property makes it impossible to use an index lookup for this query (`%s`)
 |Category
 m|PERFORMANCE
 |GQLSTATUS code
 m|03N95
 |Status description
 a|info: dynamic property.
-An index exists on label/type(s) `$label_list`.
+An index exists on label/type(s) `{ $label_list }`.
 It is not possible to use indexes for dynamic properties.
 Consider using static properties.
 |Classification
@@ -584,7 +584,7 @@ Using a dynamic property makes it impossible to use an index lookup for this que
 
 Suggestions for improvement::
 Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
-For example, if `$prop` is equal to `since`, you can rewrite the query to:
+For example, if `{ $prop }` is equal to `since`, you can rewrite the query to:
 +
 [source, cypher]
 ----
@@ -613,7 +613,7 @@ Consider using static properties.
 
 Suggestions for improvement::
 Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
-For example, if `$prop` is equal to `since`, you can rewrite the query to:
+For example, if `{ $prop }` is equal to `since`, you can rewrite the query to:
 +
 [source, cypher]
 ----
@@ -674,7 +674,7 @@ a|The database was unable to plan a hinted join.
 |Description
 |The hinted join was not planned.
 This could happen because no generated plan contained the join key,
-please try using a different join key or restructure your query. (%s)
+please try using a different join key or restructure your query. (`%s`)
 |Category
 m|HINT
 |GQLSTATUS code
@@ -757,14 +757,14 @@ m|Neo.ClientNotification.Schema.HintedIndexNotFound
 |Title
 a|The request (directly or indirectly) referred to an index that does not exist.
 |Description
-|The hinted index does not exist, please check the schema (%s)
+|The hinted index does not exist, please check the schema (`%s`)
 |Category
 m|HINT
 |GQLSTATUS code
 m|01N31
 |Status description
 a|warn: hinted index not found.
-Unable to create a plan with `$index_descr` because the index does not exist.
+Unable to create a plan with `{ $index_descr }` because the index does not exist.
 |Classification
 m|HINT
 |SeverityLevel
@@ -888,14 +888,14 @@ m|Neo.ClientNotification.Database.HomeDatabaseNotFound
 a|The request referred to a home database that does not exist.
 |Description
 |The home database provided does not currently exist in the DBMS.
-This command will not take effect until this database is created. (%s`)
+This command will not take effect until this database is created. (`%s`)
 |Category
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|00N50
 |Status description
 a|note: successful completion - home database not found.
-The database `$db` does not exist.
+The database `{ $db }` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
 |Classification
 m|UNRECOGNIZED
@@ -958,14 +958,14 @@ m|Neo.ClientNotification.Statement.UnknownLabelWarning
 |Title
 a|The provided label is not in the database.
 |Description
-|One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
+|One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (`%s`)
 |Category
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N50
 |Status description
 a|warn: unknown label.
-The label `$label` does not exist.
+The label `{ $label }` does not exist.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1030,14 +1030,14 @@ m|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 a|The provided relationship type is not in the database.
 |Description
 |One of the relationship types in your query is not available in the database,
-make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
+make sure you didn't misspell it or that the label is available when you run this statement in your application (`%s`)
 |Category
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N51
 |Status description
 a|warn: unknown relationship type.
-The relationship type `$reltype` does not exist.
+The relationship type `{ $reltype }` does not exist.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1101,14 +1101,14 @@ m|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 a|The provided property key is not in the database
 |Description
 |One of the property names in your query is not available in the database,
-make sure you didn't misspell it or that the label is available when you run this statement in your application (%s)
+make sure you didn't misspell it or that the label is available when you run this statement in your application (`%s`)
 |Category
 m|UNRECOGNIZED
 |GQLSTATUS code
 m|01N52
 |Status description
 a|warn: unknown property key.
-The property `$propkey` does not exist.
+The property `{ $propkey }` does not exist.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1234,15 +1234,15 @@ m|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
 a|This query is not supported by the chosen runtime.
 |Description
 |Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.
-(%s)
+(`%s`)
 |Category
 m|UNSUPPORTED
 |GQLSTATUS code
 m|01N40
 |Status description
 a|warn: unsupported runtime.
-The query cannot be executed with `$preparser_input1`, `$preparser_input2` is used.
-Cause: `$msg`.
+The query cannot be executed with `{ $preparser_input1 }`, `{ $preparser_input2 }` is used.
+Cause: `{ $msg }`.
 |Classification
 m|UNSUPPORTED
 |SeverityLevel
@@ -1319,7 +1319,7 @@ m|Neo.ClientNotification.Statement.RuntimeExperimental
 |Title
 a|This feature is experimental and should not be used in production systems.
 |Description
-|You are using an experimental feature (%s)
+|You are using an experimental feature (`%s`)
 |Category
 m|UNSUPPORTED
 |SeverityLevel
@@ -1365,10 +1365,10 @@ m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 a|This feature is deprecated and will be removed in future versions.
 |Descriptions
 a|
-- The procedure has a deprecated field. (%s)
-- The function has a deprecated field. (%s)
-- Creating an entity (%s) and referencing that entity in a property definition in the same CREATE is deprecated.
-- Merging an entity (%s) and referencing that entity in a property definition in the same MERGE is deprecated.
+- The procedure has a deprecated field. (`%s`)
+- The function has a deprecated field. (`%s`)
+- Creating an entity (`%s`) and referencing that entity in a property definition in the same CREATE is deprecated.
+- Merging an entity (`%s`) and referencing that entity in a property definition in the same MERGE is deprecated.
 - The Unicode character `%s` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
@@ -1376,7 +1376,7 @@ To continue using it, escape the identifier by adding backticks around the ident
 - All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 - Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
-Names containing `.` should be escaped. (%s)
+Names containing `.` should be escaped. (`%s`)
 |Category
 m|DEPRECATION
 |GQLSTATUS code
@@ -1548,14 +1548,14 @@ m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 a|This feature is deprecated and will be removed in future versions.
 |Descriptions
 a|
-- The semantics of using colon in the separation of alternative relationship types will change in a future version. (%s)
+- The semantics of using colon in the separation of alternative relationship types will change in a future version. (`%s`)
 - The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
 Please use properties() instead.
 - The use of shortestPath and allShortestPaths with fixed length relationships is deprecated and will be removed in a future version.
 Please use a path with a length of 1 [r*1..1] instead or a Match with a limit.
-- The query used a deprecated function. (%s)
-- The query used a deprecated procedure. (%s)
-- The query used a deprecated runtime option. (%s)
+- The query used a deprecated function. (`%s`)
+- The query used a deprecated procedure. (`%s`)
+- The query used a deprecated runtime option. (`%s`)
 - The `TextIndexProvider.DESCRIPTOR.name()` provider for text indexes is deprecated and will be removed in a future version.
 Please use `TrigramIndexProvider.DESCRIPTOR.name()` instead.
 |Category
@@ -1564,8 +1564,8 @@ m|DEPRECATION
 m|01N01
 |Status description
 a|warn: feature deprecated with replacement.
-`$thing1` is deprecated.
-It is replaced by `$thing2`.
+`{ $thing1 }` is deprecated.
+It is replaced by `{ $thing2 }`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2044,7 +2044,7 @@ m|DEPRECATION
 m|01N02
 |Status description
 a|warn: feature deprecated without replacement.
-`$thing` is deprecated and will be removed without a replacement.
+`{ $thing }` is deprecated and will be removed without a replacement.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2097,14 +2097,14 @@ m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
 |Description
-a|The query used a deprecated field from a procedure. (%s)
+a|The query used a deprecated field from a procedure. (`%s`)
 |Category
 m|DEPRECATION
 |GQLSTATUS code
 m|01N03
 |Status description
 a|warn: procedure field deprecated.
-`$field` for procedure `$proc` is deprecated.
+`{ $field }` for procedure `{ $proc }` is deprecated.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2122,15 +2122,15 @@ m|Neo.ClientNotification.Request.DeprecatedFormat
 |Title
 a|The client made a request for a format which has been deprecated.
 |Description
-|The requested format has been deprecated. (%s)
+|The requested format has been deprecated. (`%s`)
 |Category
 m|DEPRECATION
 |GQLSTATUS code
 m|01N01
 |Status description
 a|warn: feature deprecated with replacement.
-`$thing1` is deprecated.
-It is replaced by `$thing2`.
+`{ $thing1 }` is deprecated.
+It is replaced by `{ $thing2 }`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2163,7 +2163,7 @@ m|SECURITY
 m|00N71
 |Status description
 |note: successful completion - role or privilege not assigned.
-`$cmd` has no effect.
+`{ $cmd }` has no effect.
 The role or privilege is not assigned.
 |Classification
 m|SECURITY
@@ -2283,7 +2283,7 @@ m|SECURITY
 m|00N70
 |Status description
 |note: successful completion - role or privilege already assigned.
-`$cmd` has no effect.
+`{ $cmd }` has no effect.
 The role or privilege is already assigned.
 |Classification
 m|SECURITY
@@ -2800,10 +2800,8 @@ m|Neo.ClientNotification.Security.AuthProviderNotDefined
 |Title
 a|The auth provider is not defined.
 |Description
-a|The auth provider `<provider>` is not defined in the configuration.
-Verify that the spelling is correct or define `<provider>` in the configuration.
-|Severity
-m|INFORMATION
+a|The auth provider `{ $provider }` is not defined in the configuration.
+Verify that the spelling is correct or define `{ $provider }` in the configuration.
 |Category
 m|SECURITY
 |===
@@ -2916,7 +2914,7 @@ m|00N80
 |Status description
 a|note: successful completion - server already enabled.
 `ENABLE SERVER` has no effect.
-Server `$server` is already enabled.
+Server `{ $server }` is already enabled.
 Verify that this is the intended server.
 |Classification
 m|TOPOLOGY
@@ -2982,7 +2980,7 @@ m|00N81
 |Status description
 a|note: successful completion - server already cordoned.
 `CORDON SERVER` has no effect.
-Server `$server` is already cordoned.
+Server `{ $server }` is already cordoned.
 Verify that this is the intended server.
 |Classification
 m|TOPOLOGY
@@ -3131,7 +3129,7 @@ m|00N83
 |Status description
 a|note: successful completion - cordoned servers existed during allocation.
 Cordoned servers existed when making an allocation decision.
-Server(s) `$server_list` are cordoned.
+Server(s) `{ $server_list }` are cordoned.
 This can impact allocation decisions.
 |Classification
 m|TOPOLOGY
@@ -3272,8 +3270,8 @@ m|SCHEMA
 m|00NA0
 |Status description
 a|note: successful completion - index or constraint already exists.
-`$cmd` has no effect.
-`$index_constr_pat` already exists.
+`{ $cmd }` has no effect.
+`{ $index_constr_pat }` already exists.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -3503,8 +3501,8 @@ m|SCHEMA
 m|00NA1
 |Status description
 a|note: successful completion - index or constraint does not exist.
-`$cmd` has no effect.
-`$index_constr_name` does not exist.
+`{ $cmd }` has no effect.
+`{ $index_constr_name }` does not exist.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -3618,14 +3616,14 @@ m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
 |Description
 |Variable in subquery is shadowing a variable with the same name from the outer scope.
-If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (%s)
+If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|03N60
 |Status description
 a|info: subquery variable shadowing.
-The variable `$var` in the subquery uses the same name as a variable from the outer query.
+The variable `{ $var }` in the subquery uses the same name as a variable from the outer query.
 Use `WITH $var` in the subquery to import the one from the outer scope unless you want it to be a new variable.
 |Classification
 m|GENERIC
@@ -3875,14 +3873,14 @@ m|Neo.ClientNotification.Statement.ParameterNotProvided
 a|The statement refers to a parameter that was not provided in the request.
 |Description
 |Did not supply query with enough parameters.
-The produced query plan will not be cached and is not executable without EXPLAIN. (%s)
+The produced query plan will not be cached and is not executable without EXPLAIN. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|01N60
 |Status description
 a|warn: parameter missing.
-The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param_list`.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `{ $param_list }`.
 Provide the parameter(s).
 |Classification
 m|GENERIC
@@ -3927,7 +3925,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: parameter missing.
-The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `$param`.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `{ $param }`.
 Provide the parameter(s).
 
 Suggestions for improvement::
@@ -3947,14 +3945,14 @@ m|Neo.ClientNotification.Procedure.ProcedureWarning
 |Title
 a|The query used a procedure that generated a warning.
 |Description
-|The query used a procedure that generated a warning. (%s)
+|The query used a procedure that generated a warning. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|01N62
 |Status description
 a|warn: procedure execution warning.
-The procedure `$proc` generates the warning `$msg`.
+The procedure `{ $proc }` generates the warning `{ $msg }`.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -3976,14 +3974,14 @@ m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 |Title
 a|The query contains a relationship type expression that cannot be satisfied.
 |Description
-|Relationship type expression cannot possibly be satisfied. (%s)
+|Relationship type expression cannot possibly be satisfied. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|01N61
 |Status description
 a|warn: unsatisfiable relationship type expression.
-The expression `$label_expr` cannot be satisfied because relationships must have exactly one type.
+The expression `{ $label_expr }` cannot be satisfied because relationships must have exactly one type.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -4036,15 +4034,15 @@ m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
 a|The query returns no results because a relationship variable is bound more than once.
 |Description
 a|
-- A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (%s)
-- A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (%s)
+- A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (`%s`)
+- A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|01N63
 |Status description
 a|
-warn: repeated relationship reference. `$var` is repeated in `$pat`, which leads to no results.
+warn: repeated relationship reference. `{ $var }` is repeated in `{ $pat }`, which leads to no results.
 |Classification
 m|GENERIC
 |SeverityLevel
