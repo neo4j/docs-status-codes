@@ -432,3 +432,37 @@ Status description:: error: syntax error or access rule violation - auth info ex
 === 42NFF
 
 Status description:: error: syntax error or access rule violation - permission/access denied. Access denied, see the security logs for details.
+
+
+== General processing exception
+
+General processing exceptions occur when there is a general processing error, such as an internal error, deadlock, execution failure, invalid server state transition, constraint creation or drop failure, etc.
+
+=== 50N00
+
+Status description:: error: general processing exception - internal error. Internal exception raised `{ $msgTitle }`: `{ $msg }`
+
+=== 50N05
+
+Status description:: error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.
+
+=== 50N07
+
+Status description:: error: general processing exception - execution failed. Execution failed. See cause and debug log for details.
+
+=== 50N09
+
+Status description:: error: general processing exception - invalid server state transition. The server transitioned into a server state that is not valid in the current context: `{ $boltServerState }`.
+
+=== 50N11
+
+
+Status description:: error: general processing exception - constraint creation failed. Unable to create { $constrDescrOrName }.
+
+=== 50N12
+
+Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
+
+=== 50N42
+
+Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
