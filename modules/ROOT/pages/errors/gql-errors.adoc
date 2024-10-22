@@ -732,3 +732,82 @@ Status description:: error: system configuration or operation exception - system
 
 Status description:: error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ $db }` because Bolt is not enabled. Please update your configuration such that 'server.bolt.enabled' is set to true.
 
+== Procedure exception
+
+Procedure exceptions occur when there is an error in executing a procedure, such as when the procedure execution fails due to a client error, when the procedure cannot be invoked on a primary, when the number of arguments to checkConnectivity is invalid, etc.
+
+=== 52N02
+
+Status description:: error: procedure exception - procedure execution client error. Execution of the procedure `{ $proc }` failed due to a client error.
+
+=== 52N05
+
+Status description:: error: procedure exception - cannot invoke procedure on a primary. Can't invoke procedure on this member because it is not a secondary for database `{ $db }`.
+
+=== 52N06
+
+Status description:: error: procedure exception - invalid number of arguments to checkConnectivity. Unexpected number of arguments (expected 0-2 but received `{ $count }`).
+
+=== 52N07
+
+Status description:: error: procedure exception - invalid port argument to checkConnectivity. Unrecognised port name `{ $port }` (valid values are: `{ $portAndedList }`.
+
+=== 52N08
+
+Status description:: error: procedure exception - invalid server id argument to checkConnectivity. Unable to parse server id `{ $server }`.
+
+=== 52N09
+
+Status description:: error: procedure exception - procedure execution database error. Execution of the procedure `{ $proc }` failed due to a database error.
+
+=== 52N10
+
+Status description:: error: procedure exception - invalid address key. An address key is included in the query string provided to the GetRoutingTableProcedure, but its value could not be parsed.
+
+=== 52N11
+
+Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred. Please refer to the server's debug log for more information.
+
+=== 52N12
+
+Status description:: error: procedure exception - cannot change default database. The previous default database `{ $db }` is still running.
+
+=== 52N13
+
+Status description:: error: procedure exception - new default database does not exist. New default database `{ $db }` does not exist.
+
+=== 52N14
+
+Status description:: error: procedure exception - system cannot be default database. System database cannot be set as default.
+
+=== 52N16
+
+Status description:: error: procedure exception - invalid procedure argument list. Invalid arguments to procedure.
+
+=== 52N17
+
+Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+
+=== 52N23
+
+Status description:: error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ $namespaceAndedList }``
+
+=== 52N25
+
+Status description:: error: procedure exception - JMX error. JMX error while accessing `{ $param }`. See logs for more information.
+
+=== 52N29
+
+Status description:: error: procedure exception - outdated change identifier. Given ChangeIdentifier describes a transaction that occurred before any enrichment records exist.
+
+=== 52N30
+
+Status description:: error: procedure exception - future change identifier. Given ChangeIdentifier describes a transaction that hasn't yet occurred.
+
+=== 52N31
+
+Status description:: error: procedure exception - wrong database. Change identifier `{ $param }` does not belong to this database.
+
+=== 52N32
+
+Status description:: error: procedure exception - invalid sequence number. Change identifier `{ $param1 }` has an invalid sequence number `{ $param2 }`.
