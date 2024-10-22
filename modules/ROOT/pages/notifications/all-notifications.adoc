@@ -151,7 +151,9 @@ Query::
 +
 [source, cypher, role="noplay"]
 ----
-MATCH p=shortestPath((n)-[*]->(m)) RETURN p
+MATCH p=shortestPath((n)-[*]->(m))
+WHERE n <> m
+RETURN p
 ----
 
 Description of the returned code::
@@ -164,7 +166,9 @@ Consider adding an upper limit.
 +
 [source, cypher, role="noplay"]
 ----
-MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
+MATCH p=shortestPath((n)-[*..8]->(m))
+WHERE n <> m
+RETURN p
 ----
 ======
 [.include-with-GQLSTATUS-code]
@@ -174,7 +178,9 @@ Query::
 +
 [source, cypher, role="noplay"]
 ----
-MATCH p=shortestPath((n)-[*]->(m)) RETURN p
+MATCH p=shortestPath((n)-[*]->(m))
+WHERE n <> m
+RETURN p
 ----
 
 Returned GQLSTATUS code::
@@ -192,7 +198,9 @@ Consider adding an upper limit.
 +
 [source, cypher, role="noplay"]
 ----
-MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
+MATCH p=shortestPath((n)-[*..8]->(m))
+WHERE n <> m
+RETURN p
 ----
 ======
 =====
