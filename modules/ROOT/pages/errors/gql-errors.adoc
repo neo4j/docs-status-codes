@@ -304,6 +304,14 @@ Status description:: error: invalid transaction termination - inner transactions
 
 Transaction rollback errors occur when there is a failure in a transaction or a constituent transaction rollback.
 
+=== 40000
+
+Status description:: error: transaction rollback
+
+=== 40003
+
+Status description:: error: transaction rollback - statement completion unknown
+
 === 40N01
 
 Status description:: error: transaction rollback - rollback failed. Failed to rollback transaction. See debug log for details.
@@ -317,9 +325,123 @@ Status description:: error: transaction rollback - constituent rollback failed. 
 
 Syntax error or access rule violation errors occur when a Cypher query contains invalid syntax or when a client request violates the access rules, such as when a query tries to access a database without enough privileges, etc.
 
+=== 42000
+
+Status description:: error: syntax error or access rule violation
+
+=== 42001
+
+Status description:: error: syntax error or access rule violation - invalid syntax
+
+=== 42002
+
+Status description:: error: syntax error or access rule violation - invalid reference
+
+=== 42004
+
+Status description:: error: syntax error or access rule violation - use of visually confusable identifiers
+
+=== 42006
+
+Status description:: error: syntax error or access rule violation - number of edge labels below supported minimum
+
+=== 42007
+
+Status description:: error: syntax error or access rule violation - number of edge labels exceeds supported maximum
+
+=== 42008
+
+Status description:: error: syntax error or access rule violation - number of edge properties exceeds supported maximum
+
+=== 42009
+
+Status description:: error: syntax error or access rule violation - number of node labels below supported minimum
+
+=== 42010
+
+Status description:: error: syntax error or access rule violation - number of node labels exceeds supported maximum
+
+=== 42011
+
+Status description:: error: syntax error or access rule violation - number of node properties exceeds supported maximum
+
+=== 42012
+
+Status description:: error: syntax error or access rule violation - number of node type key labels below supported minimum
+
+=== 42013
+
+Status description:: error: syntax error or access rule violation - number of node type key labels exceeds supported maximum
+
+=== 42014
+
+Status description:: error: syntax error or access rule violation - number of edge type key labels below supported minimum
+
+=== 42015
+
+Status description:: error: syntax error or access rule violation - number of edge type key labels exceeds supported maximum
+
+=== 42I00
+
+Status description:: error: syntax error or access rule violation - invalid case expression. 'CASE' expressions must have the same number of 'WHEN' and 'THEN' operands.
+
+=== 42I01
+
+Status description:: error: syntax error or access rule violation - invalid FOREACH. Invalid use of `{ $clause }` inside 'FOREACH'.
+
+=== 42I02
+
+Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with `'/*'` must also have a closing `'*/'`.
+
+=== 42I06
+
+Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input1 }`, expected: `{ $input2 }`.
+
+=== 42I18
+
+Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ $varList }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
+
+
+=== 42I20
+
+Status description:: error: syntax error or access rule violation - invalid symbol in expression. Label expressions and relationship type expressions cannot contain `{ $input }`. To express a label disjunction use `{ $labelExpr }` instead.
+
+=== 42I25
+
+Status description:: error: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
+
+=== 42I29
+
+Status description:: error: syntax error or access rule violation - invalid use of IS. The IS keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
+
+=== 42I31
+
+Status description:: error: syntax error or access rule violation - invalid use of MATCH. MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a WITH clause between them.
+
+
+=== 42I37
+
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN *`. `RETURN *'` is not allowed when there are no variables in scope.
+
+=== 42I38
+
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. `RETURN ...'` can only be used at the end of a query or subquery.
+
+=== 42I40
+
+Status description:: error: syntax error or access rule violation - invalid use of `UNION and UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
+
+=== 42I47
+
+Status description:: error: syntax error or access rule violation - parser error. Parser Error: `{ $msg }`.
+
 === 42I50
 
 Status description:: error: syntax error or access rule violation - token name too long. Invalid input { $input }... A { $tokenType } name cannot be longer than { $maxTokenLength }.
+
+=== 42N00
+
+Status description:: error: syntax error or access rule violation - no such database. The database `{ $db }` was not found. Verify that the spelling is correct.
 
 === 42N01
 
@@ -389,13 +511,60 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - unsupported request. { $input } is not allowed on the system database.
 
+=== 42N19
+
+Status description:: error: syntax error or access rule violation - duplicate clause. Duplicate `{ $syntax }` clause.
+
+=== 42N20
+
+Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator `'[ ]'` cannot be empty.
+
+
+=== 42N21
+
+Status description:: error: syntax error or access rule violation - unaliased return item. Expression in `{ $clause }` must be aliased (use AS).
+
+
+=== 42N22
+
+Status description:: error: syntax error or access rule violation - single return column required. A COLLECT subquery must end with a single return column.
+
+=== 42N29
+
+Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $var }`.
+
+=== 42N39
+
+Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a UNION clause must have the same return column names.
+
+=== 42N45
+
+Status description:: error: syntax error or access rule violation - unexpected end of input. Unexpected end of input, expected 'CYPHER', 'EXPLAIN', 'PROFILE' or a query.
+
 === 42N49
 
 Status description:: error: syntax error or access rule violation - unsupported normal form. Unknown Normal Form: { $input }.
 
+=== 42N57
+
+Status description:: error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ $expr }` cannot contain any updating clauses.
+
+=== 42N70
+
+Status description:: error: syntax error or access rule violation - function without required WHERE clause. The function `{ $fun }` requires a WHERE clause.
+
 === 42N75
 
 Status description:: error: syntax error or access rule violation - invalid use of graph function. A call to the graph function { $fun } is only allowed as the top-level argument of a USE clause.
+
+=== 42N76
+
+Status description:: error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintAndedList }` cannot be fulfilled.
+
+=== 42N78
+
+Status description:: error: syntax error or access rule violation - variable already bound. Node `{ $var }` has already been bound and cannot be modified by the `{ $clause }` clause.
+
 
 === 42N83
 
@@ -409,6 +578,10 @@ Status description:: error: syntax error or access rule violation - TERMINATE TR
 
 Status description:: error: syntax error or access rule violation - cannot specify both allowed and denied databases. Allowed and denied database options are mutually exclusive.
 
+=== 42N86
+
+Status description:: error: syntax error or access rule violation - wildcard in parameter. `{ $syntax }` failed. Parameterized database and graph names do not support wildcards.
+
 === 42N88
 
 Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for 'REMOVE IMMUTABLE PRIVILEGE'.
@@ -420,6 +593,19 @@ Status description:: error: syntax error or access rule violation - invalid driv
 === 42N90
 
 Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: { $db }).
+
+=== 42N97
+
+Status description:: error: syntax error or access rule violation - missing mandatory auth clause. Clause `{ $clause }` is mandatory for auth provider `{ $auth }`.
+
+
+=== 42N98
+
+Status description:: error: syntax error or access rule violation - cannot modify own user. Cannot modify the user record of the current user.
+
+=== 42N99
+
+Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
 
 === 42NFD
 
