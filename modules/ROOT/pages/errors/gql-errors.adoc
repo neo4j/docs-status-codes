@@ -466,3 +466,9 @@ Status description:: error: general processing exception - constraint drop faile
 === 50N42
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
+
+[NOTE]
+====
+500N12 is the default GQLSTATUS code for exceptions without a GQL object.
+For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
+====
