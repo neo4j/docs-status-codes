@@ -531,7 +531,7 @@ Status description:: error: syntax error or access rule violation - single retur
 
 === 42N29
 
-Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $var }`.
+Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $variable }`.
 
 === 42N39
 
