@@ -416,7 +416,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === 42I31
 
-Status description:: error: syntax error or access rule violation - invalid use of MATCH. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a WITH clause between them.
+Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a WITH clause between them.
 
 
 === 42I37
