@@ -183,7 +183,7 @@ Status description:: error: data exception - invalid spatial value. A POINT must
 
 === 22N20
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ $dim1 }D coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
 
 === 22N21
 
@@ -387,7 +387,7 @@ Status description:: error: syntax error or access rule violation - invalid case
 
 === 42I01
 
-Status description:: error: syntax error or access rule violation - invalid FOREACH. Invalid use of `{ $clause }` inside 'FOREACH'.
+Status description:: error: syntax error or access rule violation - invalid `FOREACH`. Invalid use of `{ $clause }` inside 'FOREACH'.
 
 === 42I02
 
@@ -408,28 +408,28 @@ Status description:: error: syntax error or access rule violation - invalid symb
 
 === 42I25
 
-Status description:: error: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS. 'CALL { ... }` IN TRANSACTIONS' is not supported after a write clause.
+Status description:: error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
 
 === 42I29
 
-Status description:: error: syntax error or access rule violation - invalid use of IS. The IS keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
+Status description:: error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
 
 === 42I31
 
-Status description:: error: syntax error or access rule violation - invalid use of MATCH. MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a WITH clause between them.
+Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a `WITH` clause between them.
 
 
 === 42I37
 
-Status description:: error: syntax error or access rule violation - invalid use of `RETURN *`. `RETURN *'` is not allowed when there are no variables in scope.
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN *`. 'RETURN *' is not allowed when there are no variables in scope.
 
 === 42I38
 
-Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. `RETURN ...'` can only be used at the end of a query or subquery.
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. 'RETURN ...' can only be used at the end of a query or subquery.
 
 === 42I40
 
-Status description:: error: syntax error or access rule violation - invalid use of `UNION and UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
+Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
 
 === 42I47
 
@@ -437,7 +437,7 @@ Status description:: error: syntax error or access rule violation - parser error
 
 === 42I50
 
-Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ $input }`... A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
+Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ $input }..`. A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
 
 === 42N00
 
@@ -453,7 +453,7 @@ Status description:: error: syntax error or access rule violation - writing in r
 
 === 42N03
 
-Status description:: error: syntax error or access rule violation - writing to multiple graphs. Writing to multiple graphs in the same transaction is not allowed. Use CALL IN TRANSACTION or create separate transactions in your application.
+Status description:: error: syntax error or access rule violation - writing to multiple graphs. Writing to multiple graphs in the same transaction is not allowed. Use `CALL IN TRANSACTION` or create separate transactions in your application.
 
 === 42N04
 
@@ -485,7 +485,7 @@ Status description:: error: syntax error or access rule violation - no such role
 
 === 42N11
 
-Status description:: error: syntax error or access rule violation - database or alias already exists. A [composite] database or alias with the name `{ $db }` already exists.
+Status description:: error: syntax error or access rule violation - database or alias already exists. A `[composite]` database or alias with the name `{ $db }` already exists.
 
 === 42N12
 
@@ -517,7 +517,7 @@ Status description:: error: syntax error or access rule violation - duplicate cl
 
 === 42N20
 
-Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator `'[ ]'` cannot be empty.
+Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator '[ ]' cannot be empty.
 
 
 === 42N21
@@ -527,7 +527,7 @@ Status description:: error: syntax error or access rule violation - unaliased re
 
 === 42N22
 
-Status description:: error: syntax error or access rule violation - single return column required. A COLLECT subquery must end with a single return column.
+Status description:: error: syntax error or access rule violation - single return column required. A `COLLECT` subquery must end with a single return column.
 
 === 42N29
 
@@ -535,7 +535,7 @@ Status description:: error: syntax error or access rule violation - unbound vari
 
 === 42N39
 
-Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a UNION clause must have the same return column names.
+Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.
 
 === 42N45
 
@@ -555,7 +555,7 @@ Status description:: error: syntax error or access rule violation - function wit
 
 === 42N75
 
-Status description:: error: syntax error or access rule violation - invalid use of graph function. A call to the graph function `{ $fun }` is only allowed as the top-level argument of a USE clause.
+Status description:: error: syntax error or access rule violation - invalid use of graph function. A call to the graph function `{ $fun }` is only allowed as the top-level argument of a `USE` clause.
 
 === 42N76
 
@@ -572,7 +572,7 @@ Status description:: error: syntax error or access rule violation - impersonatio
 
 === 42N84
 
-Status description:: error: syntax error or access rule violation - TERMINATE TRANSACTION misses YIELD clause. WHERE clause without YIELD clause. Use 'TERMINATE TRANSACTION ... YIELD ... WHERE ...'.
+Status description:: error: syntax error or access rule violation - `TERMINATE TRANSACTION` misses `YIELD` clause. `WHERE` clause without `YIELD` clause. Use 'TERMINATE TRANSACTION ... YIELD ... WHERE ...'.
 
 === 42N85
 
@@ -588,11 +588,11 @@ Status description:: error: syntax error or access rule violation - cannot grant
 
 === 42N89
 
-Status description:: error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. `{ $cause }
+Status description:: error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. { $cause }
 
 === 42N90
 
-Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ $db }).
+Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ $db }`).
 
 === 42N97
 
