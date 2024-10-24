@@ -408,7 +408,7 @@ Status description:: error: syntax error or access rule violation - invalid symb
 
 === 42I25
 
-Status description:: error: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
+Status description:: error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
 
 === 42I29
 
