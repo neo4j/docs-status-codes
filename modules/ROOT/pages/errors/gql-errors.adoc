@@ -750,7 +750,7 @@ Status description:: error: procedure exception - invalid number of arguments to
 
 === 52N07
 
-Status description:: error: procedure exception - invalid port argument to checkConnectivity. Unrecognised port name `{ $port }` (valid values are: `{ $portAndedList }`.
+Status description:: error: procedure exception - invalid port argument to checkConnectivity. Unrecognised port name `{ $port }` (valid values are: `{ $portList }`.
 
 === 52N08
 
