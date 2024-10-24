@@ -175,15 +175,15 @@ Status description:: error: data exception - invalid import value. Importing ent
 
 === 22N18
 
-Status description:: error: data exception - incomplete spatial value. A `{ $crs }` POINT must contain `{ $mapKeyList }`.
+Status description:: error: data exception - incomplete spatial value. A `{ $crs }` `POINT` must contain `{ $mapKeyList }`.
 
 === 22N19
 
-Status description:: error: data exception - invalid spatial value. A POINT must contain either 'x' and 'y', or 'latitude' and 'longitude'.
+Status description:: error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
 
 === 22N20
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create `POINT` with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
 
 === 22N21
 
@@ -195,7 +195,7 @@ Status description:: error: data exception - invalid spatial value combination. 
 
 === 22N23
 
-Status description:: error: data exception - invalid latitude value. Cannot create WGS84 POINT with invalid coordinate: `{ $coordinates }`. The valid range for the latitude coordinate is [-90, 90].
+Status description:: error: data exception - invalid latitude value. Cannot create WGS84 `POINT` with invalid coordinate: `{ $coordinates }`. The valid range for the latitude coordinate is `[-90, 90]`.
 
 === 22N24
 
@@ -207,7 +207,7 @@ Status description:: error: data exception - invalid temporal arguments. Cannot 
 
 === 22N26
 
-Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: CEILING, FLOOR, UP, DOWN, HALF_EVEN, HALF_UP, HALF_DOWN, UNNECESSARY.
+Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: `CEILING`, `FLOOR`, `UP`, `DOWN`, `HALF_EVEN`, `HALF_UP`, `HALF_DOWN`, `UNNECESSARY`.
 
 === 22N27
 
