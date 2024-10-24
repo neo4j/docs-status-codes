@@ -527,7 +527,7 @@ Status description:: error: syntax error or access rule violation - unaliased re
 
 === 42N22
 
-Status description:: error: syntax error or access rule violation - single return column required. A COLLECT subquery must end with a single return column.
+Status description:: error: syntax error or access rule violation - single return column required. A `COLLECT` subquery must end with a single return column.
 
 === 42N29
 
