@@ -412,7 +412,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === 42I29
 
-Status description:: error: syntax error or access rule violation - invalid use of IS. The IS keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
+Status description:: error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
 
 === 42I31
 
