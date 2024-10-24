@@ -790,7 +790,7 @@ Status description:: error: procedure exception - quarantine change failed. Sett
 
 === 52N23
 
-Status description:: error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ $namespaceAndedList }``
+Status description:: error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ $namespaceList }`
 
 === 52N25
 
