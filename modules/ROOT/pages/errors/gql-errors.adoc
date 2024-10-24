@@ -425,7 +425,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === 42I38
 
-Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. `RETURN ...'` can only be used at the end of a query or subquery.
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. `'RETURN ...'` can only be used at the end of a query or subquery.
 
 === 42I40
 
