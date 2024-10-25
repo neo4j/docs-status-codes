@@ -395,7 +395,7 @@ Status description:: error: syntax error or access rule violation - invalid comm
 
 === 42I06
 
-Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input1 }`, expected: `{ $input2 }`.
+Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input }`, expected: `{ $valueList }`.
 
 === 42I18
 
