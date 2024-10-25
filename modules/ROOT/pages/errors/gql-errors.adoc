@@ -472,3 +472,263 @@ Status description:: error: general processing exception - unexpected error. Une
 50N42 is the default GQLSTATUS code for exceptions without a GQL object.
 For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
 ====
+== System configuration or operation exception
+
+System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
+
+=== 51N00
+
+Status description:: error: system configuration or operation exception - procedure registration error. Failed to register procedure/function.
+
+
+=== 51N01
+
+Status description:: error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ $procField }` in the class `{ $procClass }` is annotated as a '@Context' field, but it is declared as static. '@Context' fields must be public, non-final and non-static.
+
+=== 51N02
+
+Status description:: error: system configuration or operation exception - unsupported injectable component type. Unable to set up injection for procedure `{ $procClass }`. The field `{ $procField }` has type `{ $procFieldType }` which is not a supported injectable component.
+
+
+=== 51N03
+
+Status description:: error: system configuration or operation exception - unable to access field. Unable to set up injection for `{ $procClass }`, failed to access field `{ $procField }`.
+
+
+=== 51N04
+
+Status description:: error: system configuration or operation exception - missing class field annotation. The field `{ $procField }` on `{ $procClass }` must be annotated as a '@Context' field in order to store its state.
+
+
+=== 51N05
+
+Status description:: error: system configuration or operation exception - class field should be public and non-final. The field `{ $procField }` on `{ $procClass }` must be declared non-final and public.
+
+
+=== 51N06
+
+Status description:: error: system configuration or operation exception - missing argument name. The argument at position `{ $pos }` in `{ $procMethod }` requires a '@Name' annotation and a non-empty name.
+
+
+=== 51N07
+
+Status description:: error: system configuration or operation exception - invalid ordering of default arguments. The `{ $procFun }` contains a non-default argument after a default argument. Non-default arguments are not allowed to be positioned after default arguments.
+
+
+=== 51N08
+
+Status description:: error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ $procClass }` must contain exactly one '@UserAggregationResult' method and exactly one '@UserAggregationUpdate' method.
+
+
+=== 51N09
+
+Status description:: error: system configuration or operation exception - @UserAggregationUpdate method must be public and void. The '@UserAggregationUpdate' method `{ $procMethod }` of `{ $procClass }` must be public and have the return type 'void'.
+
+
+=== 51N10
+
+Status description:: error: system configuration or operation exception - aggregation method not public. The method `{ $procMethod }` of `{ $procClass }` must be public.
+
+
+=== 51N11
+
+Status description:: error: system configuration or operation exception - class not public. The class `{ $procClass }` must be public.
+
+
+=== 51N12
+
+Status description:: error: system configuration or operation exception - class not void. The procedure `{ $proc }` has zero output fields and must be defined as void.
+
+
+=== 51N13
+
+Status description:: error: system configuration or operation exception - procedure or function name already in use. Unable to register the procedure or function `{ $procFun }` because the name is already in use.
+
+
+=== 51N14
+
+Status description:: error: system configuration or operation exception - duplicate field name.
+The procedure `{ $proc }` has a duplicate `{ $procFieldType }` field, `{ $procField }`.
+
+=== 51N15
+
+Status description:: error: system configuration or operation exception - invalid map key type. Type mismatch for map key. Required 'STRING', but found `{ $valueType }`.
+
+
+=== 51N16
+
+Status description:: error: system configuration or operation exception - invalid default value type. Type mismatch for the default value. Required `{ $valueType }`, but found `{ $input }`.
+
+
+=== 51N17
+
+Status description:: error: system configuration or operation exception - invalid procedure or function name. Procedures and functions cannot be defined in the root namespace, or use a reserved namespace. Use the package name instead (e.g., org.example.com.`{ $procFun })`.
+
+
+=== 51N22
+
+Status description:: error: system configuration or operation exception - exhaustive shortest path search disabled. Finding the shortest path for the given pattern requires an exhaustive search. To enable exhaustive searches, set 'cypher.forbid_exhaustive_shortestpath' to false.
+
+
+=== 51N23
+
+Status description:: error: system configuration or operation exception - cyclic shortest path search disabled. Cannot find the shortest path when the start and end nodes are the same. To enable this behavior, set 'dbms.cypher.forbid_shortestpath_common_nodes' to false.
+
+
+=== 51N24
+
+Status description:: error: system configuration or operation exception - insufficient resources for plan search. Could not find a query plan within given time and space limits.
+
+
+=== 51N27
+
+Status description:: error: system configuration or operation exception - not supported in this edition. `{ $item }` is not supported in `{ $edition }`.
+
+
+=== 51N29
+
+Status description:: error: system configuration or operation exception - not supported by this server. The command `{ $cmd }` must be executed on the current 'LEADER' server.
+
+
+=== 51N30
+
+Status description:: error: system configuration or operation exception - not supported with this configuration. `{ $item }` is not supported in `{ $context }`.
+
+
+=== 51N32
+
+Status description:: error: system configuration or operation exception - server panic. Server is in panic.
+
+
+=== 51N33
+
+Status description:: error: system configuration or operation exception - replication error. This member failed to replicate transaction, try again.
+
+
+=== 51N34
+
+Status description:: error: system configuration or operation exception - write transaction failed due to leader change. Failed to write to the database due to a cluster leader change. Retrying your request at a later time may succeed.
+
+
+=== 51N35
+
+Status description:: error: system configuration or operation exception - database location changed. The location of `{ $db }` has changed while the transaction was running.
+
+
+=== 51N39
+
+Status description:: error: system configuration or operation exception - raft log corrupted. Expected set of files not found on disk. Please restore from backup.
+
+
+=== 51N40
+
+Status description:: error: system configuration or operation exception - unable to start database. Database `{ $db }` failed to start. Try restarting it.
+
+
+=== 51N41
+
+Status description:: error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible.
+
+
+=== 51N43
+
+Status description:: error: system configuration or operation exception - cannot deallocate servers. Cannot deallocate server(s) `{ $serverList }`.
+
+
+=== 51N44
+
+Status description:: error: system configuration or operation exception - cannot drop server. Cannot drop server `{ $server }`.
+
+
+=== 51N45
+
+Status description:: error: system configuration or operation exception - cannot cordon server. Cannot cordon server `{ $server }`.
+
+
+=== 51N46
+
+Status description:: error: system configuration or operation exception - cannot alter server. Cannot alter server `{ $server }`.
+
+
+=== 51N47
+
+Status description:: error: system configuration or operation exception - cannot rename server. Cannot rename server `{ $server }`.
+
+
+=== 51N48
+
+Status description:: error: system configuration or operation exception - cannot enable server. Cannot enable server `{ $server }`.
+
+
+=== 51N49
+
+Status description:: error: system configuration or operation exception - cannot alter database. Cannot alter database `{ $db }`.
+
+
+=== 51N50
+
+Status description:: error: system configuration or operation exception - cannot recreate database. Cannot recreate database `{ $db }`.
+
+
+=== 51N51
+
+Status description:: error: system configuration or operation exception - cannot create database. Cannot create database `{ $db }`.
+
+
+=== 51N52
+
+Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ $count }` needs to be at least 1 and may not exceed `{ $upper }`.
+
+
+=== 51N53
+
+Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot alter database topology. Number of secondaries `{ $count }` needs to be at least 0 and may not exceed `{ $upper }`.
+
+=== 51N54
+
+Status description:: error: system configuration or operation exception - cannot reallocate. Failed to calculate reallocation for databases. { $msg }
+
+
+=== 51N55
+
+Status description:: error: system configuration or operation exception - cannot create additional database. Failed to create the database `{ $db }`. The limit of databases is reached. Either increase the limit using the config setting `{ $cfgSetting }` or drop a database.
+
+
+=== 51N57
+
+Status description:: error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. { $msg }
+
+
+=== 51N60
+
+Status description:: error: system configuration or operation exception - unable to check enterprise license acceptance. The DBMS is unable to determine the enterprise license acceptance status.
+
+
+=== 51N63
+
+Status description:: error: system configuration or operation exception - index is still populating. Index is not ready yet. Wait until it finishes populating and retry the transaction.
+
+
+=== 51N64
+
+Status description:: error: system configuration or operation exception - index dropped while sampling. The index dropped while sampling.
+
+
+=== 51N65
+
+Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ $idx }` has a dimensionality of `{ $dim1 }`, but indexed vectors have `{ $dim2 }`.
+
+
+=== 51N66
+
+Status description:: error: system configuration or operation exception - resource exhaustion. Insufficient resources to complete the request.
+
+
+=== 51N69
+
+Status description:: error: system configuration or operation exception - system database is immutable. It is not possible to perform `{ $operation }` on the system database.
+
+=== 51N70
+
+Status description:: error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ $db }` because Bolt is not enabled. Please update your configuration such that 'server.bolt.enabled' is set to true.
+
