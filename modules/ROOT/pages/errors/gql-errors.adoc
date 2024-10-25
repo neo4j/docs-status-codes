@@ -512,7 +512,7 @@ Status description:: error: system configuration or operation exception - missin
 
 === 51N07
 
-Status description:: error: system configuration or operation exception - invalid ordering of default arguments. The `{ $procFun }` contains a non-default argument before a default argument. Non-default arguments are not allowed to be positioned after default arguments.
+Status description:: error: system configuration or operation exception - invalid ordering of default arguments. The `{ $procFun }` contains a non-default argument after a default argument. Non-default arguments are not allowed to be positioned after default arguments.
 
 
 === 51N08
