@@ -677,13 +677,12 @@ Status description:: error: system configuration or operation exception - cannot
 
 === 51N52
 
-Status description:: error: system configuration or operation exception - cannot alter database topology. Number of primaries `{ $count }` needs to be at least 1 and may not exceed `{ $upper }`.
+Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ $count }` needs to be at least 1 and may not exceed `{ $upper }`.
 
 
 === 51N53
 
-Status description:: error: system configuration or operation exception - cannot alter database topology. Number of secondaries `{ $count }` needs to be at least 0 and may not exceed `{ $upper }`.
-
+Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot alter database topology. Number of secondaries `{ $count }` needs to be at least 0 and may not exceed `{ $upper }`.
 
 === 51N54
 
