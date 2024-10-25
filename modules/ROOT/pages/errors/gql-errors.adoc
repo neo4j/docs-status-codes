@@ -478,7 +478,7 @@ System configuration or operation exception errors occur when there is an error 
 
 === 51N00
 
-Status description:: error: system configuration or operation exception - procedure registration error. Failed to register procedure.
+Status description:: error: system configuration or operation exception - procedure registration error. Failed to register procedure/function.
 
 
 === 51N01
