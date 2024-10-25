@@ -29,7 +29,7 @@ Status description:: error: connection exception - unable to connect to database
 Status description:: error: connection exception - unable to write to database. Unable to write to database `{ $db }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting '{ $cfgSetting }=true'.
 
 //Possible solutions:
-//Either connect to the database directly using the driver or interactively with the `:use `{ $db }` command), or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
+//Either connect to the database directly using the driver or interactively with the `:use { $db }` command), or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
 
 === 08N02
 
