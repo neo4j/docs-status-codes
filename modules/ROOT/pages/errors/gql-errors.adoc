@@ -284,10 +284,6 @@ Status description:: error: data exception - unable to load external resource. C
 
 Status description:: error: data exception - parallel runtime disabled. Parallel runtime has been disabled, enable it or upgrade to a bigger Aura instance.
 
-// === 22N45
-
-// Status description:: error: data exception - feature not supported on Neo4j Community Edition. The `{ $feat }` feature is not supported by Neo4j Community Edition.
-
 === 22N46
 
 Status description:: error: data exception - unsupported use of parallel runtime. Parallel runtime does not support updating queries or a change in the state of transactions. Use another runtime.
