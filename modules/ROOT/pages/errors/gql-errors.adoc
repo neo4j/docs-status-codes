@@ -391,7 +391,7 @@ Status description:: error: syntax error or access rule violation - invalid `FOR
 
 === 42I02
 
-Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with `'/*'` must also have a closing `'*/'`.
+Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
 
 === 42I06
 
