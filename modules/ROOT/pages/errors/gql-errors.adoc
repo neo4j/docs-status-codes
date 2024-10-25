@@ -402,11 +402,11 @@ Status description:: error: data exception - index with the same name already ex
 
 === 22N77
 
-Status description:: error: data exception - property presence verification failed. `{ $entityType }` ({ $entityId }`) with `{ $tokenType }` `{ $token }` must have the following properties: `{ $propKeyList }`.
+Status description:: error: data exception - property presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the following properties: `{ $propKeyList }`.
 
 === 22N78
 
-Status description:: error: data exception - property type verification failed. `{ $entityType }` ({ $entityId }`) with `{ $tokenType }` `{ $token }` must have the property `$propKey` with value type `{ $valueType }`.
+Status description:: error: data exception - property type verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the property `$propKey` with value type `{ $valueType }`.
 
 // === 22N79
 
@@ -442,7 +442,7 @@ Status description:: error: data exception - numeric range 0 disallowed. Expecte
 
 // === 22N88
 
-// Status description:: error: data exception - not a valid CIDR IP.
+// Status description:: error: data exception - not a valid CIDR IP. `{ $input }` is not a valid CIDR IP.
 
 === 22N89
 
@@ -482,11 +482,11 @@ Status description:: error: data exception - unexpected struct tag. Unexpected s
 
 === 22N98
 
-Status description:: error: data exception - wrong first field during deserialization. Unable to deserialize request. Expected first field to be `{ %s }`, but was '{ %s }'.
+Status description:: error: data exception - wrong first field during deserialization. Unable to deserialize request. Expected first field to be `{ $field }`, but was '{ $value}'.
 
 === 22N99
 
-Status description:: error: data exception - wrong token during deserialization. Unable to deserialize request. Expected `{ %s }`, found `{ %s }`.
+Status description:: error: data exception - wrong token during deserialization. Unable to deserialize request. Expected `{ $token }`, found `{ $value }`.
 
 === 22NA0
 
@@ -494,7 +494,7 @@ Status description:: error: data exception - invalid property based access contr
 
 // === 22NA1
 
-// Status description:: error: data exception - invalid property based access control rule involving non-comutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.  
+// Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.  
 
 // === 22NA2
 
