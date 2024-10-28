@@ -518,7 +518,7 @@ Status description:: error: data exception - invalid property based access contr
 
 === 22NA8
 
-Status description:: error: data exception - parsing JSON exception. Underlying error: `{ $cause }`.
+Status description:: error: data exception - parsing JSON failure. Underlying error: `{ $cause }`.
 
 // === 22NA9
 
