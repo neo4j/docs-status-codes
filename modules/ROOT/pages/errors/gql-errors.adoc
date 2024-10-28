@@ -474,7 +474,7 @@ Status description:: error: data exception - mapping JSON exception. Unable to m
 
 === 22N97
 
-Status description:: error: data exception - unexpected struct tag. Unexpected struct tag: `{ $tagStringAsHex }`.
+Status description:: error: data exception - unexpected struct tag. Unexpected struct tag: `{ $value }`.
 
 === 22N98
 
