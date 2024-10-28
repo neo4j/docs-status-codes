@@ -107,7 +107,7 @@ Status description:: error: data exception - unsupported value. The provided val
 === 22N01
 
 Status description:: error: data exception - invalid type.
-Expected the value `{ $value }` to be of type `{ $valueTypeList }, but was of type `{ $valueType }`.
+Expected the value `{ $value }` to be of type `{ $valueTypeList }`, but was of type `{ $valueType }`.
 
 === 22N02
 
@@ -129,6 +129,8 @@ Status description:: error: data exception - input failed validation. Invalid in
 
 Status description:: error: data exception - empty input string. Invalid input. `{ $option }` needs to be specified.
 
+// Example error message:: 22N06: Invalid input. 'myOption' needs to be specified.
+
 === 22N07
 
 Status description:: error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): `{ $optionList }`.
@@ -145,13 +147,13 @@ Status description:: error: data exception - conflicting pre-parser combination.
 
 Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `{ $input }` is not valid for option `{ $option }`. Valid options are: `{ $optionList }`.
 
-=== 22N11
+// === 22N11
 
-Status description:: error: data exception - invalid argument. Invalid argument: cannot process `{ $input }`.
+// Status description:: error: data exception - invalid argument. Invalid argument: cannot process `{ $input }`.
 
-=== 22N12
+// === 22N12
 
-Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `{ $input }`.
+// Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `{ $input }`.
 
 === 22N13
 
@@ -165,9 +167,9 @@ Status description:: error: data exception - invalid temporal value combination.
 
 Status description:: error: data exception - invalid temporal component. Cannot read the specified `{ $component }` component from `{ $temporal }`.
 
-=== 22N16
+// === 22N16
 
-Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ $expr }` to `{ $graph }`.
+// Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ $expr }` to `{ $graph }`.
 
 // === 22N17
 
@@ -175,7 +177,7 @@ Status description:: error: data exception - invalid import value. Importing ent
 
 === 22N18
 
-Status description:: error: data exception - incomplete spatial value. A `{ $crs }` `POINT` must contain `{ $mapKeyList }`.
+Status description:: error: data exception - incomplete spatial value. A `{ $crs }` POINT must contain `{ $mapKeyList }`.
 
 === 22N19
 
@@ -183,11 +185,11 @@ Status description:: error: data exception - invalid spatial value. A `POINT` mu
 
 === 22N20
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create `POINT` with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
 
-=== 22N21
+// === 22N21
 
-Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `{ $crs }`.
+// Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `{ $crs }`.
 
 === 22N22
 
@@ -195,15 +197,15 @@ Status description:: error: data exception - invalid spatial value combination. 
 
 === 22N23
 
-Status description:: error: data exception - invalid latitude value. Cannot create WGS84 `POINT` with invalid coordinate: `{ $coordinates }`. The valid range for the latitude coordinate is `[-90, 90]`.
+Status description:: error: data exception - invalid latitude value. Cannot create WGS84 POINT with invalid coordinate: `{ $coordinates }`. The valid range for the latitude coordinate is [-90, 90].
 
 === 22N24
 
 Status description:: error: data exception - invalid coordinate arguments. Cannot construct a `{ $valueType }` from `{ $coordinates }`.
 
-=== 22N25
+// === 22N25
 
-Status description:: error: data exception - invalid temporal arguments. Cannot construct a `{ $valueType }` from `{ $temporal }`.
+// Status description:: error: data exception - invalid temporal arguments. Cannot construct a `{ $valueType }` from `{ $temporal }`.
 
 === 22N26
 
@@ -213,6 +215,322 @@ Status description:: error: data exception - unsupported rounding mode. Unknown 
 
 Status description:: error: data exception - invalid entity type. Invalid input `{ $input }` for `{ $variable }`. Expected to be one of `{ $valueTypeList }`.
 
+// === 22N28
+
+// Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow. 
+
+// === 22N29
+
+// Status description:: error: data exception - unsupported coordinate reference system. Unknown coordinate reference system (CRS).
+
+// === 22N30
+
+// Status description:: error: data exception - missing temporal unit. At least one temporal unit must be specified.
+
+// === 22N31
+
+// Status description:: error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null or NaN.
+
+=== 22N32
+
+Status description:: error: data exception - non-deterministic sort expression. 'ORDER BY' expressions must be deterministic.
+
+=== 22N33
+
+Status description:: error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ $variable }`.
+
+// === 22N34
+
+// Status description:: error: data exception - invalid use of aggregate function. Cannot use the `{ $fun }` function inside an aggregate function.
+
+// === 22N35
+
+// Status description:: error: data exception - invalid date format. Cannot parse `{ $input }` as a DATE. Calendar dates need to be specified using the format 'YYYY-MM', while ordinal dates need to be specified using the format 'YYYY-DDD'.
+
+// === 22N36
+
+// Status description:: error: data exception - invalid temporal format. Cannot parse `{ $input }` as a `{ $valueType }`.
+
+// === 22N37
+
+// Status description:: error: data exception - invalid coercion. Cannot coerce `{ $value }` to `{ $valueType }`.
+
+// === 22N38
+
+// Status description:: error: data exception - invalid function argument type. Expected argument to the `{ $fun }` function to be one of `{ $valueTypeList }`, but provided argument `{ $value }` is of type `{ $valueType }`.
+
+// === 22N39
+
+// Status description:: error: data exception - unsupported property value type. Value `{ $value }` cannot be stored in properties.
+
+// === 22N40
+
+// Status description:: error: data exception - non-assignable temporal component. Cannot assign `{ $component }` of a `{ $valueType }`.
+
+=== 22N41
+
+Status description:: error: data exception - merge node uniqueness constraint violation. The 'MERGE' clause did not find a matching node `{ $variable }` and cannot create a new node due to conflicts with existing uniqueness constraints. 
+
+=== 22N42
+
+Status description:: error: data exception - merge relationship uniqueness constraint violation. The 'MERGE' clause did not find a matching relationship `{ $variable }` and cannot create a new relationship due to conflicts with existing uniqueness constraints.
+
+=== 22N43
+
+Status description:: error: data exception - unable to load external resource. Could not load external resource from `{ $url }`.
+
+=== 22N44
+
+Status description:: error: data exception - parallel runtime disabled. Parallel runtime has been disabled, enable it or upgrade to a bigger Aura instance.
+
+=== 22N46
+
+Status description:: error: data exception - unsupported use of parallel runtime. Parallel runtime does not support updating queries or a change in the state of transactions. Use another runtime.
+
+=== 22N47
+
+Status description:: error: data exception - invalid parallel runtime configuration. No workers are configured for the parallel runtime. Set 'server.cypher.parallel.worker_limit' to a larger value.
+
+// === 22N48
+
+// Status description:: error: data exception - unable to use specified runtime. Cannot use the specified runtime `{ $runtime }` due to `{ $cause }`. Use another runtime.
+
+=== 22N49
+
+Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via 'dbms.import.csv.buffer_size'.  
+
+=== 22N51
+
+Status description:: error: data exception - database or alias does not exist. A [composite] database or alias with the name `{ $db }` does not exist. Verify that the spelling is correct.
+
+=== 22N52
+
+Status description:: error: data exception - invalid combination of PROFILE and EXPLAIN. 'PROFILE' and 'EXPLAIN' cannot be combined.
+
+=== 22N53
+
+Status description:: error: data exception - invalid use of PROFILE. Cannot 'PROFILE' query before results are materialized.
+
+=== 22N54
+
+Status description:: error: data exception - invalid map. Multiple conflicting entries specified for `{ $mapKey }`.
+
+// === 22N55
+
+// Status description:: error: data exception - required key missing from map. Map requires key `{ $mapKey }` but was missing from field `{ $field }`.
+
+=== 22N56
+
+Status description:: error: data exception - protocol message length limit overflow. Protocol message length limit exceeded (limit: `{ $boltMsgLenLimit }`).
+
+// === 22N57
+
+// Status description:: error: data exception - invalid protocol type. Protocol type is invalid. Invalid number of struct components (received `{ $count1 }` but expected `{ $count2 }`).
+
+// === 22N58
+
+// Status description:: error: data exception - invalid spatial component. Cannot read the specified `{ $component }` component from `{ $value }`.
+
+// === 22N59
+
+// Status description:: error: data exception - token does not exist. The `{ $tokenType }` token with id `{ $tokenId }` does not exist.
+
+// === 22N62
+
+// Status description:: error: data exception - relationship type does not exist. The relationship type `{ $relType }` does not exist.
+
+// === 22N63
+
+// Status description:: error: data exception - property key does not exist. The property key `{ $propKey }` does not exist.
+
+// === 22N64
+
+// Status description:: error: data exception - constraint does not exist. The constraint `{ $constrDescrOrName }` does not exist.
+
+// === 22N65
+
+// Status description:: error: data exception - equivalent constraint already exists. An equivalent constraint already exists: `{ $constrDescrOrName }`.
+
+=== 22N66
+
+Status description:: error: data exception - conflicting constraint already exists. A conflicting constraint already exists: `{ $constrDescrOrName }`.
+
+=== 22N67
+
+Status description:: error: data exception - duplicated constraint name. A constraint with the same name already exists: `{ $constr }`.
+
+// === 22N68
+
+// Status description:: error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.
+
+=== 22N69
+
+Status description:: error: data exception - index does not exist. The index specified by `{ $idxDescrOrName }` does not exist.
+
+// === 22N70
+
+// Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ $idxDescrOrName }`.
+
+=== 22N71
+
+Status description:: error: data exception - index with the same name already exists. An index with the same name already exists: `{ $idx }`.
+
+// === 22N72
+
+// Status description:: error: data exception - index required by existing constraint. A requested operation can not be performed on the specified index because the index is part of a constraint.
+
+// === 22N73
+
+// Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idx }`.
+
+// === 22N74
+
+// Status description:: error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ $constr }` contains a conflicting index.
+
+// === 22N75
+
+// Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+
+// === 22N76
+
+// Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+
+=== 22N77
+
+Status description:: error: data exception - property presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the following properties: `{ $propKeyList }`.
+
+=== 22N78
+
+Status description:: error: data exception - property type verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the property `$propKey` with value type `{ $valueType }`.
+
+// === 22N79
+
+// Status description:: error: data exception - property uniqueness constraint violated. Property uniqueness constraint violated: `{ $reasons }`.
+
+// === 22N81
+
+// Status description:: error: data exception - expression type unsupported here. Invalid input: `{ $exprType }` is not supported in `{ $context }`.
+
+// === 22N82
+
+// Status description:: error: data exception - input contains invalid characters. Input `{ $input }` contains invalid characters for `{ $context }`. Allowed characters are `{ $characterRangeList }`. To use these characters, the input needs to be quoted using backticks.
+
+// === 22N83
+
+// Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ $upper }` components separated by '.'.
+
+=== 22N84
+
+Status description:: error: data exception - string too long. Expected the string to be no more than `{ $upper }` characters long.
+
+=== 22N85
+
+Status description:: error: data exception - string too short. Expected the string to be at least `{ $lower }` characters long.
+
+=== 22N86
+
+Status description:: error: data exception - numeric range 0 disallowed. Expected a nonzero number.
+
+// === 22N87
+
+// Status description:: error: data exception - numeric range 0 or greater allowed. Expected a number that is zero or greater.
+
+// === 22N88
+
+// Status description:: error: data exception - not a valid CIDR IP. `{ $input }` is not a valid CIDR IP.
+
+=== 22N89
+
+Status description:: error: data exception - new password cannot be the same as the old password. Expected the new password to be different from the old password.
+
+=== 22N90
+
+Status description:: error: data exception - property type unsupported in constraint. `{ $item }` is not supported in property type constraints.
+
+=== 22N91
+
+Status description:: error: data exception - cannot convert alias local to remote or remote to local. Failed to alter the specified database alias `{ $alias }`. Altering remote alias to a local alias or vice versa is not supported. Drop and recreate the alias instead.
+
+// === 22N92
+
+// Status description:: error: data exception - missing RETURN. This query requires a RETURN clause.
+
+// === 22N93
+
+// Status description:: error: data exception - missing YIELD. A required YIELD clause is missing.
+
+// === 22N94
+
+// Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield. 
+
+=== 22N95
+
+Status description:: error: data exception - parsing JSON exception. Invalid JSON input. Please check the format.
+
+=== 22N96
+
+Status description:: error: data exception - mapping JSON exception. Unable to map the JSON input. Please verify the structure.
+
+=== 22N97
+
+Status description:: error: data exception - unexpected struct tag. Unexpected struct tag: `{ $value }`.
+
+=== 22N98
+
+Status description:: error: data exception - wrong first field during deserialization. Unable to deserialize request. Expected first field to be `{ $field }`, but was '{ $value }'.
+
+=== 22N99
+
+Status description:: error: data exception - wrong token during deserialization. Unable to deserialize request. Expected `{ $token }`, found `{ $value }`.
+
+=== 22NA0
+
+Status description:: error: data exception - invalid property based access control rule. Failed to administer property rule.
+
+// === 22NA1
+
+// Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.  
+
+// === 22NA2
+
+// Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ $expr }` is not supported. Property rules can only contain one property.
+
+// === 22NA3
+
+// Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+
+=== 22NA4
+
+Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'.
+
+=== 22NA5
+
+Status description:: error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `IS NULL' instead.
+
+=== 22NA6
+
+Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use 'IS NOT NULL' instead.
+
+// === 22NA7
+
+// Status description:: error: data exception - invalid property based access control rule involving nontrivial predicates. The expression: `{ $expr }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
+
+=== 22NA8
+
+Status description:: error: data exception - parsing JSON failure. Underlying error: `{ $cause }`.
+
+// === 22NA9
+
+// Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ $key }`, expected keys are `{ $listAllowedKeys }`.
+
+// === 22NB0
+
+// Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE' syntax in combination with `IS NULL` instead.
+
+// === 22NFF
+
+// Status description:: error: data exception - referent does not exist. The referent of the specified reference does not exist.
+
 
 == Invalid transaction state
 
@@ -220,7 +538,7 @@ Invalid transaction state errors occur when the transaction is in an invalid sta
 
 === 25N01
 
-Status description:: error: invalid transaction state - invalid combination of statement types.Failed to execute the query `{ $query }` due to conflicting statement types (read query, write query, schema modification, or administration command). To execute queries in the same transaction, they must be either of the same type, or be a combination of schema modifications and read commands.
+Status description:: error: invalid transaction state - invalid combination of statement types. Failed to execute the query `{ $query }` due to conflicting statement types (read query, write query, schema modification, or administration command). To execute queries in the same transaction, they must be either of the same type, or be a combination of schema modifications and read commands.
 
 === 25N02
 
@@ -565,7 +883,6 @@ Status description:: error: syntax error or access rule violation - unfulfillabl
 
 Status description:: error: syntax error or access rule violation - variable already bound. Node `{ $var }` has already been bound and cannot be modified by the `{ $clause }` clause.
 
-
 === 42N83
 
 Status description:: error: syntax error or access rule violation - impersonation disallowed while password change required. Cannot impersonate a user while password change required.
@@ -588,7 +905,7 @@ Status description:: error: syntax error or access rule violation - cannot grant
 
 === 42N89
 
-Status description:: error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. { $cause }
+Status description:: error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. `{ $cause }`
 
 === 42N90
 
