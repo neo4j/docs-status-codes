@@ -100,6 +100,34 @@ Status description:: error: connection exception - no such routing policy. Polic
 Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
 Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
 
+=== 22000
+
+Status description:: error: data exception
+
+=== 22001
+
+Status description:: error: data exception - string data, right truncation
+
+=== 22003
+
+Status description:: error: data exception - numeric value out of range. The numeric value { $value } is outside the required range.
+
+=== 22004
+
+Status description:: error: data exception - null value not allowed
+
+=== 22008
+
+Status description:: error: data exception - datetime field overflow
+
+=== 22G11
+
+Status description:: error: data exception - reference value, referent deleted
+
+=== 22G13
+
+Status description:: error: data exception - invalid group variable value
+
 === 22N00
 
 Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
@@ -435,9 +463,9 @@ Status description:: error: data exception - numeric range 0 disallowed. Expecte
 
 // Status description:: error: data exception - numeric range 0 or greater allowed. Expected a number that is zero or greater.
 
-// === 22N88
+=== 22N88
 
-// Status description:: error: data exception - not a valid CIDR IP. `{ $input }` is not a valid CIDR IP.
+Status description:: error: data exception - not a valid CIDR IP. `{ $input }` is not a valid CIDR IP.
 
 === 22N89
 
