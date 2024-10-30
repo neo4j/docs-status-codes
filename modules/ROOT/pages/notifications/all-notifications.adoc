@@ -2077,7 +2077,7 @@ RETURN `where`.p
 ======
 =====
 
-.Using an unescaped variable named 'where' in relationship patterns
+.Using an unescaped variable named 'where' in a relationship pattern
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
