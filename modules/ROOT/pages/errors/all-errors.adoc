@@ -1,8 +1,25 @@
-:description: The Neo4j error codes for Neo4j version {neo4j-version}.
+:description: The legacy error codes for Neo4j 5.
 
 
 [[neo4j-errors]]
-= List of all server error codes
+= List of legacy server error codes
+
+Error codes are Neo4j status codes returned by the server when the execution of a query fails.
+They always have the severity level `ERROR`.
+Errors are grouped based on the type of the error code:
+
+Client errors::
+These errors are caused by the client and are usually related to the request itself.
+Client errors have the prefix `Neo.ClientError`.
+
+Transient errors::
+These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
+The error can be temporary and could therefore succeed if retrying the request.
+Transient errors have the prefix Neo.`TransientError`.
+
+Database errors::
+These errors are caused by the database and are usually related to the database state.
+Database errors have the prefix `Neo.DatabaseError`.
 
 This page contains lists of all Neo4j errors, grouped by type.
 

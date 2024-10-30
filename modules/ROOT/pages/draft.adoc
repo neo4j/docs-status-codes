@@ -1,0 +1,23 @@
+In GQL, when the execution of a GQL-request fails, the execution outcome (in this case failed outcome) has no results but only a primary GQL-status object describing the exception condition (i.e., the error) that caused the failure and possibly a list of other additional GQL-status objects describing other conditions related to the same GQL-request.
+
+A GQL-status object comprises:
+A mandatory GQLSTATUS code, which is a 5 character string identifying a condition (the first 2 characters identify the GQLSTATUS class code and the 3 other characters identify the GQLSTATUS subclass code)
+A mandatory status description, which is a user-facing message describing the GQLSTATUS
+An optional record with diagnostic information (such as the code of the operation executed, the current working directory, etc.)
+An optional nested GQL-status object for providing additional diagnostic information, such as a cause.
+In GQL, it is up to implementations to make several conditions available when a GQL-request is executed. However, if multiple conditions are made available they should be returned in separate GQL-status objects. In this case, there should be a primary GQL-status object and a list of additional GQL-status objects. GQL prescribes the below precedence rules to determine the primary GQL-status object:
+Every exception condition for transaction rollback has precedence over every other exception condition.
+Every exception condition has precedence over every completion condition.
+Note that GQL exception conditions are equivalent to Neo4j errors, and  GQL completion conditions include Cypher notifications whose severity level is either warning or information (except those related to performance or variable shadowing, which are equivalent to GQL additional informational messages that can theoretically accompany both completion and exception condition). GQL completion conditions go beyond Cypher notifications. They include no data and successful completion.
+
+
+
+ in Cypher, if the execution of a request fails, a single GQL-status object describing a specific error is returned, i.e., the primary GQL-status object, which is also GQL-compliant. This is different from the success case, where multiple Cypher notifications can be returned, hence multiple GQL-status objects describing completion conditions and informational conditions.
+
+Currently, a Neo4j error code can span several Neo4j exceptions and each exception can have several error messages. Each exception can be also linked to several Neo4j error codes. Some codes have no linked exceptions at all  (See examples depicted in the table below). Hence, there is a many-to-many relationship between current error codes and exceptions. This is why many of the clients rely on the error message to identify a specific error.
+
+The ultimate goal is to have a 1-1 mapping between a GQLSTATUS code and a specific error message so as to let the client rely on one unique and standardized code. The next section describes how to assign a single and unique GQLSTATUS code for each error to achieve this goal.
+
+If a Neo4j error matches a standard-defined condition and subcondition, then the standard-defined GQLSTATUS code should be used for that error. For instance, (Neo.ClientError.Statement.ArithmeticError, ArithmeticException, “/by zero”) matches the “data exception” condition and “division by zero” subcondition in GQL (i.e., 22012 GQLSTATUS code).
+
+error: data exception - string data, right truncation

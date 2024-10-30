@@ -1,7 +1,7 @@
 :description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
 
 [[neo4j-gqlstatus-errors]]
-= List of all GQLSTATUS server error codes
+= List of GQLSTATUS server error codes
 
 //The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
 The following page provides an overview of all GQLSTATUS server error codes in Neo4j.

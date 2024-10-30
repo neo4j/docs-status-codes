@@ -9,64 +9,17 @@ endif::[]
 :description: The Neo4j status codes for Neo4j version {neo4j-version}.
 :neo4j-buildnumber: {neo4j-version}
 
+The Neo4j 5 Status Codes manual includes all status codes that a Neo4j server may return to indicate the outcome of a Cypher request.
 
-This document details all status codes that a Neo4j DBMS may return to indicate the outcome of a request.
+Starting from 5.23 for notifications and 5.25 for errors, the Neo4j DBMS supports the GQL standard. +
+GQL is the new link:https://www.iso.org/home.html[ISO] International Standard query language for graph databases.
+Cypher®, Neo4j’s query language, supports most mandatory and a substantial portion of the optional GQL features (as defined by the ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard).
+For more information, see link:https:https://neo4j.com/docs/cypher-manual/current/appendix/gql-conformance/[Cypher Manual -> GQL conformance].
 
-//== GQL status codes
+As part of this GQL compliance, Cypher now also include status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
+For more information on GQL status code framewoks for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
 
-
-== Neo4j status codes
-
-=== Format
-
-Each Neo4j status code follows the same format:
-
-[source, status code format, role="noheader"]
------
-Neo.[Type].[SubType].[Name]
------
-
-
-=== Types of Neo4j status codes
-
-The fact that a Neo4j status code is returned by the server does not always mean there is a fatal error.
-Neo4j status codes can also indicate transient problems that may go away if you retry the request.
-The type of the status code determines the effect on the transaction.
-
-.Neo4j status code types
-[options="header", cols="<1m,<2,<1"]
-|===
-
-| Type
-| Description
-| Effect on the transaction
-
-| xref:errors/all-errors.adoc#_client_errors[ClientError]
-| The client sent a bad request - changing the request might yield a successful outcome.
-| Rollback
-
-| xref:errors/all-errors#_transient_errors[TransientError]
-| The database cannot service the request right now, retrying later might yield a successful outcome.
-| Rollback
-
-| xref:errors/all-errors#_database_error[DatabaseError]
-| The database failed to service the request.
-| Rollback
-
-| xref:notifications/index.adoc[ClientNotifications]
-| The query execution was successful, but there are notifications about the request sent by the client.
-| None
-
-|===
-
-[NOTE]
-====
-From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
-
-The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the GQL standard.
-It includes GQLSTATUS code, StatusDescription, and DiagnosticRecord.
-For more information, see xref:notifications/index.adoc#gqlstatus-notification-object[GQL-status notification object].
-====
+This manual details all status codes that a Neo4j DBMS may return, including both GQL-compliant and legacy status codes.
 
 ifndef::backend-pdf[]
 License: link:{common-license-page-uri}[Creative Commons 4.0]
