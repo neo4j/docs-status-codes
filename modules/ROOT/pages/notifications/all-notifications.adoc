@@ -2036,7 +2036,7 @@ RETURN where
 ----
 
 Description of the returned code::
-`(where {p: 5})` is deprecated. It is replaced by `(++`where`++ {p: 5})`.
+'(where {p: 5})' is deprecated. It is replaced by '(++`where`++ {p: 5})'.
 
 Suggestions for improvement::
 To continue using variables with this name, use backticks to escape the variable name:
@@ -2091,7 +2091,7 @@ RETURN where
 ----
 
 Description of the returned code::
-`-[where {p: 5}]-` is deprecated. It is replaced by `-[++`where`++ {p: 5}]-`.
+'-[where {p: 5}]-' is deprecated. It is replaced by '-[++`where`++ {p: 5}]-'.
 
 Suggestions for improvement::
 To continue using variables with this name, use backticks to escape the variable name:
@@ -2147,7 +2147,7 @@ RETURN listOfBooleans + m:A
 ----
 
 Description of the returned code::
-`... + m:A` is deprecated. It is replaced by `... + (m:A)`.
+'... + m:A' is deprecated. It is replaced by '... + (m:A)'.
 
 Suggestions for improvement::
 Parenthesize the label expression predicate on the right-hand side of `+`:
@@ -2206,7 +2206,7 @@ RETURN listOfBooleans + r:C|D
 ----
 
 Description of the returned code::
-`... + r:C|D` is deprecated. It is replaced by `... + (r:C|D)`.
+'... + r:C|D' is deprecated. It is replaced by '... + (r:C|D)'.
 
 Suggestions for improvement::
 Parenthesize the label expression predicate on the right-hand side of `+`:
@@ -2268,7 +2268,7 @@ END AS standardsName
 ----
 
 Description of the returned code::
-`WHEN is :: INTEGER` is deprecated. It is replaced by `WHEN ++`is`++ :: INTEGER`.
+'WHEN is :: INTEGER' is deprecated. It is replaced by 'WHEN ++`is`++ :: INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
@@ -2338,7 +2338,7 @@ END AS check
 ----
 
 Description of the returned code::
-`WHEN contains + 1 INTEGER` is deprecated. It is replaced by `WHEN ++`contains`++ + 1 INTEGER`.
+'WHEN contains + 1 INTEGER' is deprecated. It is replaced by 'WHEN ++`contains`++ + 1 INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
@@ -2409,7 +2409,7 @@ END AS check
 
 Description of the returned code::
 
-`WHEN contains - 1 INTEGER` is deprecated. It is replaced by `WHEN ++`contains`++ - 1 INTEGER`.
+'WHEN contains - 1 INTEGER' is deprecated. It is replaced by 'WHEN ++`contains`++ - 1 INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
@@ -2480,7 +2480,7 @@ END AS check
 
 Description of the returned code::
 
-`WHEN in[0] INTEGER` is deprecated. It is replaced by `WHEN ++`in`++[0] INTEGER`.
+'WHEN in[0] INTEGER' is deprecated. It is replaced by 'WHEN ++`in`++[0] INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
@@ -2550,7 +2550,7 @@ END AS check
 
 Description of the returned code::
 
-`WHEN in["mainAccount"] INTEGER` is deprecated. It is replaced by `WHEN ++`in`++["mainAccount"] INTEGER`.
+'WHEN in["mainAccount"] INTEGER' is deprecated. It is replaced by 'WHEN ++`in`++["mainAccount"] INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
