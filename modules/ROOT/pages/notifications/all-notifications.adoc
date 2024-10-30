@@ -2390,7 +2390,7 @@ END AS check
 ======
 =====
 
-.Using an unescaped variable named `contains` for nodes in addition or subtraction operations within a `WHEN` operand in a simple `CASE` expression
+.Using an unescaped variable named `contains` in subtraction operations within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
