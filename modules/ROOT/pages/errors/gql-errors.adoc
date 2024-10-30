@@ -104,29 +104,9 @@ Some examples are data and constraint creation, which conflicts with existing co
 
 Status description:: error: data exception
 
-=== 22001
-
-Status description:: error: data exception - string data, right truncation
-
 === 22003
 
 Status description:: error: data exception - numeric value out of range. The numeric value `{ $value }` is outside the required range.
-
-=== 22004
-
-Status description:: error: data exception - null value not allowed
-
-=== 22008
-
-Status description:: error: data exception - datetime field overflow
-
-=== 22G11
-
-Status description:: error: data exception - reference value, referent deleted
-
-=== 22G13
-
-Status description:: error: data exception - invalid group variable value
 
 === 22N00
 
