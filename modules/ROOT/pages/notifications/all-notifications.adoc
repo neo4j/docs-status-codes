@@ -2021,7 +2021,7 @@ warn: feature deprecated without replacement.
 ======
 =====
 
-.Using an unescaped variable named 'where' in node
+.Using an unescaped variable named 'where' in a node pattern
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
