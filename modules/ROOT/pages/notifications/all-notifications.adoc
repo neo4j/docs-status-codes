@@ -2021,9 +2021,33 @@ warn: feature deprecated without replacement.
 ======
 =====
 
-.Using an unescaped variable named 'where' in node or relationship patterns
+.Using an unescaped variable named 'where' in node
 [.tabbed-example]
 =====
+[.include-with-neo4j-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH (where {p: 5})
+RETURN where
+----
+
+Description of the returned code::
+`(where {p: 5})` is deprecated. It is replaced by `(++`where`++ {p: 5})`.
+
+Suggestions for improvement::
+To continue using variables with this name, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH (`where` {p: 5})
+RETURN `where`.p
+----
+======
+
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2051,6 +2075,34 @@ MATCH (`where` {p: 5})
 RETURN `where`.p
 ----
 ======
+=====
+
+.Using an unescaped variable named 'where' in relationship patterns
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[where {p: 5}]->()
+RETURN where
+----
+
+Description of the returned code::
+`-[where {p: 5}]-` is deprecated. It is replaced by `-[++`where`++ {p: 5}]-`.
+
+Suggestions for improvement::
+To continue using variables with this name, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH ()-[`where` {p: 5}]->()
+RETURN `where`.p
+----
+======
+
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2083,6 +2135,31 @@ RETURN `where`.p
 .Using an unparenthesized label expression predicate as the right-hand side operand of `+`
 [.tabbed-example]
 =====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n)-[r]->(m)
+WITH m, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + m:A
+----
+
+Description of the returned code::
+`... + m:A` is deprecated. It is replaced by `... + (m:A)`.
+
+Suggestions for improvement::
+Parenthesize the label expression predicate on the right-hand side of `+`:
++
+[source,cypher]
+----
+MATCH (n)-[r]->(m)
+WITH m, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + (m:A)
+----
+======
+
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2112,6 +2189,36 @@ WITH m, n.truthCodes AS listOfBooleans
 RETURN listOfBooleans + (m:A)
 ----
 ======
+=====
+
+.Using an unparenthesized label expression predicate as the right-hand side operand of `+`
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n)-[r]->(m)
+WITH r, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + r:C|D
+----
+
+Description of the returned code::
+`... + r:C|D` is deprecated. It is replaced by `... + (r:C|D)`.
+
+Suggestions for improvement::
+Parenthesize the label expression predicate on the right-hand side of `+`:
++
+[source,cypher]
+----
+MATCH (n)-[r]->(m)
+WITH r, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + (r:C|D)
+----
+======
+
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2146,6 +2253,36 @@ RETURN listOfBooleans + (r:C|D)
 .Using an unescaped variable named `is` as a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n)
+WITH n, n.internationalStandard AS is
+RETURN CASE n
+  WHEN is :: INTEGER THEN "ISO/IEC" + is
+  ELSE is
+END AS standardsName
+----
+
+Description of the returned code::
+`WHEN is :: INTEGER` is deprecated. It is replaced by `WHEN ++`is`++ :: INTEGER`.
+
+Suggestions for improvement::
+To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH (n)
+WITH n, n.internationalStandard AS `is`
+RETURN CASE n
+  WHEN `is` :: INTEGER THEN "ISO/IEC" + `is`
+  ELSE `is`
+END AS standardsName
+----
+======
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2183,9 +2320,39 @@ END AS standardsName
 ======
 =====
 
-.Using an unescaped variable named `contains` in addition or subtraction operations within a `WHEN` operand in a simple `CASE` expression
+.Using an unescaped variable named `contains` for relationships in addition or subtraction operations within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH p = (:A)-[:HAS]->(:B)
+WITH p, size(relationships(p)) AS contains
+RETURN CASE size(nodes(p))
+  WHEN contains + 1 THEN "okay"
+  ELSE "not okay"
+END AS check
+----
+
+Description of the returned code::
+`WHEN contains + 1 INTEGER` is deprecated. It is replaced by `WHEN ++`contains`++ + 1 INTEGER`.
+
+Suggestions for improvement::
+To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH p = (:A)-[:HAS]->(:B)
+WITH p, size(relationships(p)) AS `contains`
+RETURN CASE size(nodes(p))
+  WHEN `contains` + 1 THEN "okay"
+  ELSE "not okay"
+END AS check
+----
+======
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2217,6 +2384,42 @@ MATCH p = (:A)-[:HAS]->(:B)
 WITH p, size(relationships(p)) AS `contains`
 RETURN CASE size(nodes(p))
   WHEN `contains` + 1 THEN "okay"
+  ELSE "not okay"
+END AS check
+----
+======
+=====
+
+.Using an unescaped variable named `contains` for nodes in addition or subtraction operations within a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH p = (:A)-[:HAS]->(:B)
+WITH p, size(nodes(p)) AS contains
+RETURN CASE size(relationships(p))
+  WHEN contains - 1 THEN "okay"
+  ELSE "not okay"
+END AS check
+----
+
+Description of the returned code::
+
+`WHEN contains - 1 INTEGER` is deprecated. It is replaced by `WHEN ++`contains`++ - 1 INTEGER`.
+
+Suggestions for improvement::
+To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH p = (:A)-[:HAS]->(:B)
+WITH p, size(nodes(p)) AS `contains`
+RETURN CASE size(relationships(p))
+  WHEN `contains` - 1 THEN "okay"
   ELSE "not okay"
 END AS check
 ----
@@ -2261,6 +2464,37 @@ END AS check
 .Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (c:Client)-[:MAKES]->(t:Transaction)
+WITH t, c.ibanNumbers AS in
+RETURN CASE t.ibanNumber
+  WHEN in[0] THEN "used main account"
+  ELSE "used different account"
+END AS check
+----
+
+Description of the returned code::
+
+`WHEN in[0] INTEGER` is deprecated. It is replaced by `WHEN ++`in`++[0] INTEGER`.
+
+Suggestions for improvement::
+To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH (c:Client)-[:MAKES]->(t:Transaction)
+WITH t, c.ibanNumbers AS `in`
+RETURN CASE t.ibanNumber
+  WHEN `in`[0] THEN "used main account"
+  ELSE "used different account"
+END AS check
+----
+======
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2292,6 +2526,40 @@ MATCH (c:Client)-[:MAKES]->(t:Transaction)
 WITH t, c.ibanNumbers AS `in`
 RETURN CASE t.ibanNumber
   WHEN `in`[0] THEN "used main account"
+  ELSE "used different account"
+END AS check
+----
+======
+=====
+
+.Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (in:Client)-[:MAKES]->(t:Transaction)
+RETURN CASE t.ibanNumber
+  WHEN in["mainAccount"] THEN "used main account"
+  ELSE "used different account"
+END AS check
+----
+
+Description of the returned code::
+
+`WHEN in["mainAccount"] INTEGER` is deprecated. It is replaced by `WHEN ++`in`++["mainAccount"] INTEGER`.
+
+Suggestions for improvement::
+To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH (in:Client)-[:MAKES]->(t:Transaction)
+RETURN CASE t.ibanNumber
+  WHEN `in`["mainAccount"] THEN "used main account"
   ELSE "used different account"
 END AS check
 ----
