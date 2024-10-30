@@ -2320,7 +2320,7 @@ END AS standardsName
 ======
 =====
 
-.Using an unescaped variable named `contains` for relationships in addition or subtraction operations within a `WHEN` operand in a simple `CASE` expression
+.Using an unescaped variable named `contains` in addition operations within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
 [.include-with-neo4j-code]
