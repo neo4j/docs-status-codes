@@ -9,37 +9,8 @@ The driver receives these notifications and sends them to the client, which disp
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
 The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the GQL standard.
 
-This page describes both the Neo4j Notification and the GQL-status object frameworks, how they are structured, the objects they provide for notifications, and how to interpret them.
+This page describes both the GQL-status object and the Neo4j Notification frameworks, how they are structured, the objects they provide for notifications, and how to interpret them.
 It also explains the server notification grouping and filtering, the notification internals, and the server-driver compatibility for both the Notification and GqlStatusObject APIs.
-
-[[neo4j-notification-object]]
-== Neo4j notification object
-
-The Neo4j notification object contains diagnostic information representing the successful outcome of a Cypher query or command execution, including severity, the `ClientNotification` code, category, title, description, and position in the query text where the notification is relevant.
-Depending on the application, some of the fields from the notification object might not be visible.
-
-The notification object consists of the following fields:
-
-.Neo4j notification object
-[cols="<1s,<4"]
-|===
-|Neo4j code
-a|The Neo4j status code in the form of `Neo.ClientNotification.[SubType].[Name]`.
-|Title
-a|The title of the Neo4j status code.
-|Description
-a|The description of the specific notification.
-|Severity level
-a|The severity can be one of the following:
-
-- `WARNING`: There might be a problem with your query. Please, take a look.
-- `INFORMATION`: The query is correct, but this information can still be useful.
-|Category
-a|The category of the notification.
-|Position
-a|The position, given by row and column, where the notification is relevant in the query text.
-|===
-
 
 [role=label--version-5.23]
 [[gqlstatus-notification-object]]
@@ -175,6 +146,34 @@ The following table lists the Neo4j-defined groups of GQLSTATUS codes and their 
 | 00N8[y]
 | Topology information under successful completion
 
+|===
+
+[[neo4j-notification-object]]
+== Neo4j notification object
+
+The Neo4j notification object contains diagnostic information representing the successful outcome of a Cypher query or command execution, including severity, the `ClientNotification` code, category, title, description, and position in the query text where the notification is relevant.
+Depending on the application, some of the fields from the notification object might not be visible.
+
+The notification object consists of the following fields:
+
+.Neo4j notification object
+[cols="<1s,<4"]
+|===
+|Neo4j code
+a|The Neo4j status code in the form of `Neo.ClientNotification.[SubType].[Name]`.
+|Title
+a|The title of the Neo4j status code.
+|Description
+a|The description of the specific notification.
+|Severity level
+a|The severity can be one of the following:
+
+- `WARNING`: There might be a problem with your query. Please, take a look.
+- `INFORMATION`: The query is correct, but this information can still be useful.
+|Category
+a|The category of the notification.
+|Position
+a|The position, given by row and column, where the notification is relevant in the query text.
 |===
 
 [[notification-grouping-and-filtering]]

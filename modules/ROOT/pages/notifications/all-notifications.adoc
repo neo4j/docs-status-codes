@@ -3,7 +3,7 @@
 [[listOfNnotifications]]
 = List of all server notification codes
 
-The following page provides an overview of all notifications in Neo4j, along with some scenarios and their possible solutions.
+The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and the legacy Neo4j codes, along with some scenarios and their possible solutions.
 
 * <<_performance_notifications, `PERFORMANCE` notifications>>
 * <<_hint_notifications, `HINT` notifications>>
@@ -29,7 +29,7 @@ This notification is returned when there is a Cartesian product in the plan.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.CartesianProduct
 |Title
 a|This query builds a cartesian product between disconnected patterns.
@@ -53,34 +53,6 @@ m|INFORMATION
 .A query that contains many disconnected patterns
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source, cypher, role="noplay"]
-----
-MATCH (c:Child), (p:Parent) RETURN c, p
-----
-
-Description of the returned code::
-If a part of a query contains multiple disconnected patterns,
-this will build a cartesian product between all those parts.
-This may produce a large amount of data and slow down query processing.
-While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product,
-perhaps by adding a relationship between the different parts or by using `OPTIONAL MATCH` (identifier is: (`p`))
-
-Suggestions for improvement::
-In case a Cartesian product is needed, nothing can be done to improve this query.
-In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
-If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
-+
-[source, cypher, role="noplay"]
-----
-MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -110,6 +82,34 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 ----
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child), (p:Parent) RETURN c, p
+----
+
+Description of the returned code::
+If a part of a query contains multiple disconnected patterns,
+this will build a cartesian product between all those parts.
+This may produce a large amount of data and slow down query processing.
+While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product,
+perhaps by adding a relationship between the different parts or by using `OPTIONAL MATCH` (identifier is: (`p`))
+
+Suggestions for improvement::
+In case a Cartesian product is needed, nothing can be done to improve this query.
+In many cases, however, you might not need a combination of all children and parents, and that is when this query could be improved.
+If for example, you need the children and the children's parents, you can improve this query by rewriting it to the following:
++
+[source, cypher, role="noplay"]
+----
+MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
+----
+
+======
 =====
 
 [#_neo_clientnotification_statement_unboundedvariablelengthpattern]
@@ -120,7 +120,7 @@ This notification is returned when there is no upper bound specified on the vari
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 |Title
 a|The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
@@ -144,29 +144,6 @@ m|INFORMATION
 .Shortest path with an unbounded pattern
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source, cypher, role="noplay"]
-----
-MATCH p=shortestPath((n)-[*]->(m)) RETURN p
-----
-
-Description of the returned code::
-Using shortest path with an unbounded pattern will likely result in long execution times.
-It is recommended to use an upper limit to the number of node hops in your pattern.
-
-Suggestions for improvement::
-If you have a big graph, this query might be very slow.
-Consider adding an upper limit.
-+
-[source, cypher, role="noplay"]
-----
-MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
-----
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -195,6 +172,29 @@ Consider adding an upper limit.
 MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH p=shortestPath((n)-[*]->(m)) RETURN p
+----
+
+Description of the returned code::
+Using shortest path with an unbounded pattern will likely result in long execution times.
+It is recommended to use an upper limit to the number of node hops in your pattern.
+
+Suggestions for improvement::
+If you have a big graph, this query might be very slow.
+Consider adding an upper limit.
++
+[source, cypher, role="noplay"]
+----
+MATCH p=shortestPath((n)-[*..8]->(m)) RETURN p
+----
+======
 =====
 
 [#_neo_clientnotification_statement_exhaustiveshortestpath]
@@ -206,7 +206,7 @@ For more information, see link:https://neo4j.com/docs/cypher-manual/current/exec
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.ExhaustiveShortestPath
 |Title
 a|Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path.
@@ -231,32 +231,6 @@ m|INFORMATION
 .A query that runs with an exhaustive shortest path
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source, cypher, role="noplay"]
-----
-MATCH p = shortestPath(()-[*..42]-())
-WHERE ANY(n in nodes(p) WHERE n:Label)
-RETURN p
-----
-
-Description of the returned code::
-Using shortest path with an exhaustive search fallback might cause query slow down since shortest path graph algorithms might not work for this use case.
-It is recommended to introduce a `WITH` to separate the `MATCH` containing the shortest path from the existential predicates on that path.
-
-Suggestions for improvement::
-Separate the predicate by introducing a `WITH` after the `MATCH` clause.
-+
-[source, cypher, role="noplay"]
-----
-MATCH p = shortestPath(()-[*..42]-())
-WITH p
-WHERE ANY(n in nodes(p) WHERE n:Label)
-RETURN p
-----
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -287,6 +261,32 @@ WHERE ANY(n in nodes(p) WHERE n:Label)
 RETURN p
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source, cypher, role="noplay"]
+----
+MATCH p = shortestPath(()-[*..42]-())
+WHERE ANY(n in nodes(p) WHERE n:Label)
+RETURN p
+----
+
+Description of the returned code::
+Using shortest path with an exhaustive search fallback might cause query slow down since shortest path graph algorithms might not work for this use case.
+It is recommended to introduce a `WITH` to separate the `MATCH` containing the shortest path from the existential predicates on that path.
+
+Suggestions for improvement::
+Separate the predicate by introducing a `WITH` after the `MATCH` clause.
++
+[source, cypher, role="noplay"]
+----
+MATCH p = shortestPath(()-[*..42]-())
+WITH p
+WHERE ANY(n in nodes(p) WHERE n:Label)
+RETURN p
+----
+======
 =====
 
 [#_neo_clientnotification_statement_noapplicableindex]
@@ -299,7 +299,7 @@ Adding an index could improve the query speed.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.NoApplicableIndex
 |Title
 a|Adding a schema index may speed up this query.
@@ -323,29 +323,6 @@ m|INFORMATION
 .`LOAD CSV` with `MATCH` or `MERGE`
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source, cypher, role="noplay"]
-----
-LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:line[0]}) RETURN line, n
-----
-
-Description of the returned code::
-Using `LOAD CSV` followed by a `MATCH` or `MERGE` that matches a non-indexed label will most likely not perform well on large data sets.
-Please consider using a schema index.
-
-Suggestions for improvement::
-Create an index on the label and property you match.
-+
-[source, cypher, role="noplay"]
-----
-CREATE INDEX FOR (n:Person) ON (n.name)
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -372,6 +349,29 @@ Create an index on the label and property you match.
 CREATE INDEX FOR (n:Person) ON (n.name)
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line WITH * MATCH (n:Person{name:line[0]}) RETURN line, n
+----
+
+Description of the returned code::
+Using `LOAD CSV` followed by a `MATCH` or `MERGE` that matches a non-indexed label will most likely not perform well on large data sets.
+Please consider using a schema index.
+
+Suggestions for improvement::
+Create an index on the label and property you match.
++
+[source, cypher, role="noplay"]
+----
+CREATE INDEX FOR (n:Person) ON (n.name)
+----
+
+======
 =====
 
 [#_neo_clientnotification_statement_eageroperator]
@@ -382,7 +382,7 @@ This notification is returned when the execution plan for a query contains the `
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.EagerOperator
 |Title
 a|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding
@@ -406,37 +406,6 @@ m|INFORMATION
 .`LOAD CSV` with an Eager operator
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-`LOAD CSV` together with an Eager operator can take up a lot of memory.
-
-Query::
-+
-[source, cypher, role="noplay"]
-----
-LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]}) DELETE n RETURN line
-----
-
-Description of the returned code::
-Using `LOAD CSV` with a large data set in a query where the execution plan contains the Eager operator could potentially consume a lot of memory and is likely to not perform well.
-See the Neo4j Manual entry on the Eager operator for more information and hints on how problems could be avoided.
-
-Suggestions for improvement::
-See the link:https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/operators/operators-detail/#query-plan-eager[Cypher Manual -> Eager operator] for more information and hints on how to avoid problems.
-In this specific case, the query could be rewritten to the following:
-+
-[source, cypher, role="noplay"]
-----
-LOAD CSV FROM 'file:///ignore/ignore.csv' AS line
-CALL {
-    WITH line
-    MATCH (n:Person{name:line[0]}) DELETE n
-}
-RETURN line
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -469,6 +438,37 @@ CALL {
 RETURN line
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+`LOAD CSV` together with an Eager operator can take up a lot of memory.
+
+Query::
++
+[source, cypher, role="noplay"]
+----
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line MATCH (n:Person{name:line[0]}) DELETE n RETURN line
+----
+
+Description of the returned code::
+Using `LOAD CSV` with a large data set in a query where the execution plan contains the Eager operator could potentially consume a lot of memory and is likely to not perform well.
+See the Neo4j Manual entry on the Eager operator for more information and hints on how problems could be avoided.
+
+Suggestions for improvement::
+See the link:https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/operators/operators-detail/#query-plan-eager[Cypher Manual -> Eager operator] for more information and hints on how to avoid problems.
+In this specific case, the query could be rewritten to the following:
++
+[source, cypher, role="noplay"]
+----
+LOAD CSV FROM 'file:///ignore/ignore.csv' AS line
+CALL {
+    WITH line
+    MATCH (n:Person{name:line[0]}) DELETE n
+}
+RETURN line
+----
+
+======
 =====
 
 
@@ -478,7 +478,7 @@ RETURN line
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.DynamicProperty
 |Title
 a|Queries using dynamic properties will use neither index seeks nor index scans for those properties
@@ -502,30 +502,6 @@ m|INFORMATION
 .A dynamic node property key makes it impossible to use indexes
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source, cypher]
-----
-MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
-----
-
-Description of the returned code::
-Using a dynamic property makes it impossible to use an index lookup for this query (indexed label is: `Person`)
-
-Suggestions for improvement::
-If there is an index for `(n:Person) ON (n.name)`, it will not be used for the above query because the query is using a dynamic property.
-Therefore, if there is an index, it is better to use the constant value.
-For example, if `prop` is equal to `name`, the following query would be able to use the index:
-+
-[source, cypher]
-----
-MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -556,34 +532,35 @@ MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
 ----
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source, cypher]
+----
+MATCH (n:Person) WHERE n[$prop] IS NOT NULL RETURN n;
+----
+
+Description of the returned code::
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed label is: `Person`)
+
+Suggestions for improvement::
+If there is an index for `(n:Person) ON (n.name)`, it will not be used for the above query because the query is using a dynamic property.
+Therefore, if there is an index, it is better to use the constant value.
+For example, if `prop` is equal to `name`, the following query would be able to use the index:
++
+[source, cypher]
+----
+MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
+----
+
+======
 =====
 
 .A dynamic relationship property key makes it impossible to use indexes
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source,cypher]
-----
-MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
-----
-
-Description of the returned code::
-Using a dynamic property makes it impossible to use an index lookup for this query (indexed type is: `KNOWS`)
-
-Suggestions for improvement::
-Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
-For example, if `$prop` is equal to `since`, you can rewrite the query to:
-+
-[source, cypher]
-----
-MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -613,6 +590,29 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 ----
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r: KNOWS]->() WHERE r[$prop] IS NOT NULL RETURN r
+----
+
+Description of the returned code::
+Using a dynamic property makes it impossible to use an index lookup for this query (indexed type is: `KNOWS`)
+
+Suggestions for improvement::
+Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
+For example, if `$prop` is equal to `since`, you can rewrite the query to:
++
+[source, cypher]
+----
+MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
+----
+
+======
 =====
 
 [#_neo_clientnotification_statement_codegenerationfailed]
@@ -624,7 +624,7 @@ For more information about the specific query, see the stack trace in the _debug
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.CodeGenerationFailed
 |Title
 a|The database was unable to generate code for the query. A stacktrace can be found in the _debug.log_.
@@ -659,7 +659,7 @@ In this case, the query will return an error.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 |Title
 a|The database was unable to plan a hinted join.
@@ -682,31 +682,6 @@ m|WARNING
 .Inability to fulfill the hint despite the given `JOIN` hint
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source, cypher]
-----
-MATCH (a:A)
-WITH a, 1 AS horizon
-OPTIONAL MATCH (a)-[r]->(b:B)
-USING JOIN ON a
-OPTIONAL MATCH (a)--(c)
-RETURN *
-----
-
-Description of the returned code::
-The hinted join was not planned.
-This could happen because no generated plan contained the join key,
-please try using a different join key or restructure your query. (hinted join key identifier is: `a`)
-
-Suggestions for improvement::
-The `JOIN` hint cannot be applied because its specified variable is before the `OPTIONAL MATCH` and, therefore, is already bound.
-The only option for this query is to either remove the hint or modify the query to allow it to be used.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -735,6 +710,31 @@ The `JOIN` hint cannot be applied because its specified variable is before the `
 The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source, cypher]
+----
+MATCH (a:A)
+WITH a, 1 AS horizon
+OPTIONAL MATCH (a)-[r]->(b:B)
+USING JOIN ON a
+OPTIONAL MATCH (a)--(c)
+RETURN *
+----
+
+Description of the returned code::
+The hinted join was not planned.
+This could happen because no generated plan contained the join key,
+please try using a different join key or restructure your query. (hinted join key identifier is: `a`)
+
+Suggestions for improvement::
+The `JOIN` hint cannot be applied because its specified variable is before the `OPTIONAL MATCH` and, therefore, is already bound.
+The only option for this query is to either remove the hint or modify the query to allow it to be used.
+
+======
 =====
 
 
@@ -744,7 +744,7 @@ The only option for this query is to either remove the hint or modify the query 
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Schema.HintedIndexNotFound
 |Title
 a|The request (directly or indirectly) referred to an index that does not exist.
@@ -766,27 +766,6 @@ m|WARNING
 .Inability to use the label index despite the given index hint
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source, cypher]
-----
-MATCH (a: Label)
-USING INDEX a:Label(id)
-WHERE a.id = 1
-RETURN a
-----
-
-Description of the returned code::
-The hinted index does not exist, please check the schema (index is: INDEX FOR (`a`:`Label`) ON (`a`.`id`))
-
-Suggestions for improvement::
-The hinted index does not exist, make sure the label and property are spelled correctly.
-If the spelling is correct, either create the index or remove the hint from the query.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -811,32 +790,32 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the label and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 ======
-=====
-
-.Inability to use the relationship index despite the given index hint
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 
 Query::
 +
 [source, cypher]
 ----
-MATCH ()-[r:Rel]-()
-USING INDEX r:Rel(id)
-WHERE r.id = 1
-RETURN r
+MATCH (a: Label)
+USING INDEX a:Label(id)
+WHERE a.id = 1
+RETURN a
 ----
 
 Description of the returned code::
-The hinted index does not exist, please check the schema (index is: INDEX FOR ()-[`r`:`Rel`]-() ON (`r`.`id`))
+The hinted index does not exist, please check the schema (index is: INDEX FOR (`a`:`Label`) ON (`a`.`id`))
 
 Suggestions for improvement::
-The hinted index does not exist, make sure the relationship type and property are spelled correctly.
+The hinted index does not exist, make sure the label and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 
 ======
+=====
+
+.Inability to use the relationship index despite the given index hint
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -861,6 +840,27 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the relationship type and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source, cypher]
+----
+MATCH ()-[r:Rel]-()
+USING INDEX r:Rel(id)
+WHERE r.id = 1
+RETURN r
+----
+
+Description of the returned code::
+The hinted index does not exist, please check the schema (index is: INDEX FOR ()-[`r`:`Rel`]-() ON (`r`.`id`))
+
+Suggestions for improvement::
+The hinted index does not exist, make sure the relationship type and property are spelled correctly.
+If the spelling is correct, either create the index or remove the hint from the query.
+
+======
 =====
 
 [#_unrecognized_notifications]
@@ -874,7 +874,7 @@ Unrecognized notifications are returned when the query or command mentions entit
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Database.HomeDatabaseNotFound
 |Title
 a|The request referred to a home database that does not exist.
@@ -898,24 +898,6 @@ m|INFORMATION
 .Setting the `home` database to a database that does not exist
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source,cypher]
-----
-CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
-----
-
-Description of the returned code::
-The home database provided does not currently exist in the DBMS.
-This command will not take effect until this database is created. (HOME DATABASE: `nej4`)
-
-Suggestions for improvement::
-Verify that the home database name is not misspelled.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -937,6 +919,24 @@ Verify that the spelling is correct or create the database for the command to ta
 Suggestions for improvement::
 Verify that the home database name is not misspelled.
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source,cypher]
+----
+CREATE USER john SET PASSWORD "secret" SET HOME DATABASE nej4
+----
+
+Description of the returned code::
+The home database provided does not currently exist in the DBMS.
+This command will not take effect until this database is created. (HOME DATABASE: `nej4`)
+
+Suggestions for improvement::
+Verify that the home database name is not misspelled.
+
+======
 =====
 
 [#_neo_clientnotification_statement_unknownlabelwarning]
@@ -945,7 +945,7 @@ Verify that the home database name is not misspelled.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.UnknownLabelWarning
 |Title
 a|The provided label is not in the database.
@@ -968,24 +968,6 @@ m|WARNING
 .Matching on a node with a label that does not exist in the database
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source,cypher]
-----
-MATCH (n:Perso) RETURN n
-----
-
-Description of the returned code::
-One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing label name is: `Perso`)
-
-Suggestions for improvement::
-Verify that the label is not misspelled.
-If you plan to create nodes with that label in the future, then no change is needed.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -1008,6 +990,24 @@ Suggestions for improvement::
 Verify that the label is not misspelled.
 If you plan to create nodes with that label in the future, no change is needed.
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH (n:Perso) RETURN n
+----
+
+Description of the returned code::
+One of the labels in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing label name is: `Perso`)
+
+Suggestions for improvement::
+Verify that the label is not misspelled.
+If you plan to create nodes with that label in the future, then no change is needed.
+
+======
 =====
 
 [#_neo_clientnotification_statement_unknownrelationshiptypewarning]
@@ -1016,7 +1016,7 @@ If you plan to create nodes with that label in the future, no change is needed.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 |Title
 a|The provided relationship type is not in the database.
@@ -1040,24 +1040,6 @@ m|WARNING
 .Matching a relationship with a type that does not exist
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (n)-[:NonExistingType]->() RETURN n
-----
-
-Description of the returned code::
-One of the relationship types in your query is not available in the database,
-make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: `NonExistingType`)
-
-Suggestions for improvement::
-Verify that the relationship type is not misspelled.
-If you plan to create relationships of this type in the future, no change is needed.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1079,6 +1061,24 @@ Suggestions for improvement::
 Verify that the relationship type is not misspelled.
 If you plan to create relationships of this type in the future, no change is needed.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n)-[:NonExistingType]->() RETURN n
+----
+
+Description of the returned code::
+One of the relationship types in your query is not available in the database,
+make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: `NonExistingType`)
+
+Suggestions for improvement::
+Verify that the relationship type is not misspelled.
+If you plan to create relationships of this type in the future, no change is needed.
+
+======
 =====
 
 [#_neo_clientnotification_statement_unknownpropertykeywarning]
@@ -1087,7 +1087,7 @@ If you plan to create relationships of this type in the future, no change is nee
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 |Title
 a|The provided property key is not in the database
@@ -1111,25 +1111,6 @@ m|WARNING
 .Matching a property key that does not exist
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (n:Person {nme:”Tom”})
-RETURN n
-----
-
-Description of the returned code::
-One of the property names in your query is not available in the database,
-make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: `nme`)
-
-Suggestions for improvement::
-Verify that the property key is not misspelled.
-If you plan to create that property key in the future, no change is needed.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1152,6 +1133,25 @@ Suggestions for improvement::
 Verify that the property key is not misspelled.
 If you plan to create that property key in the future, no change is needed.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n:Person {nme:”Tom”})
+RETURN n
+----
+
+Description of the returned code::
+One of the property names in your query is not available in the database,
+make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: `nme`)
+
+Suggestions for improvement::
+Verify that the property key is not misspelled.
+If you plan to create that property key in the future, no change is needed.
+
+======
 =====
 
 [#_neo_clientnotification_statement_AggregationSkippedNull]
@@ -1160,7 +1160,7 @@ If you plan to create that property key in the future, no change is needed.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.AggregationSkippedNull
 |Title
 a|The query contains an aggregation function that skips null values.
@@ -1181,17 +1181,6 @@ m|WARNING
 .Aggregation skipping a NULL value
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-
-[source,cypher]
-----
-UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
-----
-Description of the returned code::
-The query contains an aggregation function that skips null values.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1207,6 +1196,17 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: null value eliminated in set function.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
+
+[source,cypher]
+----
+UNWIND [1, NULL, 2] AS i RETURN count(i) AS sum
+----
+Description of the returned code::
+The query contains an aggregation function that skips null values.
+======
 =====
 
 [#_unsupported_notifications]
@@ -1220,7 +1220,7 @@ Unsupported notifications are returned when the query or command is trying to us
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
 |Title
 a|This query is not supported by the chosen runtime.
@@ -1244,29 +1244,6 @@ m|WARNING
 .A runtime is not supported by a Cypher command
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source,cypher]
-----
-CYPHER runtime=pipelined SHOW INDEXES YIELD *
-----
-
-Description of the returned code::
-Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.
-(Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.)
-
-Suggestions for improvement::
-Use a different runtime or remove the runtime option to run the query with the default runtime:
-+
-[source,cypher]
-----
-SHOW INDEXES YIELD *
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1292,6 +1269,29 @@ Use a different runtime or remove the runtime option to run the query with the d
 SHOW INDEXES YIELD *
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source,cypher]
+----
+CYPHER runtime=pipelined SHOW INDEXES YIELD *
+----
+
+Description of the returned code::
+Selected runtime is unsupported for this query, please use a different runtime instead or fallback to default.
+(Pipelined does not yet support the plans including `ShowIndexes`, use another runtime.)
+
+Suggestions for improvement::
+Use a different runtime or remove the runtime option to run the query with the default runtime:
++
+[source,cypher]
+----
+SHOW INDEXES YIELD *
+----
+
+======
 =====
 
 [role=label--deprecated-5.14]
@@ -1306,7 +1306,7 @@ The usage of this notification has been removed since Neo4j 5.14.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.RuntimeExperimental
 |Title
 a|This feature is experimental and should not be used in production systems.
@@ -1351,7 +1351,7 @@ It is important to change to the new functionality, otherwise, the query might b
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -1384,28 +1384,6 @@ m|WARNING
 .Create a database with an unescaped name containing a dot
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-CREATE DATABASE foo.bar
-----
-
-Description of the returned code::
-Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
-Names containing `.` should be escaped. (Name: `foo.bar`)
-
-Suggestions for improvement::
-If not intended for a composite database, escape the name with the character ```.
-+
-[source,cypher]
-----
-CREATE DATABASE `foo.bar`
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1430,38 +1408,33 @@ If not intended for a composite database, escape the name with the character ```
 CREATE DATABASE `foo.bar`
 ----
 ======
-=====
-
-.Using differently ordered return items in a `UNION` clause
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as two, 'val' as one
+CREATE DATABASE foo.bar
 ----
 
 Description of the returned code::
-All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
+Names containing `.` should be escaped. (Name: `foo.bar`)
 
 Suggestions for improvement::
-Use the same order for the return columns in all subqueries combined by a `UNION` clause.
-
+If not intended for a composite database, escape the name with the character ```.
 +
 [source,cypher]
 ----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as one, 'val' as two
+CREATE DATABASE `foo.bar`
 ----
 
 ======
+=====
+
+.Using differently ordered return items in a `UNION` clause
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1492,23 +1465,38 @@ UNION
 RETURN 'val' as one, 'val' as two
 ----
 ======
-=====
-
-.Using the Unicode \u0085 in an unescaped identifier
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-RETURN 1 as my\u0085identifier
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as two, 'val' as one
 ----
+
 Description of the returned code::
-The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
+
+Suggestions for improvement::
+Use the same order for the return columns in all subqueries combined by a `UNION` clause.
+
++
+[source,cypher]
+----
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as one, 'val' as two
+----
 
 ======
+=====
+
+.Using the Unicode \u0085 in an unescaped identifier
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1526,6 +1514,18 @@ warn: feature deprecated.
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN 1 as my\u0085identifier
+----
+Description of the returned code::
+The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+
+======
 =====
 
 [#_deprecated-feature-with-replacement]
@@ -1534,7 +1534,7 @@ To continue using it, escape the identifier by adding backticks around the ident
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -1567,27 +1567,6 @@ m|WARNING
 .Colon after the vertical bar `|:` in a relationship pattern
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (a)-[:A|:B|:C]-() RETURN *
-----
-
-Description of the returned code::
-The semantics of using colon in the separation of alternative relationship types will change in a future version. (Please use ':A|B|C' instead)
-
-Suggestions for improvement::
-Remove the colon inside the relationship type expression.
-+
-[source,cypher]
-----
-MATCH (a)-[:A|B|C]-() RETURN *
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1614,35 +1593,32 @@ MATCH (a)-[:A|B|C]-() RETURN *
 ----
 
 ======
-=====
-
-.Setting properties using a node
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH (a)-[]-(b)
-SET a = b
+MATCH (a)-[:A|:B|:C]-() RETURN *
 ----
 
 Description of the returned code::
-The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
-Please use `properties()` instead.
+The semantics of using colon in the separation of alternative relationship types will change in a future version. (Please use ':A|B|C' instead)
 
 Suggestions for improvement::
-Use the `properties()` function to get all properties from `b`.
+Remove the colon inside the relationship type expression.
 +
 [source,cypher]
 ----
-MATCH (a)-[]-(b)
-SET a = properties(b)
+MATCH (a)-[:A|B|C]-() RETURN *
 ----
 
 ======
+=====
+
+.Setting properties using a node
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1671,20 +1647,14 @@ SET a = properties(b)
 ----
 
 ======
-=====
-
-
-.Setting properties using a relationship
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH (a)-[r]-(b)
-SET a += r
+MATCH (a)-[]-(b)
+SET a = b
 ----
 
 Description of the returned code::
@@ -1692,15 +1662,21 @@ The use of nodes or relationships for setting properties is deprecated and will 
 Please use `properties()` instead.
 
 Suggestions for improvement::
-Use the `properties()` function to get all properties from `r`.
+Use the `properties()` function to get all properties from `b`.
 +
 [source,cypher]
 ----
-MATCH (a)-[r]-(b)
-SET a += properties(r)
+MATCH (a)-[]-(b)
+SET a = properties(b)
 ----
 
 ======
+=====
+
+
+.Setting properties using a relationship
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1728,35 +1704,36 @@ MATCH (a)-[r]-(b)
 SET a += properties(r)
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += r
+----
+
+Description of the returned code::
+The use of nodes or relationships for setting properties is deprecated and will be removed in a future version.
+Please use `properties()` instead.
+
+Suggestions for improvement::
+Use the `properties()` function to get all properties from `r`.
++
+[source,cypher]
+----
+MATCH (a)-[r]-(b)
+SET a += properties(r)
+----
+
+======
 =====
 
 
 .Shortest path with a fixed relationship length
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
-----
-
-Description of the returned code::
-The use of `shortestPath` and `allShortestPaths` with fixed length relationships is deprecated and will be removed in a future version.
-Please use a path with a length of `1 [r*1..1]` instead or a `Match` with a `limit`.
-
-Suggestions for improvement::
-If the relationship length is fixed, there is no reason to search for the shortest path.
-Instead, you can rewrite it to the following:
-+
-[source,cypher]
-----
-MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
-----
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1783,33 +1760,34 @@ Instead, you can rewrite it to the following:
 MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
 ----
 ======
-=====
-
-.Using a deprecated runtime option
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-CYPHER runtime = interpreted MATCH (n) RETURN n
+MATCH (a:Start), shortestPath((a)-[r]->()) RETURN a
 ----
 
 Description of the returned code::
-The query used a deprecated runtime option. (`'runtime=interpreted'` is deprecated, please use `'runtime=slotted'` instead)
+The use of `shortestPath` and `allShortestPaths` with fixed length relationships is deprecated and will be removed in a future version.
+Please use a path with a length of `1 [r*1..1]` instead or a `Match` with a `limit`.
 
 Suggestions for improvement::
-Runtime `interpreted` is deprecated and another runtime is used instead.
-Alternatively, you can remove the runtime option to use the default runtime.
+If the relationship length is fixed, there is no reason to search for the shortest path.
+Instead, you can rewrite it to the following:
 +
 [source,cypher]
 ----
-MATCH (n) RETURN n
+MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
 ----
 
 ======
+=====
+
+.Using a deprecated runtime option
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1836,33 +1814,33 @@ Alternatively, you can remove the runtime option to use the default runtime.
 MATCH (n) RETURN n
 ----
 ======
-=====
-
-.Using the `text-1.0` index provider when creating a text index
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
+CYPHER runtime = interpreted MATCH (n) RETURN n
 ----
 
 Description of the returned code::
-The `text-1.0` provider for text indexes is deprecated and will be removed in a future version.
-Please use `text-2.0` instead.
+The query used a deprecated runtime option. (`'runtime=interpreted'` is deprecated, please use `'runtime=slotted'` instead)
 
 Suggestions for improvement::
-Update the option `indexProvider` with the value `text-2.0`.
+Runtime `interpreted` is deprecated and another runtime is used instead.
+Alternatively, you can remove the runtime option to use the default runtime.
 +
 [source,cypher]
 ----
-CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
+MATCH (n) RETURN n
 ----
 
 ======
+=====
+
+.Using the `text-1.0` index provider when creating a text index
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -1888,27 +1866,33 @@ Update the option `indexProvider` with the value `text-2.0`.
 CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-1.0'}
+----
+
+Description of the returned code::
+The `text-1.0` provider for text indexes is deprecated and will be removed in a future version.
+Please use `text-2.0` instead.
+
+Suggestions for improvement::
+Update the option `indexProvider` with the value `text-2.0`.
++
+[source,cypher]
+----
+CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
+----
+
+======
 =====
 
 .Using a renamed or a deprecated procedure
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-[source,cypher]
-----
-CALL unsupported.dbms.shutdown
-----
-
-Description of the returned code::
-The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
-
-Suggestions for improvement::
-Remove the use of the deprecated procedure.
-If there is a suggested replacement, update to use the replacement instead.
-
-======
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 [source,cypher]
@@ -1939,34 +1923,27 @@ Returned status description::
 warn: feature deprecated without replacement.
 `unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown
+----
+
+Description of the returned code::
+The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
+
+Suggestions for improvement::
+Remove the use of the deprecated procedure.
+If there is a suggested replacement, update to use the replacement instead.
+
+======
 =====
 
 .Using id() function
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source,cypher]
-----
-MATCH (a)
-RETURN id(a)
-----
-
-Description of the returned code::
-The query used a deprecated function: `id`.
-
-Suggestions for improvement::
-Use the function `elementId()` instead.
-+
-[source,cypher]
-----
-MATCH (a)
-RETURN elementId(a)
-----
-======
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2011,6 +1988,29 @@ Returned status description::
 warn: feature deprecated without replacement.
 `id` is deprecated and will be removed without a replacement.
 ======
+[.include-with-neo4j-legacy-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+
+Description of the returned code::
+The query used a deprecated function: `id`.
+
+Suggestions for improvement::
+Use the function `elementId()` instead.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN elementId(a)
+----
+======
 =====
 
 [#_deprecated-notifications-without-replacement]
@@ -2019,7 +2019,7 @@ warn: feature deprecated without replacement.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -2046,20 +2046,6 @@ m|WARNING
 .Using Cypher query option `connectComponentsPlanner`
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
-----
-Description of the returned code::
-The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
-The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
-For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -2076,6 +2062,20 @@ Returned status description::
 warn: feature deprecated without replacement.
 `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER connectComponentsPlanner=greedy MATCH (a), (b) RETURN *
+----
+Description of the returned code::
+The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
+The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
+
+======
 =====
 
 [[_deprecated-procedure-result-column]]
@@ -2084,7 +2084,7 @@ warn: feature deprecated without replacement.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -2109,7 +2109,7 @@ m|WARNING
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Request.DeprecatedFormat
 |Title
 a|The client made a request for a format which has been deprecated.
@@ -2141,7 +2141,7 @@ Verify that this is the intended behavior of your query or command.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
 a|`<command>` has no effect.*
@@ -2169,7 +2169,27 @@ m|INFORMATION
 .Revoking a role from a user who does not have that role
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE admin, reader FROM jane
+----
+
+Returned GQLSTATUS code::
+00N71
+
+Returned status description::
+note: successful completion - role or privilege not assigned.
+`REVOKE ROLE reader FROM jane` has no effect.
+The role or privilege is not assigned.
+
+Suggestions for improvement::
+Verify that this is the intended role and user.
+======
+[.include-with-neo4j-legacy-code]
 ======
 Command::
 +
@@ -2187,13 +2207,19 @@ The user does not have the role. See Status Codes documentation for more informa
 Suggestions for improvement::
 Verify that this is the intended role and user.
 ======
+=====
+
+.Revoking a privilege from a role that does not have that privilege
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
+
 Command::
 +
 [source, cypher]
 ----
-REVOKE ROLE admin, reader FROM jane
+REVOKE WRITE ON GRAPH * FROM reader
 ----
 
 Returned GQLSTATUS code::
@@ -2201,18 +2227,14 @@ Returned GQLSTATUS code::
 
 Returned status description::
 note: successful completion - role or privilege not assigned.
-`REVOKE ROLE reader FROM jane` has no effect.
+`REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
 The role or privilege is not assigned.
 
 Suggestions for improvement::
-Verify that this is the intended role and user.
-======
-=====
+Verify that this is the intended privilege and role.
 
-.Revoking a privilege from a role that does not have that privilege
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+======
+[.include-with-neo4j-legacy-code]
 ======
 Command::
 +
@@ -2230,28 +2252,6 @@ The role does not have the privilege. See Status Codes documentation for more in
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
 ======
-[.include-with-GQLSTATUS-code]
-======
-
-Command::
-+
-[source, cypher]
-----
-REVOKE WRITE ON GRAPH * FROM reader
-----
-
-Returned GQLSTATUS code::
-00N71
-
-Returned status description::
-note: successful completion - role or privilege not assigned.
-`REVOKE DENY WRITE ON GRAPH * FROM reader` has no effect.
-The role or privilege is not assigned.
-
-Suggestions for improvement::
-Verify that this is the intended privilege and role.
-
-======
 =====
 
 
@@ -2261,7 +2261,7 @@ Verify that this is the intended privilege and role.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
 a|`<command>` has no effect.*
@@ -2289,24 +2289,6 @@ m|INFORMATION
 .Granting a role to a user who already has that role
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source,cypher]
-----
-GRANT ROLE admin TO john
-----
-Title of the returned code::
-`GRANT ROLE admin TO john` has no effect.
-
-Description of the returned code::
-The user already has the role. See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended role and user.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -2328,6 +2310,24 @@ Suggestions for improvement::
 Verify that this is the intended role and user.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source,cypher]
+----
+GRANT ROLE admin TO john
+----
+Title of the returned code::
+`GRANT ROLE admin TO john` has no effect.
+
+Description of the returned code::
+The user already has the role. See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended role and user.
+
+======
 =====
 
 
@@ -2335,25 +2335,6 @@ Verify that this is the intended role and user.
 // This command returns 2 notifications, one for NODES and one for RELATIONSHIPS.
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-GRANT TRAVERSE ON GRAPH * TO reader
-----
-
-Title of the returned code::
-`GRANT TRAVERSE ON GRAPH * NODE * TO reader` has no effect.
-
-Description of the returned code::
-The role already has the privilege. See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended privilege and role.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -2374,6 +2355,25 @@ The role or privilege is already assigned.
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+GRANT TRAVERSE ON GRAPH * TO reader
+----
+
+Title of the returned code::
+`GRANT TRAVERSE ON GRAPH * NODE * TO reader` has no effect.
+
+Description of the returned code::
+The role already has the privilege. See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended privilege and role.
+
+======
 =====
 
 
@@ -2384,7 +2384,7 @@ Verify that this is the intended privilege and role.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Security.ImpossibleRevokeCommand
 |Title
 a|`<command>` has no effect.*
@@ -2411,26 +2411,6 @@ m|WARNING
 .Revoking a non-existing role from a user
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-REVOKE ROLE manager, reader FROM jane
-----
-
-Title of the returned code::
-`REVOKE ROLE manager FROM jane` has no effect.
-
-Description of the returned code::
-Role does not exist. Make sure nothing is misspelled.
-This notification will become an error in a future major version.
-See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended role and that it is spelled correctly.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -2453,31 +2433,31 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
 ======
-=====
-
-.Revoking a role from a non-existing user
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Command::
 +
 [source, cypher]
 ----
-REVOKE ROLE reader FROM alice
+REVOKE ROLE manager, reader FROM jane
 ----
 
 Title of the returned code::
-`REVOKE ROLE reader FROM alice` has no effect.
+`REVOKE ROLE manager FROM jane` has no effect.
 
 Description of the returned code::
-User does not exist.
-Make sure nothing is misspelled.
+Role does not exist. Make sure nothing is misspelled.
 This notification will become an error in a future major version.
+See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended user and that it is spelled correctly.
+Verify that this is the intended role and that it is spelled correctly.
 ======
+=====
+
+.Revoking a role from a non-existing user
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -2502,32 +2482,32 @@ o
 Suggestions for improvement::
 Verify that this is the intended user and that it is spelled correctly.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE reader FROM alice
+----
+
+Title of the returned code::
+`REVOKE ROLE reader FROM alice` has no effect.
+
+Description of the returned code::
+User does not exist.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Verify that this is the intended user and that it is spelled correctly.
+======
 =====
 
 
 .Revoking a privilege from a non-existing role
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-REVOKE GRANT WRITE ON GRAPH * FROM manager
-----
-
-Title of the returned code::
-`REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
-
-Description of the returned code::
-Role does not exist. Make sure nothing is misspelled.
-This notification will become an error in a future major version.
-See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended role and that it is spelled correctly.
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -2551,31 +2531,31 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
 ======
-=====
-
-.Revoking a privilege on a non-existing graph from a role
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Command::
 +
 [source, cypher]
 ----
-REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
+REVOKE GRANT WRITE ON GRAPH * FROM manager
 ----
 
 Title of the returned code::
-`REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
+`REVOKE GRANT WRITE ON GRAPH * FROM manager` has no effect.
 
 Description of the returned code::
-Database `neo3j` does not exist. Make sure nothing is misspelled.
+Role does not exist. Make sure nothing is misspelled.
 This notification will become an error in a future major version.
 See Status Codes documentation for more information.
 
 Suggestions for improvement::
-Verify that this is the intended graph and that it is spelled correctly.
+Verify that this is the intended role and that it is spelled correctly.
 ======
+=====
+
+.Revoking a privilege on a non-existing graph from a role
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -2594,6 +2574,26 @@ warn: impossible revoke command.
 Database `neo3j` does not exist.
 Make sure nothing is misspelled.
 This notification will become an error in a future major version.
+
+Suggestions for improvement::
+Verify that this is the intended graph and that it is spelled correctly.
+======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT WRITE ON GRAPH neo3j FROM editor
+----
+
+Title of the returned code::
+`REVOKE GRANT WRITE ON GRAPH neo3j FROM editor` has no effect.
+
+Description of the returned code::
+Database `neo3j` does not exist. Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
 
 Suggestions for improvement::
 Verify that this is the intended graph and that it is spelled correctly.
@@ -2603,26 +2603,6 @@ Verify that this is the intended graph and that it is spelled correctly.
 .Revoking a privilege on a non-existing database from a role
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
-----
-
-Title of the returned code::
-`REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
-
-Description of the returned code::
-Database `neo3j` does not exist. Make sure nothing is misspelled.
-This notification will become an error in a future major version.
-See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Verify that this is the intended database and that it is spelled correctly.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -2646,41 +2626,32 @@ Suggestions for improvement::
 Verify that this is the intended database and that it is spelled correctly.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor
+----
+
+Title of the returned code::
+`REVOKE GRANT ACCESS ON DATABASE neo3j FROM editor` has no effect.
+
+Description of the returned code::
+Database `neo3j` does not exist. Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended database and that it is spelled correctly.
+======
 =====
 
 
 .Revoking a privilege from a role with wildcard graph parameter
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Parameter::
-+
-[source, javascript]
-----
-{
-    "graph": "*"
-}
-----
-Command::
-+
-[source, cypher]
-----
-REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
-----
-
-Title of the returned code::
-`REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
-
-Description of the returned code::
-Parameterized database and graph names do not support wildcards.
-Make sure nothing is misspelled.
-This notification will become an error in a future major version.
-See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Parameter::
@@ -2712,41 +2683,41 @@ Suggestions for improvement::
 Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
 
 
+======
+[.include-with-neo4j-legacy-code]
+======
+Parameter::
++
+[source, javascript]
+----
+{
+    "graph": "*"
+}
+----
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC
+----
+
+Title of the returned code::
+`REVOKE GRANT CREATE ON GRAPH $graph FROM PUBLIC` has no effect.
+
+Description of the returned code::
+Parameterized database and graph names do not support wildcards.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
 ======
 =====
 
 .Revoking a privilege from a role with a wildcard database parameter
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Parameter::
-+
-[source, javascript]
-----
-{
-    "database": "*"
-}
-----
-Command::
-+
-[source, cypher]
-----
-REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC
-----
-
-Title of the returned code::
-`REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
-
-Description of the returned code::
-Parameterized database and graph names do not support wildcards.
-Make sure nothing is misspelled.
-This notification will become an error in a future major version.
-See Status Codes documentation for more information.
-
-Suggestions for improvement::
-Use `DATABASE *` without the parameter to revoke the privilege on all databases.
-======
 [.include-with-GQLSTATUS-code]
 ======
 
@@ -2778,6 +2749,35 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 
+======
+[.include-with-neo4j-legacy-code]
+======
+Parameter::
++
+[source, javascript]
+----
+{
+    "database": "*"
+}
+----
+Command::
++
+[source, cypher]
+----
+REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC
+----
+
+Title of the returned code::
+`REVOKE GRANT ACCESS ON DATABASE $database FROM PUBLIC` has no effect.
+
+Description of the returned code::
+Parameterized database and graph names do not support wildcards.
+Make sure nothing is misspelled.
+This notification will become an error in a future major version.
+See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 ======
 =====
 
@@ -2894,7 +2894,7 @@ Topology notifications provide additional information related to managing databa
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Cluster.ServerAlreadyEnabled
 |Title
 a| `<command>` has no effect.
@@ -2919,20 +2919,6 @@ m|INFORMATION
 .Enabling an already enabled server
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-ENABLE SERVER "123e4567-e89b-12d3-a456-426614174000"
-----
-
-Description of the returned code::
-Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
-Verify that this is the intended server.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -2952,6 +2938,20 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
 Verify that this is the intended server.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+ENABLE SERVER "123e4567-e89b-12d3-a456-426614174000"
+----
+
+Description of the returned code::
+Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
+Verify that this is the intended server.
+
+======
 =====
 
 [#_neo_clientnotification_cluster_serveralreadycordoned]
@@ -2960,7 +2960,7 @@ Verify that this is the intended server.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Cluster.ServerAlreadyCordoned
 |Title
 a| `<command>` has no effect.
@@ -2985,20 +2985,6 @@ m|INFORMATION
 .Cordoning an already cordoned server
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-CORDON SERVER "123e4567-e89b-12d3-a456-426614174000"
-----
-
-Description of the returned code::
-Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
-Verify that this is the intended server.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3018,6 +3004,20 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
 Verify that this is the intended server.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+CORDON SERVER "123e4567-e89b-12d3-a456-426614174000"
+----
+
+Description of the returned code::
+Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
+Verify that this is the intended server.
+
+======
 =====
 
 [#_neo_clientnotification_cluster_nodatabasesreallocated]
@@ -3026,7 +3026,7 @@ Verify that this is the intended server.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Cluster.NoDatabasesReallocated
 |Title
 a| `<command>` has no effect.
@@ -3050,28 +3050,6 @@ m|INFORMATION
 .Reallocating databases resulted in no allocation changes
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-REALLOCATE DATABASES
-----
-
-Description of the returned code::
-No databases were reallocated. No better allocation is currently possible.
-
-
-Example scenarios::
-**Scenario 1:** The cluster is already balanced.
-For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
-+
-
-**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation.
-For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
-Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3099,6 +3077,28 @@ For example, when there are three servers, each hosting databases `foo` and `bar
 For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
 Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Command::
++
+[source, cypher]
+----
+REALLOCATE DATABASES
+----
+
+Description of the returned code::
+No databases were reallocated. No better allocation is currently possible.
+
+
+Example scenarios::
+**Scenario 1:** The cluster is already balanced.
+For example, when there are three servers, each hosting databases `foo` and `bar`, meaning all databases are allocated to all servers.
++
+
+**Scenario 2:** The cluster appears unbalanced, but server constraints prevent you from moving to a better, more balanced, allocation.
+For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
+Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
+======
 =====
 
 [#_neo_clientnotification_cluster_cordonedserversexistedduringallocation]
@@ -3110,7 +3110,7 @@ For example, `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SER
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
 |Title
 a| Cordoned servers existed when making an allocation decision.
@@ -3134,20 +3134,6 @@ m|INFORMATION
 .Cordoned servers existed during an allocation decision
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
-
-Command::
-+
-[source, cypher]
-----
-CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
-----
-
-Description of the returned code::
-Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
-======
 [.include-with-GQLSTATUS-code]
 ======
 The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
@@ -3168,6 +3154,20 @@ Cordoned servers existed when making an allocation decision.
 Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned.
 This can impact allocation decisions.
 ======
+[.include-with-neo4j-legacy-code]
+======
+The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
+
+Command::
++
+[source, cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES
+----
+
+Description of the returned code::
+Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact allocation decisions.
+======
 =====
 
 
@@ -3177,7 +3177,7 @@ This can impact allocation decisions.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
 |Title
 a| `<command>` has no effect.
@@ -3202,20 +3202,6 @@ m|INFORMATION
 .Requested topology matched current topology
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
-
-Command::
-+
-[source, cypher]
-----
-ALTER DATABASE foo SET TOPOLOGY 2 PRIMARIES 1 SECONDARY
-----
-
-Description of the returned code::
-The requested topology matched the current topology. No allocations were changed.
-======
 [.include-with-GQLSTATUS-code]
 ======
 The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
@@ -3237,6 +3223,20 @@ The requested topology matched the current topology.
 No allocations were changed.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
+
+Command::
++
+[source, cypher]
+----
+ALTER DATABASE foo SET TOPOLOGY 2 PRIMARIES 1 SECONDARY
+----
+
+Description of the returned code::
+The requested topology matched the current topology. No allocations were changed.
+======
 =====
 
 [#_schema_notifications]
@@ -3250,7 +3250,7 @@ Schema notifications provide additional information related to indexes and const
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
 |Title
 a|`<command>` has no effect.
@@ -3275,24 +3275,6 @@ m|INFORMATION
 .Creating an index when an equivalent index already exists
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Given a range index on `(:Label \{property})` named `existingRangeIndex`.
-
-Command::
-+
-[source, cypher]
-----
-CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
-----
-
-Title of the returned code::
-`CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
-
-Full description of the returned code::
-`RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Given a range index on `(:Label \{property})` named `existingRangeIndex`.
@@ -3313,12 +3295,30 @@ note: successful completion - index or constraint already exists.
 `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+Given a range index on `(:Label \{property})` named `existingRangeIndex`.
+
+Command::
++
+[source, cypher]
+----
+CREATE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (n:Label) ON (n.property)
+----
+
+Title of the returned code::
+`CREATE RANGE INDEX labelProperyRangeIndex IF NOT EXISTS FOR (e:Label) ON (e.property)` has no effect.
+
+Full description of the returned code::
+`RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
+
+======
 =====
 
 .Creating an index when another unrelated index using that name already exists
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
+[.include-with-GQLSTATUS-code]
 ======
 Given a range index on `(:Label \{property})` named `myIndex`.
 
@@ -3329,10 +3329,12 @@ Command::
 CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
-Title of the returned code::
-`CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
+Returned GQLSTATUS code::
+00NA0
 
-Full description of the returned code::
+Returned status description::
+note: successful completion - index or constraint already exists.
+`CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
 `RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
 
 Suggestions for improvement::
@@ -3344,7 +3346,7 @@ CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
 ======
-[.include-with-GQLSTATUS-code]
+[.include-with-neo4j-legacy-code]
 ======
 Given a range index on `(:Label \{property})` named `myIndex`.
 
@@ -3355,12 +3357,10 @@ Command::
 CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
-Returned GQLSTATUS code::
-00NA0
-
-Returned status description::
-note: successful completion - index or constraint already exists.
+Title of the returned code::
 `CREATE TEXT INDEX myIndex IF NOT EXISTS FOR ()-[e:REL_TYPE]-() ON (e.property)` has no effect.
+
+Full description of the returned code::
 `RANGE INDEX myIndex FOR (e:Label) ON (e.property)` already exists.
 
 Suggestions for improvement::
@@ -3377,24 +3377,6 @@ CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 .Creating a constraint when an identical constraint already exists
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
-
-Command::
-+
-[source, cypher]
-----
-CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQUIRE (n.property) IS NODE KEY
-----
-
-Title of the returned code::
-`CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
-
-Full description of the returned code::
-`CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
@@ -3415,13 +3397,31 @@ note: successful completion - index or constraint already exists.
 `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 ======
+[.include-with-neo4j-legacy-code]
+======
+Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
+
+Command::
++
+[source, cypher]
+----
+CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (n:Label) REQUIRE (n.property) IS NODE KEY
+----
+
+Title of the returned code::
+`CREATE CONSTRAINT nodeKeyLabelPropertyConstraint IF NOT EXISTS FOR (e:Label) REQUIRE (e.property) IS NODE KEY` has no effect.
+
+Full description of the returned code::
+`CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
+
+======
 =====
 
 
 .Creating a constraint when another unrelated constraint using that name already exists
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
+[.include-with-GQLSTATUS-code]
 ======
 Given a node key constraint on `(:Label \{property})` named `myConstraint`.
 
@@ -3432,10 +3432,12 @@ Command::
 CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
 ----
 
-Title of the returned code::
-`CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
+Returned GQLSTATUS code::
+00NA0
 
-Full description of the returned code::
+Returned status description::
+note: successful completion - index or constraint already exists.
+`CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
 `CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 Suggestions for improvement::
@@ -3447,7 +3449,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 ----
 
 ======
-[.include-with-GQLSTATUS-code]
+[.include-with-neo4j-legacy-code]
 ======
 Given a node key constraint on `(:Label \{property})` named `myConstraint`.
 
@@ -3458,12 +3460,10 @@ Command::
 CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property2) IS NOT NULL
 ----
 
-Returned GQLSTATUS code::
-00NA0
-
-Returned status description::
-note: successful completion - index or constraint already exists.
+Title of the returned code::
 `CREATE CONSTRAINT myConstraint IF NOT EXISTS FOR (e:Label2) REQUIRE (e.property2) IS NOT NULL` has no effect.
+
+Full description of the returned code::
 `CONSTRAINT myConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 Suggestions for improvement::
@@ -3483,7 +3483,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
 |Title
 a|`<command>` has no effect.
@@ -3504,26 +3504,6 @@ m|INFORMATION
 .Attempting to drop a non-existing index
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Command::
-+
-[source, cypher]
-----
-DROP INDEX nonExistingIndex IF EXISTS
-----
-
-Title of the returned code::
-`DROP INDEX nonExistingIndex IF EXISTS` has no effect.
-
-Full description of the returned code::
-`nonExistingIndex` does not exist.
-
-Suggestions for improvement::
-Verify that this is the intended index and that it is spelled correctly.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3539,6 +3519,26 @@ Returned GQLSTATUS code::
 Returned status description::
 note: successful completion - index or constraint does not exist.
 `DROP INDEX nonExistingIndex IF EXISTS` has no effect.
+`nonExistingIndex` does not exist.
+
+Suggestions for improvement::
+Verify that this is the intended index and that it is spelled correctly.
+
+======
+[.include-with-neo4j-legacy-code]
+======
+
+Command::
++
+[source, cypher]
+----
+DROP INDEX nonExistingIndex IF EXISTS
+----
+
+Title of the returned code::
+`DROP INDEX nonExistingIndex IF EXISTS` has no effect.
+
+Full description of the returned code::
 `nonExistingIndex` does not exist.
 
 Suggestions for improvement::
@@ -3550,26 +3550,6 @@ Verify that this is the intended index and that it is spelled correctly.
 .Attempting to drop a non-existing constraint
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Command::
-+
-[source, cypher]
-----
-DROP CONSTRAINT nonExistingConstraint IF EXISTS
-----
-
-Title of the returned code::
-`DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
-
-Full description of the returned code::
-`nonExistingConstraint` does not exist.
-
-Suggestions for improvement::
-Verify that this is the intended constraint and that it is spelled correctly.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3585,6 +3565,26 @@ Returned GQLSTATUS code::
 Returned status description::
 note: successful completion - index or constraint does not exist.
 `DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
+`nonExistingConstraint` does not exist.
+
+Suggestions for improvement::
+Verify that this is the intended constraint and that it is spelled correctly.
+
+======
+[.include-with-neo4j-legacy-code]
+======
+
+Command::
++
+[source, cypher]
+----
+DROP CONSTRAINT nonExistingConstraint IF EXISTS
+----
+
+Title of the returned code::
+`DROP CONSTRAINT nonExistingConstraint IF EXISTS` has no effect.
+
+Full description of the returned code::
 `nonExistingConstraint` does not exist.
 
 Suggestions for improvement::
@@ -3604,7 +3604,7 @@ Verify that this is the intended constraint and that it is spelled correctly.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 |Title
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
@@ -3628,39 +3628,6 @@ m|INFORMATION
 .Shadowing of a variable from the outer scope
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (n)
-CALL {
-  MATCH (n)--(m)
-  RETURN m
-}
-RETURN *
-----
-
-Description of the returned code::
-Variable in subquery is shadowing a variable with the same name from the outer scope.
-If you want to use that variable instead, it must be imported into the subquery using importing `WITH` clause. (the shadowing variable is: `n`)
-
-Suggestions for improvement::
-If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
-+
-[source,cypher]
-----
-MATCH (n)
-CALL {
-  WITH n
-  MATCH (n)--(m)
-  RETURN m
-}
-RETURN *
-----
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -3698,6 +3665,39 @@ CALL {
 RETURN *
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
+
+Description of the returned code::
+Variable in subquery is shadowing a variable with the same name from the outer scope.
+If you want to use that variable instead, it must be imported into the subquery using importing `WITH` clause. (the shadowing variable is: `n`)
+
+Suggestions for improvement::
+If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
++
+[source,cypher]
+----
+MATCH (n)
+CALL {
+  WITH n
+  MATCH (n)--(m)
+  RETURN m
+}
+RETURN *
+----
+======
 =====
 
 [#_neo_clientnotification_statement_redundantoptionalprocedure]
@@ -3706,7 +3706,7 @@ RETURN *
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.RedundantOptionalProcedure
 |Title
 a|The use of `OPTIONAL` is redundant when the procedure calls a void procedure.
@@ -3727,26 +3727,6 @@ m|INFORMATION
 .Redundant use of `OPTIONAL` in a procedure call
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-OPTIONAL CALL db.createLabel("A")
-----
-
-Description of the returned code::
-The use of `OPTIONAL` is redundant as `CALL db.createLabel` is a void procedure.
-
-Suggestions for improvement::
-If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
-+
-[source,cypher]
-----
-CALL db.createLabel("A")
-----
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -3769,6 +3749,26 @@ If the intended behavior of the query is to use a void procedure, the `OPTIONAL`
 CALL db.createLabel("A")
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+OPTIONAL CALL db.createLabel("A")
+----
+
+Description of the returned code::
+The use of `OPTIONAL` is redundant as `CALL db.createLabel` is a void procedure.
+
+Suggestions for improvement::
+If the intended behavior of the query is to use a void procedure, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+CALL db.createLabel("A")
+----
+======
 =====
 
 [#_neo_clientnotification_statement_redundantoptionalsubquery]
@@ -3777,7 +3777,7 @@ CALL db.createLabel("A")
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.RedundantOptionalSubquery
 |Title
 a|The use of `OPTIONAL` is redundant when `CALL` is a unit subquery.
@@ -3798,32 +3798,6 @@ m|INFORMATION
 .Redundant use of `OPTIONAL` in a `CALL` subquery
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-UNWIND [1, 2, 3] AS x
-OPTIONAL CALL (x) {
-   CREATE({i:x})
-}
-----
-
-Description of the returned code::
-Optional is redundant in the case of a unit subquery. The use of `OPTIONAL` on unit subqueries have no effect and can be removed.
-
-Suggestions for improvement::
-If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
-+
-[source,cypher]
-----
-UNWIND [1, 2, 3] AS x
-CALL (x) {
-   CREATE({i:x})
-}
-----
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -3853,6 +3827,32 @@ CALL (x) {
 }
 ----
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+OPTIONAL CALL (x) {
+   CREATE({i:x})
+}
+----
+
+Description of the returned code::
+Optional is redundant in the case of a unit subquery. The use of `OPTIONAL` on unit subqueries have no effect and can be removed.
+
+Suggestions for improvement::
+If the intended behavior of the query is for the subquery not to return any values, the `OPTIONAL` keyword can be removed without impacting the query.
++
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS x
+CALL (x) {
+   CREATE({i:x})
+}
+----
+======
 =====
 
 [#_neo_clientnotification_statement_parameternotprovided]
@@ -3861,7 +3861,7 @@ CALL (x) {
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.ParameterNotProvided
 |Title
 a|The statement refers to a parameter that was not provided in the request.
@@ -3886,24 +3886,6 @@ m|WARNING
 .Using an `EXPLAIN` query with parameters without providing them
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-EXPLAIN WITH $param as param
-RETURN param
-----
-
-Description of the returned code::
-Did not supply query with enough parameters.
-The produced query plan will not be cached and is not executable without `EXPLAIN`. (Missing parameters: `param`)
-
-Suggestions for improvement::
-Provide the parameter to be able to cache the plan.
-
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -3925,6 +3907,24 @@ Provide the parameter(s).
 Suggestions for improvement::
 Provide the parameter to be able to cache the plan.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+EXPLAIN WITH $param as param
+RETURN param
+----
+
+Description of the returned code::
+Did not supply query with enough parameters.
+The produced query plan will not be cached and is not executable without `EXPLAIN`. (Missing parameters: `param`)
+
+Suggestions for improvement::
+Provide the parameter to be able to cache the plan.
+
+======
 =====
 
 
@@ -3934,7 +3934,7 @@ Provide the parameter to be able to cache the plan.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Procedure.ProcedureWarning
 |Title
 a|The query used a procedure that generated a warning.
@@ -3963,7 +3963,7 @@ When matching on a relationship type expression that can never be satisfied, for
 .Notification category details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 |Title
 a|The query contains a relationship type expression that cannot be satisfied.
@@ -3986,17 +3986,6 @@ m|WARNING
 .Matching on a relationship type expression that can never be satisfied
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH ()-[r:R1&R2]->() RETURN r
-----
-Description of the returned code::
-Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be fulfilled by any relationship. Relationships must have exactly one type.)
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -4013,6 +4002,17 @@ Returned status description::
 warn: unsatisfiable relationship type expression.
 The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
 ======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r:R1&R2]->() RETURN r
+----
+Description of the returned code::
+Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be fulfilled by any relationship. Relationships must have exactly one type.)
+======
 =====
 
 [role=label--new-5.5]
@@ -4022,7 +4022,7 @@ The expression `R1&R2` cannot be satisfied because relationships must have exact
 .Notification category details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
 |Title
 a|The query returns no results because a relationship variable is bound more than once.
@@ -4047,25 +4047,6 @@ m|WARNING
 .Binding a relationship variable more than once
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
-----
-Description of the returned code::
-A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
-
-Suggestions for improvement::
-Use one pattern to match all relationships that start with a node with the label `A` and end with a node with the label `B`:
-+
-[source, cypher, role="noplay"]
-----
-MATCH (:A)-[r]->(:B) RETURN r
-----
-======
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -4090,23 +4071,30 @@ Use one pattern to match all relationships that start with a node with the label
 MATCH (:A)-[r]->(:B) RETURN r
 ----
 ======
-=====
-
-.Binding a variable-length relationship variable more than once (when run on version 5.6 or newer)
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
+[.include-with-neo4j-legacy-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
+MATCH (:A)-[r]->(), ()-[r]->(:B) RETURN r
 ----
 Description of the returned code::
-A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
-======
+A relationship is referenced more than once in the query, which leads to no results because relationships must not occur more than once in each result. (Relationship `r` was repeated)
 
+Suggestions for improvement::
+Use one pattern to match all relationships that start with a node with the label `A` and end with a node with the label `B`:
++
+[source, cypher, role="noplay"]
+----
+MATCH (:A)-[r]->(:B) RETURN r
+----
+======
+=====
+
+.Binding a variable-length relationship variable more than once (when run on version 5.6 or newer)
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-code]
 ======
 Query::
@@ -4122,5 +4110,16 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
+======
+[.include-with-neo4j-legacy-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH ()-[r*]->()<-[r*]-() RETURN count(*) AS count
+----
+Description of the returned code::
+A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
 ======
 =====
