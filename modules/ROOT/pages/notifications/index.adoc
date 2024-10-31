@@ -7,6 +7,7 @@ After a successful query execution, the Neo4j server sends notifications to prov
 The driver receives these notifications and sends them to the client, which displays them to the user.
 
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
+The Notification API is deprecated since Neo4j 5.26.
 The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the GQL standard.
 
 This page describes both the GQL-status object and the Neo4j Notification frameworks, how they are structured, the objects they provide for notifications, and how to interpret them.
@@ -148,6 +149,7 @@ The following table lists the Neo4j-defined groups of GQLSTATUS codes and their 
 
 |===
 
+[role=label--deprecated-5.26]
 [[neo4j-notification-object]]
 == Neo4j notification object
 
@@ -244,6 +246,7 @@ The following notification groups exist in Neo4j, ordered by severity:
 |
 |===
 
+[role=label--deprecated-5.26]
 [[notification-internals]]
 == Notification internals
 
@@ -252,7 +255,7 @@ During the handshake process, they agree on using the newest possible Bolt proto
 For more information on the Bolt versions supported by different server versions, see the link:https://neo4j.com/docs/bolt/current/bolt-compatibility[Bolt Protocol documentation].
 
 On the server side, notifications are part of the Result Core API.
-A method called `getNotifications()` returns a list of server-side notification objects.
+A method called `getNotifications()`, which is deprecated since 5.26, returns a list of server-side notification objects.
 These notifications are then sent to the driver as success Bolt message metadata.
 On the driver side, notifications are part of the ResultSummary API, which has a method called `notifications()` that returns a list of driver-side Notification objects.
 The result of the `getCode()` or `code()` methods is known as the Neo4j status code.
@@ -261,6 +264,7 @@ For more information, see <<notification-grouping-and-filtering, Server notifica
 
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API.
 This can be used using the `.getGqlStatusObjects()` method in the Result Core API or by using the latest Neo4j drivers.
+The Notification API is deprecated since Neo4j 5.26.
 
 [[server-driver-compatibility]]
 == Server-driver version compatibility
