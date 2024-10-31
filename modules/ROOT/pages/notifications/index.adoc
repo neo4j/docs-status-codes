@@ -306,9 +306,3 @@ Finally, the list of poly-filled GQL-status objects is sorted according to the G
 // The following table illustrates the compatibility between the different server and driver versions for both the current Notification API and the GqlStatusObject API:
 
 // TODO
-
-
-
-
-
->>>>>>> gql-notifications
