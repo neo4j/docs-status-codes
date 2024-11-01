@@ -651,8 +651,8 @@ m|PERFORMANCE
 m|INFORMATION
 |===
 
-//TO ADD EXAMPLES
-//To update the description when the code is spit out
+TO ADD EXAMPLES
+To update the description when the code is spit out
 
 [#_hint_notifications]
 == `HINT` notifications
