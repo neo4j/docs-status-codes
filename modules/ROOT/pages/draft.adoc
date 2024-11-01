@@ -21,3 +21,12 @@ The ultimate goal is to have a 1-1 mapping between a GQLSTATUS code and a specif
 If a Neo4j error matches a standard-defined condition and subcondition, then the standard-defined GQLSTATUS code should be used for that error. For instance, (Neo.ClientError.Statement.ArithmeticError, ArithmeticException, “/by zero”) matches the “data exception” condition and “division by zero” subcondition in GQL (i.e., 22012 GQLSTATUS code).
 
 error: data exception - string data, right truncation
+
+
+
+Processing of GQL-requests can cause various conditions to be raised. Each such condition is identified by a unique code called GQLSTATUS, which is a character string that always includes a class code that specifies the principle category to which the condition belongs. It may also include a subclass code that specifies additional information about the reason for raising the condition. The exact format of GQLSTATUS codes is specified in Subclause 23.1, “GQLSTATUS”.
+For example, the GQLSTATUS '22003' identifies the exception condition “data exception — numeric value out of range”.
+The GQLSTATUS codes assigned by this document to conditions are stable and can be depended on to remain constant.
+There are two types of conditions:
+— completion conditions.
+— exception conditions.

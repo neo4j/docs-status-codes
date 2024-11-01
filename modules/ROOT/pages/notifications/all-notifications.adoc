@@ -3,7 +3,7 @@
 [[listOfNnotifications]]
 = List of all server notification codes
 
-The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and the legacy Neo4j codes, along with some scenarios and their possible solutions.
+The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and Neo4j legacy codes, along with some scenarios and their possible solutions.
 
 * <<_performance_notifications, `PERFORMANCE` notifications>>
 * <<_hint_notifications, `HINT` notifications>>
@@ -3369,7 +3369,7 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Security.AuthProviderNotDefined
 |Title
 a|The auth provider is not defined.
@@ -3485,7 +3485,7 @@ If it is correct, make sure to add it as a known auth provider in one or both of
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j code
+|Neo4j legacy code
 m|Neo.ClientNotification.Security.ExternalAuthNotEnabled
 |Title
 a|External auth for user is not enabled.
