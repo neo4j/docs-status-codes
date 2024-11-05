@@ -225,7 +225,7 @@ Status description:: error: data exception - invalid entity type. Invalid input 
 
 // === 22N28
 
-// Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow. 
+// Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow.
 
 // === 22N29
 
@@ -277,7 +277,7 @@ Status description:: error: data exception - invalid shortest path expression. S
 
 === 22N41
 
-Status description:: error: data exception - merge node uniqueness constraint violation. The 'MERGE' clause did not find a matching node `{ $variable }` and cannot create a new node due to conflicts with existing uniqueness constraints. 
+Status description:: error: data exception - merge node uniqueness constraint violation. The 'MERGE' clause did not find a matching node `{ $variable }` and cannot create a new node due to conflicts with existing uniqueness constraints.
 
 === 22N42
 
@@ -305,7 +305,7 @@ Status description:: error: data exception - invalid parallel runtime configurat
 
 === 22N49
 
-Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via 'dbms.import.csv.buffer_size'.  
+Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via 'dbms.import.csv.buffer_size'.
 
 === 22N51
 
@@ -469,7 +469,7 @@ Status description:: error: data exception - cannot convert alias local to remot
 
 // === 22N94
 
-// Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield. 
+// Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.
 
 === 22N95
 
@@ -497,7 +497,7 @@ Status description:: error: data exception - invalid property based access contr
 
 // === 22NA1
 
-// Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.  
+// Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.
 
 // === 22NA2
 
@@ -723,6 +723,10 @@ Status description:: error: syntax error or access rule violation - invalid comm
 
 Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input }`, expected: `{ $valueList }`.
 
+=== 42I13
+
+Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ $count1 }` but got `{ $count2 }`. The procedure or function `{ $procFun }` has the signature: `{ $sig }`.
+
 === 42I18
 
 Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ $varList }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
@@ -855,9 +859,18 @@ Status description:: error: syntax error or access rule violation - unaliased re
 
 Status description:: error: syntax error or access rule violation - single return column required. A `COLLECT` subquery must end with a single return column.
 
+=== 42N24
+
+Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ $input1 }` and `{ $input2 }`.
+
+
 === 42N29
 
 Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $var }`.
+
+=== 42N31
+
+Status description:: error: syntax error or access rule violation - specified number out of range. Expected `{ $component }` to be `{ $valueType }` in the range `{ $lower }` to `{ $upper }` but found `{ $value }`.
 
 === 42N39
 
@@ -879,6 +892,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - function without required WHERE clause. The function `{ $fun }` requires a WHERE clause.
 
+=== 42N71
+
+Status description:: error: syntax error or access rule violation - incomplete query. A query must conclude with a `RETURN` clause, a `FINISH` clause, an update clause, a unit subquery call, or a procedure call without a `YIELD` clause.
+
 === 42N75
 
 Status description:: error: syntax error or access rule violation - invalid use of graph function. A call to the graph function `{ $fun }` is only allowed as the top-level argument of a `USE` clause.
@@ -886,6 +903,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 === 42N76
 
 Status description:: error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintAndedList }` cannot be fulfilled.
+
+=== 42N77
+
+Status description:: error: syntax error or access rule violation - missing hint predicate. The hint `{ $hint }` cannot be fulfilled. The query does not contain a compatible predicate for `{ $entityType }` on `{ $var }`.
 
 === 42N78
 
@@ -931,6 +952,10 @@ Status description:: error: syntax error or access rule violation - cannot modif
 === 42N99
 
 Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
+
+=== 42NA6
+
+Status description:: info: invalid alias target. Aliases are not allowed to target composite databases.
 
 === 42NFD
 
@@ -1075,6 +1100,18 @@ Status description:: error: system configuration or operation exception - invali
 
 Status description:: error: system configuration or operation exception - invalid procedure or function name. Procedures and functions cannot be defined in the root namespace, or use a reserved namespace. Use the package name instead (e.g., org.example.com.`{ $procFun })`.
 
+=== 51N18
+
+Status description:: error: system configuration or operation exception - invalid method return type. The method `{ $procMethod }` has an invalid return type. Procedures must return a stream of records, where each record is of a defined concrete class.
+
+
+=== 51N20
+
+Status description:: error: system configuration or operation exception - cannot inject field. The field `{ $procField }` is not injectable. Ensure the field is marked as public and non-final.
+
+=== 51N21
+
+Status description:: error: system configuration or operation exception - procedure registry is busy. The procedure registration failed because the procedure registry was busy. Try again.
 
 === 51N22
 
@@ -1125,6 +1162,13 @@ Status description:: error: system configuration or operation exception - write 
 
 Status description:: error: system configuration or operation exception - database location changed. The location of `{ $db }` has changed while the transaction was running.
 
+=== 51N36
+
+Status description:: error: system configuration or operation exception - out of memory. There is not enough memory to perform the current task.
+
+=== 51N37
+
+Status description:: error: system configuration or operation exception - stack overflow. There is not enough stack size to perform the current task.
 
 === 51N39
 
@@ -1204,11 +1248,18 @@ Status description:: error: system configuration or operation exception - cannot
 
 Status description:: error: system configuration or operation exception - cannot create additional database. Failed to create the database `{ $db }`. The limit of databases is reached. Either increase the limit using the config setting `{ $cfgSetting }` or drop a database.
 
+=== 51N56
+
+Status description:: error: system configuration or operation exception - topology out of range. The number of `{ $serverType }` seeding servers `{ $count1 }` is larger than the desired number of `{ $allocType }` allocations `{ $count2 }`.
+
 
 === 51N57
 
 Status description:: error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. { $msg }
 
+=== 51N59
+
+Status description:: error: system configuration or operation exception - internal resource exhaustion. The DBMS is unable to handle the request, please retry later or contact the system operator. More information is present in the logs.
 
 === 51N60
 
@@ -1250,6 +1301,10 @@ Procedure exceptions occur when there is an error in executing a procedure, such
 === 52N02
 
 Status description:: error: procedure exception - procedure execution client error. Execution of the procedure `{ $proc }` failed due to a client error.
+
+=== 52N03
+
+Status description:: error: procedure exception - invalid procedure execution mode. Execution of the procedure `{ $proc }` failed due to an invalid specified execution mode `{ $procExeMode }`.
 
 === 52N05
 
@@ -1298,6 +1353,15 @@ Status description:: error: procedure exception - invalid procedure argument lis
 === 52N17
 
 Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+
+=== 52N18
+
+Status description:: error: procedure exception - too many seeders. The number of seeding servers `{ $countSeeders }` is larger than the defined number of allocations `{ $countAllocs }`.
+
+=== 52N19
+
+Status description:: error: procedure exception - no such seeder. The specified seeding server with id `{ $server }` was not found. Verify that the spelling is correct.
+
 
 === 52N23
 
