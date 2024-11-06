@@ -906,7 +906,7 @@ Status description:: error: syntax error or access rule violation - unfulfillabl
 
 === 42N77
 
-Status description:: error: syntax error or access rule violation - missing hint predicate. The hint `{ $hint }` cannot be fulfilled. The query does not contain a compatible predicate for `{ $entityType }` on `{ $var }`.
+Status description:: error: syntax error or access rule violation - missing hint predicate. The hint `{ $hint }` cannot be fulfilled. The query does not contain a compatible predicate for `{ $entityType }` on `{ $variable }`.
 
 === 42N78
 
