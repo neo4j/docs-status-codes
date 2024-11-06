@@ -55,7 +55,6 @@
 // | 22G0Z	        | error: data exception - malformed path
 // | 22G10	        | error: data exception - path data, right truncation
 // | 22G11	        | error: data exception - reference value, referent deleted
-// | 22G12	        | error: data exception - invalid value type
 // | 22G13	        | error: data exception - invalid group variable value
 // | 22G14	        | error: data exception - incompatible temporal instant unit groups
 // | 25000	        | error: invalid transaction state
