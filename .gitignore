@@ -35,6 +35,7 @@ target/
 
 # docs project
 .env
+package-lock.json
 node_modules/
 worktrees/
 */modules/api/
