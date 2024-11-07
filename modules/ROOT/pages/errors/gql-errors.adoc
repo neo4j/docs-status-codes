@@ -265,7 +265,7 @@ Status description:: error: data exception - invalid shortest path expression. S
 
 // === 22N38
 
-// Status description:: error: data exception - invalid function argument type. Expected argument to the `{ $fun }` function to be one of `{ $valueTypeList }`, but provided argument `{ $value }` is of type `{ $valueType }`.
+// Status description:: error: data exception - invalid function argument. Invalid argument to the function `{ $fun }`.
 
 // === 22N39
 
