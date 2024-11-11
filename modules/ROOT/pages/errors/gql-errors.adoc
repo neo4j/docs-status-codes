@@ -73,7 +73,7 @@ Status description:: error: connection exception - database unavailable. The dat
 
 === 08N10
 
-Status description:: error: connection exception - invalid server state. The server is not in a state that can process a message of type: `{ $boltMsgType }`.
+Status description:: error: connection exception - invalid server state. Message `{ $msg }` cannot be handled by session in the `{ $boltServerState }` state.
 
 === 08N11
 
@@ -94,6 +94,18 @@ Status description:: error: connection exception - alias chains are not permitte
 === 08N15
 
 Status description:: error: connection exception - no such routing policy. Policy definition of the routing policy `{ $routingPolicy }` could not be found. Verify that the spelling is correct.
+
+=== 08N16
+
+Status description:: error: connection exception - general driver client error. Remote execution failed with message `{ $msg }`.
+
+=== 08N17
+
+Status description:: error: connection exception - general driver transient error. Remote execution failed with message `{ $msg }`.
+
+=== 08N18
+
+Status description:: error: connection exception - general driver database error. Remote execution failed with message `{ $msg }`.
 
 == Data exceptions
 
@@ -221,7 +233,7 @@ Status description:: error: data exception - unsupported rounding mode. Unknown 
 
 === 22N27
 
-Status description:: error: data exception - invalid entity type. Invalid input `{ $input }` for `{ $variable }`. Expected to be `{ $valueTypeList }`.
+Status description:: error: data exception - invalid entity type. Invalid input `{ $input }` for `{ $context }`. Expected to be `{ $valueTypeList }`.
 
 // === 22N28
 
@@ -534,6 +546,10 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 // === 22NB0
 
 // Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE' syntax in combination with `IS NULL` instead.
+
+=== 22NB1
+
+Status description:: error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeList }` but was `{ $input }`.
 
 // === 22NFF
 
@@ -957,6 +973,10 @@ Status description:: error: general processing exception - internal error. Inter
 
 Status description:: error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.
 
+== 50N06
+
+Status description:: error: general processing exception - remote execution client error. Remote execution failed. See cause for more details.
+
 === 50N07
 
 Status description:: error: general processing exception - execution failed. Execution failed. See cause and debug log for details.
@@ -973,6 +993,14 @@ Status description:: error: general processing exception - constraint creation f
 === 50N12
 
 Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
+
+== 50N16
+
+Status description:: error: general processing exception - remote execution transient error. Remote execution failed. See cause for more details.
+
+== 50N17
+
+Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
 
 === 50N42
 
@@ -1242,6 +1270,10 @@ Status description:: error: system configuration or operation exception - system
 === 51N70
 
 Status description:: error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ $db }` because Bolt is not enabled. Please update your configuration such that 'server.bolt.enabled' is set to true.
+
+=== 51N71
+
+Status description:: error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ $feat }` is not available in a sharded database.
 
 == Procedure exception
 
