@@ -549,7 +549,7 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 === 22NB1
 
-Status description:: error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeOredList }` but was `{ $input }`.
+Status description:: error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeList }` but was `{ $input }`.
 
 // === 22NFF
 
