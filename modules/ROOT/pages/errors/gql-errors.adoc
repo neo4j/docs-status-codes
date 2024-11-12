@@ -431,9 +431,9 @@ Status description:: error: data exception - property type verification failed. 
 
 // Status description:: error: data exception - expression type unsupported here. Invalid input: `{ $exprType }` is not supported in `{ $context }`.
 
-// === 22N82
+=== 22N82
 
-// Status description:: error: data exception - input contains invalid characters. Input `{ $input }` contains invalid characters for `{ $context }`. Allowed characters are `{ $characterRangeList }`. To use these characters, the input needs to be quoted using backticks.
+Status description:: error: data exception - input contains invalid characters. Input `{ $input }` contains invalid characters for `{ $context }`. Special characters may require that the input is quoted using backticks.
 
 // === 22N83
 
