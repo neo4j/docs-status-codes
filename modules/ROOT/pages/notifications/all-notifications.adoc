@@ -1373,8 +1373,6 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 - Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
 Names containing `.` should be escaped. (`%s`)
 |Category
@@ -1436,68 +1434,6 @@ If not intended for a composite database, escape the name with the character ```
 [source,cypher]
 ----
 CREATE DATABASE `foo.bar`
-----
-======
-=====
-
-.Using differently ordered return items in a `UNION` clause
-[.tabbed-example]
-=====
-[.include-with-neo4j-code]
-======
-Query::
-+
-[source,cypher]
-----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as two, 'val' as one
-----
-
-Description of the returned code::
-All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
-
-Suggestions for improvement::
-Use the same order for the return columns in all subqueries combined by a `UNION` clause.
-
-+
-[source,cypher]
-----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as one, 'val' as two
-----
-
-======
-[.include-with-GQLSTATUS-code]
-======
-Query::
-+
-[source,cypher]
-----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as two, 'val' as one
-----
-
-Returned GQLSTATUS code::
-01N00
-
-Returned status description::
-warn: feature deprecated.
-All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
-
-Suggestions for improvement::
-Use the same order for the return columns in all subqueries combined by a `UNION` clause.
-
-+
-[source,cypher]
-----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as one, 'val' as two
 ----
 ======
 =====
