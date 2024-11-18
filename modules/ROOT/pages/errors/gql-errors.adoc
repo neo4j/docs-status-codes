@@ -1054,7 +1054,7 @@ Status description:: error: general processing exception - internal error. Inter
 
 Status description:: error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.
 
-== 50N06
+=== 50N06
 
 Status description:: error: general processing exception - remote execution client error. Remote execution failed. See cause for more details.
 
@@ -1068,18 +1068,17 @@ Status description:: error: general processing exception - invalid server state 
 
 === 50N11
 
-
 Status description:: error: general processing exception - constraint creation failed. Unable to create `{ $constrDescrOrName }`.
 
 === 50N12
 
 Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
 
-== 50N16
+=== 50N16
 
 Status description:: error: general processing exception - remote execution transient error. Remote execution failed. See cause for more details.
 
-== 50N17
+=== 50N17
 
 Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
 
@@ -1092,6 +1091,7 @@ Status description:: error: general processing exception - unexpected error. Une
 50N42 is the default GQLSTATUS code for exceptions without a GQL object.
 For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
 ====
+
 == System configuration or operation exception
 
 System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
