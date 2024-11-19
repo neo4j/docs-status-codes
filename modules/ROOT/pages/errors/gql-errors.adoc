@@ -743,7 +743,7 @@ Status description:: error: syntax error or access rule violation - invalid case
 
 Status description:: error: syntax error or access rule violation - invalid `FOREACH`. Invalid use of `{ $clause }` inside 'FOREACH'.
 
-??? === 42I02
+=== 42I02
 
 Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
 
@@ -811,7 +811,7 @@ Status description:: error: syntax error or access rule violation - token name t
 
 === 42I51
 
-Status description:: info: invalid call signature. The procedure or function `{ %s }` must have the signature: `{ %s }`.
+Status description:: info: invalid call signature. The procedure or function `{ $procFun }` must have the signature: `{ $sig }`.
 
 === 42N00
 
@@ -938,7 +938,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === 42N51
 
-Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ $param }`
+Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ $param }`.
 
 === 42N57
 
@@ -1027,7 +1027,7 @@ Status description:: info: invalid alias target. Aliases are not allowed to targ
 
 === 42NA7
 
-Status description:: info: referenced database not found. No database is corresponding to { $db }. Verify that the elementId is correct.
+Status description:: info: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
 
 === 42NFD
 
