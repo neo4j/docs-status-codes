@@ -557,7 +557,7 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 === 22NB0
 
-Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE' syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === 22NB1
 
