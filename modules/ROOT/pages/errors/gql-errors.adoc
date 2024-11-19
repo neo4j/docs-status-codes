@@ -120,6 +120,18 @@ Status description:: error: data exception
 
 Status description:: error: data exception - numeric value out of range. The numeric value `{ $value }` is outside the required range.
 
+=== 22007
+
+Status description:: error: data exception - invalid date, time, or datetime format
+
+=== 22015
+
+Status description:: error: data exception - interval field overflow
+
+=== 22G03
+
+Status description:: error: data exception - invalid value type
+
 === 22N00
 
 Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
@@ -167,13 +179,13 @@ Status description:: error: data exception - conflicting pre-parser combination.
 
 Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `{ $input }` is not valid for option `{ $option }`. Valid options are: `{ $optionList }`.
 
-// === 22N11
+=== 22N11
 
-// Status description:: error: data exception - invalid argument. Invalid argument: cannot process `{ $input }`.
+Status description:: error: data exception - invalid argument. Invalid argument: cannot process `{ $input }`.
 
-// === 22N12
+=== 22N12
 
-// Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `{ $input }`.
+Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `{ $input }`.
 
 === 22N13
 
@@ -223,9 +235,9 @@ Status description:: error: data exception - invalid latitude value. Cannot crea
 
 Status description:: error: data exception - invalid coordinate arguments. Cannot construct a `{ $valueType }` from `{ $coordinates }`.
 
-// === 22N25
+=== 22N25
 
-// Status description:: error: data exception - invalid temporal arguments. Cannot construct a `{ $valueType }` from `{ $temporal }`.
+Status description:: error: data exception - invalid temporal arguments. Cannot construct a `{ $valueType }` from `{ $temporal }`.
 
 === 22N26
 
@@ -235,9 +247,9 @@ Status description:: error: data exception - unsupported rounding mode. Unknown 
 
 Status description:: error: data exception - invalid entity type. Invalid input `{ $input }` for `{ $context }`. Expected to be `{ $valueTypeList }`.
 
-// === 22N28
+=== 22N28
 
-// Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow.
+Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow.
 
 // === 22N29
 
@@ -263,21 +275,21 @@ Status description:: error: data exception - invalid shortest path expression. S
 
 // Status description:: error: data exception - invalid use of aggregate function. Cannot use the `{ $fun }` function inside an aggregate function.
 
-// === 22N35
+=== 22N35
 
-// Status description:: error: data exception - invalid date format. Cannot parse `{ $input }` as a DATE. Calendar dates need to be specified using the format 'YYYY-MM', while ordinal dates need to be specified using the format 'YYYY-DDD'.
+Status description:: error: data exception - invalid date format. Cannot parse `{ $input }` as a DATE. Calendar dates need to be specified using the format 'YYYY-MM', while ordinal dates need to be specified using the format 'YYYY-DDD'.
 
-// === 22N36
+=== 22N36
 
-// Status description:: error: data exception - invalid temporal format. Cannot parse `{ $input }` as a `{ $valueType }`.
+Status description:: error: data exception - invalid temporal format. Cannot parse `{ $input }` as a `{ $valueType }`.
 
-// === 22N37
+=== 22N37
 
-// Status description:: error: data exception - invalid coercion. Cannot coerce `{ $value }` to `{ $valueType }`.
+Status description:: error: data exception - invalid coercion. Cannot coerce `{ $value }` to `{ $valueType }`.
 
-// === 22N38
+=== 22N38
 
-// Status description:: error: data exception - invalid function argument. Invalid argument to the function `{ $fun }`.
+Status description:: error: data exception - invalid function argument. Invalid argument to the function `{ $fun }`.
 
 // === 22N39
 
@@ -427,9 +439,9 @@ Status description:: error: data exception - property type verification failed. 
 
 // Status description:: error: data exception - property uniqueness constraint violated. Property uniqueness constraint violated: `{ $reasons }`.
 
-// === 22N81
+=== 22N81
 
-// Status description:: error: data exception - expression type unsupported here. Invalid input: `{ $exprType }` is not supported in `{ $context }`.
+Status description:: error: data exception - expression type unsupported here. Invalid input: `{ $exprType }` is not supported in `{ $context }`.
 
 === 22N82
 
@@ -471,17 +483,17 @@ Status description:: error: data exception - property type unsupported in constr
 
 Status description:: error: data exception - cannot convert alias local to remote or remote to local. Failed to alter the specified database alias `{ $alias }`. Altering remote alias to a local alias or vice versa is not supported. Drop and recreate the alias instead.
 
-// === 22N92
+=== 22N92
 
-// Status description:: error: data exception - missing RETURN. This query requires a RETURN clause.
+Status description:: error: data exception - missing RETURN. This query requires a RETURN clause.
 
-// === 22N93
+=== 22N93
 
-// Status description:: error: data exception - missing YIELD. A required YIELD clause is missing.
+Status description:: error: data exception - missing YIELD. A required YIELD clause is missing.
 
-// === 22N94
+=== 22N94
 
-// Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.
+Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.
 
 === 22N95
 
@@ -543,9 +555,9 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 // Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ $key }`, expected keys are `{ $listAllowedKeys }`.
 
-// === 22NB0
+=== 22NB0
 
-// Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE' syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === 22NB1
 
@@ -585,9 +597,9 @@ Status description:: error: invalid transaction state - transaction terminated o
 
 Status description:: error: invalid transaction state - transaction start failed. Failed to start transaction. See debug log for details.
 
-=== 25N07
+// === 25N07
 
-Status description:: error: invalid transaction state - constituent transaction start failed. Failed to start constituent transaction. See debug log for details.
+// Status description:: error: invalid transaction state - constituent transaction start failed. Failed to start constituent transaction. See debug log for details.
 
 === 25N08
 
@@ -679,9 +691,9 @@ Status description:: error: syntax error or access rule violation - invalid synt
 
 Status description:: error: syntax error or access rule violation - invalid reference
 
-=== 42004
+// === 42004
 
-Status description:: error: syntax error or access rule violation - use of visually confusable identifiers
+// Status description:: error: syntax error or access rule violation - use of visually confusable identifiers
 
 === 42006
 
@@ -735,6 +747,10 @@ Status description:: error: syntax error or access rule violation - invalid `FOR
 
 Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
 
+=== 42I05
+
+Status description:: error: syntax error or access rule violation - invalid FIELDTERMINATOR. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide.
+
 === 42I06
 
 Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input }`, expected: `{ $valueList }`.
@@ -777,13 +793,25 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
 
+=== 42I45
+
+Status description:: error: syntax error or access rule violation - invalid use of multiple path patterns. Multiple path patterns cannot be used in the same clause in combination with a selective path selector. `{ $action }`
+
 === 42I47
 
 Status description:: error: syntax error or access rule violation - parser error. Parser Error: `{ $msg }`.
 
+=== 42I48
+
+Status description:: error: syntax error or access rule violation - invalid use of a subquery in MERGE. Subqueries are not allowed in a MERGE clause.
+
 === 42I50
 
 Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ $input }..`. A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
+
+=== 42I51
+
+Status description:: info: invalid call signature. The procedure or function `{ $procFun }` must have the signature: `{ $sig }`.
 
 === 42N00
 
@@ -892,6 +920,14 @@ Status description:: error: syntax error or access rule violation - specified nu
 
 Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.
 
+=== 42N40
+
+Status description:: error: syntax error or access rule violation - single relationship pattern required. The `{ $fun }` function must contain one relationship pattern.
+
+=== 42N42
+
+Status description:: error: syntax error or access rule violation - unsupported sub-path binding. Sub-path assignment is not supported.
+
 === 42N45
 
 Status description:: error: syntax error or access rule violation - unexpected end of input. Unexpected end of input, expected 'CYPHER', 'EXPLAIN', 'PROFILE' or a query.
@@ -899,6 +935,10 @@ Status description:: error: syntax error or access rule violation - unexpected e
 === 42N49
 
 Status description:: error: syntax error or access rule violation - unsupported normal form. Unknown Normal Form: `{ $input }`.
+
+=== 42N51
+
+Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ $param }`.
 
 === 42N57
 
@@ -911,6 +951,14 @@ Status description:: error: syntax error or access rule violation - function wit
 === 42N71
 
 Status description:: error: syntax error or access rule violation - incomplete query. A query must conclude with a `RETURN` clause, a `FINISH` clause, an update clause, a unit subquery call, or a procedure call without a `YIELD` clause.
+
+=== 42N73
+
+Status description:: error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to '... UNION ...' . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
+
+=== 42N74
+
+Status description:: error: syntax error or access rule violation - invalid nested USE clause. Failed to access `{ $db1 }` and `{ $db2 }`. Child USE clauses must target the same graph as their parent query. Run in separate (sub)queries instead.
 
 === 42N75
 
@@ -969,9 +1017,17 @@ Status description:: error: syntax error or access rule violation - cannot modif
 
 Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
 
+=== 42NA5
+
+Status description:: info: accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.
+
 === 42NA6
 
 Status description:: info: invalid alias target. Aliases are not allowed to target composite databases.
+
+=== 42NA7
+
+Status description:: info: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
 
 === 42NFD
 
@@ -998,7 +1054,7 @@ Status description:: error: general processing exception - internal error. Inter
 
 Status description:: error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.
 
-== 50N06
+=== 50N06
 
 Status description:: error: general processing exception - remote execution client error. Remote execution failed. See cause for more details.
 
@@ -1012,18 +1068,17 @@ Status description:: error: general processing exception - invalid server state 
 
 === 50N11
 
-
 Status description:: error: general processing exception - constraint creation failed. Unable to create `{ $constrDescrOrName }`.
 
 === 50N12
 
 Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
 
-== 50N16
+=== 50N16
 
 Status description:: error: general processing exception - remote execution transient error. Remote execution failed. See cause for more details.
 
-== 50N17
+=== 50N17
 
 Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
 
@@ -1036,6 +1091,7 @@ Status description:: error: general processing exception - unexpected error. Une
 50N42 is the default GQLSTATUS code for exceptions without a GQL object.
 For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
 ====
+
 == System configuration or operation exception
 
 System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
@@ -1198,6 +1254,10 @@ Status description:: error: system configuration or operation exception - out of
 
 Status description:: error: system configuration or operation exception - stack overflow. There is not enough stack size to perform the current task.
 
+=== 51N38
+
+Status description:: error: system configuration or operation exception - failed to acquire execution thread. There are insufficient threads available for executing the current task.
+
 === 51N39
 
 Status description:: error: system configuration or operation exception - raft log corrupted. Expected set of files not found on disk. Please restore from backup.
@@ -1313,6 +1373,9 @@ Status description:: error: system configuration or operation exception - vector
 
 Status description:: error: system configuration or operation exception - resource exhaustion. Insufficient resources to complete the request.
 
+=== 51N68
+
+Status description:: error: system configuration or operation exception - CDC is disabled for this database. Change Data Capture is not currently enabled for this database.
 
 === 51N69
 
@@ -1418,3 +1481,18 @@ Status description:: error: procedure exception - wrong database. Change identif
 === 52N32
 
 Status description:: error: procedure exception - invalid sequence number. Change identifier `{ $param1 }` has an invalid sequence number `{ $param2 }`.
+
+=== 52N33
+
+Status description:: error: procedure exception - procedure invocation failed. Failed to invoke procedure/function `{ $sig }` caused by: `{ $msg }`.
+
+=== 52N34
+
+Status description:: error: procedure exception - procedure sandboxed. `{ $sig }` is unavailable because it is sandboxed. Sandboxing is controlled by the dbms.security.procedures.unrestricted setting. Only un-restrict procedures you can trust with access to database internals.
+
+=== 52N35
+
+Status description:: error: procedure exception - procedure compilation failed. Failed to compile procedure/function defined in `{ $procClass }`: `{ $msg }`
+
+
+
