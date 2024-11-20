@@ -10,7 +10,7 @@ Errors are grouped based on the type of the error code:
 
 Client errors::
 These errors are caused by the client and are usually related to the request itself.
-Client errors have the prefix `Neo.ClientError`.
+The Neo4j status code for client errors have the prefix `Neo.ClientError`.
 
 Transient errors::
 These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
