@@ -22,7 +22,7 @@ The Neo4j status code for transient errors have the prefix Neo.`TransientError`.
 
 Database errors::
 These errors are caused by the database and are usually related to the database state.
-Database errors have the prefix `Neo.DatabaseError`.
+The Neo4j status code for database errors have the prefix `Neo.DatabaseError`.
 
 This page contains lists of all Neo4j errors, grouped by type.
 
