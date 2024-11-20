@@ -4,7 +4,10 @@
 [[neo4j-errors]]
 = List of legacy server error codes
 
-Error codes are Neo4j status codes returned by the server when the execution of a query fails.
+This page lists the legacy server error codes, also known as Neo4j status codes.
+These will be replaced by xref:errors/gql-errors.adoc[GQLSTATUS server error codes].
+
+Neo4j status codes are returned by the server when the execution of a query fails.
 They always have the severity level `ERROR`.
 Errors are grouped based on the type of the Neo4j status code:
 
