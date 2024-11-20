@@ -17,7 +17,7 @@ Cypher®, Neo4j’s query language, supports most mandatory and a substantial po
 For more information, see link:https:https://neo4j.com/docs/cypher-manual/current/appendix/gql-conformance/[Cypher Manual -> GQL conformance].
 
 As part of this GQL compliance, Cypher now also includes status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
-For more information on GQL status code framewoks for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
+For more information on the GQL-status object framework for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
 
 This manual details all status codes that a Neo4j DBMS may return, including both GQL-compliant and legacy status codes.
 
