@@ -1,0 +1,56 @@
+
+name: "Publish Branch"
+
+on:
+  push:
+    branches:
+    - 'dev'
+    - '5.x'
+  workflow_dispatch:
+  # schedule:
+  #   - cron:  '00 16 * * *'
+
+env:
+  PUBLISH_TO: ${{ github.ref == 'refs/heads/5.x' && 'prod' || 'dev' }}
+
+jobs:
+
+  #  Generate HTML
+  docs-build:
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-build.yml@v1.1.2
+    with:
+      deploy-id: 0
+      retain-artifacts: 14
+
+  # Parse the json log output from the HTML build, and output warnings and errors as annotations
+  # Optionally, fail the build if there are warnings or errors
+  # By default, the job fails if there are errors, passes if there are warnings only.
+  docs-verify:
+    needs: docs-build
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-verify.yml@v1.1.2
+    with:
+      failOnWarnings: true
+
+  trigger-publish:
+    needs: docs-verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Publish
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0
+        with:
+          token: ${{ secrets.DOCS_DISPATCH_TOKEN }}
+          repository: neo4j/docs-publish
+          event-type: ${{ github.event.repository.name }}
+          client-payload: |-
+            {
+              "org": "${{ github.repository_owner }}", 
+              "repo": "${{ github.event.repository.name }}", 
+              "run_id": "${{ github.run_id }}", 
+              "branch": "${{ github.ref_name }}",
+              "args": "--dryrun",
+              "publish_env": "${{ env.PUBLISH_TO }}",
+              "docsets": [
+                "status-codes"
+              ]
+            }
