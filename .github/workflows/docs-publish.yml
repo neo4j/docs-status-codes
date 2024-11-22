@@ -19,7 +19,7 @@ jobs:
   docs-build:
     uses: neo4j/docs-tools/.github/workflows/reusable-docs-build.yml@v1.1.2
     with:
-      deploy-id: ${{ github.run_id }}
+      deploy-id: 0
       retain-artifacts: 28
       package-script: 'publish-verify'
 
