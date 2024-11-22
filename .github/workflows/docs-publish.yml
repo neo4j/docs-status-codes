@@ -19,8 +19,9 @@ jobs:
   docs-build:
     uses: neo4j/docs-tools/.github/workflows/reusable-docs-build.yml@v1.1.2
     with:
-      deploy-id: 0
-      retain-artifacts: 14
+      deploy-id: ${{ github.run_id }}
+      retain-artifacts: 28
+      package-script: 'publish-verify'
 
   # Parse the json log output from the HTML build, and output warnings and errors as annotations
   # Optionally, fail the build if there are warnings or errors
