@@ -38,7 +38,7 @@ a|This query builds a cartesian product between disconnected patterns.
 |Category
 m|PERFORMANCE
 |GQLSTATUS code
-m|1n003N90
+m|03N90
 |Status description
 a|info: cartesian product.
 The disconnected patterns `{ $pat }` build a cartesian product.
