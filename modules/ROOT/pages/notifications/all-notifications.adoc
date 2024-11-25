@@ -38,7 +38,7 @@ a|This query builds a cartesian product between disconnected patterns.
 |Category
 m|PERFORMANCE
 |GQLSTATUS code
-m|03N90
+m|1n003N90
 |Status description
 a|info: cartesian product.
 The disconnected patterns `{ $pat }` build a cartesian product.
@@ -1373,7 +1373,7 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+- label:new[Valid for Neo4j 5.5-5.25] All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 - Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
 Names containing `.` should be escaped. (`%s`)
@@ -1458,17 +1458,6 @@ Description of the returned code::
 All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
-Suggestions for improvement::
-Use the same order for the return columns in all subqueries combined by a `UNION` clause.
-
-+
-[source,cypher]
-----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as one, 'val' as two
-----
-
 ======
 [.include-with-GQLSTATUS-code]
 ======
@@ -1489,18 +1478,14 @@ warn: feature deprecated.
 All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
-Suggestions for improvement::
-Use the same order for the return columns in all subqueries combined by a `UNION` clause.
-
-+
-[source,cypher]
-----
-RETURN 'val' as one, 'val' as two
-UNION
-RETURN 'val' as one, 'val' as two
-----
 ======
 =====
+
+[NOTE]
+====
+Using differently ordered return items in a UNION [ALL] clause was deprecated in versions 5.5 to 5.25.
+However, after cost/benefit analysis and user conversations, it was decided to withdraw the deprecation and continue supporting this feature.
+====
 
 .Using the Unicode \u0085 in an unescaped identifier
 [.tabbed-example]
