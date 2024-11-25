@@ -19,7 +19,7 @@ For more information, see link:https:https://neo4j.com/docs/cypher-manual/curren
 As part of this GQL compliance, Cypher now also includes status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
 For more information on the GQL-status object framework for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
 
-This manual details all status codes that a Neo4j DBMS may return, including both GQL-compliant and legacy status codes.
+This manual details all status codes that a Neo4j DBMS may return, including both GQL-compliant and legacy Neo4j status codes.
 
 ifndef::backend-pdf[]
 License: link:{common-license-page-uri}[Creative Commons 4.0]

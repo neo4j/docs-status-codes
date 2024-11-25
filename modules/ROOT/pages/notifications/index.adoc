@@ -4,7 +4,7 @@
 = Server notifications
 
 After a successful query execution, the Neo4j server sends notifications to provide advice on how to improve the query's quality or give additional information about the query execution.
-The driver receives these notifications and sends them to the client, which displays them to the user.
+The driver receives these notifications and sends them to the client (e.g. Browser/Bloom/Cypher Shell), which displays them to the user.
 
 From version 5.23, Neo4j has a new GqlStatusObject API in addition to the existing Notification API (deprecated since 5.26).
 The GqlStatusObject API provides information about the status of a Cypher query or command execution in compliance with the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard].
@@ -34,14 +34,19 @@ The GQL-status object also includes the Neo4j-specific information, such as the 
 For more information about notification grouping and filtering, see <<notification-grouping-and-filtering>>.
 
 Each GQL-status object consists of the following fields:
-
+— A GQLSTATUS, which is a character string identifying a condition as defined in Subclause 23.1,
+“GQLSTATUS”.
+— A status description, which is a character string describing the GQLSTATUS.
+— A record with diagnostic information as defined in Subclause 23.2, “Diagnostic records”.
+— An optional nested GQL-status object for providing additional diagnostic information, such as a
+cause.
 .GQLSTATUS notification object
 [cols="<1s,<4"]
 |===
 |GQLSTATUS code
-a| A 5-character string that is the concatenation of a 2-character class code followed by a 3-character subclass code.
+a| A 5-character string that is the concatenation of a 2-character class code followed by a 3-character subclass code, which identifies the condition of the notification.
 |StatusDescription
-a| A human-readable description of the GQLSTATUS, which consists of a condition, a subcondition, and a description.
+a| A human-readable description of the GQLSTATUS, which consists of a condition, a subcondition, and an optional additional text about the condition.
 The condition and subcondition are textual representations of the class and subclass codes, respectively.
 | DiagnosticRecord
 a| Extra information about the status, given as key-value pairs, both on the server and driver side.
@@ -257,7 +262,7 @@ On the server side, notifications are part of the Result Core API.
 A method called `getNotifications()`, which is deprecated since 5.26, returns a list of server-side notification objects.
 These notifications are then sent to the driver as success Bolt message metadata.
 On the driver side, notifications are part of the ResultSummary API, which has a method called `notifications()` that returns a list of driver-side Notification objects.
-The result of the `getCode()` or `code()` methods is known as the Neo4j status code.
+The result of the `getCode()` or `code()` methods is known as the legacy Neo4j status code.
 Driver-side notification configuration filters notifications by severity and/or category at both the driver and session levels.
 For more information, see <<notification-grouping-and-filtering, Server notification grouping and filtering>>.
 

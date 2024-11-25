@@ -9,7 +9,7 @@ All errors in Neo4j have severity level `ERROR`.
 
 == Connection exceptions
 
-Connection exceptions occur when the client is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
+Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
 
 === 08000
 

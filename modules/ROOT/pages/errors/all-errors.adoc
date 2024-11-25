@@ -7,22 +7,22 @@
 This page lists the legacy server error codes, also known as Neo4j status codes.
 These will be replaced by xref:errors/gql-errors.adoc[GQLSTATUS server error codes].
 
-Neo4j status codes are returned by the server when the execution of a query fails.
+Error codes are returned by the server when the execution of a query fails.
 They always have the severity level `ERROR`.
 Errors are grouped based on the type of the Neo4j status code:
 
 Client errors::
 These errors are caused by the client and are usually related to the request itself.
-The Neo4j status code for client errors have the prefix `Neo.ClientError`.
+The Neo4j status codes for client errors have the prefix `Neo.ClientError`.
 
 Transient errors::
 These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
 The error can be temporary, and the request could succeed if retried.
-The Neo4j status code for transient errors have the prefix Neo.`TransientError`.
+The Neo4j status codes for transient errors have the prefix Neo.`TransientError`.
 
 Database errors::
 These errors are caused by the database and are usually related to the database state.
-The Neo4j status code for database errors have the prefix `Neo.DatabaseError`.
+The Neo4j status codes for database errors have the prefix `Neo.DatabaseError`.
 
 This page contains lists of all Neo4j errors, grouped by type.
 
@@ -33,7 +33,7 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j legacy code
 | Description
 
 | Neo.ClientError.ChangeDataCapture.InvalidIdentifier
@@ -299,7 +299,7 @@ This is a complete list of all transient errors Neo4j may return, and what they 
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j legacy code
 | Description
 
 | Neo.TransientError.ChangeDataCapture.FutureIdentifier
@@ -406,7 +406,7 @@ This is a complete list of all database errors Neo4j may return, and what they m
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j legacy code
 | Description
 
 | Neo.DatabaseError.ChangeDataCapture.Disabled
