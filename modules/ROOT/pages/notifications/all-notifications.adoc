@@ -1484,7 +1484,7 @@ Using differently ordered return items in a UNION [ALL] clause is deprecated and
 [NOTE]
 ====
 Using differently ordered return items in a UNION [ALL] clause is deprecated in versions 5.5 to 5.25.
-However, after cost/benefit analysis and user conversations, it was decided to withdraw the deprecation and continue supporting this feature.
+However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
 ====
 
 .Using the Unicode \u0085 in an unescaped identifier
