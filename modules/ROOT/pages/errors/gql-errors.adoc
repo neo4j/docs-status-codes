@@ -1403,7 +1403,7 @@ Status description:: error: procedure exception - invalid procedure execution mo
 
 === 52N05
 
-Status description:: error: procedure exception - must invoke procedure on secondary. Can't invoke procedure on this member because it is not a secondary for database `{ $db }`.
+Status description:: error: procedure exception - must invoke procedure on secondary. Cannot invoke procedure on this member because it is not a secondary for the database `{ $db }`.
 
 === 52N06
 
