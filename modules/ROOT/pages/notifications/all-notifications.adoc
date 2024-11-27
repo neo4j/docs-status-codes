@@ -1,7 +1,7 @@
 :description: This section describes the notifications that Neo4j can return, grouped by category, and an example of when they can occur.
 
 [[listOfNnotifications]]
-= List of all server notification codes
+= List of notification codes
 
 The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and Neo4j  codes, along with some scenarios and their possible solutions.
 
