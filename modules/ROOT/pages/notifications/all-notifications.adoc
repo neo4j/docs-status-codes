@@ -3,7 +3,7 @@
 [[listOfNnotifications]]
 = List of all server notification codes
 
-The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and Neo4j legacy codes, along with some scenarios and their possible solutions.
+The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and Neo4j  codes, along with some scenarios and their possible solutions.
 
 * <<_performance_notifications, `PERFORMANCE` notifications>>
 * <<_hint_notifications, `HINT` notifications>>
@@ -29,7 +29,7 @@ This notification is returned when there is a Cartesian product in the plan.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.CartesianProduct
 |Title
 a|This query builds a cartesian product between disconnected patterns.
@@ -82,7 +82,7 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -120,7 +120,7 @@ This notification is returned when there is no upper bound specified on the vari
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 |Title
 a|The provided pattern is unbounded, consider adding an upper limit to the number of node hops.
@@ -176,7 +176,7 @@ WHERE n <> m
 RETURN p
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -210,7 +210,7 @@ For more information, see link:https://neo4j.com/docs/cypher-manual/current/exec
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.ExhaustiveShortestPath
 |Title
 a|Exhaustive shortest path has been planned for your query that means that shortest path graph algorithm might not be used to find the shortest path.
@@ -265,7 +265,7 @@ WHERE ANY(n in nodes(p) WHERE n:Label)
 RETURN p
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -303,7 +303,7 @@ Adding an index could improve the query speed.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.NoApplicableIndex
 |Title
 a|Adding a schema index may speed up this query.
@@ -353,7 +353,7 @@ Create an index on the label and property you match.
 CREATE INDEX FOR (n:Person) ON (n.name)
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -386,7 +386,7 @@ This notification is returned when the execution plan for a query contains the `
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.EagerOperator
 |Title
 a|The execution plan for this query contains the Eager operator, which forces all dependent data to be materialized in main memory before proceeding
@@ -442,7 +442,7 @@ CALL {
 RETURN line
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 `LOAD CSV` together with an Eager operator can take up a lot of memory.
@@ -482,7 +482,7 @@ RETURN line
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.DynamicProperty
 |Title
 a|Queries using dynamic properties will use neither index seeks nor index scans for those properties
@@ -536,7 +536,7 @@ MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -594,7 +594,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -628,7 +628,7 @@ For more information about the specific query, see the stack trace in the _debug
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.CodeGenerationFailed
 |Title
 a|The database was unable to generate code for the query. A stacktrace can be found in the _debug.log_.
@@ -663,7 +663,7 @@ In this case, the query will return an error.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.JoinHintUnfulfillableWarning
 |Title
 a|The database was unable to plan a hinted join.
@@ -714,7 +714,7 @@ The `JOIN` hint cannot be applied because its specified variable is before the `
 The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -748,7 +748,7 @@ The only option for this query is to either remove the hint or modify the query 
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Schema.HintedIndexNotFound
 |Title
 a|The request (directly or indirectly) referred to an index that does not exist.
@@ -794,7 +794,7 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the label and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -844,7 +844,7 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the relationship type and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -878,7 +878,7 @@ Unrecognized notifications are returned when the query or command mentions entit
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Database.HomeDatabaseNotFound
 |Title
 a|The request referred to a home database that does not exist.
@@ -923,7 +923,7 @@ Verify that the spelling is correct or create the database for the command to ta
 Suggestions for improvement::
 Verify that the home database name is not misspelled.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -949,7 +949,7 @@ Verify that the home database name is not misspelled.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.UnknownLabelWarning
 |Title
 a|The provided label is not in the database.
@@ -994,7 +994,7 @@ Suggestions for improvement::
 Verify that the label is not misspelled.
 If you plan to create nodes with that label in the future, no change is needed.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -1020,7 +1020,7 @@ If you plan to create nodes with that label in the future, then no change is nee
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning
 |Title
 a|The provided relationship type is not in the database.
@@ -1065,7 +1065,7 @@ Suggestions for improvement::
 Verify that the relationship type is not misspelled.
 If you plan to create relationships of this type in the future, no change is needed.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1091,7 +1091,7 @@ If you plan to create relationships of this type in the future, no change is nee
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.UnknownPropertyKeyWarning
 |Title
 a|The provided property key is not in the database
@@ -1137,7 +1137,7 @@ Suggestions for improvement::
 Verify that the property key is not misspelled.
 If you plan to create that property key in the future, no change is needed.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1164,7 +1164,7 @@ If you plan to create that property key in the future, no change is needed.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.AggregationSkippedNull
 |Title
 a|The query contains an aggregation function that skips null values.
@@ -1200,7 +1200,7 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: null value eliminated in set function.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 
@@ -1224,7 +1224,7 @@ Unsupported notifications are returned when the query or command is trying to us
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.RuntimeUnsupportedWarning
 |Title
 a|This query is not supported by the chosen runtime.
@@ -1273,7 +1273,7 @@ Use a different runtime or remove the runtime option to run the query with the d
 SHOW INDEXES YIELD *
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -1310,7 +1310,7 @@ The usage of this notification has been removed since Neo4j 5.14.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.RuntimeExperimental
 |Title
 a|This feature is experimental and should not be used in production systems.
@@ -1355,7 +1355,7 @@ It is important to change to the new functionality, otherwise, the query might b
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -1412,7 +1412,7 @@ If not intended for a composite database, escape the name with the character ```
 CREATE DATABASE `foo.bar`
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1469,7 +1469,7 @@ UNION
 RETURN 'val' as one, 'val' as two
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1518,7 +1518,7 @@ warn: feature deprecated.
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1538,7 +1538,7 @@ The Unicode character `\u0085` is deprecated for unescaped identifiers and will 
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -1597,7 +1597,7 @@ MATCH (a)-[:A|B|C]-() RETURN *
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1651,7 +1651,7 @@ SET a = properties(b)
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1708,7 +1708,7 @@ MATCH (a)-[r]-(b)
 SET a += properties(r)
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1764,7 +1764,7 @@ Instead, you can rewrite it to the following:
 MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1818,7 +1818,7 @@ Alternatively, you can remove the runtime option to use the default runtime.
 MATCH (n) RETURN n
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1870,7 +1870,7 @@ Update the option `indexProvider` with the value `text-2.0`.
 CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -1927,7 +1927,7 @@ Returned status description::
 warn: feature deprecated without replacement.
 `unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 [source,cypher]
@@ -1992,7 +1992,7 @@ Returned status description::
 warn: feature deprecated without replacement.
 `id` is deprecated and will be removed without a replacement.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Query::
@@ -2601,7 +2601,7 @@ END AS check
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -2644,7 +2644,7 @@ Returned status description::
 warn: feature deprecated without replacement.
 `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -2666,7 +2666,7 @@ For more information, see link:https://neo4j.com/docs/cypher-manual/current/quer
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
@@ -2691,7 +2691,7 @@ m|WARNING
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Request.DeprecatedFormat
 |Title
 a|The client made a request for a format which has been deprecated.
@@ -2723,7 +2723,7 @@ Verify that this is the intended behavior of your query or command.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
 a|`<command>` has no effect.*
@@ -2771,7 +2771,7 @@ The role or privilege is not assigned.
 Suggestions for improvement::
 Verify that this is the intended role and user.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -2816,7 +2816,7 @@ Suggestions for improvement::
 Verify that this is the intended privilege and role.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -2843,7 +2843,7 @@ Verify that this is the intended privilege and role.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Security.CommandHasNoEffect
 |Title
 a|`<command>` has no effect.*
@@ -2892,7 +2892,7 @@ Suggestions for improvement::
 Verify that this is the intended role and user.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -2937,7 +2937,7 @@ The role or privilege is already assigned.
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -2966,7 +2966,7 @@ Verify that this is the intended privilege and role.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Security.ImpossibleRevokeCommand
 |Title
 a|`<command>` has no effect.*
@@ -3015,7 +3015,7 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3064,7 +3064,7 @@ o
 Suggestions for improvement::
 Verify that this is the intended user and that it is spelled correctly.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3113,7 +3113,7 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3160,7 +3160,7 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended graph and that it is spelled correctly.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3208,7 +3208,7 @@ Suggestions for improvement::
 Verify that this is the intended database and that it is spelled correctly.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3266,7 +3266,7 @@ Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
 
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Parameter::
 +
@@ -3332,7 +3332,7 @@ Suggestions for improvement::
 Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Parameter::
 +
@@ -3369,7 +3369,7 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Security.AuthProviderNotDefined
 |Title
 a|The auth provider is not defined.
@@ -3485,7 +3485,7 @@ If it is correct, make sure to add it as a known auth provider in one or both of
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Security.ExternalAuthNotEnabled
 |Title
 a|External auth for user is not enabled.
@@ -3596,7 +3596,7 @@ Topology notifications provide additional information related to managing databa
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Cluster.ServerAlreadyEnabled
 |Title
 a| `<command>` has no effect.
@@ -3640,7 +3640,7 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
 Verify that this is the intended server.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3662,7 +3662,7 @@ Verify that this is the intended server.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Cluster.ServerAlreadyCordoned
 |Title
 a| `<command>` has no effect.
@@ -3706,7 +3706,7 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
 Verify that this is the intended server.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3728,7 +3728,7 @@ Verify that this is the intended server.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Cluster.NoDatabasesReallocated
 |Title
 a| `<command>` has no effect.
@@ -3779,7 +3779,7 @@ For example, when there are three servers, each hosting databases `foo` and `bar
 For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
 Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Command::
 +
@@ -3812,7 +3812,7 @@ For example, `CREATE DATABASE`, `ALTER DATABASE`, `DEALLOCATE DATABASES FROM SER
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Cluster.CordonedServersExistedDuringAllocation
 |Title
 a| Cordoned servers existed when making an allocation decision.
@@ -3856,7 +3856,7 @@ Cordoned servers existed when making an allocation decision.
 Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned.
 This can impact allocation decisions.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
 
@@ -3879,7 +3879,7 @@ Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned. This can impact a
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
 |Title
 a| `<command>` has no effect.
@@ -3925,7 +3925,7 @@ The requested topology matched the current topology.
 No allocations were changed.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
 
@@ -3952,7 +3952,7 @@ Schema notifications provide additional information related to indexes and const
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
 |Title
 a|`<command>` has no effect.
@@ -3997,7 +3997,7 @@ note: successful completion - index or constraint already exists.
 `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Given a range index on `(:Label \{property})` named `existingRangeIndex`.
 
@@ -4048,7 +4048,7 @@ CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Given a range index on `(:Label \{property})` named `myIndex`.
 
@@ -4099,7 +4099,7 @@ note: successful completion - index or constraint already exists.
 `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
 
@@ -4151,7 +4151,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 ----
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Given a node key constraint on `(:Label \{property})` named `myConstraint`.
 
@@ -4185,7 +4185,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
 |Title
 a|`<command>` has no effect.
@@ -4227,7 +4227,7 @@ Suggestions for improvement::
 Verify that this is the intended index and that it is spelled correctly.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Command::
@@ -4273,7 +4273,7 @@ Suggestions for improvement::
 Verify that this is the intended constraint and that it is spelled correctly.
 
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 
 Command::
@@ -4306,7 +4306,7 @@ Verify that this is the intended constraint and that it is spelled correctly.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 |Title
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
@@ -4367,7 +4367,7 @@ CALL {
 RETURN *
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -4408,7 +4408,7 @@ RETURN *
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.RedundantOptionalProcedure
 |Title
 a|The use of `OPTIONAL` is redundant when the procedure calls a void procedure.
@@ -4451,7 +4451,7 @@ If the intended behavior of the query is to use a void procedure, the `OPTIONAL`
 CALL db.createLabel("A")
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -4479,7 +4479,7 @@ CALL db.createLabel("A")
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.RedundantOptionalSubquery
 |Title
 a|The use of `OPTIONAL` is redundant when `CALL` is a unit subquery.
@@ -4529,7 +4529,7 @@ CALL (x) {
 }
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -4563,7 +4563,7 @@ CALL (x) {
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.ParameterNotProvided
 |Title
 a|The statement refers to a parameter that was not provided in the request.
@@ -4609,7 +4609,7 @@ Provide the parameter(s).
 Suggestions for improvement::
 Provide the parameter to be able to cache the plan.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -4636,7 +4636,7 @@ Provide the parameter to be able to cache the plan.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Procedure.ProcedureWarning
 |Title
 a|The query used a procedure that generated a warning.
@@ -4665,7 +4665,7 @@ When matching on a relationship type expression that can never be satisfied, for
 .Notification category details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 |Title
 a|The query contains a relationship type expression that cannot be satisfied.
@@ -4704,7 +4704,7 @@ Returned status description::
 warn: unsatisfiable relationship type expression.
 The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -4724,7 +4724,7 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 .Notification category details
 [cols="<1s,<4"]
 |===
-|Neo4j legacy code
+|Neo4j  code
 m|Neo.ClientNotification.Statement.RepeatedRelationshipReference
 |Title
 a|The query returns no results because a relationship variable is bound more than once.
@@ -4773,7 +4773,7 @@ Use one pattern to match all relationships that start with a node with the label
 MATCH (:A)-[r]->(:B) RETURN r
 ----
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +
@@ -4813,7 +4813,7 @@ Returned status description::
 warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
-[.include-with-neo4j-legacy-code]
+[.include-with-neo4j--code]
 ======
 Query::
 +

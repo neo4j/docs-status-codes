@@ -1,15 +1,15 @@
 
 [[status-codes]]
 ifdef::backend-pdf[]
-= Neo4j 5 Status Codes
+= Status Codes for Errors and Notifications
 endif::[]
 ifndef::backend-pdf[]
 = Introduction
 endif::[]
-:description: The Neo4j status codes for Neo4j version {neo4j-version}.
+:description: Status codes for errors and notifications Neo4j 5
 :neo4j-buildnumber: {neo4j-version}
 
-The Neo4j 5 Status Codes manual includes all status codes that a Neo4j server may return to indicate the outcome of a Cypher request.
+This manual provides status codes for errors and notifications that a Neo4j server may return to indicate the result of a Cypher request.
 
 Starting from 5.23 for notifications and 5.25 for errors, the Neo4j DBMS supports the GQL standard. +
 GQL is the new link:https://www.iso.org/home.html[ISO] International Standard query language for graph databases.
@@ -18,8 +18,6 @@ For more information, see link:https:https://neo4j.com/docs/cypher-manual/curren
 
 As part of this GQL compliance, Cypher now also includes status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
 For more information on the GQL-status object framework for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
-
-This manual details all status codes that a Neo4j DBMS may return, including both GQL-compliant and legacy Neo4j status codes.
 
 ifndef::backend-pdf[]
 License: link:{common-license-page-uri}[Creative Commons 4.0]
