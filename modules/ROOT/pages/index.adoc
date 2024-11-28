@@ -14,7 +14,7 @@ This manual covers all status codes for errors and notifications that a Neo4j se
 Starting from 5.23 for notifications and 5.25 for errors, the Neo4j DBMS supports the GQL standard. +
 GQL is the new link:https://www.iso.org/home.html[ISO] International Standard query language for graph databases.
 Cypher®, Neo4j’s query language, supports most mandatory and a substantial portion of the optional GQL features (as defined by the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard]).
-For more information, see link:https:https://neo4j.com/docs/cypher-manual/current/appendix/gql-conformance/[Cypher Manual -> GQL conformance].
+For more information, see link:https://neo4j.com/docs/cypher-manual/current/appendix/gql-conformance/[Cypher Manual -> GQL conformance].
 
 As part of this GQL compliance, Cypher now also includes status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
 For more information on the GQL-status object framework for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
