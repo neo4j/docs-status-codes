@@ -174,7 +174,7 @@ See <<server-driver-compatibility, Server-driver version compatibility>> for mor
 
 On the driver side, the Neo4jException is extended with the corresponding methods as on the server side.
 The driver receives the Failure Bolt message and extracts the status code and the error message.
-Then, it constructs an error object with the status code, error message, and other relevant information, and sends it to the client.
+Then, it constructs an exception with the status code, error message, and other relevant information, and sends it to the client.
 
 // Starting from 2025.01, the diagnostic record also contains a `_status_parameters` field, which represens a map that contains all variable parts of the status description, such as labels, database names, Cypher clauses, etc.
 // This field is used to provide more detailed information about the error.
