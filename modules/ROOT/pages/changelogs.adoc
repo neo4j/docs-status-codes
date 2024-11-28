@@ -1,14 +1,7 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
-== Neo4j 5.26
-
-**Changed:**
-Using differently ordered return items in a `UNION [ALL]` clause has been undeprecated following cost-benefit analysis and valuable user feedback.
-
 == Neo4j 5.25
-
-**New:**
 
 Starting from 5.25, the query log includes the GQL error information under the JSON object `errorInfo`.
 For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#gql-error-information[Operations Manual -> GQL error information].
