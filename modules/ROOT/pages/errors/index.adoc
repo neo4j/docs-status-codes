@@ -152,7 +152,7 @@ Changing the request might yield a successful outcome.
 | TransientError
 | These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
 The error can be temporary, therefore retrying later might yield a successful outcome.
-Neo4j codes have the prefix Neo.`TransientError`, while the GQLSTATUS codes have `ErrorClassification` of type `TRANSIENT_ERROR`.
+Neo4j codes have the prefix `Neo.TransientError`, while the GQLSTATUS codes have `ErrorClassification` of type `TRANSIENT_ERROR`.
 | Rollback
 
 | DatabaseError
