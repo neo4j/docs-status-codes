@@ -218,13 +218,13 @@ If a driver of version 5.26 or later talks to a server that is older than 5.26, 
 In this case, the default GQLSTATUS code 50N42 is returned for all exceptions.
 
 .Error compatibility matrix
-[cols="2,3,3", options="header"]
+[cols="1,2,2", grid="all", stripes="hover"]
 |===
 |
-|Driver 5.25 or older
-|Driver 5.26 or newer
+h| Driver 5.25 or older
+h| Driver 5.26 or newer
 
-| Server 5.24 or older
+h| Server 5.24 or older
 | Bolt: old format
 
 Query log: old format
@@ -233,7 +233,7 @@ Query log: old format
 
 Query log: old format
 
-| Server 5.25
+h| Server 5.25
 | Bolt: old format
 
 Query log: new format
@@ -241,7 +241,7 @@ Query log: new format
 
 Query log: new format
 
-| Server 5.26 or newer
+h| Server 5.26 or newer
 | Bolt: old format
 
 Query log: new format
