@@ -171,7 +171,7 @@ Most of these implement the `HasStatus` interface, which means they have a statu
 On the server side, an exception contains normal Java constructors and methods like `getMessage()`,  `getCause()`, etc., and additionally the `status()` method from the `HasStatus` API, which returns the status code.
 
 The exceptions also get new compulsary fields for `gqlStatus`, `statusDescription`,  `diagnosticRecord`, and an optional field for `cause`.
-The cause field in turn has its own GQLSTATUS, statusdescription, diagnostic record, and message. +
+The cause field in turn has its own GQLSTATUS, status description, diagnostic record, and message. +
 The `getMessage()` method is kept as Java exceptions inherently have this method.
 And a new classification field is added to cover the division of client errors, transient errors, and database errors, which today is part of the Neo4j code.
 All of these fields construct the GQLSTATUS object, which is sent to the driver as part of the Failure Bolt message.
