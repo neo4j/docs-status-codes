@@ -6,7 +6,7 @@ The Neo4j DBMS returns a server error to indicate that the outcome of a Cypher q
 The driver receives these erors and sends them to the Neo4j tools (e.g. Browser, Bloom, Cypher Shell) or the user application, which display them to the user.
 
 Starting from version 5.26, the Neo4j error codes have an additional GQL-status object along with the Neo4j exception that provides information about the status of a Cypher query or command execution in compliance with the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard].
-This additional GQL-status object is also displayed in the query log from Neo4j 5.25.
+This additional GQL-status object is also displayed in the query log from Neo4j 5.25 onwards.
 For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#gql-error-information[Operations Manual -> GQL error information].
 
 [NOTE]
@@ -160,6 +160,9 @@ Neo4j codes have the prefix `Neo.TransientError`, while the GQLSTATUS codes have
 Neo4j codes have the prefix `Neo.DatabaseError`, while the GQLSTATUS codes have `ErrorClassification` of type `DATABASE_ERROR`.
 | Rollback
 
+// | Database configuration errors
+// | Something a DBA can fix
+// | Rollback
 |===
 
 [[error-internals]]

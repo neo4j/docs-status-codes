@@ -4,7 +4,7 @@
 [[neo4j-errors]]
 = List of Neo4j error codes
 
-This page lists the current Neo4j error codes, which will be replaced by xref:errors/gql-errors.adoc[GQLSTATUS error codes] in the future.
+This page lists the current Neo4j error codes, which which are returned along side xref:errors/gql-errors.adoc[GQLSTATUS error codes].
 
 Error codes are returned by the server when the execution of a query fails.
 They always have the severity level `ERROR`.
