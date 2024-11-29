@@ -16,7 +16,7 @@ GQL is the new link:https://www.iso.org/home.html[ISO] International Standard qu
 Cypher®, Neo4j’s query language, supports most mandatory and a substantial portion of the optional GQL features (as defined by the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard]).
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/appendix/gql-conformance/[Cypher Manual -> GQL conformance].
 
-As part of this GQL compliance, Cypher now also includes status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
+As part of this GQL compliance, Cypher also includes status codes that a GQL-compliant DBMS returns to indicate the outcome of a request.
 For more information on the GQL-status object framework for notifications and errors, see xref:notifications/index.adoc[] and xref:errors/index.adoc[].
 
 ifndef::backend-pdf[]
