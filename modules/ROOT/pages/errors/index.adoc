@@ -190,7 +190,7 @@ Then, it constructs an exception with the status code, error message, and other 
 Since the query log is server-side and DBMS wide, multiple clients connected to the same DBMS write to the same query log.
 As the clients can have separate driver versions, they may have different error framework formats.
 
-In Neo4j 5.25, the default JSON template for the query log is updated to include `errorInfo` entry.
+In Neo4j 5.25, the default JSON template for the query log is updated to include an `errorInfo` entry.
 This entry contains `GQLSTATUS`, `statusDescription`, `classification`, `position` (if applicable), and `cause` (if applicable) with the same entries.
 //The `failureReason` entry is deprecated from ...
 
