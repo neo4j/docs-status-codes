@@ -7,6 +7,12 @@
 The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
 All errors in Neo4j have severity level `ERROR`.
 
+[WARNING]
+====
+Please note that while GQLSTATUS codes remain stable, the status descriptions associated with these codes may change over time.
+For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.
+====
+
 == Connection exceptions
 
 Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
