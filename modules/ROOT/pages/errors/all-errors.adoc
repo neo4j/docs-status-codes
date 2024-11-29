@@ -17,7 +17,7 @@ The Neo4j codes for client errors have the prefix `Neo.ClientError`.
 Transient errors::
 These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
 The error can be temporary, and the request could succeed if retried.
-The Neo4j codes for transient errors have the prefix Neo.`TransientError`.
+The Neo4j codes for transient errors have the prefix `Neo.TransientError`.
 
 Database errors::
 These errors are caused by the database and are usually related to the database state.
