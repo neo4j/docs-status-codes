@@ -1,5 +1,6 @@
 * xref:index.adoc[]
 * xref:errors/index.adoc[]
+** xref:errors/gql-errors.adoc[]
 ** xref:errors/all-errors.adoc[]
 * xref:notifications/index.adoc[]
 ** xref:notifications/all-notifications.adoc[]

@@ -1,21 +1,211 @@
-:description: The Neo4j error codes for Neo4j version {neo4j-version}.
-
-[[error-codes]]
+:description: This page describes the structure of the error objects, the error codes, and how to interpret them.
+[[neo4j-errors]]
 = Server errors
 
-Error codes are Neo4j status codes returned by the server when the execution of a query fails.
-They always have the severity level `ERROR`.
-Errors are grouped based on the type of the error code:
+Neo4j returns a server error to indicate that the outcome of a Cypher query or command execution is unsuccessful.
+The driver receives these erors and sends them to the Neo4j tools (e.g. Browser, Bloom, Cypher Shell) or the user application, which display them to the user.
 
-Client errors::
-    These errors are caused by the client and are usually related to the request itself.
-    Client errors have the prefix `Neo.ClientError`.
+Starting from version 5.26, the Neo4j error codes have an additional GQL-status object along with the Neo4j exception that provides information about the status of a Cypher query or command execution in compliance with the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard].
+This additional GQL-status object is also displayed in the query log from Neo4j 5.25 onwards.
+For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#gql-error-information[Operations Manual -> GQL error information].
 
-Transient errors::
-    These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
-    The error can be temporary and could therefore succeed if retrying the request.
-    Transient errors have the prefix `Neo.TransientError`.
+[NOTE]
+====
+The default GQLSTATUS code 50N42 is returned when an exception does not have a GQL-status object.
+Starting from Neo4j 5.25, we started adding GQL objects to exceptions.
+Therefore, you can expect many 50N42 codes during this transition period.
+However, it is important not to rely on this default code, as future Neo4j versions might change it by adding an appropriate GQL object to the exception.
+Additionally, GQL codes for external procedures are not yet stable.
+====
 
-Database errors::
-    These errors are caused by the database and are usually related to the database state.
-    Database errors have the prefix `Neo.DatabaseError`.
+This page describes the GQL-status and the Neo4j-status object frameworks for errors, their structure, the objects they provide for errors, and how to interpret them.
+It also explains the error internals and the server-driver compatibility for both the GQLSTATUS and errors.
+
+[role=label--version-5.25]
+[[gqlstatus-error-object]]
+== GQL-status error object
+
+In the GQL-status object framework, when a user executes a query to the server, it always produces a result known as the _execution outcome_.
+If an error occurs during execution, the outcome is recorded as an exception condition, indicating a failed outcome with no result.
+The execution outcome for errors is represented as a list of GQL-status objects with a failed outcome, which are organized according to the following precedence rules:
+
+. Every exception that results in a transaction rollback takes precedence over other exceptions.
+. Every exception takes precedence over any completion condition.
+For completion conditions, see the xref:notifications/index.adoc#gqlstatus-notification-object[GQL-status notification object].
+
+The GQL-status object also includes Neo4j-specific information, such as severity level and error classification.
+
+Each GQL-status object consists of the following fields:
+
+.GQLSTATUS error object
+[cols="<1s,<4"]
+|===
+|GQLSTATUS code
+a| A 5-character string that is the concatenation of a 2-character class code followed by a 3-character subclass code, which identifies the condition of the error.
+|StatusDescription
+a| A human-readable description of the GQLSTATUS, which consists of a condition, a subcondition, and an optional additional text about the condition.
+The condition and subcondition are textual representations of the class and subclass codes, respectively.
+The format is `error: condition - subcondition. AdditionalInfo`.
+The subcondition for the subclass 000 is empty.
+| DiagnosticRecord
+a| Extra information about the status, given as key-value pairs, both on the server and driver side.
+To retrieve the full diagnostic record, you can use the `diagnosticRecord()` on the server side or the corresponding method on the driver sides.
+Additional helper methods are exposed for some useful fields.
+[cols="<1s,<4"]
+!===
+! Field ! Description
+! `OPERATION` ! The operation that the error is related to. Always defaults to empty.
+! `OPERATION_CODE` ! The operation code that the error is related to. Always defaults to `0`.
+! `CURRENT_SCHEMA` ! The current schema that the error is related to. Always defaults to `/`.
+//! `_severity` a! The Neo4j severity level of the error, which is always `ERROR`.
+!`_classification` ! The Neo4j error classification, which can be `CLIENT_ERROR`, `TRANSIENT_ERROR`, or `DATABASE_ERROR`.
+! `_position` ! (Optional) The position, given by offset, line and column, where the error is relevant in the query text.
+//! `_status_parameters`! A map that contains all variable parts of the status description.
+!===
+|===
+
+A GQL-status error object can also contain an optional GQL-status object that represents the cause of the error and is used to provide additional, more specific diagnostic information.
+
+[[gqlstatus-neo4j-defined-codes]]
+== Classes of GQLSTATUS error codes
+
+The GQLSTATUS codes are divided into classes and subclasses.
+The class code is a 2-character string that indicates the general condition of the status, such as connection exception, data exception, etc.
+The subclass code is a 3-character string that provides more detailed information about the condition.
+//Currently, the Neo4j-defined subclasses start with N or I, followed by a 2-digit number, while the standard-defined subclasses start with 0-4 or A, B, C, D, E, F, G, or H and a 2-digit number.
+
+The following table lists the GQLSTATUS classes and their meanings:
+
+.GQLSTATUS code classes
+[frame="topbot", stripes=odd, grid="cols", cols="<1s,<4"]
+|===
+|Class
+|*Condition*
+
+| 08
+| connection exception
+| 22
+| data exception
+| 25
+| invalid transaction state
+| 40
+| transaction rollback
+| 42
+| syntax error or access rule violation
+| 50
+| general processing exception
+| 51
+| system configuration or operation exception
+| 52
+| procedure exception
+|===
+
+[[neo4j-error-object]]
+== Neo4j-status error object
+
+The Neo4j-status object for errors contains diagnostic information representing the *unsuccessful* outcome of a Cypher query or command execution, including severity, status code, category, description, message, and position in the query text where the error is relevant.
+Depending on the application, some of the fields from the error object might not be visible.
+
+The error object consists of the following fields:
+
+.Neo4j error object
+[cols="<1s,<4"]
+|===
+|Neo4j code
+a|The Neo4j code in the form of `Neo.[Type].[SubType].[Name]`.
+|Description
+a|The description of the specific error.
+|Message
+a|The error message.
+|Severity level
+a|`ERROR`
+|Category
+a|The category of the error.
+Available categories are `CLIENT_ERROR`, `TRANSIENT_ERROR`, and `DATABASE_ERROR`.
+|Position
+a|(Optional) The position, given by offset, line and column, where the error is relevant in the query text.
+|===
+
+For more information, see the xref:errors/all-errors.adoc[List of Neo4j error codes].
+
+[[error-types]]
+== Types of server errors
+
+The fact that an error is returned by the server does not always mean that it is a fatal error.
+Status codes can also indicate transient problems that may go away if you retry the request.
+The server error group determines the effect on the transaction.
+
+.Server error types
+[options="header", cols="<1m,<2,<1"]
+|===
+
+| Type
+| Description
+| Effect on the transaction
+
+| ClientError
+| These errors are caused by the client (user input or user application) and are usually related to the request itself.
+Changing the request might yield a successful outcome.
+ Neo4j codes have the prefix `Neo.ClientError`, while the GQLSTATUS codes have `ErrorClassification` of type `CLIENT_ERROR`.
+| Rollback
+
+| TransientError
+| These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
+The error can be temporary, therefore retrying later might yield a successful outcome.
+Neo4j codes have the prefix `Neo.TransientError`, while the GQLSTATUS codes have `ErrorClassification` of type `TRANSIENT_ERROR`.
+| Rollback
+
+| DatabaseError
+| These errors are caused by the database and are usually related to the database state and mean that the database failed to service the request.
+Neo4j codes have the prefix `Neo.DatabaseError`, while the GQLSTATUS codes have `ErrorClassification` of type `DATABASE_ERROR`.
+| Rollback
+
+// | Database configuration errors
+// | Something a DBA can fix
+// | Rollback
+|===
+
+[[error-internals]]
+== Error internals
+
+Neo4j supports server errors in the form of Java exceptions.
+Most of these implement the `HasStatus` interface, which means they have a status code in addition to the exception message.
+
+On the server side, an exception contains normal Java constructors and methods like `getMessage()`,  `getCause()`, etc., and additionally the `status()` method from the `HasStatus` API, which returns the status code.
+
+The exceptions also get new compulsary fields for `gqlStatus`, `statusDescription`,  `diagnosticRecord`, and an optional field for `cause`.
+The cause field in turn has its own GQLSTATUS, status description, diagnostic record, and message. +
+The `getMessage()` method is kept as Java exceptions inherently have this method.
+And a new classification field is added to cover the division of client errors, transient errors, and database errors, which today is part of the Neo4j code.
+All of these fields construct the GQLSTATUS object, which is sent to the driver as part of the Failure Bolt message.
+Exactly how this looks, depends on the combination of driver and server versions.
+See <<server-driver-compatibility, Server-driver version compatibility>> for more information.
+
+On the driver side, the Neo4jException is extended with the corresponding methods as on the server side.
+The driver receives the Failure Bolt message and extracts the status code and the error message.
+Then, it constructs an exception with the status code, error message, and other relevant information, and sends it to the client.
+
+// Starting from 2025.01, the diagnostic record also contains a `_status_parameters` field, which represens a map that contains all variable parts of the status description, such as labels, database names, Cypher clauses, etc.
+// This field is used to provide more detailed information about the error.
+
+== Query logging
+
+Since the query log is server-side and DBMS wide, multiple clients connected to the same DBMS write to the same query log.
+As the clients can have separate driver versions, they may have different error framework formats.
+
+In Neo4j 5.25, the default JSON template for the query log is updated to include an `errorInfo` entry.
+This entry contains `GQLSTATUS`, `statusDescription`, `classification`, `position` (if applicable), and `cause` (if applicable) with the same entries.
+//The `failureReason` entry is deprecated from ...
+
+// Starting from Neo4j 2025.01, a new JSON template is available for the query log, which is the default set in _server_log.xml_.
+// It contains the `errorInfo` entry, but not the `failureReason` entry, which is switched off by default.
+
+
+[[server-driver-compatibility]]
+== Server-driver version compatibility
+
+The server and driver communicate with each other through the Bolt protocol.
+During the handshake process, they agree on using the newest possible Bolt protocol version that both the server and the driver support.
+For more information on the Bolt versions supported by different server versions, see the link:https://neo4j.com/docs/bolt/current/bolt-compatibility[Bolt Protocol documentation].
+
+

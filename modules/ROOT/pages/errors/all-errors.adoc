@@ -1,8 +1,27 @@
-:description: The Neo4j error codes for Neo4j version {neo4j-version}.
+:description: The error codes for Neo4j 5.
 
 
 [[neo4j-errors]]
-= List of all server error codes
+= List of Neo4j error codes
+
+This page lists the current Neo4j error codes, which which are returned along side xref:errors/gql-errors.adoc[GQLSTATUS error codes].
+
+Error codes are returned by the server when the execution of a query fails.
+They always have the severity level `ERROR`.
+Errors are grouped based on the type of the Neo4j code:
+
+Client errors::
+These errors are caused by the client (user input or user application) and are usually related to the request itself.
+The Neo4j codes for client errors have the prefix `Neo.ClientError`.
+
+Transient errors::
+These errors are detected by the server and are usually related to some kind of database unavailability, such as limits reached, out-of-memory, timeouts, etc.
+The error can be temporary, and the request could succeed if retried.
+The Neo4j codes for transient errors have the prefix `Neo.TransientError`.
+
+Database errors::
+These errors are caused by the database and are usually related to the database state.
+The Neo4j codes for database errors have the prefix `Neo.DatabaseError`.
 
 This page contains lists of all Neo4j errors, grouped by type.
 
@@ -13,7 +32,7 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j code
 | Description
 
 | Neo.ClientError.ChangeDataCapture.InvalidIdentifier
@@ -279,7 +298,7 @@ This is a complete list of all transient errors Neo4j may return, and what they 
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j code
 | Description
 
 | Neo.TransientError.ChangeDataCapture.FutureIdentifier
@@ -386,7 +405,7 @@ This is a complete list of all database errors Neo4j may return, and what they m
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j code
 | Description
 
 | Neo.DatabaseError.ChangeDataCapture.Disabled
