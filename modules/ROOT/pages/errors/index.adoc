@@ -2,7 +2,7 @@
 [[neo4j-errors]]
 = Server errors
 
-The Neo4j DBMS returns a server error to indicate that the outcome of a Cypher query or command execution is unsuccessful.
+Neo4j returns a server error to indicate that the outcome of a Cypher query or command execution is unsuccessful.
 The driver receives these erors and sends them to the Neo4j tools (e.g. Browser, Bloom, Cypher Shell) or the user application, which display them to the user.
 
 Starting from version 5.26, the Neo4j error codes have an additional GQL-status object along with the Neo4j exception that provides information about the status of a Cypher query or command execution in compliance with the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard].
