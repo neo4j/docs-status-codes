@@ -405,7 +405,7 @@ This is a complete list of all database errors Neo4j may return, and what they m
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j  code
+| Neo4j code
 | Description
 
 | Neo.DatabaseError.ChangeDataCapture.Disabled
