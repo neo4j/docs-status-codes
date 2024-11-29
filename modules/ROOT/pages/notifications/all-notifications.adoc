@@ -29,7 +29,7 @@ This notification is returned when there is a Cartesian product in the plan.
 .Notification details
 [cols="<1s,<4"]
 |===
-|Neo4j  code
+|Neo4j code
 m|Neo.ClientNotification.Statement.CartesianProduct
 |Title
 a|This query builds a cartesian product between disconnected patterns.
