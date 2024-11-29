@@ -257,7 +257,7 @@ On the server side, notifications are part of the Result Core API.
 A method called `getNotifications()`, which is deprecated since 5.26, returns a list of server-side notification objects.
 These notifications are then sent to the driver as success Bolt message metadata.
 On the driver side, notifications are part of the ResultSummary API, which has a method called `notifications()` that returns a list of driver-side Notification objects.
-The result of the `getCode()` or `code()` methods is known as the  Neo4j status code.
+The result of the `getCode()` or `code()` methods is known as the Neo4j status code.
 Driver-side notification configuration filters notifications by severity and/or category at both the driver and session levels.
 For more information, see <<notification-grouping-and-filtering, Server notification grouping and filtering>>.
 
