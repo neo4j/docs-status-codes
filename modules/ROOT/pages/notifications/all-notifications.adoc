@@ -15,6 +15,11 @@ The following page provides an overview of all notifications in Neo4j, including
 * <<_schema_notifications, `SCHEMA` notifications>>
 * <<_generic, `GENERIC` notifications>>
 
+[WARNING]
+====
+Please note that while GQLSTATUS codes remain stable, the descriptions associated with these codes may change over time.
+For this reason, parsing the descriptions or incorporating them into scripts is not recommended.
+====
 
 [#_performance_notifications]
 == `PERFORMANCE` notifications
