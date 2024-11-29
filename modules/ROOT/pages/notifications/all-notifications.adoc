@@ -3,7 +3,7 @@
 [[listOfNnotifications]]
 = List of notification codes
 
-The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and Neo4j  codes, along with some scenarios and their possible solutions.
+The following page provides an overview of all notifications in Neo4j, including the GQLSTATUS codes and Neo4j codes, along with some scenarios and their possible solutions.
 
 * <<_performance_notifications, `PERFORMANCE` notifications>>
 * <<_hint_notifications, `HINT` notifications>>
