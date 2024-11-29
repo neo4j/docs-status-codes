@@ -208,4 +208,47 @@ The server and driver communicate with each other through the Bolt protocol.
 During the handshake process, they agree on using the newest possible Bolt protocol version that both the server and the driver support.
 For more information on the Bolt versions supported by different server versions, see the link:https://neo4j.com/docs/bolt/current/bolt-compatibility[Bolt Protocol documentation].
 
+The new error framework with the additional GQL-status object for errors is available in the JSON format query log for Neo4j server Neo4j 5.25 and later versions.
+It is supported over Bolt since Bolt 5.7, which corresponds to version 5.26 or later on both server and driver side.
+
+To fully utilize the new error framework, both your server and the driver must support it.
+Drivers that are older than 5.26 will not send any GQL-status object for exceptions, even if server is 5.26 or later.
+
+If a driver of version 5.26 or later talks to a server that is older than 5.26, the driver needs to poly-fill the exceptions with a GQL-status object.
+In this case, the default GQLSTATUS code 50N42 is returned for all exceptions.
+
+.Error compatibility matrix
+[cols="2,3,3", options="header"]
+|===
+|
+|Driver 5.25 or older
+|Driver 5.26 or newer
+
+| Server 5.24 or older
+| Bolt: old format
+
+Query log: old format
+
+| Bolt: new format with default values
+
+Query log: old format
+
+| Server 5.25
+| Bolt: old format
+
+Query log: new format
+| Bolt: new format with default values
+
+Query log: new format
+
+| Server 5.26 or newer
+| Bolt: old format
+
+Query log: new format
+
+| Bolt: new format
+
+Query log: new format
+
+|===
 
