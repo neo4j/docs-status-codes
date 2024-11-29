@@ -1,5 +1,5 @@
 name: status-codes
-title: Status Codes
+title: Status Codes for Errors & Notifications
 version: '5'
 start_page: ROOT:index.adoc
 nav:
