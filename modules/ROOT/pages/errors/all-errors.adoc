@@ -32,7 +32,7 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j  code
+| Neo4j code
 | Description
 
 | Neo.ClientError.ChangeDataCapture.InvalidIdentifier
