@@ -52,6 +52,10 @@ Neo.ClientNotification.Cluster.NoDatabasesReallocated
 Neo.ClientNotification.Statement.SideEffectVisibility
 -----
 
+**Changed**
+
+The usage of `Neo.ClientNotification.Statement.RuntimeExperimental` has been removed.
+
 == Neo4j 5.13
 
 **New:**
