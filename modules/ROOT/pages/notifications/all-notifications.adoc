@@ -4823,3 +4823,309 @@ Description of the returned code::
 A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
 ======
 =====
+
+// TODO label for Cypher25?
+[role=label--new-2024.12]
+[#_neo_clientnotification_cluster_servercaughtup]
+=== WAIT Server caught up
+
+.Notification category details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Cluster.ServerCaughtUp
+|Title
+a|Server is caught up.
+|Description
+a|Server `(%s)` at address `(%s)` is caught up.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N85
+|Status description
+a|
+info: server is caught up. Server `${ name }` at address `${ address }` is caught up.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+
+.Successful completion of a `WAIT` command with two servers
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+
+One notification is returned for each server in the cluster:
+
+Returned GQLSTATUS code::
+03N85
+
+Returned status description::
+info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Returned GQLSTATUS code::
+03N85
+
+Returned status description::
+info: server is caught up. Server `ServerId\{0e020000}` at address `localhost:20026` is caught up.
+======
+[.include-with-neo4j--code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+One notification is returned for each server in the cluster:
+
+Description of the returned code::
+Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Description of the returned code::
+Server `ServerId\{0e020000}` at address `localhost:20026` is caught up.
+======
+=====
+
+// TODO label for Cypher25?
+[role=label--new-2024.12]
+[#_neo_clientnotification_cluster_serverfailed]
+=== WAIT Server failed
+
+.Notification category details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Cluster.ServerFailed
+|Title
+a|Server failed.
+|Description
+a|Server `(%s)` at address `(%s)` failed: (%s)
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|01N80
+|Status description
+a|
+warn: server failed. Server `${ name }` at address `${ address }` failed: `${ message }`
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
+|===
+
+
+.One out of two servers failed during `WAIT` command
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+
+One notification is returned for each server in the cluster:
+
+Returned GQLSTATUS code::
+03N85
+
+Returned status description::
+info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Returned GQLSTATUS code::
+01N80
+
+Returned status description::
+warn: server failed. Server `ServerId\{0e020000}` at address `localhost:20026` failed: Caught up but has failure for DatabaseId{0db00002[foo]} Failure: java.nio.file.FileAlreadyExistsException: <...>
+
+Suggestions for improvement::
+Investigate the failing server using the provided message.
+======
+[.include-with-neo4j--code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+One notification is returned for each server in the cluster:
+
+Description of the returned code::
+Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Description of the returned code::
+Server `ServerId\{0e020000}` at address `localhost:20026` failed: Caught up but has failure for DatabaseId{0db00002[foo]} Failure: java.nio.file.FileAlreadyExistsException: <...>
+
+Suggestions for improvement::
+Investigate the failing server using the provided message.
+======
+=====
+
+// TODO label for Cypher25?
+[role=label--new-2024.12]
+[#_neo_clientnotification_cluster_servercatchingup]
+=== WAIT Server catching up
+
+.Notification category details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Cluster.ServerCachingUp
+|Title
+a|Server is still catching up.
+|Description
+a|Server `(%s)` at address `(%s)` is still catching up.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|01N81
+|Status description
+a|
+warn: server is catching up. Server `${ name }` at address `${ address }` is still catching up.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
+|===
+
+
+.One out of two servers is still catching up during `WAIT` command
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+
+One notification is returned for each server in the cluster:
+
+Returned GQLSTATUS code::
+03N85
+
+Returned status description::
+info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Returned GQLSTATUS code::
+01N81
+
+Returned status description::
+warn: server is catching up. Server `ServerId\{0e020000}` at address `localhost:20026` is still catching up.
+
+Suggestions for improvement::
+This behaviour indicates that one of the servers is lagging behind. Investigate the server and network for performance issues or increase the wait timeout.
+======
+[.include-with-neo4j--code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+One notification is returned for each server in the cluster:
+
+Description of the returned code::
+Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Description of the returned code::
+Server `ServerId\{0e020000}` at address `localhost:20026` is still catching up.
+
+Suggestions for improvement::
+This behaviour indicates that one of the servers is lagging behind. Investigate the server and network for performance issues or increase the wait timeout.
+======
+=====
+
+// TODO label for Cypher25?
+[role=label--new-2024.12]
+[#_neo_clientnotification_cluster_serverunavailable]
+=== WAIT Server not available
+
+.Notification category details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Cluster.ServerNotAvailable
+|Title
+a|Server is not available.
+|Description
+a|Server `(%s)` at address `(%s)` is not available.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|01N82
+|Status description
+a|
+warn: server is not available. Server `${ name }` at address `${ address }` is not available.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|WARNING
+|===
+
+
+.One out of two servers is not available during `WAIT` command
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+
+One notification is returned for each server in the cluster:
+
+Returned GQLSTATUS code::
+03N85
+
+Returned status description::
+info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Returned GQLSTATUS code::
+01N82
+
+Returned status description::
+warn: server is not available. Server `ServerId\{0e020000}` at address `localhost:20026` is not available.
+
+Suggestions for improvement::
+Investigate the server to determine why it is not available.
+======
+[.include-with-neo4j--code]
+======
+Query::
++
+[source,cypher]
+----
+CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
+----
+One notification is returned for each server in the cluster:
+
+Description of the returned code::
+Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+
+Description of the returned code::
+Server `ServerId\{0e020000}` at address `localhost:20026` is not available.
+
+Suggestions for improvement::
+Investigate the server to determine why it is not available.
+======
+=====
