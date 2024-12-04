@@ -3,7 +3,7 @@
 = Server errors
 
 Neo4j returns a server error to indicate that the outcome of a Cypher query or command execution is unsuccessful.
-The driver receives these erors and sends them to the Neo4j tools (e.g. Browser, Bloom, Cypher Shell) or the user application, which display them to the user.
+The driver receives these errors and sends them to the Neo4j tools (e.g. Browser, Bloom, Cypher Shell) or the user application, which display them to the user.
 
 Starting from version 5.26, the Neo4j error codes have an additional GQL-status object along with the Neo4j exception that provides information about the status of a Cypher query or command execution in compliance with the link:https://www.iso.org/standard/76120.html[ISO/IEC 39075:2024(en) - Information technology - Database languages - GQL Standard].
 This additional GQL-status object is also displayed in the query log from Neo4j 5.25 onwards.
@@ -44,8 +44,8 @@ Each GQL-status object consists of the following fields:
 a| A 5-character string that is the concatenation of a 2-character class code followed by a 3-character subclass code, which identifies the condition of the error.
 |StatusDescription
 a| A human-readable description of the GQLSTATUS, which consists of a condition, a subcondition, and an optional additional text about the condition.
-The condition and subcondition are textual representations of the class and subclass codes, respectively.
 The format is `error: condition - subcondition. AdditionalInfo`.
+The condition and subcondition are textual representations of the class and subclass codes, respectively.
 The subcondition for the subclass 000 is empty.
 | DiagnosticRecord
 a| Extra information about the status, given as key-value pairs, both on the server and driver side.

@@ -9,7 +9,7 @@ All errors in Neo4j have severity level `ERROR`.
 
 [WARNING]
 ====
-Please note that while GQLSTATUS codes remain stable, the status descriptions associated with these codes may change over time.
+Please note that while GQLSTATUS codes remain stable (any changes to them will be breaking), changes to status descriptions associated with these codes are not breaking and may happen at any time.
 For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.
 ====
 
