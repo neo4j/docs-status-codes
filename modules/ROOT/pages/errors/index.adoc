@@ -225,30 +225,30 @@ h| Driver 5.25 or older
 h| Driver 5.26 or newer
 
 h| Server 5.24 or older
-| Bolt: old format
+| Bolt: existing error information
 
-Query log: old format
+Query log: existing error information
 
-| Bolt: new format with default values
+| Bolt: additional GQL-status object with default values
 
-Query log: old format
+Query log: existing error information
 
 h| Server 5.25
-| Bolt: old format
+| Bolt: existing error information
 
-Query log: new format
-| Bolt: new format with default values
+Query log: additional errorInfo entry
+| Bolt: additional GQL-status object with default values
 
-Query log: new format
+Query log: additional errorInfo entry
 
 h| Server 5.26 or newer
-| Bolt: old format
+| Bolt: existing error information
 
-Query log: new format
+Query log: additional errorInfo entry
 
-| Bolt: new format
+| Bolt: additional GQL-status object
 
-Query log: new format
+Query log: additional errorInfo entry
 
 |===
 
