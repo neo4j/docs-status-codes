@@ -4835,16 +4835,16 @@ A variable-length relationship variable is bound more than once, which leads to 
 |Neo4j  code
 m|Neo.ClientNotification.Cluster.ServerCaughtUp
 |Title
-a|Server is caught up.
+a|Server has caught up.
 |Description
-a|Server `(%s)` at address `(%s)` is caught up.
+a|Server `(%s)` at address `(%s)` has caught up.
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|03N85
 |Status description
 a|
-info: server is caught up. Server `${ name }` at address `${ address }` is caught up.
+info: server has caught up. Server `${ name }` at address `${ address }` has caught up.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -4870,13 +4870,13 @@ Returned GQLSTATUS code::
 03N85
 
 Returned status description::
-info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+info: server has caught up. Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Returned GQLSTATUS code::
 03N85
 
 Returned status description::
-info: server is caught up. Server `ServerId\{0e020000}` at address `localhost:20026` is caught up.
+info: server has caught up. Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 ======
 [.include-with-neo4j--code]
 ======
@@ -4889,10 +4889,10 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
 One notification is returned for each server in the cluster:
 
 Description of the returned code::
-Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Description of the returned code::
-Server `ServerId\{0e020000}` at address `localhost:20026` is caught up.
+Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 ======
 =====
 
@@ -4942,7 +4942,7 @@ Returned GQLSTATUS code::
 03N85
 
 Returned status description::
-info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+info: server has caught up. Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Returned GQLSTATUS code::
 01N80
@@ -4964,7 +4964,7 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
 One notification is returned for each server in the cluster:
 
 Description of the returned code::
-Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Description of the returned code::
 Server `ServerId\{0e020000}` at address `localhost:20026` failed: Caught up but has failure for DatabaseId{0db00002[foo]} Failure: java.nio.file.FileAlreadyExistsException: <...>
@@ -5020,7 +5020,7 @@ Returned GQLSTATUS code::
 03N85
 
 Returned status description::
-info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+info: server has caught up. Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Returned GQLSTATUS code::
 01N81
@@ -5042,7 +5042,7 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
 One notification is returned for each server in the cluster:
 
 Description of the returned code::
-Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Description of the returned code::
 Server `ServerId\{0e020000}` at address `localhost:20026` is still catching up.
@@ -5098,7 +5098,7 @@ Returned GQLSTATUS code::
 03N85
 
 Returned status description::
-info: server is caught up. Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+info: server has caught up. Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Returned GQLSTATUS code::
 01N82
@@ -5120,7 +5120,7 @@ CREATE DATABASE foo TOPOLOGY 2 PRIMARIES WAIT
 One notification is returned for each server in the cluster:
 
 Description of the returned code::
-Server `ServerId\{0e010000}` at address `localhost:20025` is caught up.
+Server `ServerId\{0e010000}` at address `localhost:20025` has caught up.
 
 Description of the returned code::
 Server `ServerId\{0e020000}` at address `localhost:20026` is not available.
