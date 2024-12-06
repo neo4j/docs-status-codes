@@ -4824,8 +4824,7 @@ A variable-length relationship variable is bound more than once, which leads to 
 ======
 =====
 
-// TODO label for Cypher25?
-[role=label--new-2024.12]
+[role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_servercaughtup]
 === WAIT Server caught up
 
@@ -4896,8 +4895,7 @@ Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 ======
 =====
 
-// TODO label for Cypher25?
-[role=label--new-2024.12]
+[role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_serverfailed]
 === WAIT Server failed
 
@@ -4974,8 +4972,7 @@ Investigate the failing server using the provided message.
 ======
 =====
 
-// TODO label for Cypher25?
-[role=label--new-2024.12]
+[role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_servercatchingup]
 === WAIT Server catching up
 
@@ -5052,8 +5049,7 @@ This behaviour indicates that one of the servers is lagging behind. Investigate 
 ======
 =====
 
-// TODO label for Cypher25?
-[role=label--new-2024.12]
+[role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_serverunavailable]
 === WAIT Server not available
 
