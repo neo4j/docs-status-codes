@@ -1035,6 +1035,10 @@ Status description:: info: invalid alias target. Aliases are not allowed to targ
 
 Status description:: info: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
 
+=== 42NA8
+
+Status description:: error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `{ $cmd }`.
+
 === 42NA9
 
 Status description:: error: syntax error or access rule violation - system database procedure rules. The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: 'CALL', 'YIELD', 'RETURN'. 'YIELD' and 'RETURN' clauses are optional. The order of the clauses is fixed and each can only occur once.
