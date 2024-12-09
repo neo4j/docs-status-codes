@@ -4897,7 +4897,7 @@ Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 
 [role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_serverfailed]
-=== WAIT Server failed
+=== Server failed during `WAIT` command
 
 .Notification category details
 [cols="<1s,<4"]
