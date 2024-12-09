@@ -4826,7 +4826,7 @@ A variable-length relationship variable is bound more than once, which leads to 
 
 [role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_servercaughtup]
-=== WAIT Server caught up
+=== Server has caught up during `WAIT` command
 
 .Notification category details
 [cols="<1s,<4"]
