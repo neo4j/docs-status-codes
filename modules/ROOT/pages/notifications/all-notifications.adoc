@@ -5026,7 +5026,8 @@ Returned status description::
 warn: server is catching up. Server `ServerId\{0e020000}` at address `localhost:20026` is still catching up.
 
 Suggestions for improvement::
-This behaviour indicates that one of the servers is lagging behind. Investigate the server and network for performance issues or increase the wait timeout.
+This behaviour indicates that one of the servers is lagging behind.
+Investigate the server and network for performance issues or increase the wait timeout.
 ======
 [.include-with-neo4j--code]
 ======
