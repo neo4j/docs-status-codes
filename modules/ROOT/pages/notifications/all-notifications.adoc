@@ -5053,7 +5053,7 @@ Investigate the server and network for performance issues or increase the wait t
 
 [role=label--new-2025.01 label--Cypher25]
 [#_neo_clientnotification_cluster_serverunavailable]
-=== WAIT Server not available
+=== Server is not available during `WAIT` command
 
 .Notification category details
 [cols="<1s,<4"]
