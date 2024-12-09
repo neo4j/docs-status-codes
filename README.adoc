@@ -2,7 +2,7 @@
 
 = docs-status-codes
 
-This repository contains the AsciiDoc and other sources to build the link:{docs-uri}/status-codes[Neo4j Status Codes].
+This repository contains the AsciiDoc and other sources to build the link:{docs-uri}/status-codes[Status Codes for Errors & Notifications].
 
 [[local-build]]
 == Installation
