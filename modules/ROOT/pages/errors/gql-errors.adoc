@@ -1,0 +1,1504 @@
+:description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
+
+[[neo4j-gqlstatus-errors]]
+= List of GQLSTATUS error codes
+
+//The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
+The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
+All errors in Neo4j have severity level `ERROR`.
+
+[WARNING]
+====
+Please note that while GQLSTATUS codes remain stable (any changes to them will be breaking), changes to status descriptions associated with these codes are not breaking and may happen at any time.
+For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.
+====
+
+== Connection exceptions
+
+Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
+
+=== 08000
+
+Status description:: error: connection exception
+
+=== 08007
+
+Status description:: error: connection exception - transaction resolution unknown
+
+=== 08N00
+
+Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ $db }`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
+
+
+=== 08N01
+
+Status description:: error: connection exception - unable to write to database. Unable to write to database `{ $db }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting '{ $cfgSetting }=true'.
+
+//Possible solutions:
+//Either connect to the database directly using the driver or interactively with the `:use `{ $db }` command), or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
+
+=== 08N02
+
+Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ $db }`. Server-side routing is disabled. Either connect to `{ $db }` directly, or enable server-side routing by setting '{ $cfgSetting }=true'.
+
+Example error description:: error: connection exception - unable to route to database. Unable to connect to database `my_db`. Server-side routing is disabled. Either connect to `my_db` directly, or enable server-side routing by setting 'dbms.routing.enabled=true'.
+
+//Possible solutions:
+//Either connect to the database directly using the driver or interactively with the `:use `{ $db }` command), or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
+
+=== 08N03
+
+Status description:: error: connection exception - failed to write to graph. Failed to write to graph `{ $graph }`. Check the defined access mode in both driver and database.
+
+=== 08N04
+
+Status description:: error: unable to route use clause. Routing with `{ $clause }` is not supported in embedded sessions. Connect to the database directly or try running the query using a Neo4j driver or the HTTP API.
+
+=== 08N05
+
+Status description:: error: connection exception - unable to route administration command. Routing administration commands is not supported in embedded sessions. Connect to the system database directly or try running the query using a Neo4j driver or the HTTP API.
+
+=== 08N06
+
+Status description:: error: connection exception - protocol error. General network protocol error.
+
+=== 08N07
+
+Status description:: error: connection exception - not the leader. This member is not the leader.
+
+//Possible solutions:
+//No write operations are allowed directly on this database. Connect to the leader directly or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
+
+=== 08N08
+
+Status description:: error: connection exception - database is read only. This database is read only on this server.
+
+=== 08N09
+
+Status description:: error: connection exception - database unavailable. The database `{ $db }` is currently unavailable. Check the database status. Retry your request at a later time.
+
+=== 08N10
+
+Status description:: error: connection exception - invalid server state. Message `{ $msg }` cannot be handled by session in the `{ $boltServerState }` state.
+
+=== 08N11
+
+Status description:: error: connection exception - request error. The request is invalid and could not be processed by the server. See cause for further details.
+
+=== 08N12
+
+Status description:: error: connection exception - failed to parse bookmark. Failed to parse the supplied bookmark. Verify it is correct or check the debug log for more information.
+
+=== 08N13
+
+Status description:: error: connection exception - database not up to requested bookmark. The database `{ $db }` is not up to the requested bookmark `{ $transactionId1 }`. The latest transaction ID is `{ $transactionId2 }`.
+
+=== 08N14
+
+Status description:: error: connection exception - alias chains are not permitted. Unable to provide a routing table for the database identifed by the alias `{ $alias1 }` because the request comes from another alias `{ $alias2 }` and alias chains are not permitted.
+
+=== 08N15
+
+Status description:: error: connection exception - no such routing policy. Policy definition of the routing policy `{ $routingPolicy }` could not be found. Verify that the spelling is correct.
+
+=== 08N16
+
+Status description:: error: connection exception - general driver client error. Remote execution failed with message `{ $msg }`.
+
+=== 08N17
+
+Status description:: error: connection exception - general driver transient error. Remote execution failed with message `{ $msg }`.
+
+=== 08N18
+
+Status description:: error: connection exception - general driver database error. Remote execution failed with message `{ $msg }`.
+
+== Data exceptions
+
+Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
+
+=== 22000
+
+Status description:: error: data exception
+
+=== 22003
+
+Status description:: error: data exception - numeric value out of range. The numeric value `{ $value }` is outside the required range.
+
+=== 22007
+
+Status description:: error: data exception - invalid date, time, or datetime format
+
+=== 22015
+
+Status description:: error: data exception - interval field overflow
+
+=== 22G03
+
+Status description:: error: data exception - invalid value type
+
+=== 22N00
+
+Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
+
+=== 22N01
+
+Status description:: error: data exception - invalid type.
+Expected the value `{ $value }` to be of type `{ $valueTypeList }`, but was of type `{ $valueType }`.
+
+=== 22N02
+
+Status description:: error: data exception - specified negative numeric value. Expected `{ $option }` to be a positive number but found `{ $value }` instead.
+
+=== 22N03
+
+Status description:: error: data exception - specified numeric value out of range. Expected `{ $component }` to be of type `{ $valueType }` and in the range `{ $lower }`  to `{ $upper }` but found `{ $value }`.
+
+=== 22N04
+
+Status description:: error: data exception - invalid input value. Invalid input `{ $input }` for `{ $context }`. Expected `{ $inputList }`.
+
+=== 22N05
+
+Status description:: error: data exception - input failed validation. Invalid input `{ $input }` for `{ $context }`.
+
+=== 22N06
+
+Status description:: error: data exception - empty input string. Invalid input. `{ $option }` needs to be specified.
+
+// Example error message:: 22N06: Invalid input. 'myOption' needs to be specified.
+
+=== 22N07
+
+Status description:: error: data exception - invalid pre-parser option key. Invalid pre-parser option(s): `{ $optionList }`.
+
+=== 22N08
+
+Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `{ $option1 }` with `{ $option2 }`.
+
+=== 22N09
+
+Status description:: error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for `{ $option }`.
+
+=== 22N10
+
+Status description:: error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `{ $input }` is not valid for option `{ $option }`. Valid options are: `{ $optionList }`.
+
+=== 22N11
+
+Status description:: error: data exception - invalid argument. Invalid argument: cannot process `{ $input }`.
+
+=== 22N12
+
+Status description:: error: data exception - invalid date, time, or datetime format. Invalid argument: cannot process `{ $input }`.
+
+=== 22N13
+
+Status description:: error: data exception - invalid time zone. Specified time zones must include a date component.
+
+=== 22N14
+
+Status description:: error: data exception - invalid temporal value combination. Cannot select both `{ $temporal }` and `{ $component }`.
+
+=== 22N15
+
+Status description:: error: data exception - invalid temporal component. Cannot read the specified `{ $component }` component from `{ $temporal }`.
+
+// === 22N16
+
+// Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ $expr }` to `{ $graph }`.
+
+// === 22N17
+
+// Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified `{ $component }` component from `{ $temporal }`.
+
+=== 22N18
+
+Status description:: error: data exception - incomplete spatial value. A `{ $crs }` POINT must contain `{ $mapKeyList }`.
+
+=== 22N19
+
+Status description:: error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
+
+=== 22N20
+
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
+
+// === 22N21
+
+// Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `{ $crs }`.
+
+=== 22N22
+
+Status description:: error: data exception - invalid spatial value combination. Cannot specify both coordinate reference system (CRS) and spatial reference identifier (SRID).
+
+=== 22N23
+
+Status description:: error: data exception - invalid latitude value. Cannot create WGS84 POINT with invalid coordinate: `{ $coordinates }`. The valid range for the latitude coordinate is [-90, 90].
+
+=== 22N24
+
+Status description:: error: data exception - invalid coordinate arguments. Cannot construct a `{ $valueType }` from `{ $coordinates }`.
+
+=== 22N25
+
+Status description:: error: data exception - invalid temporal arguments. Cannot construct a `{ $valueType }` from `{ $temporal }`.
+
+=== 22N26
+
+Status description:: error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: `CEILING`, `FLOOR`, `UP`, `DOWN`, `HALF_EVEN`, `HALF_UP`, `HALF_DOWN`, `UNNECESSARY`.
+
+=== 22N27
+
+Status description:: error: data exception - invalid entity type. Invalid input `{ $input }` for `{ $context }`. Expected to be `{ $valueTypeList }`.
+
+=== 22N28
+
+Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow.
+
+// === 22N29
+
+// Status description:: error: data exception - unsupported coordinate reference system. Unknown coordinate reference system (CRS).
+
+// === 22N30
+
+// Status description:: error: data exception - missing temporal unit. At least one temporal unit must be specified.
+
+// === 22N31
+
+// Status description:: error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null or NaN.
+
+=== 22N32
+
+Status description:: error: data exception - non-deterministic sort expression. 'ORDER BY' expressions must be deterministic.
+
+=== 22N33
+
+Status description:: error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ $variable }`.
+
+// === 22N34
+
+// Status description:: error: data exception - invalid use of aggregate function. Cannot use the `{ $fun }` function inside an aggregate function.
+
+=== 22N35
+
+Status description:: error: data exception - invalid date format. Cannot parse `{ $input }` as a DATE. Calendar dates need to be specified using the format 'YYYY-MM', while ordinal dates need to be specified using the format 'YYYY-DDD'.
+
+=== 22N36
+
+Status description:: error: data exception - invalid temporal format. Cannot parse `{ $input }` as a `{ $valueType }`.
+
+=== 22N37
+
+Status description:: error: data exception - invalid coercion. Cannot coerce `{ $value }` to `{ $valueType }`.
+
+=== 22N38
+
+Status description:: error: data exception - invalid function argument. Invalid argument to the function `{ $fun }`.
+
+// === 22N39
+
+// Status description:: error: data exception - unsupported property value type. Value `{ $value }` cannot be stored in properties.
+
+// === 22N40
+
+// Status description:: error: data exception - non-assignable temporal component. Cannot assign `{ $component }` of a `{ $valueType }`.
+
+=== 22N41
+
+Status description:: error: data exception - merge node uniqueness constraint violation. The 'MERGE' clause did not find a matching node `{ $variable }` and cannot create a new node due to conflicts with existing uniqueness constraints.
+
+=== 22N42
+
+Status description:: error: data exception - merge relationship uniqueness constraint violation. The 'MERGE' clause did not find a matching relationship `{ $variable }` and cannot create a new relationship due to conflicts with existing uniqueness constraints.
+
+=== 22N43
+
+Status description:: error: data exception - unable to load external resource. Could not load external resource from `{ $url }`.
+
+=== 22N44
+
+Status description:: error: data exception - parallel runtime disabled. Parallel runtime has been disabled, enable it or upgrade to a bigger Aura instance.
+
+=== 22N46
+
+Status description:: error: data exception - unsupported use of parallel runtime. Parallel runtime does not support updating queries or a change in the state of transactions. Use another runtime.
+
+=== 22N47
+
+Status description:: error: data exception - invalid parallel runtime configuration. No workers are configured for the parallel runtime. Set 'server.cypher.parallel.worker_limit' to a larger value.
+
+// === 22N48
+
+// Status description:: error: data exception - unable to use specified runtime. Cannot use the specified runtime `{ $runtime }` due to `{ $cause }`. Use another runtime.
+
+=== 22N49
+
+Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via 'dbms.import.csv.buffer_size'.
+
+=== 22N51
+
+Status description:: error: data exception - database or alias does not exist. A [composite] database or alias with the name `{ $db }` does not exist. Verify that the spelling is correct.
+
+=== 22N52
+
+Status description:: error: data exception - invalid combination of PROFILE and EXPLAIN. 'PROFILE' and 'EXPLAIN' cannot be combined.
+
+=== 22N53
+
+Status description:: error: data exception - invalid use of PROFILE. Cannot 'PROFILE' query before results are materialized.
+
+=== 22N54
+
+Status description:: error: data exception - invalid map. Multiple conflicting entries specified for `{ $mapKey }`.
+
+// === 22N55
+
+// Status description:: error: data exception - required key missing from map. Map requires key `{ $mapKey }` but was missing from field `{ $field }`.
+
+=== 22N56
+
+Status description:: error: data exception - protocol message length limit overflow. Protocol message length limit exceeded (limit: `{ $boltMsgLenLimit }`).
+
+// === 22N57
+
+// Status description:: error: data exception - invalid protocol type. Protocol type is invalid. Invalid number of struct components (received `{ $count1 }` but expected `{ $count2 }`).
+
+// === 22N58
+
+// Status description:: error: data exception - invalid spatial component. Cannot read the specified `{ $component }` component from `{ $value }`.
+
+// === 22N59
+
+// Status description:: error: data exception - token does not exist. The `{ $tokenType }` token with id `{ $tokenId }` does not exist.
+
+// === 22N62
+
+// Status description:: error: data exception - relationship type does not exist. The relationship type `{ $relType }` does not exist.
+
+// === 22N63
+
+// Status description:: error: data exception - property key does not exist. The property key `{ $propKey }` does not exist.
+
+// === 22N64
+
+// Status description:: error: data exception - constraint does not exist. The constraint `{ $constrDescrOrName }` does not exist.
+
+// === 22N65
+
+// Status description:: error: data exception - equivalent constraint already exists. An equivalent constraint already exists: `{ $constrDescrOrName }`.
+
+=== 22N66
+
+Status description:: error: data exception - conflicting constraint already exists. A conflicting constraint already exists: `{ $constrDescrOrName }`.
+
+=== 22N67
+
+Status description:: error: data exception - duplicated constraint name. A constraint with the same name already exists: `{ $constr }`.
+
+// === 22N68
+
+// Status description:: error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.
+
+=== 22N69
+
+Status description:: error: data exception - index does not exist. The index specified by `{ $idxDescrOrName }` does not exist.
+
+// === 22N70
+
+// Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ $idxDescrOrName }`.
+
+=== 22N71
+
+Status description:: error: data exception - index with the same name already exists. An index with the same name already exists: `{ $idx }`.
+
+// === 22N72
+
+// Status description:: error: data exception - index required by existing constraint. A requested operation can not be performed on the specified index because the index is part of a constraint.
+
+// === 22N73
+
+// Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idx }`.
+
+// === 22N74
+
+// Status description:: error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ $constr }` contains a conflicting index.
+
+// === 22N75
+
+// Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+
+// === 22N76
+
+// Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+
+=== 22N77
+
+Status description:: error: data exception - property presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the following properties: `{ $propKeyList }`.
+
+=== 22N78
+
+Status description:: error: data exception - property type verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the property `$propKey` with value type `{ $valueType }`.
+
+// === 22N79
+
+// Status description:: error: data exception - property uniqueness constraint violated. Property uniqueness constraint violated: `{ $reasons }`.
+
+=== 22N81
+
+Status description:: error: data exception - expression type unsupported here. Invalid input: `{ $exprType }` is not supported in `{ $context }`.
+
+=== 22N82
+
+Status description:: error: data exception - input contains invalid characters. Input `{ $input }` contains invalid characters for `{ $context }`. Special characters may require that the input is quoted using backticks.
+
+// === 22N83
+
+// Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ $upper }` components separated by '.'.
+
+=== 22N84
+
+Status description:: error: data exception - string too long. Expected the string to be no more than `{ $upper }` characters long.
+
+=== 22N85
+
+Status description:: error: data exception - string too short. Expected the string to be at least `{ $lower }` characters long.
+
+=== 22N86
+
+Status description:: error: data exception - numeric range 0 disallowed. Expected a nonzero number.
+
+// === 22N87
+
+// Status description:: error: data exception - numeric range 0 or greater allowed. Expected a number that is zero or greater.
+
+=== 22N88
+
+Status description:: error: data exception - not a valid CIDR IP. `{ $input }` is not a valid CIDR IP.
+
+=== 22N89
+
+Status description:: error: data exception - new password cannot be the same as the old password. Expected the new password to be different from the old password.
+
+=== 22N90
+
+Status description:: error: data exception - property type unsupported in constraint. `{ $item }` is not supported in property type constraints.
+
+=== 22N91
+
+Status description:: error: data exception - cannot convert alias local to remote or remote to local. Failed to alter the specified database alias `{ $alias }`. Altering remote alias to a local alias or vice versa is not supported. Drop and recreate the alias instead.
+
+=== 22N92
+
+Status description:: error: data exception - missing RETURN. This query requires a RETURN clause.
+
+=== 22N93
+
+Status description:: error: data exception - missing YIELD. A required YIELD clause is missing.
+
+=== 22N94
+
+Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.
+
+=== 22N95
+
+Status description:: error: data exception - parsing JSON exception. Invalid JSON input. Please check the format.
+
+=== 22N96
+
+Status description:: error: data exception - mapping JSON exception. Unable to map the JSON input. Please verify the structure.
+
+=== 22N97
+
+Status description:: error: data exception - unexpected struct tag. Unexpected struct tag: `{ $value }`.
+
+=== 22N98
+
+Status description:: error: data exception - wrong first field during deserialization. Unable to deserialize request. Expected first field to be `{ $field }`, but was '{ $value }'.
+
+=== 22N99
+
+Status description:: error: data exception - wrong token during deserialization. Unable to deserialize request. Expected `{ $token }`, found `{ $value }`.
+
+=== 22NA0
+
+Status description:: error: data exception - invalid property based access control rule. Failed to administer property rule.
+
+// === 22NA1
+
+// Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.
+
+// === 22NA2
+
+// Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ $expr }` is not supported. Property rules can only contain one property.
+
+// === 22NA3
+
+// Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+
+=== 22NA4
+
+Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'.
+
+=== 22NA5
+
+Status description:: error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `IS NULL' instead.
+
+=== 22NA6
+
+Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use 'IS NOT NULL' instead.
+
+// === 22NA7
+
+// Status description:: error: data exception - invalid property based access control rule involving nontrivial predicates. The expression: `{ $expr }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
+
+=== 22NA8
+
+Status description:: error: data exception - parsing JSON failure. Underlying error: `{ $cause }`.
+
+// === 22NA9
+
+// Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ $key }`, expected keys are `{ $listAllowedKeys }`.
+
+=== 22NB0
+
+Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `WHERE` syntax in combination with `IS NULL` instead.
+
+=== 22NB1
+
+Status description:: error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeList }` but was `{ $input }`.
+
+// === 22NFF
+
+// Status description:: error: data exception - referent does not exist. The referent of the specified reference does not exist.
+
+
+== Invalid transaction state
+
+Invalid transaction state errors occur when the transaction is in an invalid state, such as when the transaction is terminated or closed, or when there is a conflict between the transaction state and applied updates.
+
+=== 25N01
+
+Status description:: error: invalid transaction state - invalid combination of statement types. Failed to execute the query `{ $query }` due to conflicting statement types (read query, write query, schema modification, or administration command). To execute queries in the same transaction, they must be either of the same type, or be a combination of schema modifications and read commands.
+
+=== 25N02
+
+Status description:: error: invalid transaction state - unable to complete transaction. Unable to complete transaction. See debug log for details.
+
+=== 25N03
+
+Status description:: error: invalid transaction state - concurrent access violation. Transaction is being used concurrently by another request.
+
+=== 25N04
+
+Status description:: error: invalid transaction state - specified transaction does not exist.
+Transaction `{ $transactionId }` does not exist.
+
+=== 25N05
+
+Status description:: error: invalid transaction state - transaction terminated or closed. The transaction has been terminated or closed.
+
+=== 25N06
+
+Status description:: error: invalid transaction state - transaction start failed. Failed to start transaction. See debug log for details.
+
+// === 25N07
+
+// Status description:: error: invalid transaction state - constituent transaction start failed. Failed to start constituent transaction. See debug log for details.
+
+=== 25N08
+
+Status description:: error: invalid transaction state - invalid transaction lease. The lease for the transaction is no longer valid.
+
+=== 25N09
+
+Status description:: error: invalid transaction state - internal transaction failure. The transaction failed due to an internal error.
+
+=== 25N11
+
+Status description:: error: invalid transaction state - conflicting transaction state. There was a conflict detected between the transaction state and applied updates. Please retry the transaction.
+
+=== 25N12
+
+Status description:: error: invalid transaction state - index was dropped. Index `{ $idx }` was dropped in this transaction and cannot be used.
+
+=== 25N13
+
+Status description:: error: invalid transaction state - cannot access entity after removal. A `{ $entityType }` was accessed after being deleted in this transaction. Verify the transaction statements.
+
+== Invalid transaction termination
+
+Invalid transaction termination errors occur when the transaction termination fails, such as when the transaction or constituent transaction fails to commit, or when the transaction termination fails to apply or append the transaction.
+
+=== 2DN01
+
+Status description:: error: invalid transaction termination - commit failed. Failed to commit transaction. See debug log for details.
+
+=== 2DN02
+
+Status description:: error: invalid transaction termination - constituent commit failed. Failed to commit constituent transaction. See debug log for details.
+
+=== 2DN03
+
+Status description:: error: invalid transaction termination - transaction termination failed. Failed to terminate transaction. See debug log for details.
+
+=== 2DN04
+
+Status description:: error: invalid transaction termination - constituent transaction termination failed. Failed to terminate constituent transaction. See debug log for details.
+
+=== 2DN05
+
+Status description:: error: invalid transaction termination - failed to apply transaction. There was an error on applying the transaction. See logs for more information.
+
+=== 2DN06
+
+Status description:: error: invalid transaction termination - failed to append transaction. There was an error on appending the transaction. See logs for more information.
+
+=== 2DN07
+
+Status description:: error: invalid transaction termination - inner transactions still open. Unable to commit transaction because it still have non-closed inner transactions.
+
+[[transaction-rollback]]
+== Transaction rollback
+
+Transaction rollback errors occur when there is a failure in a transaction or a constituent transaction rollback.
+
+=== 40000
+
+Status description:: error: transaction rollback
+
+=== 40003
+
+Status description:: error: transaction rollback - statement completion unknown
+
+=== 40N01
+
+Status description:: error: transaction rollback - rollback failed. Failed to rollback transaction. See debug log for details.
+
+=== 40N02
+
+Status description:: error: transaction rollback - constituent rollback failed. Failed to rollback constituent transaction. See debug log for details.
+
+[[syntax-error-access-rule-violation]]
+== Syntax error or access rule violation
+
+Syntax error or access rule violation errors occur when a Cypher query contains invalid syntax or when a client request violates the access rules, such as when a query tries to access a database without enough privileges, etc.
+
+=== 42000
+
+Status description:: error: syntax error or access rule violation
+
+=== 42001
+
+Status description:: error: syntax error or access rule violation - invalid syntax
+
+=== 42002
+
+Status description:: error: syntax error or access rule violation - invalid reference
+
+// === 42004
+
+// Status description:: error: syntax error or access rule violation - use of visually confusable identifiers
+
+=== 42006
+
+Status description:: error: syntax error or access rule violation - number of edge labels below supported minimum
+
+=== 42007
+
+Status description:: error: syntax error or access rule violation - number of edge labels exceeds supported maximum
+
+=== 42008
+
+Status description:: error: syntax error or access rule violation - number of edge properties exceeds supported maximum
+
+=== 42009
+
+Status description:: error: syntax error or access rule violation - number of node labels below supported minimum
+
+=== 42010
+
+Status description:: error: syntax error or access rule violation - number of node labels exceeds supported maximum
+
+=== 42011
+
+Status description:: error: syntax error or access rule violation - number of node properties exceeds supported maximum
+
+=== 42012
+
+Status description:: error: syntax error or access rule violation - number of node type key labels below supported minimum
+
+=== 42013
+
+Status description:: error: syntax error or access rule violation - number of node type key labels exceeds supported maximum
+
+=== 42014
+
+Status description:: error: syntax error or access rule violation - number of edge type key labels below supported minimum
+
+=== 42015
+
+Status description:: error: syntax error or access rule violation - number of edge type key labels exceeds supported maximum
+
+=== 42I00
+
+Status description:: error: syntax error or access rule violation - invalid case expression. 'CASE' expressions must have the same number of 'WHEN' and 'THEN' operands.
+
+=== 42I01
+
+Status description:: error: syntax error or access rule violation - invalid `FOREACH`. Invalid use of `{ $clause }` inside 'FOREACH'.
+
+=== 42I02
+
+Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
+
+=== 42I05
+
+Status description:: error: syntax error or access rule violation - invalid FIELDTERMINATOR. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide.
+
+=== 42I06
+
+Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input }`, expected: `{ $valueList }`.
+
+=== 42I13
+
+Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ $count1 }` but got `{ $count2 }`. The procedure or function `{ $procFun }` has the signature: `{ $sig }`.
+
+=== 42I18
+
+Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ $varList }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
+
+
+=== 42I20
+
+Status description:: error: syntax error or access rule violation - invalid symbol in expression. Label expressions and relationship type expressions cannot contain `{ $input }`. To express a label disjunction use `{ $labelExpr }` instead.
+
+=== 42I25
+
+Status description:: error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
+
+=== 42I29
+
+Status description:: error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
+
+=== 42I31
+
+Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a `WITH` clause between them.
+
+
+=== 42I37
+
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN *`. 'RETURN *' is not allowed when there are no variables in scope.
+
+=== 42I38
+
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. 'RETURN ...' can only be used at the end of a query or subquery.
+
+=== 42I40
+
+Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
+
+=== 42I45
+
+Status description:: error: syntax error or access rule violation - invalid use of multiple path patterns. Multiple path patterns cannot be used in the same clause in combination with a selective path selector. `{ $action }`
+
+=== 42I47
+
+Status description:: error: syntax error or access rule violation - parser error. Parser Error: `{ $msg }`.
+
+=== 42I48
+
+Status description:: error: syntax error or access rule violation - invalid use of a subquery in MERGE. Subqueries are not allowed in a MERGE clause.
+
+=== 42I50
+
+Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ $input }..`. A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
+
+=== 42I51
+
+Status description:: info: invalid call signature. The procedure or function `{ $procFun }` must have the signature: `{ $sig }`.
+
+=== 42N00
+
+Status description:: error: syntax error or access rule violation - no such database. The database `{ $db }` was not found. Verify that the spelling is correct.
+
+=== 42N01
+
+Status description:: error: syntax error or access rule violation - no such constituent graph exists in composite database. The constituent graph `{ $graph }` was not found in the in composite database `{ $db }`. Verify that the spelling is correct.
+
+=== 42N02
+
+Status description:: error: syntax error or access rule violation - writing in read access mode. Writing in read access mode not allowed.
+
+=== 42N03
+
+Status description:: error: syntax error or access rule violation - writing to multiple graphs. Writing to multiple graphs in the same transaction is not allowed. Use `CALL IN TRANSACTION` or create separate transactions in your application.
+
+=== 42N04
+
+Status description:: error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by `{ $db1 }` while connected to session database `{ $db2 }`. Connect to `{ $db3 }` directly.
+
+=== 42N05
+
+Status description:: error: syntax error or access rule violation - unsupported access of standard database. Failed to access database identified by `{ $db1 }` while connected to composite session database `{ $db2 }`. Connect to `{ $db3 }` directly or create an alias in the composite database.
+
+=== 42N06
+
+Status description:: error: syntax error or access rule violation - unsupported action on composite database. `{ $action }` is not supported on composite databases.
+
+=== 42N07
+
+Status description:: error: syntax error or access rule violation - variable shadowing. The variable `{ $variable }` is shadowing a variable with the same name from the outer scope and needs to be renamed.
+
+=== 42N08
+
+Status description:: error: syntax error or access rule violation - no such procedure or function. The procedure or function `{ $procFun }` was not registered for this database instance. Verify that the spelling is correct.
+
+=== 42N09
+
+Status description:: error: syntax error or access rule violation - no such user. A user with the name `{ $user }` was not found. Verify that the spelling is correct.
+
+=== 42N10
+
+Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ $role }` was not found. Verify that the spelling is correct.
+
+=== 42N11
+
+Status description:: error: syntax error or access rule violation - database or alias already exists. A `[composite]` database or alias with the name `{ $db }` already exists.
+
+=== 42N12
+
+Status description:: error: syntax error or access rule violation - user already exists. A user with the name `{ $user }` already exists.
+
+=== 42N13
+
+Status description:: error: syntax error or access rule violation - role already exists. A role with the name `{ $role }` already exists.
+
+=== 42N14
+
+Status description:: error: syntax error or access rule violation - invalid use of command. `{ $clause }` cannot be used together with `{ $cmd }`.
+
+=== 42N15
+
+Status description:: error: syntax error or access rule violation - invalid use of reserved keyword. `{ $syntax }` is a reserved keyword and cannot be used in this place.
+
+=== 42N16
+
+Status description:: error: syntax error or access rule violation - unsupported index or constraint. Only single property `{ $idxType }` are supported.
+
+=== 42N17
+
+Status description:: error: syntax error or access rule violation - unsupported request. `{ $input }` is not allowed on the system database.
+
+=== 42N19
+
+Status description:: error: syntax error or access rule violation - duplicate clause. Duplicate `{ $syntax }` clause.
+
+=== 42N20
+
+Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator '[ ]' cannot be empty.
+
+
+=== 42N21
+
+Status description:: error: syntax error or access rule violation - unaliased return item. Expression in `{ $clause }` must be aliased (use AS).
+
+
+=== 42N22
+
+Status description:: error: syntax error or access rule violation - single return column required. A `COLLECT` subquery must end with a single return column.
+
+=== 42N24
+
+Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ $input1 }` and `{ $input2 }`.
+
+
+=== 42N29
+
+Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $var }`.
+
+=== 42N31
+
+Status description:: error: syntax error or access rule violation - specified number out of range. Expected `{ $component }` to be `{ $valueType }` in the range `{ $lower }` to `{ $upper }` but found `{ $value }`.
+
+=== 42N39
+
+Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.
+
+=== 42N40
+
+Status description:: error: syntax error or access rule violation - single relationship pattern required. The `{ $fun }` function must contain one relationship pattern.
+
+=== 42N42
+
+Status description:: error: syntax error or access rule violation - unsupported sub-path binding. Sub-path assignment is not supported.
+
+=== 42N45
+
+Status description:: error: syntax error or access rule violation - unexpected end of input. Unexpected end of input, expected 'CYPHER', 'EXPLAIN', 'PROFILE' or a query.
+
+=== 42N49
+
+Status description:: error: syntax error or access rule violation - unsupported normal form. Unknown Normal Form: `{ $input }`.
+
+=== 42N51
+
+Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ $param }`.
+
+=== 42N57
+
+Status description:: error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ $expr }` cannot contain any updating clauses.
+
+=== 42N70
+
+Status description:: error: syntax error or access rule violation - function without required WHERE clause. The function `{ $fun }` requires a WHERE clause.
+
+=== 42N71
+
+Status description:: error: syntax error or access rule violation - incomplete query. A query must conclude with a `RETURN` clause, a `FINISH` clause, an update clause, a unit subquery call, or a procedure call without a `YIELD` clause.
+
+=== 42N73
+
+Status description:: error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to '... UNION ...' . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
+
+=== 42N74
+
+Status description:: error: syntax error or access rule violation - invalid nested USE clause. Failed to access `{ $db1 }` and `{ $db2 }`. Child USE clauses must target the same graph as their parent query. Run in separate (sub)queries instead.
+
+=== 42N75
+
+Status description:: error: syntax error or access rule violation - invalid use of graph function. A call to the graph function `{ $fun }` is only allowed as the top-level argument of a `USE` clause.
+
+=== 42N76
+
+Status description:: error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintAndedList }` cannot be fulfilled.
+
+=== 42N77
+
+Status description:: error: syntax error or access rule violation - missing hint predicate. The hint `{ $hint }` cannot be fulfilled. The query does not contain a compatible predicate for `{ $entityType }` on `{ $variable }`.
+
+=== 42N78
+
+Status description:: error: syntax error or access rule violation - variable already bound. Node `{ $var }` has already been bound and cannot be modified by the `{ $clause }` clause.
+
+=== 42N83
+
+Status description:: error: syntax error or access rule violation - impersonation disallowed while password change required. Cannot impersonate a user while password change required.
+
+=== 42N84
+
+Status description:: error: syntax error or access rule violation - `TERMINATE TRANSACTION` misses `YIELD` clause. `WHERE` clause without `YIELD` clause. Use 'TERMINATE TRANSACTION ... YIELD ... WHERE ...'.
+
+=== 42N85
+
+Status description:: error: syntax error or access rule violation - cannot specify both allowed and denied databases. Allowed and denied database options are mutually exclusive.
+
+=== 42N86
+
+Status description:: error: syntax error or access rule violation - wildcard in parameter. `{ $syntax }` failed. Parameterized database and graph names do not support wildcards.
+
+=== 42N88
+
+Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for 'REMOVE IMMUTABLE PRIVILEGE'.
+
+=== 42N89
+
+Status description:: error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. `{ $cause }`
+
+=== 42N90
+
+Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ $db }`).
+
+=== 42N97
+
+Status description:: error: syntax error or access rule violation - missing mandatory auth clause. Clause `{ $clause }` is mandatory for auth provider `{ $auth }`.
+
+
+=== 42N98
+
+Status description:: error: syntax error or access rule violation - cannot modify own user. Cannot modify the user record of the current user.
+
+=== 42N99
+
+Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
+
+=== 42NA5
+
+Status description:: info: accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.
+
+=== 42NA6
+
+Status description:: info: invalid alias target. Aliases are not allowed to target composite databases.
+
+=== 42NA7
+
+Status description:: info: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
+
+=== 42NFD
+
+Status description:: error: syntax error or access rule violation - credentials expired. Permission denied. The credentials you provided were valid, but must be changed before you can use this instance.
+
+=== 42NFE
+
+Status description:: error: syntax error or access rule violation - auth info expired. Authentication and/or authorization info expired.
+
+=== 42NFF
+
+Status description:: error: syntax error or access rule violation - permission/access denied. Access denied, see the security logs for details.
+
+
+== General processing exception
+
+General processing exceptions occur when there is a general processing error, such as an internal error, deadlock, execution failure, invalid server state transition, constraint creation or drop failure, etc.
+
+=== 50N00
+
+Status description:: error: general processing exception - internal error. Internal exception raised `{ $msgTitle }`: `{ $msg }`
+
+=== 50N05
+
+Status description:: error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.
+
+=== 50N06
+
+Status description:: error: general processing exception - remote execution client error. Remote execution failed. See cause for more details.
+
+=== 50N07
+
+Status description:: error: general processing exception - execution failed. Execution failed. See cause and debug log for details.
+
+=== 50N09
+
+Status description:: error: general processing exception - invalid server state transition. The server transitioned into a server state that is not valid in the current context: `{ $boltServerState }`.
+
+=== 50N11
+
+Status description:: error: general processing exception - constraint creation failed. Unable to create `{ $constrDescrOrName }`.
+
+=== 50N12
+
+Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
+
+=== 50N16
+
+Status description:: error: general processing exception - remote execution transient error. Remote execution failed. See cause for more details.
+
+=== 50N17
+
+Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
+
+=== 50N42
+
+Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
+
+[NOTE]
+====
+50N42 is the default GQLSTATUS code for exceptions without a GQL object.
+For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
+====
+
+== System configuration or operation exception
+
+System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
+
+=== 51N00
+
+Status description:: error: system configuration or operation exception - procedure registration error. Failed to register procedure/function.
+
+
+=== 51N01
+
+Status description:: error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ $procField }` in the class `{ $procClass }` is annotated as a '@Context' field, but it is declared as static. '@Context' fields must be public, non-final and non-static.
+
+=== 51N02
+
+Status description:: error: system configuration or operation exception - unsupported injectable component type. Unable to set up injection for procedure `{ $procClass }`. The field `{ $procField }` has type `{ $procFieldType }` which is not a supported injectable component.
+
+
+=== 51N03
+
+Status description:: error: system configuration or operation exception - unable to access field. Unable to set up injection for `{ $procClass }`, failed to access field `{ $procField }`.
+
+
+=== 51N04
+
+Status description:: error: system configuration or operation exception - missing class field annotation. The field `{ $procField }` on `{ $procClass }` must be annotated as a '@Context' field in order to store its state.
+
+
+=== 51N05
+
+Status description:: error: system configuration or operation exception - class field should be public and non-final. The field `{ $procField }` on `{ $procClass }` must be declared non-final and public.
+
+
+=== 51N06
+
+Status description:: error: system configuration or operation exception - missing argument name. The argument at position `{ $pos }` in `{ $procMethod }` requires a '@Name' annotation and a non-empty name.
+
+
+=== 51N07
+
+Status description:: error: system configuration or operation exception - invalid ordering of default arguments. The `{ $procFun }` contains a non-default argument after a default argument. Non-default arguments are not allowed to be positioned after default arguments.
+
+
+=== 51N08
+
+Status description:: error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ $procClass }` must contain exactly one '@UserAggregationResult' method and exactly one '@UserAggregationUpdate' method.
+
+
+=== 51N09
+
+Status description:: error: system configuration or operation exception - @UserAggregationUpdate method must be public and void. The '@UserAggregationUpdate' method `{ $procMethod }` of `{ $procClass }` must be public and have the return type 'void'.
+
+
+=== 51N10
+
+Status description:: error: system configuration or operation exception - aggregation method not public. The method `{ $procMethod }` of `{ $procClass }` must be public.
+
+
+=== 51N11
+
+Status description:: error: system configuration or operation exception - class not public. The class `{ $procClass }` must be public.
+
+
+=== 51N12
+
+Status description:: error: system configuration or operation exception - class not void. The procedure `{ $proc }` has zero output fields and must be defined as void.
+
+
+=== 51N13
+
+Status description:: error: system configuration or operation exception - procedure or function name already in use. Unable to register the procedure or function `{ $procFun }` because the name is already in use.
+
+
+=== 51N14
+
+Status description:: error: system configuration or operation exception - duplicate field name.
+The procedure `{ $proc }` has a duplicate `{ $procFieldType }` field, `{ $procField }`.
+
+=== 51N15
+
+Status description:: error: system configuration or operation exception - invalid map key type. Type mismatch for map key. Required 'STRING', but found `{ $valueType }`.
+
+
+=== 51N16
+
+Status description:: error: system configuration or operation exception - invalid default value type. Type mismatch for the default value. Required `{ $valueType }`, but found `{ $input }`.
+
+
+=== 51N17
+
+Status description:: error: system configuration or operation exception - invalid procedure or function name. Procedures and functions cannot be defined in the root namespace, or use a reserved namespace. Use the package name instead (e.g., org.example.com.`{ $procFun })`.
+
+=== 51N18
+
+Status description:: error: system configuration or operation exception - invalid method return type. The method `{ $procMethod }` has an invalid return type. Procedures must return a stream of records, where each record is of a defined concrete class.
+
+
+=== 51N20
+
+Status description:: error: system configuration or operation exception - cannot inject field. The field `{ $procField }` is not injectable. Ensure the field is marked as public and non-final.
+
+=== 51N21
+
+Status description:: error: system configuration or operation exception - procedure registry is busy. The procedure registration failed because the procedure registry was busy. Try again.
+
+=== 51N22
+
+Status description:: error: system configuration or operation exception - exhaustive shortest path search disabled. Finding the shortest path for the given pattern requires an exhaustive search. To enable exhaustive searches, set 'cypher.forbid_exhaustive_shortestpath' to false.
+
+
+=== 51N23
+
+Status description:: error: system configuration or operation exception - cyclic shortest path search disabled. Cannot find the shortest path when the start and end nodes are the same. To enable this behavior, set 'dbms.cypher.forbid_shortestpath_common_nodes' to false.
+
+
+=== 51N24
+
+Status description:: error: system configuration or operation exception - insufficient resources for plan search. Could not find a query plan within given time and space limits.
+
+
+=== 51N27
+
+Status description:: error: system configuration or operation exception - not supported in this edition. `{ $item }` is not supported in `{ $edition }`.
+
+
+=== 51N29
+
+Status description:: error: system configuration or operation exception - not supported by this server. The command `{ $cmd }` must be executed on the current 'LEADER' server.
+
+
+=== 51N30
+
+Status description:: error: system configuration or operation exception - not supported with this configuration. `{ $item }` is not supported in `{ $context }`.
+
+
+=== 51N32
+
+Status description:: error: system configuration or operation exception - server panic. Server is in panic.
+
+
+=== 51N33
+
+Status description:: error: system configuration or operation exception - replication error. This member failed to replicate transaction, try again.
+
+
+=== 51N34
+
+Status description:: error: system configuration or operation exception - write transaction failed due to leader change. Failed to write to the database due to a cluster leader change. Retrying your request at a later time may succeed.
+
+
+=== 51N35
+
+Status description:: error: system configuration or operation exception - database location changed. The location of `{ $db }` has changed while the transaction was running.
+
+=== 51N36
+
+Status description:: error: system configuration or operation exception - out of memory. There is not enough memory to perform the current task.
+
+=== 51N37
+
+Status description:: error: system configuration or operation exception - stack overflow. There is not enough stack size to perform the current task.
+
+=== 51N38
+
+Status description:: error: system configuration or operation exception - failed to acquire execution thread. There are insufficient threads available for executing the current task.
+
+=== 51N39
+
+Status description:: error: system configuration or operation exception - raft log corrupted. Expected set of files not found on disk. Please restore from backup.
+
+
+=== 51N40
+
+Status description:: error: system configuration or operation exception - unable to start database. Database `{ $db }` failed to start. Try restarting it.
+
+
+=== 51N41
+
+Status description:: error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible.
+
+
+=== 51N43
+
+Status description:: error: system configuration or operation exception - cannot deallocate servers. Cannot deallocate server(s) `{ $serverList }`.
+
+
+=== 51N44
+
+Status description:: error: system configuration or operation exception - cannot drop server. Cannot drop server `{ $server }`.
+
+
+=== 51N45
+
+Status description:: error: system configuration or operation exception - cannot cordon server. Cannot cordon server `{ $server }`.
+
+
+=== 51N46
+
+Status description:: error: system configuration or operation exception - cannot alter server. Cannot alter server `{ $server }`.
+
+
+=== 51N47
+
+Status description:: error: system configuration or operation exception - cannot rename server. Cannot rename server `{ $server }`.
+
+
+=== 51N48
+
+Status description:: error: system configuration or operation exception - cannot enable server. Cannot enable server `{ $server }`.
+
+
+=== 51N49
+
+Status description:: error: system configuration or operation exception - cannot alter database. Cannot alter database `{ $db }`.
+
+
+=== 51N50
+
+Status description:: error: system configuration or operation exception - cannot recreate database. Cannot recreate database `{ $db }`.
+
+
+=== 51N51
+
+Status description:: error: system configuration or operation exception - cannot create database. Cannot create database `{ $db }`.
+
+
+=== 51N52
+
+Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ $count }` needs to be at least 1 and may not exceed `{ $upper }`.
+
+
+=== 51N53
+
+Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot alter database topology. Number of secondaries `{ $count }` needs to be at least 0 and may not exceed `{ $upper }`.
+
+=== 51N54
+
+Status description:: error: system configuration or operation exception - cannot reallocate. Failed to calculate reallocation for databases. { $msg }
+
+
+=== 51N55
+
+Status description:: error: system configuration or operation exception - cannot create additional database. Failed to create the database `{ $db }`. The limit of databases is reached. Either increase the limit using the config setting `{ $cfgSetting }` or drop a database.
+
+=== 51N56
+
+Status description:: error: system configuration or operation exception - topology out of range. The number of `{ $serverType }` seeding servers `{ $count1 }` is larger than the desired number of `{ $allocType }` allocations `{ $count2 }`.
+
+
+=== 51N57
+
+Status description:: error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. { $msg }
+
+=== 51N59
+
+Status description:: error: system configuration or operation exception - internal resource exhaustion. The DBMS is unable to handle the request, please retry later or contact the system operator. More information is present in the logs.
+
+=== 51N60
+
+Status description:: error: system configuration or operation exception - unable to check enterprise license acceptance. The DBMS is unable to determine the enterprise license acceptance status.
+
+
+=== 51N63
+
+Status description:: error: system configuration or operation exception - index is still populating. Index is not ready yet. Wait until it finishes populating and retry the transaction.
+
+
+=== 51N64
+
+Status description:: error: system configuration or operation exception - index dropped while sampling. The index dropped while sampling.
+
+
+=== 51N65
+
+Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ $idx }` has a dimensionality of `{ $dim1 }`, but indexed vectors have `{ $dim2 }`.
+
+
+=== 51N66
+
+Status description:: error: system configuration or operation exception - resource exhaustion. Insufficient resources to complete the request.
+
+=== 51N68
+
+Status description:: error: system configuration or operation exception - CDC is disabled for this database. Change Data Capture is not currently enabled for this database.
+
+=== 51N69
+
+Status description:: error: system configuration or operation exception - system database is immutable. It is not possible to perform `{ $operation }` on the system database.
+
+=== 51N70
+
+Status description:: error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ $db }` because Bolt is not enabled. Please update your configuration such that 'server.bolt.enabled' is set to true.
+
+=== 51N71
+
+Status description:: error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ $feat }` is not available in a sharded database.
+
+== Procedure exception
+
+Procedure exceptions occur when there is an error in executing a procedure, such as when the procedure execution fails due to a client error, when the procedure cannot be invoked on a primary, when the number of arguments to checkConnectivity is invalid, etc.
+
+=== 52N02
+
+Status description:: error: procedure exception - procedure execution client error. Execution of the procedure `{ $proc }` failed due to a client error.
+
+=== 52N03
+
+Status description:: error: procedure exception - invalid procedure execution mode. Execution of the procedure `{ $proc }` failed due to an invalid specified execution mode `{ $procExeMode }`.
+
+=== 52N05
+
+Status description:: error: procedure exception - must invoke procedure on secondary. Cannot invoke procedure on this member because it is not a secondary for the database `{ $db }`.
+
+=== 52N06
+
+Status description:: error: procedure exception - invalid number of arguments to checkConnectivity. Unexpected number of arguments (expected 0-2 but received `{ $count }`).
+
+=== 52N07
+
+Status description:: error: procedure exception - invalid port argument to checkConnectivity. Unrecognised port name `{ $port }` (valid values are: `{ $portList }`.
+
+=== 52N08
+
+Status description:: error: procedure exception - invalid server id argument to checkConnectivity. Unable to parse server id `{ $server }`.
+
+=== 52N09
+
+Status description:: error: procedure exception - procedure execution database error. Execution of the procedure `{ $proc }` failed due to a database error.
+
+=== 52N10
+
+Status description:: error: procedure exception - invalid address key. An address key is included in the query string provided to the GetRoutingTableProcedure, but its value could not be parsed.
+
+=== 52N11
+
+Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred. Please refer to the server's debug log for more information.
+
+=== 52N12
+
+Status description:: error: procedure exception - cannot change default database. The previous default database `{ $db }` is still running.
+
+=== 52N13
+
+Status description:: error: procedure exception - new default database does not exist. New default database `{ $db }` does not exist.
+
+=== 52N14
+
+Status description:: error: procedure exception - system cannot be default database. System database cannot be set as default.
+
+=== 52N16
+
+Status description:: error: procedure exception - invalid procedure argument list. Invalid arguments to procedure.
+
+=== 52N17
+
+Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+
+=== 52N18
+
+Status description:: error: procedure exception - too many seeders. The number of seeding servers `{ $countSeeders }` is larger than the defined number of allocations `{ $countAllocs }`.
+
+=== 52N19
+
+Status description:: error: procedure exception - no such seeder. The specified seeding server with id `{ $server }` was not found. Verify that the spelling is correct.
+
+
+=== 52N23
+
+Status description:: error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ $namespaceList }`
+
+=== 52N25
+
+Status description:: error: procedure exception - JMX error. JMX error while accessing `{ $param }`. See logs for more information.
+
+=== 52N29
+
+Status description:: error: procedure exception - outdated change identifier. Given ChangeIdentifier describes a transaction that occurred before any enrichment records exist.
+
+=== 52N30
+
+Status description:: error: procedure exception - future change identifier. Given ChangeIdentifier describes a transaction that hasn't yet occurred.
+
+=== 52N31
+
+Status description:: error: procedure exception - wrong database. Change identifier `{ $param }` does not belong to this database.
+
+=== 52N32
+
+Status description:: error: procedure exception - invalid sequence number. Change identifier `{ $param1 }` has an invalid sequence number `{ $param2 }`.
+
+=== 52N33
+
+Status description:: error: procedure exception - procedure invocation failed. Failed to invoke procedure/function `{ $sig }` caused by: `{ $msg }`.
+
+=== 52N34
+
+Status description:: error: procedure exception - procedure sandboxed. `{ $sig }` is unavailable because it is sandboxed. Sandboxing is controlled by the dbms.security.procedures.unrestricted setting. Only un-restrict procedures you can trust with access to database internals.
+
+=== 52N35
+
+Status description:: error: procedure exception - procedure compilation failed. Failed to compile procedure/function defined in `{ $procClass }`: `{ $msg }`
+
+
+

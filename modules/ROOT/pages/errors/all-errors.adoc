@@ -1,10 +1,10 @@
-:description: The Neo4j error codes for Neo4j version {neo4j-version}.
+:description: The error codes for Neo4j 5.
 
 
 [[neo4j-errors]]
-= List of all server error codes
+= List of Neo4j error codes
 
-This page contains lists of all Neo4j errors, grouped by type.
+This page lists the current Neo4j error codes, which which are returned along side xref:errors/gql-errors.adoc[GQLSTATUS error codes], grouped by type.
 
 == Client errors
 
@@ -13,7 +13,7 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j code
 | Description
 
 | Neo.ClientError.ChangeDataCapture.InvalidIdentifier
@@ -279,7 +279,7 @@ This is a complete list of all transient errors Neo4j may return, and what they 
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j code
 | Description
 
 | Neo.TransientError.ChangeDataCapture.FutureIdentifier
@@ -386,7 +386,7 @@ This is a complete list of all database errors Neo4j may return, and what they m
 [options="header", cols="<1m,<1"]
 |===
 
-| Neo4j status code
+| Neo4j code
 | Description
 
 | Neo.DatabaseError.ChangeDataCapture.Disabled

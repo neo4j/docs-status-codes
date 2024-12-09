@@ -7,7 +7,6 @@ on:
       - "dev"
       - "5.x"
       - "4.[0-9]"
-      - "gql-notifications"
     types:
       - closed
 
