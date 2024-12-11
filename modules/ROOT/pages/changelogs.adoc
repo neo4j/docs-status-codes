@@ -133,6 +133,8 @@ neo.ClientNotification.Statement.NoApplicableIndex
 neo.ClientNotification.Statement.RuntimeExperimental
 neo.ClientNotification.Statement.SubqueryVariableShadowing
 neo.ClientNotification.Statement.UnboundedVariableLengthPattern
+neo.ClientNotification.Statement.ParameterNotProvided
+neo.ClientError.Statement.UnsupportedOperationError
 
 -----
 
@@ -141,6 +143,7 @@ neo.ClientNotification.Statement.UnboundedVariableLengthPattern
 [source, status codes, role="noheader"]
 -----
 neo.ClientError.Statement.CodeGenerationFailed
+neo.TransientError.Transaction.TransientTransactionFailure
 neo.ClientNotification.Statement.CartesianProductWarning
 neo.ClientNotification.Statement.DynamicPropertyWarning
 neo.ClientNotification.Statement.EagerOperatorWarning
