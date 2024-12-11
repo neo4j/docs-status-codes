@@ -1,6 +1,18 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
+== Neo4j 2025.01
+**New:**
+[source, status codes, role="noheader"]
+-----
+Neo.ClientNotification.Cluster.ServerNotAvailable
+Neo.ClientNotification.Cluster.ServerCatchingUp
+Neo.ClientNotification.Cluster.ServerFailed
+Neo.ClientNotification.Cluster.ServerCaughtUp
+-----
+Starting from 2025.01, when using Cypher25, queries using `WAIT` return the notifications listed above instead of result rows.
+The behaviour for Cypher5 remains unchanged.
+
 == Neo4j 5.25
 
 Starting from 5.25, the query log includes the GQL error information under the JSON object `errorInfo`.
