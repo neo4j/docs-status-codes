@@ -128,11 +128,17 @@ The following table lists the Neo4j-defined groups of GQLSTATUS codes and their 
 | 01N7[y]
 | Security warnings
 
-| 03N9[y]
-| Performance information
+| 01N8[y]
+| Topology warnings
 
 | 03N6[y]
 | Generic information
+
+| 03N8[y]
+| Topology information
+
+| 03N9[y]
+| Performance information
 
 | 00N5[y]
 | Unrecognized information under successful completion
