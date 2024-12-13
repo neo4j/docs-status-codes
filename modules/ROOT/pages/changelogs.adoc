@@ -121,20 +121,20 @@ Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 
 [source, status codes, role="noheader"]
 -----
-neo.ClientNotification.Database.HomeDatabaseNotFound
+Neo.ClientNotification.Database.HomeDatabaseNotFound
 Neo.ClientNotification.Request.DeprecatedFormat
-neo.ClientNotification.Schema.HintedIndexNotFound
-neo.ClientNotification.Statement.CartesianProduct
-neo.ClientNotification.Statement.CodeGenerationFailed
-neo.ClientNotification.Statement.DynamicProperty
-neo.ClientNotification.Statement.EagerOperator
-neo.ClientNotification.Statement.ExhaustiveShortestPath
-neo.ClientNotification.Statement.NoApplicableIndex
-neo.ClientNotification.Statement.RuntimeExperimental
-neo.ClientNotification.Statement.SubqueryVariableShadowing
-neo.ClientNotification.Statement.UnboundedVariableLengthPattern
-neo.ClientNotification.Statement.ParameterNotProvided
-neo.ClientError.Statement.UnsupportedOperationError
+Neo.ClientNotification.Schema.HintedIndexNotFound
+Neo.ClientNotification.Statement.CartesianProduct
+Neo.ClientNotification.Statement.CodeGenerationFailed
+Neo.ClientNotification.Statement.DynamicProperty
+Neo.ClientNotification.Statement.EagerOperator
+Neo.ClientNotification.Statement.ExhaustiveShortestPath
+Neo.ClientNotification.Statement.NoApplicableIndex
+Neo.ClientNotification.Statement.RuntimeExperimental
+Neo.ClientNotification.Statement.SubqueryVariableShadowing
+Neo.ClientNotification.Statement.UnboundedVariableLengthPattern
+Neo.ClientNotification.Statement.ParameterNotProvided
+Neo.ClientError.Statement.UnsupportedOperationError
 
 -----
 
@@ -142,17 +142,17 @@ neo.ClientError.Statement.UnsupportedOperationError
 
 [source, status codes, role="noheader"]
 -----
-neo.ClientError.Statement.CodeGenerationFailed
-neo.TransientError.Transaction.TransientTransactionFailure
-neo.ClientNotification.Statement.CartesianProductWarning
-neo.ClientNotification.Statement.DynamicPropertyWarning
-neo.ClientNotification.Statement.EagerOperatorWarning
-neo.ClientNotification.Statement.ExhaustiveShortestPathWarning
-neo.ClientNotification.Statement.ExperimentalFeature
+Neo.ClientError.Statement.CodeGenerationFailed
+Neo.TransientError.Transaction.TransientTransactionFailure
+Neo.ClientNotification.Statement.CartesianProductWarning
+Neo.ClientNotification.Statement.DynamicPropertyWarning
+Neo.ClientNotification.Statement.EagerOperatorWarning
+Neo.ClientNotification.Statement.ExhaustiveShortestPathWarning
+Neo.ClientNotification.Statement.ExperimentalFeature
 Neo.ClientNotification.Statement.MissingAlias
-neo.ClientNotification.Statement.NoApplicableIndexWarning
-neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
-neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning
+Neo.ClientNotification.Statement.NoApplicableIndexWarning
+Neo.ClientNotification.Statement.SubqueryVariableShadowingWarning
+Neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning
 
 -----
 
