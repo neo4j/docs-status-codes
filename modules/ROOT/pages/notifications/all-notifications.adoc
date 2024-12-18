@@ -87,7 +87,7 @@ MATCH (c:Child)-[:ChildOf]->(p:Parent) RETURN c, p
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -181,7 +181,7 @@ WHERE n <> m
 RETURN p
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -270,7 +270,7 @@ WHERE ANY(n in nodes(p) WHERE n:Label)
 RETURN p
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -358,7 +358,7 @@ Create an index on the label and property you match.
 CREATE INDEX FOR (n:Person) ON (n.name)
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -447,7 +447,7 @@ CALL {
 RETURN line
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 `LOAD CSV` together with an Eager operator can take up a lot of memory.
@@ -541,7 +541,7 @@ MATCH (n:Person) WHERE n.name IS NOT NULL RETURN n;
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -599,7 +599,7 @@ MATCH ()-[r: KNOWS]->() WHERE r.since IS NOT NULL RETURN r
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -719,7 +719,7 @@ The `JOIN` hint cannot be applied because its specified variable is before the `
 The only option for this query is to either remove the hint or modify the query to allow it to be used.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -799,7 +799,7 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the label and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -849,7 +849,7 @@ Suggestions for improvement::
 The hinted index does not exist, make sure the relationship type and property are spelled correctly.
 If the spelling is correct, either create the index or remove the hint from the query.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -928,7 +928,7 @@ Verify that the spelling is correct or create the database for the command to ta
 Suggestions for improvement::
 Verify that the home database name is not misspelled.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -999,7 +999,7 @@ Suggestions for improvement::
 Verify that the label is not misspelled.
 If you plan to create nodes with that label in the future, no change is needed.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -1070,7 +1070,7 @@ Suggestions for improvement::
 Verify that the relationship type is not misspelled.
 If you plan to create relationships of this type in the future, no change is needed.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1142,7 +1142,7 @@ Suggestions for improvement::
 Verify that the property key is not misspelled.
 If you plan to create that property key in the future, no change is needed.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1205,7 +1205,7 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: null value eliminated in set function.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 
@@ -1278,7 +1278,7 @@ Use a different runtime or remove the runtime option to run the query with the d
 SHOW INDEXES YIELD *
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -1417,7 +1417,7 @@ If not intended for a composite database, escape the name with the character ```
 CREATE DATABASE `foo.bar`
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1429,6 +1429,14 @@ CREATE DATABASE foo.bar
 Description of the returned code::
 Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
 Names containing `.` should be escaped. (Name: `foo.bar`)
+
+Suggestions for improvement::
+If not intended for a composite database, escape the name with the character ```.
++
+[source,cypher]
+----
+CREATE DATABASE `foo.bar`
+----
 
 ======
 =====
@@ -1455,18 +1463,17 @@ warn: feature deprecated.
 All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
+Suggestions for improvement::
+Use the same order for the return columns in all subqueries combined by a `UNION` clause.
++
+[source,cypher]
+----
+RETURN 'val' as one, 'val' as two
+UNION
+RETURN 'val' as one, 'val' as two
+----
+
 ======
-=====
-
-[NOTE]
-====
-Using differently ordered return items in a UNION [ALL] clause is deprecated in versions 5.5 to 5.25.
-However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
-====
-
-.Using the Unicode \u0085 in an unescaped identifier
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
@@ -1484,7 +1491,6 @@ Using differently ordered return items in a UNION [ALL] clause is deprecated and
 
 Suggestions for improvement::
 Use the same order for the return columns in all subqueries combined by a `UNION` clause.
-
 +
 [source,cypher]
 ----
@@ -1492,9 +1498,14 @@ RETURN 'val' as one, 'val' as two
 UNION
 RETURN 'val' as one, 'val' as two
 ----
-
 ======
 =====
+
+[NOTE]
+====
+Using differently ordered return items in a UNION [ALL] clause is deprecated in versions 5.5 to 5.25.
+However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
+====
 
 .Using the Unicode \u0085 in an unescaped identifier
 [.tabbed-example]
@@ -1514,9 +1525,9 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: feature deprecated.
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
-To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
+To continue using it, escape the identifier by adding backticks around the identifier ``my\u0085identifier``.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1595,7 +1606,7 @@ MATCH (a)-[:A|B|C]-() RETURN *
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1649,7 +1660,7 @@ SET a = properties(b)
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1706,7 +1717,7 @@ MATCH (a)-[r]-(b)
 SET a += properties(r)
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1762,7 +1773,7 @@ Instead, you can rewrite it to the following:
 MATCH (a: Start)-[r]->(b: End) RETURN b LIMIT 1
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1816,7 +1827,7 @@ Alternatively, you can remove the runtime option to use the default runtime.
 MATCH (n) RETURN n
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1868,7 +1879,7 @@ Update the option `indexProvider` with the value `text-2.0`.
 CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -1925,7 +1936,7 @@ Returned status description::
 warn: feature deprecated without replacement.
 `unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 [source,cypher]
@@ -1990,7 +2001,7 @@ Returned status description::
 warn: feature deprecated without replacement.
 `id` is deprecated and will be removed without a replacement.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Query::
@@ -2018,30 +2029,6 @@ RETURN elementId(a)
 .Using an unescaped variable named 'where' in a node pattern
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-
-Query::
-+
-[source,cypher]
-----
-MATCH (where {p: 5})
-RETURN where
-----
-
-Description of the returned code::
-'(where {p: 5})' is deprecated. It is replaced by '(++`where`++ {p: 5})'.
-
-Suggestions for improvement::
-To continue using variables with this name, use backticks to escape the variable name:
-+
-[source,cypher]
-----
-MATCH (`where` {p: 5})
-RETURN `where`.p
-----
-======
-
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2069,34 +2056,34 @@ MATCH (`where` {p: 5})
 RETURN `where`.p
 ----
 ======
-=====
-
-.Using an unescaped variable named 'where' in a relationship pattern
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
+
 Query::
 +
 [source,cypher]
 ----
-MATCH ()-[where {p: 5}]->()
+MATCH (where {p: 5})
 RETURN where
 ----
 
 Description of the returned code::
-'-[where {p: 5}]-' is deprecated. It is replaced by '-[++`where`++ {p: 5}]-'.
+'(where {p: 5})' is deprecated. It is replaced by '(++`where`++ {p: 5})'.
 
 Suggestions for improvement::
 To continue using variables with this name, use backticks to escape the variable name:
 +
 [source,cypher]
 ----
-MATCH ()-[`where` {p: 5}]->()
+MATCH (`where` {p: 5})
 RETURN `where`.p
 ----
 ======
+=====
 
+.Using an unescaped variable named 'where' in a relationship pattern
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2124,36 +2111,33 @@ MATCH ()-[`where` {p: 5}]->()
 RETURN `where`.p
 ----
 ======
-=====
-
-.Using an unparenthesized label expression predicate as the right-hand side operand of `+`
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH (n)-[r]->(m)
-WITH m, n.truthCodes AS listOfBooleans
-RETURN listOfBooleans + m:A
+MATCH ()-[where {p: 5}]->()
+RETURN where
 ----
 
 Description of the returned code::
-'... + m:A' is deprecated. It is replaced by '... + (m:A)'.
+'-[where {p: 5}]-' is deprecated. It is replaced by '-[++`where`++ {p: 5}]-'.
 
 Suggestions for improvement::
-Parenthesize the label expression predicate on the right-hand side of `+`:
+To continue using variables with this name, use backticks to escape the variable name:
 +
 [source,cypher]
 ----
-MATCH (n)-[r]->(m)
-WITH m, n.truthCodes AS listOfBooleans
-RETURN listOfBooleans + (m:A)
+MATCH ()-[`where` {p: 5}]->()
+RETURN `where`.p
 ----
 ======
+=====
 
+.Using an unparenthesized label expression predicate as the right-hand side operand of `+`
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2183,11 +2167,6 @@ WITH m, n.truthCodes AS listOfBooleans
 RETURN listOfBooleans + (m:A)
 ----
 ======
-=====
-
-.Using an unparenthesized label expression predicate as the right-hand side operand of `+`
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
@@ -2195,12 +2174,12 @@ Query::
 [source,cypher]
 ----
 MATCH (n)-[r]->(m)
-WITH r, n.truthCodes AS listOfBooleans
-RETURN listOfBooleans + r:C|D
+WITH m, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + m:A
 ----
 
 Description of the returned code::
-'... + r:C|D' is deprecated. It is replaced by '... + (r:C|D)'.
+'... + m:A' is deprecated. It is replaced by '... + (m:A)'.
 
 Suggestions for improvement::
 Parenthesize the label expression predicate on the right-hand side of `+`:
@@ -2208,11 +2187,15 @@ Parenthesize the label expression predicate on the right-hand side of `+`:
 [source,cypher]
 ----
 MATCH (n)-[r]->(m)
-WITH r, n.truthCodes AS listOfBooleans
-RETURN listOfBooleans + (r:C|D)
+WITH m, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + (m:A)
 ----
 ======
+=====
 
+.Using an unparenthesized label expression predicate as the right-hand side operand of `+`
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2242,41 +2225,35 @@ WITH r, n.truthCodes AS listOfBooleans
 RETURN listOfBooleans + (r:C|D)
 ----
 ======
-=====
-
-.Using an unescaped variable named `is` as a `WHEN` operand in a simple `CASE` expression
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH (n)
-WITH n, n.internationalStandard AS is
-RETURN CASE n
-  WHEN is :: INTEGER THEN "ISO/IEC" + is
-  ELSE is
-END AS standardsName
+MATCH (n)-[r]->(m)
+WITH r, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + r:C|D
 ----
 
 Description of the returned code::
-'WHEN is :: INTEGER' is deprecated. It is replaced by 'WHEN ++`is`++ :: INTEGER'.
+'... + r:C|D' is deprecated. It is replaced by '... + (r:C|D)'.
 
 Suggestions for improvement::
-To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
+Parenthesize the label expression predicate on the right-hand side of `+`:
 +
 [source,cypher]
 ----
-MATCH (n)
-WITH n, n.internationalStandard AS `is`
-RETURN CASE n
-  WHEN `is` :: INTEGER THEN "ISO/IEC" + `is`
-  ELSE `is`
-END AS standardsName
+MATCH (n)-[r]->(m)
+WITH r, n.truthCodes AS listOfBooleans
+RETURN listOfBooleans + (r:C|D)
 ----
 ======
+=====
+
+.Using an unescaped variable named `is` as a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2312,41 +2289,41 @@ RETURN CASE n
 END AS standardsName
 ----
 ======
-=====
-
-.Using an unescaped variable named `contains` in addition operations within a `WHEN` operand in a simple `CASE` expression
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH p = (:A)-[:HAS]->(:B)
-WITH p, size(relationships(p)) AS contains
-RETURN CASE size(nodes(p))
-  WHEN contains + 1 THEN "okay"
-  ELSE "not okay"
-END AS check
+MATCH (n)
+WITH n, n.internationalStandard AS is
+RETURN CASE n
+  WHEN is :: INTEGER THEN "ISO/IEC" + is
+  ELSE is
+END AS standardsName
 ----
 
 Description of the returned code::
-'WHEN contains + 1 INTEGER' is deprecated. It is replaced by 'WHEN ++`contains`++ + 1 INTEGER'.
+'WHEN is :: INTEGER' is deprecated. It is replaced by 'WHEN ++`is`++ :: INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
 +
 [source,cypher]
 ----
-MATCH p = (:A)-[:HAS]->(:B)
-WITH p, size(relationships(p)) AS `contains`
-RETURN CASE size(nodes(p))
-  WHEN `contains` + 1 THEN "okay"
-  ELSE "not okay"
-END AS check
+MATCH (n)
+WITH n, n.internationalStandard AS `is`
+RETURN CASE n
+  WHEN `is` :: INTEGER THEN "ISO/IEC" + `is`
+  ELSE `is`
+END AS standardsName
 ----
 ======
+=====
+
+.Using an unescaped variable named `contains` in addition operations within a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2382,11 +2359,6 @@ RETURN CASE size(nodes(p))
 END AS check
 ----
 ======
-=====
-
-.Using an unescaped variable named `contains` in subtraction operations within a `WHEN` operand in a simple `CASE` expression
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
@@ -2394,16 +2366,15 @@ Query::
 [source,cypher]
 ----
 MATCH p = (:A)-[:HAS]->(:B)
-WITH p, size(nodes(p)) AS contains
-RETURN CASE size(relationships(p))
-  WHEN contains - 1 THEN "okay"
+WITH p, size(relationships(p)) AS contains
+RETURN CASE size(nodes(p))
+  WHEN contains + 1 THEN "okay"
   ELSE "not okay"
 END AS check
 ----
 
 Description of the returned code::
-
-'WHEN contains - 1 INTEGER' is deprecated. It is replaced by 'WHEN ++`contains`++ - 1 INTEGER'.
+'WHEN contains + 1 INTEGER' is deprecated. It is replaced by 'WHEN ++`contains`++ + 1 INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
@@ -2411,13 +2382,18 @@ To continue using variables with this name in simple `CASE` expressions, use bac
 [source,cypher]
 ----
 MATCH p = (:A)-[:HAS]->(:B)
-WITH p, size(nodes(p)) AS `contains`
-RETURN CASE size(relationships(p))
-  WHEN `contains` - 1 THEN "okay"
+WITH p, size(relationships(p)) AS `contains`
+RETURN CASE size(nodes(p))
+  WHEN `contains` + 1 THEN "okay"
   ELSE "not okay"
 END AS check
 ----
 ======
+=====
+
+.Using an unescaped variable named `contains` in subtraction operations within a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2453,42 +2429,42 @@ RETURN CASE size(relationships(p))
 END AS check
 ----
 ======
-=====
-
-.Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH (c:Client)-[:MAKES]->(t:Transaction)
-WITH t, c.ibanNumbers AS in
-RETURN CASE t.ibanNumber
-  WHEN in[0] THEN "used main account"
-  ELSE "used different account"
+MATCH p = (:A)-[:HAS]->(:B)
+WITH p, size(nodes(p)) AS contains
+RETURN CASE size(relationships(p))
+  WHEN contains - 1 THEN "okay"
+  ELSE "not okay"
 END AS check
 ----
 
 Description of the returned code::
 
-'WHEN in[0] INTEGER' is deprecated. It is replaced by 'WHEN ++`in`++[0] INTEGER'.
+'WHEN contains - 1 INTEGER' is deprecated. It is replaced by 'WHEN ++`contains`++ - 1 INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
 +
 [source,cypher]
 ----
-MATCH (c:Client)-[:MAKES]->(t:Transaction)
-WITH t, c.ibanNumbers AS `in`
-RETURN CASE t.ibanNumber
-  WHEN `in`[0] THEN "used main account"
-  ELSE "used different account"
+MATCH p = (:A)-[:HAS]->(:B)
+WITH p, size(nodes(p)) AS `contains`
+RETURN CASE size(relationships(p))
+  WHEN `contains` - 1 THEN "okay"
+  ELSE "not okay"
 END AS check
 ----
 ======
+=====
+
+.Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2524,40 +2500,42 @@ RETURN CASE t.ibanNumber
 END AS check
 ----
 ======
-=====
-
-.Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
 +
 [source,cypher]
 ----
-MATCH (in:Client)-[:MAKES]->(t:Transaction)
+MATCH (c:Client)-[:MAKES]->(t:Transaction)
+WITH t, c.ibanNumbers AS in
 RETURN CASE t.ibanNumber
-  WHEN in["mainAccount"] THEN "used main account"
+  WHEN in[0] THEN "used main account"
   ELSE "used different account"
 END AS check
 ----
 
 Description of the returned code::
 
-'WHEN in["mainAccount"] INTEGER' is deprecated. It is replaced by 'WHEN ++`in`++["mainAccount"] INTEGER'.
+'WHEN in[0] INTEGER' is deprecated. It is replaced by 'WHEN ++`in`++[0] INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
 +
 [source,cypher]
 ----
-MATCH (in:Client)-[:MAKES]->(t:Transaction)
+MATCH (c:Client)-[:MAKES]->(t:Transaction)
+WITH t, c.ibanNumbers AS `in`
 RETURN CASE t.ibanNumber
-  WHEN `in`["mainAccount"] THEN "used main account"
+  WHEN `in`[0] THEN "used main account"
   ELSE "used different account"
 END AS check
 ----
 ======
+=====
+
+.Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
+[.tabbed-example]
+=====
 [.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 Query::
@@ -2578,6 +2556,35 @@ Returned status description::
 warn: feature deprecated with replacement.
 `WHEN in["mainAccount"] INTEGER` is deprecated.
 It is replaced by `WHEN ++`in`++["mainAccount"] INTEGER`.
+
+Suggestions for improvement::
+To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
++
+[source,cypher]
+----
+MATCH (in:Client)-[:MAKES]->(t:Transaction)
+RETURN CASE t.ibanNumber
+  WHEN `in`["mainAccount"] THEN "used main account"
+  ELSE "used different account"
+END AS check
+----
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (in:Client)-[:MAKES]->(t:Transaction)
+RETURN CASE t.ibanNumber
+  WHEN in["mainAccount"] THEN "used main account"
+  ELSE "used different account"
+END AS check
+----
+
+Description of the returned code::
+
+'WHEN in["mainAccount"] INTEGER' is deprecated. It is replaced by 'WHEN ++`in`++["mainAccount"] INTEGER'.
 
 Suggestions for improvement::
 To continue using variables with this name in simple `CASE` expressions, use backticks to escape the variable name:
@@ -2642,7 +2649,7 @@ Returned status description::
 warn: feature deprecated without replacement.
 `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -2769,7 +2776,7 @@ The role or privilege is not assigned.
 Suggestions for improvement::
 Verify that this is the intended role and user.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -2814,7 +2821,7 @@ Suggestions for improvement::
 Verify that this is the intended privilege and role.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -2890,7 +2897,7 @@ Suggestions for improvement::
 Verify that this is the intended role and user.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -2935,7 +2942,7 @@ The role or privilege is already assigned.
 Suggestions for improvement::
 Verify that this is the intended privilege and role.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3013,7 +3020,7 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3062,7 +3069,7 @@ o
 Suggestions for improvement::
 Verify that this is the intended user and that it is spelled correctly.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3111,7 +3118,7 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended role and that it is spelled correctly.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3158,7 +3165,7 @@ This notification will become an error in a future major version.
 Suggestions for improvement::
 Verify that this is the intended graph and that it is spelled correctly.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3206,7 +3213,7 @@ Suggestions for improvement::
 Verify that this is the intended database and that it is spelled correctly.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3264,7 +3271,7 @@ Use `GRAPH *` without the parameter to revoke the privilege on all graphs.
 
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Parameter::
 +
@@ -3330,7 +3337,7 @@ Suggestions for improvement::
 Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Parameter::
 +
@@ -3392,23 +3399,6 @@ m|INFORMATION
 .Create a user with an auth provider that is not defined in the configuration
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-CREATE USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
-----
-
-Description of the returned code::
-The auth provider `unknownProvider` is not defined in the configuration.
-Verify that the spelling is correct or define `unknownProvider` in the configuration.
-
-Suggestions for improvement::
-Make sure that the given provider is correct, or replace it if not.
-If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3423,6 +3413,23 @@ Returned GQLSTATUS code::
 
 Returned status description::
 note: successful completion - undefined auth provider.
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Description of the returned code::
 The auth provider `unknownProvider` is not defined in the configuration.
 Verify that the spelling is correct or define `unknownProvider` in the configuration.
 
@@ -3435,24 +3442,6 @@ If it is correct, make sure to add it as a known auth provider in one or both of
 .Alter a user to add an auth provider that is not defined in the configuration
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-ALTER USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
-----
-
-Description of the returned code::
-The auth provider `unknownProvider` is not defined in the configuration.
-Verify that the spelling is correct or define `unknownProvider` in the configuration.
-
-Suggestions for improvement::
-Make sure that the given provider is correct, or replace it if not.
-If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
-======
-
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3474,6 +3463,24 @@ Suggestions for improvement::
 Make sure that the given provider is correct, or replace it if not.
 If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
 ======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'unknownProvider' { SET ID 'idString' }
+----
+
+Description of the returned code::
+The auth provider `unknownProvider` is not defined in the configuration.
+Verify that the spelling is correct or define `unknownProvider` in the configuration.
+
+Suggestions for improvement::
+Make sure that the given provider is correct, or replace it if not.
+If it is correct, make sure to add it as a known auth provider in one or both of `dbms.security.authentication_providers` and `dbms.security.authorization_providers`.
+======
+
 =====
 
 
@@ -3505,19 +3512,6 @@ m|WARNING
 .Create a user with an external auth provider when linked users are not enabled
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-CREATE USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
-----
-
-Suggestions for improvement::
-Enable linked users through the `dbms.security.require_local_user` setting.
-Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
-======
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3538,26 +3532,25 @@ Suggestions for improvement::
 Enable linked users through the `dbms.security.require_local_user` setting.
 Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
 
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+CREATE USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
 ======
 =====
 
 .Alter a user to add an external auth provider when linked users are not enabled
 [.tabbed-example]
 =====
-[.include-with-neo4j-code]
-======
-Command::
-+
-[source, cypher]
-----
-ALTER USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
-----
-
-Suggestions for improvement::
-Enable linked users through the `dbms.security.require_local_user` setting.
-Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
-======
-
 [.include-with-GQLSTATUS-code]
 ======
 Command::
@@ -3578,6 +3571,19 @@ Suggestions for improvement::
 Enable linked users through the `dbms.security.require_local_user` setting.
 Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
 
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+ALTER USER foo SET AUTH 'exampleProvider' { SET ID 'idString' }
+----
+
+Suggestions for improvement::
+Enable linked users through the `dbms.security.require_local_user` setting.
+Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
 ======
 =====
 
@@ -3638,7 +3644,7 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already enabled.
 Verify that this is the intended server.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3704,7 +3710,7 @@ Server `123e4567-e89b-12d3-a456-426614174000` is already cordoned.
 Verify that this is the intended server.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3777,7 +3783,7 @@ For example, when there are three servers, each hosting databases `foo` and `bar
 For example, assuming server 1 hosts databases `foo` and `bar`, server 2 hosts only `foo`, and server 3 hosts no databases.
 Then, a better allocation would move `foo` from server 1 to server 3, but if server 3 has the constraint `deniedDatabases:['foo']}`, then the cluster is already balanced subject to this constraint.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Command::
 +
@@ -3854,7 +3860,7 @@ Cordoned servers existed when making an allocation decision.
 Server(s) `123e4567-e89b-12d3-a456-426614174000` are cordoned.
 This can impact allocation decisions.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 The example assumes that you have a cluster with three servers, of which server `123e4567-e89b-12d3-a456-426614174000` is cordoned using the `dbms.cluster.cordonServer` procedure. Then the below command will return this notification.
 
@@ -3923,7 +3929,7 @@ The requested topology matched the current topology.
 No allocations were changed.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 The example assumes that you have a cluster with three servers and a database `foo` with a topology of two primaries and one secondary.
 
@@ -3991,7 +3997,7 @@ Returned GQLSTATUS code::
 Returned status description::
 info: server has caught up. Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4065,7 +4071,7 @@ warn: server failed. Server `ServerId\{0e020000}` at address `localhost:20026` f
 Suggestions for improvement::
 Investigate the failing server using the provided message.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4143,7 +4149,7 @@ Suggestions for improvement::
 This behaviour indicates that one of the servers is lagging behind.
 Investigate the server and network for performance issues or increase the wait timeout.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4221,7 +4227,7 @@ warn: server is not available. Server `ServerId\{0e020000}` at address `localhos
 Suggestions for improvement::
 Investigate the server to determine why it is not available.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4299,7 +4305,7 @@ note: successful completion - index or constraint already exists.
 `RANGE INDEX existingRangeIndex FOR (e:Label) ON (e.property)` already exists.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Given a range index on `(:Label \{property})` named `existingRangeIndex`.
 
@@ -4350,7 +4356,7 @@ CREATE TEXT INDEX myIndex2 IF NOT EXISTS FOR ()-[r:REL_TYPE]-() ON (r.property)
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Given a range index on `(:Label \{property})` named `myIndex`.
 
@@ -4401,7 +4407,7 @@ note: successful completion - index or constraint already exists.
 `CONSTRAINT nodeKeyLabelPropertyConstraint FOR (e:Label) REQUIRE (e.property) IS NODE KEY` already exists.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Given a node key constraint on `(:Label \{property})` named `nodeKeyLabelPropertyConstraint`.
 
@@ -4453,7 +4459,7 @@ CREATE CONSTRAINT myConstraint2 IF NOT EXISTS FOR (n:Label2) REQUIRE (n.property
 ----
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Given a node key constraint on `(:Label \{property})` named `myConstraint`.
 
@@ -4529,7 +4535,7 @@ Suggestions for improvement::
 Verify that this is the intended index and that it is spelled correctly.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Command::
@@ -4575,7 +4581,7 @@ Suggestions for improvement::
 Verify that this is the intended constraint and that it is spelled correctly.
 
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 
 Command::
@@ -4669,7 +4675,7 @@ CALL {
 RETURN *
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4753,7 +4759,7 @@ If the intended behavior of the query is to use a void procedure, the `OPTIONAL`
 CALL db.createLabel("A")
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4831,7 +4837,7 @@ CALL (x) {
 }
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -4911,7 +4917,7 @@ Provide the parameter(s).
 Suggestions for improvement::
 Provide the parameter to be able to cache the plan.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -5006,7 +5012,7 @@ Returned status description::
 warn: unsatisfiable relationship type expression.
 The expression `R1&R2` cannot be satisfied because relationships must have exactly one type.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -5075,7 +5081,7 @@ Use one pattern to match all relationships that start with a node with the label
 MATCH (:A)-[r]->(:B) RETURN r
 ----
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
@@ -5115,7 +5121,7 @@ Returned status description::
 warn: repeated relationship reference.
 `r` is repeated in `()-[r*]->()<-[r*]-()`, which leads to no results.
 ======
-[.include-with-neo4j--code]
+[.include-with-neo4j-code]
 ======
 Query::
 +
