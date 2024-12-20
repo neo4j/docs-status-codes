@@ -1403,6 +1403,18 @@ Status description:: error: system configuration or operation exception - bolt i
 
 Status description:: error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ $feat }` is not available in a sharded database.
 
+=== 51N72
+
+Status description:: error: system configuration or operation exception - memory pool out of memory. Failed to allocate memory in a memory pool. See `{ $cfgSetting }` in the neo4j configuration.
+
+=== 51N73
+
+Status description:: error: system configuration or operation exception - transaction memory limit reached. The transaction used more memory than was allowed. The maximum allowed size for a transaction can be configured with `{ $cfgSetting }` in the neo4j configuration.
+
+=== 51N74
+
+Status description:: error: system configuration or operation exception -maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ $cfgSetting }` in the neo4j configuration.
+
 == Procedure exception
 
 Procedure exceptions occur when there is an error in executing a procedure, such as when the procedure execution fails due to a client error, when the procedure cannot be invoked on a primary, when the number of arguments to checkConnectivity is invalid, etc.
