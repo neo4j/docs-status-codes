@@ -1,6 +1,6 @@
 name: status-codes
 title: Status Codes for Errors & Notifications
-version: '5.26'
+version: '5'
 lts: true
 start_page: ROOT:index.adoc
 nav:
