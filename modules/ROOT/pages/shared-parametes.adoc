@@ -1,0 +1,121 @@
+:description: This page lists all parameters that are used in the GQLSTATUS codes, with their descriptions and possible values, and variants.
+
+= GQLSTATUS codes parameters
+
+The following table lists all parameters that are used in the GQLSTATUS codes, with their descriptions and possible values, and variants.
+
+[cols="3m,2m,3a,2a,2",options="header", background="header"]
+|===
+| Parameter          | Processor	     | Description	                                       | Variants                       | Used in
+| $action            | VERBATIM	         | Freeform description of some "action"               | 		                        | errors
+| $alias             | IDENT	         | Alias name	                 		               | 		                        | errors
+| $alloc	         | IDENT	         | Allocator name 		                               | 		                        | errors
+| $allocType         | STRLIT	         | Allocation type				                       | 		                        | errors
+| $auth	             | IDENT             | Auth provider name				                   | 		                        | errors & notifications
+| $boltMsgLenLimit   | NUM               | Bolt message length limit		                   | 		                        | errors
+| $boltServerState   | STRLIT	         | Bolt server state				                   | 		                        | errors
+| $cause	         | VERBATIM	         | Freeform cause	                                   |         		                | errors & notifications
+| $cfgSetting	     | VERBATIM	         | Configuration setting key, e.g. `https.enabled`     |                                | errors & notifications
+| $clause	         | UPPER(VERBATIM)   | Clause               	                           |                                | errors
+| $cmd	             | STRLIT	         | Command, e.g. `DROP DATABASE`                       |                                | errors & notifications
+| $component	     | STRLIT	         | Component name	             	                   |                                | errors
+| $constr            | IDENT	         | Constraint name		          	                   |                                | errors
+| $constrDescrOrName | STRLIT	         | Constraint descriptor or name		               |                                | errors
+| $context	         | VERBATIM	         | Freeform description of some "context"              |                                | errors
+| $coordinates	     | COORDINATES	     | Coordinates	                 	                   |                                | errors
+| $count	         | NONNEG	         | Amount	                                           | `$count`, `$count1`, `$count2` | errors
+| $countAllocs  	 | NUM	             | Desired number of servers to use				       |                                | errors
+| $countSeeders	     | NUM	             | Number of seeding servers			               |                                | errors
+| $crs	             | VERBATIM	         | Coordinate reference system, e.g. WGS84	           |                                | errors
+| $db	             | IDENT	         | Database name, e.g. `myDb`                          | for notifications: `$db`; for errors: `$db`, `$db1`, etc.	| errors & notifications
+| $dim	             | NONNEG	         | Number representing index dimenionality             | `$dim1`, `$dim2`               | errors
+| $edition	         | VERBATIM	         | Freeform edition description		                   |                                | errors
+| $entityId	         | NUM	             | ID of a node or relationship		                   |                                | errors
+| $entityType	     | VERBATIM	         | One of 'node', 'relationship'		               |                                | errors
+| $expr	             | STRLIT	         | Cypher expression, e.g. `1 + n.prop`	               |                                | errors
+| $exprType	         | VERBATIM	         | Freeform expression type				               |                                | errors
+| $feat              | VERBATIM	         | Freeform feature description                        | for notifications: `$feat1`, `$feat2`; for errors: `$feat`	| errors & notifications
+| $field	         | IDENT	         | Input field to e.g. a procedure or deserialization  |                                | errors
+| $format	         | STRLIT	         | Duration format                                     |                                |
+| $fun	             | CALLABLE_IDENT	 | Function name                                       |                                | errors
+| $funClass	         | IDENT             | User defined function implementation class name     |                                |
+| $graph	         | IDENT	         | Graph name, e.g.	`myGraph`		                   |                                | errors
+| $hint	             | VERBATIM	         | Freeform description of some "hint"				   |                                | errors
+| $hintList	         | NELIST ($hint)	 | Comma-separated list of free form descriptions of some "hints"  |                                | errors
+| $ident	         | IDENT	         | Generic identifier                                  |                                |
+| $idx	             | IDENT	         | Index name				                           |                                | errors
+| $idxDescr	         | STRLIT	         | Index descriptor			                           |                                | notifications
+| $idxDescrOrName	 | STRLIT	         | Index descriptor or name		                       |                                | errors
+| $idxOrConstr	     | IDENT	         | Index or constraint name				               |                                | notifications
+| $idxOrConstrPat	 | STRLIT	         | Index or constraint pattern				           |                                | notifications
+| $idxType	         | VERBATIM	         | Index type (e.g, text, vector, ...)                 |                                |
+| $input	         | STRLIT	         | Piece of input	                            	   | `$input`, `$input1`, `$input2` | errors
+| $inputList	     | NELIST($input)	 | Comma-separated list of "inputs"			           |                                | errors
+| $item	             | VERBATIM	         | Freeform description of some "item"				   |                                | notifications, errors
+| $keyword	         | STRLIT	         | Cypher keyword, e.g.	`MERGE`		                   |                                | errors
+| $label	         | IDENT	         | Label name, e.g.	`Person`                           |                                | notifications
+| $labelExpr	     | STRLIT	         | Label expression, e.g. `Person&Human`               |                        		| errors
+| $labelList	     | NELIST($label)	 | Comma-separated list of label names, e.g. `Person, Actor`| 		                        | notifications
+| $lower	         | NUM               | Lower bound			                               | 		                        | errors
+| $mapKey	         | STRLIT	         | Map key			                                   | 		                        | errors
+| $mapKeyList	     | NELIST($mapKey)	 | Comma-separated list of keys			               | 		                        | errors
+| $matchMode	     | VERBATIM	         | A GPM match mode                                    | 		                        |
+| $msg	             | VERBATIM	         | Freeform message, e.g. Howdy, Partner! 		       | 		                        | notifications, errors
+| $msgTitle	         | VERBATIM	         | Freeform message tite                               | 		                        | errors
+| $namespace	     | IDENT	         | Namespace                                           | 		                        |
+| $namespaceList	 | NELIST($namespace)| Comma-separated list of namespaces			       | 		                        | errors
+| $operation	     | STRLIT	         | Operation			                               |                                | errors
+| $option	         | STRLIT	         | Option name		                                   | `$option`, `$option1`, `$option2`| errors
+| $optionList	     | NELIST($option)	 | Comma-separated list of option names			       |                                | errors
+| $param	         | PARAM	         | Parameter name	                                   | `$param`, `$param1`, `$param2`	| errors
+| $paramList	     | NELIST($param)	 | Parameter list	                                   | `$name`, `$age`		    	| notifications, errors
+| $pat	             | STRLIT	         | Pattern `(:Person)`		                           |                                | notifications
+| $port	             | IDENT	         | Port name			                               |                                | errors
+| $portList	         | NELIST($port)	 | Comma-separated list of port names			       |                                | errors
+| $pos	             | NUM               | A position (e.g., in a sequence)			           |                                | errors
+| $pred	             | STRLIT	         | Predicate, e.g. `'x < 3'`		                           |                                | errors
+| $predList	         | NELIST($pred)	 | Comma-separated list of predicates, e.g.	`'x < 3', 'y > 4'`|                               | notifications
+| $preparserInput	 | STRLIT	         | Piece of preparser input		                       | `$preParserInput1`, `$preParserInput2` | notifications
+| $proc	             | CALLABLE_IDENT	 | Procedure name, e.g.	`lauchRocket`		           |                                | notifications, errors
+| $procClass	     | IDENT	         | Procedure implementation class name			       |                                | errors
+| $procExeMode	     | STRLIT	         | Procedure execution mode			                   |                                | errors
+| $procField	     | IDENT	         | Procedure implementation class field name, e.g. `someField` |	             		| notifications, errors
+| $procFieldType	 | STRLIT	         | Procedure implmenetation class field type           |                                | errors
+| $procFun	         | CALLABLE_IDENT	 | Procedure or function name or ID			           |                                | errors
+| $procMethod	     | IDENT	         | Procedure implmenetation class method name		   |                                | errors
+| $procParam	     | IDENT	         | Procedure parameter name			                   |                                | errors
+| $procParamFmt	     | VERBATIM	         | Freeform procedure parameter format			       |                                | errors
+| $propKey	         | IDENT	         | Property key name, e.g. `name`                      |                                | notifications, errors
+| $propKeyList	     | NELIST($propKey)	 | Comma-separated list of property key names          |                                | errors
+| $query	         | STRLIT	         | Query string extract, e.g. `MATCH (n) WHERE n.prop...`|                              | errors
+| $reasonList	     | NELIST($value)	 | Comma-separated list of reasons of the failure	   |                                | errors
+| $relType	         | IDENT	         | Relationship type name, e.g.	`KNOWS`	      		   |                                | notifications
+| $replacement	     | STRLIT	         | Replacement			                               |                                | errors
+| $role	             | IDENT	         | Role name			                               |                                | errors
+| $routingPolicy	 | STRLIT	         | Routing policy			                           |                                | errors
+| $runtime	         | STRLIT	         | Cypher runtime name			                       |                                | errors
+| $schemaDescr	     | STRLIT	         | Schema descriptor                                   |                                |
+| $selector	         | VERBATIM	         | A GPM path selector                                 |                                |
+| $selectorType	     | STRLIT	         | Selector type                                       |                                |
+| $server	         | STRLIT	         | Server, e.g. `example.com`			               |                                | notifications, errors
+| $serverList	     | NELIST($server)	 | Comma-separated list of servers, e.g. `'a.com', 'b.com'`|	                         	| notifications, errors
+| $serverType	     | STRLIT	         | Server type			                               |                                | errors
+| $sig	             | VERBATIM	         | Procedure or function signature			           |                                | errors
+| $syntax	         | IDENT	         | Freeform syntax or keyword			               |                                | errors
+| $temporal	         | TEMPORAL	         | Temporal value			                           |                                | errors
+| $timeAmount	     | NUM               | Integral amount of some time unit		           |                                | errors
+| $timeUnit	         | VERBATIM	         | Common time unit name			                   |                                | errors
+| $token	         | STRLIT	         | Token name			                               |                                | errors
+| $tokenId	         | STRLIT	         | Token ID                                            |                                |
+| $tokenType	     | VERBATIM	         | Token type			                               |                                | errors
+| $transactionId	 | STRLIT	         | Transaction ID		                               | `$transactionId`,` $transactionId1`, `$transactionId2`	| errors
+| $upper	         | NUM               | Upper bound			                               |                                | errors
+| $url	             | VERBATIM	         | URL		                                           |                                | errors
+| $user	             | IDENT	         | User name			                               |                                | errors
+| $value	         | VAL	             | Value			                                   |                                | errors
+| $valueList	     | NELIST($value)	 | Comma-separated list of values			           |                                | errors
+| $valueType	     | VALTYPE	         | Value type			                               |                                | errors
+| $valueTypeList	 | NELIST(VALTYPE)	 | Comma-separated list of value types		           |                                | errors
+| $variable	         | IDENT	         | Variable name, e.g. `n`               			   |                                | notifications, errors
+| $variableList	     | NELIST($var)      | Comma-separated list of variable names, e.g.	`a, b, c` |              			| notifications, errors
+|===
