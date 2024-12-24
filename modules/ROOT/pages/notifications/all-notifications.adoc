@@ -1,4 +1,4 @@
-:description: This section describes the notifications that Neo4j can return, grouped by category, and an example of when they can occur.
+:description: This section describes the notifications that Neo4j can return, grouped by type, and an example of when they can occur.
 
 [[listOfNnotifications]]
 = List of notification codes
@@ -1219,7 +1219,7 @@ The query contains an aggregation function that skips null values.
 =====
 
 [#_unsupported_notifications]
-== `UNSUPPORTED` category
+== `UNSUPPORTED` notifications
 
 Unsupported notifications are returned when the query or command is trying to use features that are not supported by the current system or using experimental features that should not be used in production.
 
@@ -2717,7 +2717,7 @@ m|WARNING
 |===
 
 [#_security_notifications]
-== `SECURITY` category
+== `SECURITY` notifications
 
 Security notifications indicate that the result of the query or command might have a potential security issue.
 Verify that this is the intended behavior of your query or command.
@@ -3589,7 +3589,7 @@ Until enabled, the new external auth will be ignored, and current external auth 
 
 
 [#_topology_notifications]
-== `TOPOLOGY` category
+== `TOPOLOGY` notifications
 
 Topology notifications provide additional information related to managing databases and servers.
 
@@ -3949,7 +3949,7 @@ The requested topology matched the current topology. No allocations were changed
 [#_neo_clientnotification_cluster_servercaughtup]
 === Server has caught up during `WAIT` command
 
-.Notification category details
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j  code
@@ -4019,7 +4019,7 @@ Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 [#_neo_clientnotification_cluster_serverfailed]
 === Server failed during `WAIT` command
 
-.Notification category details
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j  code
@@ -4096,7 +4096,7 @@ Investigate the failing server using the provided message.
 [#_neo_clientnotification_cluster_servercatchingup]
 === Server is still catching up during `WAIT` command
 
-.Notification category details
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j  code
@@ -4175,7 +4175,7 @@ Investigate the server and network for performance issues or increase the wait t
 [#_neo_clientnotification_cluster_serverunavailable]
 === Server is not available during `WAIT` command
 
-.Notification category details
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j  code
@@ -4250,7 +4250,7 @@ Investigate the server to determine why it is not available.
 
 
 [#_schema_notifications]
-== `SCHEMA` category
+== `SCHEMA` notifications
 
 Schema notifications provide additional information related to indexes and constraints.
 
@@ -4606,7 +4606,7 @@ Verify that this is the intended constraint and that it is spelled correctly.
 [#_generic]
 == `GENERIC` notifications
 
-`GENERIC` notification codes do not belong to any wider category and do not have any connection to each other.
+`GENERIC` notification codes do not belong to any wider type and do not have any connection to each other.
 
 [#_neo_clientnotification_statement_subqueryvariableshadowing]
 === Subquery variable shadowing
@@ -4970,7 +4970,7 @@ m|WARNING
 
 When matching on a relationship type expression that can never be satisfied, for example asking for zero, more than one or contradictory types.
 
-.Notification category details
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j  code
@@ -5029,7 +5029,7 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
 === Repeated relationship reference
 
-.Notification category details
+.Notification details
 [cols="<1s,<4"]
 |===
 |Neo4j  code
