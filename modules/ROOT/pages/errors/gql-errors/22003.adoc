@@ -1,0 +1,4 @@
+= 22003
+
+== Status description
+error: data exception - numeric value out of range. The numeric value `{ $value }` is outside the required range.

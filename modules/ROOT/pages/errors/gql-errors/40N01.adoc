@@ -1,0 +1,4 @@
+= 40N01
+
+== Status description
+error: transaction rollback - rollback failed. Failed to rollback transaction. See debug log for details.

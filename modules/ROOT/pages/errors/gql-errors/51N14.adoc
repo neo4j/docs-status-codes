@@ -1,0 +1,4 @@
+= 51N14
+
+== Status description
+error: system configuration or operation exception - duplicate field name.

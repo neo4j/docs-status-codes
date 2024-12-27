@@ -1,0 +1,4 @@
+= 42N19
+
+== Status description
+error: syntax error or access rule violation - duplicate clause. Duplicate `{ $syntax }` clause.

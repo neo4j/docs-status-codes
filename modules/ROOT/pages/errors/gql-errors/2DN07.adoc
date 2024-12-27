@@ -1,0 +1,4 @@
+= 2DN07
+
+== Status description
+error: invalid transaction termination - inner transactions still open. Unable to commit transaction because it still have non-closed inner transactions.

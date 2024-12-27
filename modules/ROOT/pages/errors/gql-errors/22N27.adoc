@@ -1,0 +1,4 @@
+= 22N27
+
+== Status description
+error: data exception - invalid entity type. Invalid input `{ $input }` for `{ $context }`. Expected to be `{ $valueTypeList }`.

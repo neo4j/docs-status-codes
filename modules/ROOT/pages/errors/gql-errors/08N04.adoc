@@ -1,0 +1,4 @@
+= 08N04
+
+== Status description
+error: unable to route use clause. Routing with `{ $clause }` is not supported in embedded sessions. Connect to the database directly or try running the query using a Neo4j driver or the HTTP API.

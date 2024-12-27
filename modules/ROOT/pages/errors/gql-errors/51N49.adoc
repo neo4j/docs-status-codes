@@ -1,0 +1,4 @@
+= 51N49
+
+== Status description
+error: system configuration or operation exception - cannot alter database. Cannot alter database `{ $db }`.

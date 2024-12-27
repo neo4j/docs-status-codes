@@ -1,0 +1,4 @@
+= 08000
+
+== Status description
+error: connection exception

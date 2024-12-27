@@ -1,0 +1,4 @@
+= 42I48
+
+== Status description
+error: syntax error or access rule violation - invalid use of a subquery in MERGE. Subqueries are not allowed in a MERGE clause.

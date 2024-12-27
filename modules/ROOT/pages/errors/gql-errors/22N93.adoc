@@ -1,0 +1,4 @@
+= 22N93
+
+== Status description
+error: data exception - missing YIELD. A required YIELD clause is missing.

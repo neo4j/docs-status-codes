@@ -1,0 +1,4 @@
+= 08N14
+
+== Status description
+error: connection exception - alias chains are not permitted. Unable to provide a routing table for the database identifed by the alias `{ $alias1 }` because the request comes from another alias `{ $alias2 }` and alias chains are not permitted.

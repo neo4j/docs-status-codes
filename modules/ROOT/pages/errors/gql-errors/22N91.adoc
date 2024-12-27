@@ -1,0 +1,4 @@
+= 22N91
+
+== Status description
+error: data exception - cannot convert alias local to remote or remote to local. Failed to alter the specified database alias `{ $alias }`. Altering remote alias to a local alias or vice versa is not supported. Drop and recreate the alias instead.

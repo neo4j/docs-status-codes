@@ -1,0 +1,4 @@
+= 42NA6
+
+== Status description
+info: invalid alias target. Aliases are not allowed to target composite databases.

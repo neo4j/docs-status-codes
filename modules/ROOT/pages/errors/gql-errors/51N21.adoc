@@ -1,0 +1,4 @@
+= 51N21
+
+== Status description
+error: system configuration or operation exception - procedure registry is busy. The procedure registration failed because the procedure registry was busy. Try again.

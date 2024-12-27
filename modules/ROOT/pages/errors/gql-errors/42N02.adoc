@@ -1,0 +1,4 @@
+= 42N02
+
+== Status description
+error: syntax error or access rule violation - writing in read access mode. Writing in read access mode not allowed.

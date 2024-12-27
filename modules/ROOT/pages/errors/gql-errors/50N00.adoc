@@ -1,0 +1,4 @@
+= 50N00
+
+== Status description
+error: general processing exception - internal error. Internal exception raised `{ $msgTitle }`: `{ $msg }`

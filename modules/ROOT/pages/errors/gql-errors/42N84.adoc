@@ -1,0 +1,4 @@
+= 42N84
+
+== Status description
+error: syntax error or access rule violation - `TERMINATE TRANSACTION` misses `YIELD` clause. `WHERE` clause without `YIELD` clause. Use 'TERMINATE TRANSACTION ... YIELD ... WHERE ...'.

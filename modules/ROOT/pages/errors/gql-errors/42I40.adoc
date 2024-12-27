@@ -1,0 +1,4 @@
+= 42I40
+
+== Status description
+error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.

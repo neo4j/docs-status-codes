@@ -1,0 +1,4 @@
+= 51N06
+
+== Status description
+error: system configuration or operation exception - missing argument name. The argument at position `{ $pos }` in `{ $procMethod }` requires a '@Name' annotation and a non-empty name.

@@ -1,0 +1,4 @@
+= 51N30
+
+== Status description
+error: system configuration or operation exception - not supported with this configuration. `{ $item }` is not supported in `{ $context }`.

@@ -1,0 +1,4 @@
+= 51N00
+
+== Status description
+error: system configuration or operation exception - procedure registration error. Failed to register procedure/function.

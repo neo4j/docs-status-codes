@@ -1,0 +1,4 @@
+= 08N08
+
+== Status description
+error: connection exception - database is read only. This database is read only on this server.

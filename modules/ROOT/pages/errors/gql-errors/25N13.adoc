@@ -1,0 +1,4 @@
+= 25N13
+
+== Status description
+error: invalid transaction state - cannot access entity after removal. A `{ $entityType }` was accessed after being deleted in this transaction. Verify the transaction statements.

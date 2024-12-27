@@ -1,0 +1,4 @@
+= 22N77
+
+== Status description
+error: data exception - property presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the following properties: `{ $propKeyList }`.

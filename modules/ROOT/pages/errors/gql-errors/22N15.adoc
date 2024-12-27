@@ -1,0 +1,4 @@
+= 22N15
+
+== Status description
+error: data exception - invalid temporal component. Cannot read the specified `{ $component }` component from `{ $temporal }`.

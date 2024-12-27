@@ -1,0 +1,4 @@
+= 51N45
+
+== Status description
+error: system configuration or operation exception - cannot cordon server. Cannot cordon server `{ $server }`.

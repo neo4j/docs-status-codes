@@ -1,0 +1,4 @@
+= 22N38
+
+== Status description
+error: data exception - invalid function argument. Invalid argument to the function `{ $fun }`.

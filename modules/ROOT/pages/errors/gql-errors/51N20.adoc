@@ -1,0 +1,4 @@
+= 51N20
+
+== Status description
+error: system configuration or operation exception - cannot inject field. The field `{ $procField }` is not injectable. Ensure the field is marked as public and non-final.

@@ -1,0 +1,4 @@
+= 22N03
+
+== Status description
+error: data exception - specified numeric value out of range. Expected `{ $component }` to be of type `{ $valueType }` and in the range `{ $lower }`  to `{ $upper }` but found `{ $value }`.

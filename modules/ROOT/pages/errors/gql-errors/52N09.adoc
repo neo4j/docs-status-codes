@@ -1,0 +1,4 @@
+= 52N09
+
+== Status description
+error: procedure exception - procedure execution database error. Execution of the procedure `{ $proc }` failed due to a database error.

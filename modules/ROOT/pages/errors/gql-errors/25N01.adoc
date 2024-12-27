@@ -1,0 +1,4 @@
+= 25N01
+
+== Status description
+error: invalid transaction state - invalid combination of statement types. Failed to execute the query `{ $query }` due to conflicting statement types (read query, write query, schema modification, or administration command). To execute queries in the same transaction, they must be either of the same type, or be a combination of schema modifications and read commands.

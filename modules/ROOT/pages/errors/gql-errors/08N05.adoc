@@ -1,0 +1,4 @@
+= 08N05
+
+== Status description
+error: connection exception - unable to route administration command. Routing administration commands is not supported in embedded sessions. Connect to the system database directly or try running the query using a Neo4j driver or the HTTP API.

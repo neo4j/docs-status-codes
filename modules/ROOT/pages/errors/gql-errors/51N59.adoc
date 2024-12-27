@@ -1,0 +1,4 @@
+= 51N59
+
+== Status description
+error: system configuration or operation exception - internal resource exhaustion. The DBMS is unable to handle the request, please retry later or contact the system operator. More information is present in the logs.

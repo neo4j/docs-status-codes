@@ -1,0 +1,4 @@
+= 40003
+
+== Status description
+error: transaction rollback - statement completion unknown

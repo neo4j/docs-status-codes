@@ -1,0 +1,4 @@
+= 50N12
+
+== Status description
+error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.

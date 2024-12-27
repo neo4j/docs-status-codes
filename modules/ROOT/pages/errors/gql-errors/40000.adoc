@@ -1,0 +1,4 @@
+= 40000
+
+== Status description
+error: transaction rollback

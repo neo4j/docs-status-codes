@@ -1,0 +1,4 @@
+= 51N39
+
+== Status description
+error: system configuration or operation exception - raft log corrupted. Expected set of files not found on disk. Please restore from backup.

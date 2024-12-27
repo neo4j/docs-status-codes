@@ -1,0 +1,4 @@
+= 22N51
+
+== Status description
+error: data exception - database or alias does not exist. A [composite] database or alias with the name `{ $db }` does not exist. Verify that the spelling is correct.

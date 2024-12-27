@@ -1,0 +1,4 @@
+= 42N06
+
+== Status description
+error: syntax error or access rule violation - unsupported action on composite database. `{ $action }` is not supported on composite databases.

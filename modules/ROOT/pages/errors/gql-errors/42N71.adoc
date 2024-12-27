@@ -1,0 +1,4 @@
+= 42N71
+
+== Status description
+error: syntax error or access rule violation - incomplete query. A query must conclude with a `RETURN` clause, a `FINISH` clause, an update clause, a unit subquery call, or a procedure call without a `YIELD` clause.

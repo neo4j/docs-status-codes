@@ -1,0 +1,4 @@
+= 51N56
+
+== Status description
+error: system configuration or operation exception - topology out of range. The number of `{ $serverType }` seeding servers `{ $count1 }` is larger than the desired number of `{ $allocType }` allocations `{ $count2 }`.

@@ -1,0 +1,4 @@
+= 51N65
+
+== Status description
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ $idx }` has a dimensionality of `{ $dim1 }`, but indexed vectors have `{ $dim2 }`.

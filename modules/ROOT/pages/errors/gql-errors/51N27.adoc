@@ -1,0 +1,27 @@
+= 51N27
+
+== Status description
+
+error: system configuration or operation exception - not supported in this edition. `{ $item }` is not supported in `{ $edition }`.
+
+== Explanation
+
+This error occurs when trying to perform an operation that is not supported in the current edition of the database. For example, when you try to alter a user's status, home database, or (after linked users) external auths/remove auth.
+
+== Example scenario
+
+For example, try to set status for user `foo` to `suspended` using `SET STATUS` operation in the Neo4j Community edition:
+
+[source,cypher]
+----
+ALTER USER foo
+SET PASSWORD CHANGE REQUIRED
+SET STATUS SUSPENDED"
+----
+
+Error message will be:
+
+[source]
+----
+error: system configuration or operation exception - not supported in this edition. `SET STATUS` is not supported in community edition.
+----

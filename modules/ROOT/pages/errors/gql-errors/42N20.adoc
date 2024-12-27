@@ -1,0 +1,4 @@
+= 42N20
+
+== Status description
+error: syntax error or access rule violation - empty list range operator. The list range operator '[ ]' cannot be empty.

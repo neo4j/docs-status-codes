@@ -1,0 +1,4 @@
+= 42NFE
+
+== Status description
+error: syntax error or access rule violation - auth info expired. Authentication and/or authorization info expired.

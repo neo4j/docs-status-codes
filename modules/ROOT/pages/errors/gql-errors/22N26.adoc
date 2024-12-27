@@ -1,0 +1,4 @@
+= 22N26
+
+== Status description
+error: data exception - unsupported rounding mode. Unknown rounding mode. Valid values are: `CEILING`, `FLOOR`, `UP`, `DOWN`, `HALF_EVEN`, `HALF_UP`, `HALF_DOWN`, `UNNECESSARY`.

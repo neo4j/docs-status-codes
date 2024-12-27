@@ -1,0 +1,4 @@
+= 42I37
+
+== Status description
+error: syntax error or access rule violation - invalid use of `RETURN *`. 'RETURN *' is not allowed when there are no variables in scope.

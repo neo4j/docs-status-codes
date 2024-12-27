@@ -1,0 +1,4 @@
+= 51N69
+
+== Status description
+error: system configuration or operation exception - system database is immutable. It is not possible to perform `{ $operation }` on the system database.

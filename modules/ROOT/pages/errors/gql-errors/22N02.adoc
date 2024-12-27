@@ -1,0 +1,4 @@
+= 22N02
+
+== Status description
+error: data exception - specified negative numeric value. Expected `{ $option }` to be a positive number but found `{ $value }` instead.

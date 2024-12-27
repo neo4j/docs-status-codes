@@ -1,0 +1,4 @@
+= 50N05
+
+== Status description
+error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.

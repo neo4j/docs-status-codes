@@ -1,0 +1,4 @@
+= 25N12
+
+== Status description
+error: invalid transaction state - index was dropped. Index `{ $idx }` was dropped in this transaction and cannot be used.

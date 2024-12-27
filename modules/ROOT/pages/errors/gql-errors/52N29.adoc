@@ -1,0 +1,4 @@
+= 52N29
+
+== Status description
+error: procedure exception - outdated change identifier. Given ChangeIdentifier describes a transaction that occurred before any enrichment records exist.
