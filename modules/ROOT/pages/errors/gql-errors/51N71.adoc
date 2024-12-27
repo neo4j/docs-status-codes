@@ -1,0 +1,4 @@
+= 51N71
+
+== Status description
+error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ $feat }` is not available in a sharded database.

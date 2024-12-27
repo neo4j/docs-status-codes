@@ -1,0 +1,4 @@
+= 22007
+
+== Status description
+error: data exception - invalid date, time, or datetime format

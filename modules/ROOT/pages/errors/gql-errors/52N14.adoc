@@ -1,0 +1,4 @@
+= 52N14
+
+== Status description
+error: procedure exception - system cannot be default database. System database cannot be set as default.

@@ -1,0 +1,4 @@
+= 22N32
+
+== Status description
+error: data exception - non-deterministic sort expression. 'ORDER BY' expressions must be deterministic.

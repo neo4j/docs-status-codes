@@ -1,0 +1,4 @@
+= 22N06
+
+== Status description
+error: data exception - empty input string. Invalid input. `{ $option }` needs to be specified.

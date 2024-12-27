@@ -1,0 +1,4 @@
+= 42N83
+
+== Status description
+error: syntax error or access rule violation - impersonation disallowed while password change required. Cannot impersonate a user while password change required.

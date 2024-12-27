@@ -1,0 +1,4 @@
+= 2DN02
+
+== Status description
+error: invalid transaction termination - constituent commit failed. Failed to commit constituent transaction. See debug log for details.

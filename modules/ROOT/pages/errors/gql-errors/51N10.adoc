@@ -1,0 +1,4 @@
+= 51N10
+
+== Status description
+error: system configuration or operation exception - aggregation method not public. The method `{ $procMethod }` of `{ $procClass }` must be public.

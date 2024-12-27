@@ -1,0 +1,4 @@
+= 51N54
+
+== Status description
+error: system configuration or operation exception - cannot reallocate. Failed to calculate reallocation for databases. { $msg }

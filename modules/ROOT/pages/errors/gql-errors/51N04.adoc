@@ -1,0 +1,4 @@
+= 51N04
+
+== Status description
+error: system configuration or operation exception - missing class field annotation. The field `{ $procField }` on `{ $procClass }` must be annotated as a '@Context' field in order to store its state.

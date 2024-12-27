@@ -1,0 +1,4 @@
+= 22N90
+
+== Status description
+error: data exception - property type unsupported in constraint. `{ $item }` is not supported in property type constraints.

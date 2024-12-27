@@ -1,0 +1,4 @@
+= 42N08
+
+== Status description
+error: syntax error or access rule violation - no such procedure or function. The procedure or function `{ $procFun }` was not registered for this database instance. Verify that the spelling is correct.

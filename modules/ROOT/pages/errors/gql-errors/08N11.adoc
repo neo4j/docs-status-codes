@@ -1,0 +1,4 @@
+= 08N11
+
+== Status description
+error: connection exception - request error. The request is invalid and could not be processed by the server. See cause for further details.

@@ -1,0 +1,4 @@
+= 22N25
+
+== Status description
+error: data exception - invalid temporal arguments. Cannot construct a `{ $valueType }` from `{ $temporal }`.

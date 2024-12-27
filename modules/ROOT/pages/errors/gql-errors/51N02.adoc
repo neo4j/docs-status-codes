@@ -1,0 +1,4 @@
+= 51N02
+
+== Status description
+error: system configuration or operation exception - unsupported injectable component type. Unable to set up injection for procedure `{ $procClass }`. The field `{ $procField }` has type `{ $procFieldType }` which is not a supported injectable component.

@@ -1,0 +1,4 @@
+= 50N11
+
+== Status description
+error: general processing exception - constraint creation failed. Unable to create `{ $constrDescrOrName }`.

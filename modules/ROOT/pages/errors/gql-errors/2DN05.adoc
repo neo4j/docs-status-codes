@@ -1,0 +1,4 @@
+= 2DN05
+
+== Status description
+error: invalid transaction termination - failed to apply transaction. There was an error on applying the transaction. See logs for more information.

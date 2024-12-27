@@ -1,0 +1,4 @@
+= 42N12
+
+== Status description
+error: syntax error or access rule violation - user already exists. A user with the name `{ $user }` already exists.

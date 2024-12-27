@@ -1,0 +1,4 @@
+= 51N09
+
+== Status description
+error: system configuration or operation exception - @UserAggregationUpdate method must be public and void. The '@UserAggregationUpdate' method `{ $procMethod }` of `{ $procClass }` must be public and have the return type 'void'.

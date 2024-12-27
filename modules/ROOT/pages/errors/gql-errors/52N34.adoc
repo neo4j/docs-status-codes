@@ -1,0 +1,4 @@
+= 52N34
+
+== Status description
+error: procedure exception - procedure sandboxed. `{ $sig }` is unavailable because it is sandboxed. Sandboxing is controlled by the dbms.security.procedures.unrestricted setting. Only un-restrict procedures you can trust with access to database internals.

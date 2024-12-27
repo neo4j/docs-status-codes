@@ -1,0 +1,4 @@
+= 42N97
+
+== Status description
+error: syntax error or access rule violation - missing mandatory auth clause. Clause `{ $clause }` is mandatory for auth provider `{ $auth }`.

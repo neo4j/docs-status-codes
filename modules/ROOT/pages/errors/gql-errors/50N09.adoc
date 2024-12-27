@@ -1,0 +1,4 @@
+= 50N09
+
+== Status description
+error: general processing exception - invalid server state transition. The server transitioned into a server state that is not valid in the current context: `{ $boltServerState }`.

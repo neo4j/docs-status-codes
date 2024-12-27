@@ -1,0 +1,4 @@
+= 42N05
+
+== Status description
+error: syntax error or access rule violation - unsupported access of standard database. Failed to access database identified by `{ $db1 }` while connected to composite session database `{ $db2 }`. Connect to `{ $db3 }` directly or create an alias in the composite database.

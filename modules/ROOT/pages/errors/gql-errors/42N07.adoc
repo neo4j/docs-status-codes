@@ -1,0 +1,4 @@
+= 42N07
+
+== Status description
+error: syntax error or access rule violation - variable shadowing. The variable `{ $variable }` is shadowing a variable with the same name from the outer scope and needs to be renamed.

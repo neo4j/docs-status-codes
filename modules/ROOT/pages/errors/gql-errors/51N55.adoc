@@ -1,0 +1,4 @@
+= 51N55
+
+== Status description
+error: system configuration or operation exception - cannot create additional database. Failed to create the database `{ $db }`. The limit of databases is reached. Either increase the limit using the config setting `{ $cfgSetting }` or drop a database.

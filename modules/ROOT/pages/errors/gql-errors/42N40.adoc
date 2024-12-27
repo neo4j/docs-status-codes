@@ -1,0 +1,4 @@
+= 42N40
+
+== Status description
+error: syntax error or access rule violation - single relationship pattern required. The `{ $fun }` function must contain one relationship pattern.

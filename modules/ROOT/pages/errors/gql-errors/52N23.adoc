@@ -1,0 +1,4 @@
+= 52N23
+
+== Status description
+error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ $namespaceList }`

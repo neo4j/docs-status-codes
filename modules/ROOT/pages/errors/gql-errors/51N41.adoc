@@ -1,0 +1,4 @@
+= 51N41
+
+== Status description
+error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible.

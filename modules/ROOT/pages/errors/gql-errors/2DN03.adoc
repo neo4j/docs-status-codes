@@ -1,0 +1,4 @@
+= 2DN03
+
+== Status description
+error: invalid transaction termination - transaction termination failed. Failed to terminate transaction. See debug log for details.

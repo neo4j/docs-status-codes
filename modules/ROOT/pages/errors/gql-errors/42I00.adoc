@@ -1,0 +1,4 @@
+= 42I00
+
+== Status description
+error: syntax error or access rule violation - invalid case expression. 'CASE' expressions must have the same number of 'WHEN' and 'THEN' operands.

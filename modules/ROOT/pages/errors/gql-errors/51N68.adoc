@@ -1,0 +1,4 @@
+= 51N68
+
+== Status description
+error: system configuration or operation exception - CDC is disabled for this database. Change Data Capture is not currently enabled for this database.

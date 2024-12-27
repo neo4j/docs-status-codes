@@ -1,0 +1,4 @@
+= 22NA0
+
+== Status description
+error: data exception - invalid property based access control rule. Failed to administer property rule.

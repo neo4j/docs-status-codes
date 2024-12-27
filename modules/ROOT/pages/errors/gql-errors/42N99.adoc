@@ -1,0 +1,4 @@
+= 42N99
+
+== Status description
+error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.

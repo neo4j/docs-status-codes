@@ -1,0 +1,4 @@
+= 22N05
+
+== Status description
+error: data exception - input failed validation. Invalid input `{ $input }` for `{ $context }`.

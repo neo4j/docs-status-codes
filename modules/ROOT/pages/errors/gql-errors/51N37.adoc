@@ -1,0 +1,4 @@
+= 51N37
+
+== Status description
+error: system configuration or operation exception - stack overflow. There is not enough stack size to perform the current task.

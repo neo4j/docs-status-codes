@@ -1,0 +1,4 @@
+= 22N01
+
+== Status description
+error: data exception - invalid type.

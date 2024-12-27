@@ -1,0 +1,4 @@
+= 42N39
+
+== Status description
+error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.

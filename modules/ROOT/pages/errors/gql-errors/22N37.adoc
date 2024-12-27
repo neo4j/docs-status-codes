@@ -1,0 +1,4 @@
+= 22N37
+
+== Status description
+error: data exception - invalid coercion. Cannot coerce `{ $value }` to `{ $valueType }`.

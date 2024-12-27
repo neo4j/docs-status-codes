@@ -1,0 +1,4 @@
+= 22N04
+
+== Status description
+error: data exception - invalid input value. Invalid input `{ $input }` for `{ $context }`. Expected `{ $inputList }`.

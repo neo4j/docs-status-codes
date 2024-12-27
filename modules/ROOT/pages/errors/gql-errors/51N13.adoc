@@ -1,0 +1,4 @@
+= 51N13
+
+== Status description
+error: system configuration or operation exception - procedure or function name already in use. Unable to register the procedure or function `{ $procFun }` because the name is already in use.

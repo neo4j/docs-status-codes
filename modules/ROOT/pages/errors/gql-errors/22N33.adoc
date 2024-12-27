@@ -1,0 +1,4 @@
+= 22N33
+
+== Status description
+error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ $variable }`.

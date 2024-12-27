@@ -1,0 +1,4 @@
+= 22N56
+
+== Status description
+error: data exception - protocol message length limit overflow. Protocol message length limit exceeded (limit: `{ $boltMsgLenLimit }`).

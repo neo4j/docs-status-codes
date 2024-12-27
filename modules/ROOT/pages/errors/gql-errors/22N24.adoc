@@ -1,0 +1,4 @@
+= 22N24
+
+== Status description
+error: data exception - invalid coordinate arguments. Cannot construct a `{ $valueType }` from `{ $coordinates }`.

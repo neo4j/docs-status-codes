@@ -1,0 +1,4 @@
+= 22N44
+
+== Status description
+error: data exception - parallel runtime disabled. Parallel runtime has been disabled, enable it or upgrade to a bigger Aura instance.

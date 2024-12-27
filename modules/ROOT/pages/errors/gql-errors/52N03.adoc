@@ -1,0 +1,4 @@
+= 52N03
+
+== Status description
+error: procedure exception - invalid procedure execution mode. Execution of the procedure `{ $proc }` failed due to an invalid specified execution mode `{ $procExeMode }`.

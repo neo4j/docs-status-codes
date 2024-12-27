@@ -1,0 +1,4 @@
+= 08N18
+
+== Status description
+error: connection exception - general driver database error. Remote execution failed with message `{ $msg }`.

@@ -1,0 +1,4 @@
+= 52N30
+
+== Status description
+error: procedure exception - future change identifier. Given ChangeIdentifier describes a transaction that hasn't yet occurred.

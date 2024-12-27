@@ -1,0 +1,4 @@
+= 42006
+
+== Status description
+error: syntax error or access rule violation - number of edge labels below supported minimum

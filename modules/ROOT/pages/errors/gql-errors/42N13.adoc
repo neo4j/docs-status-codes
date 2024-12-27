@@ -1,0 +1,4 @@
+= 42N13
+
+== Status description
+error: syntax error or access rule violation - role already exists. A role with the name `{ $role }` already exists.

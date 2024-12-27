@@ -1,0 +1,4 @@
+= 25N08
+
+== Status description
+error: invalid transaction state - invalid transaction lease. The lease for the transaction is no longer valid.

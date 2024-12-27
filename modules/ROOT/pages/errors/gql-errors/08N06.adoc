@@ -1,0 +1,4 @@
+= 08N06
+
+== Status description
+error: connection exception - protocol error. General network protocol error.
