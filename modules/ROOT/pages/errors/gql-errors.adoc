@@ -443,7 +443,7 @@ Status description:: error: data exception - property type verification failed. 
 
 === 22N79
 
-Status description:: error: data exception - property uniqueness constraint violated. Property uniqueness constraint violated: `{ $reasons }`.
+Status description:: error: data exception - property uniqueness constraint violated. Property uniqueness constraint violated: `{ $reasonList }`.
 
 === 22N80
 
