@@ -1606,6 +1606,8 @@ Status description:: error: procedure exception - procedure execution error. Exe
 
 Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ $proc }` failed due to `{ $msgTitle }`: { $msg }
 
+== Function exceptions
+
 === 53N34
 
 Status description:: error: function exception - function restricted. `{ $fun }` is is restricted and accesses database internals. User-defined function restriction is controlled by the dbms.security.procedures.unrestricted setting. Only un-restrict user-defined functions you can trust with access to database internals.
