@@ -1596,7 +1596,7 @@ Status description:: error: procedure exception - procedure compilation failed. 
 
 === 52N36
 
-Status description:: error: procedure exception - invalid procedure argument with API documentation hint. Invalid argument `{ $value }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is outlined in the `{ $procParamFmt }` API documentation.
+Status description:: error: procedure exception - invalid procedure argument with API documentation hint. Invalid argument `{ $field }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is outlined in the `{ $procParamFmt }` API documentation.
 
 === 52N37
 
