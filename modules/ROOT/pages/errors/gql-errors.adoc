@@ -1043,7 +1043,7 @@ Status description:: error: syntax error or access rule violation - variable alr
 
 === 42N81
 
-Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ $param }`, but got `{ $paramAndedList }`.
+Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ $param }`, but got `{ $paramList }`.
 
 === 42N83
 
