@@ -1483,7 +1483,7 @@ Status description:: error: system configuration or operation exception - transa
 
 === 51N74
 
-Status description:: error: system configuration or operation exception - maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ $cfgSetting }` in the neo4j configuration.
+Status description:: error: system configuration or operation exception - maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ $cfgSetting }` in the neo4j.conf file.
 
 == Procedure exception
 
