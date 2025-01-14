@@ -973,7 +973,7 @@ Status description:: error: syntax error or access rule violation - unexpected e
 
 === 42N47
 
-Status description:: error: syntax error or access rule violation - invalid use of `UNION`. 'CALL { ... } IN TRANSACTIONS' is not supported in '... UNION ...'.
+Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported in '... UNION ...'.
 
 === 42N49
 
