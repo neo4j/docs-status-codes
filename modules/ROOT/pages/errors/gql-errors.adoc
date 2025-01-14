@@ -999,7 +999,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === 42N59
 
-Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ $var }` already declared.
+Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ $variable }` already declared.
 
 === 42N65
 
