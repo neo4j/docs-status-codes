@@ -936,7 +936,19 @@ Status description:: error: syntax error or access rule violation - specified nu
 
 === 42N39
 
-Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ $context }` must have the same return column names.
+
+=== 42N3A
+
+Status description:: error: syntax error or access rule violation - incompatible subquery type. All `{ $context }` need to be either returning or unit..
+
+=== 42N3B
+
+Status description:: error: syntax error or access rule violation - incompatible number of return columns. All `{ $context }` must return the same number of columns.
+
+=== 42N3C
+
+Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ $clause }` in 'CALL { ... }', please use 'CALL () { ... }'.
 
 === 42N40
 
