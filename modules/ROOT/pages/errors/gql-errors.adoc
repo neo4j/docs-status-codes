@@ -138,6 +138,10 @@ Status description:: error: data exception - interval field overflow
 
 Status description:: error: data exception - invalid value type
 
+=== 22G05
+
+Status description:: error: data exception - invalid date, time, or datetime function field name
+
 === 22N00
 
 Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
@@ -824,6 +828,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
 
+=== 42I41
+
+Status description:: error: syntax error or access rule violation - invalid use of variable length relationship. Variable length relationships cannot be used in `{ $value }`.
+
 === 42I45
 
 Status description:: error: syntax error or access rule violation - invalid use of multiple path patterns. Multiple path patterns cannot be used in the same clause in combination with a selective path selector. `{ $action }`
@@ -1001,6 +1009,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ $variable }` already declared.
 
+=== 42N62
+
+Status description:: error: syntax error or access rule violation - variable not defined. Variable `{ $variable }` not defined.
+
 === 42N65
 
 Status description:: error: syntax error or access rule violation - node variable not bound. The `{ $fun }` function requires bound node variables when it is not part of a 'MATCH ...'.
@@ -1143,6 +1155,10 @@ Status description:: error: general processing exception - execution failed. Exe
 
 Status description:: error: general processing exception - invalid server state transition. The server transitioned into a server state that is not valid in the current context: `{ $boltServerState }`.
 
+=== 50N10
+
+Status description:: error: general processing exception - index drop failed. Unable to drop `{ $idxDescrOrName }`.
+
 === 50N11
 
 Status description:: error: general processing exception - constraint creation failed. Unable to create `{ $constrDescrOrName }`.
@@ -1150,6 +1166,18 @@ Status description:: error: general processing exception - constraint creation f
 === 50N12
 
 Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
+
+=== 50N13
+
+Status description:: error: general processing exception - constraint validation error. Unable to validate constraint `{ $constrDescrOrName }`.
+
+=== 50N14
+
+Status description:: error: general processing exception - constraint violation. A constraint imposed by the database was violated.
+
+=== 50N15
+
+Status description:: error: general processing exception - unsupported index operation. The system attemped to execute an unsupported operation on index `{ $idx }`. See debug.log for more information.
 
 === 50N16
 
@@ -1437,6 +1465,9 @@ Status description:: error: system configuration or operation exception - unable
 
 Status description:: error: system configuration or operation exception - index population failed. Index `{ $idx }` population failed.
 
+=== 51N62
+
+Status description:: error: system configuration or operation exception - index is in a failed state. Unable to use index `{ $idx }` because it is in a failed state. See logs for more information.
 
 === 51N63
 
@@ -1557,6 +1588,9 @@ Status description:: error: procedure exception - too many seeders. The number o
 
 Status description:: error: procedure exception - no such seeder. The specified seeding server with id `{ $server }` was not found. Verify that the spelling is correct.
 
+=== 52N22
+
+Status description:: error: procedure exception - invalid procedure argument. Invalid argument `{ $value }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is `{ $procParamFmt }`.
 
 === 52N23
 
