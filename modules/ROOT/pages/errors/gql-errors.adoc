@@ -385,9 +385,9 @@ Status description:: error: data exception - invalid spatial component. Cannot r
 
 Status description:: error: data exception - constraint does not exist. The constraint `{ $constrDescrOrName }` does not exist.
 
-// === 22N65
+=== 22N65
 
-// Status description:: error: data exception - equivalent constraint already exists. An equivalent constraint already exists: `{ $constrDescrOrName }`.
+Status description:: error: data exception - equivalent constraint already exists. An equivalent constraint already exists: `{ $constrDescrOrName }`.
 
 === 22N66
 
@@ -405,9 +405,9 @@ Status description:: error: data exception - dependent constraint managed indivi
 
 Status description:: error: data exception - index does not exist. The index specified by `{ $idxDescrOrName }` does not exist.
 
-// === 22N70
+=== 22N70
 
-// Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ $idxDescrOrName }`.
+Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ $idxDescrOrName }`.
 
 === 22N71
 
@@ -417,21 +417,21 @@ Status description:: error: data exception - index with the same name already ex
 
 // Status description:: error: data exception - index required by existing constraint. A requested operation can not be performed on the specified index because the index is part of a constraint.
 
-// === 22N73
+=== 22N73
 
-// Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idx }`.
+Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idx }`.
 
-// === 22N74
+=== 22N74
 
-// Status description:: error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ $constr }` contains a conflicting index.
+Status description:: error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ $constr }` contains a conflicting index.
 
-// === 22N75
+=== 22N75
 
-// Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
 
-// === 22N76
+=== 22N76
 
-// Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
 
 === 22N77
 
