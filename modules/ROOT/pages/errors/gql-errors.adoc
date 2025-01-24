@@ -1590,7 +1590,7 @@ Status description:: error: procedure exception - no such seeder. The specified 
 
 === 52N22
 
-Status description:: error: procedure exception - invalid procedure argument. Invalid argument `{ $value }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is `{ $procParamFmt }`.
+Status description:: error: procedure exception - invalid procedure argument. Invalid argument `{ $field }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is `{ $procParamFmt }`.
 
 === 52N23
 
