@@ -431,11 +431,11 @@ Status description:: error: data exception - index conflicts with existing const
 
 === 22N75
 
-Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, or property key with name `{ $token }` more than once.
 
 === 22N76
 
-Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, a property key with name `{ $token }` more than once.
+Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, or property key with name `{ $token }` more than once.
 
 === 22N77
 
