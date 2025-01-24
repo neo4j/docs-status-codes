@@ -993,7 +993,7 @@ Status description:: error: syntax error or access rule violation - invalid para
 
 === 42N53
 
-Status description:: error: syntax error or access rule violation - unsafe usage of repeatable elements. The quantified path pattern may yield an infinite number of rows under match mode `REPEATABLE ELEMENTS`. Use a path selector or add an upper bound to the quantified path pattern.
+Status description:: error: syntax error or access rule violation - unsafe usage of repeatable elements. The quantified path pattern may yield an infinite number of rows under match mode `REPEATABLE ELEMENTS'. Add an upper bound to the quantified path pattern.
 
 
 === 42N56
