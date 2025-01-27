@@ -966,7 +966,7 @@ m|UNRECOGNIZED
 m|01N50
 |Status description
 a|warn: unknown label.
-The label `{ $label }` does not exist.
+The label `{ $label }` does not exist in database `{ $db }`.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -992,7 +992,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: unknown label.
-The label `Perso` does not exist.
+The label `Perso` does not exist in database `neo4j`.
 Verify that the spelling is correct.
 
 Suggestions for improvement::
@@ -1038,7 +1038,7 @@ m|UNRECOGNIZED
 m|01N51
 |Status description
 a|warn: unknown relationship type.
-The relationship type `{ $reltype }` does not exist.
+The relationship type `{ $reltype }` does not exist in database `{ $db }`.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1063,7 +1063,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: unknown relationship type.
-The relationship type `NonExistingType` does not exist.
+The relationship type `NonExistingType` does not exist in database `neo4j`.
 Verify that the spelling is correct.
 
 Suggestions for improvement::
@@ -1109,7 +1109,7 @@ m|UNRECOGNIZED
 m|01N52
 |Status description
 a|warn: unknown property key.
-The property `{ $propkey }` does not exist.
+The property `{ $propkey }` does not exist in database `{ $db }`.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1135,7 +1135,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: unknown property key.
-The property `nme` does not exist.
+The property `nme` does not exist in database `neo4j`.
 Verify that the spelling is correct.
 
 Suggestions for improvement::
