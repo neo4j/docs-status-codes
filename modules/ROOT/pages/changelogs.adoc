@@ -23,8 +23,8 @@
 |===
 
 
-Starting from 2025.01, when using Cypher25, queries using `WAIT` return the notifications listed above instead of result rows.
-The behaviour for Cypher5 remains unchanged.
+//Starting from 2025.01, when using Cypher25, queries using `WAIT` return the notifications listed above instead of result rows.
+//The behaviour for Cypher5 remains unchanged.
 
 == Neo4j 5.25
 
