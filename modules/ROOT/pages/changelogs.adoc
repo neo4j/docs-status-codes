@@ -26,6 +26,33 @@
 //Starting from 2025.01, when using Cypher25, queries using `WAIT` return the notifications listed above instead of result rows.
 //The behaviour for Cypher5 remains unchanged.
 
+== Neo4j 5.26
+
+**New:**
+
+[options="header", cols="<1m,<1"]
+|===
+
+| GQLSTATUS
+| Neo4j code
+
+| 01N72
+| Neo.ClientNotification.Statement.InsecureProtocol
+
+| 42I50
+| Neo.ClientError.Schema.TokenLengthError
+
+|===
+
+Starting from 5.26, Neo4j errors sent over drivers include new fields,
+such as GQLSTATUS code, StatusDescription, and DiagnosticRecord.
+For more information, see xref:errors/index.adoc#gqlstatus-error-object[GQL-status error object].
+
+
+**Deprecations:**
+
+The server-side Notification API and the `getNotifications()` method of the Result Core API were deprecated.
+
 == Neo4j 5.25
 
 Starting from 5.25, the query log includes the GQL error information under the JSON object `errorInfo`.
@@ -56,6 +83,9 @@ For more information, see link:https://neo4j.com/docs/operations-manual/current/
 | 03N62
 | Neo.ClientNotification.Statement.RedundantOptionalSubquery
 
+| ?? // Not assigned yet and not documented
+| Neo.TransientError.Invalid.ResourceExhaustion
+
 |===
 
 == Neo4j 5.23
@@ -75,6 +105,7 @@ For more information, see xref:notifications/index.adoc#gqlstatus-notification-o
 Neo.ClientNotification.Cluster.RequestedTopologyMatchedCurrentTopology
 Neo.ClientNotification.Schema.IndexOrConstraintAlreadyExists
 Neo.ClientNotification.Schema.IndexOrConstraintDoesNotExist
+Neo.ClientError.Statement.InvalidTargetDatabaseError
 -----
 
 == Neo4j 5.15
@@ -107,10 +138,20 @@ The usage of `Neo.ClientNotification.Statement.RuntimeExperimental` has been rem
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Cluster.ServerAlreadyEnabled
+Neo.ClientNotification.Cluster.ServerAlreadyCordoned
 Neo.ClientError.ChangeDataCapture.InvalidIdentifier
 Neo.TransientError.ChangeDataCapture.FutureIdentifier
 Neo.DatabaseError.ChangeDataCapture.Disabled
 Neo.DatabaseError.ChangeDataCapture.ScanFailure
+-----
+
+== Neo4j 5.10
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.TransientError.Transaction.QueryExecutionFailedOnTransaction
 -----
 
 == Neo4j 5.9
@@ -123,6 +164,17 @@ Neo.ClientNotification.Security.CommandHasNoEffect
 Neo.ClientNotification.Security.ImpossibleRevokeCommand
 -----
 
+== Neo4j 5.7
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.ClientError.Transacton.TransactionTimedOutClientConfiguration
+Neo.ClientError.Routing.DbmsInPanic
+Neo.ClientError.Routing.RoutingFailed
+-----
+
 == Neo4j 5.5
 
 **New:**
@@ -130,10 +182,11 @@ Neo.ClientNotification.Security.ImpossibleRevokeCommand
 [source, status codes, role="noheader"]
 -----
 Neo.ClientNotification.Statement.RepeatedRelationshipReference
+Neo.ClientError.Statement.RemoteExecutionClientError
+Neo.TransientError.Statement.RemoteExecutionTransientError
 -----
 
 == Neo4j 5.4
-
 
 **New:**
 
@@ -141,6 +194,16 @@ Neo.ClientNotification.Statement.RepeatedRelationshipReference
 -----
 Neo.ClientNotification.Statement.UnsatisfiableRelationshipTypeExpression
 -----
+
+== Neo4j 5.3
+
+**New:**
+
+[source, status codes, role="noheader"]
+-----
+Neo.DatabaseError.Transaction.TransactionTerminationFailed
+-----
+
 
 == Neo4j 5.0
 
@@ -191,6 +254,8 @@ Neo.ClientNotification.Statement.UnboundedVariableLengthPatternWarning
 -----
 Neo.ClientError.Statement.UnsupportedAdministrationCommand
 Neo.DatabaseError.Transaction.LinkedTransactionError
+Neo.TransientError.Transaction.LeaderSwitch
+Neo.ClientError.Database.IllegalAliasChain
 -----
 
 
