@@ -577,6 +577,18 @@ Status description:: error: data exception - invalid property based access contr
 
 Status description:: error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeList }` but was `{ $input }`.
 
+=== 22NB2
+
+Status description:: error: data exception - incompatible graph type dependence. Graph type `{ $graphTypeDependence1 }` constraint `{ $constrDescrOrName1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.
+
+=== 22NB3
+
+Status description:: error: data exception - token presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType1 }` `{ $token1 }` must have the `{ $tokenType2 }` `{ $token2 }`.
+
+=== 22NB4
+
+Status description:: error: data exception - endpoint label presence verification failed. Relationship (`{ $entityId1 }`) with type `{ $relType }` requires its `{ $endpointType }` node (`{ $entityId2 }`) to have the label `{ $label }`.
+
 // === 22NFF
 
 // Status description:: error: data exception - referent does not exist. The referent of the specified reference does not exist.
