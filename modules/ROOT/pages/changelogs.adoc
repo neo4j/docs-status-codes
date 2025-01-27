@@ -3,13 +3,26 @@
 
 == Neo4j 2025.01
 **New:**
-[source, status codes, role="noheader"]
------
-Neo.ClientNotification.Cluster.ServerNotAvailable
-Neo.ClientNotification.Cluster.ServerCatchingUp
-Neo.ClientNotification.Cluster.ServerFailed
-Neo.ClientNotification.Cluster.ServerCaughtUp
------
+[options="header", cols="<1m,<1"]
+|===
+| GQLSTATUS
+| Neo4j code
+
+| 01N80
+| Neo.ClientNotification.Cluster.ServerFailed
+
+| 01N81
+| Neo.ClientNotification.Cluster.ServerCatchingUp
+
+| 01N82
+| Neo.ClientNotification.Cluster.ServerNotAvailable
+
+| 03N85
+| Neo.ClientNotification.Cluster.ServerCaughtUp
+
+|===
+
+
 Starting from 2025.01, when using Cypher25, queries using `WAIT` return the notifications listed above instead of result rows.
 The behaviour for Cypher5 remains unchanged.
 
@@ -22,14 +35,28 @@ For more information, see link:https://neo4j.com/docs/operations-manual/current/
 
 **New:**
 
-[source, status codes, role="noheader"]
------
-Neo.ClientNotification.Statement.RedundantOptionalProcedure
-Neo.ClientNotification.Statement.RedundantOptionalSubquery
-Neo.ClientNotification.Security.AuthProviderNotDefined
-Neo.ClientNotification.Security.ExternalAuthNotEnabled
-Neo.ClientNotification.Statement.AggregationSkippedNull
------
+[options="header", cols="<1m,<1"]
+|===
+
+| GQLSTATUS
+| Neo4j code
+
+| 00N72
+| Neo.ClientNotification.Security.AuthProviderNotDefined
+
+| 01G11
+| Neo.ClientNotification.Statement.AggregationSkippedNull
+
+| 01N71
+| Neo.ClientNotification.Security.ExternalAuthNotEnabled
+
+| 03N61
+| Neo.ClientNotification.Statement.RedundantOptionalProcedure
+
+| 03N62
+| Neo.ClientNotification.Statement.RedundantOptionalSubquery
+
+|===
 
 == Neo4j 5.23
 

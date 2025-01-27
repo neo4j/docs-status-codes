@@ -4100,7 +4100,7 @@ Investigate the failing server using the provided message.
 [cols="<1s,<4"]
 |===
 |Neo4j  code
-m|Neo.ClientNotification.Cluster.ServerCachingUp
+m|Neo.ClientNotification.Cluster.ServerCatchingUp
 |Title
 a|Server is still catching up.
 |Description
