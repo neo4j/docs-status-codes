@@ -1650,7 +1650,7 @@ Status description:: error: procedure exception - procedure execution error. Exe
 
 === 52U00
 
-Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ $proc }` failed due to `{ $msgTitle }`: { $msg }
+Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ $proc }` failed due to `{ $msgTitle }`: { $msg }.
 
 == Function exceptions
 
