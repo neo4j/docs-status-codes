@@ -1668,7 +1668,7 @@ Status description:: error: function exception - function execution error. Execu
 
 === 53U00
 
-Status description:: error: function exception - custom function execution error cause. Execution of the function `{ $fun }` failed due to `{ $msgTitle }`: { $msg }
+Status description:: error: function exception - custom function execution error cause. Execution of the function `{ $fun }` failed due to `{ $msgTitle }`: { $msg }.
 
 
 
