@@ -423,7 +423,7 @@ Status description:: error: data exception - index with the same name already ex
 
 === 22N73
 
-Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idx }`.
+Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idxDescrOrName }`.
 
 === 22N74
 
