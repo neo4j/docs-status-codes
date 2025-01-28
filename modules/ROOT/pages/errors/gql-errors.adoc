@@ -335,7 +335,7 @@ Status description:: error: data exception - invalid parallel runtime configurat
 
 === 22N48
 
-Status description:: error: data exception - unable to use specified runtime. Cannot use the specified runtime `{ $runtime }` due to `{ $cause }`. Use another runtime.
+Status description:: error: data exception - unable to use specified runtime. Cannot use the specified runtime { $runtime } due to { $cause } not being supported. Use another runtime.
 
 === 22N49
 
