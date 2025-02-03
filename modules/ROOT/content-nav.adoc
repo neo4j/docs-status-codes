@@ -4,7 +4,7 @@
 ** xref:notifications/all-notifications.adoc[]
 * xref:errors/index.adoc[]
 ** xref:errors/gql-errors/index.adoc[]
-*** Connection exceptions
+*** xref:errors/gql-errors/index.adoc#connection-exceptions[Connection exceptions]
 **** xref:errors/gql-errors/08000.adoc[]
 **** xref:errors/gql-errors/08007.adoc[]
 **** xref:errors/gql-errors/08N00.adoc[]
@@ -26,7 +26,7 @@
 **** xref:errors/gql-errors/08N16.adoc[]
 **** xref:errors/gql-errors/08N17.adoc[]
 **** xref:errors/gql-errors/08N18.adoc[]
-*** Data exceptions
+*** xref:errors/gql-errors/index.adoc#data-exceptions[Data exceptions]
 **** xref:errors/gql-errors/22000.adoc[]
 **** xref:errors/gql-errors/22003.adoc[]
 **** xref:errors/gql-errors/22007.adoc[]
@@ -128,7 +128,7 @@
 **** xref:errors/gql-errors/22NB2.adoc[]
 **** xref:errors/gql-errors/22NB3.adoc[]
 **** xref:errors/gql-errors/22NB4.adoc[]
-*** Invalid transaction state
+*** xref:errors/gql-errors/index.adoc#invalid-transaction-state[Invalid transaction state]
 **** xref:errors/gql-errors/25N01.adoc[]
 **** xref:errors/gql-errors/25N02.adoc[]
 **** xref:errors/gql-errors/25N03.adoc[]
@@ -140,7 +140,7 @@
 **** xref:errors/gql-errors/25N11.adoc[]
 **** xref:errors/gql-errors/25N12.adoc[]
 **** xref:errors/gql-errors/25N13.adoc[]
-*** Invalid transaction termination
+*** xref:errors/gql-errors/index.adoc#invalid-transaction-termination[Invalid transaction termination]
 **** xref:errors/gql-errors/2DN01.adoc[]
 **** xref:errors/gql-errors/2DN02.adoc[]
 **** xref:errors/gql-errors/2DN03.adoc[]
@@ -148,12 +148,12 @@
 **** xref:errors/gql-errors/2DN05.adoc[]
 **** xref:errors/gql-errors/2DN06.adoc[]
 **** xref:errors/gql-errors/2DN07.adoc[]
-*** Transaction rollback
+*** xref:errors/gql-errors/index.adoc#transaction-rollback[Transaction rollback]
 **** xref:errors/gql-errors/40000.adoc[]
 **** xref:errors/gql-errors/40003.adoc[]
 **** xref:errors/gql-errors/40N01.adoc[]
 **** xref:errors/gql-errors/40N02.adoc[]
-*** Syntax error or access rule violation
+*** xref:errors/gql-errors/index.adoc#syntax-error-or-access-rule-violation[Syntax error or access rule violation]
 **** xref:errors/gql-errors/42000.adoc[]
 **** xref:errors/gql-errors/42001.adoc[]
 **** xref:errors/gql-errors/42002.adoc[]
@@ -260,7 +260,7 @@
 **** xref:errors/gql-errors/42NFD.adoc[]
 **** xref:errors/gql-errors/42NFE.adoc[]
 **** xref:errors/gql-errors/42NFF.adoc[]
-*** General processing exceptions
+*** xref:errors/gql-errors/index.adoc#general-processing-exceptions[General processing exceptions]
 **** xref:errors/gql-errors/50N00.adoc[]
 **** xref:errors/gql-errors/50N05.adoc[]
 **** xref:errors/gql-errors/50N06.adoc[]
@@ -275,7 +275,7 @@
 **** xref:errors/gql-errors/50N16.adoc[]
 **** xref:errors/gql-errors/50N17.adoc[]
 **** xref:errors/gql-errors/50N42.adoc[]
-*** System configuration or operation exceptions
+*** xref:errors/gql-errors/index.adoc#system-configuration-or-operation-exceptions[System configuration or operation exceptions]
 **** xref:errors/gql-errors/51N00.adoc[]
 **** xref:errors/gql-errors/51N01.adoc[]
 **** xref:errors/gql-errors/51N02.adoc[]
@@ -344,7 +344,7 @@
 **** xref:errors/gql-errors/51N72.adoc[]
 **** xref:errors/gql-errors/51N73.adoc[]
 **** xref:errors/gql-errors/51N74.adoc[]
-*** Procedure exceptions
+*** xref:errors/gql-errors/index.adoc#procedure-exceptions[Procedure exceptions]
 **** xref:errors/gql-errors/52N01.adoc[]
 **** xref:errors/gql-errors/52N02.adoc[]
 **** xref:errors/gql-errors/52N03.adoc[]
@@ -375,12 +375,9 @@
 **** xref:errors/gql-errors/52N36.adoc[]
 **** xref:errors/gql-errors/52N37.adoc[]
 **** xref:errors/gql-errors/52U00.adoc[]
-*** Function exceptions
+*** xref:errors/gql-errors/index.adoc#function-exceptions[Function exceptions]
 **** xref:errors/gql-errors/53N34.adoc[]
 **** xref:errors/gql-errors/53N35.adoc[]
 **** xref:errors/gql-errors/53N37.adoc[]
 **** xref:errors/gql-errors/53U00.adoc[]
-
-
-
 ** xref:errors/all-errors.adoc[]
