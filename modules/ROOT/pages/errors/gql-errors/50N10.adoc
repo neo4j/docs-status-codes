@@ -1,0 +1,5 @@
+= 50N10
+
+
+== Status description
+error: general processing exception - index drop failed. Unable to drop `{ $idxDescrOrName }`.

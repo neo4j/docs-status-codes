@@ -1,0 +1,5 @@
+= 22N68
+
+
+== Status description
+error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.

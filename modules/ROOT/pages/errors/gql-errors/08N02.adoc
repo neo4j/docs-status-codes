@@ -3,7 +3,6 @@
 == Status description
 error: connection exception - unable to connect to database. Unable to connect to database `{ $db }`. Server-side routing is disabled. Either connect to `{ $db }` directly, or enable server-side routing by setting '{ $cfgSetting }=true'.
 
-
 // [source]
 // ----
 // error: connection exception - unable to connect to database. Unable to connect to database `mydb`. Server-side routing is disabled. Either connect to `mydb` directly, or enable server-side routing by setting 'dbms.routing.enabled=true'.

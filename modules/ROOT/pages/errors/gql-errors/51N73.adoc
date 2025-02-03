@@ -1,0 +1,5 @@
+= 51N73
+
+
+== Status description
+error: system configuration or operation exception - transaction memory limit reached. The transaction uses more memory than is allowed. The maximum allowed size for a transaction can be configured with `{ $cfgSetting }` in the neo4j.conf file.

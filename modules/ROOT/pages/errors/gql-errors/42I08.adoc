@@ -1,0 +1,5 @@
+= 42I08
+
+
+== Status description
+error: syntax error or access rule violation - invalid lower bound. The lower bound of the variable length relationship used in the `{ $fun }` function must be 0 or 1.

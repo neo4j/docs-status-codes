@@ -1,0 +1,5 @@
+= 42I36
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of `REPORT STATUS`. 'REPORT STATUS' can only be used when specifying 'ON ERROR CONTINUE' or 'ON ERROR BREAK'.

@@ -1,0 +1,5 @@
+= 22N73
+
+
+== Status description
+error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idxDescrOrName }`.

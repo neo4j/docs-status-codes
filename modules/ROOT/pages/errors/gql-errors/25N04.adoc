@@ -2,3 +2,4 @@
 
 == Status description
 error: invalid transaction state - specified transaction does not exist.
+Transaction `{ $transactionId }` does not exist.

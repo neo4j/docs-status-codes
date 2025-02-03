@@ -1,0 +1,5 @@
+= 22NB3
+
+
+== Status description
+error: data exception - token presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType1 }` `{ $token1 }` must have the `{ $tokenType2 }` `{ $token2 }`.

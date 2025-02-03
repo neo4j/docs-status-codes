@@ -1,0 +1,5 @@
+= 51N25
+
+
+== Status description
+error: system configuration or operation exception - database is busy. Cannot compile query due to excessive updates to indexes and constraints.

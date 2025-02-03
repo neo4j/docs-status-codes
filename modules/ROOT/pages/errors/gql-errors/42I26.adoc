@@ -1,0 +1,5 @@
+= 42I26
+
+
+== Status description
+error: syntax error or access rule violation - invalid `DELETE`. 'DELETE ...' does not support removing labels from a node. Use 'REMOVE ...' instead.

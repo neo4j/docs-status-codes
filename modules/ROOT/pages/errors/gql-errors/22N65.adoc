@@ -1,0 +1,5 @@
+= 22N65
+
+
+== Status description
+error: data exception - equivalent constraint already exists. An equivalent constraint already exists: `{ $constrDescrOrName }`.

@@ -1,0 +1,5 @@
+= 22N80
+
+
+== Status description
+error: data exception - index entry conflict. Index entry conflict: `{ $value }`.

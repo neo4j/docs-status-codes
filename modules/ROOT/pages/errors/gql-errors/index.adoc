@@ -3,7 +3,6 @@
 [[neo4j-gqlstatus-errors]]
 = List of GQLSTATUS error codes
 
-//The following page provides an overview of all server errors in Neo4j, along with some scenarios and their possible solutions.
 The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
 All errors in Neo4j have severity level `ERROR`.
 
@@ -13,6 +12,7 @@ Please note that while GQLSTATUS codes remain stable (any changes to them will b
 For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.
 ====
 
+[[connection-exceptions]]
 == Connection exceptions
 
 Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
@@ -33,6 +33,7 @@ Status description:: error: connection exception - unable to connect to database
 === xref:errors/gql-errors/08N01.adoc[08N01]
 
 Status description:: error: connection exception - unable to write to database. Unable to write to database `{ $db }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting '{ $cfgSetting }=true'.
+
 
 === xref:errors/gql-errors/08N02.adoc[08N02]
 
@@ -102,6 +103,7 @@ Status description:: error: connection exception - general driver transient erro
 
 Status description:: error: connection exception - general driver database error. Remote execution failed with message `{ $msg }`.
 
+[[data-exceptions]]
 == Data exceptions
 
 Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
@@ -127,7 +129,7 @@ Status description:: error: data exception - interval field overflow
 
 Status description:: error: data exception - invalid value type
 
-=== xref:errors/gql-errors/22N00.adoc[22G05]
+=== xref:errors/gql-errors/22G05.adoc[22G05]
 
 Status description:: error: data exception - invalid date, time, or datetime function field name
 
@@ -159,8 +161,6 @@ Status description:: error: data exception - input failed validation. Invalid in
 === xref:errors/gql-errors/22N06.adoc[22N06]
 
 Status description:: error: data exception - empty input string. Invalid input. `{ $option }` needs to be specified.
-
-// Example error message:: 22N06: Invalid input. 'myOption' needs to be specified.
 
 === xref:errors/gql-errors/22N07.adoc[22N07]
 
@@ -198,14 +198,6 @@ Status description:: error: data exception - invalid temporal value combination.
 
 Status description:: error: data exception - invalid temporal component. Cannot read the specified `{ $component }` component from `{ $temporal }`.
 
-// === 22N16
-
-// Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ $expr }` to `{ $graph }`.
-
-// === 22N17
-
-// Status description:: error: data exception - invalid date, time, or datetime function field name. Cannot read the specified `{ $component }` component from `{ $temporal }`.
-
 === xref:errors/gql-errors/22N18.adoc[22N18]
 
 Status description:: error: data exception - incomplete spatial value. A `{ $crs }` POINT must contain `{ $mapKeyList }`.
@@ -218,7 +210,7 @@ Status description:: error: data exception - invalid spatial value. A `POINT` mu
 
 Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ $dim1 }D` coordinate reference system (CRS) and `{ $value }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
 
-=== xref:errors/gql-errors/22N00.adoc[22N21]
+=== xref:errors/gql-errors/22N21.adoc[22N21]
 
 Status description:: error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `{ $crs }`.
 
@@ -250,15 +242,7 @@ Status description:: error: data exception - invalid entity type. Invalid input 
 
 Status description:: error: data exception - overflow error. The result of the operation `{ $operation }` has caused an overflow.
 
-// === 22N29
-
-// Status description:: error: data exception - unsupported coordinate reference system. Unknown coordinate reference system (CRS).
-
-// === 22N30
-
-// Status description:: error: data exception - missing temporal unit. At least one temporal unit must be specified.
-
-=== xref:errors/gql-errors/22N00.adoc[22N31]
+=== xref:errors/gql-errors/22N31.adoc[22N31]
 
 Status description:: error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null or NaN.
 
@@ -269,10 +253,6 @@ Status description:: error: data exception - non-deterministic sort expression. 
 === xref:errors/gql-errors/22N33.adoc[22N33]
 
 Status description:: error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ $variable }`.
-
-// === 22N34
-
-// Status description:: error: data exception - invalid use of aggregate function. Cannot use the `{ $fun }` function inside an aggregate function.
 
 === xref:errors/gql-errors/22N35.adoc[22N35]
 
@@ -290,13 +270,9 @@ Status description:: error: data exception - invalid coercion. Cannot coerce `{ 
 
 Status description:: error: data exception - invalid function argument. Invalid argument to the function `{ $fun }`.
 
-=== xref:errors/gql-errors/22N00.adoc[22N39]
+=== xref:errors/gql-errors/22N39.adoc[22N39]
 
 Status description:: error: data exception - unsupported property value type. Value `{ $value }` cannot be stored in properties.
-
-// === 22N40
-
-// Status description:: error: data exception - non-assignable temporal component. Cannot assign `{ $component }` of a `{ $valueType }`.
 
 === xref:errors/gql-errors/22N41.adoc[22N41]
 
@@ -322,7 +298,7 @@ Status description:: error: data exception - unsupported use of parallel runtime
 
 Status description:: error: data exception - invalid parallel runtime configuration. No workers are configured for the parallel runtime. Set 'server.cypher.parallel.worker_limit' to a larger value.
 
-=== xref:errors/gql-errors/22N00.adoc[22N48]
+=== xref:errors/gql-errors/22N48.adoc[22N48]
 
 Status description:: error: data exception - unable to use specified runtime. Cannot use the specified runtime { $runtime } due to { $cause } not being supported. Use another runtime.
 
@@ -346,39 +322,19 @@ Status description:: error: data exception - invalid use of PROFILE. Cannot 'PRO
 
 Status description:: error: data exception - invalid map. Multiple conflicting entries specified for `{ $mapKey }`.
 
-// === 22N55
-
-// Status description:: error: data exception - required key missing from map. Map requires key `{ $mapKey }` but was missing from field `{ $field }`.
-
 === xref:errors/gql-errors/22N56.adoc[22N56]
 
 Status description:: error: data exception - protocol message length limit overflow. Protocol message length limit exceeded (limit: `{ $boltMsgLenLimit }`).
 
-// === 22N57
-
-// Status description:: error: data exception - invalid protocol type. Protocol type is invalid. Invalid number of struct components (received `{ $count1 }` but expected `{ $count2 }`).
-
-=== xref:errors/gql-errors/22N56.adoc[22N58]
+=== xref:errors/gql-errors/22N58.adoc[22N58]
 
 Status description:: error: data exception - invalid spatial component. Cannot read the specified `{ $component }` component from `{ $value }`.
 
-// === 22N59
-
-// Status description:: error: data exception - token does not exist. The `{ $tokenType }` token with id `{ $tokenId }` does not exist.
-
-// === 22N62
-
-// Status description:: error: data exception - relationship type does not exist. The relationship type `{ $relType }` does not exist.
-
-// === 22N63
-
-// Status description:: error: data exception - property key does not exist. The property key `{ $propKey }` does not exist.
-
-=== xref:errors/gql-errors/22N56.adoc[22N64]
+=== xref:errors/gql-errors/22N64.adoc[22N64]
 
 Status description:: error: data exception - constraint does not exist. The constraint `{ $constrDescrOrName }` does not exist.
 
-=== xref:errors/gql-errors/22N56.adoc[22N65]
+=== xref:errors/gql-errors/22N65.adoc[22N65]
 
 Status description:: error: data exception - equivalent constraint already exists. An equivalent constraint already exists: `{ $constrDescrOrName }`.
 
@@ -390,7 +346,7 @@ Status description:: error: data exception - conflicting constraint already exis
 
 Status description:: error: data exception - duplicated constraint name. A constraint with the same name already exists: `{ $constr }`.
 
-=== xref:errors/gql-errors/22N56.adoc[22N68]
+=== xref:errors/gql-errors/22N68.adoc[22N68]
 
 Status description:: error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.
 
@@ -398,7 +354,7 @@ Status description:: error: data exception - dependent constraint managed indivi
 
 Status description:: error: data exception - index does not exist. The index specified by `{ $idxDescrOrName }` does not exist.
 
-=== xref:errors/gql-errors/22N56.adoc[22N70]
+=== xref:errors/gql-errors/22N70.adoc[22N70]
 
 Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ $idxDescrOrName }`.
 
@@ -406,23 +362,19 @@ Status description:: error: data exception - equivalent index already exists. An
 
 Status description:: error: data exception - index with the same name already exists. An index with the same name already exists: `{ $idx }`.
 
-// === 22N72
-
-// Status description:: error: data exception - index required by existing constraint. A requested operation can not be performed on the specified index because the index is part of a constraint.
-
-=== xref:errors/gql-errors/22N56.adoc[22N73]
+=== xref:errors/gql-errors/22N73.adoc[22N73]
 
 Status description:: error: data exception - constraint conflicts with existing index. Constraint conflicts with already existing index `{ $idxDescrOrName }`.
 
-=== xref:errors/gql-errors/22N56.adoc[22N74]
+=== xref:errors/gql-errors/22N74.adoc[22N74]
 
 Status description:: error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ $constr }` contains a conflicting index.
 
-=== xref:errors/gql-errors/22N56.adoc[22N75]
+=== xref:errors/gql-errors/22N75.adoc[22N75]
 
 Status description:: error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, or property key with name `{ $token }` more than once.
 
-=== xref:errors/gql-errors/22N56.adoc[22N76]
+=== xref:errors/gql-errors/22N76.adoc[22N76]
 
 Status description:: error: data exception - index contains duplicated tokens. The index specified by `{ $idxDescrOrName }` includes a label, relationship type, or property key with name `{ $token }` more than once.
 
@@ -434,11 +386,11 @@ Status description:: error: data exception - property presence verification fail
 
 Status description:: error: data exception - property type verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the property `$propKey` with value type `{ $valueType }`.
 
-=== xref:errors/gql-errors/22N56.adoc[22N79]
+=== xref:errors/gql-errors/22N79.adoc[22N79]
 
 Status description:: error: data exception - property uniqueness constraint violated. Property uniqueness constraint violated: `{ $reasonList }`.
 
-=== xref:errors/gql-errors/22N56.adoc[22N80]
+=== xref:errors/gql-errors/22N80.adoc[22N80]
 
 Status description:: error: data exception - index entry conflict. Index entry conflict: `{ $value }`.
 
@@ -449,10 +401,6 @@ Status description:: error: data exception - expression type unsupported here. I
 === xref:errors/gql-errors/22N82.adoc[22N82]
 
 Status description:: error: data exception - input contains invalid characters. Input `{ $input }` contains invalid characters for `{ $context }`. Special characters may require that the input is quoted using backticks.
-
-// === 22N83
-
-// Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ $upper }` components separated by '.'.
 
 === xref:errors/gql-errors/22N84.adoc[22N84]
 
@@ -465,10 +413,6 @@ Status description:: error: data exception - string too short. Expected the stri
 === xref:errors/gql-errors/22N86.adoc[22N86]
 
 Status description:: error: data exception - numeric range 0 disallowed. Expected a nonzero number.
-
-// === 22N87
-
-// Status description:: error: data exception - numeric range 0 or greater allowed. Expected a number that is zero or greater.
 
 === xref:errors/gql-errors/22N88.adoc[22N88]
 
@@ -522,17 +466,13 @@ Status description:: error: data exception - wrong token during deserialization.
 
 Status description:: error: data exception - invalid property based access control rule. Failed to administer property rule.
 
-=== xref:errors/gql-errors/22N56.adoc[22NA1]
+=== xref:errors/gql-errors/22NA1.adoc[22NA1]
 
 Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ $propKey }` must appear on the left hand side of the `{ $operation }` operator.
 
-=== xref:errors/gql-errors/22N56.adoc[22NA2]
+=== xref:errors/gql-errors/22NA2.adoc[22NA2]
 
 Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ $expr }` is not supported. Property rules can only contain one property.
-
-// === 22NA3
-
-// Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
@@ -546,17 +486,13 @@ Status description:: error: data exception - invalid property based access contr
 
 Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use 'IS NOT NULL' instead.
 
-=== xref:errors/gql-errors/22N56.adoc[22NA7]
+=== xref:errors/gql-errors/22NA7.adoc[22NA7]
 
 Status description:: error: data exception - invalid property based access control rule involving nontrivial predicates. The expression: `{ $expr }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
 
 === xref:errors/gql-errors/22NA8.adoc[22NA8]
 
 Status description:: error: data exception - parsing JSON failure. Underlying error: `{ $cause }`.
-
-// === 22NA9
-
-// Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ $key }`, expected keys are `{ $listAllowedKeys }`.
 
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
@@ -566,23 +502,19 @@ Status description:: error: data exception - invalid property based access contr
 
 Status description:: error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeList }` but was `{ $input }`.
 
-=== xref:errors/gql-errors/22NB1.adoc[22NB2]
+=== xref:errors/gql-errors/22NB2.adoc[22NB2]
 
 Status description:: error: data exception - incompatible graph type dependence. Graph type `{ $graphTypeDependence1 }` constraint `{ $constrDescrOrName1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.
 
-=== xref:errors/gql-errors/22NB1.adoc[22NB3]
+=== xref:errors/gql-errors/22NB3.adoc[22NB3]
 
 Status description:: error: data exception - token presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType1 }` `{ $token1 }` must have the `{ $tokenType2 }` `{ $token2 }`.
 
-=== xref:errors/gql-errors/22NB1.adoc[22NB4]
+=== xref:errors/gql-errors/22NB4.adoc[22NB4]
 
 Status description:: error: data exception - endpoint label presence verification failed. Relationship (`{ $entityId1 }`) with type `{ $relType }` requires its `{ $endpointType }` node (`{ $entityId2 }`) to have the label `{ $label }`.
 
-// === 22NFF
-
-// Status description:: error: data exception - referent does not exist. The referent of the specified reference does not exist.
-
-
+[[invalid-transaction-state]]
 == Invalid transaction state
 
 Invalid transaction state errors occur when the transaction is in an invalid state, such as when the transaction is terminated or closed, or when there is a conflict between the transaction state and applied updates.
@@ -612,10 +544,6 @@ Status description:: error: invalid transaction state - transaction terminated o
 
 Status description:: error: invalid transaction state - transaction start failed. Failed to start transaction. See debug log for details.
 
-// === 25N07
-
-// Status description:: error: invalid transaction state - constituent transaction start failed. Failed to start constituent transaction. See debug log for details.
-
 === xref:errors/gql-errors/25N08.adoc[25N08]
 
 Status description:: error: invalid transaction state - invalid transaction lease. The lease for the transaction is no longer valid.
@@ -636,6 +564,7 @@ Status description:: error: invalid transaction state - index was dropped. Index
 
 Status description:: error: invalid transaction state - cannot access entity after removal. A `{ $entityType }` was accessed after being deleted in this transaction. Verify the transaction statements.
 
+[[invalid-transaction-termination]]
 == Invalid transaction termination
 
 Invalid transaction termination errors occur when the transaction termination fails, such as when the transaction or constituent transaction fails to commit, or when the transaction termination fails to apply or append the transaction.
@@ -689,7 +618,7 @@ Status description:: error: transaction rollback - rollback failed. Failed to ro
 
 Status description:: error: transaction rollback - constituent rollback failed. Failed to rollback constituent transaction. See debug log for details.
 
-[[syntax-error-access-rule-violation]]
+[[syntax-error-or-access-rule-violation]]
 == Syntax error or access rule violation
 
 Syntax error or access rule violation errors occur when a Cypher query contains invalid syntax or when a client request violates the access rules, such as when a query tries to access a database without enough privileges, etc.
@@ -705,10 +634,6 @@ Status description:: error: syntax error or access rule violation - invalid synt
 === xref:errors/gql-errors/42002.adoc[42002]
 
 Status description:: error: syntax error or access rule violation - invalid reference
-
-// === 42004
-
-// Status description:: error: syntax error or access rule violation - use of visually confusable identifiers
 
 === xref:errors/gql-errors/42006.adoc[42006]
 
@@ -764,15 +689,16 @@ Status description:: error: syntax error or access rule violation - invalid comm
 
 === xref:errors/gql-errors/42I05.adoc[42I05]
 
-Status description:: error: syntax error or access rule violation - invalid FIELDTERMINATOR. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide.
+Status description:: error: syntax error or access rule violation - invalid FIELDTERMINATOR. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide.
 
 === xref:errors/gql-errors/42I06.adoc[42I06]
 
 Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ $input }`, expected: `{ $valueList }`.
 
-=== xref:errors/gql-errors/42I06.adoc[42I08]
+=== xref:errors/gql-errors/42I08.adoc[42I08]
 
 Status description:: error: syntax error or access rule violation - invalid lower bound. The lower bound of the variable length relationship used in the `{ $fun }` function must be 0 or 1.
+
 
 === xref:errors/gql-errors/42I13.adoc[42I13]
 
@@ -782,12 +708,11 @@ Status description:: error: syntax error or access rule violation - invalid numb
 
 Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ $varList }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
 
-
 === xref:errors/gql-errors/42I20.adoc[42I20]
 
 Status description:: error: syntax error or access rule violation - invalid symbol in expression. Label expressions and relationship type expressions cannot contain `{ $input }`. To express a label disjunction use `{ $labelExpr }` instead.
 
-=== xref:errors/gql-errors/42I20.adoc[42I23]
+=== xref:errors/gql-errors/42I23.adoc[42I23]
 
 Status description:: error: syntax error or access rule violation - invalid quantified path pattern in shortest path. The `{ $fun }` function cannot contain a quantified path pattern.
 
@@ -795,7 +720,7 @@ Status description:: error: syntax error or access rule violation - invalid quan
 
 Status description:: error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
 
-=== xref:errors/gql-errors/42I25.adoc[42I26]
+=== xref:errors/gql-errors/42I26.adoc[42I26]
 
 Status description:: error: syntax error or access rule violation - invalid `DELETE`. 'DELETE ...' does not support removing labels from a node. Use 'REMOVE ...' instead.
 
@@ -807,11 +732,11 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a `WITH` clause between them.
 
-=== xref:errors/gql-errors/42I31.adoc[42I34]
+=== xref:errors/gql-errors/42I34.adoc[42I34]
 
 Status description:: error: syntax error or access rule violation - invalid use of pattern expression. A pattern expression can only be used to test the existence of a pattern. Use a pattern comprehension instead.
 
-=== xref:errors/gql-errors/42I31.adoc[42I36]
+=== xref:errors/gql-errors/42I36.adoc[42I36]
 
 Status description:: error: syntax error or access rule violation - invalid use of `REPORT STATUS`. 'REPORT STATUS' can only be used when specifying 'ON ERROR CONTINUE' or 'ON ERROR BREAK'.
 
@@ -827,7 +752,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
 
-=== xref:errors/gql-errors/42I45.adoc[42I41]
+=== xref:errors/gql-errors/42I41.adoc[42I41]
 
 Status description:: error: syntax error or access rule violation - invalid use of variable length relationship. Variable length relationships cannot be used in `{ $value }`.
 
@@ -923,7 +848,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - unsupported request. `{ $input }` is not allowed on the system database.
 
-===xref:errors/gql-errors/42N17.adoc[42N18]
+=== xref:errors/gql-errors/42N18.adoc[42N18]
 
 Status description:: error: syntax error or access rule violation - read-only database. The database is in read-only mode.
 
@@ -949,16 +874,15 @@ Status description:: error: syntax error or access rule violation - single retur
 
 Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ $input1 }` and `{ $input2 }`.
 
-
 === xref:errors/gql-errors/42N29.adoc[42N29]
 
-Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $var }`.
+Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ $variable }`.
 
 === xref:errors/gql-errors/42N31.adoc[42N31]
 
 Status description:: error: syntax error or access rule violation - specified number out of range. Expected `{ $component }` to be `{ $valueType }` in the range `{ $lower }` to `{ $upper }` but found `{ $value }`.
 
-=== xref:errors/gql-errors/42N31.adoc[42N32]
+=== xref:errors/gql-errors/42N32.adoc[42N32]
 
 Status description:: error: syntax error or access rule violation - invalid use of parameter map. Parameter maps cannot be used in `{ $keyword }` patterns. Use a literal map instead.
 
@@ -978,7 +902,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - unexpected end of input. Unexpected end of input, expected 'CYPHER', 'EXPLAIN', 'PROFILE' or a query.
 
-=== xref:errors/gql-errors/42N45.adoc[42N47]
+=== xref:errors/gql-errors/42N47.adoc[42N47]
 
 Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported in '... UNION ...'.
 
@@ -990,11 +914,12 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ $param }`.
 
-=== xref:errors/gql-errors/42N51.adoc[42N53]
+=== xref:errors/gql-errors/42N53.adoc[42N53]
 
 Status description:: error: syntax error or access rule violation - unsafe usage of repeatable elements. The quantified path pattern may yield an infinite number of rows under match mode `REPEATABLE ELEMENTS`. Add an upper bound to the quantified path pattern.
 
-=== xref:errors/gql-errors/42N51.adoc[42N56]
+
+=== xref:errors/gql-errors/42N56.adoc[42N56]
 
 Status description:: error: syntax error or access rule violation - unsupported use of properties. Properties are not supported in the `{ $fun }` function.
 
@@ -1003,19 +928,19 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ $expr }` cannot contain any updating clauses.
 
-=== xref:errors/gql-errors/42N57.adoc[42N59]
+=== xref:errors/gql-errors/42N59.adoc[42N59]
 
 Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ $variable }` already declared.
 
-=== xref:errors/gql-errors/42N57.adoc[42N62]
+=== xref:errors/gql-errors/42N62.adoc[42N62]
 
 Status description:: error: syntax error or access rule violation - variable not defined. Variable `{ $variable }` not defined.
 
-=== xref:errors/gql-errors/42N57.adoc[42N65]
+=== xref:errors/gql-errors/42N65.adoc[42N65]
 
 Status description:: error: syntax error or access rule violation - node variable not bound. The `{ $fun }` function requires bound node variables when it is not part of a 'MATCH ...'.
 
-=== xref:errors/gql-errors/42N57.adoc[42N66]
+=== xref:errors/gql-errors/42N66.adoc[42N66]
 
 Status description:: error: syntax error or access rule violation - relationship variable already bound. Bound relationships are not allowed in calls to the `{ $fun }` function.
 
@@ -1051,7 +976,7 @@ Status description:: error: syntax error or access rule violation - missing hint
 
 Status description:: error: syntax error or access rule violation - variable already bound. Node `{ $var }` has already been bound and cannot be modified by the `{ $clause }` clause.
 
-=== xref:errors/gql-errors/42N78.adoc[42N81]
+=== xref:errors/gql-errors/42N81.adoc[42N81]
 
 Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ $param }`, but got `{ $paramList }`.
 
@@ -1128,8 +1053,8 @@ Status description:: error: syntax error or access rule violation - auth info ex
 
 Status description:: error: syntax error or access rule violation - permission/access denied. Access denied, see the security logs for details.
 
-
-== General processing exception
+[[general-processing-exceptions]]
+== General processing exceptions
 
 General processing exceptions occur when there is a general processing error, such as an internal error, deadlock, execution failure, invalid server state transition, constraint creation or drop failure, etc.
 
@@ -1153,7 +1078,7 @@ Status description:: error: general processing exception - execution failed. Exe
 
 Status description:: error: general processing exception - invalid server state transition. The server transitioned into a server state that is not valid in the current context: `{ $boltServerState }`.
 
-=== xref:errors/gql-errors/50N09.adoc[50N10]
+=== xref:errors/gql-errors/50N10.adoc[50N10]
 
 Status description:: error: general processing exception - index drop failed. Unable to drop `{ $idxDescrOrName }`.
 
@@ -1165,15 +1090,15 @@ Status description:: error: general processing exception - constraint creation f
 
 Status description:: error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
 
-=== xref:errors/gql-errors/50N12.adoc[50N13]
+=== xref:errors/gql-errors/50N13.adoc[50N13]
 
 Status description:: error: general processing exception - constraint validation error. Unable to validate constraint `{ $constrDescrOrName }`.
 
-=== xref:errors/gql-errors/50N12.adoc[50N14]
+=== xref:errors/gql-errors/50N14.adoc[50N14]
 
 Status description:: error: general processing exception - constraint violation. A constraint imposed by the database was violated.
 
-=== xref:errors/gql-errors/50N12.adoc[50N15]
+=== xref:errors/gql-errors/50N15.adoc[50N15]
 
 Status description:: error: general processing exception - unsupported index operation. The system attemped to execute an unsupported operation on index `{ $idx }`. See debug.log for more information.
 
@@ -1189,13 +1114,8 @@ Status description:: error: general processing exception - remote execution data
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
 
-[NOTE]
-====
-50N42 is the default GQLSTATUS code for exceptions without a GQL object.
-For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
-====
-
-== System configuration or operation exception
+[[system-configuration-or-operation-exceptions]]
+== System configuration or operation exceptions
 
 System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
 
@@ -1314,7 +1234,7 @@ Status description:: error: system configuration or operation exception - cyclic
 
 Status description:: error: system configuration or operation exception - insufficient resources for plan search. Could not find a query plan within given time and space limits.
 
-=== xref:errors/gql-errors/51N24.adoc[51N25]
+=== xref:errors/gql-errors/51N25.adoc[51N25]
 
 Status description:: error: system configuration or operation exception - database is busy. Cannot compile query due to excessive updates to indexes and constraints.
 
@@ -1459,11 +1379,11 @@ Status description:: error: system configuration or operation exception - intern
 
 Status description:: error: system configuration or operation exception - unable to check enterprise license acceptance. The DBMS is unable to determine the enterprise license acceptance status.
 
-=== xref:errors/gql-errors/51N60.adoc[51N61]
+=== xref:errors/gql-errors/51N61.adoc[51N61]
 
 Status description:: error: system configuration or operation exception - index population failed. Index `{ $idx }` population failed.
 
-=== xref:errors/gql-errors/51N60.adoc[51N62]
+=== xref:errors/gql-errors/51N62.adoc[51N62]
 
 Status description:: error: system configuration or operation exception - index is in a failed state. Unable to use index `{ $idx }` because it is in a failed state. See logs for more information.
 
@@ -1502,23 +1422,24 @@ Status description:: error: system configuration or operation exception - bolt i
 
 Status description:: error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ $feat }` is not available in a sharded database.
 
-=== xref:errors/gql-errors/51N71.adoc[51N72]
+=== xref:errors/gql-errors/51N72.adoc[51N72]
 
 Status description:: error: system configuration or operation exception - memory pool out of memory. Failed to allocate memory in a memory pool. See `{ $cfgSetting }` in the neo4j.conf file.
 
-=== xref:errors/gql-errors/51N71.adoc[51N73]
+=== xref:errors/gql-errors/51N73.adoc[51N73]
 
 Status description:: error: system configuration or operation exception - transaction memory limit reached. The transaction uses more memory than is allowed. The maximum allowed size for a transaction can be configured with `{ $cfgSetting }` in the neo4j.conf file.
 
-=== xref:errors/gql-errors/51N71.adoc[51N74]
+=== xref:errors/gql-errors/51N74.adoc[51N74]
 
 Status description:: error: system configuration or operation exception - maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ $cfgSetting }` in the neo4j.conf file.
 
-== Procedure exception
+[[procedure-exceptions]]
+== Procedure exceptions
 
 Procedure exceptions occur when there is an error in executing a procedure, such as when the procedure execution fails due to a client error, when the procedure cannot be invoked on a primary, when the number of arguments to checkConnectivity is invalid, etc.
 
-=== xref:errors/gql-errors/51N71.adoc[52N01]
+=== xref:errors/gql-errors/52N01.adoc[52N01]
 
 Status description:: error: procedure exception - procedure execution timeout. Execution of the procedure `{ $proc }` timed out after `{ $timeAmount }` `{ $timeUnit }`.
 
@@ -1586,7 +1507,7 @@ Status description:: error: procedure exception - too many seeders. The number o
 
 Status description:: error: procedure exception - no such seeder. The specified seeding server with id `{ $server }` was not found. Verify that the spelling is correct.
 
-=== xref:errors/gql-errors/52N23.adoc[52N22]
+=== xref:errors/gql-errors/52N22.adoc[52N22]
 
 Status description:: error: procedure exception - invalid procedure argument. Invalid argument `{ $field }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is `{ $procParamFmt }`.
 
@@ -1626,35 +1547,33 @@ Status description:: error: procedure exception - procedure sandboxed. `{ $sig }
 
 Status description:: error: procedure exception - procedure compilation failed. Failed to compile procedure/function defined in `{ $procClass }`: `{ $msg }`
 
-=== xref:errors/gql-errors/52N35.adoc[52N36]
+=== xref:errors/gql-errors/52N36.adoc[52N36]
 
 Status description:: error: procedure exception - invalid procedure argument with API documentation hint. Invalid argument `{ $field }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is outlined in the `{ $procParamFmt }` API documentation.
 
-=== xref:errors/gql-errors/52N35.adoc[52N37]
+=== xref:errors/gql-errors/52N37.adoc[52N37]
 
 Status description:: error: procedure exception - procedure execution error. Execution of the procedure `{ $proc } ` failed.
 
-=== xref:errors/gql-errors/52N35.adoc[52U00]
+=== xref:errors/gql-errors/52U00.adoc[52U00]
 
 Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ $proc }` failed due to `{ $msgTitle }`: { $msg }.
 
+[[function-exceptions]]
 == Function exceptions
 
-=== xref:errors/gql-errors/52N35.adoc[53N34]
+=== xref:errors/gql-errors/53N34.adoc[53N34]
 
 Status description:: error: function exception - function restricted. `{ $fun }` is restricted and accesses database internals. User-defined function restriction is controlled by the `dbms.security.procedures.unrestricted` setting. Only un-restrict user-defined functions you can trust with access to database internals.
 
-=== xref:errors/gql-errors/52N35.adoc[53N35]
+=== xref:errors/gql-errors/53N35.adoc[53N35]
 
 Status description:: error: function exception - function compilation failed. Failed to compile function defined in `{ $funClass }`: { $msg }
 
-=== xref:errors/gql-errors/52N35.adoc[53N37]
+=== xref:errors/gql-errors/53N37.adoc[53N37]
 
 Status description:: error: function exception - function execution error. Execution of the function `{ $fun }` failed.
 
-=== xref:errors/gql-errors/52N35.adoc[53U00]
+=== xref:errors/gql-errors/53U00.adoc[53U00]
 
 Status description:: error: function exception - custom function execution error cause. Execution of the function `{ $fun }` failed due to `{ $msgTitle }`: { $msg }.
-
-
-

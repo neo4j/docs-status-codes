@@ -1,0 +1,5 @@
+= 22NA2
+
+
+== Status description
+error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ $expr }` is not supported. Property rules can only contain one property.

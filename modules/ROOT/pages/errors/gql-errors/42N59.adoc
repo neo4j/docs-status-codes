@@ -1,0 +1,5 @@
+= 42N59
+
+
+== Status description
+error: syntax error or access rule violation - variable already defined. Variable `{ $variable }` already declared.

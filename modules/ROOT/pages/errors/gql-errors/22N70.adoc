@@ -1,0 +1,5 @@
+= 22N70
+
+
+== Status description
+error: data exception - equivalent index already exists. An equivalent index already exists: `{ $idxDescrOrName }`.

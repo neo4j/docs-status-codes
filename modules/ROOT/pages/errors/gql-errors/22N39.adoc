@@ -1,0 +1,5 @@
+= 22N39
+
+
+== Status description
+error: data exception - unsupported property value type. Value `{ $value }` cannot be stored in properties.

@@ -2,3 +2,4 @@
 
 == Status description
 error: system configuration or operation exception - duplicate field name.
+The procedure `{ $proc }` has a duplicate `{ $procFieldType }` field, `{ $procField }`.
