@@ -1027,7 +1027,7 @@ Status description:: error: accessing multiple graphs only supported on composit
 
 === xref:errors/gql-errors/42NA6.adoc[42NA6]
 
-Status description:: error: invalid alias target. Aliases are not allowed to target composite databases.
+Status description:: error: syntax error or access rule violation - invalid alias target. Aliases are not allowed to target composite databases.
 
 === xref:errors/gql-errors/42NA7.adoc[42NA7]
 
