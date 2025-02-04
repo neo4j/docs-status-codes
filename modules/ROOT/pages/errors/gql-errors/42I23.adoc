@@ -1,0 +1,5 @@
+= 42I23
+
+
+== Status description
+error: syntax error or access rule violation - invalid quantified path pattern in shortest path. The `{ $fun }` function cannot contain a quantified path pattern.

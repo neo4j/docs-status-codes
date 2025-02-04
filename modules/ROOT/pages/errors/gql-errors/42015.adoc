@@ -1,0 +1,4 @@
+= 42015
+
+== Status description
+error: syntax error or access rule violation - number of edge type key labels exceeds supported maximum

@@ -1,0 +1,4 @@
+= 42011
+
+== Status description
+error: syntax error or access rule violation - number of node properties exceeds supported maximum

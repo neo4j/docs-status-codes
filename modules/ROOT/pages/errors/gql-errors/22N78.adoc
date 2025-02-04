@@ -1,0 +1,4 @@
+= 22N78
+
+== Status description
+error: data exception - property type verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the property `$propKey` with value type `{ $valueType }`.

@@ -1,0 +1,4 @@
+= 08N12
+
+== Status description
+error: connection exception - failed to parse bookmark. Failed to parse the supplied bookmark. Verify it is correct or check the debug log for more information.

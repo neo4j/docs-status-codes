@@ -1,0 +1,4 @@
+= 22N19
+
+== Status description
+error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.

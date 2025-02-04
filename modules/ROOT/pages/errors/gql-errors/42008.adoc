@@ -1,0 +1,4 @@
+= 42008
+
+== Status description
+error: syntax error or access rule violation - number of edge properties exceeds supported maximum

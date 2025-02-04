@@ -1,0 +1,4 @@
+= 42N17
+
+== Status description
+error: syntax error or access rule violation - unsupported request. `{ $input }` is not allowed on the system database.

@@ -1,0 +1,5 @@
+= 42N62
+
+
+== Status description
+error: syntax error or access rule violation - variable not defined. Variable `{ $variable }` not defined.

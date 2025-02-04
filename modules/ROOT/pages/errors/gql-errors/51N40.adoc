@@ -1,0 +1,4 @@
+= 51N40
+
+== Status description
+error: system configuration or operation exception - unable to start database. Database `{ $db }` failed to start. Try restarting it.

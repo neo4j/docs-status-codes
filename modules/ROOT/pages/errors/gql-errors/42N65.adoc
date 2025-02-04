@@ -1,0 +1,5 @@
+= 42N65
+
+
+== Status description
+error: syntax error or access rule violation - node variable not bound. The `{ $fun }` function requires bound node variables when it is not part of a 'MATCH ...'.

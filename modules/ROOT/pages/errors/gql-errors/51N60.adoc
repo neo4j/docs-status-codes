@@ -1,0 +1,4 @@
+= 51N60
+
+== Status description
+error: system configuration or operation exception - unable to check enterprise license acceptance. The DBMS is unable to determine the enterprise license acceptance status.

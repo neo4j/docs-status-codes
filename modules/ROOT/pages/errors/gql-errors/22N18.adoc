@@ -1,0 +1,4 @@
+= 22N18
+
+== Status description
+error: data exception - incomplete spatial value. A `{ $crs }` POINT must contain `{ $mapKeyList }`.

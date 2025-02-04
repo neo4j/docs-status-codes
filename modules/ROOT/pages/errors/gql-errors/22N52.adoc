@@ -1,0 +1,4 @@
+= 22N52
+
+== Status description
+error: data exception - invalid combination of PROFILE and EXPLAIN. 'PROFILE' and 'EXPLAIN' cannot be combined.

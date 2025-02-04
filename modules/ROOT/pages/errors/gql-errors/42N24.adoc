@@ -1,0 +1,4 @@
+= 42N24
+
+== Status description
+error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ $input1 }` and `{ $input2 }`.

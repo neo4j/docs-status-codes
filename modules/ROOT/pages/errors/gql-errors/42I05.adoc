@@ -1,0 +1,4 @@
+= 42I05
+
+== Status description
+error: syntax error or access rule violation - invalid FIELDTERMINATOR. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide.

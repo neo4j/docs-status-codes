@@ -1,0 +1,4 @@
+= 51N51
+
+== Status description
+error: system configuration or operation exception - cannot create database. Cannot create database `{ $db }`.

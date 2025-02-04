@@ -1,0 +1,4 @@
+= 51N36
+
+== Status description
+error: system configuration or operation exception - out of memory. There is not enough memory to perform the current task.

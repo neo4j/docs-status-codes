@@ -1,0 +1,5 @@
+= 22N75
+
+
+== Status description
+error: data exception - constraint contains duplicated tokens. The constraint specified by `{ $constrDescrOrName }` includes a label, relationship type, or property key with name `{ $token }` more than once.

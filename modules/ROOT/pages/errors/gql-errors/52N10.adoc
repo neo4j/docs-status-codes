@@ -1,0 +1,4 @@
+= 52N10
+
+== Status description
+error: procedure exception - invalid address key. An address key is included in the query string provided to the GetRoutingTableProcedure, but its value could not be parsed.

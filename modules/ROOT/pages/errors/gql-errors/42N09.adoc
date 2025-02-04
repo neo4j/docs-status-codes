@@ -1,0 +1,4 @@
+= 42N09
+
+== Status description
+error: syntax error or access rule violation - no such user. A user with the name `{ $user }` was not found. Verify that the spelling is correct.

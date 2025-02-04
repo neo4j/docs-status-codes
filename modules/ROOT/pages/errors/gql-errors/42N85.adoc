@@ -1,0 +1,4 @@
+= 42N85
+
+== Status description
+error: syntax error or access rule violation - cannot specify both allowed and denied databases. Allowed and denied database options are mutually exclusive.

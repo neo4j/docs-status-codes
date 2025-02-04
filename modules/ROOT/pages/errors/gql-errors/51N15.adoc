@@ -1,0 +1,4 @@
+= 51N15
+
+== Status description
+error: system configuration or operation exception - invalid map key type. Type mismatch for map key. Required 'STRING', but found `{ $valueType }`.

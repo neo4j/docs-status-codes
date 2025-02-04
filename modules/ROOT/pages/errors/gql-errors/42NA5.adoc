@@ -1,0 +1,4 @@
+= 42NA5
+
+== Status description
+error: syntax error or access rule violation - accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.

@@ -1,0 +1,5 @@
+= 53N34
+
+
+== Status description
+error: function exception - function restricted. `{ $fun }` is restricted and accesses database internals. User-defined function restriction is controlled by the `dbms.security.procedures.unrestricted` setting. Only un-restrict user-defined functions you can trust with access to database internals.

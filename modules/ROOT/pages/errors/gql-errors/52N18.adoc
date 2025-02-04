@@ -1,0 +1,4 @@
+= 52N18
+
+== Status description
+error: procedure exception - too many seeders. The number of seeding servers `{ $countSeeders }` is larger than the defined number of allocations `{ $countAllocs }`.

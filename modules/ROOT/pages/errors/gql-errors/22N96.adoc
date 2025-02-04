@@ -1,0 +1,4 @@
+= 22N96
+
+== Status description
+error: data exception - mapping JSON exception. Unable to map the JSON input. Please verify the structure.

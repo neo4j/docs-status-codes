@@ -1,0 +1,4 @@
+= 2DN04
+
+== Status description
+error: invalid transaction termination - constituent transaction termination failed. Failed to terminate constituent transaction. See debug log for details.

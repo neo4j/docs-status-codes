@@ -1,0 +1,4 @@
+= 42NA8
+
+== Status description
+error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `{ $cmd }`.

@@ -1,0 +1,4 @@
+= 51N24
+
+== Status description
+error: system configuration or operation exception - insufficient resources for plan search. Could not find a query plan within given time and space limits.

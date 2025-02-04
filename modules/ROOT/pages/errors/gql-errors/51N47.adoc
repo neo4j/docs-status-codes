@@ -1,0 +1,4 @@
+= 51N47
+
+== Status description
+error: system configuration or operation exception - cannot rename server. Cannot rename server `{ $server }`.

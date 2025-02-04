@@ -1,0 +1,4 @@
+= 52N13
+
+== Status description
+error: procedure exception - new default database does not exist. New default database `{ $db }` does not exist.

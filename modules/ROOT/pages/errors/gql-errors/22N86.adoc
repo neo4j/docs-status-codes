@@ -1,0 +1,4 @@
+= 22N86
+
+== Status description
+error: data exception - numeric range 0 disallowed. Expected a nonzero number.

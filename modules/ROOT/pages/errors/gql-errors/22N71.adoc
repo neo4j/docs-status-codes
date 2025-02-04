@@ -1,0 +1,4 @@
+= 22N71
+
+== Status description
+error: data exception - index with the same name already exists. An index with the same name already exists: `{ $idx }`.

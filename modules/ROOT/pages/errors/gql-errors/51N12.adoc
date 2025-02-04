@@ -1,0 +1,4 @@
+= 51N12
+
+== Status description
+error: system configuration or operation exception - class not void. The procedure `{ $proc }` has zero output fields and must be defined as void.

@@ -1,0 +1,4 @@
+= 52N12
+
+== Status description
+error: procedure exception - cannot change default database. The previous default database `{ $db }` is still running.

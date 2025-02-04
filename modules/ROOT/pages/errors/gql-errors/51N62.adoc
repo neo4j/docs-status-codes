@@ -1,0 +1,5 @@
+= 51N62
+
+
+== Status description
+error: system configuration or operation exception - index is in a failed state. Unable to use index `{ $idx }` because it is in a failed state. See logs for more information.

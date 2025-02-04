@@ -1,0 +1,4 @@
+= 51N50
+
+== Status description
+error: system configuration or operation exception - cannot recreate database. Cannot recreate database `{ $db }`.

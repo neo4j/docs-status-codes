@@ -1,0 +1,4 @@
+= 40N02
+
+== Status description
+error: transaction rollback - constituent rollback failed. Failed to rollback constituent transaction. See debug log for details.

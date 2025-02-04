@@ -1,0 +1,4 @@
+= 22N23
+
+== Status description
+error: data exception - invalid latitude value. Cannot create WGS84 POINT with invalid coordinate: `{ $coordinates }`. The valid range for the latitude coordinate is [-90, 90].

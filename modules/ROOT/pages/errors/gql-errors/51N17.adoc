@@ -1,0 +1,4 @@
+= 51N17
+
+== Status description
+error: system configuration or operation exception - invalid procedure or function name. Procedures and functions cannot be defined in the root namespace, or use a reserved namespace. Use the package name instead (e.g., org.example.com.`{ $procFun })`.

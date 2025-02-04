@@ -1,0 +1,5 @@
+= 52N01
+
+
+== Status description
+error: procedure exception - procedure execution timeout. Execution of the procedure `{ $proc }` timed out after `{ $timeAmount }` `{ $timeUnit }`.

@@ -1,0 +1,4 @@
+= 25N06
+
+== Status description
+error: invalid transaction state - transaction start failed. Failed to start transaction. See debug log for details.

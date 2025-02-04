@@ -1,0 +1,4 @@
+= 52N06
+
+== Status description
+error: procedure exception - invalid number of arguments to checkConnectivity. Unexpected number of arguments (expected 0-2 but received `{ $count }`).

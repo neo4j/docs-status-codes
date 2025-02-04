@@ -1,0 +1,4 @@
+= 42N01
+
+== Status description
+error: syntax error or access rule violation - no such constituent graph exists in composite database. The constituent graph `{ $graph }` was not found in the in composite database `{ $db }`. Verify that the spelling is correct.

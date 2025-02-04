@@ -1,0 +1,5 @@
+= 52N22
+
+
+== Status description
+error: procedure exception - invalid procedure argument. Invalid argument `{ $field }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is `{ $procParamFmt }`.

@@ -1,0 +1,4 @@
+= 42N42
+
+== Status description
+error: syntax error or access rule violation - unsupported sub-path binding. Sub-path assignment is not supported.

@@ -1,0 +1,4 @@
+= 42010
+
+== Status description
+error: syntax error or access rule violation - number of node labels exceeds supported maximum

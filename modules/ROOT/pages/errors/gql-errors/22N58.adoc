@@ -1,0 +1,5 @@
+= 22N58
+
+
+== Status description
+error: data exception - invalid spatial component. Cannot read the specified `{ $component }` component from `{ $value }`.

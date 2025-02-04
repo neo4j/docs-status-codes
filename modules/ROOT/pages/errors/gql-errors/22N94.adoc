@@ -1,0 +1,4 @@
+= 22N94
+
+== Status description
+error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.

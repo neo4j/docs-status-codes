@@ -1,0 +1,5 @@
+= 42N78
+
+== Status description
+error: syntax error or access rule violation - variable already bound. Node `{ $variable }` has already been bound and cannot be modified by the `{ $clause }` clause.
+

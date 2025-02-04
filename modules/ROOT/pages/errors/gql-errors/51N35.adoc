@@ -1,0 +1,4 @@
+= 51N35
+
+== Status description
+error: system configuration or operation exception - database location changed. The location of `{ $db }` has changed while the transaction was running.

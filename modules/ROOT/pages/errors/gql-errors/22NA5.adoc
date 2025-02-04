@@ -1,0 +1,4 @@
+= 22NA5
+
+== Status description
+error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use `IS NULL' instead.

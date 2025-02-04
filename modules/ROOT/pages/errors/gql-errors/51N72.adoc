@@ -1,0 +1,5 @@
+= 51N72
+
+
+== Status description
+error: system configuration or operation exception - memory pool out of memory. Failed to allocate memory in a memory pool. See `{ $cfgSetting }` in the neo4j.conf file.

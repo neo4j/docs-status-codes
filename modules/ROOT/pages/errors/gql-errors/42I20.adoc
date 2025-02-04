@@ -1,0 +1,4 @@
+= 42I20
+
+== Status description
+error: syntax error or access rule violation - invalid symbol in expression. Label expressions and relationship type expressions cannot contain `{ $input }`. To express a label disjunction use `{ $labelExpr }` instead.

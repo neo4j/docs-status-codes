@@ -1,0 +1,4 @@
+= 22N85
+
+== Status description
+error: data exception - string too short. Expected the string to be at least `{ $lower }` characters long.

@@ -1,0 +1,4 @@
+= 52N05
+
+== Status description
+error: procedure exception - must invoke procedure on secondary. Cannot invoke procedure on this member because it is not a secondary for the database `{ $db }`.

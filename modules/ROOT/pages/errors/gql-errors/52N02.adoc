@@ -1,0 +1,4 @@
+= 52N02
+
+== Status description
+error: procedure exception - procedure execution client error. Execution of the procedure `{ $proc }` failed due to a client error.

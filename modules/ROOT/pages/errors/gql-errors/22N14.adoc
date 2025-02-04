@@ -1,0 +1,4 @@
+= 22N14
+
+== Status description
+error: data exception - invalid temporal value combination. Cannot select both `{ $temporal }` and `{ $component }`.

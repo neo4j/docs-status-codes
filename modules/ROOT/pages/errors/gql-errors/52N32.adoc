@@ -1,0 +1,4 @@
+= 52N32
+
+== Status description
+error: procedure exception - invalid sequence number. Change identifier `{ $param1 }` has an invalid sequence number `{ $param2 }`.

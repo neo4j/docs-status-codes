@@ -1,0 +1,5 @@
+= 22NB2
+
+
+== Status description
+error: data exception - incompatible graph type dependence. Graph type `{ $graphTypeDependence1 }` constraint `{ $constrDescrOrName1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.

@@ -1,0 +1,4 @@
+= 42N11
+
+== Status description
+error: syntax error or access rule violation - database or alias already exists. A `[composite]` database or alias with the name `{ $db }` already exists.

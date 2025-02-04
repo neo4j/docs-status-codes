@@ -1,0 +1,4 @@
+= 51N18
+
+== Status description
+error: system configuration or operation exception - invalid method return type. The method `{ $procMethod }` has an invalid return type. Procedures must return a stream of records, where each record is of a defined concrete class.

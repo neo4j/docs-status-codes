@@ -1,0 +1,4 @@
+= 42N86
+
+== Status description
+error: syntax error or access rule violation - wildcard in parameter. `{ $syntax }` failed. Parameterized database and graph names do not support wildcards.

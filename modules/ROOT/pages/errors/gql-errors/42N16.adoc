@@ -1,0 +1,4 @@
+= 42N16
+
+== Status description
+error: syntax error or access rule violation - unsupported index or constraint. Only single property `{ $idxType }` are supported.

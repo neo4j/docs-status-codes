@@ -1,0 +1,5 @@
+= 42N66
+
+
+== Status description
+error: syntax error or access rule violation - relationship variable already bound. Bound relationships are not allowed in calls to the `{ $fun }` function.

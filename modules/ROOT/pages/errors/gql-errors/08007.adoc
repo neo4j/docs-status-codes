@@ -1,0 +1,4 @@
+= 08007
+
+== Status description
+error: connection exception - transaction resolution unknown
