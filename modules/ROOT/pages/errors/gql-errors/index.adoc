@@ -1031,7 +1031,7 @@ Status description:: error: syntax error or access rule violation - invalid alia
 
 === xref:errors/gql-errors/42NA7.adoc[42NA7]
 
-Status description:: error: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
+Status description:: error: syntax error or access rule violation - referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
 
 === xref:errors/gql-errors/42NA8.adoc[42NA8]
 
