@@ -1,4 +1,4 @@
 = 42NA6
 
 == Status description
-error: invalid alias target. Aliases are not allowed to target composite databases.
+error: syntax error or access rule violation - invalid alias target. Aliases are not allowed to target composite databases.
