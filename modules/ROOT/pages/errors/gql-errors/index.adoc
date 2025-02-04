@@ -966,7 +966,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42N76.adoc[42N76]
 
-Status description:: error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintAndedList }` cannot be fulfilled.
+Status description:: error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintList }` cannot be fulfilled.
 
 === xref:errors/gql-errors/42N77.adoc[42N77]
 
@@ -974,7 +974,7 @@ Status description:: error: syntax error or access rule violation - missing hint
 
 === xref:errors/gql-errors/42N78.adoc[42N78]
 
-Status description:: error: syntax error or access rule violation - variable already bound. Node `{ $var }` has already been bound and cannot be modified by the `{ $clause }` clause.
+Status description:: error: syntax error or access rule violation - variable already bound. Node `{ $variable }` has already been bound and cannot be modified by the `{ $clause }` clause.
 
 === xref:errors/gql-errors/42N81.adoc[42N81]
 
@@ -1023,15 +1023,15 @@ Status description:: error: syntax error or access rule violation - cannot delet
 
 === xref:errors/gql-errors/42NA5.adoc[42NA5]
 
-Status description:: info: accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.
+Status description:: error: accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.
 
 === xref:errors/gql-errors/42NA6.adoc[42NA6]
 
-Status description:: info: invalid alias target. Aliases are not allowed to target composite databases.
+Status description:: error: invalid alias target. Aliases are not allowed to target composite databases.
 
 === xref:errors/gql-errors/42NA7.adoc[42NA7]
 
-Status description:: info: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
+Status description:: error: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
 
 === xref:errors/gql-errors/42NA8.adoc[42NA8]
 
@@ -1545,7 +1545,7 @@ Status description:: error: procedure exception - procedure sandboxed. `{ $sig }
 
 === xref:errors/gql-errors/52N35.adoc[52N35]
 
-Status description:: error: procedure exception - procedure compilation failed. Failed to compile procedure/function defined in `{ $procClass }`: `{ $msg }`
+Status description:: error: procedure exception - procedure compilation failed. Failed to compile procedure defined in `{ $procClass }`: `{ $msg }`
 
 === xref:errors/gql-errors/52N36.adoc[52N36]
 

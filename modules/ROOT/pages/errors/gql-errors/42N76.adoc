@@ -1,4 +1,4 @@
 = 42N76
 
 == Status description
-error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintAndedList }` cannot be fulfilled.
+error: syntax error or access rule violation - unfulfillable hints. The hint(s) `{ $hintList }` cannot be fulfilled.
