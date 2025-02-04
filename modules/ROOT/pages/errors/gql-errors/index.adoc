@@ -1023,7 +1023,7 @@ Status description:: error: syntax error or access rule violation - cannot delet
 
 === xref:errors/gql-errors/42NA5.adoc[42NA5]
 
-Status description:: error: accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.
+Status description:: error: syntax error or access rule violation - accessing multiple graphs only supported on composite databases. Accessing multiple graphs in the same query is only supported on composite databases. Connect to a composite database with the desired constituents.
 
 === xref:errors/gql-errors/42NA6.adoc[42NA6]
 
