@@ -1,4 +1,4 @@
 = 42NA7
 
 == Status description
-error: referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
+error: syntax error or access rule violation - referenced database not found. No database is corresponding to `{ $db }`. Verify that the elementId is correct.
