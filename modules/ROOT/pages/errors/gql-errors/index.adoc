@@ -192,7 +192,7 @@ Status description:: error: data exception - invalid time zone. Specified time z
 
 === xref:errors/gql-errors/22N14.adoc[22N14]
 
-Status description:: error: data exception - invalid temporal value combination. Cannot select both `{ $temporal }` and `{ $component }`.
+Status description:: error: data exception - invalid temporal value combination. Cannot select both `{ $temporal1 }` and `{ $temporal2 }`.
 
 === xref:errors/gql-errors/22N15.adoc[22N15]
 
