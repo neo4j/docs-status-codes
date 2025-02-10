@@ -1240,7 +1240,7 @@ Status description:: error: system configuration or operation exception - databa
 
 === xref:errors/gql-errors/51N27.adoc[51N27]
 
-Status description:: error: system configuration or operation exception - not supported in this edition. `{ $item }` is not supported in `{ $edition }`.
+Status description:: error: system configuration or operation exception - not supported in this edition. `{ $component }` is not supported in `{ $edition }`.
 
 
 === xref:errors/gql-errors/51N29.adoc[51N29]
