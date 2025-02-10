@@ -199,7 +199,7 @@ Status description:: error: data exception - invalid time zone. Specified time z
 
 === 22N14
 
-Status description:: error: data exception - invalid temporal value combination. Cannot select both `{ $temporal }` and `{ $component }`.
+Status description:: error: data exception - invalid temporal value combination. Cannot select both `{ $temporal1 }` and `{ $temporal2 }`.
 
 === 22N15
 
