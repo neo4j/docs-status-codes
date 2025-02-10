@@ -936,11 +936,11 @@ Status description:: error: syntax error or access rule violation - specified nu
 
 === 42N39
 
-Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ $context }` must have the same return column names.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ $context }` must have the same return column names. Use `AS` to ensure columns have the same name.
 
 === 42N3A
 
-Status description:: error: syntax error or access rule violation - incompatible subquery type. All `{ $context }` need to be either returning or unit..
+Status description:: error: syntax error or access rule violation - incompatible conditional query. All `{ $context }` need to either return rows or update the graph.
 
 === 42N3B
 
@@ -948,7 +948,7 @@ Status description:: error: syntax error or access rule violation - incompatible
 
 === 42N3C
 
-Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ $clause }` in 'CALL { ... }', please use 'CALL () { ... }'.
+Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ $clause }` in 'CALL { ... }'. Use 'CALL () { ... }' instead.
 
 === 42N40
 
