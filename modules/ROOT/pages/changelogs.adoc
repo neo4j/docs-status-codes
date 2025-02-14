@@ -23,8 +23,8 @@
 |===
 
 
-//Starting from 2025.01, when using Cypher25, queries using `WAIT` return the notifications listed above instead of result rows.
-//The behaviour for Cypher5 remains unchanged.
+//Starting from 2025.01, when using Cypher 25, queries using `WAIT` return the notifications listed above instead of result rows.
+//The behaviour for Cypher 5 remains unchanged.
 
 == Neo4j 5.26
 
@@ -48,10 +48,6 @@ Starting from 5.26, Neo4j errors sent over drivers include new fields,
 such as GQLSTATUS code, StatusDescription, and DiagnosticRecord.
 For more information, see xref:errors/index.adoc#gqlstatus-error-object[GQL-status error object].
 
-
-**Deprecations:**
-
-The server-side Notification API and the `getNotifications()` method of the Result Core API were deprecated.
 
 == Neo4j 5.25
 
@@ -83,7 +79,7 @@ For more information, see link:https://neo4j.com/docs/operations-manual/current/
 | 03N62
 | Neo.ClientNotification.Statement.RedundantOptionalSubquery
 
-| ?? // Not assigned yet and not documented
+| N/A
 | Neo.TransientError.Invalid.ResourceExhaustion
 
 |===

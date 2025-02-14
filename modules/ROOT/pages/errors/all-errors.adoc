@@ -145,6 +145,9 @@ If you want to drop the index, you must also drop the constraint.
 | Neo.ClientError.Schema.RepeatedRelationshipTypeInSchema
 | Unable to create an index or a constraint because the schema had a repeated relationship type.
 
+| Neo.ClientError.Schema.TokenLengthError
+| A token name, such as a label, relationship type or property key is too long.
+
 | Neo.ClientError.Schema.TokenNameError
 |
 An invalid name is used for a token (label, relationship type, property key).
@@ -187,6 +190,9 @@ Please reconnect.
 
 | Neo.ClientError.Statement.ExternalResourceFailed
 | Access to an external resource failed.
+
+| Neo.ClientError.Statement.InvalidTargetDatabaseError
+| The specified database is not a valid target for this command.
 
 | Neo.ClientError.Statement.NotSystemDatabaseError
 | This is an administration command and it should be executed against the `system` database.
@@ -318,6 +324,10 @@ You could try increasing the stack size; for example to set the stack size to `2
 |
 There is not enough memory to perform the current task.
 Please try increasing `server.memory.off_heap.transaction_max_size` in the Neo4j configuration file (normally in _conf/neo4j.conf_ or, if you are using Neo4j Desktop, found through the user interface), and then restart the database.
+
+| Neo.TransientError.Invalid.ResourceExhaustion
+| The server has rejected this request as a resource is exhausted at the moment.
+You can retry at a later time. For further details see server logs.
 
 | Neo.TransientError.Request.NoThreadsAvailable
 |

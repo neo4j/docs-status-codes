@@ -3369,7 +3369,7 @@ Use `DATABASE *` without the parameter to revoke the privilege on all databases.
 =====
 
 [#_neo_clientnotification_security_authprovidernotdefined]
-=== AuthProviderNotDefined
+=== The auth provider is not defined
 
 .Notification details
 [cols="<1s,<4"]
@@ -3485,7 +3485,7 @@ If it is correct, make sure to add it as a known auth provider in one or both of
 
 
 [#_neo_clientnotification_security_externalauthnotenabled]
-=== ExternalAuthNotEnabled
+=== External auth for user is not enabled
 
 .Notification details
 [cols="<1s,<4"]
@@ -3586,6 +3586,30 @@ Enable linked users through the `dbms.security.require_local_user` setting.
 Until enabled, the new external auth will be ignored, and current external auth behaviors will continue to apply.
 ======
 =====
+
+[role=label--new-5.26]
+=== Query uses an insecure protocol
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Statement.InsecureProtocol
+|Title
+a|Query uses an insecure protocol
+|Description
+a|The query uses an insecure protocol. Please consider using 'https' instead.
+|Category
+m|SECURITY
+|GQLSTATUS code
+m|01N72
+|Status description
+a|warn: insecure URL protocol. Query uses an insecure protocol. Consider using 'https' instead. 
+|Classification
+m|SECURITY
+|SeverityLevel
+m|WARNING
+|===
 
 
 [#_topology_notifications]
