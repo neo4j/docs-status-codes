@@ -146,7 +146,7 @@ If you want to drop the index, you must also drop the constraint.
 | Unable to create an index or a constraint because the schema had a repeated relationship type.
 
 | Neo.ClientError.Schema.TokenLengthError
-| A token name, such as a label, relationship type or property key is too long.
+| A token name, such as a label, relationship type or property key is too long
 
 | Neo.ClientError.Schema.TokenNameError
 |
