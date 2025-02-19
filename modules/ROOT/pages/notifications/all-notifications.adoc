@@ -3587,7 +3587,7 @@ Until enabled, the new external auth will be ignored, and current external auth 
 ======
 =====
 
-[role=label--new-5.26]
+
 === Query uses an insecure protocol
 
 .Notification details
@@ -4988,7 +4988,6 @@ m|WARNING
 |===
 
 
-[role=label--new-5.4]
 [#_neo_clientnotification_statement_unsatisfiablerelationshiptypeexpression]
 === Unsatisfiable relationship type expression
 
@@ -5049,7 +5048,7 @@ Relationship type expression cannot possibly be satisfied. (`R1&R2` can never be
 ======
 =====
 
-[role=label--new-5.5]
+
 [#_neo_clientnotification_statement_repeatedrelationshipreference]
 === Repeated relationship reference
 
