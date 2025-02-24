@@ -2,4 +2,11 @@
 
 == Status description
 error: invalid transaction state - specified transaction does not exist.
-Transaction `{ $transactionId }` does not exist.
+Transaction `{ <<transactionId>> }` does not exist.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

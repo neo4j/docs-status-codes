@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - resource exhaustion. Insufficient resources to complete the request.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

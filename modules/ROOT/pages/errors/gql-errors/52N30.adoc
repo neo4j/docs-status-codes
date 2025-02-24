@@ -2,3 +2,10 @@
 
 == Status description
 error: procedure exception - future change identifier. Given ChangeIdentifier describes a transaction that hasn't yet occurred.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - invalid property based access control rule. Failed to administer property rule.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

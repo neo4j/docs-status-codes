@@ -1,4 +1,11 @@
 = 42N04
 
 == Status description
-error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by `{ $db1 }` while connected to session database `{ $db2 }`. Connect to `{ $db3 }` directly.
+error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by `{ <<db>>1 }` while connected to session database `{ $db2 }`. Connect to `{ $db3 }` directly.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

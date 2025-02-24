@@ -3,3 +3,13 @@
 
 == Status description
 error: syntax error or access rule violation - unsafe usage of repeatable elements. The quantified path pattern may yield an infinite number of rows under match mode `REPEATABLE ELEMENTS`. Add an upper bound to the quantified path pattern.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

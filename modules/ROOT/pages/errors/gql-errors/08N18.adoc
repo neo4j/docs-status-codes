@@ -1,4 +1,12 @@
 = 08N18
 
 == Status description
-error: connection exception - general driver database error. Remote execution failed with message `{ $msg }`.
+error: connection exception - general driver database error. Remote execution failed with message `{ <<msg>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,12 @@
 = 08N03
 
 == Status description
-error: connection exception - failed to write to graph. Failed to write to graph `{ $graph }`. Check the defined access mode in both driver and database.
+error: connection exception - failed to write to graph. Failed to write to graph `{ <<graph>> }`. Check the defined access mode in both driver and database.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,4 +2,12 @@
 
 
 == Status description
-error: data exception - incompatible graph type dependence. Graph type `{ $graphTypeDependence1 }` constraint `{ $constrDescrOrName1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.
+error: data exception - incompatible graph type dependence. Graph type `{ <<graphTypeDependence>>1 }` constraint `{ <<constrDescrOrName>>1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

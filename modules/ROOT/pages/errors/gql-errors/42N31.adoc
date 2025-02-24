@@ -1,4 +1,11 @@
 = 42N31
 
 == Status description
-error: syntax error or access rule violation - specified number out of range. Expected `{ $component }` to be `{ $valueType }` in the range `{ $lower }` to `{ $upper }` but found `{ $value }`.
+error: syntax error or access rule violation - specified number out of range. Expected `{ <<component>> }` to be `{ <<valueType>> }` in the range `{ <<lower>> }` to `{ <<upper>> }` but found `{ <<value>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

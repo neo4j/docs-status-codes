@@ -1,4 +1,11 @@
 = 42N89
 
 == Status description
-error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. `{ $cause }`
+error: syntax error or access rule violation - invalid driver settings map. Failed evaluating the given driver settings. `{ <<cause>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

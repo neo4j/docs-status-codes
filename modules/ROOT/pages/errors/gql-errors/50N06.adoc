@@ -2,3 +2,10 @@
 
 == Status description
 error: general processing exception - remote execution client error. Remote execution failed. See cause for more details.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

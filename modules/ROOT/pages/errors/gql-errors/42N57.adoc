@@ -1,4 +1,11 @@
 = 42N57
 
 == Status description
-error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ $expr }` cannot contain any updating clauses.
+error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ <<expr>> }` cannot contain any updating clauses.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

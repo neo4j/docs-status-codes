@@ -1,4 +1,11 @@
 = 22N85
 
 == Status description
-error: data exception - string too short. Expected the string to be at least `{ $lower }` characters long.
+error: data exception - string too short. Expected the string to be at least `{ <<lower>> }` characters long.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

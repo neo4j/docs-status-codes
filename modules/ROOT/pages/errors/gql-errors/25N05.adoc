@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction state - transaction terminated or closed. The transaction has been terminated or closed.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

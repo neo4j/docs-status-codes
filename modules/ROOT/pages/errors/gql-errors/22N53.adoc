@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - invalid use of PROFILE. Cannot 'PROFILE' query before results are materialized.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

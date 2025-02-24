@@ -1,4 +1,11 @@
 = 51N29
 
 == Status description
-error: system configuration or operation exception - not supported by this server. The command `{ $cmd }` must be executed on the current 'LEADER' server.
+error: system configuration or operation exception - not supported by this server. The command `{ <<cmd>> }` must be executed on the current 'LEADER' server.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 51N05
 
 == Status description
-error: system configuration or operation exception - class field should be public and non-final. The field `{ $procField }` on `{ $procClass }` must be declared non-final and public.
+error: system configuration or operation exception - class field should be public and non-final. The field `{ <<procField>> }` on `{ <<procClass>> }` must be declared non-final and public.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

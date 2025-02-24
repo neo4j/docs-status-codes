@@ -1,4 +1,12 @@
 = 22N33
 
 == Status description
-error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ $variable }`.
+error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ <<variable>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

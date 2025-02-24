@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

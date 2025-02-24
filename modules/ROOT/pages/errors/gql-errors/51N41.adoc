@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

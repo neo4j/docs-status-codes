@@ -1,4 +1,11 @@
 = 51N46
 
 == Status description
-error: system configuration or operation exception - cannot alter server. Cannot alter server `{ $server }`.
+error: system configuration or operation exception - cannot alter server. Cannot alter server `{ <<server>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

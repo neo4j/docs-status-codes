@@ -1,4 +1,11 @@
 = 42I51
 
 == Status description
-info: invalid call signature. The procedure or function `{ $procFun }` must have the signature: `{ $sig }`.
+info: invalid call signature. The procedure or function `{ <<procFun>> }` must have the signature: `{ <<sig>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

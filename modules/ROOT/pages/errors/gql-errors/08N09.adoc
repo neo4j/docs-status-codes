@@ -1,4 +1,11 @@
 = 08N09
 
 == Status description
-error: connection exception - database unavailable. The database `{ $db }` is currently unavailable. Check the database status. Retry your request at a later time.
+error: connection exception - database unavailable. The database `{ <<db>> }` is currently unavailable. Check the database status. Retry your request at a later time.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

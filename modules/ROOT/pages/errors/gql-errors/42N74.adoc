@@ -1,4 +1,11 @@
 = 42N74
 
 == Status description
-error: syntax error or access rule violation - invalid nested USE clause. Failed to access `{ $db1 }` and `{ $db2 }`. Child USE clauses must target the same graph as their parent query. Run in separate (sub)queries instead.
+error: syntax error or access rule violation - invalid nested USE clause. Failed to access `{ <<db>>1 }` and `{ $db2 }`. Child USE clauses must target the same graph as their parent query. Run in separate (sub)queries instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

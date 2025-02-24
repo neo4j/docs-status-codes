@@ -1,4 +1,11 @@
 = 52N08
 
 == Status description
-error: procedure exception - invalid server id argument to checkConnectivity. Unable to parse server id `{ $server }`.
+error: procedure exception - invalid server id argument to checkConnectivity. Unable to parse server id `{ <<server>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

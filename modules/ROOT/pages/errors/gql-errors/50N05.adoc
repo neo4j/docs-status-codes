@@ -2,3 +2,10 @@
 
 == Status description
 error: general processing exception - deadlock detected. Deadlock detected while trying to acquire locks. See log for more details.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

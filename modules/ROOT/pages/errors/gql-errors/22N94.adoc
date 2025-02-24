@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

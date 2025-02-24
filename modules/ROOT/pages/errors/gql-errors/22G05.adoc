@@ -3,3 +3,11 @@
 
 == Status description
 error: data exception - invalid date, time, or datetime function field name
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

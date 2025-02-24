@@ -1,4 +1,11 @@
 = 42I47
 
 == Status description
-error: syntax error or access rule violation - parser error. Parser Error: `{ $msg }`.
+error: syntax error or access rule violation - parser error. Parser Error: `{ <<msg>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

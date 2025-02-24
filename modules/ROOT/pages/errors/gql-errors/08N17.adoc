@@ -1,4 +1,12 @@
 = 08N17
 
 == Status description
-error: connection exception - general driver transient error. Remote execution failed with message `{ $msg }`.
+error: connection exception - general driver transient error. Remote execution failed with message `{ <<msg>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 51N10
 
 == Status description
-error: system configuration or operation exception - aggregation method not public. The method `{ $procMethod }` of `{ $procClass }` must be public.
+error: system configuration or operation exception - aggregation method not public. The method `{ <<procMethod>> }` of `{ <<procClass>> }` must be public.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

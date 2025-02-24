@@ -2,3 +2,10 @@
 
 == Status description
 error: syntax error or access rule violation - invalid alias target. Aliases are not allowed to target composite databases.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

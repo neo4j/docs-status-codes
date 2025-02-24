@@ -2,4 +2,13 @@
 
 
 == Status description
-error: syntax error or access rule violation - invalid quantified path pattern in shortest path. The `{ $fun }` function cannot contain a quantified path pattern.
+error: syntax error or access rule violation - invalid quantified path pattern in shortest path. The `{ <<fun>> }` function cannot contain a quantified path pattern.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
