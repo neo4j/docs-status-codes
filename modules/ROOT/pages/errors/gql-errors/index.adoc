@@ -32,12 +32,12 @@ Status description:: error: connection exception - unable to connect to database
 
 === xref:errors/gql-errors/08N01.adoc[08N01]
 
-Status description:: error: connection exception - unable to write to database. Unable to write to database `{ <<db>> }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting ``{ <<cfgSetting>> }`=true`.
+Status description:: error: connection exception - unable to write to database. Unable to write to database `{ <<db>> }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
 
 
 === xref:errors/gql-errors/08N02.adoc[08N02]
 
-Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Server-side routing is disabled. Either connect to `{ <<db>> }` directly, or enable server-side routing by setting ``{ <<cfgSetting>> }`=true`.
+Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Server-side routing is disabled. Either connect to `{ <<db>> }` directly, or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
 
 === xref:errors/gql-errors/08N03.adoc[08N03]
 
@@ -81,11 +81,11 @@ Status description:: error: connection exception - failed to parse bookmark. Fai
 
 === xref:errors/gql-errors/08N13.adoc[08N13]
 
-Status description:: error: connection exception - database not up to requested bookmark. The database `{ <<db>> }` is not up to the requested bookmark `{ $transactionId1 }`. The latest transaction ID is `{ $transactionId2 }`.
+Status description:: error: connection exception - database not up to requested bookmark. The database `{ <<db>> }` is not up to the requested bookmark `{ <<transactionId>>1 }`. The latest transaction ID is `{ $transactionId2 }`.
 
 === xref:errors/gql-errors/08N14.adoc[08N14]
 
-Status description:: error: connection exception - alias chains are not permitted. Unable to provide a routing table for the database identifed by the alias `{ $alias1 }` because the request comes from another alias `{ $alias2 }` and alias chains are not permitted.
+Status description:: error: connection exception - alias chains are not permitted. Unable to provide a routing table for the database identifed by the alias `{ <<alias>>1 }` because the request comes from another alias `{ $alias2 }` and alias chains are not permitted.
 
 === xref:errors/gql-errors/08N15.adoc[08N15]
 
@@ -168,7 +168,7 @@ Status description:: error: data exception - invalid pre-parser option key. Inva
 
 === xref:errors/gql-errors/22N08.adoc[22N08]
 
-Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `{ $option1 }` with `{ $option2 }`.
+Status description:: error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `{ <<option>>1 }` with `{ $option2 }`.
 
 === xref:errors/gql-errors/22N09.adoc[22N09]
 
@@ -504,15 +504,15 @@ Status description:: error: data exception - type mismatch. Type mismatch: expec
 
 === xref:errors/gql-errors/22NB2.adoc[22NB2]
 
-Status description:: error: data exception - incompatible graph type dependence. Graph type `{ $graphTypeDependence1 }` constraint `{ $constrDescrOrName1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.
+Status description:: error: data exception - incompatible graph type dependence. Graph type `{ <<graphTypeDependence>>1 }` constraint `{ <<constrDescrOrName>>1 }` is incompatible with graph type `{ $graphTypeDependence2 }` constraint `{ $constrDescrOrName2 }` because they have different graph type dependence.
 
 === xref:errors/gql-errors/22NB3.adoc[22NB3]
 
-Status description:: error: data exception - token presence verification failed. `{ <<entityType>> }` (`{ <<entityId>> }`) with `{ $tokenType1 }` `{ $token1 }` must have the `{ $tokenType2 }` `{ $token2 }`.
+Status description:: error: data exception - token presence verification failed. `{ <<entityType>> }` (`{ <<entityId>> }`) with `{ <<tokenType>>1 }` `{ <<token>>1 }` must have the `{ $tokenType2 }` `{ $token2 }`.
 
 === xref:errors/gql-errors/22NB4.adoc[22NB4]
 
-Status description:: error: data exception - endpoint label presence verification failed. Relationship (`{ $entityId1 }`) with type `{ <<relType>> }` requires its `{ $endpointType }` node (`{ $entityId2 }`) to have the label `{ <<label>> }`.
+Status description:: error: data exception - endpoint label presence verification failed. Relationship (`{ <<entityId>>1 }`) with type `{ <<relType>> }` requires its `{ $endpointType }` node (`{ $entityId2 }`) to have the label `{ <<label>> }`.
 
 [[invalid-transaction-state]]
 == Invalid transaction state
@@ -702,7 +702,7 @@ Status description:: error: syntax error or access rule violation - invalid lowe
 
 === xref:errors/gql-errors/42I13.adoc[42I13]
 
-Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ $count1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
+Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
 
 === xref:errors/gql-errors/42I18.adoc[42I18]
 
@@ -794,11 +794,11 @@ Status description:: error: syntax error or access rule violation - writing to m
 
 === xref:errors/gql-errors/42N04.adoc[42N04]
 
-Status description:: error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by `{ $db1 }` while connected to session database `{ $db2 }`. Connect to `{ $db3 }` directly.
+Status description:: error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by `{ <<db>>1 }` while connected to session database `{ $db2 }`. Connect to `{ $db3 }` directly.
 
 === xref:errors/gql-errors/42N05.adoc[42N05]
 
-Status description:: error: syntax error or access rule violation - unsupported access of standard database. Failed to access database identified by `{ $db1 }` while connected to composite session database `{ $db2 }`. Connect to `{ $db3 }` directly or create an alias in the composite database.
+Status description:: error: syntax error or access rule violation - unsupported access of standard database. Failed to access database identified by `{ <<db>>1 }` while connected to composite session database `{ $db2 }`. Connect to `{ $db3 }` directly or create an alias in the composite database.
 
 === xref:errors/gql-errors/42N06.adoc[42N06]
 
@@ -872,7 +872,7 @@ Status description:: error: syntax error or access rule violation - single retur
 
 === xref:errors/gql-errors/42N24.adoc[42N24]
 
-Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ $input1 }` and `{ $input2 }`.
+Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ <<input>>1 }` and `{ $input2 }`.
 
 === xref:errors/gql-errors/42N29.adoc[42N29]
 
@@ -958,7 +958,7 @@ Status description:: error: syntax error or access rule violation - invalid plac
 
 === xref:errors/gql-errors/42N74.adoc[42N74]
 
-Status description:: error: syntax error or access rule violation - invalid nested USE clause. Failed to access `{ $db1 }` and `{ $db2 }`. Child USE clauses must target the same graph as their parent query. Run in separate (sub)queries instead.
+Status description:: error: syntax error or access rule violation - invalid nested USE clause. Failed to access `{ <<db>>1 }` and `{ $db2 }`. Child USE clauses must target the same graph as their parent query. Run in separate (sub)queries instead.
 
 === xref:errors/gql-errors/42N75.adoc[42N75]
 
@@ -1364,7 +1364,7 @@ Status description:: error: system configuration or operation exception - cannot
 
 === xref:errors/gql-errors/51N56.adoc[51N56]
 
-Status description:: error: system configuration or operation exception - topology out of range. The number of `{ <<serverType>> }` seeding servers `{ $count1 }` is larger than the desired number of `{ <<allocType>> }` allocations `{ $count2 }`.
+Status description:: error: system configuration or operation exception - topology out of range. The number of `{ <<serverType>> }` seeding servers `{ <<count>>1 }` is larger than the desired number of `{ <<allocType>> }` allocations `{ $count2 }`.
 
 
 === xref:errors/gql-errors/51N57.adoc[51N57]
@@ -1533,7 +1533,7 @@ Status description:: error: procedure exception - wrong database. Change identif
 
 === xref:errors/gql-errors/52N32.adoc[52N32]
 
-Status description:: error: procedure exception - invalid sequence number. Change identifier `{ $param1 }` has an invalid sequence number `{ $param2 }`.
+Status description:: error: procedure exception - invalid sequence number. Change identifier `{ <<param>>1 }` has an invalid sequence number `{ $param2 }`.
 
 === xref:errors/gql-errors/52N33.adoc[52N33]
 
