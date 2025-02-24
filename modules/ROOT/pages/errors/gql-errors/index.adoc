@@ -208,7 +208,7 @@ Status description:: error: data exception - invalid spatial value. A `POINT` mu
 
 === xref:errors/gql-errors/22N20.adoc[22N20]
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim1>> }` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ <<dim2>> }` coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1 }` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2 }` coordinate reference system instead.
 
 === xref:errors/gql-errors/22N21.adoc[22N21]
 
@@ -456,7 +456,7 @@ Status description:: error: data exception - unexpected struct tag. Unexpected s
 
 === xref:errors/gql-errors/22N98.adoc[22N98]
 
-Status description:: error: data exception - wrong first field during deserialization. Unable to deserialize request. Expected first field to be `{ <<field>> }`, but was '`{ <<value>> }`'.
+Status description:: error: data exception - wrong first field during deserialization. Unable to deserialize request. Expected first field to be `{ <<field>> }`, but was `{ <<value>> }`.
 
 === xref:errors/gql-errors/22N99.adoc[22N99]
 
