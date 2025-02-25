@@ -37,7 +37,7 @@ Status description:: error: connection exception - unable to write to database. 
 
 === xref:errors/gql-errors/08N02.adoc[08N02]
 
-Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Server-side routing is disabled. Either connect to `{ <<db>> }` directly, or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
+Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Server-side routing is disabled. Either connect to `{ $db }` directly, or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
 
 === xref:errors/gql-errors/08N03.adoc[08N03]
 
