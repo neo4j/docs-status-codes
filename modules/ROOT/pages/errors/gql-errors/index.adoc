@@ -770,7 +770,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42I50.adoc[42I50]
 
-Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ <<input>> }`..`. A `{ <<tokenType>> }` name cannot be longer than `{ $maxTokenLength }`.
+Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ <<input>> }..`. A `{ <<tokenType>> }` name cannot be longer than `{ <<value>> }`.
 
 === xref:errors/gql-errors/42I51.adoc[42I51]
 
