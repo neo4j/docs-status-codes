@@ -1,4 +1,11 @@
 = 42N86
 
 == Status description
-error: syntax error or access rule violation - wildcard in parameter. `{ $syntax }` failed. Parameterized database and graph names do not support wildcards.
+error: syntax error or access rule violation - wildcard in parameter. `{ <<syntax>> }` failed. Parameterized database and graph names do not support wildcards.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

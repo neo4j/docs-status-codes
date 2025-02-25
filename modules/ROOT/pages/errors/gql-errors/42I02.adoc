@@ -2,3 +2,10 @@
 
 == Status description
 error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

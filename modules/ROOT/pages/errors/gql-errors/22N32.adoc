@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - non-deterministic sort expression. 'ORDER BY' expressions must be deterministic.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -3,3 +3,12 @@
 
 == Status description
 error: syntax error or access rule violation - invalid `DELETE`. 'DELETE ...' does not support removing labels from a node. Use 'REMOVE ...' instead.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

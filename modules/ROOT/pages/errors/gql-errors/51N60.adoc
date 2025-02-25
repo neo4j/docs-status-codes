@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - unable to check enterprise license acceptance. The DBMS is unable to determine the enterprise license acceptance status.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

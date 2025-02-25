@@ -1,4 +1,11 @@
 = 50N12
 
 == Status description
-error: general processing exception - constraint drop failed. Unable to drop `{ $constrDescrOrName }`.
+error: general processing exception - constraint drop failed. Unable to drop `{ <<constrDescrOrName>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

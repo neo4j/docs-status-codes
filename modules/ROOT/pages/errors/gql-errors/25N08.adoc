@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction state - invalid transaction lease. The lease for the transaction is no longer valid.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

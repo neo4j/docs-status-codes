@@ -3,3 +3,11 @@
 
 == Status description
 error: general processing exception - constraint violation. A constraint imposed by the database was violated.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

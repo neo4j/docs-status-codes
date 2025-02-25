@@ -2,4 +2,12 @@
 
 
 == Status description
-error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ $constr }` contains a conflicting index.
+error: data exception - index conflicts with existing constraint. An index that belongs to the constraint `{ <<constr>> }` contains a conflicting index.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

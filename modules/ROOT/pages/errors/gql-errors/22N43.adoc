@@ -1,4 +1,12 @@
 = 22N43
 
 == Status description
-error: data exception - unable to load external resource. Could not load external resource from `{ $url }`.
+error: data exception - unable to load external resource. Could not load external resource from `{ <<url>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

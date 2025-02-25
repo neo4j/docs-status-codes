@@ -1,4 +1,11 @@
 = 51N01
 
 == Status description
-error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ $procField }` in the class `{ $procClass }` is annotated as a '@Context' field, but it is declared as static. '@Context' fields must be public, non-final and non-static.
+error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ <<procField>> }` in the class `{ <<procClass>> }` is annotated as a '@Context' field, but it is declared as static. '@Context' fields must be public, non-final and non-static.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

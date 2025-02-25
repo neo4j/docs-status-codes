@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction termination - constituent transaction termination failed. Failed to terminate constituent transaction. See debug log for details.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

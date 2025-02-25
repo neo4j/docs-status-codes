@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - index dropped while sampling. The index dropped while sampling.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

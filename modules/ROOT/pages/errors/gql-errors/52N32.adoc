@@ -1,4 +1,11 @@
 = 52N32
 
 == Status description
-error: procedure exception - invalid sequence number. Change identifier `{ $param1 }` has an invalid sequence number `{ $param2 }`.
+error: procedure exception - invalid sequence number. Change identifier `{ <<param>>1 }` has an invalid sequence number `{ $param2 }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

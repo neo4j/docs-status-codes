@@ -1,4 +1,11 @@
 = 51N44
 
 == Status description
-error: system configuration or operation exception - cannot drop server. Cannot drop server `{ $server }`.
+error: system configuration or operation exception - cannot drop server. Cannot drop server `{ <<server>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

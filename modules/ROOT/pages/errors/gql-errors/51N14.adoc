@@ -2,4 +2,11 @@
 
 == Status description
 error: system configuration or operation exception - duplicate field name.
-The procedure `{ $proc }` has a duplicate `{ $procFieldType }` field, `{ $procField }`.
+The procedure `{ <<proc>> }` has a duplicate `{ <<procFieldType>> }` field, `{ <<procField>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 51N51
 
 == Status description
-error: system configuration or operation exception - cannot create database. Cannot create database `{ $db }`.
+error: system configuration or operation exception - cannot create database. Cannot create database `{ <<db>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

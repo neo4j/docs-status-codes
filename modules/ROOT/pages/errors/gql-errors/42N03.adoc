@@ -2,3 +2,10 @@
 
 == Status description
 error: syntax error or access rule violation - writing to multiple graphs. Writing to multiple graphs in the same transaction is not allowed. Use `CALL IN TRANSACTION` or create separate transactions in your application.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

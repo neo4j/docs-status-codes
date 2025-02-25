@@ -1,4 +1,11 @@
 = 25N12
 
 == Status description
-error: invalid transaction state - index was dropped. Index `{ $idx }` was dropped in this transaction and cannot be used.
+error: invalid transaction state - index was dropped. Index `{ <<idx>> }` was dropped in this transaction and cannot be used.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

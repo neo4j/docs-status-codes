@@ -3,3 +3,10 @@
 
 == Status description
 error: syntax error or access rule violation - invalid use of pattern expression. A pattern expression can only be used to test the existence of a pattern. Use a pattern comprehension instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

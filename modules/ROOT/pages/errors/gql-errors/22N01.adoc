@@ -2,4 +2,11 @@
 
 == Status description
 error: data exception - invalid type.
-Expected the value `{ $value }` to be of type `{ $valueTypeList }`, but was of type `{ $valueType }`.
+Expected the value `{ <<value>> }` to be of type `{ <<valueTypeList>> }`, but was of type `{ <<valueType>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

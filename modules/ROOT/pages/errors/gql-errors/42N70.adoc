@@ -1,4 +1,14 @@
 = 42N70
 
 == Status description
-error: syntax error or access rule violation - function without required WHERE clause. The function `{ $fun }` requires a WHERE clause.
+error: syntax error or access rule violation - function without required WHERE clause. The function `{ <<fun>> }` requires a WHERE clause.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

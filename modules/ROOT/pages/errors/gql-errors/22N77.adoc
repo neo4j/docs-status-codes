@@ -1,4 +1,11 @@
 = 22N77
 
 == Status description
-error: data exception - property presence verification failed. `{ $entityType }` (`{ $entityId }`) with `{ $tokenType }` `{ $token }` must have the following properties: `{ $propKeyList }`.
+error: data exception - property presence verification failed. `{ <<entityType>> }` (`{ <<entityId>> }`) with `{ <<tokenType>> }` `{ <<token>> }` must have the following properties: `{ <<propKeyList>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

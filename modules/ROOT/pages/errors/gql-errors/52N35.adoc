@@ -1,4 +1,11 @@
 = 52N35
 
 == Status description
-error: procedure exception - procedure compilation failed. Failed to compile procedure defined in `{ $procClass }`: `{ $msg }`
+error: procedure exception - procedure compilation failed. Failed to compile procedure defined in `{ <<procClass>> }`: `{ <<msg>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 22N08
 
 == Status description
-error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `{ $option1 }` with `{ $option2 }`.
+error: data exception - invalid pre-parser combination. Invalid pre-parser option, cannot combine `{ <<option>>1 }` with `{ $option2 }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

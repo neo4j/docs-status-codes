@@ -1,4 +1,11 @@
 = 22NB1
 
 == Status description
-error: data exception - type mismatch. Type mismatch: expected to be `{ $valueTypeList }` but was `{ $input }`.
+error: data exception - type mismatch. Type mismatch: expected to be `{ <<valueTypeList>> }` but was `{ <<input>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

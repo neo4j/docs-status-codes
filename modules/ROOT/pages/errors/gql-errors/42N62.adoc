@@ -2,4 +2,13 @@
 
 
 == Status description
-error: syntax error or access rule violation - variable not defined. Variable `{ $variable }` not defined.
+error: syntax error or access rule violation - variable not defined. Variable `{ <<variable>> }` not defined.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

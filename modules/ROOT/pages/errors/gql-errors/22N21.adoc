@@ -2,4 +2,11 @@
 
 
 == Status description
-error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `{ $crs }`.
+error: data exception - unsupported coordinate reference system. Unsupported coordinate reference system (CRS): `{ <<crs>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

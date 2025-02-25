@@ -1,4 +1,11 @@
 = 08N00
 
 == Status description
-error: connection exception - unable to connect to database. Unable to connect to database `{ $db }`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
+error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

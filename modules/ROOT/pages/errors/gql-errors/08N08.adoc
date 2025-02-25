@@ -2,3 +2,10 @@
 
 == Status description
 error: connection exception - database is read only. This database is read only on this server.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

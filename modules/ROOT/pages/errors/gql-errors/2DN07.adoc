@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction termination - inner transactions still open. Unable to commit transaction because it still have non-closed inner transactions.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

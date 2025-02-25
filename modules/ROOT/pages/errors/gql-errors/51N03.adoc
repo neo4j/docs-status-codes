@@ -1,4 +1,11 @@
 = 51N03
 
 == Status description
-error: system configuration or operation exception - unable to access field. Unable to set up injection for `{ $procClass }`, failed to access field `{ $procField }`.
+error: system configuration or operation exception - unable to access field. Unable to set up injection for `{ <<procClass>> }`, failed to access field `{ <<procField>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

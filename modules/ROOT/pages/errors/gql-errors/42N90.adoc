@@ -1,4 +1,11 @@
 = 42N90
 
 == Status description
-error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ $db }`).
+error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ <<db>> }`).
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

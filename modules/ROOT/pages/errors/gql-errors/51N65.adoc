@@ -1,4 +1,12 @@
 = 51N65
 
 == Status description
-error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ $idx }` has a dimensionality of `{ $dim1 }`, but indexed vectors have `{ $dim2 }`.
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2 }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

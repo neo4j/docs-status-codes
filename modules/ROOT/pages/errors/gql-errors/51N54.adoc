@@ -1,4 +1,11 @@
 = 51N54
 
 == Status description
-error: system configuration or operation exception - cannot reallocate. Failed to calculate reallocation for databases. { $msg }
+error: system configuration or operation exception - cannot reallocate. Failed to calculate reallocation for databases. `{ <<msg>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

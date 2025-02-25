@@ -1,4 +1,11 @@
 = 22N18
 
 == Status description
-error: data exception - incomplete spatial value. A `{ $crs }` POINT must contain `{ $mapKeyList }`.
+error: data exception - incomplete spatial value. A `{ <<crs>> }` POINT must contain `{ <<mapKeyList>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

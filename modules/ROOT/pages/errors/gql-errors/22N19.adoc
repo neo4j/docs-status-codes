@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

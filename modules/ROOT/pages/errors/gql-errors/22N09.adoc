@@ -1,4 +1,12 @@
 = 22N09
 
 == Status description
-error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for `{ $option }`.
+error: data exception - conflicting pre-parser combination. Invalid pre-parser option, cannot specify multiple conflicting values for `{ <<option>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

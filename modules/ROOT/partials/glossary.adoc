@@ -1,0 +1,116 @@
+[glossary]
+
+[[action]]$action:: Freeform description of an action.
+[[alias]]$alias:: An alias name.
+[[alloc]]$alloc:: Allocator name.
+[[allocType]]$allocType:: Allocation type.
+[[auth]]$auth:: Auth provider name.
+[[boltMsgLenLimit]]$boltMsgLenLimit:: Bolt message length limit.
+[[boltServerState]]$boltServerState:: Bolt server state.
+[[cause]]$cause:: Freeform description of what caused the error.
+[[cfgSetting]]$cfgSetting:: Configuration setting key, for example, `server.https.enabled`.
+[[clause]]$clause:: A clause, for example, `USE`.
+[[cmd]]$cmd:: Cypher administrative command, for example, `DROP DATABASE`.
+[[component]]$component:: Component name.
+[[constr]]$constr:: Constraint name.
+[[constrDescrOrName]]$constrDescrOrName:: Constraint descriptor or name.
+[[context]]$context:: Freeform description of a context.
+[[coordinates]]$coordinates:: Coordinate value.
+[[count]]$count:: Amount
+[[countAllocs]]$countAllocs:: Desired number of servers to use.
+[[countSeeders]]$countSeeders:: Number of seeding servers.
+[[crs]]$crs:: Coordinate reference system, for example, WGS84.
+[[db]]$db:: Database name, for example, `myDb`.
+[[dim]]$dim:: Number representing index dimenionality.
+[[edition]]$edition:: Freeform edition description.
+[[endpointType]]$endpointType:: One of `start`, `end`.
+[[entityId]]$entityId:: ID of a node or a relationship.
+[[entityType]]$entityType:: A node or a relationship.
+[[expr]]$expr:: Cypher expression, for example, `1 + n.prop`.
+[[exprType]]$exprType:: Freeform expression type.
+[[feat]]$feat:: Freeform feature description.
+[[field]]$field:: Input field, for example, for a procedure or deserialization.
+[[format]]$format:: Duration format.
+[[fun]]$fun:: Function name.
+[[funClass]]$funClass:: User defined function implementation class name.
+[[graph]]$graph:: The name of a graph, for example, `myGraph`.
+[[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint.
+[[hint]]$hint:: Freeform description of a "hint".
+[[hintList]]$hintList:: Comma-separated list of free form descriptions of hints.
+[[ident]]$ident:: Generic identifier.
+[[idx]]$idx:: Index name.
+[[idxDescr]]$idxDescr:: Index descriptor.
+[[idxDescrOrName]]$idxDescrOrName:: Index descriptor or name.
+[[idxOrConstr]]$idxOrConstr:: Index or constraint name
+[[idxOrConstrPat]]$idxOrConstrPat:: Index or constraint pattern
+[[idxType]]$idxType:: Index type, for example, text, vector, etc.
+[[input]]$input:: Piece of input.
+[[inputList]]$inputList:: Comma-separated list of inputs.
+[[item]]$item:: Freeform description of an item.
+[[keyword]]$keyword:: Cypher keyword, for example, `MERGE`.
+[[label]]$label:: Label name, for example, `Person`.
+[[labelExpr]]$labelExpr:: Label expression, for example, `Person&Human`.
+[[labelList]]$labelList:: Comma-separated list of label names, for example, `Person, Actor`.
+[[lower]]$lower:: Lower bound.
+[[mapKey]]$mapKey:: Map key.
+[[mapKeyList]]$mapKeyList:: Comma-separated list of keys.
+[[matchMode]]$matchMode:: GPM match mode.
+[[maxTokenLength]]$maxTokenLength:: Maximum token length.
+[[msg]]$msg:: Freeform message, for example, "Howdy, Partner!".
+[[msgTitle]]$msgTitle:: Freeform message title.
+[[namespace]]$namespace:: Namespace
+[[namespaceList]]$namespaceList:: Comma-separated list of namespaces.
+[[operation]]$operation:: Operation, for example, a function.
+[[option]]$option:: Option name
+[[optionList]]$optionList:: Comma-separated list of option names.
+[[param]]$param:: Parameter name
+[[paramList]]$paramList:: Parameter list
+[[pat]]$pat:: Pattern, for example, `(:Person)`.
+[[port]]$port:: Port name
+[[portList]]$portList:: Comma-separated list of port names.
+[[pos]]$pos:: A position, for example, in a sequence.
+[[pred]]$pred:: A predicate, for example, `'x = 3'`.
+[[predList]]$predList:: Comma-separated list of predicates, for example, `'x = 3', 'y > 4'`.
+[[preparserInput]]$preparserInput:: Piece of preparser input.
+[[proc]]$proc:: Procedure name, for example, `lauchRocket`.
+[[procClass]]$procClass:: Procedure implementation class name.
+[[procExeMode]]$procExeMode:: Procedure execution mode
+[[procField]]$procField:: Procedure implementation class field name, for example, `someField`.
+[[procFieldType]]$procFieldType:: Procedure implmenetation class field type.
+[[procFun]]$procFun:: Procedure or function name or ID.
+[[procMethod]]$procMethod:: Procedure implmenetation class method name.
+[[procParam]]$procParam:: Procedure parameter name.
+[[procParamFmt]]$procParamFmt:: Freeform procedure parameter format.
+[[propKey]]$propKey:: Property key name, for example, name.
+[[propKeyList]]$propKeyList:: Comma-separated list of property key names.
+[[query]]$query:: Query string extract, for example, `MATCH (n) WHERE n.prop...`.
+[[reasonList]]$reasonList:: Comma-separated list of reasons of the failure.
+[[relType]]$relType:: Relationship type name, for example, `KNOWS`.
+[[replacement]]$replacement:: Replacement
+[[role]]$role:: Role name, for example, `admin`.
+[[routingPolicy]]$routingPolicy:: Routing policy name.
+[[runtime]]$runtime:: Cypher runtime name.
+[[schemaDescr]]$schemaDescr:: Schema descriptor
+[[selector]]$selector:: GPM path selector.
+[[selectorType]]$selectorType:: Selector type.
+[[server]]$server:: Server name or ID, for example, `25a7efc7-d063-44b8-bdee-f23357f89f01`.
+[[serverList]]$serverList:: Comma-separated list of server names or IDs, for example, `'server-1', 'server-2'`.
+[[serverType]]$serverType:: Server type.
+[[sig]]$sig:: Procedure or function signature.
+[[syntax]]$syntax:: Freeform syntax or keyword.
+[[temporal]]$temporal:: Temporal value.
+[[timeAmount]]$timeAmount:: Integral amount of time unit.
+[[timeUnit]]$timeUnit:: Common time unit name.
+[[token]]$token:: Token name.
+[[tokenId]]$tokenId:: Token ID.
+[[tokenType]]$tokenType:: Token type.
+[[transactionId]]$transactionId:: The transaction ID of a running query.
+[[upper]]$upper:: An upper bound.
+[[url]]$url:: A URL, for example, https://example.com.
+[[user]]$user:: A user name, for example, `neo4j`.
+[[value]]$value:: Some value.
+[[valueList]]$valueList:: Comma-separated list of values.
+[[valueType]]$valueType:: Value type.
+[[valueTypeList]]$valueTypeList:: Comma-separated list of value types.
+[[variable]]$variable:: Variable name, for example, `n`.
+[[variableList]]$variableList:: Comma-separated list of variable names, for example, `a, b, c`.

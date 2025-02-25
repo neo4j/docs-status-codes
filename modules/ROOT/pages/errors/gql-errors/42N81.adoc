@@ -2,4 +2,13 @@
 
 
 == Status description
-error: syntax error or access rule violation - missing request parameter. Expected `{ $param }`, but got `{ $paramList }`.
+error: syntax error or access rule violation - missing request parameter. Expected `{ <<param>> }`, but got `{ <<paramList>> }`.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
