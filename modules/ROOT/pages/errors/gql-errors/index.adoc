@@ -706,7 +706,7 @@ Status description:: error: syntax error or access rule violation - invalid numb
 
 === xref:errors/gql-errors/42I18.adoc[42I18]
 
-Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ $varList }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
+Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ <<variableList>> }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
 
 === xref:errors/gql-errors/42I20.adoc[42I20]
 
