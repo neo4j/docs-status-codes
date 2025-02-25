@@ -208,7 +208,7 @@ Status description:: error: data exception - invalid spatial value. A `POINT` mu
 
 === xref:errors/gql-errors/22N20.adoc[22N20]
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1 }`D coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2 }`D coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1D }` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2D }` coordinate reference system instead.
 
 === xref:errors/gql-errors/22N21.adoc[22N21]
 
