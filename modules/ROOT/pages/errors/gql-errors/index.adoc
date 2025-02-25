@@ -384,7 +384,7 @@ Status description:: error: data exception - property presence verification fail
 
 === xref:errors/gql-errors/22N78.adoc[22N78]
 
-Status description:: error: data exception - property type verification failed. `{ <<entityType>> }` (`{ <<entityId>> }`) with `{ <<tokenType>> }` `{ <<token>> }` must have the property `$propKey` with value type `{ <<valueType>> }`.
+Status description:: error: data exception - property type verification failed. `{ <<entityType>> }` (`{ <<entityId>> }`) with `{ <<tokenType>> }` `{ <<token>> }` must have the property `{ <<propKey>> }` with value type `{ <<valueType>> }`.
 
 === xref:errors/gql-errors/22N79.adoc[22N79]
 
