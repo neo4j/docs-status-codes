@@ -1541,7 +1541,7 @@ Status description:: error: procedure exception - procedure invocation failed. F
 
 === xref:errors/gql-errors/52N34.adoc[52N34]
 
-Status description:: error: procedure exception - procedure sandboxed. `{ <<sig>> }` is unavailable because it is sandboxed. Sandboxing is controlled by the dbms.security.procedures.unrestricted setting. Only un-restrict procedures you can trust with access to database internals.
+Status description:: error: procedure exception - procedure restricted. `{ <<fun>> }` is restricted and accesses database internals. Procedure restriction is controlled by the dbms.security.procedures.unrestricted setting. Only un-restrict procedures you can trust with access to database internals.
 
 === xref:errors/gql-errors/52N35.adoc[52N35]
 
