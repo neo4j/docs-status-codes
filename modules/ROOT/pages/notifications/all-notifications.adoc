@@ -1906,22 +1906,6 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 .Using a renamed or a deprecated procedure
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
-======
-[source,cypher]
-----
-CALL cdc.query
-----
-
-Returned GQLSTATUS code::
-01N01
-
-Returned status description::
-warn: feature deprecated with replacement.
-`cdc.query` is deprecated.
-It is replaced by `db.cdc.query`.
-
-======
 [.include-with-GQLSTATUS-deprecated-without-replacement]
 ======
 [source,cypher]
@@ -1957,33 +1941,6 @@ If there is a suggested replacement, update to use the replacement instead.
 .Using id() function
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (a)
-RETURN id(a)
-----
-
-Returned GQLSTATUS code::
-01N01
-
-Returned status description::
-warn: feature deprecated with replacement.
-`id` is deprecated.
-It is replaced by `elementId()`.
-
-Suggestions for improvement::
-Use the function `elementId()` instead.
-+
-[source,cypher]
-----
-MATCH (a)
-RETURN elementId(a)
-----
-======
 [.include-with-GQLSTATUS-deprecated-without-replacement]
 ======
 Query::
@@ -3604,7 +3561,7 @@ m|SECURITY
 |GQLSTATUS code
 m|01N72
 |Status description
-a|warn: insecure URL protocol. Query uses an insecure protocol. Consider using 'https' instead. 
+a|warn: insecure URL protocol. Query uses an insecure protocol. Consider using 'https' instead.
 |Classification
 m|SECURITY
 |SeverityLevel
