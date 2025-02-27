@@ -1,0 +1,11 @@
+= 42I12
+
+== Status description
+error: syntax error or access rule violation - invalid nesting of quantified path patterns. Quantified path patterns cannot be nested.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

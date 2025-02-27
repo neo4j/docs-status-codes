@@ -1,0 +1,11 @@
+= 52N24
+
+== Status description
+error: procedure exception - failed to reload procedures. Failed to reload procedures. See logs for more information.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

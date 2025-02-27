@@ -1,0 +1,11 @@
+= 42N64
+
+== Status description
+error: syntax error or access rule violation - at least one node or relationship required. A quantified or parenthesized path pattern must have at least one node or relationship pattern.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

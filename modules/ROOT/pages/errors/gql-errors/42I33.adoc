@@ -1,0 +1,11 @@
+= 42I33
+
+== Status description
+error: syntax error or access rule violation - invalid use of NOT NULL. Closed Dynamic Union types cannot be appended with 'NOT NULL', specify 'NOT NULL' on inner types instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

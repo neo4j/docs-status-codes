@@ -198,6 +198,10 @@ Status description:: error: data exception - invalid temporal value combination.
 
 Status description:: error: data exception - invalid temporal component. Cannot read the specified `{ <<component>> }` component from `{ <<temporal>> }`.
 
+=== xref:errors/gql-errors/22N16.adoc[22N16]
+
+Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ <<expr>> }` to `{ <<graph>> }`.
+
 === xref:errors/gql-errors/22N18.adoc[22N18]
 
 Status description:: error: data exception - incomplete spatial value. A `{ <<crs>> }` POINT must contain `{ <<mapKeyList>> }`.
@@ -329,6 +333,18 @@ Status description:: error: data exception - protocol message length limit overf
 === xref:errors/gql-errors/22N58.adoc[22N58]
 
 Status description:: error: data exception - invalid spatial component. Cannot read the specified `{ <<component>> }` component from `{ <<value>> }`.
+
+=== xref:errors/gql-errors/22N59.adoc[22N59]
+
+Status description:: error: data exception - token does not exist. The `{ <<tokenType>> }` token with id `{ <<tokenId>> }` does not exist.
+
+=== xref:errors/gql-errors/22N62.adoc[22N62]
+
+Status description:: error: data exception - relationship type does not exist. The relationship type `{ <<relType>> }` does not exist.
+
+=== xref:errors/gql-errors/22N63.adoc[22N63]
+
+Status description:: error: data exception - property key does not exist. The property key `{ <<propKey>> }` does not exist.
 
 === xref:errors/gql-errors/22N64.adoc[22N64]
 
@@ -687,6 +703,10 @@ Status description:: error: syntax error or access rule violation - invalid `FOR
 
 Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
 
+=== xref:errors/gql-errors/42I04.adoc[42I04]
+
+Status description:: error: syntax error or access rule violation - invalid expression. `{ <<expr>> }` cannot be used in a `{ <<clause>> }` clause.
+
 === xref:errors/gql-errors/42I05.adoc[42I05]
 
 Status description:: error: syntax error or access rule violation - invalid FIELDTERMINATOR. The FIELDTERMINATOR specified for LOAD CSV can only be one character wide.
@@ -699,14 +719,29 @@ Status description:: error: syntax error or access rule violation - invalid inpu
 
 Status description:: error: syntax error or access rule violation - invalid lower bound. The lower bound of the variable length relationship used in the `{ <<fun>> }` function must be 0 or 1.
 
+=== xref:errors/gql-errors/42I11.adoc[42I11]
+
+Status description:: error: syntax error or access rule violation - invalid name. A `{ <<tokenType>> }` name cannot be empty or contain any null-bytes: `{ <<input>> }`.
+
+=== xref:errors/gql-errors/42I12.adoc[42I12]
+
+Status description:: error: syntax error or access rule violation - invalid nesting of quantified path patterns. Quantified path patterns cannot be nested.
 
 === xref:errors/gql-errors/42I13.adoc[42I13]
 
 Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
 
+=== xref:errors/gql-errors/42I17.adoc[42I17]
+
+Status description:: error: syntax error or access rule violation - invalid quantifier. A quantifier must not have a lower bound greater than the upper bound.
+
 === xref:errors/gql-errors/42I18.adoc[42I18]
 
 Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ <<variableList>> }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
+
+=== xref:errors/gql-errors/42I19.adoc[42I19]
+
+Status description:: error: syntax error or access rule violation - invalid string literal. Failed to parse string literal. The query must contain an even number of non-escaped quotes.
 
 === xref:errors/gql-errors/42I20.adoc[42I20]
 
@@ -732,6 +767,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a `WITH` clause between them.
 
+=== xref:errors/gql-errors/42I33.adoc[42I33]
+
+Status description:: error: syntax error or access rule violation - invalid use of NOT NULL. Closed Dynamic Union types cannot be appended with 'NOT NULL', specify 'NOT NULL' on inner types instead.
+
 === xref:errors/gql-errors/42I34.adoc[42I34]
 
 Status description:: error: syntax error or access rule violation - invalid use of pattern expression. A pattern expression can only be used to test the existence of a pattern. Use a pattern comprehension instead.
@@ -748,6 +787,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. 'RETURN ...' can only be used at the end of a query or subquery.
 
+=== xref:errors/gql-errors/42I39.adoc[42I39]
+
+Status description:: error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors or explicit match modes is not allowed.
+
 === xref:errors/gql-errors/42I40.adoc[42I40]
 
 Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `UNION ALL`. `UNION` and `UNION ALL` cannot be combined.
@@ -756,9 +799,17 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of variable length relationship. Variable length relationships cannot be used in `{ <<value>> }`.
 
+=== xref:errors/gql-errors/42I42.adoc[42I42]
+
+Status description:: error: syntax error or access rule violation - invalid use of YIELD. Cannot use YIELD on a call to a void procedure.
+
 === xref:errors/gql-errors/42I45.adoc[42I45]
 
 Status description:: error: syntax error or access rule violation - invalid use of multiple path patterns. Multiple path patterns cannot be used in the same clause in combination with a selective path selector. `{ <<action>> }`
+
+=== xref:errors/gql-errors/42I46.adoc[42I46]
+
+Status description:: error: syntax error or access rule violation - invalid use of a node pattern pair. Node pattern pairs are only supported for quantified path patterns.
 
 === xref:errors/gql-errors/42I47.adoc[42I47]
 
@@ -768,6 +819,10 @@ Status description:: error: syntax error or access rule violation - parser error
 
 Status description:: error: syntax error or access rule violation - invalid use of a subquery in MERGE. Subqueries are not allowed in a MERGE clause.
 
+=== xref:errors/gql-errors/42I49.adoc[42I49]
+
+Status description:: error: syntax error or access rule violation - invalid inequality operator. Unknown inequality operator '!='. The operator for inequality in Cypher is '<>'.
+
 === xref:errors/gql-errors/42I50.adoc[42I50]
 
 Status description:: error: syntax error or access rule violation - token name too long. Invalid input `{ <<input>> }..`. A `{ <<tokenType>> }` name cannot be longer than `{ <<value>> }`.
@@ -775,6 +830,10 @@ Status description:: error: syntax error or access rule violation - token name t
 === xref:errors/gql-errors/42I51.adoc[42I51]
 
 Status description:: info: invalid call signature. The procedure or function `{ <<procFun>> }` must have the signature: `{ <<sig>> }`.
+
+=== xref:errors/gql-errors/42I52.adoc[42I52]
+
+Status description:: error: syntax error or access rule violation - no longer valid syntax. `{ <<msg>> }`
 
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
@@ -874,6 +933,14 @@ Status description:: error: syntax error or access rule violation - single retur
 
 Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ <<input>>1 }` and `{ $input2 }`.
 
+=== xref:errors/gql-errors/42N26.adoc[42N26]
+
+Status description:: error: syntax error or access rule violation - multiple join hints on same variable. Multiple join hints for the same variable `{ <<variable>> }` are not supported.
+
+=== xref:errors/gql-errors/42N28.adoc[42N28]
+
+Status description:: error: syntax error or access rule violation - patterns or variables not statically inferrable. Only statically inferrable patterns and variables are allowed in `{ <<input>> }`.
+
 === xref:errors/gql-errors/42N29.adoc[42N29]
 
 Status description:: error: syntax error or access rule violation - unbound variables in pattern expression. Pattern expressions are not allowed to introduce new variables: `{ <<variable>> }`.
@@ -885,6 +952,26 @@ Status description:: error: syntax error or access rule violation - specified nu
 === xref:errors/gql-errors/42N32.adoc[42N32]
 
 Status description:: error: syntax error or access rule violation - invalid use of parameter map. Parameter maps cannot be used in `{ <<keyword>> }` patterns. Use a literal map instead.
+
+=== xref:errors/gql-errors/42N34.adoc[42N34]
+
+Status description:: error: syntax error or access rule violation - path bound in quantified path pattern. Path cannot be bound in a quantified path pattern.
+
+=== xref:errors/gql-errors/42N35.adoc[42N35]
+
+Status description:: error: syntax error or access rule violation - unsupported path selector in path pattern. The path selector `{ <<selector>> }` is not supported within quantified or parenthesized path patterns.
+
+=== xref:errors/gql-errors/42N36.adoc[42N36]
+
+Status description:: error: syntax error or access rule violation - procedure call without parentheses. Procedure call is missing parentheses.
+
+=== xref:errors/gql-errors/42N37.adoc[42N37]
+
+Status description:: error: syntax error or access rule violation - invalid use of relationship pattern predicates in variable length relationships. Relationship pattern predicates cannot be use in variable length relationships.
+
+=== xref:errors/gql-errors/42N38.adoc[42N38]
+
+Status description:: error: syntax error or access rule violation - duplicate return item name. Return items must have unique names.
 
 === xref:errors/gql-errors/42N39.adoc[42N39]
 
@@ -936,6 +1023,14 @@ Status description:: error: syntax error or access rule violation - variable alr
 
 Status description:: error: syntax error or access rule violation - variable not defined. Variable `{ <<variable>> }` not defined.
 
+=== xref:errors/gql-errors/42N63.adoc[42N63]
+
+Status description:: error: syntax error or access rule violation - inner type with different nullability. All inner types in a Closed Dynamic Union must be nullable, or be appended with 'NOT NULL'.
+
+=== xref:errors/gql-errors/42N64.adoc[42N64]
+
+Status description:: error: syntax error or access rule violation - at least one node or relationship required. A quantified or parenthesized path pattern must have at least one node or relationship pattern.
+
 === xref:errors/gql-errors/42N65.adoc[42N65]
 
 Status description:: error: syntax error or access rule violation - node variable not bound. The `{ <<fun>> }` function requires bound node variables when it is not part of a 'MATCH ...'.
@@ -943,6 +1038,10 @@ Status description:: error: syntax error or access rule violation - node variabl
 === xref:errors/gql-errors/42N66.adoc[42N66]
 
 Status description:: error: syntax error or access rule violation - relationship variable already bound. Bound relationships are not allowed in calls to the `{ <<fun>> }` function.
+
+=== xref:errors/gql-errors/42N69.adoc[42N69]
+
+Status description:: error: syntax error or access rule violation - function not allowed inside expression. The `{ <<fun>> }` function is only allowed as a top-level element and not inside an `{ <<expr>> }`.
 
 === xref:errors/gql-errors/42N70.adoc[42N70]
 
@@ -1110,6 +1209,10 @@ Status description:: error: general processing exception - remote execution tran
 
 Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
 
+=== xref:errors/gql-errors/50N21.adoc[50N21]
+
+Status description:: error: general processing exception - no such schema descriptor. The `{ <<schemaDescrType>> }` was not found for `{ <<schemaDescr>> }`. Verify that the spelling is correct.
+
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
@@ -1241,6 +1344,10 @@ Status description:: error: system configuration or operation exception - databa
 === xref:errors/gql-errors/51N27.adoc[51N27]
 
 Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<component>> }` is not supported in `{ <<edition>> }`.
+
+=== xref:errors/gql-errors/51N28.adoc[51N28]
+
+Status description:: error: system configuration or operation exception - not supported by this database. This Cypher command must be executed against the database `{ <<db>> }`.
 
 
 === xref:errors/gql-errors/51N29.adoc[51N29]
@@ -1514,6 +1621,10 @@ Status description:: error: procedure exception - invalid procedure argument. In
 === xref:errors/gql-errors/52N23.adoc[52N23]
 
 Status description:: error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ <<namespaceList>> }`
+
+=== xref:errors/gql-errors/52N24.adoc[52N24]
+
+Status description:: error: procedure exception - failed to reload procedures. Failed to reload procedures. See logs for more information.
 
 === xref:errors/gql-errors/52N25.adoc[52N25]
 

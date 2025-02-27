@@ -1,0 +1,11 @@
+= 51N28
+
+== Status description
+error: system configuration or operation exception - not supported by this database. This Cypher command must be executed against the database `{ <<db>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

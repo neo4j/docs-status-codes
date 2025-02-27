@@ -1,0 +1,11 @@
+= 42I17
+
+== Status description
+error: syntax error or access rule violation - invalid quantifier. A quantifier must not have a lower bound greater than the upper bound.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
