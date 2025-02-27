@@ -1,0 +1,11 @@
+= 25G02
+
+== Status description
+error: invalid transaction state - catalog and data statement mixing not supported.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

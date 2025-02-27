@@ -530,6 +530,13 @@ Status description:: error: data exception - token presence verification failed.
 
 Status description:: error: data exception - endpoint label presence verification failed. Relationship (`{ <<entityId>>1 }`) with type `{ <<relType>> }` requires its `{ <<endpointType>> }` node (`{ $entityId2 }`) to have the label `{ <<label>> }`.
 
+[[dependent-object-error]]
+== Dependent object error
+
+=== xref:errors/gql-errors/G1001.adoc[G1001]
+
+Status description:: error: dependent object error - edges still exist
+
 [[invalid-transaction-state]]
 == Invalid transaction state
 
@@ -579,6 +586,10 @@ Status description:: error: invalid transaction state - index was dropped. Index
 === xref:errors/gql-errors/25N13.adoc[25N13]
 
 Status description:: error: invalid transaction state - cannot access entity after removal. A `{ <<entityType>> }` was accessed after being deleted in this transaction. Verify the transaction statements.
+
+=== xref:errors/gql-errors/25G02.adoc[25G02]
+
+Status description:: error: invalid transaction state - catalog and data statement mixing not supported.
 
 [[invalid-transaction-termination]]
 == Invalid transaction termination
