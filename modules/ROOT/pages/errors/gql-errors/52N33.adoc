@@ -1,4 +1,11 @@
 = 52N33
 
 == Status description
-error: procedure exception - procedure invocation failed. Failed to invoke procedure/function `{ $sig }` caused by: `{ $msg }`.
+error: procedure exception - procedure invocation failed. Failed to invoke procedure/function `{ <<sig>> }` caused by: `{ <<msg>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

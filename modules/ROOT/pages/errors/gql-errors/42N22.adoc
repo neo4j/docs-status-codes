@@ -2,3 +2,10 @@
 
 == Status description
 error: syntax error or access rule violation - single return column required. A `COLLECT` subquery must end with a single return column.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

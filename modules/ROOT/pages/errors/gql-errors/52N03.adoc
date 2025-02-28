@@ -1,4 +1,11 @@
 = 52N03
 
 == Status description
-error: procedure exception - invalid procedure execution mode. Execution of the procedure `{ $proc }` failed due to an invalid specified execution mode `{ $procExeMode }`.
+error: procedure exception - invalid procedure execution mode. Execution of the procedure `{ <<proc>> }` failed due to an invalid specified execution mode `{ <<procExeMode>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

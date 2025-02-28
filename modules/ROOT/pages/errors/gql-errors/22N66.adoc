@@ -1,4 +1,13 @@
 = 22N66
 
 == Status description
-error: data exception - conflicting constraint already exists. A conflicting constraint already exists: `{ $constrDescrOrName }`.
+error: data exception - conflicting constraint already exists. A conflicting constraint already exists: `{ <<constrDescrOrName>> }`.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 51N30
 
 == Status description
-error: system configuration or operation exception - not supported with this configuration. `{ $item }` is not supported in `{ $context }`.
+error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

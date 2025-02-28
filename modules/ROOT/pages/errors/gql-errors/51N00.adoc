@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - procedure registration error. Failed to register procedure/function.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - invalid parallel runtime configuration. No workers are configured for the parallel runtime. Set 'server.cypher.parallel.worker_limit' to a larger value.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 52N09
 
 == Status description
-error: procedure exception - procedure execution database error. Execution of the procedure `{ $proc }` failed due to a database error.
+error: procedure exception - procedure execution database error. Execution of the procedure `{ <<proc>> }` failed due to a database error.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

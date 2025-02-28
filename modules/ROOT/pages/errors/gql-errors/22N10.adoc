@@ -1,4 +1,13 @@
 = 22N10
 
 == Status description
-error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `{ $input }` is not valid for option `{ $option }`. Valid options are: `{ $optionList }`.
+error: data exception - invalid pre-parser option value. Invalid pre-parser option, specified `{ <<input>> }` is not valid for option `{ <<option>> }`. Valid options are: `{ <<optionList>> }`.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

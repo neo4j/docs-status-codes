@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - raft log corrupted. Expected set of files not found on disk. Please restore from backup.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

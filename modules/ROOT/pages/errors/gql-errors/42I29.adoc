@@ -1,4 +1,11 @@
 = 42I29
 
 == Status description
-error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ $input }`. Rewrite the expression as `{ $replacement }`.
+error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ <<input>> }`. Rewrite the expression as `{ <<replacement>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

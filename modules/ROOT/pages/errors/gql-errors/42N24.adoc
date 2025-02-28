@@ -1,4 +1,11 @@
 = 42N24
 
 == Status description
-error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ $input1 }` and `{ $input2 }`.
+error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ <<input>>1 }` and `{ $input2 }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

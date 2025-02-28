@@ -2,3 +2,10 @@
 
 == Status description
 error: connection exception - transaction resolution unknown
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

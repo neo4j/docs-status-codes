@@ -1,4 +1,12 @@
 = 08N10
 
 == Status description
-error: connection exception - invalid server state. Message `{ $msg }` cannot be handled by session in the `{ $boltServerState }` state.
+error: connection exception - invalid server state. Message `{ <<msg>> }` cannot be handled by session in the `{ <<boltServerState>> }` state.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

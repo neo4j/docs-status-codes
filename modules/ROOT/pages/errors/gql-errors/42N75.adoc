@@ -1,4 +1,11 @@
 = 42N75
 
 == Status description
-error: syntax error or access rule violation - invalid use of graph function. A call to the graph function `{ $fun }` is only allowed as the top-level argument of a `USE` clause.
+error: syntax error or access rule violation - invalid use of graph function. A call to the graph function `{ <<fun>> }` is only allowed as the top-level argument of a `USE` clause.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

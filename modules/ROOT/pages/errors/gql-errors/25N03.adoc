@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction state - concurrent access violation. Transaction is being used concurrently by another request.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

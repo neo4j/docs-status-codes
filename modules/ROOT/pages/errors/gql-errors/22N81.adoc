@@ -1,4 +1,11 @@
 = 22N81
 
 == Status description
-error: data exception - expression type unsupported here. Invalid input: `{ $exprType }` is not supported in `{ $context }`.
+error: data exception - expression type unsupported here. Invalid input: `{ <<exprType>> }` is not supported in `{ <<context>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

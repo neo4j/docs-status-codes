@@ -1,4 +1,11 @@
 = 22N99
 
 == Status description
-error: data exception - wrong token during deserialization. Unable to deserialize request. Expected `{ $token }`, found `{ $value }`.
+error: data exception - wrong token during deserialization. Unable to deserialize request. Expected `{ <<token>> }`, found `{ <<value>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

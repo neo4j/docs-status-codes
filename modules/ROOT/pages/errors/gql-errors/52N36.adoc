@@ -2,4 +2,10 @@
 
 
 == Status description
-error: procedure exception - invalid procedure argument with API documentation hint. Invalid argument `{ $field }` for `{ $procParam }` on procedure `{ $proc }`. The expected format of `{ $procParam }` is outlined in the `{ $procParamFmt }` API documentation.
+error: procedure exception - invalid procedure argument with API documentation hint. Invalid argument `{ <<field>> }` for `{ <<procParam>> }` on procedure `{ <<proc>> }`. The expected format of `{ <<procParam>> }` is outlined in the `{ <<procParamFmt>> }` API documentation.
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

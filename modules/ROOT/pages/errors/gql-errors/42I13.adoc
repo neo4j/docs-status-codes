@@ -1,4 +1,11 @@
 = 42I13
 
 == Status description
-error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ $count1 }` but got `{ $count2 }`. The procedure or function `{ $procFun }` has the signature: `{ $sig }`.
+error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

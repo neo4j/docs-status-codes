@@ -1,4 +1,11 @@
 = 22N88
 
 == Status description
-error: data exception - not a valid CIDR IP. `{ $input }` is not a valid CIDR IP.
+error: data exception - not a valid CIDR IP. `{ <<input>> }` is not a valid CIDR IP.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

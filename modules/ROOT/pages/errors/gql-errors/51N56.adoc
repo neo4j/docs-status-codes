@@ -1,4 +1,11 @@
 = 51N56
 
 == Status description
-error: system configuration or operation exception - topology out of range. The number of `{ $serverType }` seeding servers `{ $count1 }` is larger than the desired number of `{ $allocType }` allocations `{ $count2 }`.
+error: system configuration or operation exception - topology out of range. The number of `{ <<serverType>> }` seeding servers `{ <<count>>1 }` is larger than the desired number of `{ <<allocType>> }` allocations `{ $count2 }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

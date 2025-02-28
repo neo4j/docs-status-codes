@@ -1,4 +1,11 @@
 = 52N31
 
 == Status description
-error: procedure exception - wrong database. Change identifier `{ $param }` does not belong to this database.
+error: procedure exception - wrong database. Change identifier `{ <<param>> }` does not belong to this database.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

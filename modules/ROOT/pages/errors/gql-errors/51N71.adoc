@@ -1,4 +1,11 @@
 = 51N71
 
 == Status description
-error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ $feat }` is not available in a sharded database.
+error: system configuration or operation exception - unsupported operation of a sharded database. Feature: `{ <<feat>> }` is not available in a sharded database.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 51N45
 
 == Status description
-error: system configuration or operation exception - cannot cordon server. Cannot cordon server `{ $server }`.
+error: system configuration or operation exception - cannot cordon server. Cannot cordon server `{ <<server>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

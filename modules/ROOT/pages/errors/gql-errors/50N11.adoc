@@ -1,4 +1,11 @@
 = 50N11
 
 == Status description
-error: general processing exception - constraint creation failed. Unable to create `{ $constrDescrOrName }`.
+error: general processing exception - constraint creation failed. Unable to create `{ <<constrDescrOrName>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

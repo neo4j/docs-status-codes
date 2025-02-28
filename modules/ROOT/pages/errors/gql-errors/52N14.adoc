@@ -2,3 +2,10 @@
 
 == Status description
 error: procedure exception - system cannot be default database. System database cannot be set as default.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

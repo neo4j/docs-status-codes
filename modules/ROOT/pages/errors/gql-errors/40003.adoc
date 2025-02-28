@@ -2,3 +2,10 @@
 
 == Status description
 error: transaction rollback - statement completion unknown
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

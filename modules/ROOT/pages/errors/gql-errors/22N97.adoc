@@ -1,4 +1,11 @@
 = 22N97
 
 == Status description
-error: data exception - unexpected struct tag. Unexpected struct tag: `{ $value }`.
+error: data exception - unexpected struct tag. Unexpected struct tag: `{ <<value>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - procedure registry is busy. The procedure registration failed because the procedure registry was busy. Try again.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 52N12
 
 == Status description
-error: procedure exception - cannot change default database. The previous default database `{ $db }` is still running.
+error: procedure exception - cannot change default database. The previous default database `{ <<db>> }` is still running.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

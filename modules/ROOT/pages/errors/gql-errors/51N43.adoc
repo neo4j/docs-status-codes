@@ -1,4 +1,11 @@
 = 51N43
 
 == Status description
-error: system configuration or operation exception - cannot deallocate servers. Cannot deallocate server(s) `{ $serverList }`.
+error: system configuration or operation exception - cannot deallocate servers. Cannot deallocate server(s) `{ <<serverList>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,4 +2,12 @@
 
 
 == Status description
-error: data exception - endpoint label presence verification failed. Relationship (`{ $entityId1 }`) with type `{ $relType }` requires its `{ $endpointType }` node (`{ $entityId2 }`) to have the label `{ $label }`.
+error: data exception - endpoint label presence verification failed. Relationship (`{ <<entityId>>1 }`) with type `{ <<relType>> }` requires its `{ <<endpointType>> }` node (`{ $entityId2 }`) to have the label `{ <<label>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

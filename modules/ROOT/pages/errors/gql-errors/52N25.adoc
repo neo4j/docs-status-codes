@@ -1,4 +1,11 @@
 = 52N25
 
 == Status description
-error: procedure exception - JMX error. JMX error while accessing `{ $param }`. See logs for more information.
+error: procedure exception - JMX error. JMX error while accessing `{ <<param>> }`. See logs for more information.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

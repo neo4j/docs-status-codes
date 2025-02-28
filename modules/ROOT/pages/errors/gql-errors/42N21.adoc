@@ -1,4 +1,11 @@
 = 42N21
 
 == Status description
-error: syntax error or access rule violation - unaliased return item. Expression in `{ $clause }` must be aliased (use AS).
+error: syntax error or access rule violation - unaliased return item. Expression in `{ <<clause>> }` must be aliased (use AS).
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

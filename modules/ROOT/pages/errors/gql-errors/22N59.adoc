@@ -1,0 +1,11 @@
+= 22N59
+
+== Status description
+error: data exception - token does not exist. The `{ <<tokenType>> }` token with id `{ <<tokenId>> }` does not exist.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

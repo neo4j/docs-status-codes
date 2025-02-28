@@ -2,7 +2,7 @@
 
 == Status description
 
-error: system configuration or operation exception - not supported in this edition. `{ $item }` is not supported in `{ $edition }`.
+error: system configuration or operation exception - not supported in this edition. `{ <<component>> }` is not supported in `{ <<edition>> }`.
 
 == Explanation
 
@@ -25,3 +25,9 @@ Error message will be:
 ----
 error: system configuration or operation exception - not supported in this edition. `SET STATUS` is not supported in community edition.
 ----
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
