@@ -589,7 +589,7 @@ Status description:: error: invalid transaction state - cannot access entity aft
 
 === xref:errors/gql-errors/25G02.adoc[25G02]
 
-Status description:: error: invalid transaction state - catalog and data statement mixing not supported.
+Status description:: error: invalid transaction state - catalog and data statement mixing not supported
 
 [[invalid-transaction-termination]]
 == Invalid transaction termination
