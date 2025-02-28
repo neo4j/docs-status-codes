@@ -1,4 +1,11 @@
 = 22NA8
 
 == Status description
-error: data exception - parsing JSON failure. Underlying error: `{ $cause }`.
+error: data exception - parsing JSON failure. Underlying error: `{ <<cause>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

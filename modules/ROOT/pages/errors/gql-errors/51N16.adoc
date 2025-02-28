@@ -1,4 +1,11 @@
 = 51N16
 
 == Status description
-error: system configuration or operation exception - invalid default value type. Type mismatch for the default value. Required `{ $valueType }`, but found `{ $input }`.
+error: system configuration or operation exception - invalid default value type. Type mismatch for the default value. Required `{ <<valueType>> }`, but found `{ <<input>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

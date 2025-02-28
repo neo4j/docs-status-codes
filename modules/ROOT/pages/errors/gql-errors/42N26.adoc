@@ -1,0 +1,11 @@
+= 42N26
+
+== Status description
+error: syntax error or access rule violation - multiple join hints on same variable. Multiple join hints for the same variable `{ <<variable>> }` are not supported.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

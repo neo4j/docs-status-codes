@@ -1,4 +1,11 @@
 = 42N14
 
 == Status description
-error: syntax error or access rule violation - invalid use of command. `{ $clause }` cannot be used together with `{ $cmd }`.
+error: syntax error or access rule violation - invalid use of command. `{ <<clause>> }` cannot be used together with `{ <<cmd>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

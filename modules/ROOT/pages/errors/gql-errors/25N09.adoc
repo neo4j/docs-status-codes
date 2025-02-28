@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction state - internal transaction failure. The transaction failed due to an internal error.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

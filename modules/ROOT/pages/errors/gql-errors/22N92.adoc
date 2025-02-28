@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - missing RETURN. This query requires a RETURN clause.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

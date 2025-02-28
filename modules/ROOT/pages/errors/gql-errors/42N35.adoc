@@ -1,0 +1,11 @@
+= 42N35
+
+== Status description
+error: syntax error or access rule violation - unsupported path selector in path pattern. The path selector `{ <<selector>> }` is not supported within quantified or parenthesized path patterns.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

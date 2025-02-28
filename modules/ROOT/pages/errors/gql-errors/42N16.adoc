@@ -1,4 +1,11 @@
 = 42N16
 
 == Status description
-error: syntax error or access rule violation - unsupported index or constraint. Only single property `{ $idxType }` are supported.
+error: syntax error or access rule violation - unsupported index or constraint. Only single property `{ <<idxType>> }` are supported.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

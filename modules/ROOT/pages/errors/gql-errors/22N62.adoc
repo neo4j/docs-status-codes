@@ -1,0 +1,11 @@
+= 22N62
+
+== Status description
+error: data exception - relationship type does not exist. The relationship type `{ <<relType>> }` does not exist.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

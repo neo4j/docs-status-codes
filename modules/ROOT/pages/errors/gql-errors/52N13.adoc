@@ -1,4 +1,11 @@
 = 52N13
 
 == Status description
-error: procedure exception - new default database does not exist. New default database `{ $db }` does not exist.
+error: procedure exception - new default database does not exist. New default database `{ <<db>> }` does not exist.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

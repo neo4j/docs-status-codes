@@ -1,4 +1,11 @@
 = 50N00
 
 == Status description
-error: general processing exception - internal error. Internal exception raised `{ $msgTitle }`: `{ $msg }`
+error: general processing exception - internal error. Internal exception raised `{ <<msgTitle>> }`: `{ <<msg>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

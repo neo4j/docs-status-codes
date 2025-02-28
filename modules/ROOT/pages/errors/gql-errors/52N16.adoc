@@ -2,3 +2,10 @@
 
 == Status description
 error: procedure exception - invalid procedure argument list. Invalid arguments to procedure.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

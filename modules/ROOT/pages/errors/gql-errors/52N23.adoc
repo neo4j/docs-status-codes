@@ -1,4 +1,11 @@
 = 52N23
 
 == Status description
-error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ $namespaceList }`
+error: procedure exception - non-reloadable namespace. The following namespaces are not reloadable: `{ <<namespaceList>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

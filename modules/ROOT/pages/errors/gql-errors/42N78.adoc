@@ -1,5 +1,12 @@
 = 42N78
 
 == Status description
-error: syntax error or access rule violation - variable already bound. Node `{ $variable }` has already been bound and cannot be modified by the `{ $clause }` clause.
+error: syntax error or access rule violation - variable already bound. Node `{ <<variable>> }` has already been bound and cannot be modified by the `{ <<clause>> }` clause.
 
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

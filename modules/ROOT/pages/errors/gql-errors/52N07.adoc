@@ -1,4 +1,11 @@
 = 52N07
 
 == Status description
-error: procedure exception - invalid port argument to checkConnectivity. Unrecognised port name `{ $port }` (valid values are: `{ $portList }`.
+error: procedure exception - invalid port argument to checkConnectivity. Unrecognised port name `{ <<port>> }` (valid values are: `{ <<portList>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

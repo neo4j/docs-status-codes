@@ -1,4 +1,11 @@
 = 51N11
 
 == Status description
-error: system configuration or operation exception - class not public. The class `{ $procClass }` must be public.
+error: system configuration or operation exception - class not public. The class `{ <<procClass>> }` must be public.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

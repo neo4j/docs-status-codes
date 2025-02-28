@@ -1,4 +1,11 @@
 = 42N77
 
 == Status description
-error: syntax error or access rule violation - missing hint predicate. The hint `{ $hint }` cannot be fulfilled. The query does not contain a compatible predicate for `{ $entityType }` on `{ $variable }`.
+error: syntax error or access rule violation - missing hint predicate. The hint `{ <<hint>> }` cannot be fulfilled. The query does not contain a compatible predicate for `{ <<entityType>> }` on `{ <<variable>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

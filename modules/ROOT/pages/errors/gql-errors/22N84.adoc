@@ -1,4 +1,11 @@
 = 22N84
 
 == Status description
-error: data exception - string too long. Expected the string to be no more than `{ $upper }` characters long.
+error: data exception - string too long. Expected the string to be no more than `{ <<upper>> }` characters long.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

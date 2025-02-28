@@ -2,3 +2,10 @@
 
 == Status description
 error: data exception - new password cannot be the same as the old password. Expected the new password to be different from the old password.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

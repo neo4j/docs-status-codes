@@ -1,4 +1,11 @@
 = 22NA6
 
 == Status description
-error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ $pred }` always evaluates to 'NULL'. Use 'IS NOT NULL' instead.
+error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to 'NULL'. Use 'IS NOT NULL' instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

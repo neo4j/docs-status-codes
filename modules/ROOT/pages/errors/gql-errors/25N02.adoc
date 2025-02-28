@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction state - unable to complete transaction. Unable to complete transaction. See debug log for details.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

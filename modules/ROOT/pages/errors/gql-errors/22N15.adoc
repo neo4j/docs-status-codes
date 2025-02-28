@@ -1,4 +1,11 @@
 = 22N15
 
 == Status description
-error: data exception - invalid temporal component. Cannot read the specified `{ $component }` component from `{ $temporal }`.
+error: data exception - invalid temporal component. Cannot read the specified `{ <<component>> }` component from `{ <<temporal>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

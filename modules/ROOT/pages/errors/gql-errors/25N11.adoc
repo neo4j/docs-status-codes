@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction state - conflicting transaction state. There was a conflict detected between the transaction state and applied updates. Please retry the transaction.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

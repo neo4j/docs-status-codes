@@ -5,5 +5,13 @@ error: connection exception - not the leader. This member is not the leader.
 
 
 == Possible solution
+
 No write operations are allowed directly on this database.
 Connect to the leader directly or enable server-side routing by setting `dbms.routing.enabled=true` in the configuration.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 52N18
 
 == Status description
-error: procedure exception - too many seeders. The number of seeding servers `{ $countSeeders }` is larger than the defined number of allocations `{ $countAllocs }`.
+error: procedure exception - too many seeders. The number of seeding servers `{ <<countSeeders>> }` is larger than the defined number of allocations `{ <<countAllocs>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

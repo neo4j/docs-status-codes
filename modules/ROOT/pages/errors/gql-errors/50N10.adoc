@@ -2,4 +2,10 @@
 
 
 == Status description
-error: general processing exception - index drop failed. Unable to drop `{ $idxDescrOrName }`.
+error: general processing exception - index drop failed. Unable to drop `{ <<idxDescrOrName>> }`.
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,3 +2,10 @@
 
 == Status description
 error: invalid transaction termination - failed to append transaction. There was an error on appending the transaction. See logs for more information.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

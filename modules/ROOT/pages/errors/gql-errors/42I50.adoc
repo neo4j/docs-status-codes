@@ -1,4 +1,11 @@
 = 42I50
 
 == Status description
-error: syntax error or access rule violation - token name too long. Invalid input `{ $input }..`. A `{ $tokenType }` name cannot be longer than `{ $maxTokenLength }`.
+error: syntax error or access rule violation - token name too long. Invalid input `{ <<input>> } ..`. A `{ <<tokenType>> }` name cannot be longer than `{ <<value>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,4 +1,11 @@
 = 22N82
 
 == Status description
-error: data exception - input contains invalid characters. Input `{ $input }` contains invalid characters for `{ $context }`. Special characters may require that the input is quoted using backticks.
+error: data exception - input contains invalid characters. Input `{ <<input>> }` contains invalid characters for `{ <<context>> }`. Special characters may require that the input is quoted using backticks.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

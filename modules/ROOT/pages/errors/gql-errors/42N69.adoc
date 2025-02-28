@@ -1,0 +1,11 @@
+= 42N69
+
+== Status description
+error: syntax error or access rule violation - function not allowed inside expression. The `{ <<fun>> }` function is only allowed as a top-level element and not inside an `{ <<expr>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

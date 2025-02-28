@@ -1,4 +1,11 @@
 = 51N57
 
 == Status description
-error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. { $msg }
+error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. `{ <<msg>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

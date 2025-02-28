@@ -1,0 +1,11 @@
+= G1001
+
+== Status description
+error: dependent object error - edges still exist
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

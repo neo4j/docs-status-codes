@@ -2,3 +2,10 @@
 
 == Status description
 error: system configuration or operation exception - stack overflow. There is not enough stack size to perform the current task.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

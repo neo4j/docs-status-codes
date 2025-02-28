@@ -1,4 +1,12 @@
 = 08N13
 
 == Status description
-error: connection exception - database not up to requested bookmark. The database `{ $db }` is not up to the requested bookmark `{ $transactionId1 }`. The latest transaction ID is `{ $transactionId2 }`.
+error: connection exception - database not up to requested bookmark. The database `{ <<db>> }` is not up to the requested bookmark `{ <<transactionId>>1 }`. The latest transaction ID is `{ $transactionId2 }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
