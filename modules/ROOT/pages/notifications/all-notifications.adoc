@@ -1906,57 +1906,29 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 .Using a renamed or a deprecated procedure
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-without-replacement]
+[.include-with-GQLSTATUS-deprecated-with-replacement]
 ======
 [source,cypher]
 ----
-CALL unsupported.dbms.shutdown
+CALL cdc.query()
 ----
 
 Returned GQLSTATUS code::
-01N02
+01N01
 
 Returned status description::
-warn: feature deprecated without replacement.
-`unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
-======
-[.include-with-neo4j-code]
-======
-
-[source,cypher]
-----
-CALL unsupported.dbms.shutdown
-----
-
-Description of the returned code::
-The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
+warn: feature deprecated with replacement.
+`cdc.query` is deprecated.
+It is replaced by `db.cdc.query`.
 
 Suggestions for improvement::
-Remove the use of the deprecated procedure.
-If there is a suggested replacement, update to use the replacement instead.
-
-======
-=====
-
-.Using id() function
-[.tabbed-example]
-=====
-[.include-with-GQLSTATUS-deprecated-without-replacement]
-======
-Query::
+Use the new procedure name `db.cdc.query` instead of the deprecated `cdc.query`.
 +
 [source,cypher]
 ----
-MATCH (a)
-RETURN id(a)
+CALL db.cdc.query()
 ----
 
-Returned GQLSTATUS code::
-01N02
-
-Returned status description::
-warn: feature deprecated without replacement.
-`id` is deprecated and will be removed without a replacement.
 ======
 [.include-with-neo4j-code]
 ======
@@ -1965,21 +1937,20 @@ Query::
 +
 [source,cypher]
 ----
-MATCH (a)
-RETURN id(a)
+CALL cdc.query()
 ----
 
 Description of the returned code::
-The query used a deprecated function: `id`.
+The query used a deprecated procedure. ('cdc.query' has been replaced by 'db.cdc.query')
 
 Suggestions for improvement::
-Use the function `elementId()` instead.
+Use the new procedure name `db.cdc.query` instead of the deprecated `cdc.query`.
 +
 [source,cypher]
 ----
-MATCH (a)
-RETURN elementId(a)
+CALL db.cdc.query()
 ----
+
 ======
 =====
 
@@ -2586,6 +2557,86 @@ m|DEPRECATION
 |SeverityLevel
 m|WARNING
 |===
+
+.Using a renamed or a deprecated procedure
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-deprecated-without-replacement]
+======
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown()
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned status description::
+warn: feature deprecated without replacement.
+`unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
+======
+[.include-with-neo4j-code]
+======
+
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown()
+----
+
+Description of the returned code::
+The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
+
+Suggestions for improvement::
+Remove the use of the deprecated procedure.
+If there is a suggested replacement, update to use the replacement instead.
+
+======
+=====
+
+.Using id() function
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-deprecated-without-replacement]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned status description::
+warn: feature deprecated without replacement.
+`id` is deprecated and will be removed without a replacement.
+======
+[.include-with-neo4j-code]
+======
+
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN id(a)
+----
+
+Description of the returned code::
+The query used a deprecated function: `id`.
+
+Suggestions for improvement::
+Use the function `elementId()` instead.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN elementId(a)
+----
+======
+=====
 
 .Using Cypher query option `connectComponentsPlanner`
 [.tabbed-example]
