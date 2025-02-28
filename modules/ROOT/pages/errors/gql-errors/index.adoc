@@ -542,6 +542,10 @@ Status description:: error: dependent object error - edges still exist
 
 Invalid transaction state errors occur when the transaction is in an invalid state, such as when the transaction is terminated or closed, or when there is a conflict between the transaction state and applied updates.
 
+=== xref:errors/gql-errors/25G02.adoc[25G02]
+
+Status description:: error: invalid transaction state - catalog and data statement mixing not supported
+
 === xref:errors/gql-errors/25N01.adoc[25N01]
 
 Status description:: error: invalid transaction state - invalid combination of statement types. Failed to execute the query `{ <<query>> }` due to conflicting statement types (read query, write query, schema modification, or administration command). To execute queries in the same transaction, they must be either of the same type, or be a combination of schema modifications and read commands.
@@ -586,10 +590,6 @@ Status description:: error: invalid transaction state - index was dropped. Index
 === xref:errors/gql-errors/25N13.adoc[25N13]
 
 Status description:: error: invalid transaction state - cannot access entity after removal. A `{ <<entityType>> }` was accessed after being deleted in this transaction. Verify the transaction statements.
-
-=== xref:errors/gql-errors/25G02.adoc[25G02]
-
-Status description:: error: invalid transaction state - catalog and data statement mixing not supported
 
 [[invalid-transaction-termination]]
 == Invalid transaction termination
