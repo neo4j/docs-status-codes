@@ -1,0 +1,11 @@
+= 42N28
+
+== Status description
+error: syntax error or access rule violation - patterns or variables not statically inferrable. Only statically inferrable patterns and variables are allowed in `{ <<input>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

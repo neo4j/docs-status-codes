@@ -90,7 +90,8 @@
 [[role]]$role:: Role name, for example, `admin`.
 [[routingPolicy]]$routingPolicy:: Routing policy name.
 [[runtime]]$runtime:: Cypher runtime name.
-[[schemaDescr]]$schemaDescr:: Schema descriptor
+[[schemaDescr]]$schemaDescr:: Schema descriptor.
+[[schemaDescrType]]$schemaDescrType:: Type of schema descriptor.
 [[selector]]$selector:: GPM path selector.
 [[selectorType]]$selectorType:: Selector type.
 [[server]]$server:: Server name or ID, for example, `25a7efc7-d063-44b8-bdee-f23357f89f01`.

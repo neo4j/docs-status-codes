@@ -1,0 +1,11 @@
+= 22N16
+
+== Status description
+error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ <<expr>> }` to `{ <<graph>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

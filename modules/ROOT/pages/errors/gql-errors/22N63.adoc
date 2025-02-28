@@ -1,0 +1,11 @@
+= 22N63
+
+== Status description
+error: data exception - property key does not exist. The property key `{ <<propKey>> }` does not exist.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

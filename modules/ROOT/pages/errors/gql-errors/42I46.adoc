@@ -1,0 +1,11 @@
+= 42I46
+
+== Status description
+error: syntax error or access rule violation - invalid use of a node pattern pair. Node pattern pairs are only supported for quantified path patterns.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

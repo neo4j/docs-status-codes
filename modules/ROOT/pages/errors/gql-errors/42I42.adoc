@@ -1,0 +1,11 @@
+= 42I42
+
+== Status description
+error: syntax error or access rule violation - invalid use of YIELD. Cannot use YIELD on a call to a void procedure.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

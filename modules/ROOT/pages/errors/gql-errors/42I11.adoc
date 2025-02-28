@@ -1,0 +1,11 @@
+= 42I11
+
+== Status description
+error: syntax error or access rule violation - invalid name. A `{ <<tokenType>> }` name cannot be empty or contain any null-bytes: `{ <<input>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
