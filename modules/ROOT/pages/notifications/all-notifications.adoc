@@ -1242,7 +1242,7 @@ m|UNSUPPORTED
 m|01N40
 |Status description
 a|warn: unsupported runtime.
-The query cannot be executed with `{ $preparser_input1 }`, `{ $preparser_input2 }` is used.
+The query cannot be executed with `{ $preparserInput1 }`, `{ $preparserInput2 }` is used.
 Cause: `{ $msg }`.
 |Classification
 m|UNSUPPORTED
@@ -3604,7 +3604,7 @@ m|SECURITY
 |GQLSTATUS code
 m|01N72
 |Status description
-a|warn: insecure URL protocol. Query uses an insecure protocol. Consider using 'https' instead. 
+a|warn: insecure URL protocol. Query uses an insecure protocol. Consider using 'https' instead.
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -4299,7 +4299,7 @@ m|00NA0
 |Status description
 a|note: successful completion - index or constraint already exists.
 `{ $cmd }` has no effect.
-`{ $index_constr_pat }` already exists.
+`{ $idxOrConstrPat }` already exists.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -4530,7 +4530,7 @@ m|00NA1
 |Status description
 a|note: successful completion - index or constraint does not exist.
 `{ $cmd }` has no effect.
-`{ $index_constr_name }` does not exist.
+`{ $idxOrConstr }` does not exist.
 |SeverityLevel
 m|INFORMATION
 |===
