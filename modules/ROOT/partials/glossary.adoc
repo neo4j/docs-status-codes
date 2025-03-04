@@ -108,7 +108,7 @@
 [[selectorType]]$selectorType:: Selector type.
 [[server]]$server:: Server name or ID, for example, `25a7efc7-d063-44b8-bdee-f23357f89f01`.
 [[serverList]]$serverList:: Comma-separated list of server names or IDs, for example, `'server-1', 'server-2'`.
-[[serverType]]$serverType:: Server type.
+[[serverType]]$serverType:: Server type, `PRIMARY` (primaryConstrained), `SECONDARY` (secondaryConstrained), or NONE.
 [[sig]]$sig:: Procedure or function signature.
 [[syntax]]$syntax:: Freeform syntax or keyword.
 [[temporal]]$temporal:: Temporal value, for example, `2025-02-18`.
