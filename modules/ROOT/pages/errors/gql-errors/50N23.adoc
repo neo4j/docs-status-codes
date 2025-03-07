@@ -1,7 +1,7 @@
 = 50N23
 
 == Status description
-error: general processing exception - transaction retry timed out. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
