@@ -1215,7 +1215,7 @@ Status description:: error: general processing exception - no such schema descri
 
 === xref:errors/gql-errors/50N23.adoc[50N23]
 
-error: general processing exception - transaction retry timed out. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
