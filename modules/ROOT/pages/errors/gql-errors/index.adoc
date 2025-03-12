@@ -651,10 +651,6 @@ Status description:: error: syntax error or access rule violation
 
 Status description:: error: syntax error or access rule violation - invalid syntax
 
-=== xref:errors/gql-errors/42002.adoc[42002]
-
-Status description:: error: syntax error or access rule violation - invalid reference
-
 === xref:errors/gql-errors/42006.adoc[42006]
 
 Status description:: error: syntax error or access rule violation - number of edge labels below supported minimum
