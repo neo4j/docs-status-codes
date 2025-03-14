@@ -46,7 +46,7 @@ m|PERFORMANCE
 m|03N90
 |Status description
 a|info: cartesian product.
-The disconnected patterns `{ $pat }` build a cartesian product.
+The disconnected patterns `{ <<pat>> }` build a cartesian product.
 A cartesian product may produce a large amount of data and slow down query processing.
 |Classification
 m|PERFORMANCE
@@ -137,7 +137,7 @@ m|PERFORMANCE
 |GQLSTATUS code
 m|03N91
 |Status description
-a|info: unbounded variable length pattern. The provided pattern `{ $pat }` is unbounded.
+a|info: unbounded variable length pattern. The provided pattern `{ <<pat>> }` is unbounded.
 Shortest path with an unbounded pattern may result in long execution times.
 Use an upper limit (e.g. `[*..5]`) on the number of node hops in your pattern.
 |Classification
@@ -229,7 +229,7 @@ m|PERFORMANCE
 m|03N92
 |Status description
 a|info: exhaustive shortest path.
-The query runs with exhaustive shortest path due to the existential predicate(s) `{ $pred_list }`.
+The query runs with exhaustive shortest path due to the existential predicate(s) `{ <<predList>> }`.
 It may be possible to use `WITH` to separate the `MATCH` from the existential predicate(s).
 |Classification
 m|PERFORMANCE
@@ -322,7 +322,7 @@ m|03N93
 |Status description
 a|info: no applicable index.
 `LOAD CSV` in combination with `MATCH` or `MERGE` on a label that does not have an index may result in long execution times.
-Consider adding an index for label `{ $label }`.
+Consider adding an index for label `{ <<label>> }`.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
@@ -499,7 +499,7 @@ m|PERFORMANCE
 m|03N95
 |Status description
 a|info: dynamic property.
-An index exists on label/type(s) `{ $label_list }`.
+An index exists on label/type(s) `{ <<labelList>> }`.
 It is not possible to use indexes for dynamic properties.
 Consider using static properties.
 |Classification
@@ -533,7 +533,7 @@ Consider using static properties.
 Suggestions for improvement::
 If there is an index for `(n:Person) ON (n.name)`, it will not be used for the above query because the query is using a dynamic property.
 Therefore, if there is an index, it is better to use the constant value.
-For example, if `prop` is equal to `name`, the following query would be able to use the index:
+For example, if `[$prop]` is equal to `name`, the following query would be able to use the index:
 +
 [source, cypher]
 ----
@@ -557,7 +557,7 @@ Using a dynamic property makes it impossible to use an index lookup for this que
 Suggestions for improvement::
 If there is an index for `(n:Person) ON (n.name)`, it will not be used for the above query because the query is using a dynamic property.
 Therefore, if there is an index, it is better to use the constant value.
-For example, if `prop` is equal to `name`, the following query would be able to use the index:
+For example, if `[$prop]` is equal to `name`, the following query would be able to use the index:
 +
 [source, cypher]
 ----
@@ -591,7 +591,7 @@ Consider using static properties.
 
 Suggestions for improvement::
 Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
-For example, if `{ $prop }` is equal to `since`, you can rewrite the query to:
+For example, if `[$prop]` is equal to `since`, you can rewrite the query to:
 +
 [source, cypher]
 ----
@@ -614,7 +614,7 @@ Using a dynamic property makes it impossible to use an index lookup for this que
 
 Suggestions for improvement::
 Similar to dynamic node properties, use a constant value if possible, especially when there is an index on the relationship property.
-For example, if `$prop` is equal to `since`, you can rewrite the query to:
+For example, if `[$prop]` is equal to `since`, you can rewrite the query to:
 +
 [source, cypher]
 ----
@@ -644,8 +644,8 @@ m|PERFORMANCE
 |GQLSTATUS code
 m|03N96
 |Status description
-a|info: failed code generation.
-Failed to generate code, falling back to interpreted $enginetype engine. A stacktrace can be found in the debug.log. Cause: $msg.
+a|info: code generation failed
+Failed to generate code, falling back to interpreted `{ <<cfgSetting>> }` engine. A stacktrace can be found in the debug.log. Cause: `{ <<cause>> }`.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
@@ -681,7 +681,7 @@ m|HINT
 |GQLSTATUS code
 m|01N30
 |Status description
-a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON $var_list`. Try to change the join key(s) or restructure your query.
+a|warn: join hint unfulfillable. Unable to create a plan with `JOIN ON { <<variableList>> }`. Try to change the join key(s) or restructure your query.
 |Classification
 m|HINT
 |SeverityLevel
@@ -765,7 +765,7 @@ m|HINT
 m|01N31
 |Status description
 a|warn: hinted index not found.
-Unable to create a plan with `{ $index_descr }` because the index does not exist.
+Unable to create a plan with `{ <<idxDescr>> }` because the index does not exist.
 |Classification
 m|HINT
 |SeverityLevel
@@ -896,7 +896,7 @@ m|UNRECOGNIZED
 m|00N50
 |Status description
 a|note: successful completion - home database not found.
-The database `{ $db }` does not exist.
+The database `{ <<db>> }` does not exist.
 Verify that the spelling is correct or create the database for the command to take effect.
 |Classification
 m|UNRECOGNIZED
@@ -966,7 +966,7 @@ m|UNRECOGNIZED
 m|01N50
 |Status description
 a|warn: unknown label.
-The label `{ $label }` does not exist in database `{ $db }`.
+The label `{ <<label>> }` does not exist in database `{ <<db>> }`.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1038,7 +1038,7 @@ m|UNRECOGNIZED
 m|01N51
 |Status description
 a|warn: unknown relationship type.
-The relationship type `{ $reltype }` does not exist in database `{ $db }`.
+The relationship type `{ <<relType>> }` does not exist in database `{ <<db>> }`.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1109,7 +1109,7 @@ m|UNRECOGNIZED
 m|01N52
 |Status description
 a|warn: unknown property key.
-The property `{ $propkey }` does not exist in database `{ $db }`.
+The property `{ <<propKey>> }` does not exist in database `{ <<db>> }`.
 Verify that the spelling is correct.
 |Classification
 m|UNRECOGNIZED
@@ -1242,8 +1242,8 @@ m|UNSUPPORTED
 m|01N40
 |Status description
 a|warn: unsupported runtime.
-The query cannot be executed with `{ $preparserInput1 }`, `{ $preparserInput2 }` is used.
-Cause: `{ $msg }`.
+The query cannot be executed with `{ <<preparserInput>>1 }`, `{ <<preparserInput>>2 }` is used.
+Cause: `{ <<msg>> }`.
 |Classification
 m|UNSUPPORTED
 |SeverityLevel
@@ -1383,7 +1383,7 @@ m|DEPRECATION
 |GQLSTATUS code
 m|01N00
 |Status description
-a|warn: feature deprecated. $msg
+a|warn: feature deprecated. `{ <<item>> }`
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -1569,8 +1569,8 @@ m|DEPRECATION
 m|01N01
 |Status description
 a|warn: feature deprecated with replacement.
-`{ $thing1 }` is deprecated.
-It is replaced by `{ $thing2 }`.
+`{ <<feat>>1 }` is deprecated.
+It is replaced by `{ <<feat>>2 }`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2623,7 +2623,7 @@ m|DEPRECATION
 m|01N02
 |Status description
 a|warn: feature deprecated without replacement.
-`{ $thing }` is deprecated and will be removed without a replacement.
+`{ <<feat>> }` is deprecated and will be removed without a replacement.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2683,7 +2683,7 @@ m|DEPRECATION
 m|01N03
 |Status description
 a|warn: procedure field deprecated.
-`{ $field }` for procedure `{ $proc }` is deprecated.
+The field `{ <<procField>> }` of procedure `{ <<proc>> }` is deprecated.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2708,8 +2708,8 @@ m|DEPRECATION
 m|01N01
 |Status description
 a|warn: feature deprecated with replacement.
-`{ $thing1 }` is deprecated.
-It is replaced by `{ $thing2 }`.
+`{ <<feat>>1 }` is deprecated.
+It is replaced by `{ <<feat>>2 }`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -2742,7 +2742,7 @@ m|SECURITY
 m|00N71
 |Status description
 |note: successful completion - role or privilege not assigned.
-`{ $cmd }` has no effect.
+The command `{ <<cmd>> }` has no effect.
 The role or privilege is not assigned.
 |Classification
 m|SECURITY
@@ -2862,7 +2862,7 @@ m|SECURITY
 m|00N70
 |Status description
 |note: successful completion - role or privilege already assigned.
-`{ $cmd }` has no effect.
+The command `{ <<cmd>> }` has no effect.
 The role or privilege is already assigned.
 |Classification
 m|SECURITY
@@ -2984,9 +2984,7 @@ m|SECURITY
 |GQLSTATUS code
 m|01N70
 |Status description
-a|warn: impossible revoke command. `cmd` has no effect. $msg
-Make sure nothing is misspelled.
-This notification will become an error in a future major version.
+a|warn: inoperational revoke command. The command `{ <<cmd>> }` has no effect. Make sure nothing is misspelled. This notification will become an error in a future major version. Cause: `{ <<msg>> }`
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -3387,7 +3385,7 @@ m|SECURITY
 m|00N72
 |Status description
 a|note: successful completion - undefined auth provider.
-The auth provider { $auth } is not defined in the configuration.
+The auth provider `{ <<auth>> }` is not defined in the configuration.
 Verify that the spelling is correct or define { $auth } in the configuration.
 |Classification
 m|SECURITY
@@ -3502,7 +3500,7 @@ m|SECURITY
 m|01N71
 |Status description
 |warn: external auth disabled.
-Use the setting 'dbms.security.require_local_user' to enable external auth.
+Use the setting `dbms.security.require_local_user` to enable external auth.
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -3637,8 +3635,8 @@ m|TOPOLOGY
 m|00N80
 |Status description
 a|note: successful completion - server already enabled.
-`ENABLE SERVER` has no effect.
-Server `{ $server }` is already enabled.
+The command `ENABLE SERVER` has no effect.
+Server `{ <<server>> }` is already enabled.
 Verify that this is the intended server.
 |Classification
 m|TOPOLOGY
@@ -3703,8 +3701,8 @@ m|TOPOLOGY
 m|00N81
 |Status description
 a|note: successful completion - server already cordoned.
-`CORDON SERVER` has no effect.
-Server `{ $server }` is already cordoned.
+The command `CORDON SERVER` has no effect.
+Server `{ <<server>> }` is already cordoned.
 Verify that this is the intended server.
 |Classification
 m|TOPOLOGY
@@ -3768,7 +3766,7 @@ m|TOPOLOGY
 m|00N82
 |Status description
 a|note: successful completion - no databases reallocated.
-`REALLOCATE DATABASES` has no effect.
+The command `REALLOCATE DATABASES` has no effect.
 No databases were reallocated.
 No better allocation is currently possible.
 |Classification
@@ -3853,7 +3851,7 @@ m|00N83
 |Status description
 a|note: successful completion - cordoned servers existed during allocation.
 Cordoned servers existed when making an allocation decision.
-Server(s) `{ $server_list }` are cordoned.
+Server(s) `{ <<serverList>> }` are cordoned.
 This can impact allocation decisions.
 |Classification
 m|TOPOLOGY
@@ -3920,7 +3918,7 @@ m|TOPOLOGY
 m|00N84
 |Status description
 a|note: successful completion - requested topology matched current topology.
-`ALTER DATABASE` has no effect.
+The command `ALTER DATABASE` has no effect.
 The requested topology matched the current topology.
 No allocations were changed.
 |Classification
@@ -3948,7 +3946,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 note: successful completion - requested topology matched current topology.
-`ALTER DATABASE` has no effect.
+The command `ALTER DATABASE` has no effect.
 The requested topology matched the current topology.
 No allocations were changed.
 
@@ -3988,7 +3986,7 @@ m|TOPOLOGY
 m|03N85
 |Status description
 a|
-info: server has caught up. Server `${ name }` at address `${ address }` has caught up.
+info: server has caught up. Server `{ $serverName }` at address `{ <<serverAddress>> }` has caught up.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4058,7 +4056,7 @@ m|TOPOLOGY
 m|01N80
 |Status description
 a|
-warn: server failed. Server `${ name }` at address `${ address }` failed: `${ message }`
+warn: server failed. Server `{ $serverName }` at address `{ <<serverAddress>> }` failed: `{ <<msg>> }`
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4134,8 +4132,7 @@ m|TOPOLOGY
 |GQLSTATUS code
 m|01N81
 |Status description
-a|
-warn: server is catching up. Server `${ name }` at address `${ address }` is still catching up.
+a|warn: server is catching up. Server `{ $serverName }` at address `{ <<serverAddress>> }` is still catching up.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4207,14 +4204,13 @@ m|Neo.ClientNotification.Cluster.ServerNotAvailable
 |Title
 a|Server is not available.
 |Description
-a|Server `(%s)` at address `(%s)` is not available.
+a|Server `(%s)` is not available.
 |Category
 m|TOPOLOGY
 |GQLSTATUS code
 m|01N82
 |Status description
-a|
-warn: server is not available. Server `${ name }` at address `${ address }` is not available.
+a|warn: server is not available. Server `{ $serverName }` is not available.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4298,8 +4294,8 @@ m|SCHEMA
 m|00NA0
 |Status description
 a|note: successful completion - index or constraint already exists.
-`{ $cmd }` has no effect.
-`{ $idxOrConstrPat }` already exists.
+The command `{ <<cmd>> }` has no effect.
+The index or contstraint specified by `{ <<idxOrConstrPat>> }` already exists.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -4529,8 +4525,8 @@ m|SCHEMA
 m|00NA1
 |Status description
 a|note: successful completion - index or constraint does not exist.
-`{ $cmd }` has no effect.
-`{ $idxOrConstr }` does not exist.
+The command `{ <<cmd>> }` has no effect.
+The specified index or constraint `{ <<idxOrConstr>> }` does not exist.
 |SeverityLevel
 m|INFORMATION
 |===
@@ -4651,8 +4647,7 @@ m|GENERIC
 m|03N60
 |Status description
 a|info: subquery variable shadowing.
-The variable `{ $var }` in the subquery uses the same name as a variable from the outer query.
-Use `WITH $var` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+The variable `{ <<variable>> }` in the subquery uses the same name as a variable from the outer query. Use `WITH { <<variable>> }` in the subquery to import the one from the outer scope unless you want it to be a new variable.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -4751,7 +4746,7 @@ m|GENERIC
 |GQLSTATUS code
 m|03N61
 |Status description
-a|info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL %s` is a void procedure.
+a|info: redundant optional procedure. The use of `OPTIONAL` is redundant as `CALL { <<proc>> }` is a void procedure.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -4908,7 +4903,7 @@ m|GENERIC
 m|01N60
 |Status description
 a|warn: parameter missing.
-The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `{ $param_list }`.
+The query plan cannot be cached and is not executable without `EXPLAIN` due to the undefined parameter(s) `{ <<paramList>> }`.
 Provide the parameter(s).
 |Classification
 m|GENERIC
@@ -4980,7 +4975,7 @@ m|GENERIC
 m|01N62
 |Status description
 a|warn: procedure execution warning.
-The procedure `{ $proc }` generates the warning `{ $msg }`.
+The procedure `{ <<proc>> }` generated the warning `{ <<msg>> }`.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -5008,7 +5003,7 @@ m|GENERIC
 m|01N61
 |Status description
 a|warn: unsatisfiable relationship type expression.
-The expression `{ $label_expr }` cannot be satisfied because relationships must have exactly one type.
+The expression `{ <<labelExpr>> }` cannot be satisfied because relationships must have exactly one type.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -5068,8 +5063,7 @@ m|GENERIC
 |GQLSTATUS code
 m|01N63
 |Status description
-a|
-warn: repeated relationship reference. `{ $var }` is repeated in `{ $pat }`, which leads to no results.
+a|warn: repeated relationship reference. `{ <<variable>> }` is repeated in `{ <<pat>> }`, which leads to no results.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -5156,3 +5150,11 @@ Description of the returned code::
 A variable-length relationship variable is bound more than once, which leads to no results because relationships must not occur more than once in each result. (Relationship r was repeated)
 ======
 =====
+
+//Add new notification above this section. //// //// //// //// //// //// ////
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
