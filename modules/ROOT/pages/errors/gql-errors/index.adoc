@@ -835,6 +835,10 @@ Status description:: info: invalid call signature. The procedure or function `{ 
 
 Status description:: error: syntax error or access rule violation - no longer valid syntax. `{ <<msg>> }`
 
+=== xref:errors/gql-errors/42I53.adoc[42I53]
+
+Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown Coordinate Type: `{ <<input>> }`.
+
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
 Status description:: error: syntax error or access rule violation - no such database. The database `{ <<db>> }` was not found. Verify that the spelling is correct.
