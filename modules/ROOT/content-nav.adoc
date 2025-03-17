@@ -161,7 +161,6 @@
 *** xref:errors/gql-errors/index.adoc#syntax-error-or-access-rule-violation[Syntax error or access rule violation]
 **** xref:errors/gql-errors/42000.adoc[]
 **** xref:errors/gql-errors/42001.adoc[]
-**** xref:errors/gql-errors/42002.adoc[]
 **** xref:errors/gql-errors/42006.adoc[]
 **** xref:errors/gql-errors/42007.adoc[]
 **** xref:errors/gql-errors/42008.adoc[]
