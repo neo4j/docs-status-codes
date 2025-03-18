@@ -1,7 +1,7 @@
 = 42I53
 
 == Status description
-error: syntax error or access rule violation - unsupported coordinate type. Unknown Coordinate Type: `{ <<input>> }`.
+error: syntax error or access rule violation - unsupported coordinate type. Unknown coordinate type: `{ <<input>> }`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
