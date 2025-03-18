@@ -231,7 +231,7 @@
 **** xref:errors/gql-errors/42N21.adoc[]
 **** xref:errors/gql-errors/42N22.adoc[]
 **** xref:errors/gql-errors/42N24.adoc[]
-**** xref:errors/gql-errors/42I26.adoc[]
+**** xref:errors/gql-errors/42N26.adoc[]
 **** xref:errors/gql-errors/42N28.adoc[]
 **** xref:errors/gql-errors/42N29.adoc[]
 **** xref:errors/gql-errors/42N31.adoc[]
