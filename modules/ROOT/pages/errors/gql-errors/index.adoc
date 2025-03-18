@@ -837,7 +837,7 @@ Status description:: error: syntax error or access rule violation - no longer va
 
 === xref:errors/gql-errors/42I53.adoc[42I53]
 
-Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown Coordinate Type: `{ <<input>> }`.
+Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown coordinate type: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
