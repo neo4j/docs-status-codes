@@ -1,0 +1,11 @@
+= 42N3C
+
+== Status description
+Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ <<clause>> }` in 'CALL { ... }'. Use 'CALL () { ... }' instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
