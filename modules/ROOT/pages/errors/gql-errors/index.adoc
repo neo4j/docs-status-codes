@@ -1213,6 +1213,10 @@ Status description:: error: general processing exception - remote execution data
 
 Status description:: error: general processing exception - no such schema descriptor. The `{ <<schemaDescrType>> }` was not found for `{ <<schemaDescr>> }`. Verify that the spelling is correct.
 
+=== xref:errors/gql-errors/50N23.adoc[50N23]
+
+error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.

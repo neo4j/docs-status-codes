@@ -300,6 +300,7 @@
 **** xref:errors/gql-errors/50N16.adoc[]
 **** xref:errors/gql-errors/50N17.adoc[]
 **** xref:errors/gql-errors/50N21.adoc[]
+**** xref:errors/gql-errors/50N23.adoc[]
 **** xref:errors/gql-errors/50N42.adoc[]
 *** xref:errors/gql-errors/index.adoc#system-configuration-or-operation-exceptions[System configuration or operation exceptions]
 **** xref:errors/gql-errors/51N00.adoc[]
