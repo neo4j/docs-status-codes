@@ -13,7 +13,7 @@
 [[cfgSetting]]$cfgSetting:: Configuration setting key, for example, `server.https.enabled`.
 [[clause]]$clause:: A Cypher clause, for example, `USE`, `MATCH`.
 [[cmd]]$cmd:: A Cypher command, for example, `DROP DATABASE`, `PROFILE`, `SHOW PROCEDURES`.
-[[component]]$component:: Data type component, for example, `year`, `month`, `hour`, etc.
+[[component]]$component:: Date-time component, for example, `year`, `month`, `hour`, etc.
 // we need to change the parameter $component in 51N27 to `$feat` maybe.
 [[constr]]$constr:: Constraint name, for example, `book_isbn`.
 //Change $constr to $constrName
