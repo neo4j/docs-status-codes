@@ -159,8 +159,9 @@ Status description:: error: data exception - invalid input value. Invalid input 
 Status description:: error: data exception - input failed validation. Invalid input `{ <<input>> }` for `{ <<context>> }`.
 
 === xref:errors/gql-errors/22N06.adoc[22N06]
+label:new[Changed in 2025.03]
 
-Status description:: error: data exception - empty input string. Invalid input. `{ <<option>> }` needs to be specified.
+Status description:: error: data exception - required input missing. Invalid input. `{ <<option>> }` needs to be specified.
 
 === xref:errors/gql-errors/22N07.adoc[22N07]
 
@@ -730,7 +731,6 @@ Status description:: error: syntax error or access rule violation - invalid name
 Status description:: error: syntax error or access rule violation - invalid nesting of quantified path patterns. Quantified path patterns cannot be nested.
 
 === xref:errors/gql-errors/42I13.adoc[42I13]
-label:new[Changed in 2025.03]
 
 Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
 
@@ -872,8 +872,9 @@ Status description:: error: syntax error or access rule violation - unsupported 
 Status description:: error: syntax error or access rule violation - variable shadowing. The variable `{ <<variable>> }` is shadowing a variable with the same name from the outer scope and needs to be renamed.
 
 === xref:errors/gql-errors/42N08.adoc[42N08]
+label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - no such procedure or function. The procedure or function `{ <<procFun>> }` was not registered for this database instance. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - no such procedure. The procedure `{ <<proc>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N09.adoc[42N09]
 
@@ -1288,8 +1289,9 @@ Status description:: error: system configuration or operation exception - class 
 
 
 === xref:errors/gql-errors/51N12.adoc[51N12]
+label:new[Changed in 2025.03]
 
-Status description:: error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero output fields and must be defined as void.
+Status description:: error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero return columns and must be defined as void.
 
 
 === xref:errors/gql-errors/51N13.adoc[51N13]
@@ -1348,8 +1350,9 @@ Status description:: error: system configuration or operation exception - insuff
 Status description:: error: system configuration or operation exception - database is busy. Cannot compile query due to excessive updates to indexes and constraints.
 
 === xref:errors/gql-errors/51N27.adoc[51N27]
+label:new[Changed in 2025.03]
 
-Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<component>> }` is not supported in `{ <<edition>> }`.
+Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<feat>> }` is not supported in `{ <<edition>> }`.
 
 === xref:errors/gql-errors/51N28.adoc[51N28]
 

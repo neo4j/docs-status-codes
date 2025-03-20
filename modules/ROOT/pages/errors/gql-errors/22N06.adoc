@@ -1,7 +1,8 @@
 = 22N06
+label:new[Changed in 2025.03]
 
 == Status description
-error: data exception - empty input string. Invalid input. `{ <<option>> }` needs to be specified.
+error: data exception - required input missing. Invalid input. `{ <<option>> }` needs to be specified.
 
 
 ifndef::backend-pdf[]

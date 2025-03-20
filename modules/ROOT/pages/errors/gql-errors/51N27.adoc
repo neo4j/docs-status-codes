@@ -1,8 +1,9 @@
 = 51N27
+label:new[Changed in 2025.03]
 
 == Status description
 
-error: system configuration or operation exception - not supported in this edition. `{ <<component>> }` is not supported in `{ <<edition>> }`.
+error: system configuration or operation exception - not supported in this edition. `{ <<feat>> }` is not supported in `{ <<edition>> }`.
 
 == Explanation
 
