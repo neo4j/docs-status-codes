@@ -730,8 +730,9 @@ Status description:: error: syntax error or access rule violation - invalid name
 Status description:: error: syntax error or access rule violation - invalid nesting of quantified path patterns. Quantified path patterns cannot be nested.
 
 === xref:errors/gql-errors/42I13.adoc[42I13]
+label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
+Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count1>> }` but got `{ <<count2>> }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
 
 === xref:errors/gql-errors/42I17.adoc[42I17]
 
