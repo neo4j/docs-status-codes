@@ -311,8 +311,9 @@ Status description:: error: data exception - unable to use specified runtime. Ca
 Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via 'dbms.import.csv.buffer_size'.
 
 === xref:errors/gql-errors/22N51.adoc[22N51]
+label:new[Changed in 2025.03]
 
-Status description:: error: data exception - database or alias does not exist. A [composite] database or alias with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
+Status description:: error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/22N52.adoc[22N52]
 
@@ -557,8 +558,9 @@ Status description:: error: invalid transaction state - specified transaction do
 Transaction `{ <<transactionId>> }` does not exist.
 
 === xref:errors/gql-errors/25N05.adoc[25N05]
+label:new[Changed in 2025.03]
 
-Status description:: error: invalid transaction state - transaction terminated or closed. The transaction has been terminated or closed.
+Status description:: error: invalid transaction state - transaction closed. Transaction has been closed.
 
 === xref:errors/gql-errors/25N06.adoc[25N06]
 
@@ -836,8 +838,9 @@ Status description:: info: invalid call signature. The procedure or function `{ 
 Status description:: error: syntax error or access rule violation - no longer valid syntax. `{ <<msg>> }`
 
 === xref:errors/gql-errors/42N00.adoc[42N00]
+label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - no such database. The database `{ <<db>> }` was not found. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - graph reference not found. The database `{ <<db>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N01.adoc[42N01]
 
@@ -880,8 +883,9 @@ Status description:: error: syntax error or access rule violation - no such user
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N11.adoc[42N11]
+label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - database or alias already exists. A `[composite]` database or alias with the name `{ <<db>> }` already exists.
+Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.
 
 === xref:errors/gql-errors/42N12.adoc[42N12]
 
@@ -974,8 +978,9 @@ Status description:: error: syntax error or access rule violation - invalid use 
 Status description:: error: syntax error or access rule violation - duplicate return item name. Return items must have unique names.
 
 === xref:errors/gql-errors/42N39.adoc[42N39]
+label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.
+Status description:: error: syntax error or access rule violation - incompatible return columns. All `{<<context>>}` in a UNION clause must have the same return column names.
 
 === xref:errors/gql-errors/42N40.adoc[42N40]
 

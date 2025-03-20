@@ -1,7 +1,8 @@
 = 42N11
+label:new[Changed in 2025.03]
 
 == Status description
-error: syntax error or access rule violation - database or alias already exists. A `[composite]` database or alias with the name `{ <<db>> }` already exists.
+error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

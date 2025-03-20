@@ -1,7 +1,8 @@
 = 22N51
+label:new[Changed in 2025.03]
 
 == Status description
-error: data exception - database or alias does not exist. A [composite] database or alias with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
+error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
 
 
 ifndef::backend-pdf[]
