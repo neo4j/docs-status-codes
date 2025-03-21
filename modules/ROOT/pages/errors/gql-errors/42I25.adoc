@@ -1,7 +1,7 @@
 = 42I25
 
 == Status description
-error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
+error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. `CALL { ... } IN TRANSACTIONS` is not supported after a write clause.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
