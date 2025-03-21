@@ -91,7 +91,7 @@
 [[procFieldType]]$procFieldType:: User-defined procedure implementation class argument type, one of `input` or `output`.
 //Change $procFieldType to $argType
 [[procFun]]$procFun:: Procedure or function name or ID, for example, `db.labels()` or `collect()`.
-[[procMethod]]$procMethod:: User-defined procedure implmenetation class method name, for example, `myProcedureMethod`
+[[procMethod]]$procMethod:: User-defined procedure implementation class method name, for example, `myProcedureMethod`
 [[procParam]]$procParam:: User-defined procedure implmenetation parameter name.
 [[procParamFmt]]$procParamFmt:: Freeform user-defined procedure implmenetation parameter format, for example, `com.example.*`.
 [[propKey]]$propKey:: Property key name, for example, `name`.
