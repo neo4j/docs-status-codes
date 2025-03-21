@@ -2,7 +2,7 @@
 label:new[Changed in 2025.03]
 
 == Status description
-error: data exception - required input missing. Invalid input. `{ <<option>> }` needs to be specified.
+error: data exception - required input missing. Invalid input. `{ <<inputList>> }` needs to be specified.
 
 
 ifndef::backend-pdf[]

@@ -161,7 +161,7 @@ Status description:: error: data exception - input failed validation. Invalid in
 === xref:errors/gql-errors/22N06.adoc[22N06]
 label:new[Changed in 2025.03]
 
-Status description:: error: data exception - required input missing. Invalid input. `{ <<option>> }` needs to be specified.
+Status description:: error: data exception - required input missing. Invalid input. `{ <<inputList>> }` needs to be specified.
 
 === xref:errors/gql-errors/22N07.adoc[22N07]
 
@@ -314,7 +314,7 @@ Status description:: error: data exception - CSV buffer size overflow. Cannot re
 === xref:errors/gql-errors/22N51.adoc[22N51]
 label:new[Changed in 2025.03]
 
-Status description:: error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
+Status description:: error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/22N52.adoc[22N52]
 
@@ -841,7 +841,7 @@ Status description:: error: syntax error or access rule violation - no longer va
 === xref:errors/gql-errors/42N00.adoc[42N00]
 label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - graph reference not found. The database `{ <<db>> }` was not found. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N01.adoc[42N01]
 
@@ -874,7 +874,7 @@ Status description:: error: syntax error or access rule violation - variable sha
 === xref:errors/gql-errors/42N08.adoc[42N08]
 label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - no such procedure. The procedure `{ <<proc>> }` was not found. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - no such procedure. The procedure `{ <<procFun>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N09.adoc[42N09]
 
@@ -982,7 +982,7 @@ Status description:: error: syntax error or access rule violation - duplicate re
 === xref:errors/gql-errors/42N39.adoc[42N39]
 label:new[Changed in 2025.03]
 
-Status description:: error: syntax error or access rule violation - incompatible return columns. All `{<<context>>}` in a UNION clause must have the same return column names.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{<<context>>}` must have the same return column names. Use `AS` to ensure columns have the same name.
 
 === xref:errors/gql-errors/42N40.adoc[42N40]
 

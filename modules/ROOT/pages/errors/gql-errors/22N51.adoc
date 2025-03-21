@@ -2,7 +2,7 @@
 label:new[Changed in 2025.03]
 
 == Status description
-error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
+error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
 
 
 ifndef::backend-pdf[]
