@@ -88,7 +88,7 @@
 [[procExeMode]]$procExeMode:: Procedure execution mode, one of `READ`, `WRITE`, `SCHEMA`, and `DBMS`.
 [[procField]]$procField:: User-defined procedure implementation class argument name, for example, `myArgument`.
 //Change $proField to $arg
-[[procFieldType]]$procFieldType:: User-defined procedure implmenetation class argument type, one of `input` or `output`.
+[[procFieldType]]$procFieldType:: User-defined procedure implementation class argument type, one of `input` or `output`.
 //Change $procFieldType to $argType
 [[procFun]]$procFun:: Procedure or function name or ID, for example, `db.labels()` or `collect()`.
 [[procMethod]]$procMethod:: User-defined procedure implmenetation class method name, for example, `myProcedureMethod`
