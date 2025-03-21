@@ -61,7 +61,7 @@
 [[labelList]]$labelList:: A list of label names, for example, `Person, Actor`.
 [[lower]]$lower:: The lowest accepted number of a range.
 [[mapKey]]$mapKey:: Map key.
-[[mapKeyList]]$mapKeyList:: A list of map keys, for example, `x and y`.
+[[mapKeyList]]$mapKeyList:: A list of map keys, for example, `first and second` in the map `{first: 1, second: 2}`.
 [[matchMode]]$matchMode:: GPM match mode, for example, `REPEATABLE ELEMENTS`.
 [[msg]]$msg:: Freeform message.
 [[msgTitle]]$msgTitle:: Freeform message title.
