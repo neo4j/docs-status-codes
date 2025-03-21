@@ -21,7 +21,7 @@
 //Change $constrDescrOrName to $constrDescr
 [[context]]$context:: Freeform description of a context, where something is invalid or unsupported, `OPTIONS`, `URL`, `username`, etc.
 [[coordinates]]$coordinates:: Coordinate value, for example, `[3.15, 4.012, 5.905]`.
-[[count]]$count:: Number of something, example, `3`.
+[[count]]$count:: Number of something, for example, `3`.
 [[countAllocs]]$countAllocs:: Desired number of servers to use.
 [[countSeeders]]$countSeeders:: Number of seeding servers.
 //To check with the clustering team about $countAllocs and $countSeeders.
