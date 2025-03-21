@@ -1,0 +1,15 @@
+= 42I32
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of node and relationship pattern predicate. Node and relationship pattern predicates cannot be used in `{ <<context>> }`. They can only be used in a `MATCH` clause or inside a pattern comprehension.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

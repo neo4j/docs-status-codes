@@ -1,0 +1,11 @@
+= 22NA9
+
+== Status description
+error: data exception - unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,14 @@
+= 52N27
+
+
+== Status description
+error: procedure exception - invalid change identifier and transaction id. `{ <<transactionId>> }` is not a valid change identifier. Transaction ID does not exist.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

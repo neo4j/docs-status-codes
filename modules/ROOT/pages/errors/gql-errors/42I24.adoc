@@ -1,0 +1,15 @@
+= 42I24
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of aggregate function. Aggregate expression `{ <<expr>> }` is not allowed in this context.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

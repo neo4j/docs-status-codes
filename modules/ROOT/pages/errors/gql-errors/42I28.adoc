@@ -1,0 +1,15 @@
+= 42I28
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of importing `WITH`. Importing `WITH` can consist only of direct references to outside variables. `{ <<input>> }` is not allowed.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

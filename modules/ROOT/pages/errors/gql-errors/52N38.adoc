@@ -1,0 +1,14 @@
+= 52N38
+
+
+== Status description
+error: procedure exception - cdc start position not found. Cannot find a start position in the logs.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

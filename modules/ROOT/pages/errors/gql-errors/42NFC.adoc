@@ -1,0 +1,14 @@
+= 42NFC
+
+
+== Status description
+error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
