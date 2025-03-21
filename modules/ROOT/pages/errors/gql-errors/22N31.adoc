@@ -2,7 +2,7 @@
 
 
 == Status description
-error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null or NaN.
+error: data exception - invalid properties in merge pattern. `MERGE` cannot be used with graph element property values that are null or NaN.
 
 
 ifndef::backend-pdf[]

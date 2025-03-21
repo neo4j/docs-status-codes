@@ -1,0 +1,15 @@
+= 42I27
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of `DISTINCT` with non-aggregate function. `DISTINCT` cannot be used with the `{ <<fun>> }` function.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

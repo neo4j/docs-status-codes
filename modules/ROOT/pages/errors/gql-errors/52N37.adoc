@@ -2,7 +2,7 @@
 
 
 == Status description
-error: procedure exception - procedure execution error. Execution of the procedure `{ <<proc>> }` ` failed.
+error: procedure exception - procedure execution error. Execution of the procedure `{ <<proc>> }` failed.
 
 
 ifndef::backend-pdf[]

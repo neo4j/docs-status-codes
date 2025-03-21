@@ -1,0 +1,14 @@
+= 52N26
+
+
+== Status description
+error: procedure exception - invalid change identifier. `{ <<param>> }` is not a valid change identifier.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

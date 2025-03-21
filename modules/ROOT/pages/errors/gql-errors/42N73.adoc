@@ -1,7 +1,7 @@
 = 42N73
 
 == Status description
-error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to '... UNION ...' . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
+error: syntax error or access rule violation - invalid placement of `USE` clause. The `USE` clause must be the first clause of a query or an operand to `... UNION ...` . In a `CALL` sub-query, it can also be the second clause if the first clause is an importing WITH.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

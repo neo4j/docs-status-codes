@@ -1,0 +1,11 @@
+= 42I21
+
+== Status description
+error: syntax error or access rule violation - invalid reference to variable out of scope. Not allowed to reference `{ <<variableList>> }` from within a parenthesized/quantified path pattern like `{ <<pat>> }` in the same graph pattern.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

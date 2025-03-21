@@ -1,7 +1,7 @@
 = 51N70
 
 == Status description
-error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ <<db>> }` because Bolt is not enabled. Please update your configuration such that 'server.bolt.enabled' is set to true.
+error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ <<db>> }` because Bolt is not enabled. Please update your configuration such that `server.bolt.enabled` is set to true.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

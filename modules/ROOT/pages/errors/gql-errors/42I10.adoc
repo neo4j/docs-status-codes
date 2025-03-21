@@ -1,0 +1,11 @@
+= 42I10
+
+== Status description
+error: syntax error or access rule violation - invalid label expression. Mixing label expression symbols (`|`, `&`, `!`, and `%`) with colon (`:`) between labels is not allowed. This expression could be expressed as `{ <<syntax>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,15 @@
+= 42N23
+
+
+== Status description
+error: syntax error or access rule violation - missing `|-expression`. The reduce function requires a `| expression` after the accumulator.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

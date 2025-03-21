@@ -1,7 +1,7 @@
 = 22N53
 
 == Status description
-error: data exception - invalid use of PROFILE. Cannot 'PROFILE' query before results are materialized.
+error: data exception - invalid use of PROFILE. Cannot `PROFILE` query before results are materialized.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
