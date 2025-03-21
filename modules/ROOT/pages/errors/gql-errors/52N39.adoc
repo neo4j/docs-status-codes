@@ -1,0 +1,14 @@
+= 52N39
+
+
+== Status description
+error: procedure exception - cdc scanner inactive. The log scanner is no longer active.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

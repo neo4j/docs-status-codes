@@ -1,0 +1,11 @@
+= 22N40
+
+== Status description
+error: data exception - non-assignable temporal component. Cannot assign `{ <<component>> }` of a `{ <<valueType>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

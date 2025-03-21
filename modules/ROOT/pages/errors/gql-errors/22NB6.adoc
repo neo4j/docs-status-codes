@@ -1,0 +1,11 @@
+= 22NB6
+
+== Status description
+error: data exception - input empty. Invalid input. `{ <<item>> }` is not allowed to be an empty string.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
