@@ -1,7 +1,7 @@
 = 42N20
 
 == Status description
-error: syntax error or access rule violation - empty list range operator. The list range operator '[ ]' cannot be empty.
+error: syntax error or access rule violation - empty list range operator. The list range operator `[ ]` cannot be empty.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

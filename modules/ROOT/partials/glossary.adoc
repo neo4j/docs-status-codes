@@ -33,6 +33,7 @@
 [[format]]$format:: Duration format.
 [[fun]]$fun:: Function name.
 [[funClass]]$funClass:: User defined function implementation class name.
+[[funType]]$funType:: Function type, e.g. non-deterministic or aggregate.
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
 [[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint.
 [[hint]]$hint:: Freeform description of a "hint".

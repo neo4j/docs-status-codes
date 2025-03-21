@@ -1,7 +1,7 @@
 = 42I49
 
 == Status description
-error: syntax error or access rule violation - invalid inequality operator. Unknown inequality operator '!='. The operator for inequality in Cypher is '<>'.
+error: syntax error or access rule violation - invalid inequality operator. Unknown inequality operator `!=`. The operator for inequality in Cypher is `<>`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

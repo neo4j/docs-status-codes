@@ -1,7 +1,7 @@
 = 22N42
 
 == Status description
-error: data exception - merge relationship uniqueness constraint violation. The 'MERGE' clause did not find a matching relationship `{ <<variable>> }` and cannot create a new relationship due to conflicts with existing uniqueness constraints.
+error: data exception - merge relationship uniqueness constraint violation. The `MERGE` clause did not find a matching relationship `{ <<variable>> }` and cannot create a new relationship due to conflicts with existing uniqueness constraints.
 
 
 ifndef::backend-pdf[]
