@@ -1,7 +1,8 @@
 = 25N05
+label:new[Changed in 2025.03]
 
 == Status description
-error: invalid transaction state - transaction terminated or closed. The transaction has been terminated or closed.
+error: invalid transaction state - transaction closed. Transaction has been closed.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
