@@ -1494,11 +1494,11 @@ Status description:: error: system configuration or operation exception - insuff
 Status description:: error: system configuration or operation exception - database is busy. Cannot compile query due to excessive updates to indexes and constraints.
 
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/51N26.adoc[51N26]
 
 Status description:: error: system configuration or operation exception - not supported in this version. `{ <<item>> }` is not available. This implementation of Cypher does not support `{ <<feat>> }`.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/51N27.adoc[51N27]
 
 Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<feat>> }` is not supported in `{ <<edition>> }`.

@@ -1,5 +1,6 @@
+:page-role: changed-2025.03
+
 = 51N27
-label:new[Changed in 2025.03]
 
 == Status description
 

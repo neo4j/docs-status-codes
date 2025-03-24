@@ -1,5 +1,6 @@
+:page-role: changed-2025.03
+
 = 42N11
-label:new[Changed in 2025.03]
 
 == Status description
 error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.

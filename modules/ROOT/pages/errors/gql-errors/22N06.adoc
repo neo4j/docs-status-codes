@@ -1,4 +1,5 @@
-[role=label--changed-2025.03]
+:page-role: changed-2025.03
+
 = 22N06
 
 == Status description

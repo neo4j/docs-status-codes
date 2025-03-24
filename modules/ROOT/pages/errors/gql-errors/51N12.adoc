@@ -1,5 +1,6 @@
+:page-role: changed-2025.03
+
 = 51N12
-label:new[Changed in 2025.03]
 
 == Status description
 error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero return columns and must be defined as void.
