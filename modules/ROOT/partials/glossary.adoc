@@ -1,117 +1,132 @@
 [glossary]
 
 [[action]]$action:: Freeform description of an action.
-[[alias]]$alias:: An alias name.
-[[alloc]]$alloc:: Allocator name.
-[[allocType]]$allocType:: Allocation type.
-[[auth]]$auth:: Auth provider name.
-[[boltMsgLenLimit]]$boltMsgLenLimit:: Bolt message length limit.
-[[boltServerState]]$boltServerState:: Bolt server state.
+//$action will be replaced by cmd and msg depending on the usage.
+[[alias]]$alias:: An alias name, `mydb-alias`.
+[[allocType]]$allocType:: Allocation type (`primary` or `secondary`).
+[[arg]]$arg:: Procedure or function argument, for example, `database`, `pause`, `dryrun`, etc.
+[[argType]]$argType:: Argument type, either input or output.
+[[auth]]$auth:: Auth provider name, for example, `ldap`, `native`.
+[[boltServerState]]$boltServerState:: Bolt server state, for example, `READY`.
+[[boltMsgLenLimit]]$boltMsgLenLimit:: Bolt message length limit, for example, `1000`.
 [[cause]]$cause:: Freeform description of what caused the error.
 [[cfgSetting]]$cfgSetting:: Configuration setting key, for example, `server.https.enabled`.
-[[clause]]$clause:: A clause, for example, `USE`.
-[[cmd]]$cmd:: Cypher administrative command, for example, `DROP DATABASE`.
-[[component]]$component:: Component name.
-[[constr]]$constr:: Constraint name.
-[[constrDescrOrName]]$constrDescrOrName:: Constraint descriptor or name.
-[[context]]$context:: Freeform description of a context.
-[[coordinates]]$coordinates:: Coordinate value.
-[[count]]$count:: Amount
+[[clause]]$clause:: A Cypher clause, for example, `USE`, `MATCH`.
+[[cmd]]$cmd:: A Cypher command, for example, `DROP DATABASE`, `PROFILE`, `SHOW PROCEDURES`.
+[[component]]$component:: A component of something, for example, hours/minutes within a time, a subset input within the whole input, `TOPOLOGY` clause within the whole `CREATE/ALTER DB ... SET TOPOLOGY`, etc.
+// we need to change the parameter $component in 51N27 to `$feat` maybe.
+[[constr]]$constr:: Constraint name, for example, `book_isbn`.
+//Change $constr to $constrName
+[[constrDescrOrName]]$constrDescrOrName:: Constraint description, `(:Label {property0, property1, property2, property1, property3})`.
+//Change $constrDescrOrName to $constrDescr
+[[context]]$context:: Freeform description of a context, where something is invalid or unsupported, `OPTIONS`, `URL`, `username`, etc.
+[[coordinates]]$coordinates:: Coordinate value, for example, `[3.15, 4.012, 5.905]`.
+[[count]]$count:: Number of something, for example, `3`.
 [[countAllocs]]$countAllocs:: Desired number of servers to use.
 [[countSeeders]]$countSeeders:: Number of seeding servers.
-[[crs]]$crs:: Coordinate reference system, for example, WGS84.
+//To check with the clustering team about $countAllocs and $countSeeders.
+[[crs]]$crs:: Coordinate reference system, for example, `WGS84`.
 [[db]]$db:: Database name, for example, `myDb`.
-[[dim]]$dim:: Number representing index dimenionality.
-[[edition]]$edition:: Freeform edition description.
-[[endpointType]]$endpointType:: One of `start`, `end`.
+[[dim]]$dim:: Number representing index or point dimenionality.
+[[edition]]$edition:: Neo4j edition, for example, Community or Enterprise.
+[[endpointType]]$endpointType:: One of `start` or `end` of a relationship.
 [[entityId]]$entityId:: ID of a node or a relationship.
 [[entityType]]$entityType:: A node or a relationship.
 [[expr]]$expr:: Cypher expression, for example, `1 + n.prop`.
-[[exprType]]$exprType:: Freeform expression type.
+[[exprType]]$exprType:: Freeform expression type, for example, `EXISTS`, `COUNT`, `COLLECT`.
 [[feat]]$feat:: Freeform feature description.
-[[field]]$field:: Input field, for example, for a procedure or deserialization.
-[[format]]$format:: Duration format.
-[[fun]]$fun:: Function name.
-[[funClass]]$funClass:: User defined function implementation class name.
+[[field]]$field:: Input field, for example, of a procedure, function, or deserialization.
+//52N22 and 52N36 to change $field to $arg. Check 22N98 with Antonio.
+[[fun]]$fun:: Function name, for example, `collect()`.
+[[funClass]]$funClass:: User-defined function implementation class name, for example, `MyFunctionClass`.
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
-[[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint.
-[[hint]]$hint:: Freeform description of a "hint".
-[[hintList]]$hintList:: Comma-separated list of free form descriptions of hints.
-[[ident]]$ident:: Generic identifier.
-[[idx]]$idx:: Index name.
-[[idxDescr]]$idxDescr:: Index descriptor.
+[[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint, one of `UNDESIGNATED`, `INDEPENDENT`, or `DEPENDENT`.
+[[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
+[[hintList]]$hintList:: A list of free form descriptions of hints like `USING INDEX n:N(prop)`.
+[[idx]]$idx:: Index name, `my_index`.
+//Change $idx to $idxName
+[[idxDescr]]$idxDescr:: Index description, for example, `INDEX :Person(name)`.
 [[idxDescrOrName]]$idxDescrOrName:: Index descriptor or name.
-[[idxOrConstr]]$idxOrConstr:: Index or constraint name
-[[idxOrConstrPat]]$idxOrConstrPat:: Index or constraint pattern
+//Change all error parameters to $idxDescr or $idxName, and remove $idxDescrOrName.
+[[idxOrConstr]]$idxOrConstr:: Index or constraint name, for example, `my_index` or `book_isbn`.
+[[idxOrConstrPat]]$idxOrConstrPat:: Index or constraint pattern, for example, `CREATE CONSTRAINT bar IF NOT EXISTS FOR (n:L) REQUIRE (n.p1) IS NODE KEY`.
 [[idxType]]$idxType:: Index type, for example, text, vector, etc.
-[[input]]$input:: Piece of input.
-[[inputList]]$inputList:: Comma-separated list of inputs.
+[[input]]$input:: Piece of user input.
+[[inputList]]$inputList:: A list of user inputs.
 [[item]]$item:: Freeform description of an item.
+//Change 22N90 to $valType, 51N30 to $feat maybe (check with Lasse). Remove $item.
 [[keyword]]$keyword:: Cypher keyword, for example, `MERGE`.
 [[label]]$label:: Label name, for example, `Person`.
-[[labelExpr]]$labelExpr:: Label expression, for example, `Person&Human`.
-[[labelList]]$labelList:: Comma-separated list of label names, for example, `Person, Actor`.
-[[lower]]$lower:: Lower bound.
+[[labelExpr]]$labelExpr:: Label expression, for example, `(n:Movie|Person)`.
+[[labelList]]$labelList:: A list of label names, for example, `Person, Actor`.
+[[lower]]$lower:: The lowest accepted number of a range.
 [[mapKey]]$mapKey:: Map key.
-[[mapKeyList]]$mapKeyList:: Comma-separated list of keys.
-[[matchMode]]$matchMode:: GPM match mode.
-[[maxTokenLength]]$maxTokenLength:: Maximum token length.
-[[msg]]$msg:: Freeform message, for example, "Howdy, Partner!".
+[[mapKeyList]]$mapKeyList:: A list of map keys, for example, `first and second` in the map `{first: 1, second: 2}`.
+[[matchMode]]$matchMode:: GPM match mode, for example, `REPEATABLE ELEMENTS`.
+[[msg]]$msg:: Freeform message.
 [[msgTitle]]$msgTitle:: Freeform message title.
-[[namespace]]$namespace:: Namespace
-[[namespaceList]]$namespaceList:: Comma-separated list of namespaces.
-[[operation]]$operation:: Operation, for example, a function.
+//Change $msgTitle to $excClass
+[[namespaceList]]$namespaceList:: A list of namespaces of procedures, for example, `apoc.math.`.
+[[operation]]$operation:: A mathematical operation, for example, `/ by zero`, `>`.
+//Change 51N69 to something else.
 [[option]]$option:: Option name
-[[optionList]]$optionList:: Comma-separated list of option names.
-[[param]]$param:: Parameter name
-[[paramList]]$paramList:: Parameter list
+//This needs further investigation.
+[[optionList]]$optionList:: A list of option names.
+//This needs further investigation.
+[[param]]$param:: Parameter name, for example, `$pattern`.
+[[paramList]]$paramList:: A list of parameters, for example `$pattern, $prop`.
 [[pat]]$pat:: Pattern, for example, `(:Person)`.
-[[port]]$port:: Port name
-[[portList]]$portList:: Comma-separated list of port names.
-[[pos]]$pos:: A position, for example, in a sequence.
-[[pred]]$pred:: A predicate, for example, `'x = 3'`.
-[[predList]]$predList:: Comma-separated list of predicates, for example, `'x = 3', 'y > 4'`.
+[[port]]$port:: Port name, for example, `6362`.
+[[portList]]$portList:: A list of port names, for example, `6362, 6000, 7000`.
+[[pos]]$pos:: A position, for example, in a sequence, for example, `2`
+[[pred]]$pred:: A predicate, for example, `x = 3`.
+[[predList]]$predList:: A list of predicates, for example, `'x = 3', 'y > 4'`.
 [[preparserInput]]$preparserInput:: Piece of preparser input.
-[[proc]]$proc:: Procedure name, for example, `lauchRocket`.
-[[procClass]]$procClass:: Procedure implementation class name.
-[[procExeMode]]$procExeMode:: Procedure execution mode
-[[procField]]$procField:: Procedure implementation class field name, for example, `someField`.
-[[procFieldType]]$procFieldType:: Procedure implmenetation class field type.
-[[procFun]]$procFun:: Procedure or function name or ID.
-[[procMethod]]$procMethod:: Procedure implmenetation class method name.
-[[procParam]]$procParam:: Procedure parameter name.
-[[procParamFmt]]$procParamFmt:: Freeform procedure parameter format.
-[[propKey]]$propKey:: Property key name, for example, name.
-[[propKeyList]]$propKeyList:: Comma-separated list of property key names.
-[[query]]$query:: Query string extract, for example, `MATCH (n) WHERE n.prop...`.
-[[reasonList]]$reasonList:: Comma-separated list of reasons of the failure.
+//Change in the code to $input and update the notifications.
+[[proc]]$proc:: Procedure name, for example, `db.labels()`.
+[[procClass]]$procClass:: User-defined procedure implementation class name, for example, `MyProcedureClass`.
+[[procExeMode]]$procExeMode:: Procedure execution mode, one of `READ`, `WRITE`, `SCHEMA`, and `DBMS`.
+[[procField]]$procField:: User-defined procedure implementation class argument name, for example, `myArgument`.
+//Change $proField to $arg
+[[procFieldType]]$procFieldType:: User-defined procedure implementation class argument type, one of `input` or `output`.
+//Change $procFieldType to $argType
+[[procFun]]$procFun:: Procedure or function name or ID, for example, `db.labels()` or `collect()`.
+[[procMethod]]$procMethod:: User-defined procedure implementation class method name, for example, `myProcedureMethod`
+[[procParam]]$procParam:: User-defined procedure implementation parameter name.
+[[procParamFmt]]$procParamFmt:: Freeform user-defined procedure implementation parameter format, for example, `com.example.*`.
+[[propKey]]$propKey:: Property key name, for example, `name`.
+[[propKeyList]]$propKeyList:: A list of property key names, for example, `name, age, hometown`.
+[[query]]$query:: A statement that retrieves or writes information to a database, for example, `MATCH (n) WHERE n.prop`.
+[[reasonList]]$reasonList:: A list of reasons of the failure.
 [[relType]]$relType:: Relationship type name, for example, `KNOWS`.
-[[replacement]]$replacement:: Replacement
-[[role]]$role:: Role name, for example, `admin`.
+[[replacement]]$replacement:: A free-form text, a replacement of a deprecated feature, a Cypher command, etc.
+[[role]]$role:: RBAC role name, for example, `admin`, `public`, `receptionist`.
 [[routingPolicy]]$routingPolicy:: Routing policy name.
-[[runtime]]$runtime:: Cypher runtime name.
-[[schemaDescr]]$schemaDescr:: Schema descriptor.
-[[schemaDescrType]]$schemaDescrType:: Type of schema descriptor.
-[[selector]]$selector:: GPM path selector.
+[[runtime]]$runtime:: Cypher runtime name. One of `slotted`, `pipelined`, and `parallel`.
+[[schemaDescr]]$schemaDescr:: Schema descriptor, for example, `(:Label1 \{prop1})`.
+[[schemaDescrType]]$schemaDescrType:: Freeform type of schema descriptor, for example, `label property existence constraint`.
+[[selector]]$selector:: GPM path selector, for example, `ALL PATHS`, `SHORTEST 2`, etc.
 [[selectorType]]$selectorType:: Selector type.
+//Ask Lasse about $selectorType (releated to CDC) and has nothing to do with $selector.
 [[server]]$server:: Server name or ID, for example, `25a7efc7-d063-44b8-bdee-f23357f89f01`.
-[[serverList]]$serverList:: Comma-separated list of server names or IDs, for example, `'server-1', 'server-2'`.
-[[serverType]]$serverType:: Server type.
-[[sig]]$sig:: Procedure or function signature.
-[[syntax]]$syntax:: Freeform syntax or keyword.
-[[temporal]]$temporal:: Temporal value.
-[[timeAmount]]$timeAmount:: Integral amount of time unit.
-[[timeUnit]]$timeUnit:: Common time unit name.
-[[token]]$token:: Token name.
+[[serverList]]$serverList:: A list of server names or IDs, for example, `'server-1', 'server-2'`.
+[[serverType]]$serverType:: Server type, `PRIMARY` (primaryConstrained), `SECONDARY` (secondaryConstrained), or `NONE`.
+[[serverAddress]]$serverAddress:: Server address, for example, `localhost:20025`.
+[[sig]]$sig:: Procedure or function signature, for example, `date(input = DEFAULT_TEMPORAL_ARGUMENT :: ANY) :: DATE`
+[[syntax]]$syntax:: Cypher syntax or keyword.
+[[temporal]]$temporal:: Temporal value, for example, `2025-02-18`.
+[[timeAmount]]$timeAmount:: Integral amount of time unit (a number).
+[[timeUnit]]$timeUnit:: Common time unit name, for example, `seconds`, `minutes`, `hours`.
+[[token]]$token:: Token name, for example, `MyLabel`, `MyRelationshipType`, `myPropertyKey`.
 [[tokenId]]$tokenId:: Token ID.
-[[tokenType]]$tokenType:: Token type.
+[[tokenType]]$tokenType:: One of a label, a relationship type, or a property key.
 [[transactionId]]$transactionId:: The transaction ID of a running query.
-[[upper]]$upper:: An upper bound.
+[[upper]]$upper:: The highest accepted number of a range.
 [[url]]$url:: A URL, for example, https://example.com.
 [[user]]$user:: A user name, for example, `neo4j`.
 [[value]]$value:: Some value.
-[[valueList]]$valueList:: Comma-separated list of values.
-[[valueType]]$valueType:: Value type.
-[[valueTypeList]]$valueTypeList:: Comma-separated list of value types.
+[[valueList]]$valueList:: A list of values.
+[[valueType]]$valueType:: Cypher value type, for example, `STRING`, `BOOLEAN`, `INTEGER`, `LIST<STRING>`, etc.
+[[valueTypeList]]$valueTypeList:: A list of Cypher value types.
 [[variable]]$variable:: Variable name, for example, `n`.
-[[variableList]]$variableList:: Comma-separated list of variable names, for example, `a, b, c`.
+[[variableList]]$variableList:: A list of variable names, for example, `a, b, c`.
