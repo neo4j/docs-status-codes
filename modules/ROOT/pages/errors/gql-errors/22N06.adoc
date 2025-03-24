@@ -1,7 +1,9 @@
+:page-role: changed-2025.03
+
 = 22N06
 
 == Status description
-error: data exception - empty input string. Invalid input. `{ <<option>> }` needs to be specified.
+error: data exception - required input missing. Invalid input. `{ <<inputList>> }` needs to be specified.
 
 
 ifndef::backend-pdf[]
