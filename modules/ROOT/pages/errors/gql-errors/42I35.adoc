@@ -1,0 +1,15 @@
+= 42I32
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of relationship type expression. Relationship type expressions can only be used in `MATCH ...`.
+
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

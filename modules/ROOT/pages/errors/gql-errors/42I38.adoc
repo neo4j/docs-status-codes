@@ -1,7 +1,7 @@
 = 42I38
 
 == Status description
-error: syntax error or access rule violation - invalid use of `RETURN`. 'RETURN ...' can only be used at the end of a query or subquery.
+error: syntax error or access rule violation - invalid use of `RETURN`. `RETURN ...` can only be used at the end of a query or subquery.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

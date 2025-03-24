@@ -1,0 +1,11 @@
+= 25N16
+
+== Status description
+error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
