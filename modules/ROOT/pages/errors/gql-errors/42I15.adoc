@@ -1,0 +1,11 @@
+= 42I15
+
+== Status description
+error: syntax error or access rule violation - invalid number of statements. Expected exactly one statement per query but got: `{ <<count>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

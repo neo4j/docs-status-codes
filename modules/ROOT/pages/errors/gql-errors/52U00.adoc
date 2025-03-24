@@ -2,7 +2,9 @@
 
 
 == Status description
-error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ <<proc>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`.
+error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ <<proc>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
