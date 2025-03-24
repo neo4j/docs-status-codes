@@ -1,0 +1,11 @@
+= 22NB5
+
+== Status description
+error: data exception - unsupported time zone identifier. Unknown time zone identifier `{ <<input>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

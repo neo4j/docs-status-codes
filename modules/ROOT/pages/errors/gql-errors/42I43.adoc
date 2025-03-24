@@ -1,0 +1,14 @@
+= 42I43
+
+
+== Status description
+error: syntax error or access rule violation - invalid use of `YIELD *`. `YIELD *` can only be used with a standalone procedure call.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
