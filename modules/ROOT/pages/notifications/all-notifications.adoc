@@ -3986,7 +3986,7 @@ m|TOPOLOGY
 m|03N85
 |Status description
 a|
-info: server has caught up. Server `{ $serverName }` at address `{ <<serverAddress>> }` has caught up.
+info: server has caught up. Server `{ <<server>> }` at address `{ <<serverAddress>> }` has caught up.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4056,7 +4056,7 @@ m|TOPOLOGY
 m|01N80
 |Status description
 a|
-warn: server failed. Server `{ $serverName }` at address `{ <<serverAddress>> }` failed: `{ <<msg>> }`
+warn: server failed. Server `{ <<server>> }` at address `{ <<serverAddress>> }` failed: `{ <<msg>> }`
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4132,7 +4132,7 @@ m|TOPOLOGY
 |GQLSTATUS code
 m|01N81
 |Status description
-a|warn: server is catching up. Server `{ $serverName }` at address `{ <<serverAddress>> }` is still catching up.
+a|warn: server is catching up. Server `{ <<server>> }` at address `{ <<serverAddress>> }` is still catching up.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4210,7 +4210,7 @@ m|TOPOLOGY
 |GQLSTATUS code
 m|01N82
 |Status description
-a|warn: server is not available. Server `{ $serverName }` is not available.
+a|warn: server is not available. Server `{ <<server>> }` is not available.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
