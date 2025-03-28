@@ -1,7 +1,9 @@
+:page-role: changed-2025.04
+
 = 2DN01
 
 == Status description
-error: invalid transaction termination - commit failed. Failed to commit transaction. See debug log for details.
+error: invalid transaction termination - commit failed. Failed to commit transaction.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

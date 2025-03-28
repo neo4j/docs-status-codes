@@ -640,9 +640,10 @@ Status description:: error: invalid transaction state - transaction termination 
 
 Invalid transaction termination errors occur when the transaction termination fails, such as when the transaction or constituent transaction fails to commit, or when the transaction termination fails to apply or append the transaction.
 
+[role=label--changed-2025.04]
 === xref:errors/gql-errors/2DN01.adoc[2DN01]
 
-Status description:: error: invalid transaction termination - commit failed. Failed to commit transaction. See debug log for details.
+Status description:: error: invalid transaction termination - commit failed. Failed to commit transaction.
 
 === xref:errors/gql-errors/2DN02.adoc[2DN02]
 
