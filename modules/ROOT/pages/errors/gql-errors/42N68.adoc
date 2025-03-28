@@ -1,0 +1,14 @@
+= 42N68
+
+
+== Status description
+error: syntax error or access rule violation - duplicate variable definition. Variables cannot be defined more than once in a `{ <<clause>> }` clause.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

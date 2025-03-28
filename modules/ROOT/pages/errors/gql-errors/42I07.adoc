@@ -1,0 +1,11 @@
+= 42I07
+
+== Status description
+error: syntax error or access rule violation - invalid integer literal. The given `{ <<valueType>> }` literal `{ <<input>> }` is invalid.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

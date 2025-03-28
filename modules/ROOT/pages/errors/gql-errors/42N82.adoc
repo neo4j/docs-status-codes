@@ -1,0 +1,14 @@
+= 42N82
+
+
+== Status description
+error: syntax error or access rule violation - cannot drop database with aliases. The database identified by `{ <<db>> }` has one or more aliases. Drop the aliases `{ <<aliasList>> }` before dropping the database.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

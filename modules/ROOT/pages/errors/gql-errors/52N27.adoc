@@ -1,0 +1,14 @@
+= 52N27
+
+
+== Status description
+error: procedure exception - invalid commit timestamp. The commit timestamp for the provided transaction ID does not match the one in the transaction log.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

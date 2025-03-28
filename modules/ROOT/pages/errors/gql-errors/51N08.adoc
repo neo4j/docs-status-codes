@@ -1,7 +1,7 @@
 = 51N08
 
 == Status description
-error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ <<procClass>> }` must contain exactly one '@UserAggregationResult' method and exactly one '@UserAggregationUpdate' method.
+error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ <<procClass>> }` must contain exactly one `@UserAggregationResult` method and exactly one `@UserAggregationUpdate` method.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

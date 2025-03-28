@@ -6,7 +6,7 @@ error: connection exception - unable to connect to database. Unable to connect t
 .Example of error message
 [source]
 ----
-error: connection exception - unable to connect to database. Unable to connect to database `mydb`. Server-side routing is disabled. Either connect to `mydb` directly, or enable server-side routing by setting 'dbms.routing.enabled=true'.
+error: connection exception - unable to connect to database. Unable to connect to database `mydb`. Server-side routing is disabled. Either connect to `mydb` directly, or enable server-side routing by setting `dbms.routing.enabled=true`.
 ----
 
 == Possible solution

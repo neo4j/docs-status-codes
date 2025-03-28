@@ -158,9 +158,10 @@ Status description:: error: data exception - invalid input value. Invalid input 
 
 Status description:: error: data exception - input failed validation. Invalid input `{ <<input>> }` for `{ <<context>> }`.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/22N06.adoc[22N06]
 
-Status description:: error: data exception - empty input string. Invalid input. `{ <<option>> }` needs to be specified.
+Status description:: error: data exception - required input missing. Invalid input. `{ <<inputList>> }` needs to be specified.
 
 === xref:errors/gql-errors/22N07.adoc[22N07]
 
@@ -208,7 +209,7 @@ Status description:: error: data exception - incomplete spatial value. A `{ <<cr
 
 === xref:errors/gql-errors/22N19.adoc[22N19]
 
-Status description:: error: data exception - invalid spatial value. A `POINT` must contain either 'x' and 'y', or 'latitude' and 'longitude'.
+Status description:: error: data exception - invalid spatial value. A `POINT` must contain either `x` and `y`, or `latitude` and `longitude`.
 
 === xref:errors/gql-errors/22N20.adoc[22N20]
 
@@ -246,21 +247,33 @@ Status description:: error: data exception - invalid entity type. Invalid input 
 
 Status description:: error: data exception - overflow error. The result of the operation `{ <<operation>> }` has caused an overflow.
 
+=== xref:errors/gql-errors/22N29.adoc[22N29]
+
+Status description:: error: data exception - unsupported coordinate reference system. Unknown coordinate reference system (CRS).
+
+=== xref:errors/gql-errors/22N30.adoc[22N30]
+
+Status description:: error: data exception - missing temporal unit. At least one temporal unit must be specified.
+
 === xref:errors/gql-errors/22N31.adoc[22N31]
 
-Status description:: error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null or NaN.
+Status description:: error: data exception - invalid properties in merge pattern. `MERGE` cannot be used with graph element property values that are null or NaN.
 
 === xref:errors/gql-errors/22N32.adoc[22N32]
 
-Status description:: error: data exception - non-deterministic sort expression. 'ORDER BY' expressions must be deterministic.
+Status description:: error: data exception - non-deterministic sort expression. `ORDER BY` expressions must be deterministic.
 
 === xref:errors/gql-errors/22N33.adoc[22N33]
 
 Status description:: error: data exception - invalid shortest path expression. Shortest path expressions must contain start and end nodes. Cannot find: `{ <<variable>> }`.
 
+=== xref:errors/gql-errors/22N34.adoc[22N34]
+
+Status description:: error: data exception - invalid use of aggregate function. Cannot use `{ <<funType>> }` function inside an aggregate function.
+
 === xref:errors/gql-errors/22N35.adoc[22N35]
 
-Status description:: error: data exception - invalid date format. Cannot parse `{ <<input>> }` as a DATE. Calendar dates need to be specified using the format 'YYYY-MM', while ordinal dates need to be specified using the format 'YYYY-DDD'.
+Status description:: error: data exception - invalid date format. Cannot parse `{ <<input>> }` as a DATE. Calendar dates need to be specified using the format `YYYY-MM`, while ordinal dates need to be specified using the format `YYYY-DDD`.
 
 === xref:errors/gql-errors/22N36.adoc[22N36]
 
@@ -278,13 +291,17 @@ Status description:: error: data exception - invalid function argument. Invalid 
 
 Status description:: error: data exception - unsupported property value type. Value `{ <<value>> }` cannot be stored in properties.
 
+=== xref:errors/gql-errors/22N40.adoc[22N40]
+
+Status description:: error: data exception - non-assignable temporal component. Cannot assign `{ <<component>> }` of a `{ <<valueType>> }`.
+
 === xref:errors/gql-errors/22N41.adoc[22N41]
 
-Status description:: error: data exception - merge node uniqueness constraint violation. The 'MERGE' clause did not find a matching node `{ <<variable>> }` and cannot create a new node due to conflicts with existing uniqueness constraints.
+Status description:: error: data exception - merge node uniqueness constraint violation. The `MERGE` clause did not find a matching node `{ <<variable>> }` and cannot create a new node due to conflicts with existing uniqueness constraints.
 
 === xref:errors/gql-errors/22N42.adoc[22N42]
 
-Status description:: error: data exception - merge relationship uniqueness constraint violation. The 'MERGE' clause did not find a matching relationship `{ <<variable>> }` and cannot create a new relationship due to conflicts with existing uniqueness constraints.
+Status description:: error: data exception - merge relationship uniqueness constraint violation. The `MERGE` clause did not find a matching relationship `{ <<variable>> }` and cannot create a new relationship due to conflicts with existing uniqueness constraints.
 
 === xref:errors/gql-errors/22N43.adoc[22N43]
 
@@ -300,7 +317,7 @@ Status description:: error: data exception - unsupported use of parallel runtime
 
 === xref:errors/gql-errors/22N47.adoc[22N47]
 
-Status description:: error: data exception - invalid parallel runtime configuration. No workers are configured for the parallel runtime. Set 'server.cypher.parallel.worker_limit' to a larger value.
+Status description:: error: data exception - invalid parallel runtime configuration. No workers are configured for the parallel runtime. Set `server.cypher.parallel.worker_limit` to a larger value.
 
 === xref:errors/gql-errors/22N48.adoc[22N48]
 
@@ -308,27 +325,36 @@ Status description:: error: data exception - unable to use specified runtime. Ca
 
 === xref:errors/gql-errors/22N49.adoc[22N49]
 
-Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via 'dbms.import.csv.buffer_size'.
+Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via `dbms.import.csv.buffer_size`.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/22N51.adoc[22N51]
 
-Status description:: error: data exception - database or alias does not exist. A [composite] database or alias with the name `{ <<db>> }` does not exist. Verify that the spelling is correct.
+Status description:: error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/22N52.adoc[22N52]
 
-Status description:: error: data exception - invalid combination of PROFILE and EXPLAIN. 'PROFILE' and 'EXPLAIN' cannot be combined.
+Status description:: error: data exception - invalid combination of PROFILE and EXPLAIN. `PROFILE` and `EXPLAIN` cannot be combined.
 
 === xref:errors/gql-errors/22N53.adoc[22N53]
 
-Status description:: error: data exception - invalid use of PROFILE. Cannot 'PROFILE' query before results are materialized.
+Status description:: error: data exception - invalid use of PROFILE. Cannot `PROFILE` query before results are materialized.
 
 === xref:errors/gql-errors/22N54.adoc[22N54]
 
 Status description:: error: data exception - invalid map. Multiple conflicting entries specified for `{ <<mapKey>> }`.
 
+=== xref:errors/gql-errors/22N55.adoc[22N55]
+
+Status description:: error: data exception - required key missing from map. Map requires key `{ <<mapKey>> }` but was missing from field `{ <<field>> }`.
+
 === xref:errors/gql-errors/22N56.adoc[22N56]
 
 Status description:: error: data exception - protocol message length limit overflow. Protocol message length limit exceeded (limit: `{ <<boltMsgLenLimit>> }`).
+
+=== xref:errors/gql-errors/22N57.adoc[22N57]
+
+Status description:: error: data exception - invalid protocol type. Protocol type is invalid. Invalid number of struct components (received `{ <<count>>1 }` but expected `{ <<count>>2 }`).
 
 === xref:errors/gql-errors/22N58.adoc[22N58]
 
@@ -456,7 +482,7 @@ Status description:: error: data exception - missing YIELD. A required YIELD cla
 
 === xref:errors/gql-errors/22N94.adoc[22N94]
 
-Status description:: error: data exception - invalid YIELD *. 'YIELD *' is not supported in this context. Explicitly specify which columns to yield.
+Status description:: error: data exception - invalid YIELD *. `YIELD *` is not supported in this context. Explicitly specify which columns to yield.
 
 === xref:errors/gql-errors/22N95.adoc[22N95]
 
@@ -492,15 +518,15 @@ Status description:: error: data exception - invalid property based access contr
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
-Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to 'NULL'.
+Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
 
 === xref:errors/gql-errors/22NA5.adoc[22NA5]
 
-Status description:: error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to 'NULL'. Use `IS NULL' instead.
+Status description:: error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
 
 === xref:errors/gql-errors/22NA6.adoc[22NA6]
 
-Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to 'NULL'. Use 'IS NOT NULL' instead.
+Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
 
 === xref:errors/gql-errors/22NA7.adoc[22NA7]
 
@@ -510,9 +536,13 @@ Status description:: error: data exception - invalid property based access contr
 
 Status description:: error: data exception - parsing JSON failure. Underlying error: `{ <<cause>> }`.
 
+=== xref:errors/gql-errors/22NA9.adoc[22NA9]
+
+Status description:: error: data exception -unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
+
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
-Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to 'NULL'. Use `WHERE` syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === xref:errors/gql-errors/22NB1.adoc[22NB1]
 
@@ -529,6 +559,14 @@ Status description:: error: data exception - token presence verification failed.
 === xref:errors/gql-errors/22NB4.adoc[22NB4]
 
 Status description:: error: data exception - endpoint label presence verification failed. Relationship (`{ <<entityId>>1 }`) with type `{ <<relType>> }` requires its `{ <<endpointType>> }` node (`{ $entityId2 }`) to have the label `{ <<label>> }`.
+
+=== xref:errors/gql-errors/22NB5.adoc[22NB5]
+
+Status description:: error: data exception - unsupported time zone identifier. Unknown time zone identifier `{ <<input>> }`.
+
+=== xref:errors/gql-errors/22NB6.adoc[22NB6]
+
+Status description:: error: data exception - input empty. Invalid input. `{ <<item>> }` is not allowed to be an empty string.
 
 [[invalid-transaction-state]]
 == Invalid transaction state
@@ -556,9 +594,10 @@ Status description:: error: invalid transaction state - concurrent access violat
 Status description:: error: invalid transaction state - specified transaction does not exist.
 Transaction `{ <<transactionId>> }` does not exist.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/25N05.adoc[25N05]
 
-Status description:: error: invalid transaction state - transaction terminated or closed. The transaction has been terminated or closed.
+Status description:: error: invalid transaction state - transaction closed. Transaction has been closed.
 
 === xref:errors/gql-errors/25N06.adoc[25N06]
 
@@ -583,6 +622,18 @@ Status description:: error: invalid transaction state - index was dropped. Index
 === xref:errors/gql-errors/25N13.adoc[25N13]
 
 Status description:: error: invalid transaction state - cannot access entity after removal. A `{ <<entityType>> }` was accessed after being deleted in this transaction. Verify the transaction statements.
+
+=== xref:errors/gql-errors/25N14.adoc[25N14]
+
+Status description:: error: invalid transaction state - transaction termination client error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+
+=== xref:errors/gql-errors/25N15.adoc[25N15]
+
+Status description:: error: invalid transaction state - transaction termination database error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+
+=== xref:errors/gql-errors/25N16.adoc[25N16]
+
+Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
 
 [[invalid-transaction-termination]]
 == Invalid transaction termination
@@ -651,10 +702,6 @@ Status description:: error: syntax error or access rule violation
 
 Status description:: error: syntax error or access rule violation - invalid syntax
 
-=== xref:errors/gql-errors/42002.adoc[42002]
-
-Status description:: error: syntax error or access rule violation - invalid reference
-
 === xref:errors/gql-errors/42006.adoc[42006]
 
 Status description:: error: syntax error or access rule violation - number of edge labels below supported minimum
@@ -697,15 +744,15 @@ Status description:: error: syntax error or access rule violation - number of ed
 
 === xref:errors/gql-errors/42I00.adoc[42I00]
 
-Status description:: error: syntax error or access rule violation - invalid case expression. 'CASE' expressions must have the same number of 'WHEN' and 'THEN' operands.
+Status description:: error: syntax error or access rule violation - invalid case expression. `CASE` expressions must have the same number of `WHEN` and `THEN` operands.
 
 === xref:errors/gql-errors/42I01.adoc[42I01]
 
-Status description:: error: syntax error or access rule violation - invalid `FOREACH`. Invalid use of `{ <<clause>> }` inside 'FOREACH'.
+Status description:: error: syntax error or access rule violation - invalid `FOREACH`. Invalid use of `{ <<clause>> }` inside `FOREACH`.
 
 === xref:errors/gql-errors/42I02.adoc[42I02]
 
-Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with '/\*' must also have a closing '*/'.
+Status description:: error: syntax error or access rule violation - invalid comment. Failed to parse comment. A comment starting with `/\*` must also have a closing `*/`.
 
 === xref:errors/gql-errors/42I04.adoc[42I04]
 
@@ -719,9 +766,17 @@ Status description:: error: syntax error or access rule violation - invalid FIEL
 
 Status description:: error: syntax error or access rule violation - invalid input. Invalid input `{ <<input>> }`, expected: `{ <<valueList>> }`.
 
+=== xref:errors/gql-errors/42I07.adoc[42I07]
+
+Status description:: error: syntax error or access rule violation - invalid integer literal. The given `{ <<valueType>> }` literal `{ <<input>> }` is invalid
+
 === xref:errors/gql-errors/42I08.adoc[42I08]
 
 Status description:: error: syntax error or access rule violation - invalid lower bound. The lower bound of the variable length relationship used in the `{ <<fun>> }` function must be 0 or 1.
+
+=== xref:errors/gql-errors/42I10.adoc[42I10]
+
+Status description:: error: syntax error or access rule violation - invalid label expression. Mixing label expression symbols (`|`, `&`, `!`, and `%`) with colon (`:`) between labels is not allowed. This expression could be expressed as `{ <<syntax>> }`.
 
 === xref:errors/gql-errors/42I11.adoc[42I11]
 
@@ -734,6 +789,18 @@ Status description:: error: syntax error or access rule violation - invalid nest
 === xref:errors/gql-errors/42I13.adoc[42I13]
 
 Status description:: error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
+
+=== xref:errors/gql-errors/42I14.adoc[42I14]
+
+Status description:: error: syntax error or access rule violation - invalid number of relationship types. Exactly one relationship type must be specified for `{ <<var>> }`.
+
+=== xref:errors/gql-errors/42I15.adoc[42I15]
+
+Status description:: error: syntax error or access rule violation - invalid number of statements. Expected exactly one statement per query but got: `{ <<count>> }`.
+
+=== xref:errors/gql-errors/42I16.adoc[42I16]
+
+Status description:: error: syntax error or access rule violation - invalid point. Map with keys `{ <<mapKeyList>> }` is not a valid POINT. Use either Cartesian or geographic coordinates.
 
 === xref:errors/gql-errors/42I17.adoc[42I17]
 
@@ -751,17 +818,33 @@ Status description:: error: syntax error or access rule violation - invalid stri
 
 Status description:: error: syntax error or access rule violation - invalid symbol in expression. Label expressions and relationship type expressions cannot contain `{ <<input>> }`. To express a label disjunction use `{ <<labelExpr>> }` instead.
 
+=== xref:errors/gql-errors/42I21.adoc[42I21]
+
+Status description:: error: syntax error or access rule violation - invalid reference to variable out of scope. Not allowed to reference `{ <<variableList>> }` from within a parenthesized/quantified path pattern like `{ <<pat>> }` in the same graph pattern.
+
 === xref:errors/gql-errors/42I23.adoc[42I23]
 
 Status description:: error: syntax error or access rule violation - invalid quantified path pattern in shortest path. The `{ <<fun>> }` function cannot contain a quantified path pattern.
 
+=== xref:errors/gql-errors/42I24.adoc[42I24]
+
+Status description:: error: syntax error or access rule violation - invalid use of aggregate function. Aggregate expression `{ <<expr>> }` is not allowed in this context.
+
 === xref:errors/gql-errors/42I25.adoc[42I25]
 
-Status description:: error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported after a write clause.
+Status description:: error: syntax error or access rule violation - invalid use of `CALL IN TRANSACTIONS`. `CALL { ... } IN TRANSACTIONS` is not supported after a write clause.
 
 === xref:errors/gql-errors/42I26.adoc[42I26]
 
-Status description:: error: syntax error or access rule violation - invalid `DELETE`. 'DELETE ...' does not support removing labels from a node. Use 'REMOVE ...' instead.
+Status description:: error: syntax error or access rule violation - invalid `DELETE`. `DELETE ...` does not support removing labels from a node. Use `REMOVE ...` instead.
+
+=== xref:errors/gql-errors/42I27.adoc[42I27]
+
+Status description:: error: syntax error or access rule violation - invalid use of `DISTINCT` with non-aggregate function. `DISTINCT` cannot be used with the `{ <<fun>> }` function.
+
+=== xref:errors/gql-errors/42I28.adoc[42I28]
+
+Status description:: error: syntax error or access rule violation - invalid use of importing `WITH`. Importing `WITH` can consist only of direct references to outside variables. `{ <<input>> }` is not allowed.
 
 === xref:errors/gql-errors/42I29.adoc[42I29]
 
@@ -769,27 +852,35 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42I31.adoc[42I31]
 
-Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. 'MATCH ...' cannot directly follow an 'OPTIONAL MATCH ...'. Use a `WITH` clause between them.
+Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. `MATCH ...` cannot directly follow an `OPTIONAL MATCH ...`. Use a `WITH` clause between them.
+
+=== xref:errors/gql-errors/42I32.adoc[42I32]
+
+Status description:: error: syntax error or access rule violation - invalid use of node and relationship pattern predicate. Node and relationship pattern predicates cannot be used in `{ <<context>> }`. They can only be used in a `MATCH` clause or inside a pattern comprehension.
 
 === xref:errors/gql-errors/42I33.adoc[42I33]
 
-Status description:: error: syntax error or access rule violation - invalid use of NOT NULL. Closed Dynamic Union types cannot be appended with 'NOT NULL', specify 'NOT NULL' on inner types instead.
+Status description:: error: syntax error or access rule violation - invalid use of `NOT NULL`. Closed Dynamic Union types cannot be appended with `NOT NULL`, specify `NOT NULL` on inner types instead.
 
 === xref:errors/gql-errors/42I34.adoc[42I34]
 
 Status description:: error: syntax error or access rule violation - invalid use of pattern expression. A pattern expression can only be used to test the existence of a pattern. Use a pattern comprehension instead.
 
+=== xref:errors/gql-errors/42I35.adoc[42I35]
+
+Status description:: error: syntax error or access rule violation - invalid use of relationship type expression. Relationship type expressions can only be used in `MATCH ...`.
+
 === xref:errors/gql-errors/42I36.adoc[42I36]
 
-Status description:: error: syntax error or access rule violation - invalid use of `REPORT STATUS`. 'REPORT STATUS' can only be used when specifying 'ON ERROR CONTINUE' or 'ON ERROR BREAK'.
+Status description:: error: syntax error or access rule violation - invalid use of `REPORT STATUS`. `REPORT STATUS` can only be used when specifying `ON ERROR CONTINUE` or `ON ERROR BREAK`.
 
 === xref:errors/gql-errors/42I37.adoc[42I37]
 
-Status description:: error: syntax error or access rule violation - invalid use of `RETURN *`. 'RETURN *' is not allowed when there are no variables in scope.
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN *`. `RETURN *` is not allowed when there are no variables in scope.
 
 === xref:errors/gql-errors/42I38.adoc[42I38]
 
-Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. 'RETURN ...' can only be used at the end of a query or subquery.
+Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. `RETURN ...` can only be used at the end of a query or subquery.
 
 === xref:errors/gql-errors/42I39.adoc[42I39]
 
@@ -805,7 +896,11 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42I42.adoc[42I42]
 
-Status description:: error: syntax error or access rule violation - invalid use of YIELD. Cannot use YIELD on a call to a void procedure.
+Status description:: error: syntax error or access rule violation - invalid use of `YIELD`. Cannot use `YIELD` on a call to a void procedure.
+
+=== xref:errors/gql-errors/42I43.adoc[42I43]
+
+Status description:: error: syntax error or access rule violation - invalid use of `YIELD *`. `YIELD *` can only be used with a standalone procedure call.
 
 === xref:errors/gql-errors/42I45.adoc[42I45]
 
@@ -825,7 +920,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42I49.adoc[42I49]
 
-Status description:: error: syntax error or access rule violation - invalid inequality operator. Unknown inequality operator '!='. The operator for inequality in Cypher is '<>'.
+Status description:: error: syntax error or access rule violation - invalid inequality operator. Unknown inequality operator `!=`. The operator for inequality in Cypher is `<>`.
 
 === xref:errors/gql-errors/42I50.adoc[42I50]
 
@@ -839,9 +934,10 @@ Status description:: info: invalid call signature. The procedure or function `{ 
 
 Status description:: error: syntax error or access rule violation - no longer valid syntax. `{ <<msg>> }`
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
-Status description:: error: syntax error or access rule violation - no such database. The database `{ <<db>> }` was not found. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N01.adoc[42N01]
 
@@ -871,9 +967,10 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - variable shadowing. The variable `{ <<variable>> }` is shadowing a variable with the same name from the outer scope and needs to be renamed.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N08.adoc[42N08]
 
-Status description:: error: syntax error or access rule violation - no such procedure or function. The procedure or function `{ <<procFun>> }` was not registered for this database instance. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - no such procedure. The procedure `{ <<procFun>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N09.adoc[42N09]
 
@@ -883,9 +980,10 @@ Status description:: error: syntax error or access rule violation - no such user
 
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N11.adoc[42N11]
 
-Status description:: error: syntax error or access rule violation - database or alias already exists. A `[composite]` database or alias with the name `{ <<db>> }` already exists.
+Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.
 
 === xref:errors/gql-errors/42N12.adoc[42N12]
 
@@ -921,7 +1019,7 @@ Status description:: error: syntax error or access rule violation - duplicate cl
 
 === xref:errors/gql-errors/42N20.adoc[42N20]
 
-Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator '[ ]' cannot be empty.
+Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator `[ ]` cannot be empty.
 
 
 === xref:errors/gql-errors/42N21.adoc[42N21]
@@ -932,6 +1030,10 @@ Status description:: error: syntax error or access rule violation - unaliased re
 === xref:errors/gql-errors/42N22.adoc[42N22]
 
 Status description:: error: syntax error or access rule violation - single return column required. A `COLLECT` subquery must end with a single return column.
+
+=== xref:errors/gql-errors/42N23.adoc[42N23]
+
+Status description:: error: syntax error or access rule violation - missing reference to aggregation function. The aggregating function must be included in the `{ <<clause>> }` clause for use in `ORDER BY ...`.
 
 === xref:errors/gql-errors/42N24.adoc[42N24]
 
@@ -977,29 +1079,46 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - duplicate return item name. Return items must have unique names.
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N39.adoc[42N39]
 
-Status description:: error: syntax error or access rule violation - incompatible return columns. All subqueries in a `UNION` clause must have the same return column names.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{<<context>>}` must have the same return column names. Use `AS` to ensure columns have the same name.
 
 === xref:errors/gql-errors/42N40.adoc[42N40]
 
 Status description:: error: syntax error or access rule violation - single relationship pattern required. The `{ <<fun>> }` function must contain one relationship pattern.
 
+=== xref:errors/gql-errors/42N41.adoc[42N41]
+
+Status description:: error: syntax error or access rule violation - missing `|-expression`. The reduce function requires a `| expression` after the accumulator.
+
 === xref:errors/gql-errors/42N42.adoc[42N42]
 
 Status description:: error: syntax error or access rule violation - unsupported sub-path binding. Sub-path assignment is not supported.
 
+=== xref:errors/gql-errors/42N44.adoc[42N44]
+
+Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<var>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+
 === xref:errors/gql-errors/42N45.adoc[42N45]
 
-Status description:: error: syntax error or access rule violation - unexpected end of input. Unexpected end of input, expected 'CYPHER', 'EXPLAIN', 'PROFILE' or a query.
+Status description:: error: syntax error or access rule violation - unexpected end of input. Unexpected end of input, expected `CYPHER`, `EXPLAIN`, `PROFILE` or a query.
 
 === xref:errors/gql-errors/42N47.adoc[42N47]
 
-Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `CALL IN TRANSACTIONS`. 'CALL { ... } IN TRANSACTIONS' is not supported in '... UNION ...'.
+Status description:: error: syntax error or access rule violation - invalid use of `UNION` and `CALL IN TRANSACTIONS`. `CALL { ... } IN TRANSACTIONS` is not supported in `... UNION ...`.
+
+=== xref:errors/gql-errors/42N48.adoc[42N48]
+
+Status description:: error: syntax error or access rule violation - no such function. The function `{ <<fun>> }` was not found. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N49.adoc[42N49]
 
 Status description:: error: syntax error or access rule violation - unsupported normal form. Unknown Normal Form: `{ <<input>> }`.
+
+=== xref:errors/gql-errors/42N50.adoc[42N50]
+
+Status description:: error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<variable>> }` is not defined for this procedure. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N51.adoc[42N51]
 
@@ -1008,6 +1127,10 @@ Status description:: error: syntax error or access rule violation - invalid para
 === xref:errors/gql-errors/42N53.adoc[42N53]
 
 Status description:: error: syntax error or access rule violation - unsafe usage of repeatable elements. The quantified path pattern may yield an infinite number of rows under match mode `REPEATABLE ELEMENTS`. Add an upper bound to the quantified path pattern.
+
+=== xref:errors/gql-errors/42N54.adoc[42N54]
+
+Status description:: error: syntax error or access rule violation - unsupported match mode. The match mode `{ <<matchMode>> }` is not supported.
 
 
 === xref:errors/gql-errors/42N56.adoc[42N56]
@@ -1019,6 +1142,10 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ <<expr>> }` cannot contain any updating clauses.
 
+=== xref:errors/gql-errors/42N58.adoc[42N58]
+
+Status description:: error: syntax error or access rule violation - unsupported use of nesting. Nested `CALL { ... } IN TRANSACTIONS` is not supported.
+
 === xref:errors/gql-errors/42N59.adoc[42N59]
 
 Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ <<variable>> }` already declared.
@@ -1029,7 +1156,7 @@ Status description:: error: syntax error or access rule violation - variable not
 
 === xref:errors/gql-errors/42N63.adoc[42N63]
 
-Status description:: error: syntax error or access rule violation - inner type with different nullability. All inner types in a Closed Dynamic Union must be nullable, or be appended with 'NOT NULL'.
+Status description:: error: syntax error or access rule violation - inner type with different nullability. All inner types in a Closed Dynamic Union must be nullable, or be appended with `NOT NULL`.
 
 === xref:errors/gql-errors/42N64.adoc[42N64]
 
@@ -1037,11 +1164,15 @@ Status description:: error: syntax error or access rule violation - at least one
 
 === xref:errors/gql-errors/42N65.adoc[42N65]
 
-Status description:: error: syntax error or access rule violation - node variable not bound. The `{ <<fun>> }` function requires bound node variables when it is not part of a 'MATCH ...'.
+Status description:: error: syntax error or access rule violation - node variable not bound. The `{ <<fun>> }` function requires bound node variables when it is not part of a `MATCH ...`.
 
 === xref:errors/gql-errors/42N66.adoc[42N66]
 
 Status description:: error: syntax error or access rule violation - relationship variable already bound. Bound relationships are not allowed in calls to the `{ <<fun>> }` function.
+
+=== xref:errors/gql-errors/42N68.adoc[42N68]
+
+Status description:: error: syntax error or access rule violation - duplicate variable definition. Variables cannot be defined more than once in a `{ <<clause>> }` clause.
 
 === xref:errors/gql-errors/42N69.adoc[42N69]
 
@@ -1055,9 +1186,13 @@ Status description:: error: syntax error or access rule violation - function wit
 
 Status description:: error: syntax error or access rule violation - incomplete query. A query must conclude with a `RETURN` clause, a `FINISH` clause, an update clause, a unit subquery call, or a procedure call without a `YIELD` clause.
 
+=== xref:errors/gql-errors/42N72.adoc[42N72]
+
+Status description:: error: syntax error or access rule violation - graph function only supported on composite databases. Calling graph functions is only supported on composite databases. Use the name directly or connect to a composite database with the desired constituents.
+
 === xref:errors/gql-errors/42N73.adoc[42N73]
 
-Status description:: error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to '... UNION ...' . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
+Status description:: error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to `... UNION ...` . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
 
 === xref:errors/gql-errors/42N74.adoc[42N74]
 
@@ -1083,13 +1218,17 @@ Status description:: error: syntax error or access rule violation - variable alr
 
 Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ <<param>> }`, but got `{ <<paramList>> }`.
 
+=== xref:errors/gql-errors/42N82.adoc[42N82]
+
+Status description:: error: syntax error or access rule violation - cannot drop database with aliases. The database identified by `{ <<db>> }` has one or more aliases. Drop the aliases `{ <<aliasList>> }` before dropping the database.
+
 === xref:errors/gql-errors/42N83.adoc[42N83]
 
 Status description:: error: syntax error or access rule violation - impersonation disallowed while password change required. Cannot impersonate a user while password change required.
 
 === xref:errors/gql-errors/42N84.adoc[42N84]
 
-Status description:: error: syntax error or access rule violation - `TERMINATE TRANSACTION` misses `YIELD` clause. `WHERE` clause without `YIELD` clause. Use 'TERMINATE TRANSACTION ... YIELD ... WHERE ...'.
+Status description:: error: syntax error or access rule violation - `TERMINATE TRANSACTION` misses `YIELD` clause. `WHERE` clause without `YIELD` clause. Use `TERMINATE TRANSACTION ... YIELD ... WHERE ...`.
 
 === xref:errors/gql-errors/42N85.adoc[42N85]
 
@@ -1101,7 +1240,7 @@ Status description:: error: syntax error or access rule violation - wildcard in 
 
 === xref:errors/gql-errors/42N88.adoc[42N88]
 
-Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for 'REMOVE IMMUTABLE PRIVILEGE'.
+Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for `REMOVE IMMUTABLE PRIVILEGE`.
 
 === xref:errors/gql-errors/42N89.adoc[42N89]
 
@@ -1142,7 +1281,11 @@ Status description:: error: syntax error or access rule violation - invalid refe
 
 === xref:errors/gql-errors/42NA9.adoc[42NA9]
 
-Status description:: error: syntax error or access rule violation - system database procedure rules. The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: 'CALL', 'YIELD', 'RETURN'. 'YIELD' and 'RETURN' clauses are optional. The order of the clauses is fixed and each can only occur once.
+Status description:: error: syntax error or access rule violation - system database procedure rules. The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: `CALL`, `YIELD`, `RETURN`. `YIELD` and `RETURN` clauses are optional. The order of the clauses is fixed and each can only occur once.
+
+=== xref:errors/gql-errors/42NFC.adoc[42NFC]
+
+Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.
 
 === xref:errors/gql-errors/42NFD.adoc[42NFD]
 
@@ -1217,6 +1360,10 @@ Status description:: error: general processing exception - remote execution data
 
 Status description:: error: general processing exception - no such schema descriptor. The `{ <<schemaDescrType>> }` was not found for `{ <<schemaDescr>> }`. Verify that the spelling is correct.
 
+=== xref:errors/gql-errors/50N23.adoc[50N23]
+
+error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
@@ -1233,7 +1380,7 @@ Status description:: error: system configuration or operation exception - proced
 
 === xref:errors/gql-errors/51N01.adoc[51N01]
 
-Status description:: error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ <<procField>> }` in the class `{ <<procClass>> }` is annotated as a '@Context' field, but it is declared as static. '@Context' fields must be public, non-final and non-static.
+Status description:: error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ <<procField>> }` in the class `{ <<procClass>> }` is annotated as a `@Context` field, but it is declared as static. `@Context` fields must be public, non-final and non-static.
 
 === xref:errors/gql-errors/51N02.adoc[51N02]
 
@@ -1247,7 +1394,7 @@ Status description:: error: system configuration or operation exception - unable
 
 === xref:errors/gql-errors/51N04.adoc[51N04]
 
-Status description:: error: system configuration or operation exception - missing class field annotation. The field `{ <<procField>> }` on `{ <<procClass>> }` must be annotated as a '@Context' field in order to store its state.
+Status description:: error: system configuration or operation exception - missing class field annotation. The field `{ <<procField>> }` on `{ <<procClass>> }` must be annotated as a `@Context` field in order to store its state.
 
 
 === xref:errors/gql-errors/51N05.adoc[51N05]
@@ -1257,7 +1404,7 @@ Status description:: error: system configuration or operation exception - class 
 
 === xref:errors/gql-errors/51N06.adoc[51N06]
 
-Status description:: error: system configuration or operation exception - missing argument name. The argument at position `{ <<pos>> }` in `{ <<procMethod>> }` requires a '@Name' annotation and a non-empty name.
+Status description:: error: system configuration or operation exception - missing argument name. The argument at position `{ <<pos>> }` in `{ <<procMethod>> }` requires a `@Name` annotation and a non-empty name.
 
 
 === xref:errors/gql-errors/51N07.adoc[51N07]
@@ -1267,12 +1414,12 @@ Status description:: error: system configuration or operation exception - invali
 
 === xref:errors/gql-errors/51N08.adoc[51N08]
 
-Status description:: error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ <<procClass>> }` must contain exactly one '@UserAggregationResult' method and exactly one '@UserAggregationUpdate' method.
+Status description:: error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ <<procClass>> }` must contain exactly one `@UserAggregationResult` method and exactly one `@UserAggregationUpdate` method.
 
 
 === xref:errors/gql-errors/51N09.adoc[51N09]
 
-Status description:: error: system configuration or operation exception - @UserAggregationUpdate method must be public and void. The '@UserAggregationUpdate' method `{ <<procMethod>> }` of `{ <<procClass>> }` must be public and have the return type 'void'.
+Status description:: error: system configuration or operation exception - @UserAggregationUpdate method must be public and void. The `@UserAggregationUpdate` method `{ <<procMethod>> }` of `{ <<procClass>> }` must be public and have the return type `void`.
 
 
 === xref:errors/gql-errors/51N10.adoc[51N10]
@@ -1285,9 +1432,10 @@ Status description:: error: system configuration or operation exception - aggreg
 Status description:: error: system configuration or operation exception - class not public. The class `{ <<procClass>> }` must be public.
 
 
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/51N12.adoc[51N12]
 
-Status description:: error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero output fields and must be defined as void.
+Status description:: error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero return columns and must be defined as void.
 
 
 === xref:errors/gql-errors/51N13.adoc[51N13]
@@ -1302,7 +1450,7 @@ The procedure `{ <<proc>> }` has a duplicate `{ <<procFieldType>> }` field, `{ <
 
 === xref:errors/gql-errors/51N15.adoc[51N15]
 
-Status description:: error: system configuration or operation exception - invalid map key type. Type mismatch for map key. Required 'STRING', but found `{ <<valueType>> }`.
+Status description:: error: system configuration or operation exception - invalid map key type. Type mismatch for map key. Required `STRING`, but found `{ <<valueType>> }`.
 
 
 === xref:errors/gql-errors/51N16.adoc[51N16]
@@ -1329,12 +1477,12 @@ Status description:: error: system configuration or operation exception - proced
 
 === xref:errors/gql-errors/51N22.adoc[51N22]
 
-Status description:: error: system configuration or operation exception - exhaustive shortest path search disabled. Finding the shortest path for the given pattern requires an exhaustive search. To enable exhaustive searches, set 'cypher.forbid_exhaustive_shortestpath' to false.
+Status description:: error: system configuration or operation exception - exhaustive shortest path search disabled. Finding the shortest path for the given pattern requires an exhaustive search. To enable exhaustive searches, set `cypher.forbid_exhaustive_shortestpath` to false.
 
 
 === xref:errors/gql-errors/51N23.adoc[51N23]
 
-Status description:: error: system configuration or operation exception - cyclic shortest path search disabled. Cannot find the shortest path when the start and end nodes are the same. To enable this behavior, set 'dbms.cypher.forbid_shortestpath_common_nodes' to false.
+Status description:: error: system configuration or operation exception - cyclic shortest path search disabled. Cannot find the shortest path when the start and end nodes are the same. To enable this behavior, set `dbms.cypher.forbid_shortestpath_common_nodes` to false.
 
 
 === xref:errors/gql-errors/51N24.adoc[51N24]
@@ -1345,9 +1493,15 @@ Status description:: error: system configuration or operation exception - insuff
 
 Status description:: error: system configuration or operation exception - database is busy. Cannot compile query due to excessive updates to indexes and constraints.
 
+
+=== xref:errors/gql-errors/51N26.adoc[51N26]
+
+Status description:: error: system configuration or operation exception - not supported in this version. `{ <<item>> }` is not available. This implementation of Cypher does not support `{ <<feat>> }`.
+
+[role=label--changed-2025.03]
 === xref:errors/gql-errors/51N27.adoc[51N27]
 
-Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<component>> }` is not supported in `{ <<edition>> }`.
+Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<feat>> }` is not supported in `{ <<edition>> }`.
 
 === xref:errors/gql-errors/51N28.adoc[51N28]
 
@@ -1356,7 +1510,7 @@ Status description:: error: system configuration or operation exception - not su
 
 === xref:errors/gql-errors/51N29.adoc[51N29]
 
-Status description:: error: system configuration or operation exception - not supported by this server. The command `{ <<cmd>> }` must be executed on the current 'LEADER' server.
+Status description:: error: system configuration or operation exception - not supported by this server. The command `{ <<cmd>> }` must be executed on the current `LEADER` server.
 
 
 === xref:errors/gql-errors/51N30.adoc[51N30]
@@ -1517,6 +1671,10 @@ Status description:: error: system configuration or operation exception - vector
 
 Status description:: error: system configuration or operation exception - resource exhaustion. Insufficient resources to complete the request.
 
+=== xref:errors/gql-errors/51N67.adoc[51N67]
+
+Status description:: error: system configuration or operation exception - invalid CDC selector type. Unexpected CDC selector `{ <<selectorType>>1 }` at `{ <<input>> }`, expected selector to be a `{ <<selectorType>>2 }` selector.
+
 === xref:errors/gql-errors/51N68.adoc[51N68]
 
 Status description:: error: system configuration or operation exception - CDC is disabled for this database. Change Data Capture is not currently enabled for this database.
@@ -1527,7 +1685,7 @@ Status description:: error: system configuration or operation exception - system
 
 === xref:errors/gql-errors/51N70.adoc[51N70]
 
-Status description:: error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ <<db>> }` because Bolt is not enabled. Please update your configuration such that 'server.bolt.enabled' is set to true.
+Status description:: error: system configuration or operation exception - bolt is not enabled. Cannot get routing table for `{ <<db>> }` because Bolt is not enabled. Please update your configuration such that `server.bolt.enabled` is set to true.
 
 === xref:errors/gql-errors/51N71.adoc[51N71]
 
@@ -1634,6 +1792,18 @@ Status description:: error: procedure exception - failed to reload procedures. F
 
 Status description:: error: procedure exception - JMX error. JMX error while accessing `{ <<param>> }`. See logs for more information.
 
+=== xref:errors/gql-errors/52N26.adoc[52N26]
+
+Status description:: error: procedure exception - invalid change identifier. `{ <<param>> }` is not a valid change identifier.
+
+=== xref:errors/gql-errors/52N27.adoc[52N27]
+
+Status description:: error: procedure exception - invalid commit timestamp. The commit timestamp for the provided transaction ID does not match the one in the transaction log.
+
+=== xref:errors/gql-errors/52N28.adoc[52N28]
+
+Status description:: error: procedure exception - invalid change identifier and transaction id. `{ <<transactionId>> }` is not a valid change identifier. Transaction ID does not exist.
+
 === xref:errors/gql-errors/52N29.adoc[52N29]
 
 Status description:: error: procedure exception - outdated change identifier. Given ChangeIdentifier describes a transaction that occurred before any enrichment records exist.
@@ -1668,11 +1838,19 @@ Status description:: error: procedure exception - invalid procedure argument wit
 
 === xref:errors/gql-errors/52N37.adoc[52N37]
 
-Status description:: error: procedure exception - procedure execution error. Execution of the procedure `{ <<proc>> }` ` failed.
+Status description:: error: procedure exception - procedure execution error. Execution of the procedure `{ <<proc>> }` failed.
+
+=== xref:errors/gql-errors/52N38.adoc[52N38]
+
+Status description:: error: procedure exception - cdc start position not found. Cannot find a start position in the logs.
+
+=== xref:errors/gql-errors/52N39.adoc[52N39]
+
+Status description:: error: procedure exception - cdc scanner inactive. The log scanner is no longer active.
 
 === xref:errors/gql-errors/52U00.adoc[52U00]
 
-Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ <<proc>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`.
+Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ <<proc>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`
 
 [[function-exceptions]]
 == Function exceptions

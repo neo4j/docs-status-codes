@@ -1,7 +1,7 @@
 = 22N35
 
 == Status description
-error: data exception - invalid date format. Cannot parse `{ <<input>> }` as a DATE. Calendar dates need to be specified using the format 'YYYY-MM', while ordinal dates need to be specified using the format 'YYYY-DDD'.
+error: data exception - invalid date format. Cannot parse `{ <<input>> }` as a DATE. Calendar dates need to be specified using the format `YYYY-MM`, while ordinal dates need to be specified using the format `YYYY-DDD`.
 
 
 ifndef::backend-pdf[]
