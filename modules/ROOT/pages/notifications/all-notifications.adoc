@@ -1906,11 +1906,11 @@ CREATE TEXT INDEX FOR (n:Label) ON (n.prop) OPTIONS {indexProvider : 'text-2.0'}
 .Using a renamed or a deprecated procedure
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 [source,cypher]
 ----
-CALL cdc.query
+CALL cdc.query()
 ----
 
 Returned GQLSTATUS code::
@@ -1921,43 +1921,42 @@ warn: feature deprecated with replacement.
 `cdc.query` is deprecated.
 It is replaced by `db.cdc.query`.
 
-======
-[.include-with-GQLSTATUS-deprecated-without-replacement]
-======
+Suggestions for improvement::
+Use the procedure `db.cdc.query` instead.
++
 [source,cypher]
 ----
-CALL unsupported.dbms.shutdown
+CALL db.cdc.query()
 ----
-
-Returned GQLSTATUS code::
-01N02
-
-Returned status description::
-warn: feature deprecated without replacement.
-`unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
 ======
+
 [.include-with-neo4j-code]
 ======
 
+Query::
++
 [source,cypher]
 ----
-CALL unsupported.dbms.shutdown
+CALL cdc.query()
 ----
 
 Description of the returned code::
-The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
+The query used a deprecated procedure: `cdc.query`.
 
 Suggestions for improvement::
-Remove the use of the deprecated procedure.
-If there is a suggested replacement, update to use the replacement instead.
-
+Use the procedure `db.cdc.query` instead.
++
+[source,cypher]
+----
+CALL db.cdc.query()
+----
 ======
 =====
 
 .Using id() function
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -1972,8 +1971,8 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: feature deprecated with replacement.
-`id` is deprecated.
-It is replaced by `elementId()`.
+id is deprecated.
+It is replaced by elementId or an application-generated id.
 
 Suggestions for improvement::
 Use the function `elementId()` instead.
@@ -1983,23 +1982,6 @@ Use the function `elementId()` instead.
 MATCH (a)
 RETURN elementId(a)
 ----
-======
-[.include-with-GQLSTATUS-deprecated-without-replacement]
-======
-Query::
-+
-[source,cypher]
-----
-MATCH (a)
-RETURN id(a)
-----
-
-Returned GQLSTATUS code::
-01N02
-
-Returned status description::
-warn: feature deprecated without replacement.
-`id` is deprecated and will be removed without a replacement.
 ======
 [.include-with-neo4j-code]
 ======
@@ -2029,7 +2011,7 @@ RETURN elementId(a)
 .Using an unescaped variable named 'where' in a node pattern
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2084,7 +2066,7 @@ RETURN `where`.p
 .Using an unescaped variable named 'where' in a relationship pattern
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2138,7 +2120,7 @@ RETURN `where`.p
 .Using an unparenthesized label expression predicate as the right-hand side operand of `+`
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2196,7 +2178,7 @@ RETURN listOfBooleans + (m:A)
 .Using an unparenthesized label expression predicate as the right-hand side operand of `+`
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2254,7 +2236,7 @@ RETURN listOfBooleans + (r:C|D)
 .Using an unescaped variable named `is` as a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2324,7 +2306,7 @@ END AS standardsName
 .Using an unescaped variable named `contains` in addition operations within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2394,7 +2376,7 @@ END AS check
 .Using an unescaped variable named `contains` in subtraction operations within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2465,7 +2447,7 @@ END AS check
 .Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2536,7 +2518,7 @@ END AS check
 .Using the `[]` operator on an unescaped variable named `in` within a `WHEN` operand in a simple `CASE` expression
 [.tabbed-example]
 =====
-[.include-with-GQLSTATUS-deprecated-with-replacement]
+[.include-with-GQLSTATUS-code]
 ======
 Query::
 +
@@ -2661,6 +2643,50 @@ Description of the returned code::
 The Cypher query option `connectComponentsPlanner` is deprecated and will be removed without a replacement.
 The product's default behavior of using a cost-based IDP search algorithm when combining sub-plans will be kept.
 For more information, see link:https://neo4j.com/docs/cypher-manual/current/query-tuning/query-options/#cypher-planner[Cypher manual -> Cypher planner].
+
+======
+=====
+
+.Using a deprecated procedure
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown()
+----
+
+Returned GQLSTATUS code::
+01N02
+
+Returned status description::
+warn: feature deprecated without replacement.
+`unsupported.dbms.shutdown` is deprecated and will be removed without a replacement.
+
+Suggestions for improvement::
+Remove the use of the deprecated procedure.
+If there is a suggested replacement, update to use the replacement instead.
+
+======
+[.include-with-neo4j-code]
+======
+
+Query::
++
+[source,cypher]
+----
+CALL unsupported.dbms.shutdown()
+----
+
+Description of the returned code::
+The query used a deprecated procedure: `'unsupported.dbms.shutdown'`.
+
+Suggestions for improvement::
+Remove the use of the deprecated procedure.
+If there is a suggested replacement, update to use the replacement instead.
 
 ======
 =====
@@ -3986,7 +4012,7 @@ m|TOPOLOGY
 m|03N85
 |Status description
 a|
-info: server has caught up. Server `{ $serverName }` at address `{ <<serverAddress>> }` has caught up.
+info: server has caught up. Server `{ <<server>> }` at address `{ <<serverAddress>> }` has caught up.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4056,7 +4082,7 @@ m|TOPOLOGY
 m|01N80
 |Status description
 a|
-warn: server failed. Server `{ $serverName }` at address `{ <<serverAddress>> }` failed: `{ <<msg>> }`
+warn: server failed. Server `{ <<server>> }` at address `{ <<serverAddress>> }` failed: `{ <<msg>> }`
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4132,7 +4158,7 @@ m|TOPOLOGY
 |GQLSTATUS code
 m|01N81
 |Status description
-a|warn: server is catching up. Server `{ $serverName }` at address `{ <<serverAddress>> }` is still catching up.
+a|warn: server is catching up. Server `{ <<server>> }` at address `{ <<serverAddress>> }` is still catching up.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
@@ -4210,7 +4236,7 @@ m|TOPOLOGY
 |GQLSTATUS code
 m|01N82
 |Status description
-a|warn: server is not available. Server `{ $serverName }` is not available.
+a|warn: server is not available. Server `{ <<server>> }` is not available.
 |Classification
 m|TOPOLOGY
 |SeverityLevel
