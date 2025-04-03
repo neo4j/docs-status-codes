@@ -1083,7 +1083,19 @@ Status description:: error: syntax error or access rule violation - duplicate re
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N39.adoc[42N39]
 
-Status description:: error: syntax error or access rule violation - incompatible return column names. All `{<<context>>}` must have the same return column names. Use `AS` to ensure columns have the same name.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
+
+=== xref:errors/gql-errors/42N3A.adoc[42N3A]
+
+Status description:: error: syntax error or access rule violation - incompatible conditional query. All `{ <<context>> }` need to either return rows or update the graph.
+
+=== xref:errors/gql-errors/42N3B.adoc[42N3B]
+
+Status description:: error: syntax error or access rule violation - incompatible number of return columns. All `{ <<context>> }` must return the same number of columns.
+
+=== xref:errors/gql-errors/42N3C.adoc[42N3C]
+
+Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ <<clause>> }` in 'CALL { ... }'. Use 'CALL () { ... }' instead.
 
 === xref:errors/gql-errors/42N40.adoc[42N40]
 
