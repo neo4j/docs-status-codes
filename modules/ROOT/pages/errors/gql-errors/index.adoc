@@ -952,6 +952,18 @@ Status description:: error: syntax error or access rule violation - writing in r
 
 Status description:: error: syntax error or access rule violation - writing to multiple graphs. Writing to multiple graphs in the same transaction is not allowed. Use `CALL IN TRANSACTION` or create separate transactions in your application.
 
+=== xref:errors/gql-errors/42N3A.adoc[42N3A]
+
+Status description:: error: syntax error or access rule violation - incompatible conditional query. All `{ <<context>> }` need to either return rows or update the graph.
+
+=== xref:errors/gql-errors/42N3B.adoc[42N3B]
+
+Status description:: error: syntax error or access rule violation - incompatible number of return columns. All `{ <<context>> }` must return the same number of columns.
+
+=== xref:errors/gql-errors/42N3C.adoc[42N3C]
+
+Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ <<clause>> }` in 'CALL { ... }'. Use 'CALL () { ... }' instead.
+
 === xref:errors/gql-errors/42N04.adoc[42N04]
 
 Status description:: error: syntax error or access rule violation - unsupported access of composite database. Failed to access database identified by `{ <<db>>1 }` while connected to session database `{ $db2 }`. Connect to `{ $db3 }` directly.
@@ -1083,19 +1095,7 @@ Status description:: error: syntax error or access rule violation - duplicate re
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N39.adoc[42N39]
 
-Status description:: Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
-
-=== xref:errors/gql-errors/42N3A.adoc[42N3A]
-
-Status description:: error: syntax error or access rule violation - incompatible conditional query. All `{ <<context>> }` need to either return rows or update the graph.
-
-=== xref:errors/gql-errors/42N3B.adoc[42N3B]
-
-Status description:: error: syntax error or access rule violation - incompatible number of return columns. All `{ <<context>> }` must return the same number of columns.
-
-=== xref:errors/gql-errors/42N3C.adoc[42N3C]
-
-Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ <<clause>> }` in 'CALL { ... }'. Use 'CALL () { ... }' instead.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
 
 === xref:errors/gql-errors/42N40.adoc[42N40]
 
