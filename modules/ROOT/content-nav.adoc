@@ -432,6 +432,7 @@
 **** xref:errors/gql-errors/52N24.adoc[]
 **** xref:errors/gql-errors/52N25.adoc[]
 **** xref:errors/gql-errors/52N26.adoc[]
+**** xref:errors/gql-errors/52N27.adoc[]
 **** xref:errors/gql-errors/52N28.adoc[]
 **** xref:errors/gql-errors/52N29.adoc[]
 **** xref:errors/gql-errors/52N30.adoc[]
