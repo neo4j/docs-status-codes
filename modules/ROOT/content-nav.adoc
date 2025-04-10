@@ -206,6 +206,7 @@
 **** xref:errors/gql-errors/42I23.adoc[]
 **** xref:errors/gql-errors/42I24.adoc[]
 **** xref:errors/gql-errors/42I25.adoc[]
+**** xref:errors/gql-errors/42I26.adoc[]
 **** xref:errors/gql-errors/42I27.adoc[]
 **** xref:errors/gql-errors/42I28.adoc[]
 **** xref:errors/gql-errors/42I29.adoc[]
