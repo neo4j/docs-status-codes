@@ -1295,6 +1295,24 @@ Status description:: error: syntax error or access rule violation - invalid driv
 
 Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ <<db>> }`).
 
+=== xref:errors/gql-errors/42N92.adoc[42N92]
+
+Status description:: error: syntax error or access rule violation - cannot combine old and new auth provider syntax. Cannot combine old and new auth syntax for the same auth provider.
+
+=== xref:errors/gql-errors/42N94.adoc[42N94]
+
+Status description:: error: syntax error or access rule violation - incomplete `ALTER USER` command. 'ALTER USER' requires at least one clause.
+
+=== xref:errors/gql-errors/42N95.adoc[42N95]
+
+Status description:: error: syntax error or access rule violation - provider-id combination already exists. The combination of provider and id is already in use.
+
+
+=== xref:errors/gql-errors/42N96.adoc[42N96]
+
+Status description:: error: syntax error or access rule violation - invalid user configuration. User has no auth provider. Add at least one auth provider for the user or consider suspending them.
+
+
 === xref:errors/gql-errors/42N97.adoc[42N97]
 
 Status description:: error: syntax error or access rule violation - missing mandatory auth clause. Clause `{ <<clause>> }` is mandatory for auth provider `{ <<auth>> }`.
@@ -1307,6 +1325,26 @@ Status description:: error: syntax error or access rule violation - cannot modif
 === xref:errors/gql-errors/42N99.adoc[42N99]
 
 Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
+
+=== xref:errors/gql-errors/42NA0.adoc[42NA0]
+
+Status description:: error: syntax error or access rule violation - operations must be executed on constituent. Query contains operations that must be executed on the constituent.
+
+=== xref:errors/gql-errors/42NA1.adoc[42NA1]
+
+Status description:: error: syntax error or access rule violation - graph access operations on composite database. Graph access operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA2.adoc[42NA2]
+
+Status description:: error: syntax error or access rule violation - database operations on composite database. Database operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA3.adoc[42NA3]
+
+Status description:: error: syntax error or access rule violation - schema operations on composite database. Schema operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA4.adoc[42NA4]
+
+Status description:: error: syntax error or access rule violation - transaction operations on composite database. Transaction operations are not supported on composite databases.
 
 === xref:errors/gql-errors/42NA5.adoc[42NA5]
 
@@ -1563,6 +1601,11 @@ Status description:: error: system configuration or operation exception - not su
 Status description:: error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
 
 
+=== xref:errors/gql-errors/51N31.adoc[51N31]
+
+Status description:: error: system configuration or operation exception - not supported. `{ <<item>> }` is not supported in `{ <<context>> }`.
+
+
 === xref:errors/gql-errors/51N32.adoc[51N32]
 
 Status description:: error: system configuration or operation exception - server panic. Server is in panic.
@@ -1680,6 +1723,12 @@ Status description:: error: system configuration or operation exception - topolo
 === xref:errors/gql-errors/51N57.adoc[51N57]
 
 Status description:: error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. `{ <<msg>> }`
+
+
+=== xref:errors/gql-errors/51N58.adoc[51N58]
+
+Status description:: error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<$count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+
 
 === xref:errors/gql-errors/51N59.adoc[51N59]
 

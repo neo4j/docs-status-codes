@@ -1,0 +1,12 @@
+= 42N92
+
+== Status description
+error: syntax error or access rule violation - cannot combine old and new auth provider syntax. Cannot combine old and new auth syntax for the same auth provider.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+
