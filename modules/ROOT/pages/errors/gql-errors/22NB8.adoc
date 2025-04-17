@@ -1,0 +1,14 @@
+= 22NB8
+
+== Status description
+
+error: data exception - invalid Neo4j type. `{ <<input>> }` is not a recognized Neo4j type.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
