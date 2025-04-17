@@ -1,0 +1,14 @@
+= 42NA4
+
+== Status description
+
+error: syntax error or access rule violation - transaction operations on composite database. Transaction operations are not supported on composite databases.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

@@ -1,0 +1,14 @@
+= 42NA3
+
+== Status description
+
+error: syntax error or access rule violation - schema operations on composite database. Schema operations are not supported on composite databases.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

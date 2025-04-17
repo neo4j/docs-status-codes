@@ -1,0 +1,14 @@
+= 22NA3
+
+== Status description
+
+error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

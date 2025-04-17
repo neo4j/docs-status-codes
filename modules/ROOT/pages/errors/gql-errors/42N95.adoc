@@ -1,0 +1,14 @@
+= 42N95
+
+== Status description
+
+error: syntax error or access rule violation - provider-id combination already exists. The combination of provider and id is already in use.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

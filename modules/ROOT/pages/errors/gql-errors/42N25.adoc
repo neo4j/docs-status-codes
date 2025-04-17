@@ -1,0 +1,13 @@
+= 42N25
+
+== Status description
+
+error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

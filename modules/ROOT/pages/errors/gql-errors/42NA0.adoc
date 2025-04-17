@@ -1,0 +1,14 @@
+= 42NA0
+
+== Status description
+
+error: syntax error or access rule violation - operations must be executed on constituent. Query contains operations that must be executed on the constituent.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

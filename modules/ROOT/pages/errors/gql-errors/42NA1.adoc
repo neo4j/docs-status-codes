@@ -1,0 +1,14 @@
+= 42NA1
+
+== Status description
+
+error: syntax error or access rule violation - graph access operations on composite database. Graph access operations are not supported on composite databases.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+
