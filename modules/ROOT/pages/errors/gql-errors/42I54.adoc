@@ -1,0 +1,11 @@
+42I54
+
+== Status description
+error: syntax error or access rule violation - invalid use of `INSERT`. `{ <<cause>> }` is not allowed in `INSERT`. Use `CREATE` or `{ <<replacement>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
