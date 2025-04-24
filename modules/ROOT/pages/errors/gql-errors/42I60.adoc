@@ -1,0 +1,11 @@
+42I60
+
+== Status description
+error: syntax error or access rule violation - invalid glob escaping. Each part of the glob (a block of text up until a dot) must either be fully escaped or not escaped at all.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
