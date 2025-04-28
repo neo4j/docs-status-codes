@@ -871,7 +871,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42I30.adoc[42I30]
 
-Status description:: error: syntax error or access rule violation - invalid use of label expressions. Label expressions cannot be used in a `{ <<expr>> }`. 
+Status description:: error: syntax error or access rule violation - invalid use of label expressions. Label expressions cannot be used in `{ <<expr>> }`. 
 
 === xref:errors/gql-errors/42I31.adoc[42I31]
 
