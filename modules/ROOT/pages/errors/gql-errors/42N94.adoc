@@ -1,0 +1,13 @@
+= 42N94
+
+== Status description
+
+error: syntax error or access rule violation - incomplete `ALTER USER` command. 'ALTER USER' requires at least one clause.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

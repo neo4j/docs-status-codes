@@ -444,6 +444,10 @@ Status description:: error: data exception - expression type unsupported here. I
 
 Status description:: error: data exception - input contains invalid characters. Input `{ <<input>> }` contains invalid characters for `{ <<context>> }`. Special characters may require that the input is quoted using backticks.
 
+=== xref:errors/gql-errors/22N83.adoc[22N83]
+
+Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ <<upper>> }` components separated by '.'.
+
 === xref:errors/gql-errors/22N84.adoc[22N84]
 
 Status description:: error: data exception - string too long. Expected the string to be no more than `{ <<upper>> }` characters long.
@@ -516,6 +520,10 @@ Status description:: error: data exception - invalid property based access contr
 
 Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
 
+=== xref:errors/gql-errors/22NA3.adoc[22NA3]
+
+Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
 Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
@@ -567,6 +575,16 @@ Status description:: error: data exception - unsupported time zone identifier. U
 === xref:errors/gql-errors/22NB6.adoc[22NB6]
 
 Status description:: error: data exception - input empty. Invalid input. `{ <<item>> }` is not allowed to be an empty string.
+
+
+=== xref:errors/gql-errors/22NB7.adoc[22NB7]
+
+Status description:: error: data exception - element id unsupported on composite database. It is not supported to create element ids on composite databases. Create the element id for `{ <<entityType>> }` `{ <<$entityId>> }` on the constituent instead.
+
+=== xref:errors/gql-errors/22NB8.adoc[22NB8]
+
+Status description:: error: data exception - invalid Neo4j type. `{ <<input>> }` is not a recognized Neo4j type.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
@@ -851,6 +869,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ <<input>> }`. Rewrite the expression as `{ <<replacement>> }`.
 
+=== xref:errors/gql-errors/42I30.adoc[42I30]
+
+Status description:: error: syntax error or access rule violation - invalid use of label expressions. Label expressions cannot be used in `{ <<expr>> }`. 
+
 === xref:errors/gql-errors/42I31.adoc[42I31]
 
 Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. `MATCH ...` cannot directly follow an `OPTIONAL MATCH ...`. Use a `WITH` clause between them.
@@ -935,6 +957,12 @@ Status description:: info: invalid call signature. The procedure or function `{ 
 
 Status description:: error: syntax error or access rule violation - no longer valid syntax. `{ <<msg>> }`
 
+
+=== xref:errors/gql-errors/42I53.adoc[42I53]
+
+Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown coordinate type: `{ <<input>> }`.
+
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
@@ -976,6 +1004,10 @@ Status description:: error: syntax error or access rule violation - no such proc
 === xref:errors/gql-errors/42N09.adoc[42N09]
 
 Status description:: error: syntax error or access rule violation - no such user. A user with the name `{ <<user>> }` was not found. Verify that the spelling is correct.
+
+=== xref:errors/gql-errors/42N0B.adoc[42N0B]
+
+Status description:: error: syntax error or access rule violation - cannot replace sharded database. The database identified by `{ <<db>>1 }` is sharded. Drop the database `{ <<db>>2 }` before recreating.
 
 === xref:errors/gql-errors/42N10.adoc[42N10]
 
@@ -1039,6 +1071,10 @@ Status description:: error: syntax error or access rule violation - missing refe
 === xref:errors/gql-errors/42N24.adoc[42N24]
 
 Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ <<input>>1 }` and `{ $input2 }`.
+
+=== xref:errors/gql-errors/42N25.adoc[42N25]
+
+Status description:: error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead. 
 
 === xref:errors/gql-errors/42N26.adoc[42N26]
 
@@ -1124,6 +1160,10 @@ Status description:: error: syntax error or access rule violation - procedure re
 === xref:errors/gql-errors/42N51.adoc[42N51]
 
 Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ <<param>> }`.
+
+=== xref:errors/gql-errors/42N52.adoc[42N52]
+
+Status description:: error: syntax error or access rule violation - invalid value type. `{ <<input>> }` is not a recognized Cypher type.
 
 === xref:errors/gql-errors/42N53.adoc[42N53]
 
@@ -1239,6 +1279,10 @@ Status description:: error: syntax error or access rule violation - cannot speci
 
 Status description:: error: syntax error or access rule violation - wildcard in parameter. `{ <<syntax>> }` failed. Parameterized database and graph names do not support wildcards.
 
+=== xref:errors/gql-errors/42N87.adoc[42N87]
+
+Status description:: error: syntax error or access rule violation - database or alias with similar name exists. The database or alias name `{ <<db>>1 }` conflicts with the name `{ <<db>>2 }` of an existing database or alias.
+
 === xref:errors/gql-errors/42N88.adoc[42N88]
 
 Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for `REMOVE IMMUTABLE PRIVILEGE`.
@@ -1250,6 +1294,24 @@ Status description:: error: syntax error or access rule violation - invalid driv
 === xref:errors/gql-errors/42N90.adoc[42N90]
 
 Status description:: error: syntax error or access rule violation - cannot alter immutable composite database. Composite databases cannot be altered (database: `{ <<db>> }`).
+
+=== xref:errors/gql-errors/42N92.adoc[42N92]
+
+Status description:: error: syntax error or access rule violation - cannot combine old and new auth provider syntax. Cannot combine old and new auth syntax for the same auth provider.
+
+=== xref:errors/gql-errors/42N94.adoc[42N94]
+
+Status description:: error: syntax error or access rule violation - incomplete `ALTER USER` command. 'ALTER USER' requires at least one clause.
+
+=== xref:errors/gql-errors/42N95.adoc[42N95]
+
+Status description:: error: syntax error or access rule violation - provider-id combination already exists. The combination of provider and id is already in use.
+
+
+=== xref:errors/gql-errors/42N96.adoc[42N96]
+
+Status description:: error: syntax error or access rule violation - invalid user configuration. User has no auth provider. Add at least one auth provider for the user or consider suspending them.
+
 
 === xref:errors/gql-errors/42N97.adoc[42N97]
 
@@ -1263,6 +1325,26 @@ Status description:: error: syntax error or access rule violation - cannot modif
 === xref:errors/gql-errors/42N99.adoc[42N99]
 
 Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
+
+=== xref:errors/gql-errors/42NA0.adoc[42NA0]
+
+Status description:: error: syntax error or access rule violation - operations must be executed on constituent. Query contains operations that must be executed on the constituent.
+
+=== xref:errors/gql-errors/42NA1.adoc[42NA1]
+
+Status description:: error: syntax error or access rule violation - graph access operations on composite database. Graph access operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA2.adoc[42NA2]
+
+Status description:: error: syntax error or access rule violation - database operations on composite database. Database operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA3.adoc[42NA3]
+
+Status description:: error: syntax error or access rule violation - schema operations on composite database. Schema operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA4.adoc[42NA4]
+
+Status description:: error: syntax error or access rule violation - transaction operations on composite database. Transaction operations are not supported on composite databases.
 
 === xref:errors/gql-errors/42NA5.adoc[42NA5]
 
@@ -1519,6 +1601,11 @@ Status description:: error: system configuration or operation exception - not su
 Status description:: error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
 
 
+=== xref:errors/gql-errors/51N31.adoc[51N31]
+
+Status description:: error: system configuration or operation exception - not supported. `{ <<item>> }` is not supported in `{ <<context>> }`.
+
+
 === xref:errors/gql-errors/51N32.adoc[51N32]
 
 Status description:: error: system configuration or operation exception - server panic. Server is in panic.
@@ -1636,6 +1723,12 @@ Status description:: error: system configuration or operation exception - topolo
 === xref:errors/gql-errors/51N57.adoc[51N57]
 
 Status description:: error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. `{ <<msg>> }`
+
+
+=== xref:errors/gql-errors/51N58.adoc[51N58]
+
+Status description:: error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<$count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+
 
 === xref:errors/gql-errors/51N59.adoc[51N59]
 
