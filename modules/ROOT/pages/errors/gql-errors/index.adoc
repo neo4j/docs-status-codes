@@ -12,8 +12,8 @@ Please note that while GQLSTATUS codes remain stable (any changes to them will b
 For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.
 ====
 
-[[connection-exceptions]]
-== Connection exceptions
+[[connection-exception]]
+== Connection exception
 
 Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
 
@@ -29,11 +29,9 @@ Status description:: error: connection exception - transaction resolution unknow
 
 Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
 
-
 === xref:errors/gql-errors/08N01.adoc[08N01]
 
 Status description:: error: connection exception - unable to write to database. Unable to write to database `{ <<db>> }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
-
 
 === xref:errors/gql-errors/08N02.adoc[08N02]
 
