@@ -1,4 +1,4 @@
-42I55
+= 42I55
 
 == Status description
 error: syntax error or access rule violation - invalid use of dynamic label or type. Dynamic `{ <<tokenType>> }` using `$any()` are not allowed in `{ <<clause>> }`.

@@ -1,4 +1,4 @@
-42I59
+= 42I59
 
 == Status description
 error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in { <<clauseList>> } clauses.

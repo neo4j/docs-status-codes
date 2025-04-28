@@ -1,4 +1,4 @@
-42I61
+= 42I61
 
 == Status description
 error: syntax error or access rule violation - missing LOOKUP INDEX function name. Missing function name for the LOOKUP INDEX.
