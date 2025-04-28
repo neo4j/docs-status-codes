@@ -85,7 +85,7 @@ def get_section_for_error_code(error_code):
 
     # Try to match the first two characters
     prefix = error_code[:2]
-    return sections.get(prefix, 'General processing exception')  # Default to general if no match
+    return sections.get(prefix, 'General processing exceptions')  # Default to general if no match
 
 def get_section_order():
     """Define the order in which sections should appear in the index."""
@@ -157,8 +157,10 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
 
             # Add section description if available
             if section in section_descriptions:
-                content.append(section_descriptions[section])
-                content.append('')
+                description = section_descriptions[section]
+                if description and description.strip():
+                    content.append(description)
+                    content.append('')
 
             # Add error codes for this section
             for error_code in sections[section]:
@@ -167,6 +169,15 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
                 if include_descriptions and error_codes[error_code]:
                     content.append(f'Status description:: {error_codes[error_code]}')
                     content.append('')
+
+    # Add glossary section once at the end of the document (outside both loops)
+    content.append('')
+    content.append('ifndef::backend-pdf[]')
+    content.append('[discrete.glossary]')
+    content.append('== Glossary')
+    content.append('')
+    content.append('include::partial$glossary.adoc[]')
+    content.append('endif::[]')
 
     # Write the index file
     with open(output_file, 'w') as f:
