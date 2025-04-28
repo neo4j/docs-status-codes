@@ -1,7 +1,7 @@
 = 42I59
 
 == Status description
-error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in { <<clauseList>> } clauses.
+error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in `{ <<clauseList>> }` clauses.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

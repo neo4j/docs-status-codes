@@ -1004,7 +1004,7 @@ Status description:: error: syntax error or access rule violation - invalid enti
 
 === xref:errors/gql-errors/42I59.adoc[42I59]
 
-Status description:: error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in { <<clauseList>> } clauses.
+Status description:: error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in `{ <<clauseList>> }` clauses.
 
 === xref:errors/gql-errors/42I60.adoc[42I60]
 
