@@ -167,7 +167,7 @@ Status description:: error: data exception - specified negative numeric value. E
 
 === xref:errors/gql-errors/22N03.adoc[22N03]
 
-Status description:: error: data exception - specified numeric value out of range. Expected `{ <<component>> }` to be of type `{ <<valueType>> }` and in the range `{ <<lower>> }`  to `{ <<upper>> }` but found `{ <<value>> }`.
+Status description:: error: data exception - specified numeric value out of range. Expected `{ <<component>> }` to be of type `{ <<valueType>> }` and in the range `{ <<lower>> }` to `{ <<upper>> }` but found `{ <<value>> }`.
 
 === xref:errors/gql-errors/22N04.adoc[22N04]
 
@@ -232,7 +232,7 @@ Status description:: error: data exception - invalid spatial value. A `POINT` mu
 
 === xref:errors/gql-errors/22N20.adoc[22N20]
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1D }` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2D }` coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1 }D` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
 
 === xref:errors/gql-errors/22N21.adoc[22N21]
 
@@ -268,7 +268,7 @@ Status description:: error: data exception - overflow error. The result of the o
 
 === xref:errors/gql-errors/22N29.adoc[22N29]
 
-Status description:: error: data exception - unsupported coordinate reference system. Unknown coordinate reference system (CRS).
+Status description:: error: data exception - unknown coordinate reference system. Unknown coordinate reference system (CRS).
 
 === xref:errors/gql-errors/22N30.adoc[22N30]
 
@@ -545,15 +545,15 @@ Status description:: error: data exception - invalid property based access contr
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
-Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
+Status description:: error: data exception - invalid property based access control rule involving comparison with `NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
 
 === xref:errors/gql-errors/22NA5.adoc[22NA5]
 
-Status description:: error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
 
 === xref:errors/gql-errors/22NA6.adoc[22NA6]
 
-Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving `IS NOT NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
 
 === xref:errors/gql-errors/22NA7.adoc[22NA7]
 
@@ -565,11 +565,11 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 === xref:errors/gql-errors/22NA9.adoc[22NA9]
 
-Status description:: error: data exception -unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
+Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
 
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
-Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === xref:errors/gql-errors/22NB1.adoc[22NB1]
 
@@ -806,7 +806,7 @@ Status description:: error: syntax error or access rule violation - invalid inpu
 
 === xref:errors/gql-errors/42I07.adoc[42I07]
 
-Status description:: error: syntax error or access rule violation - invalid integer literal. The given `{ <<valueType>> }` literal `{ <<input>> }` is invalid
+Status description:: error: syntax error or access rule violation - invalid integer literal. The given `{ <<valueType>> }` literal `{ <<input>> }` is invalid.
 
 === xref:errors/gql-errors/42I08.adoc[42I08]
 
@@ -1299,7 +1299,7 @@ Status description:: error: syntax error or access rule violation - graph functi
 
 === xref:errors/gql-errors/42N73.adoc[42N73]
 
-Status description:: error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to `... UNION ...` . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
+Status description:: error: syntax error or access rule violation - invalid placement of `USE` clause. The `USE` clause must be the first clause of a query or an operand to `... UNION ...` . In a `CALL` sub-query, it can also be the second clause if the first clause is an importing `WITH`.
 
 === xref:errors/gql-errors/42N74.adoc[42N74]
 
@@ -1523,7 +1523,7 @@ Status description:: error: general processing exception - no such schema descri
 
 === xref:errors/gql-errors/50N23.adoc[50N23]
 
-error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+Status description:: error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
@@ -1805,7 +1805,7 @@ Status description:: error: system configuration or operation exception - generi
 
 === xref:errors/gql-errors/51N58.adoc[51N58]
 
-Status description:: error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<$count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+Status description:: error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
 
 
 === xref:errors/gql-errors/51N59.adoc[51N59]
@@ -1836,7 +1836,7 @@ Status description:: error: system configuration or operation exception - index 
 
 === xref:errors/gql-errors/51N65.adoc[51N65]
 
-Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2}`.
+Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2 }`.
 
 
 === xref:errors/gql-errors/51N66.adoc[51N66]

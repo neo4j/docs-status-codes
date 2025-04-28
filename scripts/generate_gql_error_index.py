@@ -22,24 +22,24 @@ def get_section_descriptions(index_file):
     section_descriptions = {}
     current_section = None
     description_lines = []
-    
+
     with open(index_file, 'r') as f:
         lines = f.readlines()
         i = 0
         while i < len(lines):
             line = lines[i].strip()
-            
+
             # Check for section header
             section_match = re.match(r'^== ([^=\n]+)', line)
             if section_match:
                 # If we have a previous section, save its description
                 if current_section and description_lines:
                     section_descriptions[current_section] = '\n'.join(description_lines).strip()
-                
+
                 # Start new section
                 current_section = section_match.group(1).strip()
                 description_lines = []
-                
+
                 # Look ahead to collect description until we hit an error code entry or another section
                 j = i + 1
                 while j < len(lines):
@@ -58,13 +58,13 @@ def get_section_descriptions(index_file):
                     elif description_lines:
                         break
                     j += 1
-                
+
             i += 1
-    
+
     # Don't forget the last section
     if current_section and description_lines:
         section_descriptions[current_section] = '\n'.join(description_lines).strip()
-    
+
     return section_descriptions
 
 def get_section_for_error_code(error_code):
@@ -76,12 +76,13 @@ def get_section_for_error_code(error_code):
         '2D': 'Invalid transaction termination',
         '40': 'Transaction rollback',
         '42': 'Syntax error or access rule violation',
-        '50': 'General processing exception',
-        '51': 'System configuration or operation exception',
-        '52': 'Procedure exception',
-        '53': 'Function exceptions'
+        '50': 'General processing exceptions',
+        '51': 'System configuration or operation exceptions',
+        '52': 'Procedure exceptions',
+        '53': 'Function exceptions',
+        'G1': 'Dependent object errors'
     }
-    
+
     # Try to match the first two characters
     prefix = error_code[:2]
     return sections.get(prefix, 'General processing exception')  # Default to general if no match
@@ -95,10 +96,11 @@ def get_section_order():
         'Invalid transaction termination',
         'Transaction rollback',
         'Syntax error or access rule violation',
-        'General processing exception',
-        'System configuration or operation exception',
-        'Procedure exception',
-        'Function exceptions'
+        'General processing exceptions',
+        'System configuration or operation exceptions',
+        'Procedure exceptions',
+        'Function exceptions',
+        'Dependent object errors'
     ]
 
 def generate_anchor(section_name):
@@ -110,7 +112,7 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
     """Generate the index file from individual error files."""
     # Get section descriptions from original index
     section_descriptions = get_section_descriptions(original_index)
-    
+
     # Get error codes and descriptions from files
     error_codes = {}
     for file in os.listdir(errors_dir):
@@ -121,13 +123,13 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
                 error_codes[error_code] = description
             elif not include_descriptions:
                 error_codes[error_code] = None
-    
+
     # Group error codes by section
     sections = defaultdict(list)
     for error_code in sorted(error_codes.keys()):
         section = get_section_for_error_code(error_code)
         sections[section].append(error_code)
-    
+
     # Generate the index content
     content = []
     content.append(':description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.')
@@ -144,7 +146,7 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
     content.append('For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.')
     content.append('====')
     content.append('')
-    
+
     # Add sections in the defined order
     for section in get_section_order():
         if section in sections:
@@ -152,12 +154,12 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
             content.append(generate_anchor(section))
             content.append(f'== {section}')
             content.append('')
-            
+
             # Add section description if available
             if section in section_descriptions:
                 content.append(section_descriptions[section])
                 content.append('')
-            
+
             # Add error codes for this section
             for error_code in sections[section]:
                 content.append(f'=== xref:errors/gql-errors/{error_code}.adoc[{error_code}]')
@@ -165,32 +167,32 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
                 if include_descriptions and error_codes[error_code]:
                     content.append(f'Status description:: {error_codes[error_code]}')
                     content.append('')
-    
+
     # Write the index file
     with open(output_file, 'w') as f:
         f.write('\n'.join(content))
-    
+
     print(f'Generated index file at: {output_file}')
 
 def main():
     # Set up argument parser
     parser = argparse.ArgumentParser(description='Generate GraphQL error code index')
-    parser.add_argument('--no-descriptions', action='store_true', 
+    parser.add_argument('--no-descriptions', action='store_true',
                       help='If set, only error codes will be listed without their descriptions')
     args = parser.parse_args()
-    
+
     # Get the script's directory
     script_dir = Path(__file__).parent.absolute()
-    
+
     # Navigate to the gql-errors directory
     errors_dir = script_dir.parent / 'modules' / 'ROOT' / 'pages' / 'errors' / 'gql-errors'
     original_index = errors_dir / 'index.adoc'
     output_file = errors_dir / 'auto-index.adoc'
-    
+
     if not original_index.exists():
         print("Error: Original index.adoc not found!")
         return
-        
+
     generate_index(errors_dir, output_file, original_index, not args.no_descriptions)
 
 if __name__ == '__main__':
