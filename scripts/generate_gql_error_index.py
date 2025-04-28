@@ -16,6 +16,18 @@ def read_error_file(file_path):
             return match.group(1).strip()
     return None
 
+def get_page_role(file_path):
+    """Extract page-role from error file if it exists."""
+    try:
+        with open(file_path, 'r') as f:
+            for line in f:
+                if line.strip().startswith(':page-role:'):
+                    # Extract the role value after ':page-role:'
+                    return line.strip()[11:].strip()
+    except Exception as e:
+        print(f"Warning: Failed to read page role from {file_path}: {e}")
+    return None
+
 def get_section_descriptions(index_file):
     """Extract section descriptions from the original index file.
     Only captures the text that appears immediately after a section heading and before any error codes."""
@@ -113,16 +125,26 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
     # Get section descriptions from original index
     section_descriptions = get_section_descriptions(original_index)
 
-    # Get error codes and descriptions from files
+    # Get error codes, descriptions, and page roles from files
     error_codes = {}
     for file in os.listdir(errors_dir):
         if file.endswith('.adoc') and file != 'index.adoc' and file != 'auto-index.adoc':
             error_code = file[:-5]  # Remove .adoc extension
-            description = read_error_file(os.path.join(errors_dir, file)) if include_descriptions else None
-            if include_descriptions and description:
-                error_codes[error_code] = description
-            elif not include_descriptions:
-                error_codes[error_code] = None
+            file_path = os.path.join(errors_dir, file)
+
+            # Get description if needed
+            description = None
+            if include_descriptions:
+                description = read_error_file(file_path)
+
+            # Get page role
+            page_role = get_page_role(file_path)
+
+            # Store information about this error code
+            error_codes[error_code] = {
+                'description': description,
+                'page_role': page_role
+            }
 
     # Group error codes by section
     sections = defaultdict(list)
@@ -164,10 +186,15 @@ def generate_index(errors_dir, output_file, original_index, include_descriptions
 
             # Add error codes for this section
             for error_code in sections[section]:
+                # Add page role if exists
+                if error_codes[error_code]['page_role']:
+                    content.append(f'[role=label--{error_codes[error_code]["page_role"]}]')
+
                 content.append(f'=== xref:errors/gql-errors/{error_code}.adoc[{error_code}]')
                 content.append('')
-                if include_descriptions and error_codes[error_code]:
-                    content.append(f'Status description:: {error_codes[error_code]}')
+
+                if include_descriptions and error_codes[error_code]['description']:
+                    content.append(f'Status description:: {error_codes[error_code]["description"]}')
                     content.append('')
 
     # Add glossary section once at the end of the document (outside both loops)
