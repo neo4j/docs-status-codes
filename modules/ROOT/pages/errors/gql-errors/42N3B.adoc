@@ -1,0 +1,13 @@
+= 42N3B
+
+== Status description
+
+error: syntax error or access rule violation - incompatible number of return columns. All `{ <<context>> }` must return the same number of columns.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

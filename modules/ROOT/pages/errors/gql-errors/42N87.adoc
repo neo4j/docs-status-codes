@@ -1,0 +1,12 @@
+= 42N87
+
+== Status description
+error: syntax error or access rule violation - database or alias with similar name exists. The database or alias name `{ <<db>>1 }` conflicts with the name `{ <<db>>2 }` of an existing database or alias. 
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+
