@@ -103,6 +103,19 @@ Status description:: error: connection exception - general driver transient erro
 
 Status description:: error: connection exception - general driver database error. Remote execution failed with message `{ <<msg>> }`.
 
+=== xref:errors/gql-errors/08N19.adoc[08N19]
+
+Status description:: error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+=== xref:errors/gql-errors/08N20.adoc[08N20]
+
+Status description:: error: connection exception - shard execution database error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+=== xref:errors/gql-errors/08N21.adoc[08N21]
+
+Status description:: error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+
 [[data-exceptions]]
 == Data exceptions
 
@@ -117,9 +130,17 @@ Status description:: error: data exception
 
 Status description:: error: data exception - numeric value out of range. The numeric value `{ <<value>> }` is outside the required range.
 
+=== xref:errors/gql-errors/22004.adoc[22004]
+
+Status description:: error: data exception - null value not allowed
+
 === xref:errors/gql-errors/22007.adoc[22007]
 
 Status description:: error: data exception - invalid date, time, or datetime format
+
+=== xref:errors/gql-errors/22012.adoc[22012]
+
+Status description:: error: data exception - division by zero
 
 === xref:errors/gql-errors/22015.adoc[22015]
 
@@ -1005,6 +1026,10 @@ Status description:: error: syntax error or access rule violation - no such proc
 
 Status description:: error: syntax error or access rule violation - no such user. A user with the name `{ <<user>> }` was not found. Verify that the spelling is correct.
 
+=== xref:errors/gql-errors/42N0A.adoc[42N0A]
+
+Status description:: error: syntax error or access rule violation - invalid shard target. `{ <<action>> }` is not allowed with a shard target. Connect to `{ <<db>>1 }` in order to read or write data from `{ db2 }`.
+
 === xref:errors/gql-errors/42N0B.adoc[42N0B]
 
 Status description:: error: syntax error or access rule violation - cannot replace sharded database. The database identified by `{ <<db>>1 }` is sharded. Drop the database `{ <<db>>2 }` before recreating.
@@ -1121,6 +1146,19 @@ Status description:: error: syntax error or access rule violation - duplicate re
 
 Status description:: error: syntax error or access rule violation - incompatible return column names. All `{<<context>>}` must have the same return column names. Use `AS` to ensure columns have the same name.
 
+=== xref:errors/gql-errors/42N3A.adoc[42N3A]
+
+Status description:: error: syntax error or access rule violation - incompatible conditional query. All `{ <<context>> }` need to either return rows or update the graph. 
+
+=== xref:errors/gql-errors/42N3B.adoc[42N3B]
+
+Status description:: error: syntax error or access rule violation - incompatible number of return columns. All `{ <<context>> }` must return the same number of columns.
+
+=== xref:errors/gql-errors/42N3C.adoc[42N3C]
+
+Status description:: error: syntax error or access rule violation - invalid use of `CALL { ... }`. Not possible to enclose `{ <<clause>> }` in `CALL { ... }`. Use `CALL () { ... }` instead.
+
+
 === xref:errors/gql-errors/42N40.adoc[42N40]
 
 Status description:: error: syntax error or access rule violation - single relationship pattern required. The `{ <<fun>> }` function must contain one relationship pattern.
@@ -1135,7 +1173,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N44.adoc[42N44]
 
-Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<var>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
 
 === xref:errors/gql-errors/42N45.adoc[42N45]
 
@@ -1438,6 +1476,18 @@ Status description:: error: general processing exception - remote execution tran
 === xref:errors/gql-errors/50N17.adoc[50N17]
 
 Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
+
+=== xref:errors/gql-errors/50N18.adoc[50N18]
+
+Status description:: error: general processing exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
+
+=== xref:errors/gql-errors/50N19.adoc[50N19]
+
+Status description:: error: general processing exception - shard execution database error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
+
+=== xref:errors/gql-errors/50N20.adoc[50N20]
+
+Status description:: error: general processing exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
 
 === xref:errors/gql-errors/50N21.adoc[50N21]
 
@@ -1869,6 +1919,10 @@ Status description:: error: procedure exception - too many seeders. The number o
 === xref:errors/gql-errors/52N19.adoc[52N19]
 
 Status description:: error: procedure exception - no such seeder. The specified seeding server with id `{ <<server>> }` was not found. Verify that the spelling is correct.
+
+=== xref:errors/gql-errors/52N21.adoc[52N21]
+
+Status description:: error: procedure exception - failed to clean the system graph. Failed to clean the system graph.
 
 === xref:errors/gql-errors/52N22.adoc[52N22]
 

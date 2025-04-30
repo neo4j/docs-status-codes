@@ -1,0 +1,13 @@
+= 52N21
+
+== Status description
+
+error: procedure exception - failed to clean the system graph. Failed to clean the system graph.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
