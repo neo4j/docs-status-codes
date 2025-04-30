@@ -1,0 +1,13 @@
+= 22012
+
+== Status description
+
+error: data exception - division by zero
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

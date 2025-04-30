@@ -1,0 +1,13 @@
+= 42N0B
+
+== Status description
+
+error: syntax error or access rule violation - cannot replace sharded database. The database identified by `{ <<db>>1 }` is sharded. Drop the database `{ <<db>>2 }` before recreating.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

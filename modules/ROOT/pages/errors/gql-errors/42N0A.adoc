@@ -1,0 +1,13 @@
+= 42N0A
+
+== Status description
+
+error: syntax error or access rule violation - invalid shard target. `{ <<action>> }` is not allowed with a shard target. Connect to `{ <<db>>1 }` in order to read or write data from `{ db2 }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

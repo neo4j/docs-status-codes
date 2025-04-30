@@ -1,0 +1,13 @@
+= 50N18
+
+== Status description
+
+error: general processing exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
