@@ -1,0 +1,33 @@
+= 22NB9
+
+== Status description
+
+error: data exception - invalid inner list type. Lists cannot have `{ <<item>> }` as an inner type in this context.
+
+== Example scenario
+
+For example, when trying to create a property type constraint with a list of a union as property type:
+
+[source,cypher]
+----
+CREATE CONSTRAINT myConstraint
+FOR (n:Label)
+REQUIRE n.prop IS :: LIST<INTEGER NOT NULL | FLOAT NOT NULL>
+----
+
+The error will have GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11].
+The first cause in the cause chain will have GQLSTATUS xref:errors/gql-errors/22N90.adoc[22N90] and the second cause will have GQLSTATUS 22NB9.
+The status description of the cause with GQLSTATUS 22NB9 will be:
+
+[source]
+----
+error: data exception - invalid inner list type. Lists cannot have a union of types as an inner type in this context.
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
