@@ -1038,10 +1038,10 @@ Status description:: error: syntax error or access rule violation - cannot repla
 
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.
 
-[role=label--changed-2025.03]
+[role=label--changed-2025.05]
 === xref:errors/gql-errors/42N11.adoc[42N11]
 
-Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.
+Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<dbList>> }` already exists.
 
 === xref:errors/gql-errors/42N12.adoc[42N12]
 

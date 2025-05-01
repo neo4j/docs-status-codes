@@ -27,6 +27,7 @@
 //To check with the clustering team about $countAllocs and $countSeeders.
 [[crs]]$crs:: Coordinate reference system, for example, `WGS84`.
 [[db]]$db:: Database name, for example, `myDb`.
+[[dbList]]$dbList:: A list of database names.
 [[dim]]$dim:: Number representing index or point dimenionality.
 [[edition]]$edition:: Neo4j edition, for example, Community or Enterprise.
 [[endpointType]]$endpointType:: One of `start` or `end` of a relationship.
