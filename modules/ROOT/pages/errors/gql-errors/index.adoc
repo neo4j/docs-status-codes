@@ -1013,7 +1013,7 @@ Status description:: error: syntax error or access rule violation - dynamic enti
 
 Status description:: error: syntax error or access rule violation - invalid glob escaping. Each part of the glob (a block of text up until a dot) must either be fully escaped or not escaped at all.
 
-=== xref:errors/gql-errors/42I60.adoc[42I61]
+=== xref:errors/gql-errors/42I61.adoc[42I61]
 
 Status description:: error: syntax error or access rule violation - missing LOOKUP INDEX function name. Missing function name for the LOOKUP INDEX.
 
@@ -1188,7 +1188,6 @@ Status description:: error: syntax error or access rule violation - incompatible
 === xref:errors/gql-errors/42N3C.adoc[42N3C]
 
 Status description:: error: syntax error or access rule violation - invalid use of `CALL { ... }`. Not possible to enclose `{ <<clause>> }` in `CALL { ... }`. Use `CALL () { ... }` instead.
-
 
 === xref:errors/gql-errors/42N40.adoc[42N40]
 
