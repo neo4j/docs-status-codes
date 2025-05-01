@@ -12,6 +12,7 @@
 [[cause]]$cause:: Freeform description of what caused the error.
 [[cfgSetting]]$cfgSetting:: Configuration setting key, for example, `server.https.enabled`.
 [[clause]]$clause:: A Cypher clause, for example, `USE`, `MATCH`.
+[[clauseList]]$clause:: A list of Cypher clauses, for example, `USE, MATCH`.
 [[cmd]]$cmd:: A Cypher command, for example, `DROP DATABASE`, `PROFILE`, `SHOW PROCEDURES`.
 [[component]]$component:: A component of something, for example, hours/minutes within a time, a subset input within the whole input, `TOPOLOGY` clause within the whole `CREATE/ALTER DB ... SET TOPOLOGY`, etc.
 // we need to change the parameter $component in 51N27 to `$feat` maybe.
