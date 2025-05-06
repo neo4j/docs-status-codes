@@ -1,0 +1,96 @@
+
+
+:description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
+
+[[neo4j-gqlstatus-errors]]
+= List of GQLSTATUS error codes
+
+The following page provides an overview of all GQLSTATUS server error codes in Neo4j.
+All errors in Neo4j have severity level `ERROR`.
+
+[WARNING]
+====
+Please note that while GQLSTATUS codes remain stable (any changes to them will be breaking), changes to status descriptions associated with these codes are not breaking and may happen at any time.
+For this reason, parsing the status descriptions or incorporating them into scripts is not recommended.
+====
+
+[[connection-exceptions]]
+== Connection exceptions
+
+Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is unable to connect to the server for various reasons such as network issues, server-side routing being disabled, or the database being unavailable, etc.
+
+{codes_starting_with:'08'}
+
+[[data-exceptions]]
+== Data exceptions
+
+Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
+
+{codes_starting_with:'22'}
+
+[[invalid-transaction-state]]
+== Invalid transaction state
+
+Invalid transaction state errors occur when the transaction is in an invalid state, such as when the transaction is terminated or closed, or when there is a conflict between the transaction state and applied updates.
+
+{codes-starting with: '25'}
+
+[[invalid-transaction-termination]]
+== Invalid transaction termination
+
+Invalid transaction termination errors occur when the transaction termination fails, such as when the transaction or constituent transaction fails to commit, or when the transaction termination fails to apply or append the transaction.
+
+{codes-starting with: '2D'}
+
+[[transaction-rollback]]
+== Transaction rollback
+
+Transaction rollback errors occur when there is a failure in a transaction or a constituent transaction rollback.
+
+{codes-starting with: '40'}
+
+[[syntax-error-or-access-rule-violation]]
+== Syntax error or access rule violation
+
+Syntax error or access rule violation errors occur when a Cypher query contains invalid syntax or when a client request violates the access rules, such as when a query tries to access a database without enough privileges, etc.
+
+{codes-starting with: '42'}
+
+[[general-processing-exceptions]]
+== General processing exceptions
+
+General processing exceptions occur when there is a general processing error, such as an internal error, deadlock, execution failure, invalid server state transition, constraint creation or drop failure, etc.
+
+{codes-starting with: '50'}
+
+[[system-configuration-or-operation-exceptions]]
+== System configuration or operation exceptions
+
+System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
+
+{codes-starting with: '51'}
+
+[[procedure-exceptions]]
+== Procedure exceptions
+
+Procedure exceptions occur when there is an error in executing a procedure, such as when the procedure execution fails due to a client error, when the procedure cannot be invoked on a primary, when the number of arguments to checkConnectivity is invalid, etc.
+
+{codes-starting with: '52'}
+
+[[function-exceptions]]
+== Function exceptions
+
+{codes-starting with: '53'}
+
+[[dependent-object-errors]]
+== Dependent object errors
+
+{codes-starting with: 'G1'}
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -2,7 +2,7 @@
 
 
 == Status description
-error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<var>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
 
 
 
