@@ -1,0 +1,48 @@
+= Scripts for generating and validating gql error index.adoc file
+
+This folder contains utility scripts for generating and validating gql error index.adoc file.
+
+== Scripts overview
+
+The folder contains the following scripts:
+
+
+=== `generate-gql-error-index-from-template.py`
+
+This script generates the _auto-index.adoc_ file by using the template in _templates/gql-index-template.adoc_ and populating it with error codes from the individual files located in the _gql-errors_ directory.
+
+What it does::
+* Extracts error codes from filenames (e.g., 42007.adoc → 42007).
+* Extracts the status descriptions from individual error files.
+* Extracts page roles from files (`:page-role: changed-2025.04`).
+* Creates a new _auto-index.adoc_ file based on the template and populates it with the extracted data.
+
+=== `validate-error-index.py`
+
+This index validates the consistency between _index.adoc_ and individual error files, identifying discrepancies in error codes, status descriptions, and page roles.
+
+What it does::
+* Checks for error codes mentioned in the index.adoc file that don't have corresponding files.
+* Finds error files without index entries.
+* Detects status description mismatches between the index and individual files.
+* Verifies page role consistency.
+
+=== `validate-error-auto-index.py`
+
+This index validates the consistency between _auto-index.adoc_ and individual error files, identifying discrepancies in error codes, status descriptions, and page roles.
+
+What it does::
+* Checks for error codes mentioned in the index.adoc file that don't have corresponding files.
+* Finds error files without index entries.
+* Detects status description mismatches between the index and individual files.
+* Verifies page role consistency.
+
+=== `update-gql-error-index.sh`
+This script orchestrates the execution of the other scripts in a specific order to ensure that the error index is generated and validated correctly.
+
+What it does::
+1. Runs the validation script to check for discrepancies between the _index.adoc_ file and the individual error files.
+2. If validation passes, it runs the generation script to create the _auto-index.adoc_ file.
+3. Runs the validation script again to check for discrepancies between the _auto-index.adoc_ file and the individual error files.
+4. If validation passes, it replaces the existing _index.adoc_ file with _auto-index.adoc_.
+5. If validation fails, it prints an error message and does not replace the _index.adoc_ file, while also keeping the _auto-index.adoc_ file for manual review.

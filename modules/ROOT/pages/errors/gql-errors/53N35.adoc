@@ -3,6 +3,8 @@
 
 == Status description
 error: function exception - function compilation failed. Failed to compile function defined in `{ <<funClass>> }`: `{ <<msg>> }`
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
