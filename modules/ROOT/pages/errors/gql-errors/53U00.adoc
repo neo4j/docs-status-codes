@@ -3,6 +3,8 @@
 
 == Status description
 error: function exception - custom function execution error cause. Execution of the function `{ <<fun>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`.
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

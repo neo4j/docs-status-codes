@@ -1,3 +1,6 @@
+// This is an automatically generated file. Do not edit it directly. It is generated from the templates/gql-index-template.adoc file and should be edited there.
+
+
 :description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
 
 [[neo4j-gqlstatus-errors]]
@@ -29,11 +32,9 @@ Status description:: error: connection exception - transaction resolution unknow
 
 Status description:: error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Unable to get bolt address of the leader. Check the status of the database. Retrying your request at a later time may succeed.
 
-
 === xref:errors/gql-errors/08N01.adoc[08N01]
 
 Status description:: error: connection exception - unable to write to database. Unable to write to database `{ <<db>> }` on this server. Server-side routing is disabled. Either connect to the database leader directly or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
-
 
 === xref:errors/gql-errors/08N02.adoc[08N02]
 
@@ -169,7 +170,7 @@ Status description:: error: data exception - specified negative numeric value. E
 
 === xref:errors/gql-errors/22N03.adoc[22N03]
 
-Status description:: error: data exception - specified numeric value out of range. Expected `{ <<component>> }` to be of type `{ <<valueType>> }` and in the range `{ <<lower>> }`  to `{ <<upper>> }` but found `{ <<value>> }`.
+Status description:: error: data exception - specified numeric value out of range. Expected `{ <<component>> }` to be of type `{ <<valueType>> }` and in the range `{ <<lower>> }` to `{ <<upper>> }` but found `{ <<value>> }`.
 
 === xref:errors/gql-errors/22N04.adoc[22N04]
 
@@ -234,7 +235,7 @@ Status description:: error: data exception - invalid spatial value. A `POINT` mu
 
 === xref:errors/gql-errors/22N20.adoc[22N20]
 
-Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1D }` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2D }` coordinate reference system instead.
+Status description:: error: data exception - invalid spatial value dimensions. Cannot create POINT with `{ <<dim>>1 }D` coordinate reference system (CRS) and `{ <<value>> }` coordinates. Use the equivalent `{ $dim2 }D` coordinate reference system instead.
 
 === xref:errors/gql-errors/22N21.adoc[22N21]
 
@@ -270,7 +271,7 @@ Status description:: error: data exception - overflow error. The result of the o
 
 === xref:errors/gql-errors/22N29.adoc[22N29]
 
-Status description:: error: data exception - unsupported coordinate reference system. Unknown coordinate reference system (CRS).
+Status description:: error: data exception - unknown coordinate reference system. Unknown coordinate reference system (CRS).
 
 === xref:errors/gql-errors/22N30.adoc[22N30]
 
@@ -547,15 +548,15 @@ Status description:: error: data exception - invalid property based access contr
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
-Status description:: error: data exception - invalid property based access control rule involving comparison with NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
+Status description:: error: data exception - invalid property based access control rule involving comparison with `NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
 
 === xref:errors/gql-errors/22NA5.adoc[22NA5]
 
-Status description:: error: data exception - invalid property based access control rule involving IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
 
 === xref:errors/gql-errors/22NA6.adoc[22NA6]
 
-Status description:: error: data exception - invalid property based access control rule involving IS NOT NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving `IS NOT NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
 
 === xref:errors/gql-errors/22NA7.adoc[22NA7]
 
@@ -567,11 +568,11 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 === xref:errors/gql-errors/22NA9.adoc[22NA9]
 
-Status description:: error: data exception -unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
+Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
 
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
-Status description:: error: data exception - invalid property based access control rule involving WHERE and IS NULL. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === xref:errors/gql-errors/22NB1.adoc[22NB1]
 
@@ -596,7 +597,6 @@ Status description:: error: data exception - unsupported time zone identifier. U
 === xref:errors/gql-errors/22NB6.adoc[22NB6]
 
 Status description:: error: data exception - input empty. Invalid input. `{ <<item>> }` is not allowed to be an empty string.
-
 
 === xref:errors/gql-errors/22NB7.adoc[22NB7]
 
@@ -674,6 +674,7 @@ Status description:: error: invalid transaction state - transaction termination 
 
 Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
 
+
 [[invalid-transaction-termination]]
 == Invalid transaction termination
 
@@ -708,6 +709,7 @@ Status description:: error: invalid transaction termination - failed to append t
 
 Status description:: error: invalid transaction termination - inner transactions still open. Unable to commit transaction because it still have non-closed inner transactions.
 
+
 [[transaction-rollback]]
 == Transaction rollback
 
@@ -728,6 +730,7 @@ Status description:: error: transaction rollback - rollback failed. Failed to ro
 === xref:errors/gql-errors/40N02.adoc[40N02]
 
 Status description:: error: transaction rollback - constituent rollback failed. Failed to rollback constituent transaction. See debug log for details.
+
 
 [[syntax-error-or-access-rule-violation]]
 == Syntax error or access rule violation
@@ -808,7 +811,7 @@ Status description:: error: syntax error or access rule violation - invalid inpu
 
 === xref:errors/gql-errors/42I07.adoc[42I07]
 
-Status description:: error: syntax error or access rule violation - invalid integer literal. The given `{ <<valueType>> }` literal `{ <<input>> }` is invalid
+Status description:: error: syntax error or access rule violation - invalid integer literal. The given `{ <<valueType>> }` literal `{ <<input>> }` is invalid.
 
 === xref:errors/gql-errors/42I08.adoc[42I08]
 
@@ -983,6 +986,37 @@ Status description:: error: syntax error or access rule violation - no longer va
 
 Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown coordinate type: `{ <<input>> }`.
 
+=== xref:errors/gql-errors/42I54.adoc[42I54]
+
+Status description:: error: syntax error or access rule violation - invalid use of `INSERT`. `{ <<cause>> }` is not allowed in `INSERT`. Use `CREATE` or `{ <<replacement>> }`.
+
+=== xref:errors/gql-errors/42I55.adoc[42I55]
+
+Status description:: error: syntax error or access rule violation - invalid use of dynamic label or type. Dynamic `{ <<tokenType>> }` using `$any()` are not allowed in `{ <<clause>> }`.
+
+=== xref:errors/gql-errors/42I56.adoc[42I56]
+
+Status description:: error: syntax error or access rule violation - invalid relationship direction. Only directed relationships are supported in `{ <<clause>>}`.
+
+=== xref:errors/gql-errors/42I57.adoc[42I57]
+
+Status description:: error: syntax error or access rule violation - invalid query ending. `{<<exprType>>}` cannot contain a query ending with `{<<clause>>}`.
+
+=== xref:errors/gql-errors/42I58.adoc[42I58]
+
+Status description:: error: syntax error or access rule violation - invalid entity reference. Entity, `{<<expr>>}`, cannot be created and referenced in the same clause.
+
+=== xref:errors/gql-errors/42I59.adoc[42I59]
+
+Status description:: error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in `{ <<clauseList>> }` clauses.
+
+=== xref:errors/gql-errors/42I60.adoc[42I60]
+
+Status description:: error: syntax error or access rule violation - invalid glob escaping. Each part of the glob (a block of text up until a dot) must either be fully escaped or not escaped at all.
+
+=== xref:errors/gql-errors/42I61.adoc[42I61]
+
+Status description:: error: syntax error or access rule violation - missing LOOKUP INDEX function name. Missing function name for the LOOKUP INDEX.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
@@ -1079,11 +1113,9 @@ Status description:: error: syntax error or access rule violation - duplicate cl
 
 Status description:: error: syntax error or access rule violation - empty list range operator. The list range operator `[ ]` cannot be empty.
 
-
 === xref:errors/gql-errors/42N21.adoc[42N21]
 
 Status description:: error: syntax error or access rule violation - unaliased return item. Expression in `{ <<clause>> }` must be aliased (use AS).
-
 
 === xref:errors/gql-errors/42N22.adoc[42N22]
 
@@ -1158,7 +1190,6 @@ Status description:: error: syntax error or access rule violation - incompatible
 
 Status description:: error: syntax error or access rule violation - invalid use of `CALL { ... }`. Not possible to enclose `{ <<clause>> }` in `CALL { ... }`. Use `CALL () { ... }` instead.
 
-
 === xref:errors/gql-errors/42N40.adoc[42N40]
 
 Status description:: error: syntax error or access rule violation - single relationship pattern required. The `{ <<fun>> }` function must contain one relationship pattern.
@@ -1211,11 +1242,9 @@ Status description:: error: syntax error or access rule violation - unsafe usage
 
 Status description:: error: syntax error or access rule violation - unsupported match mode. The match mode `{ <<matchMode>> }` is not supported.
 
-
 === xref:errors/gql-errors/42N56.adoc[42N56]
 
 Status description:: error: syntax error or access rule violation - unsupported use of properties. Properties are not supported in the `{ <<fun>> }` function.
-
 
 === xref:errors/gql-errors/42N57.adoc[42N57]
 
@@ -1271,7 +1300,7 @@ Status description:: error: syntax error or access rule violation - graph functi
 
 === xref:errors/gql-errors/42N73.adoc[42N73]
 
-Status description:: error: syntax error or access rule violation - invalid placement of USE clause. The USE clause must be the first clause of a query or an operand to `... UNION ...` . In a CALL sub-query, it can also be the second clause if the first clause is an importing WITH.
+Status description:: error: syntax error or access rule violation - invalid placement of `USE` clause. The `USE` clause must be the first clause of a query or an operand to `... UNION ...` . In a `CALL` sub-query, it can also be the second clause if the first clause is an importing `WITH`.
 
 === xref:errors/gql-errors/42N74.adoc[42N74]
 
@@ -1345,16 +1374,13 @@ Status description:: error: syntax error or access rule violation - incomplete `
 
 Status description:: error: syntax error or access rule violation - provider-id combination already exists. The combination of provider and id is already in use.
 
-
 === xref:errors/gql-errors/42N96.adoc[42N96]
 
 Status description:: error: syntax error or access rule violation - invalid user configuration. User has no auth provider. Add at least one auth provider for the user or consider suspending them.
 
-
 === xref:errors/gql-errors/42N97.adoc[42N97]
 
 Status description:: error: syntax error or access rule violation - missing mandatory auth clause. Clause `{ <<clause>> }` is mandatory for auth provider `{ <<auth>> }`.
-
 
 === xref:errors/gql-errors/42N98.adoc[42N98]
 
@@ -1419,6 +1445,7 @@ Status description:: error: syntax error or access rule violation - auth info ex
 === xref:errors/gql-errors/42NFF.adoc[42NFF]
 
 Status description:: error: syntax error or access rule violation - permission/access denied. Access denied, see the security logs for details.
+
 
 [[general-processing-exceptions]]
 == General processing exceptions
@@ -1495,11 +1522,12 @@ Status description:: error: general processing exception - no such schema descri
 
 === xref:errors/gql-errors/50N23.adoc[50N23]
 
-error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+Status description:: error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
+
 
 [[system-configuration-or-operation-exceptions]]
 == System configuration or operation exceptions
@@ -1510,7 +1538,6 @@ System configuration or operation exception errors occur when there is an error 
 
 Status description:: error: system configuration or operation exception - procedure registration error. Failed to register procedure/function.
 
-
 === xref:errors/gql-errors/51N01.adoc[51N01]
 
 Status description:: error: system configuration or operation exception - class field annotation should be public, non-final, and non-static. The field `{ <<procField>> }` in the class `{ <<procClass>> }` is annotated as a `@Context` field, but it is declared as static. `@Context` fields must be public, non-final and non-static.
@@ -1519,62 +1546,50 @@ Status description:: error: system configuration or operation exception - class 
 
 Status description:: error: system configuration or operation exception - unsupported injectable component type. Unable to set up injection for procedure `{ <<procClass>> }`. The field `{ <<procField>> }` has type `{ <<procFieldType>> }` which is not a supported injectable component.
 
-
 === xref:errors/gql-errors/51N03.adoc[51N03]
 
 Status description:: error: system configuration or operation exception - unable to access field. Unable to set up injection for `{ <<procClass>> }`, failed to access field `{ <<procField>> }`.
-
 
 === xref:errors/gql-errors/51N04.adoc[51N04]
 
 Status description:: error: system configuration or operation exception - missing class field annotation. The field `{ <<procField>> }` on `{ <<procClass>> }` must be annotated as a `@Context` field in order to store its state.
 
-
 === xref:errors/gql-errors/51N05.adoc[51N05]
 
 Status description:: error: system configuration or operation exception - class field should be public and non-final. The field `{ <<procField>> }` on `{ <<procClass>> }` must be declared non-final and public.
-
 
 === xref:errors/gql-errors/51N06.adoc[51N06]
 
 Status description:: error: system configuration or operation exception - missing argument name. The argument at position `{ <<pos>> }` in `{ <<procMethod>> }` requires a `@Name` annotation and a non-empty name.
 
-
 === xref:errors/gql-errors/51N07.adoc[51N07]
 
 Status description:: error: system configuration or operation exception - invalid ordering of default arguments. The `{ <<procFun>> }` contains a non-default argument after a default argument. Non-default arguments are not allowed to be positioned after default arguments.
-
 
 === xref:errors/gql-errors/51N08.adoc[51N08]
 
 Status description:: error: system configuration or operation exception - exactly one @UserAggregationResult method and one @UserAggregationUpdate method required. The class `{ <<procClass>> }` must contain exactly one `@UserAggregationResult` method and exactly one `@UserAggregationUpdate` method.
 
-
 === xref:errors/gql-errors/51N09.adoc[51N09]
 
 Status description:: error: system configuration or operation exception - @UserAggregationUpdate method must be public and void. The `@UserAggregationUpdate` method `{ <<procMethod>> }` of `{ <<procClass>> }` must be public and have the return type `void`.
-
 
 === xref:errors/gql-errors/51N10.adoc[51N10]
 
 Status description:: error: system configuration or operation exception - aggregation method not public. The method `{ <<procMethod>> }` of `{ <<procClass>> }` must be public.
 
-
 === xref:errors/gql-errors/51N11.adoc[51N11]
 
 Status description:: error: system configuration or operation exception - class not public. The class `{ <<procClass>> }` must be public.
-
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/51N12.adoc[51N12]
 
 Status description:: error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero return columns and must be defined as void.
 
-
 === xref:errors/gql-errors/51N13.adoc[51N13]
 
 Status description:: error: system configuration or operation exception - procedure or function name already in use. Unable to register the procedure or function `{ <<procFun>> }` because the name is already in use.
-
 
 === xref:errors/gql-errors/51N14.adoc[51N14]
 
@@ -1585,11 +1600,9 @@ The procedure `{ <<proc>> }` has a duplicate `{ <<procFieldType>> }` field, `{ <
 
 Status description:: error: system configuration or operation exception - invalid map key type. Type mismatch for map key. Required `STRING`, but found `{ <<valueType>> }`.
 
-
 === xref:errors/gql-errors/51N16.adoc[51N16]
 
 Status description:: error: system configuration or operation exception - invalid default value type. Type mismatch for the default value. Required `{ <<valueType>> }`, but found `{ <<input>> }`.
-
 
 === xref:errors/gql-errors/51N17.adoc[51N17]
 
@@ -1598,7 +1611,6 @@ Status description:: error: system configuration or operation exception - invali
 === xref:errors/gql-errors/51N18.adoc[51N18]
 
 Status description:: error: system configuration or operation exception - invalid method return type. The method `{ <<procMethod>> }` has an invalid return type. Procedures must return a stream of records, where each record is of a defined concrete class.
-
 
 === xref:errors/gql-errors/51N20.adoc[51N20]
 
@@ -1612,11 +1624,9 @@ Status description:: error: system configuration or operation exception - proced
 
 Status description:: error: system configuration or operation exception - exhaustive shortest path search disabled. Finding the shortest path for the given pattern requires an exhaustive search. To enable exhaustive searches, set `cypher.forbid_exhaustive_shortestpath` to false.
 
-
 === xref:errors/gql-errors/51N23.adoc[51N23]
 
 Status description:: error: system configuration or operation exception - cyclic shortest path search disabled. Cannot find the shortest path when the start and end nodes are the same. To enable this behavior, set `dbms.cypher.forbid_shortestpath_common_nodes` to false.
-
 
 === xref:errors/gql-errors/51N24.adoc[51N24]
 
@@ -1625,7 +1635,6 @@ Status description:: error: system configuration or operation exception - insuff
 === xref:errors/gql-errors/51N25.adoc[51N25]
 
 Status description:: error: system configuration or operation exception - database is busy. Cannot compile query due to excessive updates to indexes and constraints.
-
 
 === xref:errors/gql-errors/51N26.adoc[51N26]
 
@@ -1640,36 +1649,29 @@ Status description:: error: system configuration or operation exception - not su
 
 Status description:: error: system configuration or operation exception - not supported by this database. This Cypher command must be executed against the database `{ <<db>> }`.
 
-
 === xref:errors/gql-errors/51N29.adoc[51N29]
 
 Status description:: error: system configuration or operation exception - not supported by this server. The command `{ <<cmd>> }` must be executed on the current `LEADER` server.
-
 
 === xref:errors/gql-errors/51N30.adoc[51N30]
 
 Status description:: error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
 
-
 === xref:errors/gql-errors/51N31.adoc[51N31]
 
 Status description:: error: system configuration or operation exception - not supported. `{ <<item>> }` is not supported in `{ <<context>> }`.
-
 
 === xref:errors/gql-errors/51N32.adoc[51N32]
 
 Status description:: error: system configuration or operation exception - server panic. Server is in panic.
 
-
 === xref:errors/gql-errors/51N33.adoc[51N33]
 
 Status description:: error: system configuration or operation exception - replication error. This member failed to replicate transaction, try again.
 
-
 === xref:errors/gql-errors/51N34.adoc[51N34]
 
 Status description:: error: system configuration or operation exception - write transaction failed due to leader change. Failed to write to the database due to a cluster leader change. Retrying your request at a later time may succeed.
-
 
 === xref:errors/gql-errors/51N35.adoc[51N35]
 
@@ -1691,66 +1693,53 @@ Status description:: error: system configuration or operation exception - failed
 
 Status description:: error: system configuration or operation exception - raft log corrupted. Expected set of files not found on disk. Please restore from backup.
 
-
 === xref:errors/gql-errors/51N40.adoc[51N40]
 
 Status description:: error: system configuration or operation exception - unable to start database. Database `{ <<db>> }` failed to start. Try restarting it.
-
 
 === xref:errors/gql-errors/51N41.adoc[51N41]
 
 Status description:: error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible.
 
-
 === xref:errors/gql-errors/51N43.adoc[51N43]
 
 Status description:: error: system configuration or operation exception - cannot deallocate servers. Cannot deallocate server(s) `{ <<serverList>> }`.
-
 
 === xref:errors/gql-errors/51N44.adoc[51N44]
 
 Status description:: error: system configuration or operation exception - cannot drop server. Cannot drop server `{ <<server>> }`.
 
-
 === xref:errors/gql-errors/51N45.adoc[51N45]
 
 Status description:: error: system configuration or operation exception - cannot cordon server. Cannot cordon server `{ <<server>> }`.
-
 
 === xref:errors/gql-errors/51N46.adoc[51N46]
 
 Status description:: error: system configuration or operation exception - cannot alter server. Cannot alter server `{ <<server>> }`.
 
-
 === xref:errors/gql-errors/51N47.adoc[51N47]
 
 Status description:: error: system configuration or operation exception - cannot rename server. Cannot rename server `{ <<server>> }`.
-
 
 === xref:errors/gql-errors/51N48.adoc[51N48]
 
 Status description:: error: system configuration or operation exception - cannot enable server. Cannot enable server `{ <<server>> }`.
 
-
 === xref:errors/gql-errors/51N49.adoc[51N49]
 
 Status description:: error: system configuration or operation exception - cannot alter database. Cannot alter database `{ <<db>> }`.
-
 
 === xref:errors/gql-errors/51N50.adoc[51N50]
 
 Status description:: error: system configuration or operation exception - cannot recreate database. Cannot recreate database `{ <<db>> }`.
 
-
 === xref:errors/gql-errors/51N51.adoc[51N51]
 
 Status description:: error: system configuration or operation exception - cannot create database. Cannot create database `{ <<db>> }`.
 
-
 === xref:errors/gql-errors/51N52.adoc[51N52]
 
 Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
-
 
 === xref:errors/gql-errors/51N53.adoc[51N53]
 
@@ -1760,7 +1749,6 @@ Status description:: error: system configuration or operation exception - number
 
 Status description:: error: system configuration or operation exception - cannot reallocate. Failed to calculate reallocation for databases. `{ <<msg>> }`
 
-
 === xref:errors/gql-errors/51N55.adoc[51N55]
 
 Status description:: error: system configuration or operation exception - cannot create additional database. Failed to create the database `{ <<db>> }`. The limit of databases is reached. Either increase the limit using the config setting `{ <<cfgSetting>> }` or drop a database.
@@ -1769,16 +1757,13 @@ Status description:: error: system configuration or operation exception - cannot
 
 Status description:: error: system configuration or operation exception - topology out of range. The number of `{ <<serverType>> }` seeding servers `{ <<count>>1 }` is larger than the desired number of `{ <<allocType>> }` allocations `{ $count2 }`.
 
-
 === xref:errors/gql-errors/51N57.adoc[51N57]
 
 Status description:: error: system configuration or operation exception - generic topology modification error. Unexpected error while picking allocations. `{ <<msg>> }`
 
-
 === xref:errors/gql-errors/51N58.adoc[51N58]
 
-Status description:: error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<$count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
-
+Status description:: error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
 
 === xref:errors/gql-errors/51N59.adoc[51N59]
 
@@ -1800,16 +1785,13 @@ Status description:: error: system configuration or operation exception - index 
 
 Status description:: error: system configuration or operation exception - index is still populating. Index is not ready yet. Wait until it finishes populating and retry the transaction.
 
-
 === xref:errors/gql-errors/51N64.adoc[51N64]
 
 Status description:: error: system configuration or operation exception - index dropped while sampling. The index dropped while sampling.
 
-
 === xref:errors/gql-errors/51N65.adoc[51N65]
 
-Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2}`.
-
+Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2 }`.
 
 === xref:errors/gql-errors/51N66.adoc[51N66]
 
@@ -1846,6 +1828,7 @@ Status description:: error: system configuration or operation exception - transa
 === xref:errors/gql-errors/51N74.adoc[51N74]
 
 Status description:: error: system configuration or operation exception - maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ <<cfgSetting>> }` in the neo4j.conf file.
+
 
 [[procedure-exceptions]]
 == Procedure exceptions
@@ -2000,6 +1983,7 @@ Status description:: error: procedure exception - cdc scanner inactive. The log 
 
 Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ <<proc>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`
 
+
 [[function-exceptions]]
 == Function exceptions
 
@@ -2019,8 +2003,9 @@ Status description:: error: function exception - function execution error. Execu
 
 Status description:: error: function exception - custom function execution error cause. Execution of the function `{ <<fun>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`.
 
-[[dependent-object-error]]
-== Dependent object error
+
+[[dependent-object-errors]]
+== Dependent object errors
 
 === xref:errors/gql-errors/G1001.adoc[G1001]
 
