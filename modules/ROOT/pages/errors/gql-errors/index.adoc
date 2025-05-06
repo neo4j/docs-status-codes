@@ -608,7 +608,7 @@ Status description:: error: data exception - invalid Neo4j type. `{ <<input>> }`
 
 === xref:errors/gql-errors/22NB9.adoc[22NB9]
 
-error: data exception - invalid inner list type. Lists cannot have `{ <<item>> }` as an inner type in this context.
+Status description:: error: data exception - invalid inner list type. Lists cannot have `{ <<item>> }` as an inner type in this context.
 
 
 [[invalid-transaction-state]]
