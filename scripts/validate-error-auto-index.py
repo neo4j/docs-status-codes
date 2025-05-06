@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 import argparse
 import sys
+from difflib import ndiff
 
 def get_error_codes_from_index(index_file):
     """Extract error codes and their descriptions from the index file."""
@@ -124,24 +125,24 @@ def format_description(desc, max_len=60):
         return f"{desc[:max_len]}..."
     return desc
 
-def validate_error_parity(errors_dir, index_file, verbose=False):
-    """Validate error code parity between index and individual files."""
-    # Get error codes from index and files
-    index_codes = get_error_codes_from_index(index_file)
+def validate_error_parity(errors_dir, auto_index_file, verbose=False):
+    """Validate error code parity between auto-index and individual files."""
+    # Get error codes from auto-index and files
+    auto_index_codes = get_error_codes_from_index(auto_index_file)
     file_codes = get_error_codes_from_files(errors_dir)
 
     # Get page roles
-    index_roles = get_page_roles_from_index(index_file)
+    auto_index_roles = get_page_roles_from_index(auto_index_file)
     file_roles = get_page_roles_from_files(errors_dir)
 
     # Find missing files and entries
-    codes_in_index_not_in_files = set(index_codes.keys()) - set(file_codes.keys())
-    codes_in_files_not_in_index = set(file_codes.keys()) - set(index_codes.keys())
+    codes_in_auto_index_not_in_files = set(auto_index_codes.keys()) - set(file_codes.keys())
+    codes_in_files_not_in_auto_index = set(file_codes.keys()) - set(auto_index_codes.keys())
 
     # Find description mismatches
     description_mismatches = []
-    for code in set(index_codes.keys()) & set(file_codes.keys()):
-        index_desc = index_codes[code] if code in index_codes else None
+    for code in set(auto_index_codes.keys()) & set(file_codes.keys()):
+        auto_index_desc = auto_index_codes[code] if code in auto_index_codes else None
         file_desc = file_codes[code] if code in file_codes else None
 
         # If file has no description, this isn't a mismatch, just incomplete documentation
@@ -149,56 +150,55 @@ def validate_error_parity(errors_dir, index_file, verbose=False):
             continue
 
         # Compare normalized descriptions (strip whitespace and standardize spacing)
-        if index_desc and file_desc:
-            index_desc_norm = re.sub(r'\s+', ' ', index_desc.strip())
+        if auto_index_desc and file_desc:
+            auto_index_desc_norm = re.sub(r'\s+', ' ', auto_index_desc.strip())
             file_desc_norm = re.sub(r'\s+', ' ', file_desc.strip())
 
-            if index_desc_norm != file_desc_norm:
-                description_mismatches.append((code, index_desc, file_desc))
+            if auto_index_desc_norm != file_desc_norm:
+                description_mismatches.append((code, auto_index_desc, file_desc))
 
     # Find role mismatches
     role_mismatches = []
-    for code in set(index_roles.keys()) | set(file_roles.keys()):
-        index_role = index_roles.get(code)
+    for code in set(auto_index_roles.keys()) | set(file_roles.keys()):
+        auto_index_role = auto_index_roles.get(code)
         file_role = file_roles.get(code)
 
-        if index_role != file_role:
-            role_mismatches.append((code, index_role, file_role))
+        if auto_index_role != file_role:
+            role_mismatches.append((code, auto_index_role, file_role))
 
     # Print results
-    print(f"\n=== Error Code Parity Validation Results ===\n")
-    print(f"Total error codes in index: {len(index_codes)}")
+    print(f"\n=== Auto-Index Validation Results ===\n")
+    print(f"Total error codes in auto-index: {len(auto_index_codes)}")
     print(f"Total error code files: {len(file_codes)}")
 
     # Missing files
-    if codes_in_index_not_in_files:
-        print(f"\n{len(codes_in_index_not_in_files)} error codes in index but missing files:")
-        for code in sorted(codes_in_index_not_in_files):
-            print(f"  - {code}: {format_description(index_codes.get(code))}")
+    if codes_in_auto_index_not_in_files:
+        print(f"\n{len(codes_in_auto_index_not_in_files)} error codes in auto-index but missing files:")
+        for code in sorted(codes_in_auto_index_not_in_files):
+            print(f"  - {code}: {format_description(auto_index_codes.get(code))}")
     else:
         print("\nNo error codes are missing files. ✓")
 
     # Missing entries
-    if codes_in_files_not_in_index:
-        print(f"\n{len(codes_in_files_not_in_index)} error files without index entries:")
-        for code in sorted(codes_in_files_not_in_index):
+    if codes_in_files_not_in_auto_index:
+        print(f"\n{len(codes_in_files_not_in_auto_index)} error files without auto-index entries:")
+        for code in sorted(codes_in_files_not_in_auto_index):
             print(f"  - {code}: {format_description(file_codes.get(code))}")
     else:
-        print("\nNo error files are missing from the index. ✓")
+        print("\nNo error files are missing from the auto-index. ✓")
 
     # Description mismatches
     if description_mismatches:
         print(f"\n{len(description_mismatches)} description mismatches:")
-        for code, index_desc, file_desc in sorted(description_mismatches):
+        for code, auto_index_desc, file_desc in sorted(description_mismatches):
             print(f"\n  - {code}:")
-            print(f"    Index: {format_description(index_desc)}")
-            print(f"    File : {format_description(file_desc)}")
+            print(f"    Auto-Index: {format_description(auto_index_desc)}")
+            print(f"    File      : {format_description(file_desc)}")
 
             if verbose:
                 # Show exact differences for detailed debugging
-                from difflib import ndiff
                 print("\n    Detailed differences:")
-                differences = list(ndiff(index_desc.splitlines(), file_desc.splitlines()))
+                differences = list(ndiff(auto_index_desc.splitlines(), file_desc.splitlines()))
                 for line in differences:
                     if line.startswith('+ ') or line.startswith('- ') or line.startswith('? '):
                         print(f"      {line}")
@@ -208,25 +208,25 @@ def validate_error_parity(errors_dir, index_file, verbose=False):
     # Role mismatches
     if role_mismatches:
         print(f"\n{len(role_mismatches)} page role mismatches:")
-        for code, index_role, file_role in sorted(role_mismatches):
+        for code, auto_index_role, file_role in sorted(role_mismatches):
             print(f"  - {code}:")
-            print(f"    Index: {index_role or 'MISSING'}")
-            print(f"    File : {file_role or 'MISSING'}")
+            print(f"    Auto-Index: {auto_index_role or 'MISSING'}")
+            print(f"    File      : {file_role or 'MISSING'}")
     else:
         print("\nNo page role mismatches found. ✓")
 
     # Final status
-    if not (codes_in_index_not_in_files or codes_in_files_not_in_index or
+    if not (codes_in_auto_index_not_in_files or codes_in_files_not_in_auto_index or
             description_mismatches or role_mismatches):
-        print("\n✅ All validations passed! Documentation is consistent.")
+        print("\n✅ All validations passed! Auto-index is consistent with individual files.")
         return True
     else:
-        print("\n❌ Validation failed. Please address the issues listed above.")
+        print("\n❌ Validation failed.")
         return False
 
 def main():
-    parser = argparse.ArgumentParser(description='Validate error code parity between index and individual files')
-    parser.add_argument('--index', help='Path to index.adoc file')
+    parser = argparse.ArgumentParser(description='Validate auto-index.adoc against individual error files')
+    parser.add_argument('--auto-index', help='Path to auto-index.adoc file')
     parser.add_argument('--dir', help='Path to directory containing error files')
     parser.add_argument('--verbose', '-v', action='store_true', help='Show detailed differences for mismatches')
     args = parser.parse_args()
@@ -236,21 +236,21 @@ def main():
 
     # Default paths if not specified
     errors_dir = args.dir if args.dir else script_dir.parent / 'modules' / 'ROOT' / 'pages' / 'errors' / 'gql-errors'
-    index_file = args.index if args.index else errors_dir / 'index.adoc'
+    auto_index_file = args.auto_index if args.auto_index else errors_dir / 'auto-index.adoc'
 
     # Validate that the paths exist
     if not os.path.exists(errors_dir):
         print(f"Error: Directory not found: {errors_dir}")
         return 1
 
-    if not os.path.exists(index_file):
-        print(f"Error: Index file not found: {index_file}")
+    if not os.path.exists(auto_index_file):
+        print(f"Error: Auto-index file not found: {auto_index_file}")
         return 1
 
     # Run validation
-    success = validate_error_parity(errors_dir, index_file, args.verbose)
+    success = validate_error_parity(errors_dir, auto_index_file, args.verbose)
 
-    # Return return 0 if success
+    # Return 0 if success, 1 otherwise
     return 0 if success else 1
 
 if __name__ == '__main__':
