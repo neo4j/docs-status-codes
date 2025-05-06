@@ -1200,7 +1200,7 @@ Status description:: error: syntax error or access rule violation - incompatible
 
 === xref:errors/gql-errors/42N3C.adoc[42N3C]
 
-Status description:: error: syntax error or access rule violation - invalid use of 'CALL { ... }'. Not possible to enclose `{ <<clause>> }` in 'CALL { ... }'. Use 'CALL () { ... }' instead.
+Status description:: error: syntax error or access rule violation - invalid use of `CALL { ... }`. Not possible to enclose `{ <<clause>> }` in `CALL { ... }`. Use `CALL () { ... }` instead.
 
 === xref:errors/gql-errors/42N3A.adoc[42N3A]
 
