@@ -37,7 +37,7 @@ What it does::
 * Detects status description mismatches between the index and individual files.
 * Verifies page role consistency.
 
-=== `update-gql-error-index.sh`
+=== `update-gql-error-index.py`
 This script orchestrates the execution of the other scripts in a specific order to ensure that the error index is generated and validated correctly.
 
 What it does::
