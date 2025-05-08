@@ -606,6 +606,10 @@ Status description:: error: data exception - element id unsupported on composite
 
 Status description:: error: data exception - invalid Neo4j type. `{ <<input>> }` is not a recognized Neo4j type.
 
+=== xref:errors/gql-errors/22NB9.adoc[22NB9]
+
+Status description:: error: data exception - invalid inner list type. Lists cannot have `{ <<item>> }` as an inner type in this context.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
