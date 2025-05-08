@@ -1,4 +1,4 @@
-// This is an automatically generated file. Do not edit it directly. It is generated from the templates/gql-index-template.adoc file and should be edited there.
+// THIS IS AN AUTOMATICALLY GENERATED FILE. DO NOT EDIT IT. THE STRUCTURE IS GENERATED FROM templates/gql-index-template.adoc AND THE CODES ARE POPULATED BY THE SCRIPTS LOCATED IN THE scripts/ FOLDER.
 
 
 :description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
@@ -120,7 +120,7 @@ Status description:: error: connection exception - shard execution client error.
 [[data-exceptions]]
 == Data exceptions
 
-Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Data exceptions occur when a client request contains the wrong format, types, or other unsupported input.
 Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
 
 === xref:errors/gql-errors/22000.adoc[22000]
