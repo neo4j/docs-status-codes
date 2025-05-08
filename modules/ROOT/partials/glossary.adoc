@@ -123,6 +123,7 @@
 [[tokenId]]$tokenId:: Token ID.
 [[tokenType]]$tokenType:: One of a label, a relationship type, or a property key.
 [[transactionId]]$transactionId:: The transaction ID of a running query.
+[[typeDescription]]$typeDescription:: Freeform description of a type e.g. 'a list'.
 [[upper]]$upper:: The highest accepted number of a range.
 [[url]]$url:: A URL, for example, https://example.com.
 [[user]]$user:: A user name, for example, `neo4j`.

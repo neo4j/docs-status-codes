@@ -2,7 +2,7 @@
 
 == Status description
 
-error: data exception - invalid inner list type. Lists cannot have `{ <<item>> }` as an inner type in this context.
+error: data exception - invalid inner list type. Lists cannot have `{ <<typeDescription>> }` as an inner type in this context.
 
 == Example scenario
 
@@ -15,10 +15,10 @@ FOR (n:Label)
 REQUIRE n.prop IS :: LIST<INTEGER NOT NULL | FLOAT NOT NULL>
 ----
 
-The error will have GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11].
-The first cause in the cause chain will have GQLSTATUS xref:errors/gql-errors/22N90.adoc[22N90] and the second cause will have GQLSTATUS 22NB9.
-The status description of the cause with GQLSTATUS 22NB9 will be:
-+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11].
+This error has a cause detailed in xref:errors/gql-errors/22N90.adoc[22N90], which also has a subsequent cause with GQLSTATUS 22NB9 and status description:
+
+
 [source]
 ----
 error: data exception - invalid inner list type. Lists cannot have a union of types as an inner type in this context.
