@@ -1,0 +1,12 @@
+= 08N19
+
+== Status description
+error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,14 @@
+= 22N83
+
+== Status description
+
+error: data exception - input consists of too many components. Expected name to contain at most `{ <<upper>> }` components separated by '.'.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,14 @@
+= 51N58
+
+== Status description
+
+error: system configuration or operation exception - invalid shard topology. Invalid database shard topology. The number of `{ <<context>> }` `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

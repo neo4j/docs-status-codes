@@ -1,4 +1,4 @@
-// This is an automatically generated file. Do not edit it directly. It is generated from the templates/gql-index-template.adoc file and should be edited there.
+// THIS IS AN AUTOMATICALLY GENERATED FILE. DO NOT EDIT IT. THE STRUCTURE IS GENERATED FROM templates/gql-index-template.adoc AND THE CODES ARE POPULATED BY THE SCRIPTS LOCATED IN THE scripts/ FOLDER.
 
 
 :description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
@@ -104,10 +104,23 @@ Status description:: error: connection exception - general driver transient erro
 
 Status description:: error: connection exception - general driver database error. Remote execution failed with message `{ <<msg>> }`.
 
+=== xref:errors/gql-errors/08N19.adoc[08N19]
+
+Status description:: error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+=== xref:errors/gql-errors/08N20.adoc[08N20]
+
+Status description:: error: connection exception - shard execution database error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+=== xref:errors/gql-errors/08N21.adoc[08N21]
+
+Status description:: error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+
 [[data-exceptions]]
 == Data exceptions
 
-Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Data exceptions occur when a client request contains the wrong format, types, or other unsupported input.
 Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
 
 === xref:errors/gql-errors/22000.adoc[22000]
@@ -118,9 +131,17 @@ Status description:: error: data exception
 
 Status description:: error: data exception - numeric value out of range. The numeric value `{ <<value>> }` is outside the required range.
 
+=== xref:errors/gql-errors/22004.adoc[22004]
+
+Status description:: error: data exception - null value not allowed
+
 === xref:errors/gql-errors/22007.adoc[22007]
 
 Status description:: error: data exception - invalid date, time, or datetime format
+
+=== xref:errors/gql-errors/22012.adoc[22012]
+
+Status description:: error: data exception - division by zero
 
 === xref:errors/gql-errors/22015.adoc[22015]
 
@@ -445,6 +466,10 @@ Status description:: error: data exception - expression type unsupported here. I
 
 Status description:: error: data exception - input contains invalid characters. Input `{ <<input>> }` contains invalid characters for `{ <<context>> }`. Special characters may require that the input is quoted using backticks.
 
+=== xref:errors/gql-errors/22N83.adoc[22N83]
+
+Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ <<upper>> }` components separated by '.'.
+
 === xref:errors/gql-errors/22N84.adoc[22N84]
 
 Status description:: error: data exception - string too long. Expected the string to be no more than `{ <<upper>> }` characters long.
@@ -465,9 +490,10 @@ Status description:: error: data exception - not a valid CIDR IP. `{ <<input>> }
 
 Status description:: error: data exception - new password cannot be the same as the old password. Expected the new password to be different from the old password.
 
+[role=label--changed-2025.05]
 === xref:errors/gql-errors/22N90.adoc[22N90]
 
-Status description:: error: data exception - property type unsupported in constraint. `{ <<item>> }` is not supported in property type constraints.
+Status description:: error: data exception - property type unsupported in constraint. `{ <<valueType>> }` is not supported in property type constraints.
 
 === xref:errors/gql-errors/22N91.adoc[22N91]
 
@@ -516,6 +542,10 @@ Status description:: error: data exception - invalid property based access contr
 === xref:errors/gql-errors/22NA2.adoc[22NA2]
 
 Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
+
+=== xref:errors/gql-errors/22NA3.adoc[22NA3]
+
+Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
@@ -579,7 +609,7 @@ Status description:: error: data exception - invalid Neo4j type. `{ <<input>> }`
 
 === xref:errors/gql-errors/22NB9.adoc[22NB9]
 
-Status description:: error: data exception - invalid inner list type. Lists cannot have `{ <<item>> }` as an inner type in this context.
+Status description:: error: data exception - invalid inner list type. Lists cannot have `{ <<typeDescription>> }` as an inner type in this context.
 
 
 [[invalid-transaction-state]]
@@ -868,6 +898,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `IS`. The `IS` keyword cannot be used together with multiple labels in `{ <<input>> }`. Rewrite the expression as `{ <<replacement>> }`.
 
+=== xref:errors/gql-errors/42I30.adoc[42I30]
+
+Status description:: error: syntax error or access rule violation - invalid use of label expressions. Label expressions cannot be used in `{ <<expr>> }`.
+
 === xref:errors/gql-errors/42I31.adoc[42I31]
 
 Status description:: error: syntax error or access rule violation - invalid use of `MATCH`. `MATCH ...` cannot directly follow an `OPTIONAL MATCH ...`. Use a `WITH` clause between them.
@@ -1030,14 +1064,22 @@ Status description:: error: syntax error or access rule violation - no such proc
 
 Status description:: error: syntax error or access rule violation - no such user. A user with the name `{ <<user>> }` was not found. Verify that the spelling is correct.
 
+=== xref:errors/gql-errors/42N0A.adoc[42N0A]
+
+Status description:: error: syntax error or access rule violation - invalid shard target. `{ <<action>> }` is not allowed with a shard target. Connect to `{ <<db>>1 }` in order to read or write data from `{ db2 }`.
+
+=== xref:errors/gql-errors/42N0B.adoc[42N0B]
+
+Status description:: error: syntax error or access rule violation - cannot replace sharded database. The database identified by `{ <<db>>1 }` is sharded. Drop the database `{ <<db>>2 }` before recreating.
+
 === xref:errors/gql-errors/42N10.adoc[42N10]
 
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.
 
-[role=label--changed-2025.03]
+[role=label--changed-2025.05]
 === xref:errors/gql-errors/42N11.adoc[42N11]
 
-Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.
+Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<dbList>> }` already exists.
 
 === xref:errors/gql-errors/42N12.adoc[42N12]
 
@@ -1090,6 +1132,10 @@ Status description:: error: syntax error or access rule violation - missing refe
 === xref:errors/gql-errors/42N24.adoc[42N24]
 
 Status description:: error: syntax error or access rule violation - missing `WITH`. A `WITH` clause is required between `{ <<input>>1 }` and `{ $input2 }`.
+
+=== xref:errors/gql-errors/42N25.adoc[42N25]
+
+Status description:: error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead.
 
 === xref:errors/gql-errors/42N26.adoc[42N26]
 
@@ -1162,7 +1208,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N44.adoc[42N44]
 
-Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<var>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
 
 === xref:errors/gql-errors/42N45.adoc[42N45]
 
@@ -1187,6 +1233,10 @@ Status description:: error: syntax error or access rule violation - procedure re
 === xref:errors/gql-errors/42N51.adoc[42N51]
 
 Status description:: error: syntax error or access rule violation - invalid parameter. Invalid parameter `{ <<param>> }`.
+
+=== xref:errors/gql-errors/42N52.adoc[42N52]
+
+Status description:: error: syntax error or access rule violation - invalid value type. `{ <<input>> }` is not a recognized Cypher type.
 
 === xref:errors/gql-errors/42N53.adoc[42N53]
 
@@ -1300,6 +1350,10 @@ Status description:: error: syntax error or access rule violation - cannot speci
 
 Status description:: error: syntax error or access rule violation - wildcard in parameter. `{ <<syntax>> }` failed. Parameterized database and graph names do not support wildcards.
 
+=== xref:errors/gql-errors/42N87.adoc[42N87]
+
+Status description:: error: syntax error or access rule violation - database or alias with similar name exists. The database or alias name `{ <<db>>1 }` conflicts with the name `{ <<db>>2 }` of an existing database or alias.
+
 === xref:errors/gql-errors/42N88.adoc[42N88]
 
 Status description:: error: syntax error or access rule violation - cannot grant privilege. Permission cannot be granted for `REMOVE IMMUTABLE PRIVILEGE`.
@@ -1339,6 +1393,26 @@ Status description:: error: syntax error or access rule violation - cannot modif
 === xref:errors/gql-errors/42N99.adoc[42N99]
 
 Status description:: error: syntax error or access rule violation - cannot delete own user. Cannot delete the user record of the current user.
+
+=== xref:errors/gql-errors/42NA0.adoc[42NA0]
+
+Status description:: error: syntax error or access rule violation - operations must be executed on constituent. Query contains operations that must be executed on the constituent.
+
+=== xref:errors/gql-errors/42NA1.adoc[42NA1]
+
+Status description:: error: syntax error or access rule violation - graph access operations on composite database. Graph access operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA2.adoc[42NA2]
+
+Status description:: error: syntax error or access rule violation - database operations on composite database. Database operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA3.adoc[42NA3]
+
+Status description:: error: syntax error or access rule violation - schema operations on composite database. Schema operations are not supported on composite databases.
+
+=== xref:errors/gql-errors/42NA4.adoc[42NA4]
+
+Status description:: error: syntax error or access rule violation - transaction operations on composite database. Transaction operations are not supported on composite databases.
 
 === xref:errors/gql-errors/42NA5.adoc[42NA5]
 
@@ -1433,6 +1507,18 @@ Status description:: error: general processing exception - remote execution tran
 === xref:errors/gql-errors/50N17.adoc[50N17]
 
 Status description:: error: general processing exception - remote execution database error. Remote execution failed. See cause for more details.
+
+=== xref:errors/gql-errors/50N18.adoc[50N18]
+
+Status description:: error: general processing exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
+
+=== xref:errors/gql-errors/50N19.adoc[50N19]
+
+Status description:: error: general processing exception - shard execution database error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
+
+=== xref:errors/gql-errors/50N20.adoc[50N20]
+
+Status description:: error: general processing exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. See cause for more details.
 
 === xref:errors/gql-errors/50N21.adoc[50N21]
 
@@ -1820,6 +1906,10 @@ Status description:: error: procedure exception - too many seeders. The number o
 === xref:errors/gql-errors/52N19.adoc[52N19]
 
 Status description:: error: procedure exception - no such seeder. The specified seeding server with id `{ <<server>> }` was not found. Verify that the spelling is correct.
+
+=== xref:errors/gql-errors/52N21.adoc[52N21]
+
+Status description:: error: procedure exception - failed to clean the system graph. Failed to clean the system graph.
 
 === xref:errors/gql-errors/52N22.adoc[52N22]
 

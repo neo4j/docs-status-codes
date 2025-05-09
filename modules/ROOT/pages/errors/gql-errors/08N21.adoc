@@ -1,0 +1,12 @@
+= 08N21
+
+== Status description
+error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

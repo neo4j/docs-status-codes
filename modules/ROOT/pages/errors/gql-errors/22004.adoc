@@ -1,0 +1,13 @@
+= 22004
+
+== Status description
+
+error: data exception - null value not allowed
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

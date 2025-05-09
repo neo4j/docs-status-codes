@@ -3,7 +3,7 @@
 = 42N39
 
 == Status description
-error: syntax error or access rule violation - incompatible return column names. All `{<<context>>}` must have the same return column names. Use `AS` to ensure columns have the same name.
+error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

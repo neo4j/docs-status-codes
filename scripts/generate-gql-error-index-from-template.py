@@ -140,7 +140,7 @@ def generate_from_template(template_file, errors_dir, output_file, include_descr
 
     # Write the result to the output file
     with open(output_file, 'w') as f:
-        f.write("// This is an automatically generated file. Do not edit it directly. It is generated from the templates/gql-index-template.adoc file and should be edited there.\n")
+        f.write("// THIS IS AN AUTOMATICALLY GENERATED FILE. DO NOT EDIT IT. THE STRUCTURE IS GENERATED FROM templates/gql-index-template.adoc AND THE CODES ARE POPULATED BY THE SCRIPTS LOCATED IN THE scripts/ FOLDER.\n")
         f.write(template_content)
 
     print(f'Generated index file at: {output_file}')
