@@ -6,6 +6,13 @@
 
 This page lists the current Neo4j error codes, which which are returned along side xref:errors/gql-errors/index.adoc[GQLSTATUS error codes], grouped by type.
 
+[NOTE]
+====
+Starting from 2025.04, using the error messages programmatically is deprecated.
+Because error messages might change in a future release, please parse or use GQLSTATUS error codes in your application code.
+For details, see xref:errors/gql-errors/index.adoc[GQLSTATUS error codes].
+====
+
 == Client errors
 
 This is a complete list of all client errors Neo4j may return, and what they mean.
