@@ -8,8 +8,9 @@ This page lists the current Neo4j error codes, which which are returned along si
 
 [NOTE]
 ====
-Starting from 2025.04, the messages of the Neo4j error codes are deprecated and will be removed in a future release.
-Please use the xref:errors/gql-errors/index.adoc[GQLSTATUS error codes] instead.
+Starting from 2025.04, using the error messages programmatically is deprecated.
+Because error messages might change in a future release, please parse or use GQLSTATUS error codes in your application code.
+For details, see xref:errors/gql-errors/index.adoc[GQLSTATUS error codes].
 ====
 
 == Client errors
