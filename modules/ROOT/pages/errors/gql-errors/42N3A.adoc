@@ -1,7 +1,9 @@
 = 42N3A
 
 == Status description
-Status description:: error: syntax error or access rule violation - incompatible conditional query. All `{ <<context>> }` need to either return rows or update the graph.
+
+error: syntax error or access rule violation - incompatible conditional query. All `{ <<context>> }` need to either return rows or update the graph.
+
 
 ifndef::backend-pdf[]
 [discrete.glossary]

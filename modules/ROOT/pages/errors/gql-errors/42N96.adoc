@@ -1,0 +1,14 @@
+= 42N96
+
+== Status description
+
+error: syntax error or access rule violation - invalid user configuration. User has no auth provider. Add at least one auth provider for the user or consider suspending them.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+

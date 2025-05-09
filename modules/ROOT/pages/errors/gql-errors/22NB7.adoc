@@ -1,0 +1,14 @@
+= 22NB7
+
+== Status description
+
+error: data exception - element id unsupported on composite database. It is not supported to create element ids on composite databases. Create the element id for `{ <<entityType>> }` `{ <<$entityId>> }` on the constituent instead.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
