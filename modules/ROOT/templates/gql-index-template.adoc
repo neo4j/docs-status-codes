@@ -24,7 +24,7 @@ Connection exceptions occur when the client (e.g. Browser/Bloom/Cypher Shell) is
 [[data-exceptions]]
 == Data exceptions
 
-Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Data exceptions occur when a client request contains the wrong format, types, or other unsupported input.
 Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
 
 {codes_starting_with:'22'}
