@@ -46,9 +46,6 @@ This is a complete list of all client errors Neo4j may return, and what they mea
 An illegal chain of aliases has been detected.
 This request cannot be executed.
 
-| Neo.ClientError.Fabric.AccessMode
-| The request could not be completed due to an access mode violation
-
 | Neo.ClientError.General.ForbiddenOnReadOnlyDatabase
 | This is a read-only database, writing or modifying the database is not allowed.
 
@@ -420,9 +417,6 @@ This is a complete list of all database errors Neo4j may return, and what they m
 
 | Neo.DatabaseError.Database.Unknown
 | Unknown database management error.
-
-| Neo.DatabaseError.Fabric.RemoteExecutionFailed
-| The database was unable to execute a remote part of the statement.
 
 | Neo.DatabaseError.General.IndexCorruptionDetected
 |
