@@ -1374,7 +1374,7 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- label:new[Valid for Neo4j 5.5-5.25] All subqueries in a UNION [ALL] should have the same ordering for the return columns.
+- label:new[Valid from Neo4j 5.5] All subqueries in a UNION [ALL] should have the same ordering for the return columns.
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 - Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
 Names containing `.` should be escaped. (`%s`)

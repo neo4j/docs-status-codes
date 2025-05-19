@@ -3,6 +3,7 @@
 [[action]]$action:: Freeform description of an action.
 //$action will be replaced by cmd and msg depending on the usage.
 [[alias]]$alias:: An alias name, `mydb-alias`.
+[[aliasList]]$aliasList:: A list of alias names, for example, `mydb-alias1, mydb-alias2`.
 [[allocType]]$allocType:: Allocation type (`primary` or `secondary`).
 [[arg]]$arg:: Procedure or function argument, for example, `database`, `pause`, `dryrun`, etc.
 [[argType]]$argType:: Argument type, either input or output.
@@ -39,6 +40,7 @@
 //52N22 and 52N36 to change $field to $arg. Check 22N98 with Antonio.
 [[fun]]$fun:: Function name, for example, `collect()`.
 [[funClass]]$funClass:: User-defined function implementation class name, for example, `MyFunctionClass`.
+[[funType]]$funType:: Function type, e.g. non-deterministic or aggregate.
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
 [[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint, one of `UNDESIGNATED`, `INDEPENDENT`, or `DEPENDENT`.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
