@@ -1,0 +1,17 @@
+= 52N41
+
+
+== Status description
+error: procedure exception - The key value for { <<field>> } in the query string cannot be parsed when getting a routing table.
+
+
+== Explanation
+
+This error occurs when trying to use a routing policy, but providing some invalid details on a routed request. Example fields include `policy` and `alias`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -488,6 +488,8 @@
 **** xref:errors/gql-errors/52N37.adoc[]
 **** xref:errors/gql-errors/52N38.adoc[]
 **** xref:errors/gql-errors/52N39.adoc[]
+**** xref:errors/gql-errors/52N40.adoc[]
+**** xref:errors/gql-errors/52N41.adoc[]
 **** xref:errors/gql-errors/52U00.adoc[]
 *** xref:errors/gql-errors/index.adoc#function-exceptions[Function exceptions]
 **** xref:errors/gql-errors/53N34.adoc[]

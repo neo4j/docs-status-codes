@@ -1,0 +1,13 @@
+= 52N40
+
+
+== Status description
+error: procedure exception - Reconciliation failed during writing the topology graph, transaction may not be committed.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
