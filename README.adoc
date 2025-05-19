@@ -33,11 +33,25 @@ You will still need to refresh the page to view the changes.
 [[contributing]]
 == Contributing
 
-To make changes to this repository, please create a fork of this repo and a new branch to stage your changes.
-Your branch should be prefixed with the version number, for example, `dev-new-examples`.
-
-When you are finished with your changes push the branch to your fork and create a Pull Request.
-Please add at least one approver.
+. To make changes to this repository, create a fork of this repo and a new branch to stage your changes.
+Your branch should be prefixed with `dev-` or the version if it is a specific version you are working on.
+. If you want to add a new GQLSTATUS code or update an existing one, you must start with the `neo4j` repo.
+The `neo4j` repo is the source of truth for all GQLSTATUS codes.
+. Add a page for each new GQLSTATUS code in the _docs-status-codes/modules/ROOT/pages/errors/gql-errors_ folder or update an existing one.
+The file name should be the same as the GQLSTATUS code, e.g., `08N02.adoc` for the `08N02` code.
+Use the same format as the other files in this folder.
+. Update the _content-nav.adoc_ file to reflect the added codes.
+Codes are ordered alphabetically.
+. If the standard description of a new GQLSTATUS code contains a new parameter, add this parameter to the _docs-status-codes/modules/ROOT/partials/glossary.adoc_ file as well.
+. GQLSTATUS codes are also listed on the index page.
+PLEASE DON’T EDIT IT.
+The _docs-status-codes/modules/ROOT/pages/errors/gql-errors/index.adoc_ file is created from a template and the codes and their status descriptions are automatically populated.
+If you want to update the index page with adding a new section or section description, please contact the Docs team.
+The Docs team is also responsible for keeping it consistent with the individual error files.
+. If possible, add an example of the new error and any extra information our users may benefit from on the error page.
+See the following pages for inspiration:
+https://neo4j.com/docs/status-codes/current/errors/gql-errors/08N02/, https://neo4j.com/docs/status-codes/current/errors/gql-errors/08N07/, and https://neo4j.com/docs/status-codes/current/errors/gql-errors/51N27/.
+. Let your team and Docs team review the PR.
 
 [[guidelines]]
 == Guidelines for writing errors and notifications
