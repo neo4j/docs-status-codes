@@ -835,7 +835,7 @@ Status description:: error: syntax error or access rule violation - invalid numb
 
 === xref:errors/gql-errors/42I14.adoc[42I14]
 
-Status description:: error: syntax error or access rule violation - invalid number of relationship types. Exactly one relationship type must be specified for `{ <<var>> }`.
+Status description:: error: syntax error or access rule violation - invalid number of relationship types. Exactly one relationship type must be specified for `{ <<variable>> }`.
 
 === xref:errors/gql-errors/42I15.adoc[42I15]
 

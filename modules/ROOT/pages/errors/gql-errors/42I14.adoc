@@ -1,7 +1,7 @@
 = 42I14
 
 == Status description
-error: syntax error or access rule violation - invalid number of relationship types. Exactly one relationship type must be specified for `{ <<var>> }`.
+error: syntax error or access rule violation - invalid number of relationship types. Exactly one relationship type must be specified for `{ <<variable>> }`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
