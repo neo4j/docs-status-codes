@@ -981,42 +981,9 @@ Status description:: info: invalid call signature. The procedure or function `{ 
 
 Status description:: error: syntax error or access rule violation - no longer valid syntax. `{ <<msg>> }`
 
-
 === xref:errors/gql-errors/42I53.adoc[42I53]
 
 Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown coordinate type: `{ <<input>> }`.
-
-=== xref:errors/gql-errors/42I54.adoc[42I54]
-
-Status description:: error: syntax error or access rule violation - invalid use of `INSERT`. `{ <<cause>> }` is not allowed in `INSERT`. Use `CREATE` or `{ <<replacement>> }`.
-
-=== xref:errors/gql-errors/42I55.adoc[42I55]
-
-Status description:: error: syntax error or access rule violation - invalid use of dynamic label or type. Dynamic `{ <<tokenType>> }` using `$any()` are not allowed in `{ <<clause>> }`.
-
-=== xref:errors/gql-errors/42I56.adoc[42I56]
-
-Status description:: error: syntax error or access rule violation - invalid relationship direction. Only directed relationships are supported in `{ <<clause>>}`.
-
-=== xref:errors/gql-errors/42I57.adoc[42I57]
-
-Status description:: error: syntax error or access rule violation - invalid query ending. `{<<exprType>>}` cannot contain a query ending with `{<<clause>>}`.
-
-=== xref:errors/gql-errors/42I58.adoc[42I58]
-
-Status description:: error: syntax error or access rule violation - invalid entity reference. Entity, `{<<expr>>}`, cannot be created and referenced in the same clause.
-
-=== xref:errors/gql-errors/42I59.adoc[42I59]
-
-Status description:: error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in `{ <<clauseList>> }` clauses.
-
-=== xref:errors/gql-errors/42I60.adoc[42I60]
-
-Status description:: error: syntax error or access rule violation - invalid glob escaping. Each part of the glob (a block of text up until a dot) must either be fully escaped or not escaped at all.
-
-=== xref:errors/gql-errors/42I61.adoc[42I61]
-
-Status description:: error: syntax error or access rule violation - missing LOOKUP INDEX function name. Missing function name for the LOOKUP INDEX.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
