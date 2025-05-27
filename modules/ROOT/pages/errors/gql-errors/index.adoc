@@ -1989,7 +1989,7 @@ Status description:: error: procedure exception - Reconciliation failed during w
 
 === xref:errors/gql-errors/52N41.adoc[52N41]
 
-Status description:: error: procedure exception - The key value for { <<field>> } in the query string cannot be parsed when getting a routing table.
+Status description:: error: procedure exception - The key value for `{ <<field>> }` in the query string cannot be parsed when getting a routing table.
 
 === xref:errors/gql-errors/52U00.adoc[52U00]
 

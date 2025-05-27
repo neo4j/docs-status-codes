@@ -2,7 +2,7 @@
 
 
 == Status description
-error: procedure exception - The key value for { <<field>> } in the query string cannot be parsed when getting a routing table.
+error: procedure exception - The key value for `{ <<field>> }` in the query string cannot be parsed when getting a routing table.
 
 
 == Explanation
