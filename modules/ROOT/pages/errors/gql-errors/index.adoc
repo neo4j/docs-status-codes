@@ -1983,6 +1983,14 @@ Status description:: error: procedure exception - cdc start position not found. 
 
 Status description:: error: procedure exception - cdc scanner inactive. The log scanner is no longer active.
 
+=== xref:errors/gql-errors/52N40.adoc[52N40]
+
+Status description:: error: procedure exception - Reconciliation failed during writing the topology graph, transaction may not be committed.
+
+=== xref:errors/gql-errors/52N41.adoc[52N41]
+
+Status description:: error: procedure exception - The key value for `{ <<field>> }` in the query string cannot be parsed when getting a routing table.
+
 === xref:errors/gql-errors/52U00.adoc[52U00]
 
 Status description:: error: procedure exception - custom procedure execution error cause. Execution of the procedure `{ <<proc>> }` failed due to `{ <<msgTitle>> }`: `{ <<msg>> }`
