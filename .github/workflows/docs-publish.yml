@@ -5,6 +5,7 @@ on:
   push:
     branches:
     - 'dev'
+    - 'main'
     - '5.x'
   workflow_dispatch:
   # schedule:
@@ -45,9 +46,9 @@ jobs:
           event-type: ${{ github.event.repository.name }}
           client-payload: |-
             {
-              "org": "${{ github.repository_owner }}", 
-              "repo": "${{ github.event.repository.name }}", 
-              "run_id": "${{ github.run_id }}", 
+              "org": "${{ github.repository_owner }}",
+              "repo": "${{ github.event.repository.name }}",
+              "run_id": "${{ github.run_id }}",
               "branch": "${{ github.ref_name }}",
               "args": "--dryrun",
               "publish_env": "${{ env.PUBLISH_TO }}",
