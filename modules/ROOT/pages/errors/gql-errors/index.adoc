@@ -1,4 +1,4 @@
-// This is an automatically generated file. Do not edit it directly. It is generated from the templates/gql-index-template.adoc file and should be edited there.
+// THIS IS AN AUTOMATICALLY GENERATED FILE. DO NOT EDIT IT. THE STRUCTURE IS GENERATED FROM templates/gql-index-template.adoc AND THE CODES ARE POPULATED BY THE SCRIPTS LOCATED IN THE scripts/ FOLDER.
 
 
 :description: This section describes the GQLSTATUS errors that Neo4j can return, grouped by category, and an example of when they can occur.
@@ -120,7 +120,7 @@ Status description:: error: connection exception - shard execution client error.
 [[data-exceptions]]
 == Data exceptions
 
-Database exceptions occur when a client request contains the wrong format, types, or other unsupported input.
+Data exceptions occur when a client request contains the wrong format, types, or other unsupported input.
 Some examples are data and constraint creation, which conflicts with existing constraints, properties of non-storable type, and spatial and temporal values with invalid components.
 
 === xref:errors/gql-errors/22000.adoc[22000]
@@ -490,9 +490,10 @@ Status description:: error: data exception - not a valid CIDR IP. `{ <<input>> }
 
 Status description:: error: data exception - new password cannot be the same as the old password. Expected the new password to be different from the old password.
 
+[role=label--changed-2025.05]
 === xref:errors/gql-errors/22N90.adoc[22N90]
 
-Status description:: error: data exception - property type unsupported in constraint. `{ <<item>> }` is not supported in property type constraints.
+Status description:: error: data exception - property type unsupported in constraint. `{ <<valueType>> }` is not supported in property type constraints.
 
 === xref:errors/gql-errors/22N91.adoc[22N91]
 
@@ -605,6 +606,10 @@ Status description:: error: data exception - element id unsupported on composite
 === xref:errors/gql-errors/22NB8.adoc[22NB8]
 
 Status description:: error: data exception - invalid Neo4j type. `{ <<input>> }` is not a recognized Neo4j type.
+
+=== xref:errors/gql-errors/22NB9.adoc[22NB9]
+
+Status description:: error: data exception - invalid inner list type. Lists cannot have `{ <<typeDescription>> }` as an inner type in this context.
 
 
 [[invalid-transaction-state]]
@@ -985,6 +990,38 @@ Status description:: error: syntax error or access rule violation - no longer va
 
 Status description:: error: syntax error or access rule violation - unsupported coordinate type. Unknown coordinate type: `{ <<input>> }`.
 
+=== xref:errors/gql-errors/42I54.adoc[42I54]
+
+Status description:: error: syntax error or access rule violation - invalid use of `INSERT`. `{ <<cause>> }` is not allowed in `INSERT`. Use `CREATE` or `{ <<replacement>> }`.
+
+=== xref:errors/gql-errors/42I55.adoc[42I55]
+
+Status description:: error: syntax error or access rule violation - invalid use of dynamic label or type. Dynamic `{ <<tokenType>> }` using `$any()` are not allowed in `{ <<clause>> }`.
+
+=== xref:errors/gql-errors/42I56.adoc[42I56]
+
+Status description:: error: syntax error or access rule violation - invalid relationship direction. Only directed relationships are supported in `{ <<clause>>}`.
+
+=== xref:errors/gql-errors/42I57.adoc[42I57]
+
+Status description:: error: syntax error or access rule violation - invalid query ending. `{<<exprType>>}` cannot contain a query ending with `{<<clause>>}`.
+
+=== xref:errors/gql-errors/42I58.adoc[42I58]
+
+Status description:: error: syntax error or access rule violation - invalid entity reference. Entity, `{<<expr>>}`, cannot be created and referenced in the same clause.
+
+=== xref:errors/gql-errors/42I59.adoc[42I59]
+
+Status description:: error: syntax error or access rule violation - dynamic entity type not allowed. Dynamic label and types are only allowed in `{ <<clauseList>> }` clauses.
+
+=== xref:errors/gql-errors/42I60.adoc[42I60]
+
+Status description:: error: syntax error or access rule violation - invalid glob escaping. Each part of the glob (a block of text up until a dot) must either be fully escaped or not escaped at all.
+
+=== xref:errors/gql-errors/42I61.adoc[42I61]
+
+Status description:: error: syntax error or access rule violation - missing LOOKUP INDEX function name. Missing function name for the LOOKUP INDEX.
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
@@ -1039,10 +1076,10 @@ Status description:: error: syntax error or access rule violation - cannot repla
 
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.
 
-[role=label--changed-2025.03]
+[role=label--changed-2025.05]
 === xref:errors/gql-errors/42N11.adoc[42N11]
 
-Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<db>> }` already exists.
+Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<dbList>> }` already exists.
 
 === xref:errors/gql-errors/42N12.adoc[42N12]
 
@@ -1945,6 +1982,14 @@ Status description:: error: procedure exception - cdc start position not found. 
 === xref:errors/gql-errors/52N39.adoc[52N39]
 
 Status description:: error: procedure exception - cdc scanner inactive. The log scanner is no longer active.
+
+=== xref:errors/gql-errors/52N40.adoc[52N40]
+
+Status description:: error: procedure exception - Reconciliation failed during writing the topology graph, transaction may not be committed.
+
+=== xref:errors/gql-errors/52N41.adoc[52N41]
+
+Status description:: error: procedure exception - The key value for `{ <<field>> }` in the query string cannot be parsed when getting a routing table.
 
 === xref:errors/gql-errors/52U00.adoc[52U00]
 

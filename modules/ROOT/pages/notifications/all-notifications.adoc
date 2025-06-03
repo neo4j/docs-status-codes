@@ -1972,7 +1972,7 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: feature deprecated with replacement.
 id is deprecated.
-It is replaced by elementId or an application-generated id.
+It is replaced by elementId or consider using an application-generated id.
 
 Suggestions for improvement::
 Use the function `elementId()` instead.

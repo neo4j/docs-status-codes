@@ -13,6 +13,7 @@
 [[cause]]$cause:: Freeform description of what caused the error.
 [[cfgSetting]]$cfgSetting:: Configuration setting key, for example, `server.https.enabled`.
 [[clause]]$clause:: A Cypher clause, for example, `USE`, `MATCH`.
+[[clauseList]]$clause:: A list of Cypher clauses, for example, `USE, MATCH`.
 [[cmd]]$cmd:: A Cypher command, for example, `DROP DATABASE`, `PROFILE`, `SHOW PROCEDURES`.
 [[component]]$component:: A component of something, for example, hours/minutes within a time, a subset input within the whole input, `TOPOLOGY` clause within the whole `CREATE/ALTER DB ... SET TOPOLOGY`, etc.
 // we need to change the parameter $component in 51N27 to `$feat` maybe.
@@ -28,6 +29,7 @@
 //To check with the clustering team about $countAllocs and $countSeeders.
 [[crs]]$crs:: Coordinate reference system, for example, `WGS84`.
 [[db]]$db:: Database name, for example, `myDb`.
+[[dbList]]$dbList:: A list of database names.
 [[dim]]$dim:: Number representing index or point dimenionality.
 [[edition]]$edition:: Neo4j edition, for example, Community or Enterprise.
 [[endpointType]]$endpointType:: One of `start` or `end` of a relationship.
@@ -123,6 +125,7 @@
 [[tokenId]]$tokenId:: Token ID.
 [[tokenType]]$tokenType:: One of a label, a relationship type, or a property key.
 [[transactionId]]$transactionId:: The transaction ID of a running query.
+[[typeDescription]]$typeDescription:: Freeform description of a type e.g. 'a list'.
 [[upper]]$upper:: The highest accepted number of a range.
 [[url]]$url:: A URL, for example, https://example.com.
 [[user]]$user:: A user name, for example, `neo4j`.
