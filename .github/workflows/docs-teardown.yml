@@ -5,6 +5,7 @@ on:
   pull_request_target:
     branches:
       - "dev"
+      - "main"
       - "5.x"
       - "4.[0-9]"
       - "gqlstatus-errors"

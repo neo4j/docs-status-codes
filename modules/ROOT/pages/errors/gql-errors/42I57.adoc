@@ -1,0 +1,11 @@
+= 42I57
+
+== Status description
+error: syntax error or access rule violation - invalid query ending. `{<<exprType>>}` cannot contain a query ending with `{<<clause>>}`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
