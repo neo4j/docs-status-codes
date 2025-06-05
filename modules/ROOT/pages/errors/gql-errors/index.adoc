@@ -106,15 +106,15 @@ Status description:: error: connection exception - general driver database error
 
 === xref:errors/gql-errors/08N19.adoc[08N19]
 
-Status description:: error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+Status description:: error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed with message `{ <<msg>> }`.
 
 === xref:errors/gql-errors/08N20.adoc[08N20]
 
-Status description:: error: connection exception - shard execution database error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+Status description:: error: connection exception - shard execution database error. Communication with shard `{ <<graph>> }` failed with message `{ <<msg>> }`.
 
 === xref:errors/gql-errors/08N21.adoc[08N21]
 
-Status description:: error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+Status description:: error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed with message `{ <<msg>> }`.
 
 
 [[data-exceptions]]
@@ -610,6 +610,10 @@ Status description:: error: data exception - invalid Neo4j type. `{ <<input>> }`
 === xref:errors/gql-errors/22NB9.adoc[22NB9]
 
 Status description:: error: data exception - invalid inner list type. Lists cannot have `{ <<typeDescription>> }` as an inner type in this context.
+
+=== xref:errors/gql-errors/22NBA.adoc[22NBA]
+
+Status description:: error: data exception - omitting mandatory field for property type constraints for vectors. Property type constraints for vectors need to define both coordinate type and dimension.
 
 
 [[invalid-transaction-state]]
@@ -1661,9 +1665,10 @@ Status description:: error: system configuration or operation exception - not su
 
 Status description:: error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
 
+[role=label--changed-2025.06]
 === xref:errors/gql-errors/51N31.adoc[51N31]
 
-Status description:: error: system configuration or operation exception - not supported. `{ <<item>> }` is not supported in `{ <<context>> }`.
+Status description:: error: system configuration or operation exception - not supported. `{ <<feat>> }` is not supported in `{ <<context>> }`.
 
 === xref:errors/gql-errors/51N32.adoc[51N32]
 
