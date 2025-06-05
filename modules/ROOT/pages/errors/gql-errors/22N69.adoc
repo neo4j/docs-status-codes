@@ -1,7 +1,9 @@
+:page-role: changed-2025.06
+
 = 22N69
 
 == Status description
-error: data exception - index does not exist. The index specified by `{ <<idxDescrOrName>> }` does not exist.
+error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }` does not exist.
 
 
 ifndef::backend-pdf[]

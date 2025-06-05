@@ -1,7 +1,9 @@
+:page-role: changed-2025.06
+
 = 22N71
 
 == Status description
-error: data exception - index with the same name already exists. An index with the same name already exists: `{ <<idx>> }`.
+error: data exception - duplicated index name. An index with the same name already exists: `{ <<idx>> }`.
 
 
 ifndef::backend-pdf[]
