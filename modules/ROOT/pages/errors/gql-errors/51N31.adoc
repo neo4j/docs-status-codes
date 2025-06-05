@@ -1,8 +1,10 @@
+:page-role: changed-2025.06
+
 = 51N31
 
 == Status description
 
-error: system configuration or operation exception - not supported. `{ <<item>> }` is not supported in `{ <<context>> }`.
+error: system configuration or operation exception - not supported. `{ <<feat>> }` is not supported in `{ <<context>> }`.
 
 
 ifndef::backend-pdf[]
