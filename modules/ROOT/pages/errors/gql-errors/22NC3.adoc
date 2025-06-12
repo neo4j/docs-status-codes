@@ -1,0 +1,32 @@
+= 22NC3
+
+== Status description
+The relationship element type `{ <<relType>> }` must define a node element type for source or destination, or define at least one property type.
+
+== Explanation
+When defining a graph type, relationship element types must have some effect.
+Ineffectual relationship element types are not permitted.
+
+== Example scenario
+For example, try to set a graph type with :
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ()-[:REL =>]-()
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC3 and the status description:
+
+[source]
+----
+error: data exception - relationship element type is empty. The relationship element type `REL` must define a node element type for source or destination, or define at least one property type.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

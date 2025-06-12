@@ -1,0 +1,33 @@
+= 22NC8
+
+== Status description
+The empty node type `()` is not a valid target for a constraint
+
+== Explanation
+This error occurs when you attempt to define a constraint on an empty node type.
+Constraints must target specific node types using a label.
+Using an empty node type means there is no label or type specified, which is not valid for constraint definitions.
+
+== Example scenario
+Attempt to define a constraint on an empty node reference as follows:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR () REQUIRE n.badger IS UNIQUE
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC8 and the status description:
+
+[source]
+----
+error: data exception - constraint does not have a label or relationship type. The empty node type `()` is not a valid target for a constraint.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,41 @@
+= 22NCB
+
+== Status description
+The graph type constraint is missing an alias.
+
+== Explanation
+Attempting to define a constraint against a node that is not using an alias, such as `:Node`, will cause this error.
+The constraint must be defined against an element type alias, for example, `n:Node`.
+
+== Example scenario
+Attempt to define an existance constraint as follows:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR (:Node) REQUIRE n.prop IS NOT NULL
+}
+----
+
+An error will be thrown with GQLSTATUS 22NCB and the status description:
+
+[source]
+----
+error: data exception - invalid element type constraints in graph type. A node element type property existence constraint cannot be specified inline of a node element type.
+----
+
+A correct definition is as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR (n:Node) REQUIRE n.prop IS NOT NULL
+}
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
