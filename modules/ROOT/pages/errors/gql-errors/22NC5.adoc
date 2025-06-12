@@ -1,0 +1,53 @@
+= 22NC5
+
+== Status description
+The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` was not found.
+
+== Explanation
+This error occurs when a graph type definition references an element type (such as a node or relationship) using an alias that has not been defined, or by an identifying reference where there is no graph type element identified by that reference.
+If the referenced node or relationship type does not exist, the operation cannot proceed and this error is returned to indicate the missing element.
+
+== Example scenarios
+
+=== Node element reference not found ===
+For example, try to set a graph type with an identiying node element reference that does not exist:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:Node =>)-[e:REL => { prop :: STRING }]->()
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC5 and the status description:
+
+[source]
+----
+error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' was not found.
+----
+In this case, the reference could be corrected to be non-identifying, or the node type element could be defined before this operation.
+
+=== Relationship element reference not found ===
+For example, try to set a graph type with a relationship element reference that does not exist:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  CONSTRAINT FOR ()-[b]->() REQUIRE (b.prop) IS KEY
+}
+
+----
+
+An error will be thrown with GQLSTATUS 22NC5 and the status description:
+
+[source]
+----
+error: data exception - graph type element not found. The relationship type element referenced by 'b' was not found.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

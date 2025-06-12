@@ -1,0 +1,31 @@
+= 22NC1
+
+== Status description
+The graph type element includes a property key with name `{ <<propKey>> }` more than once.
+
+== Explanation
+When defining a graph type, node element types, and relationship element types may only define a property once.
+
+== Example scenario
+For example, try to set a graph type with :
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (n:Node => {prop::STRING, prop::INTEGER})
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC1 and the status description:
+
+[source]
+----
+error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `prop` more than once.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

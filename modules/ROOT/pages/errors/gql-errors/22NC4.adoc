@@ -1,0 +1,34 @@
+= 22NC4
+
+== Status description
+The label(s) `{ <<labelList>> }` are defined as both identifying and implied.
+
+== Explanation
+When defining a graph type, labels and relationships must be assigned clear roles.
+A label cannot be both "identifying" (used to uniquely identify nodes) and "implied" (automatically assigned based on other schema rules) at the same time.
+Attempting to define a label as both will result in this error, as it creates ambiguity in the schema definition and node identification process.
+
+== Example scenario
+For example, try to set a graph type which defines the node element types 'Person and 'Student' with the label 'Person' also declared as an implied label on the 'Student' node element type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p:Person => {name :: STRING}),
+    (s:Student => :Person )
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC4 and the status description:
+
+[source]
+----
+error: data exception - a label cannot both identifying and implied. The label(s) `Person` are defined as both identifying and implied.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

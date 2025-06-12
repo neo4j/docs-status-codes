@@ -1,0 +1,56 @@
+= 22NC9
+
+== Status description
+The graph type includes a label, relationship type or alias with name `{ <<token>> }` more than once
+
+== Explanation
+This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or alias within the same scope.
+Each label, relationship type, or alias must have a unique name to avoid ambiguity in the graph schema.
+To resolve this error, ensure that all labels, relationship types, and aliases are uniquely named within the graph type definition.
+
+== Example scenarios
+
+=== Aliases
+
+Attempt to define two node element types using the same alias.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  ( p: Person => { prop :: STRING } ),
+  ( p: Property => { prop :: STRING } )
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC9 and the status description:
+
+[source]
+----
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name 'p' more than once.
+----
+
+=== Identifiers
+
+Attempt to define two node element types using the same alias.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  ()-[n:REL => { prop :: STRING }]->(),
+  ()-[m:REL => { prop :: STRING }]->()
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC9 and the status description:
+
+[source]
+----
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name ':REL' more than once.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

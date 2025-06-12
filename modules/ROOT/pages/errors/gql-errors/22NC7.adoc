@@ -1,0 +1,33 @@
+= 22NC7
+
+== Status description
+The independent constraint `{ <<constrDescrOrName>> }` was defined using the same relationship type `{ <<relType>> }` as a relationship type element.
+
+== Explanation
+This error occurs when a relationship type is used both as an identifying relaionship type (defining a relationship type element) and as part of an independent constraint.
+A label cannot serve as both an identifying label and be referenced in an independent constraint at the same time.
+
+== Example scenario
+For example, try to set an existance constraint on a property for the relationship type `:REL`` where `:REL` is also defined as an identifying relationship type in the graph type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ()-[:REL => {name :: STRING}]->(),
+    CONSTRAINT FOR ()-[r:REL =>]->() REQUIRE r.name IS NOT NULL,
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC7 and the status description:
+
+[source]
+----
+error: data exception - independent constraint defined on node type element label. The independent constraint '(:`Person` {`name`})' was defined using the same label `Person` as a node type element.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

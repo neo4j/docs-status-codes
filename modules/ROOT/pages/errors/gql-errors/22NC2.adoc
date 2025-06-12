@@ -1,0 +1,32 @@
+= 22NC2
+
+== Status description
+The node element type `{ <<label>> }` must contain one or more implied labels, or define at least one property type.
+
+== Explanation
+When defining a graph type, node element types have some effect.
+Ineffectual node element types are not permitted.
+
+== Example scenario
+For example, try to set a graph type with :
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (n:Node => )
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC2 and the status description:
+
+[source]
+----
+error: data exception - node element type is empty. The node element type `Node` must contain one or more implied labels, or define at least one property type.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
