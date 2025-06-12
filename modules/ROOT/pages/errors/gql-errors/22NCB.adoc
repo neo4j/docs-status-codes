@@ -1,0 +1,11 @@
+= 22NCB
+
+== Status description
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
