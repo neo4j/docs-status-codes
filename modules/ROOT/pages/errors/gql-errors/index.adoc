@@ -1708,7 +1708,7 @@ Status description:: error: system configuration or operation exception - unable
 
 === xref:errors/gql-errors/51N41.adoc[51N41]
 
-Status description:: error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible.
+Status description:: error: system configuration or operation exception - admin operation failed. Server or database admin operation not possible. Reason: `{ <<msg>> }`
 
 === xref:errors/gql-errors/51N43.adoc[51N43]
 
