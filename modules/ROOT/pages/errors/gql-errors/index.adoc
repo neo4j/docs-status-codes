@@ -615,6 +615,10 @@ Status description:: error: data exception - invalid inner list type. Lists cann
 
 Status description:: error: data exception - omitting mandatory field for property type constraints for vectors. Property type constraints for vectors need to define both coordinate type and dimension.
 
+=== xref:errors/gql-errors/22NBC.adoc[22NBC]
+
+Status description:: error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
