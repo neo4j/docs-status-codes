@@ -6,34 +6,51 @@ error: syntax error or access rule violation - incorrectly formatted graph refer
 == Explanation
 As of Cypher 25, database names and aliases cannot include name parts that are quoted individually.
 Either the whole name must be quoted, or the whole name must be unquoted.
+A recommended approach, which is consistent between different commands and Cypher versions, is to send in the database name or alias as a parameter rather than a string literal.
 
 == Example scenario
-For example, try to create a database with :
+For example, try to create a database with
 
 [source,cypher]
 ----
-CREATE DATABASE `foo`.`bar`
+CYPHER 25 CREATE ALIAS `foo`.`bar` FOR DATABASE baz
 ----
 
-An error will be thrown with GQLSTATUS 42NAA and the status description:
+An error will be thrown with GQLSTATUS 42NAA and the status description
 
 [source]
 ----
 error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference '`foo`.`bar`'. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
 ----
 
-In this example scenario, the correct quoting would either be
+In this example scenario, the preferred way is to send in the alias name as a parameter
+
+.Parameters
+[source, parameters]
+----
+{
+  "aliasName": "foo.bar"
+}
+----
+
+.Query
+[source, cypher]
+----
+CREATE ALIAS $aliasName FOR DATABASE baz
+----
+
+Alternatively, if a string literal is used, the correct quoting for Cypher 25 would either be
 
 [source,cypher]
 ----
-CREATE DATABASE `foo.bar`
+CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE baz
 ----
 
 or
 
 [source,cypher]
 ----
-CREATE DATABASE foo.bar
+CYPHER 25 CREATE ALIAS foo.bar FOR DATABASE baz
 ----
 
 ifndef::backend-pdf[]
