@@ -1294,7 +1294,7 @@ CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE ...
 ----
 CYPHER 25 CREATE ALIAS $param FOR DATABASE ...
 ----
-For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/current/values-and-types/graph-references[Cypher manual -> Graph references].
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 
 ======
 [.include-with-neo4j-code]
@@ -1321,7 +1321,7 @@ CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE ...
 ----
 CYPHER 25 CREATE ALIAS $param FOR DATABASE ...
 ----
-For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/current/values-and-types/graph-references[Cypher manual -> Graph references].
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 
 ======
 =====
@@ -1353,7 +1353,7 @@ In newer Cypher versions, the backticks should be removed.
 ----
 CYPHER 25 USE graph.byName("a.b.c") ...
 ----
-For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/current/values-and-types/graph-references[Cypher manual -> Graph references].
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 
 ======
 [.include-with-neo4j-code]
@@ -1375,7 +1375,7 @@ In newer Cypher versions, the backticks should be removed.
 ----
 CYPHER 25 USE graph.byName("a.b.c") ...
 ----
-For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/current/values-and-types/graph-references[Cypher manual -> Graph references].
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 
 ======
 =====
@@ -1442,7 +1442,7 @@ For more information, see:
 
 <<_graph_reference_deprecation_use>>
 
-link:https://neo4j.com/docs/cypher-manual/current/values-and-types/graph-references[Cypher manual -> Graph references].
+link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 ====
 
 .Using differently ordered return items in a `UNION` clause
