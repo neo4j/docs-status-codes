@@ -1,0 +1,20 @@
+= 51N77
+
+== Status description
+
+error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
+
+== Scenario
+
+This error code is used when the user tries to use a feature that is unsupported by the store format, e.g. writing a property with an unsupported data type.
+
+== Possible solution
+
+Use a supported data type, or use a different store format.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
