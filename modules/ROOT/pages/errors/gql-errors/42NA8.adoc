@@ -3,6 +3,31 @@
 == Status description
 error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `{ <<cmd>> }`.
 
+== Example scenario
+
+For example, given that `role1` exists but `role2` does not, try to grant a privilege to both roles:
+
+[source,cypher]
+----
+GRANT WRITE ON GRAPH * TO role1, role2
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error will have a cause with GQLSTATUS 42NA8 and the status description below.
+The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42N10.adoc[42N10].
+
+
+[source]
+----
+error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `GRANT WRITE ON GRAPH * NODES * TO role2`.
+----
+
+[NOTE]
+====
+The command in the status description might not be the exact command you typed.
+Internally, Neo4j administration commands are separated into more specific sub-commands and the Cypher shown corresponds to the sub-command which was executed when the error occurred.
+====
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
