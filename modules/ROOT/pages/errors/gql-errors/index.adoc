@@ -1030,6 +1030,10 @@ Status description:: error: syntax error or access rule violation - invalid glob
 
 Status description:: error: syntax error or access rule violation - missing LOOKUP INDEX function name. Missing function name for the LOOKUP INDEX.
 
+=== xref:errors/gql-errors/42I62.adoc[42I62]
+
+Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
