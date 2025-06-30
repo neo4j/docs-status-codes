@@ -4,10 +4,13 @@
 error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `{ <<cmd>> }`.
 
 == Explanation
-This error occurs as the cause of other exceptions, for example, when trying to grant or deny privileges to, or revoke privileges from, a role that does not exist.
-Another example is when you try to grant or deny privileges to, or revoke privileges from, a role to perform administration commands on a database that does not exist.
-A third example is when you try to revoke a role from a user in Cypher 25, where either the role or the user does not exist.
-In Cypher 5, this last example will instead give a notification, see xref:notifications/all-notifications.adoc/#_neo_clientnotification_security_impossiblerevokecommand[Impossible revoke command].
+
+This error occurs as the cause of other exceptions, for example, when you try to:
+
+* Grant or deny privileges to, or revoke privileges from, a role that does not exist.
+* Grant or deny privileges to, or revoke privileges from, a role to perform administration commands on a database that does not exist.
+* Revoke a role from a user in Cypher 25, where either the role or the user does not exist.
+In Cypher 5, this last example gives a notification instead, see xref:notifications/all-notifications.adoc#_neo_clientnotification_security_impossiblerevokecommand[Impossible revoke command].
 
 == Example scenario
 
