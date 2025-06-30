@@ -3,6 +3,12 @@
 == Status description
 error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `{ <<cmd>> }`.
 
+== Explanation
+This error occurs as the cause of other exceptions, for example, when trying to grant or deny privileges to, or revoke privileges from, a role that does not exist.
+Another example is when you try to grant or deny privileges to, or revoke privileges from, a role to perform administration commands on a database that does not exist.
+A third example is when you try to revoke a role from a user in Cypher 25, where either the role or the user does not exist.
+In Cypher 5, this last example will instead give a notification, see xref:notifications/all-notifications.adoc/#_neo_clientnotification_security_impossiblerevokecommand[Impossible revoke command].
+
 == Example scenario
 
 For example, given that `role1` exists but `role2` does not, try to grant a privilege to both roles:
@@ -12,20 +18,18 @@ For example, given that `role1` exists but `role2` does not, try to grant a priv
 GRANT WRITE ON GRAPH * TO role1, role2
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error will have a cause with GQLSTATUS 42NA8 and the status description below.
-The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42N10.adoc[42N10].
-
-
 [source]
 ----
 error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `GRANT WRITE ON GRAPH * NODES * TO role2`.
 ----
 
+The command returns an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] and a cause with this GQLSTATUS 42NA8 and the status description above.
+The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42N10.adoc[42N10].
+
 [NOTE]
 ====
 The command in the status description might not be the exact command you typed.
-Internally, Neo4j administration commands are separated into more specific sub-commands and the Cypher shown corresponds to the sub-command which was executed when the error occurred.
+Internally, the Neo4j administration commands are separated into more specific sub-commands, and the Cypher shown corresponds to the sub-command that was executed when the error occurred.
 ====
 
 ifndef::backend-pdf[]
