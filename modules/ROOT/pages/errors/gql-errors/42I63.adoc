@@ -1,0 +1,11 @@
+= 42I63
+
+== Status description
+error: syntax error or access rule violation - wrong subclause order. 'ORDER BY', '`{ <<clause>> }`' and 'LIMIT' can only be used in this order in 'RETURN'.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
