@@ -1,14 +1,13 @@
 = 22NC2
 
 == Status description
-The node element type `{ <<label>> }` must contain one or more implied labels, or define at least one property type.
+error: data exception - node element type has no effect. The node element type `{ <<label>> }` must contain one or more implied labels, or at least one property type.
 
 == Explanation
-When defining a graph type, node element types have some effect.
-Ineffectual node element types are not permitted.
+When defining a graph type, node element types must have some effect; otherwise, they are not allowed.
 
 == Example scenario
-For example, try to set a graph type with :
+For example, try to set a graph type as follows:
 
 [source,cypher]
 ----
@@ -17,11 +16,20 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC2 and the status description:
+The query returns an error with GQLSTATUS 22NC2 and the status description:
 
 [source]
 ----
-error: data exception - node element type is empty. The node element type `Node` must contain one or more implied labels, or define at least one property type.
+error: data exception - node element type is has no effect. The node element type `Node` must contain one or more implied labels, or at least one property type.
+----
+
+To fix this, define at least one property type or add an implied label, for example:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (n:Node => { prop :: ANY NOT NULL })
+}
 ----
 
 ifndef::backend-pdf[]
