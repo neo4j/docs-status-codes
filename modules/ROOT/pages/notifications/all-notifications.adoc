@@ -8,7 +8,6 @@ The following page provides an overview of all notifications in Neo4j, including
 * <<_performance_notifications, `PERFORMANCE` notifications>>
 * <<_hint_notifications, `HINT` notifications>>
 * <<_unrecognized_notifications, `UNRECOGNIZED` notifications>>
-* <<_unsupported_notifications, `UNSUPPORTED` notifications>>
 * <<_deprecated_notifications, `DEPRECATION` notifications>>
 * <<_security_notifications, `SECURITY` notifications>>
 * <<_topology_notifications, `TOPOLOGY` notifications>>
