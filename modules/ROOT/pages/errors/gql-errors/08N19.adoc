@@ -1,7 +1,7 @@
 = 08N19
 
 == Status description
-error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+error: connection exception - shard execution transient error. Communication with shard `{ <<graph>> }` failed with message `{ <<msg>> }`.
 
 
 ifndef::backend-pdf[]
