@@ -9,7 +9,7 @@ A label cannot be both "identifying" (used to uniquely identify nodes) and "impl
 Attempting to define a label as both will result in this error, as it creates ambiguity in the schema definition and node identification process.
 
 == Example scenario
-For example, try to set a graph type which defines the node element types 'Person and 'Student' with the label 'Person' also declared as an implied label on the 'Student' node element type:
+For example, try to set a graph type which defines the node element types 'Person' and 'Student' with the label 'Person' also declared as an implied label on the 'Student' node element type:
 
 [source,cypher]
 ----

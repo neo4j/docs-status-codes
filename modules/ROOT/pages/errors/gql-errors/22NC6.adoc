@@ -1,14 +1,14 @@
 = 22NC6
 
 == Status description
-The independent constraint `{ <<constrDescrOrName>> }`` was defined using the same label `{ <<label>> }` as a node type element.
+The independent constraint `{ <<constrDescrOrName>> }` was defined using the same label `{ <<label>> }` as a node type element.
 
 == Explanation
 This error occurs when a label is used both as an identifying label (defining a node type element) and as part of an independent constraint.
 A label cannot serve as both an identifying label and be referenced in an independent constraint at the same time.
 
 == Example scenario
-For example, try to set an existance constraint on a property for the label `:Person`` where `:Person` is also defined as an identifying label in the graph type:
+For example, try to set an existance constraint on a property for the label `:Person` where `:Person` is also defined as an identifying label in the graph type:
 
 [source,cypher]
 ----

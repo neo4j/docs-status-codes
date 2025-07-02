@@ -8,7 +8,7 @@ This error occurs when a relationship type is used both as an identifying relaio
 A label cannot serve as both an identifying label and be referenced in an independent constraint at the same time.
 
 == Example scenario
-For example, try to set an existance constraint on a property for the relationship type `:REL`` where `:REL` is also defined as an identifying relationship type in the graph type:
+For example, try to set an existance constraint on a property for the relationship type `:REL` where `:REL` is also defined as an identifying relationship type in the graph type:
 
 [source,cypher]
 ----
