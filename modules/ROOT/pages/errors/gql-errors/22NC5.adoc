@@ -1,16 +1,16 @@
 = 22NC5
 
 == Status description
-The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` was not found.
+error: data exception - graph type element not found. The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` does not exist.
 
 == Explanation
 This error occurs when a graph type definition references an element type (such as a node or relationship) using an alias that has not been defined, or by an identifying reference where there is no graph type element identified by that reference.
-If the referenced node or relationship type does not exist, the operation cannot proceed and this error is returned to indicate the missing element.
+If the referenced node or relationship type does not exist, the operation cannot proceed and will return an error to indicate the missing element.
 
 == Example scenarios
 
-=== Node element reference not found ===
-For example, try to set a graph type with an identiying node element reference that does not exist:
+=== Node element reference does not exist
+For example, try to set a graph type with an identifying node element reference that does not exist as follows:
 
 [source,cypher]
 ----
@@ -19,16 +19,23 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC5 and the status description:
+The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
-error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' was not found.
+error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' does not exist.
 ----
-In this case, the reference could be corrected to be non-identifying, or the node type element could be defined before this operation.
+In this case, you can make the reference non-identifying, or you can define the node type element before this operation:
 
-=== Relationship element reference not found ===
-For example, try to set a graph type with a relationship element reference that does not exist:
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:Node)-[e:REL => { prop :: STRING }]->()
+}
+----
+
+=== Relationship element reference does not exist
+For example, try to set a graph type with a relationship element reference that does not exist as follows:
 
 [source,cypher]
 ----
@@ -38,12 +45,44 @@ ALTER CURRENT GRAPH TYPE SET {
 
 ----
 
-An error will be thrown with GQLSTATUS 22NC5 and the status description:
+The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
-error: data exception - graph type element not found. The relationship type element referenced by 'b' was not found.
+error: data exception - graph type element not found. The relationship type element referenced by 'b' does not exist.
 ----
+In this case, the reference could be fixed by providing a relationship type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  CONSTRAINT FOR ()-[b:REL]->() REQUIRE (b.prop) IS KEY
+}
+----
+
+=== Element reference omitted from constraint definition
+For example, try to define a constraint with an empty node element type reference, which is not allowed as follows:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR () REQUIRE n.prop IS UNIQUE
+----
+
+The query returns an error with GQLSTATUS 22NC5 and the status description:
+
+[source]
+----
+error: data exception - graph type element not found. The node type element referenced by 'n' was does not exist.
+----
+In this case, the reference can be fixed by providing a label for the constraint:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR (n:Node) REQUIRE n.prop IS UNIQUE
+----
+
 
 ifndef::backend-pdf[]
 [discrete.glossary]
