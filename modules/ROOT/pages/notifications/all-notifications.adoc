@@ -1244,11 +1244,11 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- label:deprecated[Deprecated from 5.5 to 5.25] All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
+- All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
 [NOTE]
-Using differently ordered return items in a `UNION [ALL]` clause is deprecated in versions 5.5 to 5.25.
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
 However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
-- label:valid[Valid from 5.26 till 2025.05] Databases and aliases with unescaped `.` are deprecated unless the dots indicate that they belong to a composite database.
+- label:deprecated[Deprecated from 5.26 to 2025.05] Databases and aliases with unescaped `.` are deprecated unless the dots indicate that they belong to a composite database.
 Names containing `.` should be escaped. (`%s`)
 [NOTE]
 Databases and aliases with unescaped `.` are deprecated in versions 5.26 to 2025.05.
@@ -1518,7 +1518,7 @@ RETURN 'val' as one, 'val' as two
 
 [NOTE]
 ====
-Using differently ordered return items in a UNION [ALL] clause is deprecated in versions 5.5 to 5.25.
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
 However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
 ====
 
