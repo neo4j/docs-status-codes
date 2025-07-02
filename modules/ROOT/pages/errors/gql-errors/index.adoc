@@ -1846,6 +1846,9 @@ Status description:: error: system configuration or operation exception - transa
 
 Status description:: error: system configuration or operation exception - maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ <<cfgSetting>> }` in the neo4j.conf file.
 
+=== xref:errors/gql-errors/51N77.adoc[51N77]
+
+Status description:: error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
 
 [[procedure-exceptions]]
 == Procedure exceptions
