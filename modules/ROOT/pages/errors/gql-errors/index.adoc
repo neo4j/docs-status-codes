@@ -1446,6 +1446,10 @@ Status description:: error: syntax error or access rule violation - invalid refe
 
 Status description:: error: syntax error or access rule violation - system database procedure rules. The system database supports a restricted set of Cypher clauses. The supported clause structure for procedure calls is: `CALL`, `YIELD`, `RETURN`. `YIELD` and `RETURN` clauses are optional. The order of the clauses is fixed and each can only occur once.
 
+=== xref:errors/gql-errors/42NAA.adoc[42NAA]
+
+Status description:: error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference `{ <<input>> }`. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.
@@ -1845,6 +1849,10 @@ Status description:: error: system configuration or operation exception - transa
 === xref:errors/gql-errors/51N74.adoc[51N74]
 
 Status description:: error: system configuration or operation exception - maximum number of transactions reached. Failed to start a new transaction. The limit of concurrent transactions is reached. Increase the number of concurrent transactions using `{ <<cfgSetting>> }` in the neo4j.conf file.
+
+=== xref:errors/gql-errors/51N76.adoc[51N76]
+
+Status description:: error: system configuration or operation exception - upgrade failed. The upgrade to a new Neo4j version failed.
 
 
 [[procedure-exceptions]]

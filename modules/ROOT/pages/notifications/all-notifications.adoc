@@ -1244,10 +1244,23 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- label:new[Valid for Neo4j 5.5-5.25] All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
-- Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
+- All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
+[NOTE]
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
+However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
+- label:deprecated[Deprecated from 5.26 to 2025.05] Databases and aliases with unescaped `.` are deprecated unless the dots indicate that they belong to a composite database.
 Names containing `.` should be escaped. (`%s`)
+[NOTE]
+Databases and aliases with unescaped `.` are deprecated in versions 5.26 to 2025.05.
+However, starting from version 2025.06, this deprecation has been withdrawn, and replaced by two new deprecations.
+The reason for this change is that the previous quoting rules have been found inconsistent and ambiguous, and will be improved starting from Cypher 25.
+For more information, see:
+
+* <<_graph_reference_deprecation,Using separately backticked name parts in graph references>>
+* <<_graph_reference_deprecation_use,Using separately backticked name parts in graph references in USE clause>>
+* link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+- label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (`%s`).
+- label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, remove the backticks (`%s`).
 |Category
 m|DEPRECATION
 |GQLSTATUS code
@@ -1259,6 +1272,124 @@ m|DEPRECATION
 |SeverityLevel
 m|WARNING
 |===
+
+[[_graph_reference_deprecation]]
+.Using separately backticked name parts in graph references
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER 5 CREATE ALIAS `foo`.`bar` FOR DATABASE ...
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+Graph references with separately backticked name parts (\`foo`.\`bar`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (\`foo.bar`).
+
+Suggestions for improvement::
+In newer Cypher versions, either the whole graph reference name should be backticked or it should be sent in as a parameter.
++
+[source,cypher]
+----
+CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE ...
+----
++
+[source,cypher]
+----
+CYPHER 25 CREATE ALIAS $param FOR DATABASE ...
+----
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER 5 CREATE ALIAS `foo`.`bar` FOR DATABASE ...
+----
+
+Description of the returned code::
+Graph references with separately backticked name parts (\`foo`.\`bar`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (\`foo.bar`).
+
+Suggestions for improvement::
+In newer Cypher versions, either the whole graph reference name should be backticked or it should be sent in as a parameter.
++
+[source,cypher]
+----
+CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE ...
+----
++
+[source,cypher]
+----
+CYPHER 25 CREATE ALIAS $param FOR DATABASE ...
+----
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+
+======
+=====
+
+[[_graph_reference_deprecation_use]]
+.Using separately backticked name parts in graph references in USE clause
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER 5 USE graph.byName("`a.b`.c") ...
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+Graph references with separately backticked name parts (\`a.b`.\`c`) are deprecated. In future Cypher versions, remove the backticks (a.b.c).
+
+Suggestions for improvement::
+In newer Cypher versions, the backticks should be removed.
++
+[source,cypher]
+----
+CYPHER 25 USE graph.byName("a.b.c") ...
+----
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER 5 USE graph.byName("`a.b`.c") ...
+----
+
+Description of the returned code::
+Graph references with separately backticked name parts (\`a.b`.\`c`) are deprecated. In future Cypher versions, remove the backticks (a.b.c).
+
+Suggestions for improvement::
+In newer Cypher versions, the backticks should be removed.
++
+[source,cypher]
+----
+CYPHER 25 USE graph.byName("a.b.c") ...
+----
+For more information on the semantics of graph references, see link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+
+======
+=====
 
 .Create a database with an unescaped name containing a dot
 [.tabbed-example]
@@ -1310,6 +1441,20 @@ CREATE DATABASE `foo.bar`
 
 ======
 =====
+
+[NOTE]
+====
+Databases and aliases with unescaped `.` are deprecated in versions 5.26 to 2025.05.
+However, starting from version 2025.06, this deprecation has been withdrawn, and replaced by two new deprecations.
+The reason for this change is that the previous quoting rules have been found inconsistent and ambiguous, and will be improved starting from Cypher 25.
+For more information, see:
+
+* <<_graph_reference_deprecation,Using separately backticked name parts in graph references>>
+
+* <<_graph_reference_deprecation_use,Using separately backticked name parts in graph references in USE clause>>
+
+* link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+====
 
 .Using differently ordered return items in a `UNION` clause
 [.tabbed-example]
@@ -1373,7 +1518,7 @@ RETURN 'val' as one, 'val' as two
 
 [NOTE]
 ====
-Using differently ordered return items in a UNION [ALL] clause is deprecated in versions 5.5 to 5.25.
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
 However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
 ====
 
