@@ -1244,12 +1244,14 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- label:new[Valid for Neo4j 5.5-5.25] All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
-- label:new[Valid for Neo4j 5.26-2025.05] Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
+- All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
+[NOTE]
+Using differently ordered return items in a `UNION [ALL]` clause is deprecated in versions 5.5 to 5.25.
+However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
+- Databases and aliases with unescaped `.` are deprecated unless the dots indicate that they belong to a composite database. Valid for Neo4j 5.26-2025.05.
 Names containing `.` should be escaped. (`%s`)
-- label:new[Valid from 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (`%s`).
-- label:new[Valid from 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, remove the backticks (`%s`).
+- Graph references with separately backticked name parts (`%s`) are deprecated starting from 2025.06. In future Cypher versions, use parameters or backtick the entire name (`%s`).
+- Graph references with separately backticked name parts (`%s`) are deprecated starting from 2025.06. In future Cypher versions, remove the backticks (`%s`).
 |Category
 m|DEPRECATION
 |GQLSTATUS code
