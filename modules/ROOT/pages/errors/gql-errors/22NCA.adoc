@@ -29,7 +29,7 @@ A correct definition is as follows:
 [source, cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
-    (p :Person => {name :: STRING, age :: INT, studId ANY NOT NULL })
+    (p :Person => {name :: STRING, age :: INT, studId :: ANY NOT NULL })
 }
 ----
 

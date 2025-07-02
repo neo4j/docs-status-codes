@@ -13,7 +13,7 @@ For example, try to set a graph type with :
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
-    ()-[:REL =>]-()
+    ()-[:REL =>]->()
 }
 ----
 
