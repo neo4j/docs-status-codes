@@ -1188,7 +1188,7 @@ Status description:: error: syntax error or access rule violation - duplicate re
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N39.adoc[42N39]
 
-Status description:: error: syntax error or access rule violation - incompatible return column names. All `{<<context>>}` must have the same return column names. Use `AS` to ensure columns have the same name.
+Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
 
 === xref:errors/gql-errors/42N3A.adoc[42N3A]
 
