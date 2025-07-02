@@ -1,0 +1,16 @@
+= 51N76
+
+
+== Status description
+error: system configuration or operation exception - upgrade failed. The upgrade to a new Neo4j version failed.
+
+== Explanation
+This error code can occur during a Neo4j upgrade to a new version in the rare case when something in the user's setup or DBMS environment prevents the upgrade.
+The error will be accompanied by a cause with a more concrete GQLSTATUS, describing what the user needs to change before retrying the upgrade.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
