@@ -1264,7 +1264,7 @@ m|DEPRECATION
 m|WARNING
 |===
 
-[#_graph_reference_deprecation]
+[[_graph_reference_deprecation]]
 .Using separately backticked name parts in graph references
 [.tabbed-example]
 =====
@@ -1328,7 +1328,7 @@ For more information on the semantics of graph references, see link:https://neo4
 ======
 =====
 
-[#_graph_reference_deprecation_use]
+[[_graph_reference_deprecation_use]]
 .Using separately backticked name parts in graph references in USE clause
 [.tabbed-example]
 =====
@@ -1440,11 +1440,11 @@ However, starting from version 2025.06, this deprecation has been withdrawn, and
 The reason for this change is that the previous quoting rules have been found inconsistent and ambiguous, and will be improved starting from Cypher 25.
 For more information, see:
 
-<<_graph_reference_deprecation>>
+* <<_graph_reference_deprecation,Using separately backticked name parts in graph references>>
 
-<<_graph_reference_deprecation_use>>
+* <<_graph_reference_deprecation_use,Using separately backticked name parts in graph references in USE clause>>
 
-link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
+* link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 ====
 
 .Using differently ordered return items in a `UNION` clause

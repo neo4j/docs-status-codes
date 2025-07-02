@@ -25,7 +25,7 @@ error: syntax error or access rule violation - incorrectly formatted graph refer
 
 == Possible solutions
 
-To resolve this issue, the preferred way is to send in the alias name as a parameter:
+To resolve this issue, the preferred way is to replace the alias name with a parameter:
 
 .Parameters
 [source, parameters]
@@ -41,7 +41,7 @@ To resolve this issue, the preferred way is to send in the alias name as a param
 CREATE ALIAS $aliasName FOR DATABASE baz
 ----
 
-Alternatively, if a string literal is used, the correct quoting for Cypher 25 would either be
+Alternatively, if you use a string literal, the correct quoting for Cypher 25 will either be
 
 [source,cypher]
 ----
