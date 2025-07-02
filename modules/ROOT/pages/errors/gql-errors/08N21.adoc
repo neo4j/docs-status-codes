@@ -1,7 +1,7 @@
 = 08N21
 
 == Status description
-error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed. with message `{ <<msg>> }`.
+error: connection exception - shard execution client error. Communication with shard `{ <<graph>> }` failed with message `{ <<msg>> }`.
 
 
 ifndef::backend-pdf[]

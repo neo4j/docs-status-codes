@@ -1,0 +1,21 @@
+= 22NBC
+
+== Status description
+
+error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
+
+== Scenario
+
+This error code is used when the user tries drop an index belonging to a constraint.
+
+== Possible solution
+
+Drop the constraint instead.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
