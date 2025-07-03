@@ -35,6 +35,7 @@
 [[endpointType]]$endpointType:: One of `start` or `end` of a relationship.
 [[entityId]]$entityId:: ID of a node or a relationship.
 [[entityType]]$entityType:: A node or a relationship.
+[[entityType2]]$entityType2:: A node or a relationship.
 [[expr]]$expr:: Cypher expression, for example, `1 + n.prop`.
 [[exprType]]$exprType:: Freeform expression type, for example, `EXISTS`, `COUNT`, `COLLECT`.
 [[feat]]$feat:: Freeform feature description.

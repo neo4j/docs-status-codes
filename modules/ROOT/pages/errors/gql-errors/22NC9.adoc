@@ -31,7 +31,7 @@ error: data exception - graph type contains duplicated tokens. The graph type in
 
 === Identifiers
 
-Attempt to define two node element types using the same alias.
+Attempt to define two relationship element types using the same relationship type.
 
 [source,cypher]
 ----
