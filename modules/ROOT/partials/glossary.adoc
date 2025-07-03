@@ -35,6 +35,7 @@
 [[endpointType]]$endpointType:: One of `start` or `end` of a relationship.
 [[entityId]]$entityId:: ID of a node or a relationship.
 [[entityType]]$entityType:: A node or a relationship.
+[[entityType2]]$entityType2:: A node or a relationship.
 [[expr]]$expr:: Cypher expression, for example, `1 + n.prop`.
 [[exprType]]$exprType:: Freeform expression type, for example, `EXISTS`, `COUNT`, `COLLECT`.
 [[feat]]$feat:: Freeform feature description.
@@ -45,6 +46,7 @@
 [[funType]]$funType:: Function type, e.g. non-deterministic or aggregate.
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
 [[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint, one of `UNDESIGNATED`, `INDEPENDENT`, or `DEPENDENT`.
+[[graphTypeReference]]$graphTypeReference:: Graph type reference, for example, `(:Node =>)` or `p`.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
 [[hintList]]$hintList:: A list of free form descriptions of hints like `USING INDEX n:N(prop)`.
 [[idx]]$idx:: Index name, `my_index`.
