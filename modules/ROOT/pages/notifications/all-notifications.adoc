@@ -1374,10 +1374,17 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- label:new[Valid for Neo4j 5.5-5.25] All subqueries in a UNION [ALL] should have the same ordering for the return columns.
-Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
-- Databases and aliases with unescaped `.` are deprecated unless to indicate that they belong to a composite database.
+- All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
+[NOTE]
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
+However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
+- label:deprecated[Deprecated from 5.26.0 to 5.26.9] Databases and aliases with unescaped `.` are deprecated unless the dots indicate that they belong to a composite database.
 Names containing `.` should be escaped. (`%s`)
+[NOTE]
+Databases and aliases with unescaped `.` are deprecated in versions 5.26.0 to 5.26.9.
+However, starting from version 5.26.9, this deprecation has been withdrawn.
+The reason for this change is that the previous quoting rules have been found inconsistent and ambiguous, and will be improved in a future Cypher version.
+
 |Category
 m|DEPRECATION
 |GQLSTATUS code
@@ -1433,6 +1440,13 @@ Names containing `.` should be escaped. (Name: `foo.bar`)
 ======
 =====
 
+[NOTE]
+====
+Databases and aliases with unescaped `.` are deprecated in versions 5.26.0 to 5.26.9.
+However, starting from version 5.26.9, this deprecation has been withdrawn.
+The reason for this change is that the previous quoting rules have been found inconsistent and ambiguous, and will be improved in a future Cypher version.
+====
+
 .Using differently ordered return items in a `UNION` clause
 [.tabbed-example]
 =====
@@ -1460,7 +1474,7 @@ Using differently ordered return items in a UNION [ALL] clause is deprecated and
 
 [NOTE]
 ====
-Using differently ordered return items in a UNION [ALL] clause is deprecated in versions 5.5 to 5.25.
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
 However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
 ====
 
