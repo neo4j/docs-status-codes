@@ -1,24 +1,23 @@
 = 22NAA
 
 == Status description
-error: data exception - invalid list for property based access control rule. The expression `{ <<expr>> }` is not supported. Lists containing `{ <<exprType>> }` values are not supported for property-based access control.
+error: data exception - invalid list for property-based access control rule. The expression `{ <<expr>> }` is not supported. Lists containing `{ <<exprType>> }` values are not supported for property-based access control.
 
 == Example scenario
 
-For example, try to add a property based access control rule including a list with a NULL type:
+For example, try to add a property-based access control rule including a list with a `NULL` type:
 
 [source,cypher]
 ----
 GRANT TRAVERSE ON GRAPH * FOR (n) WHERE n.prop1 IN ["string value", NULL] TO role
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/22NA0.adoc[22NA0].
-This error will have a cause with GQLSTATUS 42NAA and the status description
+You will receive an error with GQLSTATUS xref:errors/gql-errors/22NA0.adoc[22NA0]  and a cause with GQLSTATUS 22NAA and the following status description:
 
 
 [source]
 ----
-error: data exception - invalid list for property based access control rule. The expression 'n.prop1 IN ["string value", NULL]' is not supported. Lists containing NULL values are not supported for property-based access control.
+error: data exception - invalid list for property-based access control rule. The expression 'n.prop1 IN ["string value", NULL]' is not supported. Lists containing NULL values are not supported for property-based access control.
 ----
 
 ifndef::backend-pdf[]
