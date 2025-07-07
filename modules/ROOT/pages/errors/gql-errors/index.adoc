@@ -1034,6 +1034,10 @@ Status description:: error: syntax error or access rule violation - missing LOOK
 
 Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
 
+=== xref:errors/gql-errors/42I64.adoc[42I64]
+
+Status description:: error: syntax error or access rule violation - unsupported aggregation. Aggregations are currently not supported in NEXT `{ <<context>> }`.
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
