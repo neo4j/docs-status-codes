@@ -17,7 +17,7 @@ You will receive an error with GQLSTATUS xref:errors/gql-errors/22NA0.adoc[22NA0
 
 [source]
 ----
-error: data exception - mixed type list for property based access control rule. The expression 'n.prop1 IN ["string value", 5]' is not supported. All elements in a list must be literals of the same type for property-based access control.
+error: data exception - mixed type list for property-based access control rule. The expression 'n.prop1 IN ["string value", 5]' is not supported. All elements in a list must be literals of the same type for property-based access control.
 ----
 
 ifndef::backend-pdf[]
