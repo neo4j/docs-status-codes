@@ -1470,17 +1470,7 @@ All subqueries in a UNION [ALL] should have the same ordering for the return col
 Using differently ordered return items in a UNION [ALL] clause is deprecated and will be removed in a future version.
 
 ======
-=====
 
-[NOTE]
-====
-In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
-However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
-====
-
-.Using the Unicode \u0085 in an unescaped identifier
-[.tabbed-example]
-=====
 [.include-with-neo4j-code]
 ======
 Query::
@@ -1506,9 +1496,14 @@ RETURN 'val' as one, 'val' as two
 UNION
 RETURN 'val' as one, 'val' as two
 ----
-
 ======
 =====
+
+[NOTE]
+====
+In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
+However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
+====
 
 .Using the Unicode \u0085 in an unescaped identifier
 [.tabbed-example]
