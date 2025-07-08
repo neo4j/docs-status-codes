@@ -533,35 +533,35 @@ Status description:: error: data exception - wrong token during deserialization.
 
 === xref:errors/gql-errors/22NA0.adoc[22NA0]
 
-Status description:: error: data exception - invalid property based access control rule. Failed to administer property rule.
+Status description:: error: data exception - invalid property-based access control rule. Failed to administer property rule.
 
 === xref:errors/gql-errors/22NA1.adoc[22NA1]
 
-Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ <<propKey>> }` must appear on the left hand side of the `{ <<operation>> }` operator.
+Status description:: error: data exception - invalid property-based access control rule involving non-commutative expressions. The property `{ <<propKey>> }` must appear on the left hand side of the `{ <<operation>> }` operator.
 
 === xref:errors/gql-errors/22NA2.adoc[22NA2]
 
-Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
+Status description:: error: data exception - invalid property-based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
 
 === xref:errors/gql-errors/22NA3.adoc[22NA3]
 
-Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+Status description:: error: data exception - invalid property-based access control rule involving NaN. 'NaN' is not supported for property-based access control.
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
-Status description:: error: data exception - invalid property based access control rule involving comparison with `NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
+Status description:: error: data exception - invalid property-based access control rule involving comparison with `NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
 
 === xref:errors/gql-errors/22NA5.adoc[22NA5]
 
-Status description:: error: data exception - invalid property based access control rule involving `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
+Status description:: error: data exception - invalid property-based access control rule involving `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
 
 === xref:errors/gql-errors/22NA6.adoc[22NA6]
 
-Status description:: error: data exception - invalid property based access control rule involving `IS NOT NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
+Status description:: error: data exception - invalid property-based access control rule involving `IS NOT NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
 
 === xref:errors/gql-errors/22NA7.adoc[22NA7]
 
-Status description:: error: data exception - invalid property based access control rule involving nontrivial predicates. The expression: `{ <<expr>> }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
+Status description:: error: data exception - invalid property-based access control rule involving nontrivial predicates. The expression: `{ <<expr>> }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
 
 === xref:errors/gql-errors/22NA8.adoc[22NA8]
 
@@ -571,9 +571,17 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
 
+=== xref:errors/gql-errors/22NAA.adoc[22NAA]
+
+Status description:: error: data exception - invalid list for property-based access control rule. The expression `{ <<expr>> }` is not supported. Lists containing `{ <<exprType>> }` values are not supported for property-based access control.
+
+=== xref:errors/gql-errors/22NAB.adoc[22NAB]
+
+Status description:: error: data exception - mixed type list for property-based access control rule. The expression `{ <<expr>> }` is not supported. All elements in a list must be literals of the same type for property-based access control.
+
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
-Status description:: error: data exception - invalid property based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property-based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === xref:errors/gql-errors/22NB1.adoc[22NB1]
 
