@@ -117,6 +117,7 @@
 [[serverType]]$serverType:: Server type, `PRIMARY` (primaryConstrained), `SECONDARY` (secondaryConstrained), or `NONE`.
 [[serverAddress]]$serverAddress:: Server address, for example, `localhost:20025`.
 [[sig]]$sig:: Procedure or function signature, for example, `date(input = DEFAULT_TEMPORAL_ARGUMENT :: ANY) :: DATE`
+[[storeFormat]]$storeFormat:: Store format name. One of "aligned", "block", "standard", "high_limit".
 [[syntax]]$syntax:: Cypher syntax or keyword.
 [[temporal]]$temporal:: Temporal value, for example, `2025-02-18`.
 [[timeAmount]]$timeAmount:: Integral amount of time unit (a number).
