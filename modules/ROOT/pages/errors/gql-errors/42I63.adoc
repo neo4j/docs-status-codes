@@ -1,0 +1,33 @@
+= 42I63
+
+== Status description
+error: syntax error or access rule violation - wrong subclause order. `ORDER BY`, `{ <<clause>> }` and `LIMIT` can only be used in this order in `RETURN`.
+
+== Example scenario
+
+For example, try to use `ORDER BY` after `SKIP` and `LIMIT`:
+
+[source,cypher]
+----
+UNWIND [3,5,1,3,7,10] AS x
+RETURN x
+SKIP 2
+ORDER BY x
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42000.adoc[42000].
+This error has a cause detailed in xref:errors/gql-errors/42I63.adoc[42I63] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - wrong subclause order. `ORDER BY`, `SKIP` and `LIMIT` can only be used in this order in `RETURN`.
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

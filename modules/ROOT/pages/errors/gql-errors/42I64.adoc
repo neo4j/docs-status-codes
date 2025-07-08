@@ -1,7 +1,7 @@
 = 42I64
 
 == Status description
-error: syntax error or access rule violation - unsupported aggregation. { <<msg>> } currently not supported after `NEXT` { <<context>> }.
+error: syntax error or access rule violation - unsupported aggregation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
 == Example scenario
 
