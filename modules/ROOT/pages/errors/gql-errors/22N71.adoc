@@ -6,6 +6,30 @@
 error: data exception - duplicated index name. An index with the same name already exists: `{ <<idx>> }`.
 
 
+== Example scenario
+
+For example, try to create an index when there is another existing index with that name:
+
+Given:
+[source,cypher]
+----
+CREATE INDEX `myIndex` FOR (n:Person) ON (n.name)
+----
+
+Then, when attempting to create:
+[source,cypher]
+----
+CREATE INDEX `myIndex` FOR (n:Book) ON (n.title)
+----
+
+You will receive an error with GQLSTATUS 22N71 and status description:
+
+[source]
+----
+error: data exception - duplicated index name. An index with the same name already exists: `myIndex`
+----
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

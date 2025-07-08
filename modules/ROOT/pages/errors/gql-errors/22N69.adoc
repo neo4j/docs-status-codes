@@ -6,6 +6,24 @@
 error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }` does not exist.
 
 
+== Example scenario
+
+For example, try to drop a non-existing index:
+
+[source,cypher]
+----
+DROP INDEX `nonExisting`
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/50N10.adoc[50N10].
+This error has a cause with GQLSTATUS 22N69 and status description:
+
+[source]
+----
+error: data exception - index does not exist. The index 'nonExisting' does not exist.
+----
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
