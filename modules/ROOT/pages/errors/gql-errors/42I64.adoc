@@ -1,0 +1,37 @@
+= 42I64
+
+== Status description
+error: syntax error or access rule violation - unsupported aggregation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
+
+== Example scenario
+
+For example, when aggregating in a `UNION` query after a `NEXT`:
+
+[source,cypher]
+----
+UNWIND [1, 2] AS x
+RETURN x
+
+NEXT
+
+RETURN COUNT(x)
+UNION ALL
+RETURN COUNT(x)
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I64.adoc[42I64] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - unsupported aggregation. Aggregations are currently not supported in `NEXT` when used in a `UNION`.
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

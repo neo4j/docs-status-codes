@@ -1036,6 +1036,14 @@ Status description:: error: syntax error or access rule violation - missing LOOK
 
 Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
 
+=== xref:errors/gql-errors/42I63.adoc[42I63]
+
+Status description:: error: syntax error or access rule violation - wrong subclause order. `ORDER BY`, `{ <<clause>> }` and `LIMIT` can only be used in this order in `RETURN`.
+
+=== xref:errors/gql-errors/42I64.adoc[42I64]
+
+Status description:: error: syntax error or access rule violation - unsupported aggregation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
