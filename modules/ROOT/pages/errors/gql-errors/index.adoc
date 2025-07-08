@@ -1862,6 +1862,10 @@ Status description:: error: system configuration or operation exception - maximu
 
 Status description:: error: system configuration or operation exception - upgrade failed. The upgrade to a new Neo4j version failed.
 
+=== xref:errors/gql-errors/51N77.adoc[51N77]
+
+Status description:: error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
+
 
 [[procedure-exceptions]]
 == Procedure exceptions
