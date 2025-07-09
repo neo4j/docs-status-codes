@@ -1776,13 +1776,15 @@ Status description:: error: system configuration or operation exception - cannot
 
 Status description:: error: system configuration or operation exception - cannot create database. Cannot create database `{ <<db>> }`.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/51N52.adoc[51N52]
 
-Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot `{ <<action>> }` database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/51N53.adoc[51N53]
 
-Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot alter database topology. Number of secondaries `{ <<count>> }` needs to be at least 0 and may not exceed `{ <<upper>> }`.
+Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot `{ <<action>> }` database topology. Number of secondaries `{ <<count>> }` needs to be at least 0 and may not exceed `{ <<upper>> }`.
 
 === xref:errors/gql-errors/51N54.adoc[51N54]
 
