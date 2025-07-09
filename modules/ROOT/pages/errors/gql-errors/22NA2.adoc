@@ -2,7 +2,7 @@
 
 
 == Status description
-error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
+error: data exception - invalid property-based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
 
 
 ifndef::backend-pdf[]
