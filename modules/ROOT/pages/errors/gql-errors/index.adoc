@@ -414,17 +414,19 @@ Status description:: error: data exception - duplicated constraint name. A const
 
 Status description:: error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/22N69.adoc[22N69]
 
-Status description:: error: data exception - index does not exist. The index specified by `{ <<idxDescrOrName>> }` does not exist.
+Status description:: error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }` does not exist.
 
 === xref:errors/gql-errors/22N70.adoc[22N70]
 
 Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ <<idxDescrOrName>> }`.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/22N71.adoc[22N71]
 
-Status description:: error: data exception - index with the same name already exists. An index with the same name already exists: `{ <<idx>> }`.
+Status description:: error: data exception - duplicated index name. An index with the same name already exists: `{ <<idx>> }`.
 
 === xref:errors/gql-errors/22N73.adoc[22N73]
 
