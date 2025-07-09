@@ -2,7 +2,7 @@
 
 == Status description
 
-error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+error: data exception - invalid property-based access control rule involving NaN. 'NaN' is not supported for property-based access control.
 
 
 

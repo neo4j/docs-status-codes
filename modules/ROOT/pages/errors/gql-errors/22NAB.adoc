@@ -1,0 +1,28 @@
+= 22NAB
+
+== Status description
+error: data exception - mixed type list for property-based access control rule. The expression `{ <<expr>> }` is not supported. All elements in a list must be literals of the same type for property-based access control.
+
+== Example scenario
+
+For example, try to add a property-based access control rule that contains a list of mixed types:
+
+[source,cypher]
+----
+GRANT TRAVERSE ON GRAPH * FOR (n) WHERE n.prop1 IN ["string value", 5] TO role
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/22NA0.adoc[22NA0] and a cause with GQLSTATUS 22NAB and the following status description:
+
+
+[source]
+----
+error: data exception - mixed type list for property-based access control rule. The expression 'n.prop1 IN ["string value", 5]' is not supported. All elements in a list must be literals of the same type for property-based access control.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

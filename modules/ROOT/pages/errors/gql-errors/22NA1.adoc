@@ -2,7 +2,7 @@
 
 
 == Status description
-error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ <<propKey>> }` must appear on the left hand side of the `{ <<operation>> }` operator.
+error: data exception - invalid property-based access control rule involving non-commutative expressions. The property `{ <<propKey>> }` must appear on the left hand side of the `{ <<operation>> }` operator.
 
 
 ifndef::backend-pdf[]
