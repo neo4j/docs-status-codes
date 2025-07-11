@@ -1,7 +1,7 @@
 = 22NC4
 
 == Status description
-The label(s) `{ <<labelList>> }` are defined as both identifying and implied.
+error: data exception - a label cannot both identifying and implied. The label(s) `{ <<labelList>> }` are defined as both identifying and implied.
 
 == Explanation
 When defining a graph type, labels and relationships must be assigned clear roles.

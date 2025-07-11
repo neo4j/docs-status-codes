@@ -1,7 +1,7 @@
 = 22NC1
 
 == Status description
-The graph type element includes a property key with name `{ <<propKey>> }` more than once.
+error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `{ <<propKey>> }` more than once.
 
 == Explanation
 When defining a graph type, node element types, and relationship element types may only define a property once.
