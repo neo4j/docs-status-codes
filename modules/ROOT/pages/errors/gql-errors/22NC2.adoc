@@ -1,7 +1,7 @@
 = 22NC2
 
 == Status description
-The node element type `{ <<label>> }` must contain one or more implied labels, or define at least one property type.
+error: data exception - node element type is empty. The node element type `{ <<label>> }` must contain one or more implied labels, or define at least one property type.
 
 == Explanation
 When defining a graph type, node element types have some effect.

@@ -1,7 +1,7 @@
 = 22NC9
 
 == Status description
-The graph type includes a label, relationship type or alias with name `{ <<token>> }` more than once
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name `{ <<token>> }` more than once
 
 == Explanation
 This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or alias within the same scope.

@@ -1,7 +1,7 @@
 = 22NC3
 
 == Status description
-The relationship element type `{ <<relType>> }` must define a node element type for source or destination, or define at least one property type.
+error: data exception - relationship element type is empty. The relationship element type `{ <<relType>> }` must define a node element type for source or destination, or define at least one property type.
 
 == Explanation
 When defining a graph type, relationship element types must have some effect.

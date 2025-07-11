@@ -1,7 +1,7 @@
 = 22NC8
 
 == Status description
-The empty node type `()` is not a valid target for a constraint
+error: data exception - constraint does not have a label or relationship type. The empty node type `()` is not a valid target for a constraint
 
 == Explanation
 This error occurs when you attempt to define a constraint on an empty node type.
