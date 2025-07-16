@@ -24,6 +24,15 @@ An error will be thrown with GQLSTATUS 22NC2 and the status description:
 error: data exception - node element type is empty. The node element type `Node` must contain one or more implied labels, or define at least one property type.
 ----
 
+This can be corrected by defining at least one property type or by adding an implied label e.g.:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (n:Node => { prop :: ANY NOT NULL })
+}
+----
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

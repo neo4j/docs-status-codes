@@ -1,28 +1,70 @@
-= 22NC8
+= 22NC9
 
 == Status description
-error: data exception - constraint does not have a label or relationship type. The empty node type `()` is not a valid target for a constraint
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name `{ <<token>> }` more than once
 
 == Explanation
-This error occurs when you attempt to define a constraint on an empty node type.
-Constraints must target specific node types using a label.
-Using an empty node type means there is no label or type specified, which is not valid for constraint definitions.
+This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or alias within the same scope.
+Each label, relationship type, or alias must have a unique name to avoid ambiguity in the graph schema.
+To resolve this error, ensure that all labels, relationship types, and aliases are uniquely named within the graph type definition.
 
-== Example scenario
-Attempt to define a constraint on an empty node reference as follows:
+== Example scenarios
+
+=== Aliases
+
+Attempt to define two node element types using the same alias.
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
-    CONSTRAINT FOR () REQUIRE n.badger IS UNIQUE
+  ( p: Person => { prop :: STRING } ),
+  ( p: Property => { prop :: STRING } )
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC8 and the status description:
+An error will be thrown with GQLSTATUS 22NC9 and the status description:
 
 [source]
 ----
-error: data exception - constraint does not have a label or relationship type. The empty node type `()` is not a valid target for a constraint.
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name 'p' more than once.
+----
+
+This can be corrected by renaming one of the aliases, for example:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  ( pers: Person => { prop :: STRING } ),
+  ( prop: Property => { prop :: STRING } )
+}
+----
+
+=== Identifiers
+
+Attempt to define two relationship element types using the same relationship type.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  ()-[n:REL => { prop :: STRING }]->(),
+  ()-[m:REL => { prop :: STRING }]->()
+}
+----
+
+An error will be thrown with GQLSTATUS 22NC9 and the status description:
+
+[source]
+----
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name ':REL' more than once.
+----
+
+In this case, the correction is to delete the duplicate relationship type definition, since they are both equivalent:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  ()-[n:REL => { prop :: STRING }]->()
+}
 ----
 
 ifndef::backend-pdf[]
