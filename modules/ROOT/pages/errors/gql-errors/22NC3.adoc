@@ -1,11 +1,14 @@
 = 22NC3
 
 == Status description
-error: data exception - relationship element type is empty. The relationship element type `{ <<relType>> }` must define a node element type for source or destination, or define at least one property type.
+error: data exception - relationship element type is ineffectual. The relationship element type `{ <<relType>> }` must define a source or destination, or at least one property type.
 
 == Explanation
-When defining a graph type, relationship element types must have some effect.
-Ineffectual relationship element types are not permitted.
+When defining a graph type, relationship element types must have some effect. To be effective, a relationship element type must define at least one of the following:
+
+* A source node element type or label
+* A destination node element type or label
+* At least one property type
 
 == Example scenario
 For example, try to set a graph type with :
@@ -21,7 +24,7 @@ An error will be thrown with GQLSTATUS 22NC3 and the status description:
 
 [source]
 ----
-error: data exception - relationship element type is empty. The relationship element type `REL` must define a node element type for source or destination, or define at least one property type.
+error: data exception - relationship element type is ineffectual. The relationship element type `REL` must define a source or destination, or at least one property type.
 ----
 
 This can be corrected by defining at least one property type or by adding a node element type e.g.:
