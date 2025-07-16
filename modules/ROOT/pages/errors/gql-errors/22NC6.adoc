@@ -23,7 +23,7 @@ An error will be thrown with GQLSTATUS 22NC6 and the status description:
 
 [source]
 ----
-error: data exception - independent constraint and node element type have the same label. The independent constraint '(:`Person` {`name`})' is using the same label `Person` as a node element type.
+error: data exception - independent constraint and node element type have the same label. The independent constraint 'Constraint( type='NODE_PROPERTY_EXISTENCE', schema=(:`Person` {`name`}) )' is using the same label `Person` as a node element type.
 ----
 
 The correct fix is to define the property existence constraint as part of the node element type:
