@@ -26,6 +26,17 @@ An error will be thrown with GQLSTATUS 22NC4 and the status description:
 error: data exception - a label cannot both identifying and implied. The label(s) `Person` are defined as both identifying and implied.
 ----
 
+There are several ways to correct this, but one approch may be to add another label to both nodes and capture the property type on `name` there:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p:Person => :Named),
+    (s:Student => :Named),
+    CONSTRAINT FOR (:Named) REQUIRE name IS :: STRING
+}
+----
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
