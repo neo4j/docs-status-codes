@@ -1,7 +1,7 @@
 = 22NC3
 
 == Status description
-error: data exception - relationship element type is ineffectual. The relationship element type `{ <<relType>> }` must define a source or destination, or at least one property type.
+error: data exception - relationship element type is ineffectual. The relationship element type `{ <<relType>> }` must define a source, destination, or at least one property type.
 
 == Explanation
 When defining a graph type, relationship element types must have some effect. To be effective, a relationship element type must define at least one of the following:

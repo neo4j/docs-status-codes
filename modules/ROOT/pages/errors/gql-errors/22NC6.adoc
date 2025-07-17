@@ -15,7 +15,7 @@ For example, try to set a property existence constraint on a property for the la
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING}),
-    CONSTRAINT FOR (p:Person =>) REQUIRE p.name IS NOT NULL,
+    CONSTRAINT FOR (p:Person =>) REQUIRE p.name IS NOT NULL
 }
 ----
 
