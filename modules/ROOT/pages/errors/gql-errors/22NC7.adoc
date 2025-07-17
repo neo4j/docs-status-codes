@@ -15,7 +15,7 @@ For example, try to set a property type constraint on a property for the relatio
 ----
 ALTER CURRENT GRAPH TYPE SET {
     ()-[:REL => {name :: ANY NOT NULL}]->(),
-    CONSTRAINT FOR ()-[r:REL =>]->() REQUIRE r.name IS :: STRING,
+    CONSTRAINT FOR ()-[r:REL =>]->() REQUIRE r.name IS :: STRING
 }
 ----
 
