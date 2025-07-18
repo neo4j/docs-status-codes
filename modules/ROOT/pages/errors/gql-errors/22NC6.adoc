@@ -1,0 +1,43 @@
+= 22NC6
+
+== Status description
+error: data exception - independent constraint and node element type have the same label.
+The independent constraint `{ <<constrDescrOrName>> }` is using the same label `{ <<label>> }` as a node element type.
+
+== Explanation
+This error occurs when a label is used both as an identifying label (defining a node element type) and as part of an independent constraint.
+A label cannot simultaneously serve as an identifying label and be referenced in an independent constraint.
+
+== Example scenario
+For example, try to set a property existence constraint on a property for the label `:Person`, where `:Person` is also defined as an identifying label in the graph type as follows:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p:Person => {name :: STRING}),
+    CONSTRAINT FOR (p:Person =>) REQUIRE p.name IS NOT NULL
+}
+----
+
+The query returns an error with GQLSTATUS 22NC6 and the status description:
+
+[source]
+----
+error: data exception - independent constraint and node element type have the same label. The independent constraint 'Constraint( type='NODE_PROPERTY_EXISTENCE', schema=(:`Person` {`name`}) )' is using the same label `Person` as a node element type.
+----
+
+To fix this, define the property existence constraint as part of the node element type:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p:Person => {name :: STRING NOT NULL})
+}
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
