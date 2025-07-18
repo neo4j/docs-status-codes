@@ -58,8 +58,31 @@ In this case, the reference could be corrected by providing a relationship type:
 ALTER CURRENT GRAPH TYPE SET {
   CONSTRAINT FOR ()-[b:REL]->() REQUIRE (b.prop) IS KEY
 }
-
 ----
+
+=== Element reference ommitted from constraint definition ===
+In this example, a constraint is defined with an empty node element type reference, which is not allowed: 
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR () REQUIRE n.prop IS UNIQUE
+----
+
+An error will be thrown with GQLSTATUS 22NC5 and the status description:
+
+[source]
+----
+error: data exception - graph type element not found. The node type element referenced by 'n' was not found.
+----
+In this case, the reference can be corrected by providing a Label for the constraint:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT FOR (n:Node) REQUIRE n.prop IS UNIQUE
+----
+
 
 ifndef::backend-pdf[]
 [discrete.glossary]

@@ -1,4 +1,4 @@
-= 22NC9
+= 22NC8
 
 == Status description
 error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name `{ <<token>> }` more than once
