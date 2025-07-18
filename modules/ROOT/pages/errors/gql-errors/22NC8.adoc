@@ -6,13 +6,13 @@ error: data exception - graph type contains duplicated tokens. The graph type in
 == Explanation
 This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or alias within the same scope.
 Each label, relationship type, or alias must have a unique name to avoid ambiguity in the graph schema.
-To resolve this error, ensure that all labels, relationship types, and aliases are uniquely named within the graph type definition.
+To resolve this error, ensure all labels, relationship types, and aliases are uniquely named within the graph type definition.
 
 == Example scenarios
-
+Let's take the following example scenarios:
 === Aliases
 
-Attempt to define two node element types using the same alias.
+For example, try to define two node element types using the same alias as follows:
 
 [source,cypher]
 ----
@@ -22,14 +22,14 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC9 and the status description:
+The query returns an error with GQLSTATUS 22NC9 and the status description:
 
 [source]
 ----
 error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name 'p' more than once.
 ----
 
-This can be corrected by renaming one of the aliases, for example:
+To fix this, rename one of the aliases, for example:
 
 [source,cypher]
 ----
@@ -41,7 +41,7 @@ ALTER CURRENT GRAPH TYPE SET {
 
 === Identifiers
 
-Attempt to define two relationship element types using the same relationship type.
+For example, try to define two relationship element types using the same relationship type as follows:
 
 [source,cypher]
 ----
@@ -51,14 +51,14 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC9 and the status description:
+The query returns an error with GQLSTATUS 22NC9 and the status description:
 
 [source]
 ----
 error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name ':REL' more than once.
 ----
 
-In this case, the correction is to delete the duplicate relationship type definition, since they are both equivalent:
+To fix this, delete the duplicate relationship type definition, since they are both equivalent:
 
 [source,cypher]
 ----

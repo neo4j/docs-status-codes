@@ -9,8 +9,8 @@ If the referenced node or relationship type does not exist, the operation cannot
 
 == Example scenarios
 
-=== Node element reference not found ===
-For example, try to set a graph type with an identiying node element reference that does not exist:
+=== Node element reference does not exist
+For example, try to set a graph type with an identifying node element reference that does not exist as follows:
 
 [source,cypher]
 ----
@@ -19,13 +19,13 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC5 and the status description:
+The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
 error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' was not found.
 ----
-In this case, the reference could be corrected to be non-identifying, or the node type element could be defined before this operation:
+In this case, you can make the reference to be non-identifying, or you can define the node type element before this operation:
 
 [source,cypher]
 ----
@@ -34,8 +34,8 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-=== Relationship element reference not found ===
-For example, try to set a graph type with a relationship element reference that does not exist:
+=== Relationship element reference does not exist
+For example, try to set a graph type with a relationship element reference that does not exist as follows:
 
 [source,cypher]
 ----
@@ -45,13 +45,13 @@ ALTER CURRENT GRAPH TYPE SET {
 
 ----
 
-An error will be thrown with GQLSTATUS 22NC5 and the status description:
+The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
 error: data exception - graph type element not found. The relationship type element referenced by 'b' was not found.
 ----
-In this case, the reference could be corrected by providing a relationship type:
+In this case, the reference could be fixed by providing a relationship type:
 
 [source,cypher]
 ----
@@ -60,8 +60,8 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-=== Element reference ommitted from constraint definition ===
-In this example, a constraint is defined with an empty node element type reference, which is not allowed: 
+=== Element reference omitted from constraint definition
+For example, try to define a constraint with an empty node element type reference, which is not allowed as follows:
 
 [source,cypher]
 ----
@@ -69,13 +69,13 @@ ALTER CURRENT GRAPH TYPE SET {
     CONSTRAINT FOR () REQUIRE n.prop IS UNIQUE
 ----
 
-An error will be thrown with GQLSTATUS 22NC5 and the status description:
+The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
 error: data exception - graph type element not found. The node type element referenced by 'n' was not found.
 ----
-In this case, the reference can be corrected by providing a Label for the constraint:
+In this case, the reference can be fixed by providing a label for the constraint:
 
 [source,cypher]
 ----

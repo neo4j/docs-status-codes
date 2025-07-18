@@ -4,10 +4,10 @@
 error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `{ <<propKey>> }` more than once.
 
 == Explanation
-When defining a graph type, node element types, and relationship element types may only define a property once.
+When defining a graph type, node and relationship element types may only define a property once.
 
 == Example scenario
-For example, try to set a graph type with :
+For example, try to set a graph type as follows:
 
 [source,cypher]
 ----
@@ -16,14 +16,14 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC1 and the status description:
+The query returns an error with GQLSTATUS 22NC1 and the status description:
 
 [source]
 ----
 error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `prop` more than once.
 ----
 
-This can be corrected by removing the duplicate property key definition or naming the property keys uniquely:
+To fix this, remove the duplicate property key definition or uniquely name the property keys:
 
 [source, cypher]
 ----
