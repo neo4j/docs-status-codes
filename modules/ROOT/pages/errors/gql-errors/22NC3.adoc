@@ -4,7 +4,8 @@
 error: data exception - relationship element type is ineffectual. The relationship element type `{ <<relType>> }` must define a source, destination, or at least one property type.
 
 == Explanation
-When defining a graph type, relationship element types must have some effect. To be effective, a relationship element type must define at least one of the following:
+When defining a graph type, relationship element types must have some effect.
+To be effective, a relationship element type must define at least one of the following:
 
 * A source node element type or label
 * A destination node element type or label
@@ -20,14 +21,14 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NC3 and the status description:
+The query returns an error with GQLSTATUS 22NC3 and the status description:
 
 [source]
 ----
 error: data exception - relationship element type is ineffectual. The relationship element type `REL` must define a source or destination, or at least one property type.
 ----
 
-This can be corrected by defining at least one property type or by adding a node element type e.g.:
+To fix this, define at least one property type or add a node element type, for example:
 
 [source,cypher]
 ----

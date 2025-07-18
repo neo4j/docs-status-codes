@@ -8,7 +8,7 @@ Property type and existance constrains cannot be defined as inline constraints o
 They should be defined as part of the property description instead.
 
 == Example scenario
-Attempt to define an existance constraint inline of a node element type as follows:
+For example, try to define an existence constraint inline of a node element type as follows:
 
 [source,cypher]
 ----
@@ -17,14 +17,14 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-An error will be thrown with GQLSTATUS 22NCA and the status description:
+The query returns an error with GQLSTATUS 22NCA and the status description:
 
 [source]
 ----
 error: data exception - invalid element type constraints in graph type. A node element type property existence constraint cannot be specified inline of a node element type.
 ----
 
-A correct definition is as follows:
+To fix this, change the query as follows:
 
 [source, cypher]
 ----
