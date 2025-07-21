@@ -1,7 +1,7 @@
 = 22NC9
 
 == Status description
-error: data exception - invalid element type constraints in graph type. A `{ <<entityType>> }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType2>> }` element type
+error: data exception - invalid element type constraints in graph type. A `{ <<entityType>>1 }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType>>2 }` element type.
 
 == Explanation
 Property type and existance constrains cannot be defined as inline constraints on graph type elements.
