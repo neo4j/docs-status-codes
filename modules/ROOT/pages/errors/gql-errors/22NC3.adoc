@@ -7,12 +7,12 @@ error: data exception - relationship element type is ineffectual. The relationsh
 When defining a graph type, relationship element types must have some effect.
 To be effective, a relationship element type must define at least one of the following:
 
-* A source node element type or label
-* A destination node element type or label
-* At least one property type
+* a source node element type or label
+* a destination node element type or label
+* at least one property type
 
 == Example scenario
-For example, try to set a graph type with :
+For example, try to set a graph type as follows:
 
 [source,cypher]
 ----

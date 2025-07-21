@@ -1,7 +1,7 @@
 = 22NC5
 
 == Status description
-error: data exception - graph type element not found. The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` was not found.
+error: data exception - graph type element not found. The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` does not exist.
 
 == Explanation
 This error occurs when a graph type definition references an element type (such as a node or relationship) using an alias that has not been defined, or by an identifying reference where there is no graph type element identified by that reference.
@@ -23,7 +23,7 @@ The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
-error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' was not found.
+error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' does not exist.
 ----
 In this case, you can make the reference to be non-identifying, or you can define the node type element before this operation:
 
@@ -49,7 +49,7 @@ The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
-error: data exception - graph type element not found. The relationship type element referenced by 'b' was not found.
+error: data exception - graph type element not found. The relationship type element referenced by 'b' does not exist.
 ----
 In this case, the reference could be fixed by providing a relationship type:
 
@@ -73,7 +73,7 @@ The query returns an error with GQLSTATUS 22NC5 and the status description:
 
 [source]
 ----
-error: data exception - graph type element not found. The node type element referenced by 'n' was not found.
+error: data exception - graph type element not found. The node type element referenced by 'n' was does not exist.
 ----
 In this case, the reference can be fixed by providing a label for the constraint:
 

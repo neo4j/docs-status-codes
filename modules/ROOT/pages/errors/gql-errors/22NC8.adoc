@@ -1,7 +1,7 @@
 = 22NC8
 
 == Status description
-error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name `{ <<token>> }` more than once
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name `{ <<token>> }` more than once.more than once.
 
 == Explanation
 This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or alias within the same scope.
@@ -26,7 +26,7 @@ The query returns an error with GQLSTATUS 22NC9 and the status description:
 
 [source]
 ----
-error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name 'p' more than once.
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name 'p' more than once.
 ----
 
 To fix this, rename one of the aliases, for example:
@@ -55,7 +55,7 @@ The query returns an error with GQLSTATUS 22NC9 and the status description:
 
 [source]
 ----
-error: data exception - graph type contains duplicated tokens. The graph type includes a label, relationship type or alias with name ':REL' more than once.
+error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name ':REL' more than once.
 ----
 
 To fix this, delete the duplicate relationship type definition, since they are both equivalent:
