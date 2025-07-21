@@ -4,7 +4,7 @@
 error: data exception - invalid element type constraints in graph type. A `{ <<entityType>>1 }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType>>2 }` element type.
 
 == Explanation
-Property type and existance constrains cannot be defined as inline constraints on graph type elements.
+Property type and existence constraints must be defined as part of the property description, not as inline constraints on graph type elements.
 They should be defined as part of the property description instead.
 
 == Example scenario
