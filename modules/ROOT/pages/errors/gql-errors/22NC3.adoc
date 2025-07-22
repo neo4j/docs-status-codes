@@ -1,7 +1,7 @@
 = 22NC3
 
 == Status description
-error: data exception - relationship element type is ineffectual. The relationship element type `{ <<relType>> }` must define a source, destination, or at least one property type.
+error: data exception - relationship element type has no effect. The relationship element type `{ <<relType>> }` must define a source, destination, or at least one property type.
 
 == Explanation
 When defining a graph type, relationship element types must have some effect.
@@ -25,7 +25,7 @@ The query returns an error with GQLSTATUS 22NC3 and the status description:
 
 [source]
 ----
-error: data exception - relationship element type is ineffectual. The relationship element type `REL` must define a source or destination, or at least one property type.
+error: data exception - relationship element type has no effect. The relationship element type `REL` must define a source or destination, or at least one property type.
 ----
 
 To fix this, define at least one property type or add a node element type, for example:

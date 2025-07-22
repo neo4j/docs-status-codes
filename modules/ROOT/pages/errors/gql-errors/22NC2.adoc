@@ -1,11 +1,10 @@
 = 22NC2
 
 == Status description
-error: data exception - node element type is ineffectual. The node element type `{ <<label>> }` must contain one or more implied labels, or at least one property type.
+error: data exception - node element type has no effect. The node element type `{ <<label>> }` must contain one or more implied labels, or at least one property type.
 
 == Explanation
 When defining a graph type, node element types must have some effect; otherwise, they are not allowed.
-Ineffectual node element types are not permitted.
 
 == Example scenario
 For example, try to set a graph type as follows:
@@ -21,7 +20,7 @@ The query returns an error with GQLSTATUS 22NC2 and the status description:
 
 [source]
 ----
-error: data exception - node element type is ineffectual. The node element type `Node` must contain one or more implied labels, or at least one property type.
+error: data exception - node element type is has no effect. The node element type `Node` must contain one or more implied labels, or at least one property type.
 ----
 
 To fix this, define at least one property type or add an implied label, for example:
