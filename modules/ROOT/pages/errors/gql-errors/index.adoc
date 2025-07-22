@@ -1050,7 +1050,7 @@ Status description:: error: syntax error or access rule violation - wrong subcla
 
 === xref:errors/gql-errors/42I64.adoc[42I64]
 
-Status description:: error: syntax error or access rule violation - unsupported aggregation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
+Status description:: error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
