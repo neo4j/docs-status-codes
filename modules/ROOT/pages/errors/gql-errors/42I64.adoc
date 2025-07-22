@@ -1,7 +1,7 @@
 = 42I64
 
 == Status description
-error: syntax error or access rule violation - unsupported aggregation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
+error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
 == Example scenario
 
@@ -25,7 +25,7 @@ This error has a cause detailed in xref:errors/gql-errors/42I64.adoc[42I64] and 
 
 [source]
 ----
-error: syntax error or access rule violation - unsupported aggregation. Aggregations are currently not supported in `NEXT` when used in a `UNION`.
+error: syntax error or access rule violation - unsupported operation. Aggregations are currently not supported in `NEXT` when used in a `UNION`.
 ----
 
 
