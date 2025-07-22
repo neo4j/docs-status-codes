@@ -1,7 +1,13 @@
+:page-role: changed-2025.07
+
 = 51N52
 
 == Status description
-error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+error: system configuration or operation exception - number of primaries out of range. Cannot `{ <<action>> }` database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+
+== Explanation
+
+This error occurs when trying to create or alter a database while providing a topology with primary count outside the supported range.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
