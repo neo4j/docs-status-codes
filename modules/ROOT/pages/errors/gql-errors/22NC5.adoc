@@ -5,7 +5,7 @@ error: data exception - graph type element not found. The `{ <<entityType>> }` e
 
 == Explanation
 This error occurs when a graph type definition references an element type (such as a node or relationship) using an alias that has not been defined, or by an identifying reference where there is no graph type element identified by that reference.
-If the referenced node or relationship type does not exist, the operation cannot proceed and this error is returned to indicate the missing element.
+If the referenced node or relationship type does not exist, the operation cannot proceed and will return an error to indicate the missing element.
 
 == Example scenarios
 
@@ -25,7 +25,7 @@ The query returns an error with GQLSTATUS 22NC5 and the status description:
 ----
 error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' does not exist.
 ----
-In this case, you can make the reference to be non-identifying, or you can define the node type element before this operation:
+In this case, you can make the reference non-identifying, or you can define the node type element before this operation:
 
 [source,cypher]
 ----
