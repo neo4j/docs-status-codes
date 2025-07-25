@@ -5,7 +5,6 @@ error: data exception - invalid element type constraints in graph type. A `{ <<e
 
 == Explanation
 Property type and existence constraints must be defined as part of the property description, not as inline constraints on graph type elements.
-They should be defined as part of the property description instead.
 
 == Example scenario
 For example, try to define an existence constraint inline of a node element type as follows:
