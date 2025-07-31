@@ -2,7 +2,7 @@
 
 
 == Status description
-error: data exception - invalid property based access control rule involving nontrivial predicates. The expression: `{ <<expr>> }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
+error: data exception - invalid property-based access control rule involving nontrivial predicates. The expression: `{ <<expr>> }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
 
 
 

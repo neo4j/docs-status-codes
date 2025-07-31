@@ -414,17 +414,19 @@ Status description:: error: data exception - duplicated constraint name. A const
 
 Status description:: error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/22N69.adoc[22N69]
 
-Status description:: error: data exception - index does not exist. The index specified by `{ <<idxDescrOrName>> }` does not exist.
+Status description:: error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }` does not exist.
 
 === xref:errors/gql-errors/22N70.adoc[22N70]
 
 Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ <<idxDescrOrName>> }`.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/22N71.adoc[22N71]
 
-Status description:: error: data exception - index with the same name already exists. An index with the same name already exists: `{ <<idx>> }`.
+Status description:: error: data exception - duplicated index name. An index with the same name already exists: `{ <<idx>> }`.
 
 === xref:errors/gql-errors/22N73.adoc[22N73]
 
@@ -533,35 +535,35 @@ Status description:: error: data exception - wrong token during deserialization.
 
 === xref:errors/gql-errors/22NA0.adoc[22NA0]
 
-Status description:: error: data exception - invalid property based access control rule. Failed to administer property rule.
+Status description:: error: data exception - invalid property-based access control rule. Failed to administer property rule.
 
 === xref:errors/gql-errors/22NA1.adoc[22NA1]
 
-Status description:: error: data exception - invalid property based access control rule involving non-commutative expressions. The property `{ <<propKey>> }` must appear on the left hand side of the `{ <<operation>> }` operator.
+Status description:: error: data exception - invalid property-based access control rule involving non-commutative expressions. The property `{ <<propKey>> }` must appear on the left hand side of the `{ <<operation>> }` operator.
 
 === xref:errors/gql-errors/22NA2.adoc[22NA2]
 
-Status description:: error: data exception - invalid property based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
+Status description:: error: data exception - invalid property-based access control rule involving multiple properties. The expression: `{ <<expr>> }` is not supported. Property rules can only contain one property.
 
 === xref:errors/gql-errors/22NA3.adoc[22NA3]
 
-Status description:: error: data exception - invalid property based access control rule involving NaN. 'NaN' is not supported for property-based access control.
+Status description:: error: data exception - invalid property-based access control rule involving NaN. 'NaN' is not supported for property-based access control.
 
 === xref:errors/gql-errors/22NA4.adoc[22NA4]
 
-Status description:: error: data exception - invalid property based access control rule involving comparison with `NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
+Status description:: error: data exception - invalid property-based access control rule involving comparison with `NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`.
 
 === xref:errors/gql-errors/22NA5.adoc[22NA5]
 
-Status description:: error: data exception - invalid property based access control rule involving `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
+Status description:: error: data exception - invalid property-based access control rule involving `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NULL` instead.
 
 === xref:errors/gql-errors/22NA6.adoc[22NA6]
 
-Status description:: error: data exception - invalid property based access control rule involving `IS NOT NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
+Status description:: error: data exception - invalid property-based access control rule involving `IS NOT NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `IS NOT NULL` instead.
 
 === xref:errors/gql-errors/22NA7.adoc[22NA7]
 
-Status description:: error: data exception - invalid property based access control rule involving nontrivial predicates. The expression: `{ <<expr>> }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
+Status description:: error: data exception - invalid property-based access control rule involving nontrivial predicates. The expression: `{ <<expr>> }` is not supported. Only single, literal-based predicate expressions are allowed for property-based access control.
 
 === xref:errors/gql-errors/22NA8.adoc[22NA8]
 
@@ -571,9 +573,17 @@ Status description:: error: data exception - parsing JSON failure. Underlying er
 
 Status description:: error: data exception - unexpected map entry. Invalid input. Unexpected key `{ <<mapKey>> }`, expected keys are `{ <<mapKeyList>> }`.
 
+=== xref:errors/gql-errors/22NAA.adoc[22NAA]
+
+Status description:: error: data exception - invalid list for property-based access control rule. The expression `{ <<expr>> }` is not supported. Lists containing `{ <<exprType>> }` values are not supported for property-based access control.
+
+=== xref:errors/gql-errors/22NAB.adoc[22NAB]
+
+Status description:: error: data exception - mixed type list for property-based access control rule. The expression `{ <<expr>> }` is not supported. All elements in a list must be literals of the same type for property-based access control.
+
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
-Status description:: error: data exception - invalid property based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
+Status description:: error: data exception - invalid property-based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
 
 === xref:errors/gql-errors/22NB1.adoc[22NB1]
 
@@ -1033,6 +1043,14 @@ Status description:: error: syntax error or access rule violation - missing LOOK
 === xref:errors/gql-errors/42I62.adoc[42I62]
 
 Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
+
+=== xref:errors/gql-errors/42I63.adoc[42I63]
+
+Status description:: error: syntax error or access rule violation - wrong subclause order. `ORDER BY`, `{ <<clause>> }` and `LIMIT` can only be used in this order in `RETURN`.
+
+=== xref:errors/gql-errors/42I64.adoc[42I64]
+
+Status description:: error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
@@ -1758,13 +1776,15 @@ Status description:: error: system configuration or operation exception - cannot
 
 Status description:: error: system configuration or operation exception - cannot create database. Cannot create database `{ <<db>> }`.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/51N52.adoc[51N52]
 
-Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot alter database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
+Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot `{ <<action>> }` database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
 
+[role=label--changed-2025.07]
 === xref:errors/gql-errors/51N53.adoc[51N53]
 
-Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot alter database topology. Number of secondaries `{ <<count>> }` needs to be at least 0 and may not exceed `{ <<upper>> }`.
+Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot `{ <<action>> }` database topology. Number of secondaries `{ <<count>> }` needs to be at least 0 and may not exceed `{ <<upper>> }`.
 
 === xref:errors/gql-errors/51N54.adoc[51N54]
 
@@ -1853,6 +1873,10 @@ Status description:: error: system configuration or operation exception - maximu
 === xref:errors/gql-errors/51N76.adoc[51N76]
 
 Status description:: error: system configuration or operation exception - upgrade failed. The upgrade to a new Neo4j version failed.
+
+=== xref:errors/gql-errors/51N77.adoc[51N77]
+
+Status description:: error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
 
 
 [[procedure-exceptions]]
