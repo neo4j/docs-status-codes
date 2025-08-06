@@ -333,6 +333,7 @@
 **** xref:errors/gql-errors/42N76.adoc[]
 **** xref:errors/gql-errors/42N77.adoc[]
 **** xref:errors/gql-errors/42N78.adoc[]
+**** xref:errors/gql-errors/42N79.adoc[]
 **** xref:errors/gql-errors/42N81.adoc[]
 **** xref:errors/gql-errors/42N82.adoc[]
 **** xref:errors/gql-errors/42N83.adoc[]
