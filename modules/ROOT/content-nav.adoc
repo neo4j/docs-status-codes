@@ -460,6 +460,7 @@
 **** xref:errors/gql-errors/51N73.adoc[]
 **** xref:errors/gql-errors/51N74.adoc[]
 **** xref:errors/gql-errors/51N76.adoc[]
+**** xref:errors/gql-errors/51N77.adoc[]
 *** xref:errors/gql-errors/index.adoc#procedure-exceptions[Procedure exceptions]
 **** xref:errors/gql-errors/52N01.adoc[]
 **** xref:errors/gql-errors/52N02.adoc[]
