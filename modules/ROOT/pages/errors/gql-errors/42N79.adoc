@@ -2,7 +2,7 @@
 
 == Status description
 error: syntax error or access rule violation - invalid allReduce arguments. 
-The function allReduce() has the signature: allReduce(accumulator :: VARIABLE = initial :: ANY, variable :: VARIABLE IN list :: LIST<ANY> | expression :: ANY, predicate :: BOOLEAN ) :: BOOLEAN.
+The function allReduce() has the signature: allReduce(accumulator :: VARIABLE = initial :: ANY, variable :: VARIABLE IN list :: LIST<ANY> | reducer :: ANY, predicate :: BOOLEAN ) :: BOOLEAN.
 
 
 ifndef::backend-pdf[]
