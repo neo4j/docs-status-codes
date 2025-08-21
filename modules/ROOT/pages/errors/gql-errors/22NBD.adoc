@@ -1,3 +1,5 @@
+:page-role: new-2025.07
+
 = 22NBD
 
 == Status description
