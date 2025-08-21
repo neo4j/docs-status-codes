@@ -5,9 +5,8 @@ error: data exception - unsupported struct tag. Unsupported struct tag: `{ <<val
 
 == Scenario
 
-This error will be observed when the server receives a struct tag that it
-understands but is not part of the negotiated bolt protocol version. This
-typically means the client driver has incorrectly added an incorrect struct tag.
+This error occurs when the server receives a struct tag that it understands but which is not included in the negotiated Bolt protocol version.
+This typically means the client driver has added an incorrect struct tag.
 
 == Possible solution
 
