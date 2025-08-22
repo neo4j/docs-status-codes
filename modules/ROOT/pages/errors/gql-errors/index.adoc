@@ -629,6 +629,10 @@ Status description:: error: data exception - omitting mandatory field for proper
 
 Status description:: error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
 
+=== xref:errors/gql-errors/22NBD.adoc[22NBD]
+
+Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: 0x56. `{ <<value>> }`.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
