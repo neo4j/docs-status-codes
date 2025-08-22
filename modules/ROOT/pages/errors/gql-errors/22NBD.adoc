@@ -1,0 +1,22 @@
+:page-role: new-2025.07
+
+= 22NBD
+
+== Status description
+error: data exception - unsupported struct tag. Unsupported struct tag: `{ <<value>> }`.
+
+== Scenario
+
+This error occurs when the server receives a struct tag that it understands but which is not included in the negotiated Bolt protocol version.
+This typically means the client driver has added an incorrect struct tag.
+
+== Possible solution
+
+Ensure only valid struct tags are sent for the negotiated protocol version.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
