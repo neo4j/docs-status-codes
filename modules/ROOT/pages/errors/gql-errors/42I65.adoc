@@ -1,0 +1,30 @@
+= 42I65
+
+== Status description
+error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `{ <<valueType>> }`.
+
+== Example scenario
+
+For example, when trying to format using a year character on a time-only type:
+
+[source,cypher]
+----
+RETURN format(time(), "yyyy") AS formatted
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I65.adoc[42I65] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `ZONED TIME`.
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
