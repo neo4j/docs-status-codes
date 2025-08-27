@@ -10,6 +10,7 @@
 [[auth]]$auth:: Auth provider name, for example, `ldap`, `native`.
 [[boltServerState]]$boltServerState:: Bolt server state, for example, `READY`.
 [[boltMsgLenLimit]]$boltMsgLenLimit:: Bolt message length limit, for example, `1000`.
+[[bytes]]$bytes:: Number of bytes.
 [[cause]]$cause:: Freeform description of what caused the error.
 [[cfgSetting]]$cfgSetting:: Configuration setting key, for example, `server.https.enabled`.
 [[clause]]$clause:: A Cypher clause, for example, `USE`, `MATCH`.
