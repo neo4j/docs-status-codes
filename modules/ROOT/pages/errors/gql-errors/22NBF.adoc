@@ -1,0 +1,17 @@
+:page-role: new-2025.09
+
+= 22NBF
+
+== Status description
+error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
+
+== Scenario
+
+This error occurs when a property value cannot be stored because its size exceeds the limit.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
