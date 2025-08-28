@@ -9,5 +9,5 @@ asciidoc:
   attributes:
     page-origin-private: false
     neo4j-version: '5.26'
-    neo4j-version-exact: '5.26.10'
+    neo4j-version-exact: '5.26.11'
     neo4j-buildnumber: '5.26'
