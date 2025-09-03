@@ -1,0 +1,52 @@
+= 22NCA
+
+== Status description
+error: data exception - node element type already exists. A node element type identified by the label `{ <<label>> }` already exists in the graph type.
+
+== Explanation
+
+This error occurs when attempting to add a new node element type to the graph type, but a node element type with the same label already exists.
+
+== Example scenario
+
+Given the existing graph type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p:Person => {name :: STRING })
+}
+----
+
+Execute the query:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE ADD {
+    (p:Person => {name :: STRING, age :: INT })
+}
+----
+
+The query returns an error with GQLSTATUS 22NCA and the status description:
+
+[source]
+----
+error: data exception - node element type already exists. A node element type identified by the label `:Person` already exists in the graph type.
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE ALTER {
+    (p:Person => {name :: STRING, age :: INT })
+}
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

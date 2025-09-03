@@ -47,6 +47,7 @@
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
 [[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint, one of `UNDESIGNATED`, `INDEPENDENT`, or `DEPENDENT`.
 [[graphTypeReference]]$graphTypeReference:: Graph type reference, for example, `(:Node =>)` or `p`.
+[[graphTypeOperation]]$graphTypeOperation:: Graph type operation, for example, one of `SET`, `ADD`, `DROP` or `ALTER`.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
 [[hintList]]$hintList:: A list of free form descriptions of hints like `USING INDEX n:N(prop)`.
 [[idx]]$idx:: Index name, `my_index`.

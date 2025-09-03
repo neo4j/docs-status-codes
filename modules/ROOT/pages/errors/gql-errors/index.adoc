@@ -682,7 +682,6 @@ Status description:: error: data exception - graph type contains duplicated toke
 
 Status description:: error: data exception - invalid element type constraints in graph type. A `{ <<entityType>>1 }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType>>2 }` element type.
 
-
 [[invalid-transaction-state]]
 == Invalid transaction state
 
