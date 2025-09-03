@@ -1,0 +1,41 @@
+= 22NC9
+
+== Status description
+error: data exception - invalid element type constraints in graph type. A `{ <<entityType>>1 }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType>>2 }` element type.
+
+== Explanation
+Property type and existence constraints must be defined as part of the property description, not as inline constraints on graph type elements.
+
+== Example scenario
+For example, try to define an existence constraint inline of a node element type as follows:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p:Person => {name :: STRING, age :: INT}) REQUIRE p.studId IS NOT NULL
+}
+----
+
+The query returns an error with GQLSTATUS 22NC9 and the status description:
+
+[source]
+----
+error: data exception - invalid element type constraints in graph type. A node element type property existence constraint cannot be specified inline of a node element type.
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    (p :Person => {name :: STRING, age :: INT, studId :: ANY NOT NULL })
+}
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

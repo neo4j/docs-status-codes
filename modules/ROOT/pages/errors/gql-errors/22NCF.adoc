@@ -1,0 +1,85 @@
+= 22NCF
+
+== Status description
+error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
+
+== Explanation
+
+== Example scenario
+
+=== ALTER 
+
+Given the existing graph type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: INTEGER
+}
+----
+
+Execute the query:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE ALTER {
+    CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: STRING 
+}
+----
+
+The query returns an error with GQLSTATUS 22NCF and the status description:
+
+
+[source]
+----
+error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE ALTER` operation.
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE DROP {
+    CONSTRAINT c1
+}
+ALTER CURRENT GRAPH TYPE ADD {
+    CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: STRING 
+}
+----
+
+=== DROP
+
+In this example we attempt to drop an undesignated constraint with an ALTER CURRENT GRAPH TYPE DROP query.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE DROP { 
+    ( :Person => {name :: STRING IS KEY}) 
+}
+----
+
+The query returns an error with GQLSTATUS 22NCF and the status description:
+
+
+[source]
+----
+error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE DROP` operation.
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE DROP { 
+    CONSTRAINT nameOfKeyConstraint
+}
+
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
