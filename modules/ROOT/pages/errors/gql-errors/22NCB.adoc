@@ -1,0 +1,52 @@
+= 22NCB
+
+== Status description
+error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `{ <<relType>> }` already exists in the graph type."
+
+== Explanation
+
+This error occurs when attempting to add a new relationship element type to the graph type, but a relationship element type with the same type already exists.
+
+== Example scenario
+
+Given the existing graph type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ()-[r:REL => {name :: STRING }]->()
+}
+----
+
+Execute the query:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE ADD {
+     ()-[r:REL => {name :: STRING, age :: INT }]->()
+}
+----
+
+The query returns an error with GQLSTATUS 22NCB and the status description:
+
+[source]
+----
+error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `REL` already exists in the graph type."
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE ALTER {
+     ()-[r:REL => {name :: STRING, age :: INT }]->()
+}
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

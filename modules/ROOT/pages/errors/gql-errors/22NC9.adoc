@@ -16,7 +16,7 @@ ALTER CURRENT GRAPH TYPE SET {
 }
 ----
 
-The query returns an error with GQLSTATUS 22NCA and the status description:
+The query returns an error with GQLSTATUS 22NC9 and the status description:
 
 [source]
 ----
