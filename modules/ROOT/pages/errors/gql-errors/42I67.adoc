@@ -1,7 +1,7 @@
 = 42I67
 
 == Status description
-error: syntax error or access rule violation - unsupported language feature. This query uses a feature that is not supported in Cypher { <<feat1>> }. To use this feature prefix the query with  `CYPHER { <<feat2>> }` or set Cypher { <<feat2>> } as default language version.
+error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat2>> }` query, but it is run in `CYPHER { <<feat1>> }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat2>> }`.
 
 == Example scenario
 
@@ -20,7 +20,7 @@ This error has a cause detailed in xref:errors/gql-errors/42I67.adoc[42I67] and 
 
 [source]
 ----
-error: syntax error or access rule violation - unsupported language feature. This query uses a feature that is not supported in Cypher 5. To use this feature prefix the query with `CYPHER 25` or set Cypher 25 as default language version.
+error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER 25` query, but it is run in `CYPHER 5`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER 25`.
 ----
 
 As well as a cause detailed in xref:errors/gql-errors/42I06.adoc[42I06] and status description:
