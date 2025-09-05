@@ -1,4 +1,4 @@
-= 42I09
+= 42I67
 
 == Status description
 error: syntax error or access rule violation - unsupported language feature. This query uses a feature that is not supported in Cypher { <<feat1>> }. To use this feature prefix the query with  `CYPHER { <<feat2>> }` or set Cypher { <<feat2>> } as default language version.
@@ -15,7 +15,7 @@ RETURN x
 ----
 
 You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause detailed in xref:errors/gql-errors/42I09.adoc[42I09] and status description:
+This error has a cause detailed in xref:errors/gql-errors/42I67.adoc[42I67] and status description:
 
 
 [source]
