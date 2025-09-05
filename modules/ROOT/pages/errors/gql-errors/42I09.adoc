@@ -1,0 +1,39 @@
+= 42I09
+
+== Status description
+error: syntax error or access rule violation - unsupported language feature. This query uses a feature that is not supported in Cypher { <<feat1>> }. To use this feature prefix the query with  `CYPHER { <<feat2>> }` or set Cypher { <<feat2>> } as default language version.
+
+== Example scenario
+
+For example, when using `LET` in a Cypher 5 query:
+
+[source,cypher]
+----
+CYPHER 5
+LET x = 1
+RETURN x
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I09.adoc[42I09] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - unsupported language feature. This query uses a feature that is not supported in Cypher 5. To use this feature prefix the query with `CYPHER 25` or set Cypher 25 as default language version.
+----
+
+As well as a cause detailed in xref:errors/gql-errors/42I06.adoc[42I06] and status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid input. Invalid input 'LET', expected: 'ALTER', 'ORDER BY', 'CALL', 'USING PERIODIC COMMIT', 'CREATE', 'LOAD CSV', 'START DATABASE', 'STOP DATABASE', 'DEALLOCATE', 'DELETE', 'DENY', 'DETACH', 'DROP', 'DRYRUN', 'FINISH', 'FOREACH', 'GRANT', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REALLOCATE', 'REMOVE', 'RENAME', 'RETURN', 'REVOKE', 'ENABLE SERVER', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNWIND', 'USE' or 'WITH'.
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
