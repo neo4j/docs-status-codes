@@ -1,5 +1,5 @@
 
-name: "Publish Branch"
+name: "Generate HTML for publishing"
 
 on:
   push:
@@ -18,18 +18,16 @@ jobs:
 
   #  Generate HTML
   docs-build:
-    uses: neo4j/docs-tools/.github/workflows/reusable-docs-build.yml@v1.1.2
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-build.yml@v2
     with:
-      deploy-id: 0
-      retain-artifacts: 28
-      package-script: 'publish-verify'
+      package-script: 'verify:publish'
 
   # Parse the json log output from the HTML build, and output warnings and errors as annotations
   # Optionally, fail the build if there are warnings or errors
   # By default, the job fails if there are errors, passes if there are warnings only.
   docs-verify:
     needs: docs-build
-    uses: neo4j/docs-tools/.github/workflows/reusable-docs-verify.yml@v1.1.2
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-verify.yml@v2
     with:
       failOnWarnings: true
 
