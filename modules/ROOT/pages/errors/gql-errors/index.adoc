@@ -1057,10 +1057,12 @@ Status description:: error: syntax error or access rule violation - wrong subcla
 
 Status description:: error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
+[role=label--new-2025.09]
 === xref:errors/gql-errors/42I65.adoc[42I65]
 
 Status description:: error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `{ <<valueType>> }`.
 
+[role=label--new-2025.09]
 === xref:errors/gql-errors/42I66.adoc[42I66]
 
 Status description:: error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
