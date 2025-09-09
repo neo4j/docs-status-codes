@@ -1,0 +1,29 @@
+= 42I68
+
+== Status description
+error: syntax error or access rule violation - ambiguous pattern field. The pattern contains pattern elements that refer to the same pattern fields. Make sure that the pattern is non-ambiguous.
+
+== Example scenario
+
+For example, when parsing a duration string value:
+
+[source,cypher]
+----
+RETURN duration("5 hours 12 minutes 15 minutes", "h 'hours' m 'minutes' m 'minutes'"
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I68.adoc[42I68] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - ambiguous pattern field. The pattern contains pattern elements that refer to the same pattern fields. Make sure that the pattern is non-ambiguous.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
