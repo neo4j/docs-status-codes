@@ -1575,8 +1575,8 @@ Please use a path with a length of 1 [r*1..1] instead or a Match with a limit.
 - The query used a deprecated function. (`%s`)
 - The query used a deprecated procedure. (`%s`)
 - The query used a deprecated runtime option. (`%s`)
-- The `TextIndexProvider.DESCRIPTOR.name()` provider for text indexes is deprecated and will be removed in a future version.
-Please use `TrigramIndexProvider.DESCRIPTOR.name()` instead.
+-  `text-1.0` and `text-2.0` (from Neo4j 2025.09 onwards) providers for text indexes are deprecated and will be removed in a future version.
+Please use `text-3.0` instead.
 |Category
 m|DEPRECATION
 |GQLSTATUS code
