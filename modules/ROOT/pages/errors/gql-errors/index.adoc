@@ -629,9 +629,10 @@ Status description:: error: data exception - omitting mandatory field for proper
 
 Status description:: error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
 
+[role=label--new-2025.07]
 === xref:errors/gql-errors/22NBD.adoc[22NBD]
 
-Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: 0x56. `{ <<value>> }`.
+Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: `{ <<value>> }`.
 
 
 [[invalid-transaction-state]]
@@ -1055,6 +1056,16 @@ Status description:: error: syntax error or access rule violation - wrong subcla
 === xref:errors/gql-errors/42I64.adoc[42I64]
 
 Status description:: error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/42I65.adoc[42I65]
+
+Status description:: error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `{ <<valueType>> }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/42I66.adoc[42I66]
+
+Status description:: error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
