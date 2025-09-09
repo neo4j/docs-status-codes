@@ -2,7 +2,7 @@
 = 22N60
 
 == Status description
-error: data exception - illegal element. Encountered illegal `{ <<item>> }` element: `{ <<msg>> }`.
+error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`
 
 ifndef::backend-pdf[]
 [discrete.glossary]
