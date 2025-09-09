@@ -1,7 +1,8 @@
+:page-role: new-2025.09
 = 42I67
 
 == Status description
-error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat2>> }` query, but it is run in `CYPHER { <<feat1>> }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat2>> }`.
+error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat>>2 }` query, but it is run in `CYPHER { <<feat>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
 
 == Example scenario
 
