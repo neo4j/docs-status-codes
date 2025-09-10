@@ -1087,6 +1087,10 @@ Status description:: error: syntax error or access rule violation - pattern pars
 
 Status description:: error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat>>2 }` query, but it is run in `CYPHER { <<feat>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
 
+=== xref:errors/gql-errors/42I68.adoc[42I68]
+
+Status description:: error: syntax error or access rule violation - ambiguous pattern field. The pattern contains pattern elements that refer to the same pattern fields. Make sure that the pattern is non-ambiguous.
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
