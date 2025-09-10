@@ -634,6 +634,16 @@ Status description:: error: data exception - index belongs to constraint. Index 
 
 Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: `{ <<value>> }`.
 
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/22NBE.adoc[22NBE]
+
+Status description:: error: data exception - invalid vector dimensions. Invalid vector dimensions. The number of vector dimensions must be between `{ <<count>>1 }` and `{ $count2 }`, but is `{ $count3 }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/22NBF.adoc[22NBF]
+
+Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
