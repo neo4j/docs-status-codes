@@ -389,7 +389,7 @@ Status description:: error: data exception - token does not exist. The `{ <<toke
 [role=label--new-2025.09]
 === xref:errors/gql-errors/22N60.adoc[22N60]
 
-Status description:: error: data exception - illegal element. Encountered illegal `{ <<item>> }` element: `{ <<msg>> }`.
+Status description:: error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`
 
 === xref:errors/gql-errors/22N62.adoc[22N62]
 
