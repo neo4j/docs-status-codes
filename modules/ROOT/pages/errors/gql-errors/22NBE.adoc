@@ -3,7 +3,7 @@
 = 22NBE
 
 == Status description
-error: data exception - invalid vector dimensions. Invalid vector dimensions. The number of vector dimensions needs to be between `{ <<count>> }` and `{ $count1 }`, but was `{ $count2 }`.
+error: data exception - invalid vector dimensions. Invalid vector dimensions. The number of vector dimensions must be between `{ <<count>>1 }` and `{ $count2 }`, but is `{ $count3 }`.
 
 == Scenario
 

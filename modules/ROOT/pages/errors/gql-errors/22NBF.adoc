@@ -3,7 +3,7 @@
 = 22NBF
 
 == Status description
-error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
+error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
 == Scenario
 
