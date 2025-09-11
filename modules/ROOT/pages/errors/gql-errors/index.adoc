@@ -386,6 +386,11 @@ Status description:: error: data exception - invalid spatial component. Cannot r
 
 Status description:: error: data exception - token does not exist. The `{ <<tokenType>> }` token with id `{ <<tokenId>> }` does not exist.
 
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/22N60.adoc[22N60]
+
+Status description:: error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`
+
 === xref:errors/gql-errors/22N62.adoc[22N62]
 
 Status description:: error: data exception - relationship type does not exist. The relationship type `{ <<relType>> }` does not exist.

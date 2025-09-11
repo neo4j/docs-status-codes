@@ -95,6 +95,7 @@
 **** xref:errors/gql-errors/22N57.adoc[]
 **** xref:errors/gql-errors/22N58.adoc[]
 **** xref:errors/gql-errors/22N59.adoc[]
+**** xref:errors/gql-errors/22N60.adoc[]
 **** xref:errors/gql-errors/22N62.adoc[]
 **** xref:errors/gql-errors/22N63.adoc[]
 **** xref:errors/gql-errors/22N64.adoc[]
