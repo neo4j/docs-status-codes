@@ -4,6 +4,12 @@
 == Status description
 error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`
 
+== Example of a status description
+
+[source]
+----
+error: data exception - illegal element. Encountered illegal root element. Reason: Expected struct.
+----
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
