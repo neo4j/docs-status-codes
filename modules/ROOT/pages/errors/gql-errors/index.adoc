@@ -1090,7 +1090,8 @@ Status description:: error: syntax error or access rule violation - unsupported 
 [role=label--new-2025.09]
 === xref:errors/gql-errors/42I68.adoc[42I68]
 
-Status description:: error: syntax error or access rule violation - ambiguous pattern field. The pattern contains pattern elements that refer to the same pattern fields. Make sure that the pattern is non-ambiguous.
+
+Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input1>> }`, does not match input, `{ <<input2>> }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
