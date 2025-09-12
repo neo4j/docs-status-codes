@@ -1090,8 +1090,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 [role=label--new-2025.09]
 === xref:errors/gql-errors/42I68.adoc[42I68]
 
-
-Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input1>> }`, does not match input, `{ <<input2>> }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
+Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]

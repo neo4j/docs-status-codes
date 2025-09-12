@@ -2,7 +2,7 @@
 = 42I68
 
 == Status description
-error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input1>> }`, does not match input, `{ <<input2>> }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
+error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
 
 == Example scenario
 
