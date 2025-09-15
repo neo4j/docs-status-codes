@@ -175,6 +175,7 @@
 **** xref:errors/gql-errors/25N14.adoc[]
 **** xref:errors/gql-errors/25N15.adoc[]
 **** xref:errors/gql-errors/25N16.adoc[]
+**** xref:errors/gql-errors/25N17.adoc[]
 *** xref:errors/gql-errors/index.adoc#invalid-transaction-termination[Invalid transaction termination]
 **** xref:errors/gql-errors/2DN01.adoc[]
 **** xref:errors/gql-errors/2DN02.adoc[]

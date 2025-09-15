@@ -1,0 +1,13 @@
+:page-role: new-2025.10
+
+= 22N17
+
+== Status description
+error: The attempted operation requires an implicit transaction.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
