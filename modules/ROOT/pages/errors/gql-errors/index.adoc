@@ -225,6 +225,11 @@ Status description:: error: data exception - invalid temporal component. Cannot 
 
 Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ <<expr>> }` to `{ <<graph>> }`.
 
+[role=label--new-2025.10]
+=== xref:errors/gql-errors/22N17.adoc[22N17]
+
+Status description:: error: The attempted operation requires an implicit transaction.
+
 === xref:errors/gql-errors/22N18.adoc[22N18]
 
 Status description:: error: data exception - incomplete spatial value. A `{ <<crs>> }` POINT must contain `{ <<mapKeyList>> }`.
