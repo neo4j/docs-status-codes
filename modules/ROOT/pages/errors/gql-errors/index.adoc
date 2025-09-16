@@ -225,11 +225,6 @@ Status description:: error: data exception - invalid temporal component. Cannot 
 
 Status description:: error: data exception - invalid import value. Importing entity values to a graph with a USE clause is not supported. Attempted to import `{ <<expr>> }` to `{ <<graph>> }`.
 
-[role=label--new-2025.10]
-=== xref:errors/gql-errors/22N17.adoc[22N17]
-
-Status description:: error: The attempted operation requires an implicit transaction.
-
 === xref:errors/gql-errors/22N18.adoc[22N18]
 
 Status description:: error: data exception - incomplete spatial value. A `{ <<crs>> }` POINT must contain `{ <<mapKeyList>> }`.
@@ -721,6 +716,11 @@ Status description:: error: invalid transaction state - transaction termination 
 === xref:errors/gql-errors/25N16.adoc[25N16]
 
 Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+
+[role=label--new-2025.10]
+=== xref:errors/gql-errors/25N17.adoc[25N17]
+
+Status description:: error: The attempted operation requires an implicit transaction.
 
 
 [[invalid-transaction-termination]]
