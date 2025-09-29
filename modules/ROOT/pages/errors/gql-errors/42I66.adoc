@@ -1,0 +1,31 @@
+:page-role: new-2025.09
+= 42I66
+
+== Status description
+error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
+
+== Example scenario
+
+For example, when formatting a duration:
+
+[source,cypher]
+----
+RETURN format(duration("P1Y"), "y 'year")
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I66.adoc[42I66] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
