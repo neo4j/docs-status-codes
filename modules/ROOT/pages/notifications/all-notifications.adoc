@@ -3650,6 +3650,69 @@ m|WARNING
 |===
 
 
+[#_neo_clientnotification_security_shardedperformance]
+=== This privilege will have a severe performance impact on sharded databases.
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Security.ShardedPrivilegePerformance
+|Title
+a|This privilege will have a severe performance impact on sharded databases.
+|Description
+a|This privilege will severely reduce the performance of queries run on sharded databases. We recommend to exclude sharded databases for now.
+|Category
+m|SECURITY
+|GQLSTATUS code
+m|01N73
+|Status description
+|warn: sharded privilege performance.
+This privilege will severely reduce the performance of queries run on sharded databases. We recommend to exclude sharded databases for now.
+|Classification
+m|SECURITY
+|SeverityLevel
+m|WARNING
+|===
+
+.Grant a property access rule privilege on all databases
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+GRANT TRAVERSE ON GRAPH * TO ROLE exampleRole
+----
+
+Returned GQLSTATUS code::
+01N73
+
+Returned status description::
+warn: sharded privilege performance.
+This privilege will severely reduce the performance of queries run on sharded databases. We recommend to exclude sharded databases for now.
+
+Suggestions for improvement::
+Grant the privilege explicitly to databases instead of on all.
+
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+GRANT TRAVERSE ON GRAPH * TO ROLE exampleRole
+----
+
+Suggestions for improvement::
+Grant the privilege explicitly to databases instead of on all.
+======
+=====
+
+
 [#_topology_notifications]
 == `TOPOLOGY` notifications
 
