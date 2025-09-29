@@ -386,6 +386,11 @@ Status description:: error: data exception - invalid spatial component. Cannot r
 
 Status description:: error: data exception - token does not exist. The `{ <<tokenType>> }` token with id `{ <<tokenId>> }` does not exist.
 
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/22N60.adoc[22N60]
+
+Status description:: error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`
+
 === xref:errors/gql-errors/22N62.adoc[22N62]
 
 Status description:: error: data exception - relationship type does not exist. The relationship type `{ <<relType>> }` does not exist.
@@ -629,9 +634,20 @@ Status description:: error: data exception - omitting mandatory field for proper
 
 Status description:: error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
 
+[role=label--new-2025.07]
 === xref:errors/gql-errors/22NBD.adoc[22NBD]
 
-Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: 0x56. `{ <<value>> }`.
+Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: `{ <<value>> }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/22NBE.adoc[22NBE]
+
+Status description:: error: data exception - invalid vector dimensions. Invalid vector dimensions. The number of vector dimensions must be between `{ <<count>>1 }` and `{ $count2 }`, but is `{ $count3 }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/22NBF.adoc[22NBF]
+
+Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
 
 [[invalid-transaction-state]]
@@ -1055,6 +1071,21 @@ Status description:: error: syntax error or access rule violation - wrong subcla
 === xref:errors/gql-errors/42I64.adoc[42I64]
 
 Status description:: error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/42I65.adoc[42I65]
+
+Status description:: error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `{ <<valueType>> }`.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/42I66.adoc[42I66]
+
+Status description:: error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
+
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/42I67.adoc[42I67]
+
+Status description:: error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat>>2 }` query, but it is run in `CYPHER { <<feat>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
 
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
