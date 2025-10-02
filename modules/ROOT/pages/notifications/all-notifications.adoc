@@ -3649,6 +3649,69 @@ m|SECURITY
 m|WARNING
 |===
 
+[#_neo_clientnotification_security_oidccredentialforwardingnotenabled]
+=== OIDC credential forwarding is not enabled
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Security.OidcCredentialForwardingNotEnabled
+|Title
+a|OIDC credential forwarding is not enabled.
+|Description
+a|Use setting 'dbms.security.allow_oidc_credential_forwarding_enabled' to enable OIDC credential forwarding.
+|Category
+m|SECURITY
+|GQLSTATUS code
+m|01N74
+|Status description
+|warn: OIDC credential forwarding disabled.
+Use the setting `dbms.security.allow_oidc_credential_forwarding_enabled` to enable OIDC credential forwarding.
+|Classification
+m|SECURITY
+|SeverityLevel
+m|WARNING
+|===
+
+.Create a remote database alias with remote credentials set to OIDC credential forwarding when OIDC credential forwarding is not enabled.
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+CREATE ALIAS `remote-neo4j` FOR DATABASE `neo4j` AT "neo4j+s://location:7687" OIDC CREDENTIAL FORWARDING
+----
+
+Returned GQLSTATUS code::
+01N74
+
+Returned status description::
+warn: OIDC credential forwarding disabled.
+Use the setting 'dbms.security.allow_oidc_credential_forwarding_enabled' to enable OIDC credential forwarding.
+
+Suggestions for improvement::
+Enable OIDC credential forwarding through the `dbms.security.allow_oidc_credential_forwarding_enabled` setting.
+Until enabled, the new remote database alias will fail all access attempts.
+
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+CREATE ALIAS `remote-neo4j` FOR DATABASE `neo4j` AT "neo4j+s://location:7687" OIDC CREDENTIAL FORWARDING
+----
+
+Suggestions for improvement::
+Enable OIDC credential forwarding through the `dbms.security.allow_oidc_credential_forwarding_enabled` setting.
+Until enabled, all access attempts to the new remote database alias will fail.
+======
+=====
 
 [#_neo_clientnotification_security_shardedperformance]
 === Sharded privilege performance
