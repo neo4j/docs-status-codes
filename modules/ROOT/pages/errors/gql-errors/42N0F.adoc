@@ -1,0 +1,15 @@
+= 42N0D
+
+
+== Status description
+
+error: syntax error or access rule violation - cannot call function without metadata for realm. The function  `{ <<fun>> }` cannot be called without metadata for realm: { <<auth>> }.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
