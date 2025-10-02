@@ -1195,6 +1195,18 @@ Status description:: error: syntax error or access rule violation - invalid shar
 
 Status description:: error: syntax error or access rule violation - cannot replace sharded database. The database identified by `{ <<db>>1 }` is sharded. Drop the database `{ <<db>>2 }` before recreating.
 
+=== xref:errors/gql-errors/42N0D.adoc[42N0D]
+
+Status description:: error: syntax error or access rule violation - cannot call function from this context. The function `{ <<fun>> }` cannot be called from the current context. It can only be used `{ <<context>> }`.
+
+=== xref:errors/gql-errors/42N0E.adoc[42N0E]
+
+Status description:: error: syntax error or access rule violation - cannot call function without metadata. The function  `{ <<fun>> }` cannot be called without metadata.
+
+=== xref:errors/gql-errors/42N0F.adoc[42N0F]
+
+Status description:: error: syntax error or access rule violation - cannot call function without metadata for realm. The function  `{ <<fun>> }` cannot be called without metadata for realm: { <<auth>> }.
+
 === xref:errors/gql-errors/42N10.adoc[42N10]
 
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.

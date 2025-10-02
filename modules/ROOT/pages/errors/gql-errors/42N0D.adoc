@@ -1,0 +1,15 @@
+= 42N0D
+
+
+== Status description
+
+error: syntax error or access rule violation - cannot call function from this context. The function `{ <<fun>> }` cannot be called from the current context. It can only be used `{ <<context>> }`.
+
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
