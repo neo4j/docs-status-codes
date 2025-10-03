@@ -5,6 +5,11 @@
 
 error: syntax error or access rule violation - cannot call function from this context. The function `{ <<fun>> }` cannot be called from the current context. It can only be used `{ <<context>> }`.
 
+== Explanation
+This function cannot be called in the particular context. The function can only be used in the specified context.
+
+== Example scenario
+For example, calling an internal security function from a user query.
 
 
 ifndef::backend-pdf[]
