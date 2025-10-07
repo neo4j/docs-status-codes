@@ -5,7 +5,11 @@
 
 error: syntax error or access rule violation - cannot call function without metadata. The function  `{ <<fun>> }` cannot be called without metadata.
 
+== Explanation
+This error occurs when the metadata required by the function is missing from the context supplied. This is an internal error which would only ever appear in the logs.
 
+== Example scenario
+A function is called without the required metadata.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
