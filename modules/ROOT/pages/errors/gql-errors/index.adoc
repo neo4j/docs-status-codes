@@ -1087,6 +1087,11 @@ Status description:: error: syntax error or access rule violation - pattern pars
 
 Status description:: error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat>>2 }` query, but it is run in `CYPHER { <<feat>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
 
+[role=label--new-2025.10]
+=== xref:errors/gql-errors/42I68.adoc[42I68]
+
+Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
+
 [role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
@@ -2078,6 +2083,11 @@ Status description:: error: procedure exception - custom procedure execution err
 
 [[function-exceptions]]
 == Function exceptions
+
+[role=label--new-2025.10]
+=== xref:errors/gql-errors/53N33.adoc[53N33]
+
+Status description:: error: function exception - function invocation failed. Failed to invoke function `{ <<sig>> }` caused by: `{ <<msg>> }`
 
 === xref:errors/gql-errors/53N34.adoc[53N34]
 

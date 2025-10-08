@@ -1,0 +1,30 @@
+:page-role: new-2025.10
+= 42I68
+
+== Status description
+error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
+
+== Example scenario
+
+For example, when parsing a duration string value:
+
+[source,cypher]
+----
+RETURN duration("5 hours 12 minutes 15 seconds", "h 'hours' m 'minutes'") AS d
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I68.adoc[42I68] and status description:
+
+
+[source]
+----
+error: syntax error or access rule violation - mismatched pattern. Pattern, `"h 'hours' m 'minutes'"`, does not match input, `"5 hours 12 minutes 15 seconds"`. Verify that the pattern is valid for constructing `DURATION`.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
