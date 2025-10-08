@@ -1,7 +1,8 @@
+:page-role: new-2025.10
 = 53N33
 
 == Status description
-error: function exception - function invocation failed. Failed to invoke function `{ <<sig>> }` caused by: `{ <<msg>> }`.
+error: function exception - function invocation failed. Failed to invoke function `{ <<sig>> }` caused by: `{ <<msg>> }`
 
 == Example scenario
 
@@ -17,7 +18,7 @@ You will receive an error with GQLSTATUS xref:errors/gql-errors/53N33.adoc[53N33
 
 [source]
 ----
-error: function exception - function invocation failed. Failed to invoke function duration(input :: ANY, pattern = DEFAULT_TEMPORAL_ARGUMENT :: STRING) :: DURATION caused by: A pattern can only be used in conjunction with a `STRING` input..
+error: function exception - function invocation failed. Failed to invoke function duration(input :: ANY, pattern = DEFAULT_TEMPORAL_ARGUMENT :: STRING) :: DURATION caused by: A pattern can only be used in conjunction with a `STRING` input.
 ----
 
 ifndef::backend-pdf[]
