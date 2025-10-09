@@ -7,7 +7,8 @@
 error: syntax error or access rule violation - cannot call function from this context. The function `{ <<fun>> }` cannot be called from the current context. It can only be used `{ <<context>> }`.
 
 == Explanation
-This function cannot be called in the particular context. The function can only be used in the specified context.
+This error is thrown when a function is called from a context that is not allowed for that function.
+For example, if you try to call `abac.oidc.user_attribuge()` from a regular Cypher query, you will get this error, because it is not supported in user Cypher queries and can only be called from within `AUTH RULE` creation or alteration commands.
 
 == Example scenario
 For example, calling an internal security function from a user query.
