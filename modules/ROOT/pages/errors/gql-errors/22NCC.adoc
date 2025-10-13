@@ -1,7 +1,7 @@
 = 22NCC
 
 == Status description
-error: data exception - node element type specified incorrectly. The node element type identified by the label `{ <<label>> }` is different to the one specified in the query.
+error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>> }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>> }`.
 
 == Explanation
 
@@ -28,7 +28,7 @@ The query returns an error with GQLSTATUS 22NCC and the status description:
 
 [source]
 ----
-error: data exception - node element type specified incorrectly. The node element type identified by the label `Person` is different to the one specified in the query.
+error: data exception - node element type specified incorrectly. The node element type (`p`:`Person` => {`name` :: STRING }) identified by the label `Person` is different to the one specified in the query (`p`:`Person` => :`Student`).
 ----
 
 To fix this, change the query as follows:

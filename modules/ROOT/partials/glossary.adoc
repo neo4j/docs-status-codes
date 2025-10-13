@@ -46,6 +46,7 @@
 [[funType]]$funType:: Function type, e.g. non-deterministic or aggregate.
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
 [[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint, one of `UNDESIGNATED`, `INDEPENDENT`, or `DEPENDENT`.
+[[graphTypeElement]]$graphTypeElement:: An element of a graph type, for example `(:Node => { name :: STRING})`, or `(:Src)-[:REL =>]->(:Target)`. 
 [[graphTypeReference]]$graphTypeReference:: Graph type reference, for example, `(:Node =>)` or `p`.
 [[graphTypeOperation]]$graphTypeOperation:: Graph type operation, for example, one of `SET`, `ADD`, `DROP` or `ALTER`.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
