@@ -10,7 +10,9 @@ error: syntax error or access rule violation - cannot call function from this co
 This error is thrown when a function is called from a context that is not allowed for that function.
 
 == Example scenario
-If you try to call an internal security function like `abac.oidc.user_attribute()` from a regular Cypher query, you will get this error, because it is not supported in user Cypher queries and can only be called from within `AUTH RULE` creation or alteration commands.
+
+Try to call an internal security function like `abac.oidc.user_attribute()` from a regular Cypher query.
+You will get this error because it is not supported in user Cypher queries and can only be called from within `AUTH RULE` creation or alteration commands.
 
 
 ifndef::backend-pdf[]
