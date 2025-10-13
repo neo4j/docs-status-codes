@@ -692,11 +692,11 @@ Status description:: error: data exception - relationship element type already e
 
 === xref:errors/gql-errors/22NCC.adoc[22NCC]
 
-Status description:: error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement1>> }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement2>> }`. 
+Status description:: error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>> }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>> }`. 
 
 === xref:errors/gql-errors/22NCD.adoc[22NCD]
 
-Status description:: error: data exception - relationship element type specified incorrectly. The relationship element type `{ <<graphTypeElement1>> }` identified by the relationship type `{ <<relType>> }` is different to the one specified in the query `{ <<graphTypeElement2>> }`.
+Status description:: error: data exception - relationship element type specified incorrectly. The relationship element type `{ <<graphTypeElement>> }` identified by the relationship type `{ <<relType>> }` is different to the one specified in the query `{ <<graphTypeElement>> }`.
 
 === xref:errors/gql-errors/22NCE.adoc[22NCE]
 
