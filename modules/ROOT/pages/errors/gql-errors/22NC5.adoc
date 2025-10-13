@@ -67,6 +67,7 @@ For example, try to define a constraint with an empty node element type referenc
 ----
 ALTER CURRENT GRAPH TYPE SET {
     CONSTRAINT FOR () REQUIRE n.prop IS UNIQUE
+}
 ----
 
 The query returns an error with GQLSTATUS 22NC5 and the status description:
@@ -81,6 +82,7 @@ In this case, the reference can be fixed by providing a label for the constraint
 ----
 ALTER CURRENT GRAPH TYPE SET {
     CONSTRAINT FOR (n:Node) REQUIRE n.prop IS UNIQUE
+}
 ----
 
 

@@ -1,7 +1,7 @@
 = 22NCE
 
 == Status description
-error: data exception - node element type in use. The node element type identified by the label `<<label>>` is referenced in the graph type element '{ <<graphTypeReference>> }' and cannot be dropped.
+error: data exception - node element type in use. The node element type identified by the label `{ <<label>> }` is referenced in the graph type element '{ <<graphTypeReference>> }' and cannot be dropped.
 
 == Explanation
 
@@ -10,7 +10,7 @@ error: data exception - node element type in use. The node element type identifi
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
-    (p:Person => {name :: STRING })
+    (p:Person => {name :: STRING }),
     (p)-[:DRIVES]->(:Car)
 }
 ----
