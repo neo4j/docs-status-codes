@@ -1,7 +1,7 @@
 = 22NCD
 
 == Status description
-error: data exception - relationship element type specified incorrectly. The relationship element type identified by the relationship type `{ <<relType>> }` is different to the one specified in the query.
+error: data exception - relationship element type specified incorrectly. The relationship element type `{ <<graphTypeElement>> }` identified by the relationship type `{ <<relType>> }` is different to the one specified in the query `{ <<graphTypeElement>> }`.
 
 == Explanation
 
@@ -27,7 +27,7 @@ The query returns an error with GQLSTATUS 22NCD and the status description:
 
 [source]
 ----
-error: data exception - relationship element type specified incorrectly. The relationship element type identified by the relationship type `REL` is different to the one specified in the query.
+error: data exception - relationship element type specified incorrectly. The relationship element type ()-[r:`REL` => {`name` :: STRING }]->() identified by the relationship type `REL` is different to the one specified in the query ()-[`r`:`REL` => {`name` :: STRING, `age` :: INT }]->().
 ----
 
 To fix this, change the query as follows:

@@ -1,7 +1,7 @@
 = 22NCB
 
 == Status description
-error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `{ <<relType>> }` already exists in the graph type."
+error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `{ <<relType>> }` already exists in the graph type.
 
 == Explanation
 
