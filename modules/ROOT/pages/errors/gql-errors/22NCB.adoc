@@ -31,7 +31,7 @@ The query returns an error with GQLSTATUS 22NCB and the status description:
 
 [source]
 ----
-error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `REL` already exists in the graph type."
+error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `REL` already exists in the graph type.
 ----
 
 To fix this, change the query as follows:
