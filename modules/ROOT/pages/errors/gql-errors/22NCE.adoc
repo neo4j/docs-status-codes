@@ -1,7 +1,7 @@
 = 22NCE
 
 == Status description
-error: data exception - node element type in use. The node element type identified by the label `{ <<label>> }` is referenced in the graph type element '{ <<graphTypeReference>> }' and cannot be dropped.
+error: data exception - node element type in use. The node element type identified by the label `{ <<label>> }` is referenced in the graph type element `{ <<graphTypeReference>> }` and cannot be dropped.
 
 == Explanation
 
@@ -31,10 +31,14 @@ The query returns an error with GQLSTATUS 22NCE and the status description:
 error: data exception - node element type in use. The node element type identified by the label `Car` is referenced in the graph type element '()-[:`DRIVES` =>]->()' and cannot be dropped.
 ----
 
-To fix this, change the query as follows:
+To fix this and drop both types, change the query as follows:
 
 [source, cypher]
 ----
+ALTER CURRENT GRAPH TYPE DROP {
+    (:Person => ),
+    ()-[:DRIVES]->()
+}
 
 ----
 
