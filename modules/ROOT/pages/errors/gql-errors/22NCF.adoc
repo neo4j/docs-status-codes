@@ -4,9 +4,9 @@
 error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
 
 == Explanation
-This error occurs when an attempt is made to specify a graph type constraint using the DROP or AMEND operations, which does not support such operations. 
-Graph type constraints my only be dropped by name when using the DROP operation, and are completely invalid when using AMEND.
-This also applies to graph type constraints defined inline of the graph type elements using `IS KEY` and `IS UNIQUE`
+This error occurs when an attempt is made to specify a graph type constraint using the DROP or ALTER operations, which does not support such operations. 
+Graph type constraints may only be dropped by name when using the DROP operation, and are completely invalid when using ALTER.
+This also applies to graph type constraints defined inline of the graph type elements using `IS KEY` and `IS UNIQUE`.
 
 == Example scenario
 
