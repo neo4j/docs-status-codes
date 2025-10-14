@@ -1,7 +1,7 @@
 = 22NCC
 
 == Status description
-error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>> }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>> }`.
+error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>>1 }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
 
 == Explanation
 This error occurs when attempting to drop a node element type from the graph type, but the specified element type does not match the existing one for the given label. 
