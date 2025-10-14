@@ -1221,10 +1221,10 @@ The query contains an aggregation function that skips null values.
 [#_unsupported_notifications]
 == `UNSUPPORTED` notifications
 
-Unsupported notifications contain information about a feature which is not supported in the current context that has been used to access the feature.
+Unsupported notifications contain information about features not supported in the current context used to access them.
 
 [#_neo_clientnotification_request_UnsupportedType]
-=== Client does not support type
+=== Unsupported value type
 
 .Notification details
 [cols="<1s,<4"]
@@ -1240,15 +1240,15 @@ m|UNSUPPORTED
 |GQLSTATUS code
 m|01N83
 |Status description
-a|warn: Client does not support this type. Client does not support type
-`{ <<valueType>> }`. Please upgrade your client.
+a|warn: Client does not support this type. Client does not support type `{ <<valueType>> }`.
+Please upgrade your client.
 |Classification
 m|UNSUPPORTED
 |SeverityLevel
 m|WARNING
 |===
 
-.Accessing a Vector with unsupported driver (e.g. 5.x driver)
+.Accessing a vector with an unsupported driver (e.g., 5.x driver)
 [.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
@@ -1266,7 +1266,7 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: Client does not support this type. Client does not support type `VECTOR`. Please upgrade your client.
 Suggestions for improvement::
-Upgrade to a supported client for the type.
+Upgrade your client to a version that supports this type.
 ======
 [.include-with-neo4j-code]
 ======
@@ -1279,7 +1279,7 @@ RETURN VECTOR([1, 2, 3], 3, INTEGER32)
 Description of the returned code::
 One or more values returned could not be handled by this version of the client and were replaced with placeholder map values. Please upgrade your client.
 Suggestions for improvement::
-Upgrade to a supported client for the type.
+Upgrade your client to a version that supports this type.
 ======
 =====
 
