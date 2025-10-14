@@ -10,7 +10,7 @@ This also applies to graph type constraints defined inline of the graph type ele
 
 == Example scenario
 
-=== ALTER 
+=== ALTER existing constraint
 
 Given the existing graph type:
 
@@ -49,6 +49,44 @@ ALTER CURRENT GRAPH TYPE DROP {
 ALTER CURRENT GRAPH TYPE ADD {
     CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: STRING 
 }
+----
+
+=== Remove a KEY constraint using ALTER
+
+Given the existing graph type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ( :Person => {name :: STRING })
+}
+----
+
+Execute the query:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE ALTER {
+    ( :Person => {name :: STRING IS KEY } )
+}
+----
+
+The query returns an error with GQLSTATUS 22NCF and the status description:
+
+
+[source]
+----
+error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE ALTER` operation.
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE ADD {
+    CONSTRAINT nameForKeyConstraint FOR (p:Person) REQUIRE p.name :: STRING IS KEY
+}
+
 ----
 
 === DROP
