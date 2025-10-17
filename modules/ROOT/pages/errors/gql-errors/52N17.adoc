@@ -1,7 +1,7 @@
 = 52N17
 
 == Status description
-error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`
 
 ifndef::backend-pdf[]
 [discrete.glossary]
