@@ -17,7 +17,7 @@ This error has a cause detailed in xref:errors/gql-errors/52N11.adoc[52N11] and 
 
 [source]
 ----
-procedure exception - generic topology procedure error. An unexpected error has occurred: Number of primaries '12' may not exceed 11 and needs to be at least 1
+error: procedure exception - generic topology procedure error. An unexpected error has occurred: Number of primaries '12' may not exceed 11 and needs to be at least 1
 ----
 
 ifndef::backend-pdf[]
