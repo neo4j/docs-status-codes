@@ -3661,14 +3661,14 @@ m|Neo.ClientNotification.Security.ShardedPrivilegePerformance
 |Title
 a|Privilege with a severe performance impact on sharded databases.
 |Description
-a|This specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
+a|The specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
 |Category
 m|SECURITY
 |GQLSTATUS code
 m|01N73
 |Status description
 |warn: sharded privilege performance.
-This specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
+The specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -3692,7 +3692,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: sharded privilege performance.
-This specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
+The specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
 
 Suggestions for improvement::
 Grant the privilege explicitly to databases instead of to all.
