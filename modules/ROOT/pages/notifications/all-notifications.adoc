@@ -1622,6 +1622,101 @@ The Unicode character `\u0085` is deprecated for unescaped identifiers and will 
 ======
 =====
 
+.Deprecated function namespace
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN point.function() AS result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace used by the function `point.function` is deprecated.
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN point.function() AS result
+----
+Description of the returned code::
+The namespace of the invoked function is deprecated. (point.function)
+======
+=====
+
+.Deprecated procedure namespace
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL point.procedure() AS result
+RETURN result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace used by the procedure `point.procedure` is deprecated.
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL point.procedure() AS result
+RETURN result
+----
+Description of the returned code::
+The namespace of the called procedure is deprecated. (point.procedure)
+======
+=====
+
+.Shadowing built-in function
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN coll.flatten() AS result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace of the invoked function `coll.flatten` is deprecated and the function is shadowing an internal function.
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN coll.flatten() AS result
+----
+Description of the returned code::
+The namespace of the invoked function is deprecated and the function is shadowing an internal function. (coll.flatten)
+======
+=====
+
 [#_deprecated-feature-with-replacement]
 === Feature deprecated with a replacement
 
