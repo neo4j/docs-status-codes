@@ -3651,7 +3651,7 @@ m|WARNING
 
 
 [#_neo_clientnotification_security_shardedperformance]
-=== This privilege will have a severe performance impact on sharded databases.
+=== Sharded privilege performance
 
 .Notification details
 [cols="<1s,<4"]
@@ -3659,16 +3659,16 @@ m|WARNING
 |Neo4j  code
 m|Neo.ClientNotification.Security.ShardedPrivilegePerformance
 |Title
-a|This privilege will have a severe performance impact on sharded databases.
+a|Privilege with a severe performance impact on sharded databases.
 |Description
-a|This privilege will severely reduce the performance of queries run on sharded databases. We recommend to exclude sharded databases for now.
+a|This specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
 |Category
 m|SECURITY
 |GQLSTATUS code
 m|01N73
 |Status description
 |warn: sharded privilege performance.
-This privilege will severely reduce the performance of queries run on sharded databases. We recommend to exclude sharded databases for now.
+This specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
 |Classification
 m|SECURITY
 |SeverityLevel
@@ -3692,10 +3692,10 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: sharded privilege performance.
-This privilege will severely reduce the performance of queries run on sharded databases. We recommend to exclude sharded databases for now.
+This specified privilege severely reduces the performance of queries run on sharded databases. Consider excluding sharded databases for now.
 
 Suggestions for improvement::
-Grant the privilege explicitly to databases instead of on all.
+Grant the privilege explicitly to databases instead of to all.
 
 ======
 [.include-with-neo4j-code]
@@ -3708,7 +3708,7 @@ GRANT TRAVERSE ON GRAPH * TO ROLE exampleRole
 ----
 
 Suggestions for improvement::
-Grant the privilege explicitly to databases instead of on all.
+Grant the privilege explicitly to databases instead of to all.
 ======
 =====
 
