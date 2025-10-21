@@ -1,11 +1,11 @@
 = 52N11
 
 == Status description
-error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`
+error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`.
 
 == Example scenario
 
-For example, trying to set default number of primaries to 12.:
+For example, trying to set default number of primaries to 12:
 
 [source,cypher]
 ----
@@ -17,7 +17,7 @@ This error has a cause detailed in xref:errors/gql-errors/52N11.adoc[52N11] and 
 
 [source]
 ----
-error: procedure exception - generic topology procedure error. An unexpected error has occurred: Number of primaries '12' may not exceed 11 and needs to be at least 1
+error: procedure exception - generic topology procedure error. An unexpected error has occurred: Number of primaries '12' may not exceed 11 and needs to be at least 1.
 ----
 
 ifndef::backend-pdf[]
