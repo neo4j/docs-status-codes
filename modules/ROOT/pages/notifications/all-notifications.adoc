@@ -1638,7 +1638,7 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: feature deprecated.
-The namespace used by the function `point.function` is deprecated.
+The namespace used by the user-defined function `point.function` is deprecated.
 ======
 [.include-with-neo4j-code]
 ======
