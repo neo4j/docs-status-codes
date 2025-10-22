@@ -4,7 +4,7 @@
 error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
 
 == Explanation
-A standalone call of a procedure does not support a WHERE clause, i.e. it does not support the filtering of the procedure result.
+A standalone call of a procedure does not support a `WHERE` clause, i.e., it does not support the filtering of the procedure result.
 Either remove the WHERE clause or add a RETURN clause after the call to it into an in-query call.
 
 == Example scenario
