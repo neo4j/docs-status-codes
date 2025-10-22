@@ -1,3 +1,4 @@
+:page-role: changed-2025.11
 = 50N25
 
 == Status description
