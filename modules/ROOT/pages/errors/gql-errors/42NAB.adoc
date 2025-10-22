@@ -19,7 +19,7 @@ An error will be thrown with GQLSTATUS 42NAB and the following status descriptio
 
 [source]
 ----
-error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
 ----
 
 == Possible solutions
