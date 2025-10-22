@@ -1639,6 +1639,10 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: feature deprecated.
 The namespace used by the user-defined function `point.function` is deprecated.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.point.function` or `pointing.function`.
+
 ======
 [.include-with-neo4j-code]
 ======
@@ -1649,7 +1653,7 @@ Query::
 RETURN point.function() AS result
 ----
 Description of the returned code::
-The namespace of the invoked function is deprecated. (point.function)
+The namespace of the invoked user-defined function is deprecated. (point.function)
 ======
 =====
 
@@ -1670,7 +1674,11 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: feature deprecated.
-The namespace used by the procedure `point.procedure` is deprecated.
+The namespace used by the user-defined procedure `point.procedure` is deprecated.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.point.procedure` or `pointing.procedure`.
+
 ======
 [.include-with-neo4j-code]
 ======
@@ -1682,7 +1690,7 @@ CALL point.procedure() AS result
 RETURN result
 ----
 Description of the returned code::
-The namespace of the called procedure is deprecated. (point.procedure)
+The namespace of the called user-defined procedure is deprecated. (point.procedure)
 ======
 =====
 
@@ -1702,7 +1710,11 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: feature deprecated.
-The namespace of the invoked function `coll.flatten` is deprecated and the function is shadowing an internal function.
+The namespace of the invoked user-defined function `coll.flatten` is deprecated and the function is shadowing an internal function.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.coll.flatten` or `collection.flatten`.
+
 ======
 [.include-with-neo4j-code]
 ======
@@ -1713,7 +1725,7 @@ Query::
 RETURN coll.flatten() AS result
 ----
 Description of the returned code::
-The namespace of the invoked function is deprecated and the function is shadowing an internal function. (coll.flatten)
+The namespace of the invoked user-defined function is deprecated and the function is shadowing an internal function. (coll.flatten)
 ======
 =====
 
