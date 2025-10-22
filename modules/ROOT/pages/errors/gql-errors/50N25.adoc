@@ -1,0 +1,13 @@
+= 50N25
+
+== Status description
+
+error: general processing exception - sharded properties transaction handling client error. Unexpected exception whilst getting transaction state.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
