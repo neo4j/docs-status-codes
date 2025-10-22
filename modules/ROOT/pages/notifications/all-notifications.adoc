@@ -3694,8 +3694,7 @@ warn: OIDC credential forwarding disabled.
 Use the setting 'dbms.security.allow_oidc_credential_forwarding_enabled' to enable OIDC credential forwarding.
 
 Suggestions for improvement::
-Enable OIDC credential forwarding through the `dbms.security.allow_oidc_credential_forwarding_enabled` setting.
-Until enabled, the new remote database alias will fail all access attempts.
+The remote database alias has been successfully created, but OIDC credential forwarding is not enabled. To use the alias to connect to the remote Neo4j DBMS, allow OIDC credential forwarding by setting `dbms.security.allow_oidc_credential_forwarding_enabled` to `true`.
 
 ======
 [.include-with-neo4j-code]
@@ -3708,8 +3707,7 @@ CREATE ALIAS `remote-neo4j` FOR DATABASE `neo4j` AT "neo4j+s://location:7687" OI
 ----
 
 Suggestions for improvement::
-Enable OIDC credential forwarding through the `dbms.security.allow_oidc_credential_forwarding_enabled` setting.
-Until enabled, all access attempts to the new remote database alias will fail.
+The remote database alias has been successfully created, but OIDC credential forwarding is not enabled. To use the alias to connect to the remote Neo4j DBMS, allow OIDC credential forwarding by setting `dbms.security.allow_oidc_credential_forwarding_enabled` to `true`.
 ======
 =====
 
