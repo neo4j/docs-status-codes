@@ -1,0 +1,47 @@
+= 42NAB
+
+== Status description
+error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+
+== Explanation
+A standalone call of a procedure does not support a WHERE clause, i.e. it does not support the filtering of the procedure result.
+Either remove the WHERE clause or add a RETURN clause after the call to it into an in-query call.
+
+== Example scenario
+For example, trying to filter the result of the procedure `db.labels()` in a standalone call:
+
+[source,cypher]
+----
+CALL db.labels() YIELD label WHERE label <> 'A'
+----
+
+An error will be thrown with GQLSTATUS 42NAB and the following status description:
+
+[source]
+----
+error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+----
+
+== Possible solutions
+
+You can abstain from filtering to get a valid query:
+
+[source,cypher]
+----
+CALL db.labels() YIELD label
+----
+
+However, to filter the result of the procedure `db.labels()` use an in-query call by adding a RETURN clause:
+
+.Query
+[source, cypher]
+----
+CALL db.labels() YIELD label WHERE label <> 'A' RETURN label
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

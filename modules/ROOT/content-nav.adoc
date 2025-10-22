@@ -370,6 +370,7 @@
 **** xref:errors/gql-errors/42NA8.adoc[]
 **** xref:errors/gql-errors/42NA9.adoc[]
 **** xref:errors/gql-errors/42NAA.adoc[]
+**** xref:errors/gql-errors/42NAB.adoc[]
 **** xref:errors/gql-errors/42NFC.adoc[]
 **** xref:errors/gql-errors/42NFD.adoc[]
 **** xref:errors/gql-errors/42NFE.adoc[]
