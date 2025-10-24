@@ -1,0 +1,11 @@
+= 42N61
+
+== Status description
+error: syntax error or access rule violation - unsupported mixing of different path modes. Mixing `{ <<pathModeList>> }` in the same graph pattern is not supported. Split the pattern into separate MATCH clauses instead.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
