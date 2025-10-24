@@ -6,7 +6,7 @@ error: syntax error or access rule violation - not supported standalone call. WH
 
 == Explanation
 A standalone call of a procedure does not support a `WHERE` clause, i.e., it does not support the filtering of the procedure result.
-Either remove the WHERE clause or add a RETURN clause after the call to it into an in-query call.
+Either remove the `WHERE` clause or add a `RETURN` clause after the call to turn it into an in-query call.
 
 == Example scenario
 For example, trying to filter the result of the procedure `db.labels()` in a standalone call:
@@ -32,7 +32,7 @@ You can abstain from filtering to get a valid query:
 CALL db.labels() YIELD label
 ----
 
-However, to filter the result of the procedure `db.labels()` use an in-query call by adding a RETURN clause:
+However, if you still want to filter the result of the procedure `db.labels()`, you can add a `RETURN` clause:
 
 .Query
 [source, cypher]
