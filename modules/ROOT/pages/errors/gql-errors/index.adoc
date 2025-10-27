@@ -1513,6 +1513,11 @@ Status description:: error: syntax error or access rule violation - system datab
 
 Status description:: error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference `{ <<input>> }`. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
 
+[role=label--changed-2025.11]
+=== xref:errors/gql-errors/42NAB.adoc[42NAB]
+
+Status description:: error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.
