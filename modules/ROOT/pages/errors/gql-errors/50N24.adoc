@@ -1,14 +1,14 @@
-:page-role: changed-2025.11
+:page-role: new-2025.11
 = 50N24
 
 == Status description
 
-error: general processing exception - sharded properties transaction handling database error. Unexpected exception whilst getting transaction state.
+error: general processing exception - sharded properties transaction handling database error. Unexpected exception while getting transaction state.
 
 == Scenario
 
-This error occurs when there has been an issue on the graph shard while getting of transaction state from property shard. 
-For example, the graph shard receives an unexpected response from a property shard. 
+This error occurs when there is an issue on the graph shard while getting transaction state from a property shard.
+For example, the graph shard receives an unexpected response from a property shard.
 
 
 ifndef::backend-pdf[]

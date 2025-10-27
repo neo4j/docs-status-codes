@@ -1607,13 +1607,15 @@ Status description:: error: general processing exception - no such schema descri
 
 Status description:: error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
 
+[role=label--new-2025.11]
 === xref:errors/gql-errors/50N24.adoc[50N24]
 
-Status description:: error: general processing exception - sharded properties transaction handling database error. Unexpected exception whilst getting transaction state.
+Status description:: error: general processing exception - sharded properties transaction handling database error. Unexpected exception while getting transaction state.
 
+[role=label--new-2025.11]
 === xref:errors/gql-errors/50N25.adoc[50N25]
 
-Status description:: error: general processing exception - sharded properties transaction handling client error. Unexpected exception whilst getting transaction state.
+Status description:: error: general processing exception - sharded properties transaction handling client error. Unexpected exception while getting transaction state.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
