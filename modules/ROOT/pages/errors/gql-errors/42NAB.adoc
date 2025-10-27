@@ -1,8 +1,8 @@
-:page-role: changed-2025.11
+:page-role: new-2025.11
 = 42NAB
 
 == Status description
-error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+error: syntax error or access rule violation - not supported standalone call. `WHERE` is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
 
 == Explanation
 A standalone call of a procedure does not support a `WHERE` clause, i.e., it does not support the filtering of the procedure result.
