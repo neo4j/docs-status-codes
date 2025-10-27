@@ -1623,6 +1623,7 @@ The Unicode character `\u0085` is deprecated for unescaped identifiers and will 
 =====
 
 .Deprecated function namespace
+[.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
 ======
@@ -1658,6 +1659,7 @@ The namespace of the invoked user-defined function is deprecated. (point.functio
 =====
 
 .Deprecated procedure namespace
+[.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
 ======
@@ -1695,6 +1697,7 @@ The namespace of the called user-defined procedure is deprecated. (point.procedu
 =====
 
 .Shadowing built-in function
+[.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
 ======
