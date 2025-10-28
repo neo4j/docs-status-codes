@@ -2,7 +2,7 @@
 = 42NAC
 
 == Status description
-error: syntax error or access rule violation  - invalid CREATE DATABASE statement. The backup metadata script contains an invalid or missing CREATE DATABASE statement. The metadata script must contain exactly one CREATE DATABASE statement and it must use the parameter $database.
+error: syntax error or access rule violation  - invalid `CREATE DATABASE` statement. The backup metadata script contains an invalid or missing `CREATE DATABASE` statement. The metadata script must contain exactly one `CREATE DATABASE` statement and it must use the parameter `$database`.
 
 == Explanation
 When using the `existingMetadata: use` option to restore a database from a backup, the backup metadata script must contain exactly one `CREATE DATABASE` statement.
