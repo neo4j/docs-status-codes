@@ -1,10 +1,12 @@
+:page-role: new-2025.11
 = 50N26
 
 == Status description
 error: general processing exception - invalid backup metadata script. The backup metadata script contains invalid syntax.
 
 == Explanation
-When using the `existingMetadata: true` option to restore a database from a backup, the backup metadata script must contain valid Cypher statements. If the metadata script contains invalid syntax, the restore operation will fail with this error.
+When using the `existingMetadata: true` option to restore a database from a backup, the backup metadata script must contain valid Cypher statements.
+If the metadata script contains invalid syntax, the restore operation will fail with this error.
 
 == Example scenario
 For example, try to create a database with using the following command:

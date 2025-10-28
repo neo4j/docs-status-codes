@@ -1,10 +1,12 @@
+:page-role: new-2025.11
 = 42NAC
 
 == Status description
 error: syntax error or access rule violation  - invalid CREATE DATABASE statement. The backup metadata script contains an invalid or missing CREATE DATABASE statement. The metadata script must contain exactly one CREATE DATABASE statement and it must use the parameter $database.
 
 == Explanation
-When using the `existingMetadata: use` option to restore a database from a backup, the backup metadata script must contain exactly one CREATE DATABASE statement. This statement must use the parameter `$database` to specify the name of the database being restored. If the metadata script is missing this statement or contains an invalid statement, the CREATE DATABASE operation will fail with this error.
+When using the `existingMetadata: use` option to restore a database from a backup, the backup metadata script must contain exactly one `CREATE DATABASE` statement.
+This statement must use the parameter `$database` to specify the name of the database being restored. If the metadata script is missing this statement or contains an invalid statement, the `CREATE DATABASE` operation will fail with this error.
 
 == Example scenario
 For example, try to create a database with using the following command:
@@ -14,7 +16,7 @@ For example, try to create a database with using the following command:
 CREATE DATABASE `$databaseString` OPTIONS {existingMetadata:'use', seedUri:'$uri', existingData:'use'}
 ----
 
-If the backup at `$uri` is missing the required CREATE DATABASE statement, an error will be thrown with GQLSTATUS 42NAC.
+If the backup at `$uri` is missing the required `CREATE DATABASE` statement, an error will be thrown with GQLSTATUS 42NAC.
 
 == Possible solutions
 
