@@ -9,7 +9,7 @@ When using the `existingMetadata: true` option to restore a database from a back
 If the metadata script contains invalid syntax, the restore operation will fail with this error.
 
 == Example scenario
-For example, try to create a database with using the following command:
+For example, try to create a database using the following command:
 
 [source,cypher]
 ----
