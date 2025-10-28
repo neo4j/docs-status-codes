@@ -1508,6 +1508,10 @@ Status description:: error: syntax error or access rule violation - system datab
 
 Status description:: error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference `{ <<input>> }`. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
 
+=== xref:errors/gql-errors/42NAC.adoc[42NAC]
+
+Status description:: error: syntax error or access rule violation  - invalid CREATE DATABASE statement. The backup metadata script contains an invalid or missing CREATE DATABASE statement. The metadata script must contain exactly one CREATE DATABASE statement and it must use the parameter $database.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.
@@ -1601,6 +1605,10 @@ Status description:: error: general processing exception - no such schema descri
 === xref:errors/gql-errors/50N23.adoc[50N23]
 
 Status description:: error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+
+==== xref:errors/gql-errors/50N26.adoc[50N26]
+
+Status description:: error: general processing exception - invalid backup metadata script. The backup metadata script contains invalid syntax.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
@@ -1918,6 +1926,9 @@ Status description:: error: system configuration or operation exception - upgrad
 
 Status description:: error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
 
+=== xref:errors/gql-errors/51N7A.adoc[51N7A]
+
+Status description:: error: system configuration or operation exception - no admin user candidate. No admin user candidate could be found. Please use `neo4j-admin dbms set-default-admin` to select a valid admin.
 
 [[procedure-exceptions]]
 == Procedure exceptions
