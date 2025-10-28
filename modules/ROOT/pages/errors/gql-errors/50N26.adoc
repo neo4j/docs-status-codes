@@ -14,7 +14,7 @@ For example, try to create a database with using the following command:
 CREATE DATABASE `$databaseString` OPTIONS {existingMetadata:'use', seedUri:'$uri', existingData:'use'}
 ----
 
-If the backup at `$uri` constains invalid Cypher syntax in its metadata script, an error will be thrown with GQLSTATUS 50N26.
+If the backup at `$uri` contains invalid Cypher syntax in its metadata script, an error will be thrown with GQLSTATUS 50N26.
 
 == Possible solutions
 
