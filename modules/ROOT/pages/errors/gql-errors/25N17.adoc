@@ -2,7 +2,7 @@
 = 25N17
 
 == Status description
-error: invalid transaction state - implicit transaction required. The operation `{ <<msg>> }` requires an implicit transaction.
+error: invalid transaction state - implicit transaction required. The attempted operation requires an implicit transaction.
 
 == Scenario
 

@@ -720,7 +720,7 @@ Status description:: error: invalid transaction state - transaction termination 
 [role=label--new-2025.09 cypher-25]
 === xref:errors/gql-errors/25N17.adoc[25N17]
 
-Status description:: error: invalid transaction state - implicit transaction required. The operation `{ <<msg>> }` requires an implicit transaction.
+Status description:: error: invalid transaction state - implicit transaction required. The attempted operation requires an implicit transaction.
 
 
 [[invalid-transaction-termination]]
