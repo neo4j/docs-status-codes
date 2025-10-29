@@ -1,16 +1,17 @@
+:page-role: new-2025.x
 = 22NCF
 
 == Status description
 error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
 
 == Explanation
-This error occurs when an attempt is made to specify a graph type constraint using the DROP or ALTER operations, which does not support such operations. 
-Graph type constraints may only be dropped by name when using the DROP operation, and are completely invalid when using ALTER.
+This error occurs when you try to specify a graph type constraint using the `DROP` or `ALTER` operations, which does not support such operations. 
+Graph type constraints may only be dropped by name when using the `DROP` operation, and are completely invalid when using `ALTER`.
 This also applies to graph type constraints defined inline of the graph type elements using `IS KEY` and `IS UNIQUE`.
 
 == Example scenario
 
-=== ALTER existing constraint
+=== `ALTER` an existing constraint
 
 Given the existing graph type:
 
@@ -51,7 +52,7 @@ ALTER CURRENT GRAPH TYPE ADD {
 }
 ----
 
-=== Remove a KEY constraint using ALTER
+=== Remove a `KEY` constraint using `ALTER`
 
 Given the existing graph type:
 
@@ -84,14 +85,14 @@ To fix this, change the query as follows:
 [source, cypher]
 ----
 ALTER CURRENT GRAPH TYPE ADD {
-    CONSTRAINT nameForKeyConstraint FOR (p:Person) REQUIRE p.name :: STRING IS KEY
+    CONSTRAINT nameForKeyConstraint FOR (p:Person) REQUIRE p.name IS KEY
 }
 
 ----
 
-=== DROP
+=== `DROP` an undesignated constraint
 
-In this example we attempt to drop an undesignated constraint with an ALTER CURRENT GRAPH TYPE DROP query.
+For example, try to drop an undesignated constraint with an `ALTER CURRENT GRAPH TYPE DROP` query.
 
 [source,cypher]
 ----

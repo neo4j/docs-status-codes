@@ -1,13 +1,15 @@
+:page-role: new-2025.x cypher-25
 = 22NCE
 
 == Status description
 error: data exception - node element type in use. The node element type identified by the label `{ <<label>> }` is referenced in the graph type element `{ <<graphTypeReference>> }` and cannot be dropped.
 
 == Explanation
-This error occurs when attempting to drop a node element type from the graph type, but the node element type is still being referenced by a relationship element type in the graph type. To successfully drop the node element type, you must first drop any relationship element types that reference it, or remove it from the relationship element types.
+This error occurs when attempting to drop a node element type from the graph type, but the node element type is still being referenced by a relationship element type in the graph type.
+To successfully drop the node element type, you must first drop any relationship element types that reference it or remove it from the relationship element types.
 
 == Example scenario
-
+Given the following graph type:
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
