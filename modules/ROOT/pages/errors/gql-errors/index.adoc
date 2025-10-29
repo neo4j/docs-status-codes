@@ -717,7 +717,7 @@ Status description:: error: invalid transaction state - transaction termination 
 
 Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
 
-[role=label--new-2025.10]
+[role=label--new-2025.10 cypher-25]
 === xref:errors/gql-errors/25N17.adoc[25N17]
 
 Status description:: error: The attempted operation requires an implicit transaction.
