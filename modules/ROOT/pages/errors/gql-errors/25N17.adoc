@@ -1,4 +1,4 @@
-:page-role: new-2025.09 cypher-25
+:page-role: new-2025.09
 = 25N17
 
 == Status description
