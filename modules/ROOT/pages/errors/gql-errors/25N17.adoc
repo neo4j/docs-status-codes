@@ -1,0 +1,20 @@
+:page-role: new-2025.09
+= 25N17
+
+== Status description
+error: invalid transaction state - implicit transaction required. The attempted operation requires an implicit transaction.
+
+== Scenario
+
+This error occurs when running a query using the `CALL { ... } IN TRANSACTIONS` construct in an explicit transaction.
+
+== Possible solution
+
+Make sure you use the driver API to create an implicit transaction, or, if using Browser/Query, use the `:auto` command.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
