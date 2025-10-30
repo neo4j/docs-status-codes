@@ -1,7 +1,24 @@
 = 52N17
 
 == Status description
-error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`.
+
+== Example scenario
+
+For example, trying to lift a quarantine which does not exist:
+
+[source,cypher]
+----
+CALL dbms.unquarantineDatabase("0c000000", "neo4j");
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/52N02.adoc[52N02].
+This error has a cause detailed in xref:errors/gql-errors/52N17.adoc[52N11] and status description:
+
+[source]
+----
+error: quarantine change failed. Setting/removing the quarantine marker failed: Database 'neo4j' on server '0c000000-aa21-4ab4-b1c1-aed40bfcb875' is not in quarantine.
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]

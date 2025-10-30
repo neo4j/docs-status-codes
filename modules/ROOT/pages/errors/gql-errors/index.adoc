@@ -717,6 +717,11 @@ Status description:: error: invalid transaction state - transaction termination 
 
 Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
 
+[role=label--new-2025.09]
+=== xref:errors/gql-errors/25N17.adoc[25N17]
+
+Status description:: error: invalid transaction state - implicit transaction required. The attempted operation requires an implicit transaction.
+
 
 [[invalid-transaction-termination]]
 == Invalid transaction termination
@@ -1509,6 +1514,11 @@ Status description:: error: syntax error or access rule violation - system datab
 Status description:: error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference `{ <<input>> }`. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
 
 [role=label--new-2025.11]
+=== xref:errors/gql-errors/42NAB.adoc[42NAB]
+
+Status description:: error: syntax error or access rule violation - not supported standalone call. `WHERE` is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+
+[role=label--new-2025.11]
 === xref:errors/gql-errors/42NAC.adoc[42NAC]
 
 Status description:: error: syntax error or access rule violation  - invalid `CREATE DATABASE` statement. The backup metadata script contains an invalid or missing `CREATE DATABASE` statement. The metadata script must contain exactly one `CREATE DATABASE` statement and it must use the parameter `$database`.
@@ -1608,9 +1618,19 @@ Status description:: error: general processing exception - no such schema descri
 Status description:: error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
 
 [role=label--new-2025.11]
+=== xref:errors/gql-errors/50N24.adoc[50N24]
+
+Status description:: error: general processing exception - sharded properties transaction handling database error. Unexpected exception while getting transaction state.
+
+[role=label--new-2025.11]
+=== xref:errors/gql-errors/50N25.adoc[50N25]
+
+[role=label--new-2025.11]
 === xref:errors/gql-errors/50N26.adoc[50N26]
 
 Status description:: error: general processing exception - invalid backup metadata script. The backup metadata script contains invalid syntax.
+
+Status description:: error: general processing exception - sharded properties transaction handling client error. Unexpected exception while getting transaction state.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
@@ -1977,7 +1997,7 @@ Status description:: error: procedure exception - invalid address key. An addres
 
 === xref:errors/gql-errors/52N11.adoc[52N11]
 
-Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred. Please refer to the server's debug log for more information.
+Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`
 
 === xref:errors/gql-errors/52N12.adoc[52N12]
 
@@ -1997,7 +2017,7 @@ Status description:: error: procedure exception - invalid procedure argument lis
 
 === xref:errors/gql-errors/52N17.adoc[52N17]
 
-Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`
 
 === xref:errors/gql-errors/52N18.adoc[52N18]
 
