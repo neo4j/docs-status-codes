@@ -1,0 +1,19 @@
+:page-role: new-2025.11
+= 50N25
+
+== Status description
+
+error: general processing exception - sharded properties transaction handling client error. Unexpected exception while getting transaction state.
+
+== Scenario
+
+This error occurs when there is an issue on the graph shard while getting transaction state from a property shard.
+For example, the graph shard times out while waiting for transaction state from property shards.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
