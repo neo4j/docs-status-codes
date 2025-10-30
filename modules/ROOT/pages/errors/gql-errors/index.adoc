@@ -1942,7 +1942,7 @@ Status description:: error: procedure exception - invalid address key. An addres
 
 === xref:errors/gql-errors/52N11.adoc[52N11]
 
-Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred. Please refer to the server's debug log for more information.
+Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`
 
 === xref:errors/gql-errors/52N12.adoc[52N12]
 
@@ -1962,7 +1962,7 @@ Status description:: error: procedure exception - invalid procedure argument lis
 
 === xref:errors/gql-errors/52N17.adoc[52N17]
 
-Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`
 
 === xref:errors/gql-errors/52N18.adoc[52N18]
 
