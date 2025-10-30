@@ -1,12 +1,12 @@
 name: status-codes
 title: Status Codes for Errors & Notifications
-version: '2025.10'
+version: '2025.11'
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/content-nav.adoc
 asciidoc:
   attributes:
     page-origin-private: false
-    neo4j-version: '2025.10'
-    neo4j-version-exact: '2025.10.1'
-    neo4j-buildnumber: '2025.10'
+    neo4j-version: '2025.11'
+    neo4j-version-exact: '2025.11.2'
+    neo4j-buildnumber: '2025.11'
