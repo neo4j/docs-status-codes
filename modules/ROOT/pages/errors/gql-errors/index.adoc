@@ -1625,12 +1625,12 @@ Status description:: error: general processing exception - sharded properties tr
 [role=label--new-2025.11]
 === xref:errors/gql-errors/50N25.adoc[50N25]
 
+Status description:: error: general processing exception - sharded properties transaction handling client error. Unexpected exception while getting transaction state.
+
 [role=label--new-2025.11]
 === xref:errors/gql-errors/50N26.adoc[50N26]
 
 Status description:: error: general processing exception - invalid backup metadata script. The backup metadata script contains invalid syntax.
-
-Status description:: error: general processing exception - sharded properties transaction handling client error. Unexpected exception while getting transaction state.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
@@ -1997,7 +1997,7 @@ Status description:: error: procedure exception - invalid address key. An addres
 
 === xref:errors/gql-errors/52N11.adoc[52N11]
 
-Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`
+Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`.
 
 === xref:errors/gql-errors/52N12.adoc[52N12]
 
@@ -2017,7 +2017,7 @@ Status description:: error: procedure exception - invalid procedure argument lis
 
 === xref:errors/gql-errors/52N17.adoc[52N17]
 
-Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`
+Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`.
 
 === xref:errors/gql-errors/52N18.adoc[52N18]
 
