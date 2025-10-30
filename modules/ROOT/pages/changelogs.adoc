@@ -1,6 +1,18 @@
 :description: This page lists all changes to status codes per Neo4j version.
 = Changes to status codes per Neo4j version
 
+== Neo4j 2025.11
+**New:**
+[options="header", cols="<1m,<1"]
+|===
+| GQLSTATUS
+| Neo4j code
+
+| 01N83
+| Neo.ClientNotification.Request.UnsupportedType
+
+|===
+
 == Neo4j 2025.01
 **New:**
 [options="header", cols="<1m,<1"]
