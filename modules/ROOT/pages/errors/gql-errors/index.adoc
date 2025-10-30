@@ -1412,6 +1412,10 @@ Status description:: error: syntax error or access rule violation - missing hint
 
 Status description:: error: syntax error or access rule violation - variable already bound. Node `{ <<variable>> }` has already been bound and cannot be modified by the `{ <<clause>> }` clause.
 
+=== xref:errors/gql-errors/42N79.adoc[42N79]
+
+Status description:: error: syntax error or access rule violation - invalid USE clause. The USE clause is not required for Administration Commands. Retry the query omitting the USE clause and it will be routed automatically.
+
 === xref:errors/gql-errors/42N81.adoc[42N81]
 
 Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ <<param>> }`, but got `{ <<paramList>> }`.
