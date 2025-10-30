@@ -8,6 +8,7 @@ The following page provides an overview of all notifications in Neo4j, including
 * <<_performance_notifications, `PERFORMANCE` notifications>>
 * <<_hint_notifications, `HINT` notifications>>
 * <<_unrecognized_notifications, `UNRECOGNIZED` notifications>>
+* <<_unsupported_notifications, `UNSUPPORTED` notifications>>
 * <<_deprecated_notifications, `DEPRECATION` notifications>>
 * <<_security_notifications, `SECURITY` notifications>>
 * <<_topology_notifications, `TOPOLOGY` notifications>>
@@ -1216,6 +1217,72 @@ Description of the returned code::
 The query contains an aggregation function that skips null values.
 ======
 =====
+
+[#_unsupported_notifications]
+== `UNSUPPORTED` notifications
+
+Unsupported notifications contain information about features not supported in the current context used to access them.
+
+[#_neo_clientnotification_request_UnsupportedType]
+=== Unsupported value type
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Request.UnsupportedType
+|Title
+a|Client does not support this type.
+|Description
+|One or more values returned could not be handled by this version of the client and were replaced with placeholder map values. Please upgrade your client.
+|Category
+m|UNSUPPORTED
+|GQLSTATUS code
+m|01N83
+|Status description
+a|warn: Client does not support this type. Client does not support type `{ <<valueType>> }`.
+Please upgrade your client.
+|Classification
+m|UNSUPPORTED
+|SeverityLevel
+m|WARNING
+|===
+
+.Accessing a vector with an unsupported driver (e.g., 5.x driver)
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN VECTOR([1, 2, 3], 3, INTEGER32)
+----
+
+Returned GQLSTATUS code::
+01N83
+
+Returned status description::
+warn: Client does not support this type. Client does not support type `VECTOR`. Please upgrade your client.
+Suggestions for improvement::
+Upgrade your client to a version that supports this type.
+======
+[.include-with-neo4j-code]
+======
+Query::
+
+[source,cypher]
+----
+RETURN VECTOR([1, 2, 3], 3, INTEGER32)
+----
+Description of the returned code::
+One or more values returned could not be handled by this version of the client and were replaced with placeholder map values. Please upgrade your client.
+Suggestions for improvement::
+Upgrade your client to a version that supports this type.
+======
+=====
+
 
 [#_deprecated_notifications]
 == `DEPRECATION` notifications
