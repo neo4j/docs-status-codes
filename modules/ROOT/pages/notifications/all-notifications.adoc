@@ -1622,6 +1622,116 @@ The Unicode character `\u0085` is deprecated for unescaped identifiers and will 
 ======
 =====
 
+.Deprecated function namespace
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN point.function() AS result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace used by the user-defined function `point.function` is deprecated.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.point.function` or `pointing.function`.
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN point.function() AS result
+----
+Description of the returned code::
+The namespace of the invoked user-defined function is deprecated. (point.function)
+======
+=====
+
+.Deprecated procedure namespace
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL point.procedure() AS result
+RETURN result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace used by the user-defined procedure `point.procedure` is deprecated.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.point.procedure` or `pointing.procedure`.
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL point.procedure() AS result
+RETURN result
+----
+Description of the returned code::
+The namespace of the called user-defined procedure is deprecated. (point.procedure)
+======
+=====
+
+.Shadowing built-in function
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN coll.flatten() AS result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace of the invoked user-defined function `coll.flatten` is deprecated and the function is shadowing an internal function.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.coll.flatten` or `collection.flatten`.
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN coll.flatten() AS result
+----
+Description of the returned code::
+The namespace of the invoked user-defined function is deprecated and the function is shadowing an internal function. (coll.flatten)
+======
+=====
+
 [#_deprecated-feature-with-replacement]
 === Feature deprecated with a replacement
 
