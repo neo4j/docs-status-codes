@@ -26,7 +26,7 @@ To fix this, either enable auth or change the password using the `ALTER USER` co
 
 [source,cypher]
 ----
-ALTER CURRENT USER $currentUsername SET PASSWORD $newPassword CHANGE NOT REQUIRED
+ALTER USER $currentUsername SET PASSWORD $newPassword CHANGE NOT REQUIRED
 ----
 
 ifndef::backend-pdf[]
