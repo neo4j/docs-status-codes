@@ -5,17 +5,17 @@
 error: system configuration or operation exception - not supported with auth disabled. The command `{ <<cmd>> }` is not available with auth disabled.
 
 == Explanation
-This error occurs when auth is disabled and a user attempts to run a command that isn't available unless auth is enabled.
+This error occurs when auth is disabled and a user attempts to run a command that is not available unless auth is enabled.
 
 == Example scenario
-For example, trying to change the current users password when auth is disabled:
+For example, try to change the current user's password when auth is disabled:
 
 [source,cypher]
 ----
 ALTER CURRENT USER SET PASSWORD FROM $oldPassword TO $newPassword
 ----
 
-Error message will be:
+You will receive the following error:
 
 [source]
 ----
