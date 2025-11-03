@@ -431,6 +431,7 @@
 **** xref:errors/gql-errors/51N27.adoc[]
 **** xref:errors/gql-errors/51N28.adoc[]
 **** xref:errors/gql-errors/51N29.adoc[]
+**** xref:errors/gql-errors/51N2A.adoc[]
 **** xref:errors/gql-errors/51N30.adoc[]
 **** xref:errors/gql-errors/51N31.adoc[]
 **** xref:errors/gql-errors/51N32.adoc[]
