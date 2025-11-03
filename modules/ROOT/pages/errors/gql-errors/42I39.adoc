@@ -1,7 +1,36 @@
+:page-role: new-2025.11
 = 42I39
 
 == Status description
-error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors, explicit match modes or explicit path modes is not allowed.
+error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors, explicit match modes, or explicit path modes is not allowed.
+
+== Example scenario
+For example, in the following query `REPEATABLE ELEMENTS` is used with the `shortestPath()` function:
+
+[source,cypher]
+----
+MATCH p = ACYCLIC shortestPath((:A)-[:R*0..10]->(:B))
+  WHERE any(x IN nodes(p) WHERE x:X)
+RETURN p
+----
+This will result in an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001], with a cause detailed in xref:errors/gql-errors/42I39.adoc[42I39] and the following status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `shortestPath()` function with path selectors, explicit match modes, or explicit path modes is not allowed.
+----
+
+== Possible solution
+Replace `shortestPath()` with the `SHORTEST 1` path selector, and `allShortestPaths()` with the `SHORTEST ALL` path selector.
+
+For example, the query above can be rewritten as:
+
+[source,cypher]
+----
+MATCH p = SHORTEST 1 ACYCLIC (:A)-[:R*0..10]->(:B)
+  WHERE any(x IN nodes(p) WHERE x:X)
+RETURN p
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]
