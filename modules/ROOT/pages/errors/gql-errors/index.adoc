@@ -147,11 +147,6 @@ Status description:: error: data exception - division by zero
 
 Status description:: error: data exception - interval field overflow
 
-
-=== xref:errors/gql-errors/22G01.adoc[22G01]
-
-Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
-
 === xref:errors/gql-errors/22G03.adoc[22G03]
 
 Status description:: error: data exception - invalid value type
@@ -159,6 +154,10 @@ Status description:: error: data exception - invalid value type
 === xref:errors/gql-errors/22G05.adoc[22G05]
 
 Status description:: error: data exception - invalid date, time, or datetime function field name
+
+=== xref:errors/gql-errors/22G0I.adoc[22G01]
+
+Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
 
 === xref:errors/gql-errors/22N00.adoc[22N00]
 
