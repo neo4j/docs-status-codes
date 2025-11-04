@@ -965,9 +965,10 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - invalid use of `RETURN`. `RETURN ...` can only be used at the end of a query or subquery.
 
+[role=label--new-2025.11]
 === xref:errors/gql-errors/42I39.adoc[42I39]
 
-Status description:: error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors or explicit match modes is not allowed.
+Status description:: error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors, explicit match modes, or explicit path modes is not allowed.
 
 === xref:errors/gql-errors/42I40.adoc[42I40]
 
@@ -1316,6 +1317,16 @@ Status description:: error: syntax error or access rule violation - unsupported 
 === xref:errors/gql-errors/42N59.adoc[42N59]
 
 Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ <<variable>> }` already declared.
+
+[role=label--new-2025.11]
+=== xref:errors/gql-errors/42N60.adoc[42N60]
+
+Status description:: error: syntax error or access rule violation - unsupported combination of match mode and path mode. `REPEATABLE ELEMENTS` with `{ <<pathMode>> }` path mode is not supported.
+
+[role=label--new-2025.11]
+=== xref:errors/gql-errors/42N61.adoc[42N61]
+
+Status description:: error: syntax error or access rule violation - unsupported mixing of different path modes. Mixing `{ <<pathModeList>> }` in the same graph pattern is not supported. Split the pattern into separate `MATCH` clauses instead.
 
 === xref:errors/gql-errors/42N62.adoc[42N62]
 

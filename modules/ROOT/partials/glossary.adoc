@@ -81,6 +81,8 @@
 [[param]]$param:: Parameter name, for example, `$pattern`.
 [[paramList]]$paramList:: A list of parameters, for example `$pattern, $prop`.
 [[pat]]$pat:: Pattern, for example, `(:Person)`.
+[[pathMode]]$pathMode:: GPM path mode, for example, `ACYCLIC`.
+[[pathModeList]]$pathModeList:: A list of GPM path modes, for example, `TRAIL, ACYCLIC`.
 [[port]]$port:: Port name, for example, `6362`.
 [[portList]]$portList:: A list of port names, for example, `6362, 6000, 7000`.
 [[pos]]$pos:: A position, for example, in a sequence, for example, `2`
