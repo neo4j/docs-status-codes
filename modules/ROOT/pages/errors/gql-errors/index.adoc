@@ -1772,6 +1772,11 @@ Status description:: error: system configuration or operation exception - not su
 
 Status description:: error: system configuration or operation exception - not supported by this server. The command `{ <<cmd>> }` must be executed on the current `LEADER` server.
 
+[role=label--new-2025.11]
+=== xref:errors/gql-errors/51N2A.adoc[51N2A]
+
+Status description:: error: system configuration or operation exception - not supported with auth disabled. The command `{ <<cmd>> }` is not available with auth disabled.
+
 === xref:errors/gql-errors/51N30.adoc[51N30]
 
 Status description:: error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
