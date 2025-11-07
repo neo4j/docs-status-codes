@@ -4,6 +4,22 @@
 == Status description
 error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
 
+== Example scenario
+
+For example, when executing the following invalid query:
+
+[source,cypher]
+----
+RETURN duration({dogYears: datetime()})
+----
+
+You will receive an error with GQLSTATUS 22G0I and status description:
+
+[source]
+----
+error: data exception - invalid duration field. `dogYears` is not a valid duration field.
+----
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
