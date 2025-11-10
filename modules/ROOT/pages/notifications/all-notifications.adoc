@@ -1327,6 +1327,10 @@ For more information, see:
 * link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 - label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (`%s`).
 - label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, remove the backticks (`%s`).
+- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined function is deprecated. (`%s`).
+- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined procedure is deprecated. (`%s`).
+- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined function is deprecated and the function is shadowing an internal function. (`%s`).
+
 |Category
 m|DEPRECATION
 |GQLSTATUS code
@@ -1619,6 +1623,116 @@ RETURN 1 as my\u0085identifier
 Description of the returned code::
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 
+======
+=====
+
+.Deprecated function namespace
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN point.function() AS result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace used by the user-defined function `point.function` is deprecated.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.point.function` or `pointing.function`.
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN point.function() AS result
+----
+Description of the returned code::
+The namespace of the invoked user-defined function is deprecated. (point.function)
+======
+=====
+
+.Deprecated procedure namespace
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL point.procedure() AS result
+RETURN result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace used by the user-defined procedure `point.procedure` is deprecated.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.point.procedure` or `pointing.procedure`.
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CALL point.procedure() AS result
+RETURN result
+----
+Description of the returned code::
+The namespace of the called user-defined procedure is deprecated. (point.procedure)
+======
+=====
+
+.Shadowing built-in function
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN coll.flatten() AS result
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+The namespace of the invoked user-defined function `coll.flatten` is deprecated and the function is shadowing an internal function.
+
+Suggestions for improvement::
+Change the namespace to a non-deprecated namespace e.g. `my.coll.flatten` or `collection.flatten`.
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+RETURN coll.flatten() AS result
+----
+Description of the returned code::
+The namespace of the invoked user-defined function is deprecated and the function is shadowing an internal function. (coll.flatten)
 ======
 =====
 
