@@ -155,6 +155,11 @@ Status description:: error: data exception - invalid value type
 
 Status description:: error: data exception - invalid date, time, or datetime function field name
 
+[role=label--new-2025.11]
+=== xref:errors/gql-errors/22G0I.adoc[22G0I]
+
+Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
+
 === xref:errors/gql-errors/22N00.adoc[22N00]
 
 Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
