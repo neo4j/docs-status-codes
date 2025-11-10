@@ -2956,6 +2956,7 @@ a|`<command>` has no effect.*
 |Descriptions
 a|
 - The user does not have the role. See Status Codes documentation for more information.
+- The auth rule does not have the role. See Status Codes documentation for more information.
 - The role does not have the privilege. See Status Codes documentation for more information.
 |Category
 m|SECURITY
@@ -3014,6 +3015,49 @@ The user does not have the role. See Status Codes documentation for more informa
 
 Suggestions for improvement::
 Verify that this is the intended role and user.
+======
+=====
+
+.Revoking a role from an auth rule that is not assigned to this role
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE admin, reader FROM AUTH RULE authrule
+----
+
+Returned GQLSTATUS code::
+00N71
+
+Returned status description::
+note: successful completion - role or privilege not assigned.
+`REVOKE ROLE reader FROM AUTH RULE authrule` has no effect.
+The role or privilege is not assigned.
+
+Suggestions for improvement::
+Verify that this is the intended role and auth rule.
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source, cypher]
+----
+REVOKE ROLE admin, reader FROM AUTH RULE authrule
+----
+
+Title of the returned code::
+`REVOKE ROLE reader FROM AUTH RULE` has no effect.
+
+Description of the returned code::
+The auth rule does not have the role. See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended role and auth rule.
 ======
 =====
 
@@ -3076,6 +3120,7 @@ a|`<command>` has no effect.*
 |Descriptions
 a|
 - The user already has the role. See Status Codes documentation for more information.
+- The auth rule already has the role. See Status Codes documentation for more information.
 - The role already has the privilege. See Status Codes documentation for more information.
 |Category
 m|SECURITY
@@ -3138,6 +3183,49 @@ Verify that this is the intended role and user.
 ======
 =====
 
+.Granting a role to an auth rule which already is assigned to that role
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source,cypher]
+----
+GRANT ROLE admin TO AUTH RULE authrule
+----
+
+Returned GQLSTATUS code::
+00N70
+
+Returned status description::
+note: successful completion - role or privilege already assigned.
+`GRANT ROLE admin TO AUTH RULE authrule` has no effect.
+The role or privilege is already assigned.
+
+Suggestions for improvement::
+Verify that this is the intended role and auth rule.
+
+======
+[.include-with-neo4j-code]
+======
+Command::
++
+[source,cypher]
+----
+GRANT ROLE admin TO AUTH RULE authrule
+----
+Title of the returned code::
+`GRANT ROLE admin TO AUTH RULE authrule` has no effect.
+
+Description of the returned code::
+The auth rule already has the role. See Status Codes documentation for more information.
+
+Suggestions for improvement::
+Verify that this is the intended role and auth rule.
+
+======
+=====
 
 .Granting or denying a privilege to a role that already has that privilege
 // This command returns 2 notifications, one for NODES and one for RELATIONSHIPS.
