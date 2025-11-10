@@ -1327,6 +1327,10 @@ For more information, see:
 * link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
 - label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (`%s`).
 - label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, remove the backticks (`%s`).
+- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined function is deprecated. (`%s`).
+- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined procedure is deprecated. (`%s`).
+- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined function is deprecated and the function is shadowing an internal function. (`%s`).
+
 |Category
 m|DEPRECATION
 |GQLSTATUS code
