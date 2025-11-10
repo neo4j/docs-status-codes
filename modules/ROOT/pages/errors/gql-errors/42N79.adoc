@@ -2,7 +2,7 @@
 = 42N79
 
 == Status description
-error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for Administration Commands. Retry the query omitting the `USE` clause and it will be routed automatically.
+error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
 
 == Explanation
 
@@ -22,7 +22,7 @@ Error message will be:
 
 [source]
 ----
-error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for Administration Commands. Retry the query omitting the `USE` clause and it will be routed automatically.
+error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
 ----
 
 ifndef::backend-pdf[]
