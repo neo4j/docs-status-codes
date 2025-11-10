@@ -1,0 +1,49 @@
+// TODO update to actual version when feature flag is enabled
+:page-role: new-2026.01
+= 42I70
+
+== Status description
+error: syntax error or access rule violation - search clause with multiple bound variables.In order to have a search clause, a MATCH statement can only have one bound variable.
+
+[#_example_scenario]
+== Example scenario
+
+For example, when trying to use a `SEARCH` clause in a `MATCH` statement with more than one bound variable:
+
+[source,cypher]
+----
+MATCH (movie:Movie)-[r]->()
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    LIMIT 5
+  )
+RETURN movie.title AS title, r.prop AS prop
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause with GQLSTATUS 42I70 and the status description above.
+
+== Possible solution
+The first iteration of the `SEARCH` clause comes with many restrictions on the `MATCH` statement.
+It is likely that some of these restriction will be lifted in future versions of Neo4j.
+For the time being, the Cypher query under xref:errors/gql-errors/42I70.adoc#_example_scenario[Example scenario] can be rewritten like this:
+
+[source,cypher]
+----
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    LIMIT 5
+  )
+MATCH (movie)-[r]->()
+RETURN movie.title AS title, r.prop AS prop
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
