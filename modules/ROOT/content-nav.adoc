@@ -38,6 +38,7 @@
 **** xref:errors/gql-errors/22015.adoc[]
 **** xref:errors/gql-errors/22G03.adoc[]
 **** xref:errors/gql-errors/22G05.adoc[]
+**** xref:errors/gql-errors/22G0I.adoc[]
 **** xref:errors/gql-errors/22N00.adoc[]
 **** xref:errors/gql-errors/22N01.adoc[]
 **** xref:errors/gql-errors/22N02.adoc[]
