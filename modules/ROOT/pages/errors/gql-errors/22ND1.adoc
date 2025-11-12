@@ -1,0 +1,62 @@
+// TODO don't know release date yet
+:page-role: new-2025.XX
+= 22N81
+
+== Status description
+error: data exception - operation not allowed here. Invalid input: '{ <<query>> }' is not allowed for roles that are granted to an AUTH RULE.
+
+== Explanation
+If an auth rule fails to evaluate, for example because it depends on a claim that the users auth token does not have, Neo4j will default to not give the role to the user.
+
+When a role contains denied privileges, not giving it to the user leads to elevated privileges. In order to avoid this, roles are prohibited from having denied privileges and be granted to an auth rule at the same time.
+
+This exception is thrown when attempting to DENY a privilege from a role that is already used by an auth rule.
+
+== Example scenario
+Given that a role is used by an auth rule:
+[source, cypher]
+----
+CYPHER 25 GRANT ROLE role TO AUTH RULE authrule
+----
+
+When attempting to deny privileges from the role:
+[source, cypher]
+----
+DENY MATCH {*} ON GRAPH secret-db NODES * TO otherrole, role
+----
+The following error will be thrown.
+[source]
+----
+error: data exception - operation not allowed here. Invalid input: 'DENY MATCH {*} ON GRAPH secret-db NODES * TO role' is not allowed for roles that are granted to an AUTH RULE.
+----
+
+[NOTE]
+====
+The error message contains the subset of the original query that caused the issue.
+Since `otherrole` is not granted to an auth rule it is not included.
+====
+
+== Possible solutions
+Consider if it is possible to implement the security model without using denied privileges.
+Often it is possible to revoke granted privileges or reducing the scope of grant statements.
+
+In the example above, a generic grant such as
+[source, cypher]
+----
+GRANT MATCH {*} ON GRAPH * NODES * TO role, otherrole
+----
+could be replaced by a more fine-grained alternative:
+[source, cypher]
+----
+GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole
+----
+
+
+If a DENY is required, it needs to be set on a role that is applied directly to users without using auth rules to guarantee that it will always be applied.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
