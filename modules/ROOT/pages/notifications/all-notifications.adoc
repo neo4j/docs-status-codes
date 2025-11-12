@@ -3018,7 +3018,7 @@ Verify that this is the intended role and user.
 ======
 =====
 
-.Revoking a role from an auth rule that is not assigned to this role
+.Revoking a role from an auth rule that does not have that role
 [.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
@@ -3051,7 +3051,7 @@ REVOKE ROLE admin, reader FROM AUTH RULE authrule
 ----
 
 Title of the returned code::
-`REVOKE ROLE reader FROM AUTH RULE` has no effect.
+`REVOKE ROLE reader FROM AUTH RULE authrule` has no effect.
 
 Description of the returned code::
 The auth rule does not have the role. See Status Codes documentation for more information.
@@ -3183,7 +3183,7 @@ Verify that this is the intended role and user.
 ======
 =====
 
-.Granting a role to an auth rule which already is assigned to that role
+.Granting a role to an auth rule that already has that role
 [.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
