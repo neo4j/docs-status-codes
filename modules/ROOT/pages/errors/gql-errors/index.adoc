@@ -644,7 +644,6 @@ Status description:: error: data exception - invalid vector dimensions. Invalid 
 
 Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
-<<<<<<< HEAD
 === xref:errors/gql-errors/22NC1.adoc[22NC1]
 
 Status description:: error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `{ <<propKey>> }` more than once.
@@ -707,7 +706,6 @@ Status description:: error: data exception - node element type in use. The node 
 
 Status description:: error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
 
-=======
 // TODO don't know release date yet
 [role=label--new-2025.XX]
 === xref:errors/gql-errors/22ND1.adoc[22ND1]
@@ -719,7 +717,6 @@ Status description:: error: data exception - operation not allowed here. Invalid
 === xref:errors/gql-errors/22ND2.adoc[22ND2]
 
 Status description:: error: data exception - operation not allowed here. Invalid input: '{ <<query>> }' is not allowed for roles with DENY privileges.
->>>>>>> 60e62c6 (Add 22ND1 and 22ND2)
 
 [[invalid-transaction-state]]
 == Invalid transaction state
