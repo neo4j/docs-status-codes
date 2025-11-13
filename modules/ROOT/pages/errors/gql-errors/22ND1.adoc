@@ -1,6 +1,6 @@
 // TODO don't know release date yet
 :page-role: new-2025.XX
-= 22N81
+= 22ND1
 
 == Status description
 error: data exception - operation not allowed here. Invalid input: '{ <<query>> }' is not allowed for roles that are granted to an AUTH RULE.
