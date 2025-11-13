@@ -8,6 +8,7 @@
 [[arg]]$arg:: Procedure or function argument, for example, `database`, `pause`, `dryrun`, etc.
 [[argType]]$argType:: Argument type, either input or output.
 [[auth]]$auth:: Auth provider name, for example, `ldap`, `native`.
+[[authRule]]$authRule:: ABAC auth rule name.
 [[boltServerState]]$boltServerState:: Bolt server state, for example, `READY`.
 [[boltMsgLenLimit]]$boltMsgLenLimit:: Bolt message length limit, for example, `1000`.
 [[bytes]]$bytes:: Number of bytes.

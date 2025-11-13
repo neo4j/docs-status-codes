@@ -1,0 +1,11 @@
+= 42NAE
+
+== Status description
+error: syntax error or access rule violation - auth rule already exists. An auth rule with the name `{ <<authRule>> }` already exists.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
