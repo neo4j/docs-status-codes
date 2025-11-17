@@ -1,5 +1,3 @@
-:
-
 = 22NBD
 
 == Status description

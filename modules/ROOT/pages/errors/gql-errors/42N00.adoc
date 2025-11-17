@@ -1,5 +1,3 @@
-:
-
 = 42N00
 
 == Status description

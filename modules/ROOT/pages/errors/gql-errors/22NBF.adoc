@@ -1,5 +1,3 @@
-:
-
 = 22NBF
 
 == Status description

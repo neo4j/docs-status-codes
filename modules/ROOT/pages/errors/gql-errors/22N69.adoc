@@ -1,5 +1,3 @@
-:
-
 = 22N69
 
 == Status description

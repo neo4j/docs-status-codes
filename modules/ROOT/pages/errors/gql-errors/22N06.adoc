@@ -1,5 +1,3 @@
-:
-
 = 22N06
 
 == Status description

@@ -1,5 +1,3 @@
-:
-
 = 22N51
 
 == Status description

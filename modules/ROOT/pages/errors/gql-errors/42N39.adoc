@@ -1,5 +1,3 @@
-:
-
 = 42N39
 
 == Status description

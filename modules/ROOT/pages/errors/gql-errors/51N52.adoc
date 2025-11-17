@@ -1,5 +1,3 @@
-:
-
 = 51N52
 
 == Status description

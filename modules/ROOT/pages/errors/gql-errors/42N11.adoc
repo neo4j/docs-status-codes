@@ -1,5 +1,3 @@
-:
-
 = 42N11
 
 == Status description
