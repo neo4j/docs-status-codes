@@ -1,4 +1,3 @@
-:
 = 42I67
 
 == Status description

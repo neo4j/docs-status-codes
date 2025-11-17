@@ -1,4 +1,3 @@
-:
 = 53N33
 
 == Status description

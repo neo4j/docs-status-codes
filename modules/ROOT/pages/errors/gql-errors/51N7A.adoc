@@ -1,4 +1,3 @@
-:
 = 51N7A
 
 == Status description

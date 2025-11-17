@@ -1,4 +1,3 @@
-:
 = 42N79
 
 == Status description

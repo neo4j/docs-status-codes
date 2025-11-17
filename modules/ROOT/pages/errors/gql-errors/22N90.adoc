@@ -1,4 +1,3 @@
-:
 = 22N90
 
 == Status description

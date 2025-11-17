@@ -1,4 +1,3 @@
-:
 = 50N26
 
 == Status description

@@ -1,4 +1,3 @@
-:
 = 50N25
 
 == Status description

@@ -1,4 +1,3 @@
-:
 = 42I39
 
 == Status description

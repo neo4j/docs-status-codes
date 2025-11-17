@@ -1,4 +1,3 @@
-:
 = 42N61
 
 == Status description

@@ -1,5 +1,5 @@
-:
 = 22N60
+
 
 == Status description
 error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`

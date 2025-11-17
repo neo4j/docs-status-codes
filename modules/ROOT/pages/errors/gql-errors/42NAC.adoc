@@ -1,4 +1,3 @@
-:
 = 42NAC
 
 == Status description
