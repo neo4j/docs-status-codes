@@ -2,61 +2,26 @@
 
 = Changes and deprecations
 
-Starting from 2025.04, using the error messages programmatically is deprecated.
+
+== 2025.04
+
+Using the error messages programmatically is deprecated.
 Because error messages might change in a future release, please parse or use GQLSTATUS error codes in your application code.
 For details, see xref:errors/gql-errors/index.adoc[GQLSTATUS error codes].
 
 
-== Deprecated notifications
+== 2025.01
 
-The following notifications have been deprecated:
+* The diagnostic record also contains a `_status_parameters` field, which represents a map that contains all variable parts of the status description, such as labels, database names, Cypher clauses, etc.
+This field is used to provide more detailed information about the error.
 
-.Notification details
-[cols="<1s,<4"]
-|===
-|Neo4j  code
-m|Neo.ClientNotification.Statement.FeatureDeprecationWarning
-|Title
-a|This feature is deprecated and will be removed in future versions.
-|Descriptions
-a|
-- The procedure has a deprecated field. (`%s`)
-- The function has a deprecated field. (`%s`)
-- Creating an entity (`%s`) and referencing that entity in a property definition in the same CREATE is deprecated.
-- Merging an entity (`%s`) and referencing that entity in a property definition in the same MERGE is deprecated.
-- The Unicode character `%s` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future.
-To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
-To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
-[NOTE]
-In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
-However, starting from version 5.26, the deprecation has been withdrawn following cost-benefit analysis and valuable user feedback.
-- label:deprecated[Deprecated from 5.26 to 2025.05] Databases and aliases with unescaped `.` are deprecated unless the dots indicate that they belong to a composite database.
-Names containing `.` should be escaped. (`%s`)
-[NOTE]
-Databases and aliases with unescaped `.` are deprecated in versions 5.26 to 2025.05.
-However, starting from version 2025.06, this deprecation has been withdrawn, and replaced by two new deprecations.
-The reason for this change is that the previous quoting rules have been found inconsistent and ambiguous, and will be improved starting from Cypher 25.
-For more information, see:
+* A new JSON template is available for the query log, which is the default set in _server_log.xml_.
+It contains the `errorInfo` entry, but not the `failureReason` entry, which is switched off by default.
 
-* xref:notifications/all-notifications.adoc#_graph_reference_deprecation[Using separately backticked name parts in graph references]
-* xref:notifications/all-notifications.adoc#_graph_reference_deprecation_use[Using separately backticked name parts in graph references in USE clause]
-* link:https://neo4j.com/docs/cypher-manual/25/values-and-types/graph-references[Cypher manual -> Graph references].
-- label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, use parameters or backtick the entire name (`%s`).
-- label:deprecated[Deprecated in 2025.06] Graph references with separately backticked name parts (`%s`) are deprecated. In future Cypher versions, remove the backticks (`%s`).
-- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined function is deprecated. (`%s`).
-- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined procedure is deprecated. (`%s`).
-- label:deprecated[Deprecated in 2025.11] The namespace of the invoked user-defined function is deprecated and the function is shadowing an internal function. (`%s`).
 
-|Category
-m|DEPRECATION
-|GQLSTATUS code
-m|01N00
-|Status description
-a|warn: feature deprecated. `{ <<item>> }`
-|Classification
-m|DEPRECATION
-|SeverityLevel
-m|WARNING
-|===
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
