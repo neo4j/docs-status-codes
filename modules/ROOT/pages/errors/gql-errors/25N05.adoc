@@ -1,5 +1,3 @@
-:page-role: changed-2025.03
-
 = 25N05
 
 == Status description

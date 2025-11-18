@@ -180,7 +180,6 @@ Status description:: error: data exception - invalid input value. Invalid input 
 
 Status description:: error: data exception - input failed validation. Invalid input `{ <<input>> }` for `{ <<context>> }`.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/22N06.adoc[22N06]
 
 Status description:: error: data exception - required input missing. Invalid input. `{ <<inputList>> }` needs to be specified.
@@ -349,7 +348,6 @@ Status description:: error: data exception - unable to use specified runtime. Ca
 
 Status description:: error: data exception - CSV buffer size overflow. Cannot read a CSV field larger than the set buffer size. Ensure the field does not have an unterminated quote, or increase the buffer size via `dbms.import.csv.buffer_size`.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/22N51.adoc[22N51]
 
 Status description:: error: data exception - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
@@ -386,7 +384,6 @@ Status description:: error: data exception - invalid spatial component. Cannot r
 
 Status description:: error: data exception - token does not exist. The `{ <<tokenType>> }` token with id `{ <<tokenId>> }` does not exist.
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/22N60.adoc[22N60]
 
 Status description:: error: data exception - illegal element. Encountered illegal `{ <<item>> }` element. Reason: `{ <<msg>> }`
@@ -419,7 +416,6 @@ Status description:: error: data exception - duplicated constraint name. A const
 
 Status description:: error: data exception - dependent constraint managed individually. Dependent constraints cannot be managed individually and must be managed together with its graph type.
 
-[role=label--changed-2025.07]
 === xref:errors/gql-errors/22N69.adoc[22N69]
 
 Status description:: error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }` does not exist.
@@ -428,7 +424,6 @@ Status description:: error: data exception - index does not exist. The index `{ 
 
 Status description:: error: data exception - equivalent index already exists. An equivalent index already exists: `{ <<idxDescrOrName>> }`.
 
-[role=label--changed-2025.07]
 === xref:errors/gql-errors/22N71.adoc[22N71]
 
 Status description:: error: data exception - duplicated index name. An index with the same name already exists: `{ <<idx>> }`.
@@ -497,7 +492,6 @@ Status description:: error: data exception - not a valid CIDR IP. `{ <<input>> }
 
 Status description:: error: data exception - new password cannot be the same as the old password. Expected the new password to be different from the old password.
 
-[role=label--changed-2025.05]
 === xref:errors/gql-errors/22N90.adoc[22N90]
 
 Status description:: error: data exception - property type unsupported in constraint. `{ <<valueType>> }` is not supported in property type constraints.
@@ -634,17 +628,14 @@ Status description:: error: data exception - omitting mandatory field for proper
 
 Status description:: error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
 
-[role=label--new-2025.07]
 === xref:errors/gql-errors/22NBD.adoc[22NBD]
 
 Status description:: error: data exception - unsupported struct tag. Unsupported struct tag: `{ <<value>> }`.
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/22NBE.adoc[22NBE]
 
 Status description:: error: data exception - invalid vector dimensions. Invalid vector dimensions. The number of vector dimensions must be between `{ <<count>>1 }` and `{ $count2 }`, but is `{ $count3 }`.
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/22NBF.adoc[22NBF]
 
 Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
@@ -676,7 +667,6 @@ Status description:: error: invalid transaction state - concurrent access violat
 Status description:: error: invalid transaction state - specified transaction does not exist.
 Transaction `{ <<transactionId>> }` does not exist.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/25N05.adoc[25N05]
 
 Status description:: error: invalid transaction state - transaction closed. Transaction has been closed.
@@ -717,7 +707,6 @@ Status description:: error: invalid transaction state - transaction termination 
 
 Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/25N17.adoc[25N17]
 
 Status description:: error: invalid transaction state - implicit transaction required. The attempted operation requires an implicit transaction.
@@ -728,7 +717,6 @@ Status description:: error: invalid transaction state - implicit transaction req
 
 Invalid transaction termination errors occur when the transaction termination fails, such as when the transaction or constituent transaction fails to commit, or when the transaction termination fails to apply or append the transaction.
 
-[role=label--changed-2025.04]
 === xref:errors/gql-errors/2DN01.adoc[2DN01]
 
 Status description:: error: invalid transaction termination - commit failed. Failed to commit transaction.
@@ -1077,27 +1065,22 @@ Status description:: error: syntax error or access rule violation - wrong subcla
 
 Status description:: error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/42I65.adoc[42I65]
 
 Status description:: error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `{ <<valueType>> }`.
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/42I66.adoc[42I66]
 
 Status description:: error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
 
-[role=label--new-2025.09]
 === xref:errors/gql-errors/42I67.adoc[42I67]
 
 Status description:: error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat>>2 }` query, but it is run in `CYPHER { <<feat>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
 
-[role=label--new-2025.10]
 === xref:errors/gql-errors/42I68.adoc[42I68]
 
 Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
 Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
@@ -1130,7 +1113,6 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - variable shadowing. The variable `{ <<variable>> }` is shadowing a variable with the same name from the outer scope and needs to be renamed.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N08.adoc[42N08]
 
 Status description:: error: syntax error or access rule violation - no such procedure. The procedure `{ <<procFun>> }` was not found. Verify that the spelling is correct.
@@ -1151,7 +1133,6 @@ Status description:: error: syntax error or access rule violation - cannot repla
 
 Status description:: error: syntax error or access rule violation - no such role. A role with the name `{ <<role>> }` was not found. Verify that the spelling is correct.
 
-[role=label--changed-2025.05]
 === xref:errors/gql-errors/42N11.adoc[42N11]
 
 Status description:: error: syntax error or access rule violation - graph reference already exists. A graph reference with the name `{ <<dbList>> }` already exists.
@@ -1252,7 +1233,6 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 Status description:: error: syntax error or access rule violation - duplicate return item name. Return items must have unique names.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/42N39.adoc[42N39]
 
 Status description:: error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
@@ -1665,7 +1645,6 @@ Status description:: error: system configuration or operation exception - aggreg
 
 Status description:: error: system configuration or operation exception - class not public. The class `{ <<procClass>> }` must be public.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/51N12.adoc[51N12]
 
 Status description:: error: system configuration or operation exception - class not void. The procedure `{ <<proc>> }` has zero return columns and must be defined as void.
@@ -1723,7 +1702,6 @@ Status description:: error: system configuration or operation exception - databa
 
 Status description:: error: system configuration or operation exception - not supported in this version. `{ <<item>> }` is not available. This implementation of Cypher does not support `{ <<feat>> }`.
 
-[role=label--changed-2025.03]
 === xref:errors/gql-errors/51N27.adoc[51N27]
 
 Status description:: error: system configuration or operation exception - not supported in this edition. `{ <<feat>> }` is not supported in `{ <<edition>> }`.
@@ -1740,7 +1718,6 @@ Status description:: error: system configuration or operation exception - not su
 
 Status description:: error: system configuration or operation exception - not supported with this configuration. `{ <<item>> }` is not supported in `{ <<context>> }`.
 
-[role=label--changed-2025.06]
 === xref:errors/gql-errors/51N31.adoc[51N31]
 
 Status description:: error: system configuration or operation exception - not supported. `{ <<feat>> }` is not supported in `{ <<context>> }`.
@@ -1821,12 +1798,10 @@ Status description:: error: system configuration or operation exception - cannot
 
 Status description:: error: system configuration or operation exception - cannot create database. Cannot create database `{ <<db>> }`.
 
-[role=label--changed-2025.07]
 === xref:errors/gql-errors/51N52.adoc[51N52]
 
 Status description:: error: system configuration or operation exception - number of primaries out of range. Cannot `{ <<action>> }` database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
 
-[role=label--changed-2025.07]
 === xref:errors/gql-errors/51N53.adoc[51N53]
 
 Status description:: error: system configuration or operation exception - number of secondaries out of range. Cannot `{ <<action>> }` database topology. Number of secondaries `{ <<count>> }` needs to be at least 0 and may not exceed `{ <<upper>> }`.
@@ -2089,7 +2064,6 @@ Status description:: error: procedure exception - custom procedure execution err
 [[function-exceptions]]
 == Function exceptions
 
-[role=label--new-2025.10]
 === xref:errors/gql-errors/53N33.adoc[53N33]
 
 Status description:: error: function exception - function invocation failed. Failed to invoke function `{ <<sig>> }` caused by: `{ <<msg>> }`
