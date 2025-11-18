@@ -4,7 +4,7 @@
 [[neo4j-errors]]
 = List of Neo4j error codes
 
-This page lists the current Neo4j error codes, which which are returned along side xref:errors/gql-errors/index.adoc[GQLSTATUS error codes], grouped by type.
+This page lists the current Neo4j error codes, which are returned along side xref:errors/gql-errors/index.adoc[GQLSTATUS error codes], grouped by type.
 
 [NOTE]
 ====
