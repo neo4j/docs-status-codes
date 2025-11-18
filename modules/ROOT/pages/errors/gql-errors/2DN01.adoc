@@ -1,5 +1,3 @@
-:page-role: changed-2025.04
-
 = 2DN01
 
 == Status description

@@ -1,7 +1,7 @@
 = 42I62
 
 == Status description
-error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
+error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric: `{ <<input>> }`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
