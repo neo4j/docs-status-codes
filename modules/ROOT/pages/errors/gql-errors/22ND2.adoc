@@ -3,7 +3,7 @@
 = 22ND2
 
 == Status description
-error: data exception - operation not allowed here. Invalid input: '{ <<query>> }' is not allowed for roles with DENY privileges.
+error: data exception - operation not allowed for roles with DENY privileges. Invalid input: '{ <<query>> }' is not allowed for roles with DENY privileges.
 
 == Explanation
 If an auth rule fails to evaluate, for example because it depends on a claim that the users auth token does not have, Neo4j will default to not give the role to the user.
@@ -27,7 +27,7 @@ CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule
 The following error will be thrown.
 [source]
 ----
-error: data exception - operation not allowed here. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with DENY privileges.
+error: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with DENY privileges.
 ----
 
 [NOTE]
