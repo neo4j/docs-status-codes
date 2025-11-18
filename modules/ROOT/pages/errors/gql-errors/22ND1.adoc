@@ -3,7 +3,7 @@
 = 22ND1
 
 == Status description
-error: data exception - operation not allowed here. Invalid input: '{ <<query>> }' is not allowed for roles that are granted to an AUTH RULE.
+error: data exception - operation not allowed for roles that are granted to an AUTH RULE. Invalid input: '{ <<query>> }' is not allowed for roles that are granted to an AUTH RULE.
 
 == Explanation
 If an auth rule fails to evaluate, for example because it depends on a claim that the users auth token does not have, Neo4j will default to not give the role to the user.
@@ -27,7 +27,7 @@ DENY MATCH {*} ON GRAPH secret-db NODES * TO otherrole, role
 The following error will be thrown.
 [source]
 ----
-error: data exception - operation not allowed here. Invalid input: 'DENY MATCH {*} ON GRAPH secret-db NODES * TO role' is not allowed for roles that are granted to an AUTH RULE.
+error: data exception - operation not allowed for roles that are granted to an AUTH RULE. Invalid input: 'DENY MATCH {*} ON GRAPH secret-db NODES * TO role' is not allowed for roles that are granted to an AUTH RULE.
 ----
 
 [NOTE]
