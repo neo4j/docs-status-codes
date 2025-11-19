@@ -712,11 +712,10 @@ Status description:: error: data exception - graph type constraint not supported
 
 Status description:: error: data exception - operation not allowed for roles that are granted to an AUTH RULE. Invalid input: '{ <<query>> }' is not allowed for roles that are granted to an AUTH RULE.
 
-// TODO don't know release date yet
-[role=label--new-2025.XX]
 === xref:errors/gql-errors/22ND2.adoc[22ND2]
 
 Status description:: error: data exception - operation not allowed for roles with DENY privileges. Invalid input: '{ <<query>> }' is not allowed for roles with DENY privileges.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
