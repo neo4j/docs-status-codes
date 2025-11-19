@@ -1,5 +1,6 @@
 = 25N05
 
+[role=label--changed-2025.03]
 == Status description
 error: invalid transaction state - transaction closed. Transaction has been closed.
 

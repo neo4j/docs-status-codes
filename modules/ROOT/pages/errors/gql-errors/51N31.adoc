@@ -1,5 +1,6 @@
 = 51N31
 
+[role=label--changed-2025.06]
 == Status description
 
 error: system configuration or operation exception - not supported. `{ <<feat>> }` is not supported in `{ <<context>> }`.

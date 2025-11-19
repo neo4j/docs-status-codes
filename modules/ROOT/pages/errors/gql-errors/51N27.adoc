@@ -1,5 +1,6 @@
 = 51N27
 
+[role=label--changed-2025.03]
 == Status description
 
 error: system configuration or operation exception - not supported in this edition. `{ <<feat>> }` is not supported in `{ <<edition>> }`.

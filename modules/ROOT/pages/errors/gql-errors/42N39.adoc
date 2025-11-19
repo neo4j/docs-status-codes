@@ -1,5 +1,6 @@
 = 42N39
 
+[role=label--changed-2025.03]
 == Status description
 error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
 
