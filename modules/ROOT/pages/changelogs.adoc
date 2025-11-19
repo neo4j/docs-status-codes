@@ -15,7 +15,7 @@ For details, see xref:errors/gql-errors/index.adoc[GQLSTATUS error codes].
 * The diagnostic record also contains a `_status_parameters` field, which represents a map that contains all variable parts of the status description, such as labels, database names, Cypher clauses, etc.
 This field is used to provide more detailed information about the error.
 
-* A new JSON template is available for the query log, which is the default set in _server_log.xml_.
+* A new JSON template is available for the query log, which is the default set in _server_logs.xml_.
 It contains the `errorInfo` entry, but not the `failureReason` entry, which is switched off by default.
 
 
