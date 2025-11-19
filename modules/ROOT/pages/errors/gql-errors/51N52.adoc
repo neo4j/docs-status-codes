@@ -1,5 +1,6 @@
 = 51N52
 
+[role=label--changed-2025.07]
 == Status description
 error: system configuration or operation exception - number of primaries out of range. Cannot `{ <<action>> }` database topology.  Number of primaries `{ <<count>> }` needs to be at least 1 and may not exceed `{ <<upper>> }`.
 

@@ -1,5 +1,6 @@
 = 22N69
 
+[role=label--changed-2025.07]
 == Status description
 error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }` does not exist.
 
