@@ -1,0 +1,22 @@
+= 42N0D
+
+
+== Status description
+
+error: syntax error or access rule violation - cannot call function from this context. The function `{ <<fun>> }` cannot be called from the current context. It can only be used `{ <<context>> }`.
+
+== Explanation
+This error is thrown when a function is called from a context that is not allowed for that function.
+
+== Example scenario
+
+Try to call an internal security function like `abac.oidc.user_attribute()` from a regular Cypher query.
+You will get this error because it is not supported in user Cypher queries and can only be called from within `AUTH RULE` creation or alteration commands.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
