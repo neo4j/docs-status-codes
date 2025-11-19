@@ -1,5 +1,6 @@
 = 22N06
 
+[role=label--changed-2025.03]
 == Status description
 error: data exception - required input missing. Invalid input. `{ <<inputList>> }` needs to be specified.
 

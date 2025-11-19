@@ -1,5 +1,6 @@
 = 2DN01
 
+[role=label--changed-2025.04]
 == Status description
 error: invalid transaction termination - commit failed. Failed to commit transaction.
 

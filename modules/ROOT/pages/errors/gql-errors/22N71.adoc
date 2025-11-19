@@ -1,5 +1,6 @@
 = 22N71
 
+[role=label--changed-2025.07]
 == Status description
 error: data exception - duplicated index name. An index with the same name already exists: `{ <<idx>> }`.
 

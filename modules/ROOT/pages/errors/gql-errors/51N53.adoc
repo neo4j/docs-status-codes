@@ -1,5 +1,6 @@
 = 51N53
 
+[role=label--changed-2025.07]
 == Status description
 error: system configuration or operation exception - number of secondaries out of range. Cannot `{ <<action>> }` database topology. Number of secondaries `{ <<count>> }` needs to be at least 0 and may not exceed `{ <<upper>> }`.
 
