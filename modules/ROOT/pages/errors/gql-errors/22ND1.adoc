@@ -38,14 +38,8 @@ Since `otherrole` is not granted to an auth rule, it is not included.
 
 == Possible solutions
 Consider if it is possible to implement the security model without using denied privileges.
-Often it is possible to revoke granted privileges or reducing the scope of grant statements.
 
-In the example above, a generic grant such as
-[source, cypher]
-----
-GRANT MATCH {*} ON GRAPH * NODES * TO role, otherrole
-----
-could be replaced by a more fine-grained alternative:
+For example, you can replace the generic grant from the <<22ND1-example-scenario, Example scenario>> with the following more fine-grained alternative:
 [source, cypher]
 ----
 GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole
