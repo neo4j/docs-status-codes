@@ -1,5 +1,3 @@
-// TODO update to actual version when feature flag in enabled
-:page-role: new-2026.01
 = 42I69
 
 == Status description
