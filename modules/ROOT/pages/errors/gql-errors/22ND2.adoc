@@ -13,7 +13,7 @@ To avoid this, roles cannot have both `DENY` privileges and be granted to an aut
 
 This exception is thrown when attempting to grant a role to an auth rule when the role has denied privileges.
 
-[[22ND2-example-scenario]]
+[[example-scenario-22nd2]]
 == Example scenario
 
 Given that a role has denied privileges:
@@ -28,10 +28,10 @@ When attempting to assign the role to an auth rule:
 CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule
 ----
 
-The following error will be thrown.
+The following error will be thrown:
 [source]
 ----
-error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule'` is not allowed for roles with `DENY` privileges.
+error: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with `DENY` privileges.
 ----
 
 [NOTE]
@@ -41,9 +41,10 @@ Since `otherrole` does not have denied privileges, it is not included.
 ====
 
 == Possible solutions
+
 Consider whether it is possible to implement the security model without using denied privileges, for example, by revoking granted privileges or reducing the scope of the grant statements.
 
-For example, you can replace the generic grant from the <<22ND2-example-scenario, Example scenario>> with the following more fine-grained alternative:
+For example, you can replace the generic grant from the <<example-scenario-22nd2, Example scenario>> with the following more fine-grained alternative:
 [source, cypher]
 ----
 GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole

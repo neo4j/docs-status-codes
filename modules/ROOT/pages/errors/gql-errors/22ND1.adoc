@@ -4,6 +4,7 @@
 error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.
 
 == Explanation
+
 If an auth rule fails to evaluate, for example, because it depends on a claim that the user's auth token does not contain, Neo4j will default to not assigning that role to the user.
 
 When a role contains denied privileges, not assigning the role actually removes the denies, which means the user ends up with more privileges than they should.
@@ -11,8 +12,9 @@ To avoid this, roles cannot have both `DENY` privileges and be granted to an aut
 
 This exception is thrown when attempting to `DENY` a privilege from a role that is already used by an auth rule.
 
-[[22ND1-example-scenario]]
+[[example-scenario-22nd1]]
 == Example scenario
+
 Given that a role is used by an auth rule:
 [source, cypher]
 ----
@@ -24,7 +26,8 @@ When attempting to deny privileges from the role:
 ----
 DENY MATCH {*} ON GRAPH secret-db NODES * TO otherrole, role
 ----
-The following error will be thrown.
+
+The following error will be thrown:
 [source]
 ----
 error: data exception - operation not allowed for roles that are granted to an AUTH RULE. Invalid input: 'DENY MATCH {*} ON GRAPH secret-db NODES * TO role' is not allowed for roles that are granted to an AUTH RULE.
@@ -37,9 +40,10 @@ Since `otherrole` is not granted to an auth rule, it is not included.
 ====
 
 == Possible solutions
+
 Consider if it is possible to implement the security model without using denied privileges.
 
-For example, you can replace the generic grant from the <<22ND1-example-scenario, Example scenario>> with the following more fine-grained alternative:
+For example, you can replace the generic grant from the <<example-scenario-22nd1, Example scenario>> with the following more fine-grained alternative:
 [source, cypher]
 ----
 GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole
