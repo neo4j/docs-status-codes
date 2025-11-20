@@ -5317,6 +5317,116 @@ CALL (x) {
 ======
 =====
 
+[#_neo_clientnotification_statement_identifiershadowingvariable]
+=== Identifier shadowing variable
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Statement.IdentifierShadowingVariable
+|Title
+a|An identifier is shadowing a variable in scope.
+|Description
+|The identifier `%s` in the `%s` clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal `%s` that will be used.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N63
+|Status description
+a|info: identifier shadowing variable.
+The identifier { <<ident>> } in the { <<clause>> } clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal { <<ident>> } that will be used.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+.An identifier used for the index name in a `SEARCH` clause shadowing a variable in scope.
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+WITH "myPlotString" AS moviePlots
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, moviePlots
+----
+
+Returned GQLSTATUS code::
+03N63
+
+Description of the returned code::
+info: identifier shadowing variable.
+The identifier `moviePlots` in the `VECTOR INDEX` clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal `moviePlots` that will be used.
+
+Suggestions for improvement::
+Consider to rename the variable to something else to avoid confusion.
++
+[source,cypher]
+----
+WITH "myPlotString" AS plotString
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, plotString
+----
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+WITH "myPlotString" AS moviePlots
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, moviePlots
+----
+
+Description of the returned code::
+The identifier `moviePlots` in the `VECTOR INDEX` clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal `moviePlots` that will be used.
+
+Suggestions for improvement::
+Consider to rename the variable to something else to avoid confusion.
++
+[source,cypher]
+----
+WITH "myPlotString" AS plotString
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, plotString
+----
+======
+=====
+
 [#_neo_clientnotification_statement_parameternotprovided]
 === Parameter missing
 
