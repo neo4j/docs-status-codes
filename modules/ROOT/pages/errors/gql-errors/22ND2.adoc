@@ -1,16 +1,21 @@
 = 22ND2
 
 == Status description
-error: data exception - operation not allowed for roles with DENY privileges. Invalid input: '{ <<query>> }' is not allowed for roles with DENY privileges.
+error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'{ <<query>> }'` is not allowed for roles with `DENY` privileges.
 
 == Explanation
-If an auth rule fails to evaluate, for example because it depends on a claim that the users auth token does not have, Neo4j will default to not give the role to the user.
 
-When a role contains denied privileges, not giving it to the user leads to elevated privileges. In order to avoid this, roles are prohibited from having denied privileges and be granted to an auth rule at the same time.
+If an auth rule fails to evaluate, for example, because it depends on a claim that the user's auth token does not contain, Neo4j will default to not assigning that role to the user.
+
+
+When a role contains denied privileges, not assigning the role actually removes the denies, which means the user ends up with more privileges than they should.
+To avoid this, roles cannot have both `DENY` privileges and be granted to an auth rule.
 
 This exception is thrown when attempting to grant a role to an auth rule when the role has denied privileges.
 
+[[22ND2-example-scenario]]
 == Example scenario
+
 Given that a role has denied privileges:
 [source, cypher]
 ----
@@ -22,20 +27,21 @@ When attempting to assign the role to an auth rule:
 ----
 CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule
 ----
+
 The following error will be thrown.
 [source]
 ----
-error: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with DENY privileges.
+error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule'` is not allowed for roles with `DENY` privileges.
 ----
 
 [NOTE]
 ====
-The error message contains the subset of the original query that caused the issue.
-Since `otherrole` does not have denied privileges it is not included.
+The error message contains a subset of the original query that caused the issue.
+Since `otherrole` does not have denied privileges, it is not included.
 ====
 
 == Possible solutions
-Consider if it is possible to implement the security model without using denied privileges.
+Consider whether it is possible to implement the security model without using denied privileges, for example, by revoking granted privileges or reducing the scope of the grant statements.
 Often it is possible to revoke granted privileges or reducing the scope of grant statements.
 
 In the example above, a generic grant such as
@@ -49,7 +55,7 @@ could be replaced by a more fine-grained alternative:
 GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole
 ----
 
-If a DENY is required, it needs to be set on a role that is applied directly to users without using auth rules to guarantee that it will always be applied.
+If a `DENY` is required, it must be set to a role that is directly assigned to users without using auth rules, to guarantee that it will always be applied.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
