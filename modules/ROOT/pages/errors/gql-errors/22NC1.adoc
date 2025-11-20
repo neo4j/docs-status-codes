@@ -1,4 +1,3 @@
-:page-role: new-2025.x cypher-25
 = 22NC1
 
 == Status description
