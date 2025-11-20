@@ -701,15 +701,15 @@ Status description:: error: invalid transaction state - cannot access entity aft
 
 === xref:errors/gql-errors/25N14.adoc[25N14]
 
-Status description:: error: invalid transaction state - transaction termination client error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+Status description:: error: invalid transaction state - transaction termination client error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reason: `{ <<msg>> }`
 
 === xref:errors/gql-errors/25N15.adoc[25N15]
 
-Status description:: error: invalid transaction state - transaction termination database error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+Status description:: error: invalid transaction state - transaction termination database error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reason: `{ <<msg>> }`
 
 === xref:errors/gql-errors/25N16.adoc[25N16]
 
-Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reson: `{ <<msg>> }`
+Status description:: error: invalid transaction state - transaction termination transient error. The transaction has been terminated. Retry your operation in a new transaction, and you should see a successful result. Reason: `{ <<msg>> }`
 
 === xref:errors/gql-errors/25N17.adoc[25N17]
 
