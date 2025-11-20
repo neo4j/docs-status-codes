@@ -646,11 +646,11 @@ Status description:: error: data exception - property value too big. Property va
 
 === xref:errors/gql-errors/22ND1.adoc[22ND1]
 
-Status description:: error: data exception - operation not allowed for roles that are granted to an AUTH RULE. Invalid input: '{ <<query>> }' is not allowed for roles that are granted to an AUTH RULE.
+Status description:: error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.
 
 === xref:errors/gql-errors/22ND2.adoc[22ND2]
 
-Status description:: error: data exception - operation not allowed for roles with DENY privileges. Invalid input: '{ <<query>> }' is not allowed for roles with DENY privileges.
+Status description:: error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'{ <<query>> }'` is not allowed for roles with `DENY` privileges.
 
 
 [[invalid-transaction-state]]
@@ -1067,7 +1067,7 @@ Status description:: error: syntax error or access rule violation - missing LOOK
 
 === xref:errors/gql-errors/42I62.adoc[42I62]
 
-Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
+Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42I63.adoc[42I63]
 
