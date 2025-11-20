@@ -1,11 +1,10 @@
-:page-role: new-2025.x cypher-25
 = 22NCC
 
 == Status description
 error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>>1 }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
 
 == Explanation
-This error occurs when attempting to drop a node element type from the graph type, but the specified element type does not match the existing one for the given label. 
+This error occurs when attempting to drop a node element type from the graph type, but the specified element type does not match the existing one for the given label.
 
 When dropping an element type, it is not necessary to specify the full element type; you can simply specify the label.
 If you do specify an element type, it must match exactly with the existing one in the graph type.
@@ -43,7 +42,7 @@ ALTER CURRENT GRAPH TYPE DROP {
     (p:Person => )
 }
 ----
-It is not necessary to specify the full element type to drop it. 
+It is not necessary to specify the full element type to drop it.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
