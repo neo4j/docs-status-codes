@@ -644,6 +644,68 @@ Status description:: error: data exception - invalid vector dimensions. Invalid 
 
 Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
+=== xref:errors/gql-errors/22NC1.adoc[22NC1]
+
+Status description:: error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `{ <<propKey>> }` more than once.
+
+=== xref:errors/gql-errors/22NC2.adoc[22NC2]
+
+Status description:: error: data exception - node element type has no effect. The node element type `{ <<label>> }` must contain one or more implied labels, or at least one property type.
+
+=== xref:errors/gql-errors/22NC3.adoc[22NC3]
+
+Status description:: error: data exception - relationship element type has no effect. The relationship element type `{ <<relType>> }` must define a source, destination, or at least one property type.
+
+=== xref:errors/gql-errors/22NC4.adoc[22NC4]
+
+Status description:: error: data exception - a label cannot be both identifying and implied. The label(s) `{ <<labelList>> }` are defined as both identifying and implied.
+
+=== xref:errors/gql-errors/22NC5.adoc[22NC5]
+
+Status description:: error: data exception - graph type element not found. The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` does not exist.
+
+=== xref:errors/gql-errors/22NC6.adoc[22NC6]
+
+Status description:: error: data exception - independent constraint and node element type have the same label.
+The independent constraint `{ <<constrDescrOrName>> }` is using the same label `{ <<label>> }` as a node element type.
+
+=== xref:errors/gql-errors/22NC7.adoc[22NC7]
+
+Status description:: error: data exception - independent constraint and relationship element type have the same relationship type.
+The independent constraint `{ <<constrDescrOrName>> }` is using the same relationship type `{ <<relType>> }` as a relationship element type.
+
+=== xref:errors/gql-errors/22NC8.adoc[22NC8]
+
+Status description:: error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name `{ <<token>> }` more than once.
+
+=== xref:errors/gql-errors/22NC9.adoc[22NC9]
+
+Status description:: error: data exception - invalid element type constraints in graph type. A `{ <<entityType>>1 }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType>>2 }` element type.
+
+=== xref:errors/gql-errors/22NCA.adoc[22NCA]
+
+Status description:: error: data exception - node element type already exists. A node element type identified by the label `{ <<label>> }` already exists in the graph type.
+
+=== xref:errors/gql-errors/22NCB.adoc[22NCB]
+
+Status description:: error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `{ <<relType>> }` already exists in the graph type.
+
+=== xref:errors/gql-errors/22NCC.adoc[22NCC]
+
+Status description:: error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>>1 }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
+
+=== xref:errors/gql-errors/22NCD.adoc[22NCD]
+
+Status description:: error: data exception - relationship element type specified incorrectly. The relationship element type `{ <<graphTypeElement>>1 }` identified by the relationship type `{ <<relType>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
+
+=== xref:errors/gql-errors/22NCE.adoc[22NCE]
+
+Status description:: error: data exception - node element type in use. The node element type identified by the label `{ <<label>> }` is referenced in the graph type element `{ <<graphTypeReference>> }` and cannot be dropped.
+
+=== xref:errors/gql-errors/22NCF.adoc[22NCF]
+
+Status description:: error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
@@ -1059,7 +1121,7 @@ Status description:: error: syntax error or access rule violation - missing LOOK
 
 === xref:errors/gql-errors/42I62.adoc[42I62]
 
-Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
+Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42I63.adoc[42I63]
 
