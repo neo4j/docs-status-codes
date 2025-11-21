@@ -51,7 +51,7 @@ ALTER CURRENT GRAPH TYPE ADD {
 }
 ----
 
-=== Remove a `KEY` constraint using `ALTER`
+=== Add a `KEY` constraint using `ALTER`
 
 Given the existing graph type:
 
