@@ -16,7 +16,11 @@ For details, see xref:errors/gql-errors/index.adoc[GQLSTATUS error codes].
 This field is used to provide more detailed information about the error.
 
 * A new JSON template is available for the query log, which is the default set in _server_logs.xml_.
-It contains the `errorInfo` entry, but not the `failureReason` entry, which is switched off by default.
+It contains the `errorInfo` entry, but not the `failureReason` entry, which is switched off by default starting from 2025.05.
+
+For more details about the JSON template for the query log, refer to the link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_json_format_log_entries[Operations manual -> Monitoring -> Logging].
+
+To learn more about the JSON object `errorInfo` in the query log, visit the link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#gql-error-information[Operations manual -> Logging -> GQL error information].
 
 
 ifndef::backend-pdf[]
