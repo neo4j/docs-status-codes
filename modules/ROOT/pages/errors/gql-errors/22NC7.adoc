@@ -1,0 +1,43 @@
+= 22NC7
+
+== Status description
+error: data exception - independent constraint and relationship element type have the same relationship type.
+The independent constraint `{ <<constrDescrOrName>> }` is using the same relationship type `{ <<relType>> }` as a relationship element type.
+
+== Explanation
+This error occurs when a relationship type is used both as an identifying relationship type (defining a relationship element type) and as part of an independent constraint.
+A relationship type cannot simultaneously serve as an identifying relationship type and be referenced in an independent constraint.
+
+== Example scenario
+For example, try to set a property type constraint on a property for the relationship type `:REL`, where `:REL` is also defined as an identifying relationship type in the graph type as follows:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ()-[:REL => {name :: ANY NOT NULL}]->(),
+    CONSTRAINT FOR ()-[r:REL =>]->() REQUIRE r.name IS :: STRING
+}
+----
+
+The query returns an error with GQLSTATUS 22NC7 and the status description:
+
+[source]
+----
+error: data exception - independent constraint and relationship element type have the same relationship type. The independent constraint 'Constraint( type='RELATIONSHIP_PROPERTY_TYPE', schema=()-[:`REL` {`name`}]-(), propertyType=STRING )' is using the same relationship type `REL` as a relationship element type.
+----
+
+To fix this, define the property type constraint as part of the relationship element type:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ()-[:REL => {name :: STRING NOT NULL}]->()
+}
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
