@@ -11,10 +11,9 @@ For more information about `errorInfo`, refer to link:https://neo4j.com/docs/ope
 
 == 2025.04
 
-Using the error messages programmatically is deprecated.
-Because error messages might change in a future release, please parse or use GQLSTATUS error codes in your application code.
-For details, see xref:errors/gql-errors/index.adoc[GQLSTATUS error codes].
-
+Using the error messages programmatically is deprecated and might change in a future release.
+Therefore, parsing the error messages or the status descriptions and incorporating them into scripts is not recommended.
+If you need to handle errors programmatically, please use the GQLSTATUS error codes, for example, `22NC5`.
 
 == 2025.01
 
