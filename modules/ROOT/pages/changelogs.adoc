@@ -20,7 +20,7 @@ If you need to handle errors programmatically, please use the GQLSTATUS error co
 // * The diagnostic record also contains a `_status_parameters` field, which represents a map that contains all variable parts of the status description, such as labels, database names, Cypher clauses, etc.
 // This field is used to provide more detailed information about the error.
 
-* A new JSON template is available for the query log, which is the default set in _server_logs.xml_. +
+A new JSON template is available for the query log, which is the default set in _server_logs.xml_. +
 For more details, see the link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_json_format_log_entries[Operations manual -> Monitoring -> Logging].
 
 
