@@ -60,7 +60,7 @@ Additional helper methods are exposed for some useful fields.
 
 !`_classification` ! The Neo4j category of the notification.
 ! `_position` ! The position, given by row and column, where the notification is relevant in the query text.
-! `_status_parameters`! A map that contains all variable parts of the status description.
+// ! `_status_parameters`! A map that contains all variable parts of the status description.
 !===
 |===
 
