@@ -644,6 +644,14 @@ Status description:: error: data exception - invalid vector dimensions. Invalid 
 
 Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
+=== xref:errors/gql-errors/22ND1.adoc[22ND1]
+
+Status description:: error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.
+
+=== xref:errors/gql-errors/22ND2.adoc[22ND2]
+
+Status description:: error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'{ <<query>> }'` is not allowed for roles with `DENY` privileges.
+
 === xref:errors/gql-errors/22NC1.adoc[22NC1]
 
 Status description:: error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `{ <<propKey>> }` more than once.
