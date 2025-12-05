@@ -5344,7 +5344,7 @@ m|GENERIC
 m|INFORMATION
 |===
 
-.An identifier used for the index name in a `SEARCH` clause shadowing a variable in scope.
+.An identifier used for the index name in a `SEARCH` clause shadowing a variable in scope
 [.tabbed-example]
 =====
 [.include-with-GQLSTATUS-code]
@@ -5353,6 +5353,7 @@ Query::
 +
 [source,cypher]
 ----
+CYPHER 25
 WITH "myPlotString" AS moviePlots
 MATCH (m:Movie {title:'Matrix, The'})
 MATCH (movie:Movie)
@@ -5377,6 +5378,7 @@ Consider to rename the variable to something else to avoid confusion.
 +
 [source,cypher]
 ----
+CYPHER 25
 WITH "myPlotString" AS plotString
 MATCH (m:Movie {title:'Matrix, The'})
 MATCH (movie:Movie)
@@ -5394,6 +5396,7 @@ Query::
 +
 [source,cypher]
 ----
+CYPHER 25
 WITH "myPlotString" AS moviePlots
 MATCH (m:Movie {title:'Matrix, The'})
 MATCH (movie:Movie)
@@ -5414,6 +5417,7 @@ Consider to rename the variable to something else to avoid confusion.
 +
 [source,cypher]
 ----
+CYPHER 25
 WITH "myPlotString" AS plotString
 MATCH (m:Movie {title:'Matrix, The'})
 MATCH (movie:Movie)

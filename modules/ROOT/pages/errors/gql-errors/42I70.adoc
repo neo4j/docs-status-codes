@@ -1,7 +1,7 @@
 = 42I70
 
 == Status description
-error: syntax error or access rule violation - search clause with multiple bound variables.In order to have a search clause, a MATCH statement can only have one bound variable.
+error: syntax error or access rule violation - search clause with multiple bound variables. In order to have a search clause, a `MATCH` statement can only have one bound variable.
 
 [#_example_scenario]
 == Example scenario
@@ -10,6 +10,7 @@ For example, when trying to use a `SEARCH` clause in a `MATCH` statement with mo
 
 [source,cypher]
 ----
+Cypher 25
 MATCH (movie:Movie)-[r]->()
   SEARCH movie IN (
     VECTOR INDEX moviePlots
@@ -19,8 +20,7 @@ MATCH (movie:Movie)-[r]->()
 RETURN movie.title AS title, r.prop AS prop
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause with GQLSTATUS 42I70 and the status description above.
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I70.
 
 == Possible solution
 The first iteration of the `SEARCH` clause comes with many restrictions on the `MATCH` statement.
@@ -29,6 +29,7 @@ For the time being, the Cypher query under xref:errors/gql-errors/42I70.adoc#_ex
 
 [source,cypher]
 ----
+CYPHER 25
 MATCH (movie:Movie)
   SEARCH movie IN (
     VECTOR INDEX moviePlots

@@ -1,15 +1,17 @@
 = 42I72
 
 == Status description
-error: syntax error or access rule violation - search clause with too complex pattern.In order to have a search clause, a MATCH statement can only have a single node or relationship pattern and no selectors.
+error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
 
 [#_example_scenarios]
 == Example scenarios
 
-For example, when trying to use a `SEARCH` clause in a `MATCH` statement with a pattern with several pattern parts:
+The following are examples of scenarios that will produce this error:
 
+.Use of a `SEARCH` clause in a `MATCH` statement with a pattern with several pattern parts
 [source,cypher]
 ----
+Cypher 25
 MATCH (movie:Movie), ()
   SEARCH movie IN (
     VECTOR INDEX moviePlots
@@ -19,10 +21,10 @@ MATCH (movie:Movie), ()
 RETURN movie.title AS title
 ----
 
-For example, when trying to use a `SEARCH` clause in a `MATCH` statement with a variable length:
-
+.Use of a `SEARCH` clause in a `MATCH` statement with a variable length
 [source,cypher]
 ----
+CYPHER 25
 MATCH (movie:Movie)-[]->{1,3}()
   SEARCH movie IN (
     VECTOR INDEX moviePlots
@@ -32,10 +34,10 @@ MATCH (movie:Movie)-[]->{1,3}()
 RETURN movie.title AS title
 ----
 
-For example, when trying to use a `SEARCH` clause in a `MATCH` statement with a selector:
-
+.Use of a `SEARCH` clause in a `MATCH` statement with a selector
 [source,cypher]
 ----
+CYPHER 25
 MATCH ANY SHORTEST ()-->(movie:Movie)
   SEARCH movie IN (
     VECTOR INDEX moviePlots
@@ -45,16 +47,17 @@ MATCH ANY SHORTEST ()-->(movie:Movie)
 RETURN movie.title AS title
 ----
 
-In all the above cases, you will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause with GQLSTATUS 42I72 and the status description above.
+In all of the above cases, you will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I72.
 
 == Possible solution
 The first iteration of the `SEARCH` clause comes with many restrictions on the `MATCH` statement.
 It is likely that some of these restriction will be lifted in future versions of Neo4j.
 For the time being, the Cypher queries under xref:errors/gql-errors/42I72.adoc#_example_scenarios[Example scenarios] can be rewritten like this:
 
+.Use of a `SEARCH` clause in a `MATCH` statement with a pattern with several pattern parts
 [source,cypher]
 ----
+CYPHER 25
 MATCH (movie:Movie)
   SEARCH movie IN (
     VECTOR INDEX moviePlots
@@ -65,8 +68,10 @@ MATCH (movie), ()
 RETURN movie.title AS title
 ----
 
+.Use of a `SEARCH` clause in a `MATCH` statement with a variable length
 [source,cypher]
 ----
+CYPHER 25
 MATCH (movie:Movie)
   SEARCH movie IN (
     VECTOR INDEX moviePlots
@@ -77,8 +82,10 @@ MATCH (movie)-[]->{1,3}()
 RETURN movie.title AS title
 ----
 
+.Use of a `SEARCH` clause in a `MATCH` statement with a selector
 [source,cypher]
 ----
+CYPHER 25
 MATCH (movie:Movie)
   SEARCH movie IN (
     VECTOR INDEX moviePlots

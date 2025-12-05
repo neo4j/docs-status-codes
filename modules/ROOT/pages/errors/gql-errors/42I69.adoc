@@ -1,7 +1,7 @@
 = 42I69
 
 == Status description
-error: syntax error or access rule violation - invalid search variable reference. `{ <<variable>> }` must reference a variable from the same MATCH statement.
+error: syntax error or access rule violation - invalid search variable reference. `{ <<variable>> }` must reference a variable from the same `MATCH` statement.
 
 == Example scenario
 
@@ -9,6 +9,7 @@ For example, when trying to use a variable from a previous `MATCH` statement as 
 
 [source,cypher]
 ----
+CYPHER 25
 MATCH (movie:Movie)
 MATCH (m:Movie {title:'Matrix, The'})
   SEARCH movie IN (
@@ -19,13 +20,11 @@ MATCH (m:Movie {title:'Matrix, The'})
 RETURN movie.title AS title
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause with GQLSTATUS 42I69 and status description:
-
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I69 and status description:
 
 [source]
 ----
-error: syntax error or access rule violation - invalid search variable reference. `movie` must reference a variable from the same MATCH statement.
+error: syntax error or access rule violation - invalid search variable reference. `movie` must reference a variable from the same `MATCH` statement.
 ----
 
 ifndef::backend-pdf[]
