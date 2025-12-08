@@ -175,6 +175,8 @@
 **** xref:errors/gql-errors/22NCD.adoc[]
 **** xref:errors/gql-errors/22NCE.adoc[]
 **** xref:errors/gql-errors/22NCF.adoc[]
+**** xref:errors/gql-errors/22ND1.adoc[]
+**** xref:errors/gql-errors/22ND2.adoc[]
 *** xref:errors/gql-errors/index.adoc#invalid-transaction-state[Invalid transaction state]
 **** xref:errors/gql-errors/25G02.adoc[]
 **** xref:errors/gql-errors/25N01.adoc[]
