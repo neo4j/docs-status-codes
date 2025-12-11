@@ -1,0 +1,35 @@
+= 22NAE
+
+== Status description
+error: data exception - multi-line field in illegal CSV context. At `{ <<input>> }` @ position `{ <<pos>> }` - Multi-line fields are illegal in this context and so this might suggest that there's a field with a start quote, but a missing end quote.
+
+== Explanation
+When a CSV file has a field that starts with a quote has content after the ending quote that file is formatted incorrectly and trying to read such a file with `LOAD CSV` will result in an error.
+
+== Example scenario
+
+Given that `somefile.csv` is a CSV file with the following content:
+----
+x,y
+"x",1
+"y
+",2
+----
+And that the neo4j database logging is configured with specific allowed multiline files, but where `somefile.csv` is not among them.
+Then running the query;
+----
+LOAD CSV 'somefile.csv' AS line RETURN count(line)
+----
+
+The following error will be thrown:
+[source]
+----
+error: data exception - multi-line field in illegal CSV context. At 'somefile.csv' @ position 15 - Multi-line fields are illegal in this context and so this might suggest that there's a field with a start quote, but a missing end quote.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

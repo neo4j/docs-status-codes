@@ -584,6 +584,18 @@ Status description:: error: data exception - invalid list for property-based acc
 
 Status description:: error: data exception - mixed type list for property-based access control rule. The expression `{ <<expr>> }` is not supported. All elements in a list must be literals of the same type for property-based access control.
 
+=== xref:errors/gql-errors/22NAC.adoc[22NAC]
+
+Status description:: error: data exception - characters after quote in CSV field. At `{ <<input1>> }` @ position `{ <<pos>> }` - there's a field starting with a quote and whereas it ends that quote there seems to be characters in that field after that ending quote. That isn't supported. This is what was read: `{ <<input2>> }`.
+
+=== xref:errors/gql-errors/22NAD.adoc[22NAD]
+
+Status description:: error: data exception - missing end quote in CSV field. At `{ <<input1>> }` @ position `{ <<dim1>> }` - Missing end for quote (\``{ <<input2>> }`\`) which started on line `{ <<dim2>> }`.
+
+=== xref:errors/gql-errors/22NAE.adoc[22NAE]
+
+Status description:: error: data exception - multi-line field in illegal CSV context. At `{ <<input>> }` @ position `{ <<pos>> }` - Multi-line fields are illegal in this context and so this might suggest that there's a field with a start quote, but a missing end quote.
+
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
 Status description:: error: data exception - invalid property-based access control rule involving `WHERE` and `IS NULL`. The property value access rule pattern `{ <<pred>> }` always evaluates to `NULL`. Use `WHERE` syntax in combination with `IS NULL` instead.
