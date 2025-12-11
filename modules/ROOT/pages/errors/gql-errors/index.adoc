@@ -1599,6 +1599,14 @@ Status description:: error: syntax error or access rule violation - not supporte
 
 Status description:: error: syntax error or access rule violation  - invalid `CREATE DATABASE` statement. The backup metadata script contains an invalid or missing `CREATE DATABASE` statement. The metadata script must contain exactly one `CREATE DATABASE` statement and it must use the parameter `$database`.
 
+=== xref:errors/gql-errors/42NAD.adoc[42NAD]
+
+Status description:: error: syntax error or access rule violation - no such auth rule. An auth rule with the name `{ <<authRule>> }` was not found. Verify that the spelling is correct.
+
+=== xref:errors/gql-errors/42NAE.adoc[42NAE]
+
+Status description:: error: syntax error or access rule violation - auth rule already exists. An auth rule with the name `{ <<authRule>> }` already exists.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.

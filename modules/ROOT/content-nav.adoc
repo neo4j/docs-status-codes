@@ -396,6 +396,8 @@
 **** xref:errors/gql-errors/42NAA.adoc[]
 **** xref:errors/gql-errors/42NAB.adoc[]
 **** xref:errors/gql-errors/42NAC.adoc[]
+**** xref:errors/gql-errors/42NAD.adoc[]
+**** xref:errors/gql-errors/42NAE.adoc[]
 **** xref:errors/gql-errors/42NFC.adoc[]
 **** xref:errors/gql-errors/42NFD.adoc[]
 **** xref:errors/gql-errors/42NFE.adoc[]
