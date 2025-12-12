@@ -5141,14 +5141,14 @@ m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
 |Description
 |Variable in subquery is shadowing a variable with the same name from the outer scope.
-If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (`%s`)
+If you want to use that variable instead, it must be imported into the subquery using a variable scope clause. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|03N60
 |Status description
 a|info: subquery variable shadowing.
-The variable `{ <<variable>> }` in the subquery uses the same name as a variable from the outer query. Use `WITH { <<variable>> }` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+The variable `{ <<variable>> }` in the subquery uses the same name as a variable from the outer query. Use `{ <<clause>> } ({ <<variable>> })` to import the one from the outer scope unless you want it to be a new variable.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -5178,17 +5178,16 @@ Returned GQLSTATUS code::
 Returned status description::
 info: subquery variable shadowing.
 The variable `n` in the subquery uses the same name as a variable from the outer query.
-Use `WITH n` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+Use `CALL (n)` to import the one from the outer scope unless you want it to be a new variable.
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using a variable scope clause.
 +
 [source,cypher]
 ----
 MATCH (n)
-CALL {
-  WITH n
+CALL (n) {
   MATCH (n)--(m)
   RETURN m
 }
@@ -5211,17 +5210,16 @@ RETURN *
 
 Description of the returned code::
 Variable in subquery is shadowing a variable with the same name from the outer scope.
-If you want to use that variable instead, it must be imported into the subquery using importing `WITH` clause. (the shadowing variable is: `n`)
+If you want to use that variable instead, it must be imported into the subquery using a variable scope clause. (the shadowing variable is: `n`)
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using a variable scope clause.
 +
 [source,cypher]
 ----
 MATCH (n)
-CALL {
-  WITH n
+CALL (n) {
   MATCH (n)--(m)
   RETURN m
 }
