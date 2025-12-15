@@ -143,3 +143,4 @@
 [[valueTypeList]]$valueTypeList:: A list of Cypher value types.
 [[variable]]$variable:: Variable name, for example, `n`.
 [[variableList]]$variableList:: A list of variable names, for example, `a, b, c`.
+[[version]]$version:: A version, for example, `25` in `CYPHER 25`.
