@@ -1374,6 +1374,7 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
+-  label:deprecated[Deprecated in 5.23] CALL subquery without a variable scope clause is deprecated. Use CALL (`%s`) { ... }
 - All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
 [NOTE]
 In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
@@ -1536,6 +1537,73 @@ RETURN 1 as my\u0085identifier
 Description of the returned code::
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 
+======
+=====
+
+.Using a CALL subquery scope without a variable scope clause
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL {
+  WITH nbr
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+`CALL` subquery without a variable scope clause is deprecated. Use `CALL (nbr) {...}`
+
+Suggestions for improvement::
+Replace the importing `WITH` with a variable scope clause.
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL (nbr) {
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL {
+  WITH nbr
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
+Description of the returned code::
+`CALL` subquery without a variable scope clause is deprecated. Use `CALL (nbr) {...}`
+
+Suggestions for improvement::
+Replace the importing `WITH` with a variable scope clause.
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL (nbr) {
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
 ======
 =====
 
