@@ -24,7 +24,7 @@ LOAD CSV 'somefile.csv' AS line RETURN count(line)
 The following error will be thrown:
 [source]
 ----
-error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in { 'somefile.csv' } at position { 15 }.
+error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in 'somefile.csv' at position 15.
 ----
 
 ifndef::backend-pdf[]
