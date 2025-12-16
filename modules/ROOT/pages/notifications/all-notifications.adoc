@@ -1310,7 +1310,7 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
-- `%s` subquery without a variable scope clause is now deprecated. Use CALL (`%s`) { ... }
+- `%s` subquery without a variable scope clause is deprecated. Use CALL (`%s`) { ... }
 - All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
 [NOTE]
 In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
@@ -1649,10 +1649,10 @@ Returned GQLSTATUS code::
 
 Returned status description::
 warn: feature deprecated.
-`CALL` subquery without a variable scope clause is now deprecated. Use `CALL (nbr) {...}`
+`CALL` subquery without a variable scope clause is deprecated. Use `CALL (nbr) {...}`
 
 Suggestions for improvement::
-Replace the Importing WITH with a variable scope clause.
+Replace the importing `WITH` with a variable scope clause.
 +
 [source,cypher]
 ----
@@ -1678,10 +1678,10 @@ CALL {
 RETURN otherNbr
 ----
 Description of the returned code::
-`CALL` subquery without a variable scope clause is now deprecated. Use `CALL (nbr) {...}`
+`CALL` subquery without a variable scope clause is deprecated. Use `CALL (nbr) {...}`
 
 Suggestions for improvement::
-Replace the Importing WITH with a variable scope clause.
+Replace the importing `WITH` with a variable scope clause.
 +
 [source,cypher]
 ----
