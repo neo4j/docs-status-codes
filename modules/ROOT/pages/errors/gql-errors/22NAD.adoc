@@ -1,7 +1,7 @@
 = 22NAD
 
 == Status description
-error: data exception - missing end quote in CSV field. Missing end quote at position { <<pos>> } in { <<input>> }.
+error: data exception - missing end quote in CSV field. Missing end quote at position `{ <<pos>> }` in `{ <<input>> }`.
 
 == Explanation
 When a CSV file has a field that starts with a quote but misses an ending quote that file is formatted incorrectly and trying to read such a file with `LOAD CSV` will result in an error.

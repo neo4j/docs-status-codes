@@ -1,7 +1,7 @@
 = 22NAE
 
 == Status description
-error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in { <<input>> } at position { <<pos>> }.
+error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in `{ <<input>> }` at position `{ <<pos>> }`.
 
 == Explanation
 When a CSV file has a field that starts with a quote has content after the ending quote that file is formatted incorrectly and trying to read such a file with `LOAD CSV` will result in an error.
