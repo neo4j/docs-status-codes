@@ -586,7 +586,7 @@ Status description:: error: data exception - mixed type list for property-based 
 
 === xref:errors/gql-errors/22NAC.adoc[22NAC]
 
-Status description:: error: data exception - characters after quote in CSV field. Characters after an ending quote in a CSV field are not supported. See `{ <<input>>1 }` at position `{ <<pos>> }`. This is read as `{ <<input>>2 }`.
+Status description:: error: data exception - characters after quote in CSV field. Characters after an ending quote in a CSV field are not supported. See `{ <<input>> }` at position `{ <<pos>> }`. This is read as `{ <<variable>> }`.
 
 === xref:errors/gql-errors/22NAD.adoc[22NAD]
 
