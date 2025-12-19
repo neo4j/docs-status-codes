@@ -4,7 +4,8 @@
 error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in `{ <<input>> }` at position `{ <<pos>> }`.
 
 == Explanation
-When a CSV file contains a field that spans multiple lines, but the context in which it is being read does not allow multi-line fields, an error will be thrown. This often occurs when there is a missing end quote in a quoted field.
+This error is thrown when a CSV file contains a field that spans multiple lines, but the context in which it is being read does not allow multi-line fields.
+This often occurs when there is a missing end quote in a quoted field.
 
 == Example scenario
 
