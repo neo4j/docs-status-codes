@@ -1,0 +1,42 @@
+= 42NAD
+
+== Status description
+error: syntax error or access rule violation - no such auth rule. An auth rule with the name `{ <<authRule>> }` was not found. Verify that the spelling is correct.
+
+== Explanation
+When referencing an authorization rule in a command, the specified auth rule must already exist.
+If the auth rule does not exist, the operation will fail with this error.
+
+== Example scenario
+Try to drop an auth rule using the following command:
+
+[source,cypher]
+----
+DROP AUTH RULE authRuleName
+----
+If the auth rule `authRuleName` does not exist, an error will be thrown with GQLSTATUS 42NAD.
+
+== Possible solutions
+
+To resolve this issue, make sure that the specified auth rule exists before calling the drop command.
+
+Another solution is to use the `IF EXISTS` clause in the drop command to avoid the error if the auth rule does not exist.
+
+== Example scenario
+Try to grant a role to an auth rule using the following command:
+[source,cypher]
+----
+GRANT ROLE roleName TO AUTH RULE authRuleName
+----
+If the auth rule `authRuleName` does not exist, an error will be thrown with GQLSTATUS 42NAD.
+
+== Possible solutions
+
+To resolve this issue, make sure that the specified auth rule exists before calling the grant role command.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

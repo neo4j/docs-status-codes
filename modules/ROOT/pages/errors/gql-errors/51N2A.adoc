@@ -1,0 +1,36 @@
+= 51N2A
+
+== Status description
+error: system configuration or operation exception - not supported with auth disabled. The command `{ <<cmd>> }` is not available with auth disabled.
+
+== Explanation
+This error occurs when auth is disabled and a user attempts to run a command that is not available unless auth is enabled.
+
+== Example scenario
+For example, try to change the current user's password when auth is disabled:
+
+[source,cypher]
+----
+ALTER CURRENT USER SET PASSWORD FROM $oldPassword TO $newPassword
+----
+
+You will receive the following error:
+
+[source]
+----
+error: system configuration or operation exception - not supported with auth disabled. The command 'ALTER CURRENT USER SET PASSWORD' is not available with auth disabled.
+----
+
+To fix this, either enable auth or change the password using the `ALTER USER` command:
+
+[source,cypher]
+----
+ALTER USER $currentUsername SET PASSWORD $newPassword CHANGE NOT REQUIRED
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

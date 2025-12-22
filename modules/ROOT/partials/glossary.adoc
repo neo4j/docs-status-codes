@@ -8,6 +8,7 @@
 [[arg]]$arg:: Procedure or function argument, for example, `database`, `pause`, `dryrun`, etc.
 [[argType]]$argType:: Argument type, either input or output.
 [[auth]]$auth:: Auth provider name, for example, `ldap`, `native`.
+[[authRule]]$authRule:: ABAC auth rule name.
 [[boltServerState]]$boltServerState:: Bolt server state, for example, `READY`.
 [[boltMsgLenLimit]]$boltMsgLenLimit:: Bolt message length limit, for example, `1000`.
 [[bytes]]$bytes:: Number of bytes.
@@ -46,6 +47,9 @@
 [[funType]]$funType:: Function type, e.g. non-deterministic or aggregate.
 [[graph]]$graph:: The name of a graph, for example, `myGraph`.
 [[graphTypeDependence]]$graphTypeDependence:: Graph type dependencency for constraint, one of `UNDESIGNATED`, `INDEPENDENT`, or `DEPENDENT`.
+[[graphTypeElement]]$graphTypeElement:: An element of a graph type, for example `(:Node => { name :: STRING})`, or `(:Source)-[:REL =>]->(:Target)`. 
+[[graphTypeReference]]$graphTypeReference:: Graph type reference, for example, `(:Node =>)` or `p`.
+[[graphTypeOperation]]$graphTypeOperation:: Graph type operation, for example, one of `SET`, `ADD`, `DROP` or `ALTER`.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
 [[hintList]]$hintList:: A list of free form descriptions of hints like `USING INDEX n:N(prop)`.
 [[idx]]$idx:: Index name, `my_index`.
@@ -81,6 +85,8 @@
 [[param]]$param:: Parameter name, for example, `$pattern`.
 [[paramList]]$paramList:: A list of parameters, for example `$pattern, $prop`.
 [[pat]]$pat:: Pattern, for example, `(:Person)`.
+[[pathMode]]$pathMode:: GPM path mode, for example, `ACYCLIC`.
+[[pathModeList]]$pathModeList:: A list of GPM path modes, for example, `TRAIL, ACYCLIC`.
 [[port]]$port:: Port name, for example, `6362`.
 [[portList]]$portList:: A list of port names, for example, `6362, 6000, 7000`.
 [[pos]]$pos:: A position, for example, in a sequence, for example, `2`
@@ -137,3 +143,4 @@
 [[valueTypeList]]$valueTypeList:: A list of Cypher value types.
 [[variable]]$variable:: Variable name, for example, `n`.
 [[variableList]]$variableList:: A list of variable names, for example, `a, b, c`.
+[[version]]$version:: A version, for example, `25` in `CYPHER 25`.

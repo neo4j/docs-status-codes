@@ -1,0 +1,41 @@
+= 42N61
+
+== Status description
+error: syntax error or access rule violation - unsupported mixing of different path modes. Mixing `{ <<pathModeList>> }` in the same graph pattern is not supported. Split the pattern into separate `MATCH` clauses instead.
+
+== Example scenario
+For example, in the following query `TRAIL` and `ACYCLIC` are used:
+
+[source,cypher]
+----
+MATCH p = ACYCLIC (a:A)-[:P]->+(b:B),
+      q = TRAIL (b)-[:Q]->+(a)
+RETURN p, q
+----
+This will result in an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001], with a cause detailed in xref:errors/gql-errors/42N61.adoc[42N61] and the following status description:
+
+[source]
+----
+error: syntax error or access rule violation - unsupported mixing of different path modes. Mixing `ACYCLIC` and  `TRAIL` in the same graph pattern is not supported. Split the pattern into separate `MATCH` clauses instead.
+----
+
+== Possible solution
+Split the graph pattern into separate `MATCH` clauses and use predicates to enforce relationship uniqueness across the set of paths.
+
+For example, the above query can be rewritten as:
+
+[source,cypher]
+----
+MATCH p = ACYCLIC (a:A)-[r1:P]->+(b:B)
+MATCH q = TRAIL (b)-[r2:Q WHERE NOT r2 IN r1]->+(a)
+RETURN p, q
+----
+
+Here the predicate `NOT r2 IN r1` ensures that the relationships in path `q` do not overlap with those in path `p`, replicating the effect of Cypher's default match mode `DIFFERENT RELATIONSHIPS`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

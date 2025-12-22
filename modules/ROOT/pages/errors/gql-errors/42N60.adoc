@@ -1,0 +1,26 @@
+= 42N60
+
+== Status description
+error: syntax error or access rule violation - unsupported combination of match mode and path mode. `REPEATABLE ELEMENTS` with `{ <<pathMode>> }` path mode is not supported.
+
+== Example scenario
+For example, in the following query `REPEATABLE ELEMENTS` is used with the `TRAIL` path mode:
+
+[source,cypher]
+----
+MATCH REPEATABLE ELEMENTS p = TRAIL (:A)-[:R]->{,10}(:B)
+RETURN p
+----
+This will result in an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001], with a cause detailed in xref:errors/gql-errors/42N60.adoc[42N60] and the following status description:
+
+[source]
+----
+error: syntax error or access rule violation - unsupported combination of match mode and path mode. `REPEATABLE ELEMENTS` with `TRAIL` path mode is not supported.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

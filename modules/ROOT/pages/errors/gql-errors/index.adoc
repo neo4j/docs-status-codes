@@ -155,6 +155,10 @@ Status description:: error: data exception - invalid value type
 
 Status description:: error: data exception - invalid date, time, or datetime function field name
 
+=== xref:errors/gql-errors/22G0I.adoc[22G0I]
+
+Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
+
 === xref:errors/gql-errors/22N00.adoc[22N00]
 
 Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
@@ -640,6 +644,76 @@ Status description:: error: data exception - invalid vector dimensions. Invalid 
 
 Status description:: error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
+=== xref:errors/gql-errors/22NC1.adoc[22NC1]
+
+Status description:: error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `{ <<propKey>> }` more than once.
+
+=== xref:errors/gql-errors/22NC2.adoc[22NC2]
+
+Status description:: error: data exception - node element type has no effect. The node element type `{ <<label>> }` must contain one or more implied labels, or at least one property type.
+
+=== xref:errors/gql-errors/22NC3.adoc[22NC3]
+
+Status description:: error: data exception - relationship element type has no effect. The relationship element type `{ <<relType>> }` must define a source, destination, or at least one property type.
+
+=== xref:errors/gql-errors/22NC4.adoc[22NC4]
+
+Status description:: error: data exception - a label cannot be both identifying and implied. The label(s) `{ <<labelList>> }` are defined as both identifying and implied.
+
+=== xref:errors/gql-errors/22NC5.adoc[22NC5]
+
+Status description:: error: data exception - graph type element not found. The `{ <<entityType>> }` element type referenced by `{ <<graphTypeReference>> }` does not exist.
+
+=== xref:errors/gql-errors/22NC6.adoc[22NC6]
+
+Status description:: error: data exception - independent constraint and node element type have the same label.
+The independent constraint `{ <<constrDescrOrName>> }` is using the same label `{ <<label>> }` as a node element type.
+
+=== xref:errors/gql-errors/22NC7.adoc[22NC7]
+
+Status description:: error: data exception - independent constraint and relationship element type have the same relationship type.
+The independent constraint `{ <<constrDescrOrName>> }` is using the same relationship type `{ <<relType>> }` as a relationship element type.
+
+=== xref:errors/gql-errors/22NC8.adoc[22NC8]
+
+Status description:: error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name `{ <<token>> }` more than once.
+
+=== xref:errors/gql-errors/22NC9.adoc[22NC9]
+
+Status description:: error: data exception - invalid element type constraints in graph type. A `{ <<entityType>>1 }` element type property `{ <<context>> }` constraint cannot be specified inline of a `{ <<entityType>>2 }` element type.
+
+=== xref:errors/gql-errors/22NCA.adoc[22NCA]
+
+Status description:: error: data exception - node element type already exists. A node element type identified by the label `{ <<label>> }` already exists in the graph type.
+
+=== xref:errors/gql-errors/22NCB.adoc[22NCB]
+
+Status description:: error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `{ <<relType>> }` already exists in the graph type.
+
+=== xref:errors/gql-errors/22NCC.adoc[22NCC]
+
+Status description:: error: data exception - node element type specified incorrectly. The node element type `{ <<graphTypeElement>>1 }` identified by the label `{ <<label>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
+
+=== xref:errors/gql-errors/22NCD.adoc[22NCD]
+
+Status description:: error: data exception - relationship element type specified incorrectly. The relationship element type `{ <<graphTypeElement>>1 }` identified by the relationship type `{ <<relType>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
+
+=== xref:errors/gql-errors/22NCE.adoc[22NCE]
+
+Status description:: error: data exception - node element type in use. The node element type identified by the label `{ <<label>> }` is referenced in the graph type element `{ <<graphTypeReference>> }` and cannot be dropped.
+
+=== xref:errors/gql-errors/22NCF.adoc[22NCF]
+
+Status description:: error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
+
+=== xref:errors/gql-errors/22ND1.adoc[22ND1]
+
+Status description:: error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.
+
+=== xref:errors/gql-errors/22ND2.adoc[22ND2]
+
+Status description:: error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'{ <<query>> }'` is not allowed for roles with `DENY` privileges.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
@@ -967,7 +1041,7 @@ Status description:: error: syntax error or access rule violation - invalid use 
 
 === xref:errors/gql-errors/42I39.adoc[42I39]
 
-Status description:: error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors or explicit match modes is not allowed.
+Status description:: error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors, explicit match modes, or explicit path modes is not allowed.
 
 === xref:errors/gql-errors/42I40.adoc[42I40]
 
@@ -1055,7 +1129,7 @@ Status description:: error: syntax error or access rule violation - missing LOOK
 
 === xref:errors/gql-errors/42I62.adoc[42I62]
 
-Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric:  `{ <<input>> }`.
+Status description:: error: syntax error or access rule violation - unsupported distance metric. Unknown distance metric: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42I63.adoc[42I63]
 
@@ -1075,7 +1149,7 @@ Status description:: error: syntax error or access rule violation - pattern pars
 
 === xref:errors/gql-errors/42I67.adoc[42I67]
 
-Status description:: error: syntax error or access rule violation - unsupported language feature. The query is a valid `CYPHER { <<feat>>2 }` query, but it is run in `CYPHER { <<feat>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
+Status description:: error: syntax error or access rule violation - unsupported language feature. The query is parsable in `CYPHER { <<version>>2 }`, but it is run in `CYPHER { <<version>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<feat>>2 }`.
 
 === xref:errors/gql-errors/42I68.adoc[42I68]
 
@@ -1128,6 +1202,18 @@ Status description:: error: syntax error or access rule violation - invalid shar
 === xref:errors/gql-errors/42N0B.adoc[42N0B]
 
 Status description:: error: syntax error or access rule violation - cannot replace sharded database. The database identified by `{ <<db>>1 }` is sharded. Drop the database `{ <<db>>2 }` before recreating.
+
+=== xref:errors/gql-errors/42N0D.adoc[42N0D]
+
+Status description:: error: syntax error or access rule violation - cannot call function from this context. The function `{ <<fun>> }` cannot be called from the current context. It can only be used `{ <<context>> }`.
+
+=== xref:errors/gql-errors/42N0E.adoc[42N0E]
+
+Status description:: error: syntax error or access rule violation - cannot call function without metadata. The function  `{ <<fun>> }` cannot be called without metadata.
+
+=== xref:errors/gql-errors/42N0F.adoc[42N0F]
+
+Status description:: error: syntax error or access rule violation - cannot call function without metadata for realm. The function  `{ <<fun>> }` cannot be called without metadata for realm: `{ <<auth>> }`.
 
 === xref:errors/gql-errors/42N10.adoc[42N10]
 
@@ -1317,6 +1403,14 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - variable already defined. Variable `{ <<variable>> }` already declared.
 
+=== xref:errors/gql-errors/42N60.adoc[42N60]
+
+Status description:: error: syntax error or access rule violation - unsupported combination of match mode and path mode. `REPEATABLE ELEMENTS` with `{ <<pathMode>> }` path mode is not supported.
+
+=== xref:errors/gql-errors/42N61.adoc[42N61]
+
+Status description:: error: syntax error or access rule violation - unsupported mixing of different path modes. Mixing `{ <<pathModeList>> }` in the same graph pattern is not supported. Split the pattern into separate `MATCH` clauses instead.
+
 === xref:errors/gql-errors/42N62.adoc[42N62]
 
 Status description:: error: syntax error or access rule violation - variable not defined. Variable `{ <<variable>> }` not defined.
@@ -1380,6 +1474,10 @@ Status description:: error: syntax error or access rule violation - missing hint
 === xref:errors/gql-errors/42N78.adoc[42N78]
 
 Status description:: error: syntax error or access rule violation - variable already bound. Node `{ <<variable>> }` has already been bound and cannot be modified by the `{ <<clause>> }` clause.
+
+=== xref:errors/gql-errors/42N79.adoc[42N79]
+
+Status description:: error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
 
 === xref:errors/gql-errors/42N81.adoc[42N81]
 
@@ -1493,6 +1591,22 @@ Status description:: error: syntax error or access rule violation - system datab
 
 Status description:: error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference `{ <<input>> }`. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
 
+=== xref:errors/gql-errors/42NAB.adoc[42NAB]
+
+Status description:: error: syntax error or access rule violation - not supported standalone call. `WHERE` is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+
+=== xref:errors/gql-errors/42NAC.adoc[42NAC]
+
+Status description:: error: syntax error or access rule violation  - invalid `CREATE DATABASE` statement. The backup metadata script contains an invalid or missing `CREATE DATABASE` statement. The metadata script must contain exactly one `CREATE DATABASE` statement and it must use the parameter `$database`.
+
+=== xref:errors/gql-errors/42NAD.adoc[42NAD]
+
+Status description:: error: syntax error or access rule violation - no such auth rule. An auth rule with the name `{ <<authRule>> }` was not found. Verify that the spelling is correct.
+
+=== xref:errors/gql-errors/42NAE.adoc[42NAE]
+
+Status description:: error: syntax error or access rule violation - auth rule already exists. An auth rule with the name `{ <<authRule>> }` already exists.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.
@@ -1586,6 +1700,18 @@ Status description:: error: general processing exception - no such schema descri
 === xref:errors/gql-errors/50N23.adoc[50N23]
 
 Status description:: error: general processing exception - transaction retry aborted. Transaction retry aborted after `{ <<count>> }` attempts. Retry timed out with a maximum retry duration of `{ <<timeAmount>> }` `{ <<timeUnit>> }`.
+
+=== xref:errors/gql-errors/50N24.adoc[50N24]
+
+Status description:: error: general processing exception - sharded properties transaction handling database error. Unexpected exception while getting transaction state.
+
+=== xref:errors/gql-errors/50N25.adoc[50N25]
+
+Status description:: error: general processing exception - sharded properties transaction handling client error. Unexpected exception while getting transaction state.
+
+=== xref:errors/gql-errors/50N26.adoc[50N26]
+
+Status description:: error: general processing exception - invalid backup metadata script. The backup metadata script contains invalid syntax.
 
 === xref:errors/gql-errors/50N42.adoc[50N42]
 
@@ -1713,6 +1839,10 @@ Status description:: error: system configuration or operation exception - not su
 === xref:errors/gql-errors/51N29.adoc[51N29]
 
 Status description:: error: system configuration or operation exception - not supported by this server. The command `{ <<cmd>> }` must be executed on the current `LEADER` server.
+
+=== xref:errors/gql-errors/51N2A.adoc[51N2A]
+
+Status description:: error: system configuration or operation exception - not supported with auth disabled. The command `{ <<cmd>> }` is not available with auth disabled.
 
 === xref:errors/gql-errors/51N30.adoc[51N30]
 
@@ -1898,6 +2028,10 @@ Status description:: error: system configuration or operation exception - upgrad
 
 Status description:: error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
 
+=== xref:errors/gql-errors/51N7A.adoc[51N7A]
+
+Status description:: error: system configuration or operation exception - no admin user candidate. No admin user candidate is found. Use `neo4j-admin dbms set-default-admin` to select a valid admin.
+
 
 [[procedure-exceptions]]
 == Procedure exceptions
@@ -1942,7 +2076,7 @@ Status description:: error: procedure exception - invalid address key. An addres
 
 === xref:errors/gql-errors/52N11.adoc[52N11]
 
-Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred. Please refer to the server's debug log for more information.
+Status description:: error: procedure exception - generic topology procedure error. An unexpected error has occurred: `{ <<msg>> }`.
 
 === xref:errors/gql-errors/52N12.adoc[52N12]
 
@@ -1962,7 +2096,7 @@ Status description:: error: procedure exception - invalid procedure argument lis
 
 === xref:errors/gql-errors/52N17.adoc[52N17]
 
-Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed.
+Status description:: error: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: `{ <<msg>> }`.
 
 === xref:errors/gql-errors/52N18.adoc[52N18]
 

@@ -1,0 +1,28 @@
+= 51N7A
+
+== Status description
+error: system configuration or operation exception - no admin user candidate. No admin user candidate is found. Use `neo4j-admin dbms set-default-admin` to select a valid admin.
+
+== Explanation
+When initializing the Neo4j DBMS for the first time, the system attempts to determine a default admin user.
+This user is responsible for performing administrative tasks on the database.
+If no valid admin user candidate can be found, the system will throw this error.
+
+== Example scenario
+For example, before the database starts up for the first time, execute the following command to set a default admin user that does not exist:
+
+[source]
+----
+neo4j-admin dbms set-default-admin user-that-does-not-exist
+----
+
+== Possible solutions
+
+To resolve this issue, run `neo4j-admin dbms set-default-admin` again with a user that does exist in the system.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

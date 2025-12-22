@@ -1,0 +1,32 @@
+= 42N79
+
+== Status description
+error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
+
+== Explanation
+
+This error occurs when an administration command is prepended with a `USE` clause.
+
+== Example scenario
+
+For example, try to show all the databases with a `USE` clause in the query:
+
+[source,cypher]
+----
+USE system
+SHOW DATABASES
+----
+
+Error message will be:
+
+[source]
+----
+error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
