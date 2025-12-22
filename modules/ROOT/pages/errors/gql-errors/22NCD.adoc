@@ -1,0 +1,53 @@
+= 22NCD
+
+== Status description
+error: data exception - relationship element type specified incorrectly. The relationship element type `{ <<graphTypeElement>>1 }` identified by the relationship type `{ <<relType>> }` is different to the one specified in the query `{ <<graphTypeElement>>2 }`.
+
+== Explanation
+This error occurs when attempting to drop a relationship element type from the graph type, but the specified element type does not match the existing one for the given relationship type.
+
+When dropping an element type, it is not necessary to specify the full element type; you can simply specify the relationship type.
+If you do specify an element type, it must match exactly with the existing one in the graph type.
+
+== Example scenario
+Given the following graph type:
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+    ()-[r:REL => {name :: STRING }]->()
+}
+----
+
+Execute the query:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE DROP {
+     ()-[r:REL => {name :: STRING, age :: INT }]->()
+}
+----
+
+The query returns an error with GQLSTATUS 22NCD and the status description:
+
+[source]
+----
+error: data exception - relationship element type specified incorrectly. The relationship element type ()-[r:`REL` => {`name` :: STRING }]->() identified by the relationship type `REL` is different to the one specified in the query ()-[`r`:`REL` => {`name` :: STRING, `age` :: INT }]->().
+----
+
+To fix this, change the query as follows:
+
+[source, cypher]
+----
+ALTER CURRENT GRAPH TYPE DROP {
+     ()-[r:REL => ]->()
+}
+----
+It is not necessary to specify the full element type to drop it.
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
