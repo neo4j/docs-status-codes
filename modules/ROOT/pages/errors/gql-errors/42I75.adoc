@@ -1,0 +1,66 @@
+= 42I75
+
+== Status description
+error: syntax error or access rule violation - self-referencing in vector search. The expression `{ <<expr>> }` in the search clause may not depend on the search clause binding variable `{ <<variable>> }`.
+
+== Example scenarios
+For example, assuming that you have a vector index created by:
+
+[source,cypher]
+----
+CYPHER 25
+CREATE VECTOR INDEX moviePlots
+FOR (m:Movie) ON m.embedding
+WITH [m.rating]
+----
+
+When trying to use the search binding variable `movie` in the `FOR` subclause in the following query:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR movie.embedding
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I75 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - self-referencing in vector search. The expression `movie.embedding` in the search clause may not depend on the search clause binding variable `movie`.
+----
+
+When trying to use the search binding variable `movie` in the RHS of the predicate in the `WHERE` subclause in the following query:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    WHERE move.rating = movie.year
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I75 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - self-referencing in vector search. The expression `movie.year` in the search clause may not depend on the search clause binding variable `movie`.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
