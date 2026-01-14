@@ -1,0 +1,70 @@
+= 42I73
+
+== Status description
+error: syntax error or access rule violation - invalid predicate for vector search filtering. A vector search filter must consist of one or more predicates joined by AND, and the combined predicates for each property must specify either an exact value (e.g. x.prop = 1), an open range (e.g. x.prop >= 1), or a between range (e.g. x.prop > 1 AND x.prop < 100). `{ <<expr>> }` does not fulfill this.
+
+== Example scenarios
+For example, assuming that you have a vector index created by:
+
+[source,cypher]
+----
+CYPHER 25
+CREATE VECTOR INDEX moviePlots
+FOR (m:Movie) ON m.embedding
+WITH [m.rating]
+----
+
+When trying to use `NOT` inside a vector search filter:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    WHERE NOT movie.rating = 8
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I73 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid predicate for vector search filtering. A vector search filter must consist of one or more predicates joined by AND, and the combined predicates for each property must specify either an exact value (e.g. x.prop = 1), an open range (e.g. x.prop >= 1), or a between range (e.g. x.prop > 1 AND x.prop < 100). `NOT movie.rating = 8` does not fulfill this.
+----
+
+When trying to use multiple open ranges on the same property inside a vector search filter:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    WHERE NOT movie.rating > 6 AND movie.rating > 8
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I73 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid predicate for vector search filtering. A vector search filter must consist of one or more predicates joined by AND, and the combined predicates for each property must specify either an exact value (e.g. x.prop = 1), an open range (e.g. x.prop >= 1), or a between range (e.g. x.prop > 1 AND x.prop < 100). `movie.rating > 6 AND movie.rating > 8` does not fulfill this.
+----
+
+== Possible solution
+Certain predicates are possible to rewrite so they adhere to the rules of vector search filtering.
+E.g. the predicate `NOT movie.rating < 7` can be rewritten to `movie.rating >= 7`, while the predicate `movie.rating > 6 AND movie.rating > 8` can be rewritten to `movie.rating > 6`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
