@@ -29,7 +29,7 @@ MATCH (movie:Movie)
 RETURN movie.title AS title
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 22ND3 and status description:
+You will receive an error with GQLSTATUS 22ND3 and status description:
 
 [source]
 ----
