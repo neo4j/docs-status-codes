@@ -1,10 +1,10 @@
 = 22ND3
 
 == Status description
-error: data exception - wrong property for vector search filtering. The property `{ <<propKey>> }` has not been added as an additional property for the vector index `{ <<idx>> }`.
+error: data exception - wrong property for vector search filtering. The property `{ <<propKey>> }` has not been added as an additional property to the vector index `{ <<idx>> }`.
 
 == Example scenario
-For example, assuming that you have a vector index created by
+For example, assuming that you have a vector index created by the following command:
 
 [source,cypher]
 ----
@@ -14,7 +14,7 @@ FOR (m:Movie) ON m.embedding
 WITH [m.rating]
 ----
 
-When using another property key than `rating` in a vector search filter:
+When using a property key other than `rating` in a vector search filter:
 
 [source,cypher]
 ----
@@ -33,10 +33,11 @@ You will receive an error with GQLSTATUS 22ND3 and status description:
 
 [source]
 ----
-error: data exception - wrong property for vector search filtering. The property `votes` has not been added as an additional property for the vector index 'moviePlots'.
+error: data exception - wrong property for vector search filtering. The property `votes` has not been added as an additional property to the vector index 'moviePlots'.
 ----
 
 == Possible solution
+
 If you want to use the property `votes` for vector search filtering, it must be an additional property of the vector index.
 This can be achieved by dropping and re-creating the vector index like this:
 
