@@ -4,7 +4,7 @@
 error: syntax error or access rule violation - wrong variable for vector search filtering. The variable `{ <<variable>>1 }` in a vector search filter property predicate must be the same as the search clause binding variable `{ <<variable>>2 }`.
 
 == Example scenario
-For example, assuming that you have a vector index created by:
+For example, assuming that you have a vector index created by the following command:
 
 [source,cypher]
 ----
@@ -14,7 +14,7 @@ FOR (m:Movie) ON m.embedding
 WITH [m.rating]
 ----
 
-When trying to use another variable than `movie` in the vector search filter in the following query:
+When trying to use a variable other than `movie` in the vector search filter in the following query:
 
 [source,cypher]
 ----
