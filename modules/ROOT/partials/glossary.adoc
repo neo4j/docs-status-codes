@@ -52,6 +52,7 @@
 [[graphTypeOperation]]$graphTypeOperation:: Graph type operation, for example, one of `SET`, `ADD`, `DROP` or `ALTER`.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
 [[hintList]]$hintList:: A list of free form descriptions of hints like `USING INDEX n:N(prop)`.
+[[ident]]$ident:: A generic identifier, for example `my_identifier`.
 [[idx]]$idx:: Index name, `my_index`.
 //Change $idx to $idxName
 [[idxDescr]]$idxDescr:: Index description, for example, `INDEX :Person(name)`.
