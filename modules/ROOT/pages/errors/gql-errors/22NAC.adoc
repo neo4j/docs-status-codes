@@ -1,0 +1,40 @@
+= 22NAC
+
+== Status description
+error: data exception - characters after quote in CSV field. Characters after an ending quote in a CSV field are not supported. See `{ <<input>> }` at position `{ <<pos>> }`. This is read as `{ <<variable>> }`.
+
+== Explanation
+When a CSV file contains a field that starts with a quote and has content after the ending quote, the file is formatted incorrectly, and trying to read such a file with `LOAD CSV` will result in an error.
+
+== Example scenario
+
+For example, let's say you have a CSV file, called `somefile.csv`, with the following content:
+
+[source,csv]
+----
+x,y
+"x",1
+"y"y,2
+----
+
+Then, when you run the following query:
+
+[source,cypher]
+----
+LOAD CSV 'somefile.csv' AS line
+RETURN count(line)
+----
+
+you will receive an error with GQLSTATUS 22NAC and status description:
+
+[source]
+----
+error: data exception - characters after quote in CSV field. Characters after an ending quote in a CSV field are not supported. See 'somefile.csv' at position 14. This is read as `y"y` .
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

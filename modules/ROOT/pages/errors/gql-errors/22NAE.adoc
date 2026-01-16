@@ -1,0 +1,41 @@
+= 22NAE
+
+== Status description
+error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in `{ <<input>> }` at position `{ <<pos>> }`.
+
+== Explanation
+This error is thrown when a CSV file contains a field that spans multiple lines, but the context in which it is being read does not allow multi-line fields.
+This often occurs when there is a missing end quote in a quoted field.
+
+== Example scenario
+
+For example, let's say you have a CSV file, called `somefile.csv`, with the following content:
+[source,csv]
+----
+x,y
+"x",1
+"y
+",2
+----
+
+And that the `neo4j` database logging is configured with specific allowed multiline files, but where `somefile.csv` is not among them.
+
+Then, when you run the following query:
+[source,cypher]
+----
+LOAD CSV 'somefile.csv' AS line
+RETURN count(line)
+----
+
+you will receive an error with GQLSTATUS 22NAE and status description:
+[source]
+----
+error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in 'somefile.csv' at position 15.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
