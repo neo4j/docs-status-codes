@@ -1167,21 +1167,9 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
 
-=== xref:errors/gql-errors/42I69.adoc[42I69]
+=== xref:errors/gql-errors/42I76.adoc[42I76]
 
-Status description:: error: syntax error or access rule violation - invalid search variable reference. `{ <<variable>> }` must reference a variable from the same `MATCH` statement.
-
-=== xref:errors/gql-errors/42I70.adoc[42I70]
-
-Status description:: error: syntax error or access rule violation - search clause with multiple bound variables. In order to have a search clause, a `MATCH` statement can only have one bound variable.
-
-=== xref:errors/gql-errors/42I71.adoc[42I71]
-
-Status description:: error: syntax error or access rule violation - search clause with invalid predicates. In order to have a search clause, a `MATCH` statement can only have predicates on the bound node or relationship.
-
-=== xref:errors/gql-errors/42I72.adoc[42I72]
-
-Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
+Status description:: error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>> }` bytes) exceeded limit of `{ <<bytes>> }` bytes.
 
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
