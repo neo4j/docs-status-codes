@@ -728,7 +728,7 @@ Status description:: error: data exception - operation not allowed for roles wit
 
 === xref:errors/gql-errors/22ND3.adoc[22ND3]
 
-Status description:: error: data exception - wrong property for vector search filtering. The property `{ <<propKey>> }` has not been added as an additional property to the vector index `{ <<idx>> }`.
+Status description:: error: data exception - wrong property for vector search filtering. The property `{ <<propKey>> }` is not an additional property of the vector index `{ <<idx>> }`.
 
 
 [[invalid-transaction-state]]
@@ -1186,6 +1186,7 @@ Status description:: error: syntax error or access rule violation - search claus
 === xref:errors/gql-errors/42I72.adoc[42I72]
 
 Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
+
 === xref:errors/gql-errors/42I73.adoc[42I73]
 
 Status description:: error: syntax error or access rule violation - invalid predicate for vector search filtering. A vector search filter must consist of one or more predicates joined by `AND`, and the combined predicates for each property must specify either an exact value (e.g. `x.prop = 1`), an open range (e.g. `x.prop >= 1`), or a between range (e.g. `x.prop > 1 AND x.prop < 100`). `{ <<expr>> }` does not fulfill this.

@@ -42,14 +42,14 @@ If you want to use the property `votes` for vector search filtering, it must be 
 For example:
 
 . Drop the index you want to add the property to:
-
++
 [source,cypher]
 ----
 DROP INDEX moviePlots
 ----
 
 . Recreate the index by adding the new property to the index:
-
++
 [source,cypher]
 ----
 CYPHER 25
