@@ -50,7 +50,7 @@ MATCH (movie:Movie)
   SEARCH movie IN (
     VECTOR INDEX moviePlots
     FOR m.embedding
-    WHERE move.rating = movie.year
+    WHERE movie.rating = movie.year
     LIMIT 5
   )
 RETURN movie.title AS title, movie.rating AS rating
