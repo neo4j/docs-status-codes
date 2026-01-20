@@ -40,7 +40,7 @@ error: syntax error or access rule violation - invalid predicate for vector sear
 ----
 =====
 
-.Using multiple open ranges on the same property inside a vector search filter
+.Using multiple half-bounded ranges on the same property inside a vector search filter
 =====
 When trying to use multiple half-bounded ranges on the same property inside a vector search filter:
 
