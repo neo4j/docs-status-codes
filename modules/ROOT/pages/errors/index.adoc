@@ -9,15 +9,6 @@ Starting from version 5.26, the Neo4j error codes have an additional GQL-status 
 This additional GQL-status object is also displayed in the query log from Neo4j 5.25 onwards.
 For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#gql-error-information[Operations Manual -> GQL error information].
 
-[NOTE]
-====
-The default GQLSTATUS code 50N42 is returned when an exception does not have a GQL-status object.
-Starting from Neo4j 5.25, we started adding GQL objects to exceptions.
-Therefore, you can expect many 50N42 codes during this transition period.
-However, it is important not to rely on this default code, as future Neo4j versions might change it by adding an appropriate GQL object to the exception.
-Additionally, GQL codes for external procedures are not yet stable.
-====
-
 This page describes the GQL-status and the Neo4j-status object frameworks for errors, their structure, the objects they provide for errors, and how to interpret them.
 It also explains the error internals and the server-driver compatibility for both the GQLSTATUS and errors.
 
