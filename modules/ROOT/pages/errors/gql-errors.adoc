@@ -1092,12 +1092,6 @@ Status description:: error: general processing exception - remote execution data
 
 Status description:: error: general processing exception - unexpected error. Unexpected error has occurred. See debug log for details.
 
-[NOTE]
-====
-50N42 is the default GQLSTATUS code for exceptions without a GQL object.
-For more information, see link:https://neo4j.com/docs/operations-manual/current/monitoring/logging/#_use_json_format_for_the_query_log[Operations Manual -> Use JSON format for the query log].
-====
-
 == System configuration or operation exception
 
 System configuration or operation exception errors occur when there is an error in the system configuration or operation, such as procedure registration failure, a missing class field annotation, an unsupported injectable component type, duplicate field names, invalid map key type, etc.
