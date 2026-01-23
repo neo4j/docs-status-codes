@@ -2,7 +2,50 @@
 
 
 == Status description
-error: data exception - invalid properties in merge pattern. `MERGE` cannot be used with graph element property values that are null or NaN.
+error: data exception - invalid properties in merge pattern. The { <<entityType>> } property { <<propKey>> } in { <<pat>> } is invalid. `MERGE` cannot be used with a graph element property value that is { <<value>> }.
+
+== Explanation
+This error occurs when a `MERGE` pattern includes a node or relationship property value that is not allowed, such as `null` or `NaN`.
+Because `MERGE` must be able to match or create a concrete graph element, these invalid values are rejected.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Null property value in a `MERGE` pattern
+For example, try to merge a node with a `null` property value as follows:
+
+[source,cypher]
+----
+MERGE (p:Person {age: null})
+----
+
+The query returns an error with GQLSTATUS 22N31 and the status description:
+
+[source]
+----
+error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null. For node property 'age' in '(:Person {age: null})'.
+----
+
+In this case, provide a concrete value for the property, or remove it from the `MERGE` pattern.
+
+=== NaN property value in a `MERGE` pattern
+For example, try to merge a relationship with a `NaN` property value as follows:
+
+[source,cypher]
+----
+WITH 0.0/0.0 AS nan
+MERGE (a:Person)-[:KNOWS {score: nan}]->(b:Person)
+----
+
+The query returns an error with GQLSTATUS 22N31 and the status description:
+
+[source]
+----
+error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are NaN. For relationship property 'score' in '(:Person)-[:KNOWS {score: NaN}]->(:Person)'.
+----
+
+In this case, provide a numeric value for the property, or remove it from the `MERGE` pattern.
 
 
 ifndef::backend-pdf[]
