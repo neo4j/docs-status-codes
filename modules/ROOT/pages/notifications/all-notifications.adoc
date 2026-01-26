@@ -2989,7 +2989,7 @@ m|WARNING
 m|Neo.ClientNotification.Request.FeatureDeprecationWarning
 |Title
 a|This feature is deprecated and will be removed in future versions.
-|Descriptions
+|Description
 a| 
 - The requested api has been deprecated since 5.26. Use Query API instead.
 |Category
