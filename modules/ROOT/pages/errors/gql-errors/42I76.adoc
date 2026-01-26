@@ -1,11 +1,22 @@
 = 42I76
 
 == Status description
-error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>> }` bytes) exceeded limit of `{ <<bytes>> }` bytes.
+error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `'{ <<input>> }'` (`{ <<bytes>> }` bytes) exceeded limit of `{ <<bytes>> }` bytes.
+
+== Explanation
+This error occurs when a schema rule (index/constraint) entry is too large.
 
 == Example scenario
 
-For example, with a Neo4j 2026.01 binary running an earlier kernel version, on a block-format database. When creating an index with a very large name `$largeIndexName` which would be a little under 8KiB or more when UTF-8 encoded.
+You are running a Neo4j 2026.01 binary with an earlier kernel version, on a block-format database, and you try to create an index with a very large name $largeIndexName, which would be a little under 8KiB or more when UTF-8 encoded.
+For example, $largeIndexName is approximately 8KiB long, and starts with the following:
+
+[source]
+----
+:param largeIndexName => `A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be gracefully handled, etc...`
+----
+
+You run the following Cypher statement:
 
 [source,cypher]
 ----
@@ -13,20 +24,17 @@ CREATE INDEX $largeIndexName
 FOR (n:Person) ON (n.name)
 ----
 
-Where provided name `$largeIndexName` would be approximate 8KiB long, and start with the following:
-
-[source]
-----
-:param largeIndexName => `A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be gracefully handled, etc...`
-----
-
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42I76.adoc[42I76].
+You will receive the following error with GQLSTATUS xref:errors/gql-errors/42I76.adoc[42I76]:
 
 [source]
 ----
 error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint name 'A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be ...' (8315 bytes) exceeded limit of 8136 bytes.
 
 ----
+
+== Possible solution
+
+Reduce the size of the index or constraint name so that it is under the byte limit.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
