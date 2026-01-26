@@ -2980,7 +2980,7 @@ m|WARNING
 |===
 
 [#_neo_clientnotification_request_repl]
-=== Feature deprecated with replacement - Request
+=== Feature deprecated with replacement - API Request
 
 .Notification details
 [cols="<1s,<4"]
