@@ -2979,6 +2979,32 @@ m|DEPRECATION
 m|WARNING
 |===
 
+[#_neo_clientnotification_request_repl]
+=== Feature deprecated with replacement - Request
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Request.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Description
+|(`%s`)
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N01
+|Status description
+a|warn: feature deprecated with replacement.
+`{ <<feat>>1 }` is deprecated.
+It is replaced by `{ <<feat>>2 }`.
+|Classification
+m|DEPRECATION
+|SeverityLevel
+m|WARNING
+|===
+
 [#_neo_clientnotification_request_]
 === Feature deprecated with replacement - DeprecatedFormat
 
