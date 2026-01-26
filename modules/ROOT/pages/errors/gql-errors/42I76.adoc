@@ -9,15 +9,15 @@ This error occurs when a schema rule (index/constraint) entry is too large.
 
 == Example scenario
 
-You are running a Neo4j 2026.01 binary with an earlier kernel version, on a block-format database, and you try to create an index with a very large name $largeIndexName, which would be a little under 8KiB or more when UTF-8 encoded.
-For example, $largeIndexName is approximately 8KiB long, and starts with the following:
+You are running a Neo4j 2026.01 binary with an earlier kernel version, on a block-format database, and you try to create an index with a very large name `$largeIndexName`, which would be a little under 8KiB or more when UTF-8 encoded.
+For example, `$largeIndexName` is approximately 8KiB long, and starts with the following:
 
-[source]
+[source,cypher]
 ----
 :param largeIndexName => `A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be gracefully handled, etc...`
 ----
 
-You run the following Cypher statement:
+When you run the following Cypher statement:
 
 [source,cypher]
 ----
@@ -25,7 +25,7 @@ CREATE INDEX $largeIndexName
 FOR (n:Person) ON (n.name)
 ----
 
-You will receive the following error with GQLSTATUS xref:errors/gql-errors/42I76.adoc[42I76]:
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42I76.adoc[42I76]:
 
 [source]
 ----
