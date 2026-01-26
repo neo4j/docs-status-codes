@@ -2979,7 +2979,6 @@ m|DEPRECATION
 m|WARNING
 |===
 
-[role=label--deprecated-2026.01]
 [#_neo_clientnotification_request_repl]
 === Feature deprecated with replacement - API Request
 
