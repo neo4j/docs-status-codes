@@ -718,6 +718,10 @@ Status description:: error: data exception - node element type in use. The node 
 
 Status description:: error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
 
+=== xref:errors/gql-errors/22NCG.adoc[22NCG]
+
+Status description:: error: data exception - wrong index type. Expected the index `{ <<idx>> }` to be a `{ <<idxType>>1 }` index but was a `{ <<idxType>>2 }` index.
+
 === xref:errors/gql-errors/22ND1.adoc[22ND1]
 
 Status description:: error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.
@@ -1189,7 +1193,7 @@ Status description:: error: syntax error or access rule violation - search claus
 
 === xref:errors/gql-errors/42I73.adoc[42I73]
 
-Status description:: error: syntax error or access rule violation - invalid predicate for vector search filtering. A vector search filter must consist of one or more predicates joined by `AND`, and the combined predicates for each property must specify either an exact value (e.g. `x.prop = 1`), an open range (e.g. `x.prop >= 1`), or a between range (e.g. `x.prop > 1 AND x.prop < 100`). `{ <<expr>> }` does not fulfill this.
+Status description:: error: syntax error or access rule violation - invalid predicate for vector search filtering. A vector search filter must consist of one or more predicates joined by `AND`, and the combined predicates for each property must specify either an exact value (e.g. `x.prop = 1`), a half-bounded range (e.g. `x.prop >= 1`), or a bounded range (e.g. `x.prop > 1 AND x.prop < 100`). `{ <<expr>> }` does not fulfill this.
 
 === xref:errors/gql-errors/42I74.adoc[42I74]
 
