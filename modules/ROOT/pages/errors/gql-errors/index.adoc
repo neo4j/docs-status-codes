@@ -1185,7 +1185,7 @@ Status description:: error: syntax error or access rule violation - search claus
 
 === xref:errors/gql-errors/42I76.adoc[42I76]
 
-Status description:: error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `'{ <<input>> }'` (`{ <<bytes>> }` bytes) exceeded limit of `{ <<bytes>> }` bytes.
+Status description:: error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>>1 }` bytes) exceeded limit of `{ <<bytes>>2 }` bytes.
 
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
