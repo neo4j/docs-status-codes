@@ -2002,7 +2002,7 @@ Status description:: error: system configuration or operation exception - index 
 
 === xref:errors/gql-errors/51N63.adoc[51N63]
 
-Status description:: error: system configuration or operation exception - index is still populating. Index is not ready yet. Wait until it finishes populating and retry the transaction.
+Status description:: error: system configuration or operation exception - index is still populating. Index `{ <<idx>> }` is not ready yet. Wait until it finishes populating and retry the transaction.
 
 === xref:errors/gql-errors/51N64.adoc[51N64]
 
