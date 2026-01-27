@@ -1183,6 +1183,10 @@ Status description:: error: syntax error or access rule violation - search claus
 
 Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
 
+=== xref:errors/gql-errors/42I76.adoc[42I76]
+
+Status description:: error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>>1 }` bytes) exceeded limit of `{ <<bytes>>2 }` bytes.
+
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
 Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
