@@ -2,7 +2,7 @@
 = 42I76
 
 == Status description
-error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `'{ <<input>> }'` (`{ <<bytes>> }` bytes) exceeded limit of `{ <<bytes>> }` bytes.
+error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>>1 }` bytes) exceeded limit of `{ <<bytes>>2 }` bytes.
 
 == Explanation
 This error occurs when a schema rule (index/constraint) entry is too large.
