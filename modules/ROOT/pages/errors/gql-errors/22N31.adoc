@@ -24,7 +24,7 @@ The query returns an error with GQLSTATUS 22N31 and the status description:
 
 [source]
 ----
-error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are null. For node property 'age' in '(:Person {age: null})'.
+error: data exception - invalid properties in merge pattern. The node property 'age' in '(:Person {age: null})' is invalid. `MERGE` cannot be used with a graph element property value that is null.
 ----
 
 In this case, provide a concrete value for the property, or remove it from the `MERGE` pattern.
@@ -42,7 +42,7 @@ The query returns an error with GQLSTATUS 22N31 and the status description:
 
 [source]
 ----
-error: data exception - invalid properties in merge pattern. 'MERGE' cannot be used with graph element property values that are NaN. For relationship property 'score' in '(:Person)-[:KNOWS {score: NaN}]->(:Person)'.
+error: data exception - invalid properties in merge pattern. The relationship property 'score' in '(:Person)-[:KNOWS {score: NaN}]->(:Person)' is invalid. 'MERGE' cannot be used with graph element property value that is NaN.
 ----
 
 In this case, provide a numeric value for the property, or remove it from the `MERGE` pattern.
