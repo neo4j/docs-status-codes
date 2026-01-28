@@ -282,7 +282,7 @@ Status description:: error: data exception - missing temporal unit. At least one
 
 === xref:errors/gql-errors/22N31.adoc[22N31]
 
-Status description:: error: data exception - invalid properties in merge pattern. `MERGE` cannot be used with graph element property values that are null or NaN.
+Status description:: error: data exception - invalid properties in merge pattern. The `{ <<entityType>> }` property `{ <<propKey>> }` in `{ <<pat>> }` is invalid. `MERGE` cannot be used with a graph element property value that is `{ <<value>> }`.
 
 === xref:errors/gql-errors/22N32.adoc[22N32]
 
