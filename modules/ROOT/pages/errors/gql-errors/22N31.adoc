@@ -2,7 +2,7 @@
 
 
 == Status description
-error: data exception - invalid properties in merge pattern. The { <<entityType>> } property { <<propKey>> } in { <<pat>> } is invalid. `MERGE` cannot be used with a graph element property value that is { <<value>> }.
+error: data exception - invalid properties in merge pattern. The `{ <<entityType>> }` property `{ <<propKey>> }` in `{ <<pat>> }` is invalid. `MERGE` cannot be used with a graph element property value that is `{ <<value>> }`.
 
 == Explanation
 This error occurs when a `MERGE` pattern includes a node or relationship property value that is not allowed, such as `null` or `NaN`.
