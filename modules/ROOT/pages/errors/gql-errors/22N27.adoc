@@ -1,7 +1,26 @@
 = 22N27
 
 == Status description
-error: data exception - invalid entity type. Invalid input `{ <<input>> }` for `{ <<context>> }`. Expected to be `{ <<valueTypeList>> }`.
+error: data exception - invalid entity type. Invalid input `{ <<input>> }` for `{ <<context>> }`. Expected to be `{ <<valueTypeList>> }` `{ <<hint>> }`.
+
+[NOTE]
+====
+The `{ <<hint>> }` segment is optional. When present, it contains additional guidance (for example: `Hint: use properties(...) on the right-hand side.`).
+====
+
+== Example scenario
+When a query expects a map but receives a node or relationship, the error can surface with an optional hint:
+
+```
+MATCH (a)-->(b)
+SET a = b
+```
+
+Resulting status description:
+
+```
+error: data exception - invalid entity type. Invalid input `RELATIONSHIP` for `b`. Expected to be `MAP`. Hint: use properties(...) on the right-hand side.
+```
 
 
 ifndef::backend-pdf[]

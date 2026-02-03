@@ -266,7 +266,7 @@ Status description:: error: data exception - unsupported rounding mode. Unknown 
 
 === xref:errors/gql-errors/22N27.adoc[22N27]
 
-Status description:: error: data exception - invalid entity type. Invalid input `{ <<input>> }` for `{ <<context>> }`. Expected to be `{ <<valueTypeList>> }`.
+Status description:: error: data exception - invalid entity type. Invalid input `{ <<input>> }` for `{ <<context>> }`. Expected to be `{ <<valueTypeList>> }` `{ <<hint>> }`.
 
 === xref:errors/gql-errors/22N28.adoc[22N28]
 
