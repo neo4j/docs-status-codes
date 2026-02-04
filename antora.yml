@@ -7,6 +7,6 @@ nav:
 asciidoc:
   attributes:
     page-origin-private: false
-    neo4j-version: '2026.01'
-    neo4j-version-exact: '2026.01.0'
-    neo4j-buildnumber: '2026.01'
+    neo4j-version: '2026.02'
+    neo4j-version-exact: '2026.02.0'
+    neo4j-buildnumber: '2026.02'
