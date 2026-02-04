@@ -1,8 +1,74 @@
 = 51N65
 
 == Status description
-error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2 }`.
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a configured dimensionality of `{ <<dim>>1 }`, but the provided vector has dimension `{ <<dim>>2 }`.
 
+== Example scenario
+For example, given that you have created the following vector index:
+
+[source,cypher]
+----
+CREATE VECTOR INDEX indexName
+FOR (n: Label) ON n.prop
+OPTIONS {
+  indexConfig: {`vector.dimensions`: 1048}
+}
+----
+
+When querying it with a vector with another dimension than 1048:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (n)
+  SEARCH n IN (
+    VECTOR INDEX indexName
+    FOR vector([1, 2, 3], 3, INTEGER)
+    LIMIT 5
+  )
+RETURN n
+----
+
+or
+
+[source,cypher]
+----
+CALL db.index.vector.queryNodes('indexName', 5, [1, 2, 3])
+----
+
+You will receive an error with GQLSTATUS 51N65 and status description
+
+[source]
+----
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `indexName` has a configured dimensionality of 1048, but the provided vector has dimension 3.
+----
+
+== Possible solution
+
+If you want to be able to store and query for vectors of various dimensions in the same vector index, it cannot have a configured dimension.
+For example:
+
+. Drop the index you want to change the configuration of:
++
+[source,cypher]
+----
+DROP INDEX indexName
+----
+
+. Recreate the index without configured dimension:
++
+[source,cypher]
+----
+CREATE VECTOR INDEX indexName
+FOR (n: Label) ON n.prop
+----
+
+[NOTE]
+====
+
+It is recommended to configure dimensions when creating a vector index.
+For most usecases, you would instead want to query the index with only vectors of dimension 1048.
+====
 
 ifndef::backend-pdf[]
 [discrete.glossary]
