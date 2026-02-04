@@ -282,7 +282,7 @@ Status description:: error: data exception - missing temporal unit. At least one
 
 === xref:errors/gql-errors/22N31.adoc[22N31]
 
-Status description:: error: data exception - invalid properties in merge pattern. `MERGE` cannot be used with graph element property values that are null or NaN.
+Status description:: error: data exception - invalid properties in merge pattern. The `{ <<entityType>> }` property `{ <<propKey>> }` in `{ <<pat>> }` is invalid. `MERGE` cannot be used with a graph element property value that is `{ <<value>> }`.
 
 === xref:errors/gql-errors/22N32.adoc[22N32]
 
@@ -583,6 +583,18 @@ Status description:: error: data exception - invalid list for property-based acc
 === xref:errors/gql-errors/22NAB.adoc[22NAB]
 
 Status description:: error: data exception - mixed type list for property-based access control rule. The expression `{ <<expr>> }` is not supported. All elements in a list must be literals of the same type for property-based access control.
+
+=== xref:errors/gql-errors/22NAC.adoc[22NAC]
+
+Status description:: error: data exception - characters after quote in CSV field. Characters after an ending quote in a CSV field are not supported. See `{ <<input>> }` at position `{ <<pos>> }`. This is read as `{ <<variable>> }`.
+
+=== xref:errors/gql-errors/22NAD.adoc[22NAD]
+
+Status description:: error: data exception - missing end quote in CSV field. Missing end quote at position `{ <<pos>> }` in `{ <<input>> }`.
+
+=== xref:errors/gql-errors/22NAE.adoc[22NAE]
+
+Status description:: error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in `{ <<input>> }` at position `{ <<pos>> }`.
 
 === xref:errors/gql-errors/22NB0.adoc[22NB0]
 
@@ -1154,6 +1166,26 @@ Status description:: error: syntax error or access rule violation - unsupported 
 === xref:errors/gql-errors/42I68.adoc[42I68]
 
 Status description:: error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <<input>>1 }`, does not match input, `{ <<input>>2 }`. Verify that the pattern is valid for constructing `{ <<valueType>> }`.
+
+=== xref:errors/gql-errors/42I69.adoc[42I69]
+
+Status description:: error: syntax error or access rule violation - invalid search variable reference. `{ <<variable>> }` must reference a variable from the same `MATCH` statement.
+
+=== xref:errors/gql-errors/42I70.adoc[42I70]
+
+Status description:: error: syntax error or access rule violation - search clause with multiple bound variables. In order to have a search clause, a `MATCH` statement can only have one bound variable.
+
+=== xref:errors/gql-errors/42I71.adoc[42I71]
+
+Status description:: error: syntax error or access rule violation - search clause with invalid predicates. In order to have a search clause, a `MATCH` statement can only have predicates on the bound node or relationship.
+
+=== xref:errors/gql-errors/42I72.adoc[42I72]
+
+Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
+
+=== xref:errors/gql-errors/42I76.adoc[42I76]
+
+Status description:: error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>>1 }` bytes) exceeded limit of `{ <<bytes>>2 }` bytes.
 
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
@@ -1974,7 +2006,7 @@ Status description:: error: system configuration or operation exception - index 
 
 === xref:errors/gql-errors/51N63.adoc[51N63]
 
-Status description:: error: system configuration or operation exception - index is still populating. Index is not ready yet. Wait until it finishes populating and retry the transaction.
+Status description:: error: system configuration or operation exception - index is still populating. Index `{ <<idx>> }` is not ready yet. Wait until it finishes populating and retry the transaction.
 
 === xref:errors/gql-errors/51N64.adoc[51N64]
 

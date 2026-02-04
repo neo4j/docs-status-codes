@@ -1,0 +1,35 @@
+= 42I69
+
+== Status description
+error: syntax error or access rule violation - invalid search variable reference. `{ <<variable>> }` must reference a variable from the same `MATCH` statement.
+
+== Example scenario
+
+For example, when trying to use a variable from a previous `MATCH` statement as variable reference in a `SEARCH` clause:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+MATCH (m:Movie {title:'Matrix, The'})
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    LIMIT 5
+  )
+RETURN movie.title AS title
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I69 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid search variable reference. `movie` must reference a variable from the same `MATCH` statement.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

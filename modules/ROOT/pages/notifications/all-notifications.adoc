@@ -1310,6 +1310,7 @@ a|
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
 - The character with the Unicode representation `%s` is deprecated for unescaped identifiers and will not be supported in the future.
 To continue using it, escape the identifier by adding backticks around the identifier `%s`.
+- `%s` subquery without a variable scope clause is deprecated. Use CALL (`%s`) { ... }
 - All subqueries in a `UNION [ALL]` should have the same ordering for the return columns.
 [NOTE]
 In versions 5.5 to 5.25, using differently ordered return items in a `UNION [ALL]` clause is deprecated.
@@ -1623,6 +1624,73 @@ RETURN 1 as my\u0085identifier
 Description of the returned code::
 The Unicode character `\u0085` is deprecated for unescaped identifiers and will be considered as a whitespace character in the future. To continue using it, escape the identifier by adding backticks around the identifier `my\u0085identifier`.
 
+======
+=====
+
+.Using a CALL subquery scope without a variable scope clause
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL {
+  WITH nbr
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
+
+Returned GQLSTATUS code::
+01N00
+
+Returned status description::
+warn: feature deprecated.
+`CALL` subquery without a variable scope clause is deprecated. Use `CALL (nbr) {...}`
+
+Suggestions for improvement::
+Replace the importing `WITH` with a variable scope clause.
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL (nbr) {
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL {
+  WITH nbr
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
+Description of the returned code::
+`CALL` subquery without a variable scope clause is deprecated. Use `CALL (nbr) {...}`
+
+Suggestions for improvement::
+Replace the importing `WITH` with a variable scope clause.
++
+[source,cypher]
+----
+WITH 42 AS nbr
+CALL (nbr) {
+  RETURN nbr + 3 AS otherNbr
+}
+RETURN otherNbr
+----
 ======
 =====
 
@@ -2905,6 +2973,33 @@ m|01N03
 |Status description
 a|warn: procedure field deprecated.
 The field `{ <<procField>> }` of procedure `{ <<proc>> }` is deprecated.
+|Classification
+m|DEPRECATION
+|SeverityLevel
+m|WARNING
+|===
+
+[#_neo_clientnotification_request_repl]
+=== Feature deprecated with replacement - API Request
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Request.FeatureDeprecationWarning
+|Title
+a|This feature is deprecated and will be removed in future versions.
+|Description
+a|
+`%s` is deprecated. It is replaced by `%s`.
+|Category
+m|DEPRECATION
+|GQLSTATUS code
+m|01N01
+|Status description
+a|warn: feature deprecated with replacement.
+`{ <<feat>>1 }` is deprecated.
+It is replaced by `{ <<feat>>2 }`.
 |Classification
 m|DEPRECATION
 |SeverityLevel
@@ -5073,14 +5168,14 @@ m|Neo.ClientNotification.Statement.SubqueryVariableShadowing
 a|Variable in subquery is shadowing a variable with the same name from the outer scope.
 |Description
 |Variable in subquery is shadowing a variable with the same name from the outer scope.
-If you want to use that variable instead, it must be imported into the subquery using importing WITH clause. (`%s`)
+If you want to use that variable instead, it must be imported into the subquery using a variable scope clause. (`%s`)
 |Category
 m|GENERIC
 |GQLSTATUS code
 m|03N60
 |Status description
 a|info: subquery variable shadowing.
-The variable `{ <<variable>> }` in the subquery uses the same name as a variable from the outer query. Use `WITH { <<variable>> }` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+The variable `{ <<variable>> }` in the subquery uses the same name as a variable from the outer query. Use `{ <<clause>> } ({ <<variable>> })` to import the one from the outer scope unless you want it to be a new variable.
 |Classification
 m|GENERIC
 |SeverityLevel
@@ -5110,17 +5205,16 @@ Returned GQLSTATUS code::
 Returned status description::
 info: subquery variable shadowing.
 The variable `n` in the subquery uses the same name as a variable from the outer query.
-Use `WITH n` in the subquery to import the one from the outer scope unless you want it to be a new variable.
+Use `CALL (n)` to import the one from the outer scope unless you want it to be a new variable.
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using a variable scope clause.
 +
 [source,cypher]
 ----
 MATCH (n)
-CALL {
-  WITH n
+CALL (n) {
   MATCH (n)--(m)
   RETURN m
 }
@@ -5143,17 +5237,16 @@ RETURN *
 
 Description of the returned code::
 Variable in subquery is shadowing a variable with the same name from the outer scope.
-If you want to use that variable instead, it must be imported into the subquery using importing `WITH` clause. (the shadowing variable is: `n`)
+If you want to use that variable instead, it must be imported into the subquery using a variable scope clause. (the shadowing variable is: `n`)
 
 Suggestions for improvement::
 If the intended behavior of the query is for the variable in the subquery to be a new variable, then nothing needs to be done.
-If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using the `WITH` clause.
+If the intended behavior is to use the variable from the outer query, it needs to be imported to the subquery using a variable scope clause.
 +
 [source,cypher]
 ----
 MATCH (n)
-CALL {
-  WITH n
+CALL (n) {
   MATCH (n)--(m)
   RETURN m
 }
@@ -5313,6 +5406,120 @@ UNWIND [1, 2, 3] AS x
 CALL (x) {
    CREATE({i:x})
 }
+----
+======
+=====
+
+[#_neo_clientnotification_statement_identifiershadowingvariable]
+=== Identifier shadowing variable
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Statement.IdentifierShadowingVariable
+|Title
+a|An identifier is shadowing a variable in scope.
+|Description
+|The identifier `%s` in the `%s` clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal `%s` that will be used.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N63
+|Status description
+a|info: identifier shadowing variable.
+The identifier { <<ident>> } in the { <<clause>> } clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal { <<ident>> } that will be used.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+.An identifier used for the index name in a `SEARCH` clause shadowing a variable in scope
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER 25
+WITH "myPlotString" AS moviePlots
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, moviePlots
+----
+
+Returned GQLSTATUS code::
+03N63
+
+Description of the returned code::
+info: identifier shadowing variable.
+The identifier `moviePlots` in the `VECTOR INDEX` clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal `moviePlots` that will be used.
+
+Suggestions for improvement::
+Consider to rename the variable to something else to avoid confusion.
++
+[source,cypher]
+----
+CYPHER 25
+WITH "myPlotString" AS plotString
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, plotString
+----
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER 25
+WITH "myPlotString" AS moviePlots
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, moviePlots
+----
+
+Description of the returned code::
+The identifier `moviePlots` in the `VECTOR INDEX` clause has the same name as a variable in scope.
+Regardless of what the variable evaluates to, it is the literal `moviePlots` that will be used.
+
+Suggestions for improvement::
+Consider to rename the variable to something else to avoid confusion.
++
+[source,cypher]
+----
+CYPHER 25
+WITH "myPlotString" AS plotString
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    LIMIT 5
+  ) SCORE AS score
+RETURN movie.title AS title, score, plotString
 ----
 ======
 =====
