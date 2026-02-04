@@ -149,6 +149,9 @@ If you want to drop the index, you must also drop the constraint.
 | Neo.ClientError.Schema.RepeatedRelationshipTypeInSchema
 | Unable to create an index or a constraint because the schema had a repeated relationship type.
 
+| Neo.ClientError.Schema.SchemaRuleEntrySizeLimitError
+| A schema rule entry exceeded the maximum allowed size.
+
 | Neo.ClientError.Schema.TokenLengthError
 | A token name, such as a label, relationship type or property key is too long
 
@@ -491,4 +494,3 @@ Please restore from backup.
 | The database was unable to terminate the transaction.
 
 |===
-

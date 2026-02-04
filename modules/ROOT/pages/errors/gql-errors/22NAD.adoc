@@ -1,0 +1,40 @@
+= 22NAD
+
+== Status description
+error: data exception - missing end quote in CSV field. Missing end quote at position `{ <<pos>> }` in `{ <<input>> }`.
+
+== Explanation
+When a CSV file contains a field that starts with a quote but misses an ending quote, the file is formatted incorrectly and trying to read such a file with `LOAD CSV` will result in an error.
+
+== Example scenario
+
+For example, let's say you have a CSV file, called `somefile.csv`, with the following content:
+
+[source,csv]
+----
+x,y
+"x",1
+"y,2
+----
+
+Then, when you run the following query:
+
+[source,cypher]
+----
+LOAD CSV 'somefile.csv' AS line
+RETURN count(line)
+----
+
+you will receive an error with GQLSTATUS 22NAD and status description:
+
+[source]
+----
+error: data exception - missing end quote in CSV field. Missing end quote at position 15 in 'somefile.csv'.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
