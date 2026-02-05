@@ -38,9 +38,9 @@ error: syntax error or access rule violation - self-referencing in vector search
 ----
 =====
 
-.Using the search binding variable in the `WHERE` subclause of a vector search
+.Using the search binding variable in the `WHERE` subclause of a `SEARCH` clause
 =====
-When trying to use the search binding variable `movie` in the RHS of the predicate in the `WHERE` subclause in the following query:
+When trying to use the search binding variable `movie` in both the left-hand and right-hand side of the predicate in the `WHERE` subclause in the following query:
 
 [source,cypher]
 ----
