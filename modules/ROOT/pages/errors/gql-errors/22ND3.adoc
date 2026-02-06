@@ -1,7 +1,7 @@
 = 22ND3
 
 == Status description
-error: data exception - wrong property for vector search with filters. The property `{ <<propKey>> }` is not an additional property of the vector index `{ <<idx>> }` for vector search with filters.
+error: data exception - wrong property for vector search with filters. The property `{ <<propKey>> }` is not an additional property for vector search with filters on the vector index `{ <<idx>> }` .
 
 == Example scenario
 For example, assuming that you have a vector index created by the following command:

@@ -68,7 +68,9 @@ error: syntax error or access rule violation - invalid predicate for vector sear
 == Possible solution
 Certain predicates are possible to rewrite so they adhere to the rules of vector search with filters.
 For example, the predicate `NOT movie.rating < 7` can be rewritten to `movie.rating >= 7`, while the predicate `movie.rating > 6 AND movie.rating > 8` can be rewritten to `movie.rating > 8`.
-
++
+However, it is not always possible to rewrite the predicates.
+For the complete list of limitations, see link:https://neo4j.com/docs/cypher-manual/current/clauses/search/#limitations[Cypher Manual -> Limitations of the SEARCH clause].
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
