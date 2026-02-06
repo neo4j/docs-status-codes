@@ -1,0 +1,66 @@
+= 22ND3
+
+== Status description
+error: data exception - wrong property for vector search with filters. The property `{ <<propKey>> }` is not an additional property for vector search with filters on the vector index `{ <<idx>> }` .
+
+== Example scenario
+For example, assuming that you have a vector index created by the following command:
+
+[source,cypher]
+----
+CYPHER 25
+CREATE VECTOR INDEX moviePlots
+FOR (m:Movie) ON m.embedding
+WITH [m.rating]
+----
+
+When using a property key other than `rating` in the `WHERE` clause property predicate in a `SEARCH` clause:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    WHERE movie.votes > 1000
+    LIMIT 5
+  )
+RETURN movie.title AS title
+----
+
+You will receive an error with GQLSTATUS 22ND3 and status description:
+
+[source]
+----
+error: data exception - wrong property for vector search with filters. The property `votes` is not an additional property for vector search with filters on the vector index 'moviePlots'.
+----
+
+== Possible solution
+
+If you want to use the property `votes` for vector search with filters, it must be added as an additional property to the vector index.
+For example:
+
+. Drop the index you want to add the property to:
++
+[source,cypher]
+----
+DROP INDEX moviePlots
+----
+
+. Recreate the index by adding the new property to the index:
++
+[source,cypher]
+----
+CYPHER 25
+CREATE VECTOR INDEX moviePlots
+FOR (m:Movie) ON m.embedding
+WITH [m.rating, m.votes]
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

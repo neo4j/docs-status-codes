@@ -1,0 +1,45 @@
+= 42I74
+
+== Status description
+error: syntax error or access rule violation - wrong variable for vector search with filters. The variable `{ <<variable>>1 }` in a vector search filter property predicate must be the same as the search clause binding variable `{ <<variable>>2 }`.
+
+== Example scenario
+For example, assuming that you have a vector index created by the following command:
+
+[source,cypher]
+----
+CYPHER 25
+CREATE VECTOR INDEX moviePlots
+FOR (m:Movie) ON m.embedding
+WITH [m.rating]
+----
+
+When trying to use a variable other than `movie` inside the `WHERE` subclause predicate in a `SEARCH` clause in the following query:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (m:Movie {title:'Matrix, The'})
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR m.embedding
+    WHERE m.rating >= 8
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I74 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - wrong variable for vector search with filters. The variable `m` in a vector search filter property predicate must be the same as the search clause binding variable `movie`.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

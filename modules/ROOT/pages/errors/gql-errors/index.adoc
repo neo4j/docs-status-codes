@@ -718,6 +718,10 @@ Status description:: error: data exception - node element type in use. The node 
 
 Status description:: error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `{ <<graphTypeOperation>> }` operation.
 
+=== xref:errors/gql-errors/22NCG.adoc[22NCG]
+
+Status description:: error: data exception - wrong index type. Expected the index `{ <<idx>> }` to be a `{ <<idxType>>1 }` index but was a `{ <<idxType>>2 }` index.
+
 === xref:errors/gql-errors/22ND1.adoc[22ND1]
 
 Status description:: error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.
@@ -725,6 +729,10 @@ Status description:: error: data exception - operation not allowed for roles tha
 === xref:errors/gql-errors/22ND2.adoc[22ND2]
 
 Status description:: error: data exception - operation not allowed for roles with `DENY` privileges. Invalid input: `'{ <<query>> }'` is not allowed for roles with `DENY` privileges.
+
+=== xref:errors/gql-errors/22ND3.adoc[22ND3]
+
+Status description:: error: data exception - wrong property for vector search with filters. The property `{ <<propKey>> }` is not an additional property for vector search with filters on the vector index `{ <<idx>> }` .
 
 
 [[invalid-transaction-state]]
@@ -1182,6 +1190,18 @@ Status description:: error: syntax error or access rule violation - search claus
 === xref:errors/gql-errors/42I72.adoc[42I72]
 
 Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
+
+=== xref:errors/gql-errors/42I73.adoc[42I73]
+
+Status description:: error: syntax error or access rule violation - invalid predicate for vector search with filters. The vector search filter predicate `{ <<expr>> }` must consist of one or more property predicates joined by `AND`, and the combined property predicates for each property must specify either an exact value (e.g. `x.prop = 1`), a half-bounded range (e.g. `x.prop >= 1`), or a bounded range (e.g. `x.prop > 1 AND x.prop < 100`).
+
+=== xref:errors/gql-errors/42I74.adoc[42I74]
+
+Status description:: error: syntax error or access rule violation - wrong variable for vector search with filters. The variable `{ <<variable>>1 }` in a vector search filter property predicate must be the same as the search clause binding variable `{ <<variable>>2 }`.
+
+=== xref:errors/gql-errors/42I75.adoc[42I75]
+
+Status description:: error: syntax error or access rule violation - self-referencing in vector search. The expression `{ <<expr>> }` in the search clause may not depend on the search clause binding variable `{ <<variable>> }`.
 
 === xref:errors/gql-errors/42I76.adoc[42I76]
 

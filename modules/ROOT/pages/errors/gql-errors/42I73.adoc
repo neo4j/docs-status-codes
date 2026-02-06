@@ -1,0 +1,78 @@
+= 42I73
+
+== Status description
+error: syntax error or access rule violation - invalid predicate for vector search with filters. The vector search filter predicate `{ <<expr>> }` must consist of one or more property predicates joined by `AND`, and the combined property predicates for each property must specify either an exact value (e.g. `x.prop = 1`), a half-bounded range (e.g. `x.prop >= 1`), or a bounded range (e.g. `x.prop > 1 AND x.prop < 100`).
+
+== Example scenarios
+For example, assuming that you have a vector index created by the following command:
+
+[source,cypher]
+----
+CYPHER 25
+CREATE VECTOR INDEX moviePlots
+FOR (m:Movie) ON m.embedding
+WITH [m.rating]
+----
+
+
+.Using `NOT` inside the `WHERE` subclause predicate in a `SEARCH` clause
+=====
+When trying to use `NOT` inside the `WHERE` subclause predicate in a `SEARCH` clause:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    WHERE NOT movie.rating = 8
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I73 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid predicate for vector search with filters. The vector search filter predicate `NOT movie.rating = 8` must consist of one or more property predicates joined by AND, and the combined property predicates for each property must specify either an exact value (e.g. `x.prop = 1`), a half-bounded range (e.g. `x.prop >= 1`), or a bounded range (e.g. `x.prop > 1 AND x.prop < 100`).
+----
+=====
+
+.Using multiple half-bounded ranges on the same property inside the `WHERE` subclause predicate in a `SEARCH` clause
+=====
+When trying to use multiple half-bounded ranges on the same property inside the `WHERE` subclause predicate in a `SEARCH` clause:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX moviePlots
+    FOR [1, 2, 3]
+    WHERE movie.rating > 6 AND movie.rating > 8
+    LIMIT 5
+  )
+RETURN movie.title AS title, movie.rating AS rating
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I73 and status description:
+
+[source]
+----
+error: syntax error or access rule violation - invalid predicate for vector search with filters. The vector search filter predicate `movie.rating > 6 AND movie.rating > 8` must consist of one or more property predicates joined by AND, and the combined property predicates for each property must specify either an exact value (e.g. `x.prop = 1`), a half-bounded range (e.g. `x.prop >= 1`), or a bounded range (e.g. `x.prop > 1 AND x.prop < 100`).
+----
+=====
+
+== Possible solution
+You can rewrite the predicates to comply with the vector search filter rules.
+For example, the predicate `NOT movie.rating < 7` can be rewritten to `movie.rating >= 7`, while the predicate `movie.rating > 6 AND movie.rating > 8` can be rewritten to `movie.rating > 8`.
+However, it is not always possible to rewrite the predicates.
+For the complete list of limitations, see link:https://neo4j.com/docs/cypher-manual/current/clauses/search/#limitations[Cypher Manual -> Limitations of the SEARCH clause].
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
