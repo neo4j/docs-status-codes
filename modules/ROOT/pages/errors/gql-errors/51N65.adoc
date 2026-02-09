@@ -15,7 +15,7 @@ OPTIONS {
 }
 ----
 
-When querying it with a vector with another dimension than 1048:
+When querying it with a vector with a dimension other than 1048:
 
 [source,cypher]
 ----
@@ -36,7 +36,7 @@ or
 CALL db.index.vector.queryNodes('indexName', 5, [1, 2, 3])
 ----
 
-You will receive an error with GQLSTATUS 51N65 and status description
+You will receive an error with GQLSTATUS 51N65 and a status description:
 
 [source]
 ----
@@ -45,7 +45,7 @@ error: system configuration or operation exception - vector index dimensionality
 
 == Possible solution
 
-If you want to be able to store and query for vectors of various dimensions in the same vector index, it cannot have a configured dimension.
+If you want to store and query vectors of varying dimensions in the same vector index, it cannot have a configured dimension.
 For example:
 
 . Drop the index you want to change the configuration of:
@@ -55,7 +55,7 @@ For example:
 DROP INDEX indexName
 ----
 
-. Recreate the index without configured dimension:
+. Recreate the index without the configured dimension:
 +
 [source,cypher]
 ----
@@ -65,9 +65,8 @@ FOR (n: Label) ON n.prop
 
 [NOTE]
 ====
-
 It is recommended to configure dimensions when creating a vector index.
-For most usecases, you would instead want to query the index with only vectors of dimension 1048.
+For most use cases, you would instead want to query the index with only vectors of dimension 1048.
 ====
 
 ifndef::backend-pdf[]
