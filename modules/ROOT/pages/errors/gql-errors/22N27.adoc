@@ -14,6 +14,7 @@ For example, consider the following query, which expects a map but receives a no
 
 [source,cypher]
 ----
+CYPHER 25
 MATCH (a)-->(b)
 SET a = b
 ----
@@ -31,6 +32,7 @@ To resolve this error, ensure that the input for `b` is a map. You can modify th
 
 [source,cypher]
 ----
+CYPHER 25
 MATCH (a)-->(b)
 SET a = properties(b)
 ----
