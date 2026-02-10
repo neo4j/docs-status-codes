@@ -1,7 +1,7 @@
 = 51N65
 
 == Status description
-error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a configured dimensionality of `{ <<dim>>1 }`, but the provided vector has dimension `{ <<dim>>2 }`.
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a configured dimensionality of `{ <<dim>>1 }`, but the provided vector has a dimension `{ <<dim>>2 }`.
 
 == Example scenario
 For example, given that you have created the following vector index:
