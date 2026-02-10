@@ -1,7 +1,41 @@
 = 22N27
 
 == Status description
-error: data exception - invalid entity type. Invalid input `{ <<input>> }` for `{ <<context>> }`. Expected to be `{ <<valueTypeList>> }`.
+error: data exception - invalid entity type. Invalid input `{ <<input>> }` for `{ <<context>> }`. Expected to be `{ <<valueTypeList>> }` `{ <<hint>> }`.
+
+[NOTE]
+====
+The `{ <<hint>> }` segment is optional. When present, it contains additional guidance (for example: `Hint: use properties(...) on the right-hand side.`).
+====
+
+== Example scenario
+
+For example, consider the following query, which expects a map but receives a node or relationship:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (a)-->(b)
+SET a = b
+----
+
+You will receive an error with GQLSTATUS 22N27 and status description:
+
+[source]
+----
+error: data exception - invalid entity type. Invalid input `RELATIONSHIP` for `b`. Expected to be `MAP`. Hint: use properties(...) on the right-hand side.
+----
+
+== Possible solution
+
+To resolve this error, ensure that the input for `b` is a map. You can modify the query as follows:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (a)-->(b)
+SET a = properties(b)
+----
 
 
 ifndef::backend-pdf[]
