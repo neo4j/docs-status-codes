@@ -2034,7 +2034,7 @@ Status description:: error: system configuration or operation exception - index 
 
 === xref:errors/gql-errors/51N65.adoc[51N65]
 
-Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2 }`.
+Status description:: error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a configured dimensionality of `{ <<dim>>1 }`, but the provided vector has a dimension `{ <<dim>>2 }`.
 
 === xref:errors/gql-errors/51N66.adoc[51N66]
 
