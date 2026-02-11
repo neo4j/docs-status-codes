@@ -40,7 +40,7 @@ You will receive an error with GQLSTATUS 51N65 and a status description:
 
 [source]
 ----
-error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `indexName` has a configured dimensionality of 1048, but the provided vector has dimension 3.
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `indexName` has a configured dimensionality of 1048, but the provided vector has a dimension 3.
 ----
 
 == Possible solution
@@ -65,8 +65,8 @@ FOR (n: Label) ON n.prop
 
 [NOTE]
 ====
-It is recommended to configure dimensions when creating a vector index.
-For most use cases, you would instead want to query the index with only vectors of dimension 1048.
+Depending on what you want to do with the failing query, the solution might be to omit the dimension when creating the index on vectors with different dimensions.
+However, keep in mind that in all other cases, it is recommended to provide a dimension, as this adds additional checks that ensure only vectors with the configured dimensions are indexed.
 ====
 
 ifndef::backend-pdf[]
