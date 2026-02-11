@@ -51,9 +51,3 @@ asciidoc:
     experimental: ''
     copyright: 2026
     common-license-page-uri: https://neo4j.com/docs/license/
-    # common-partial: 5@ROOT:partial$@
-    # check-mark: icon:check[]
-    # cross-mark: icon:times[]
-    # attributes for doc links to other manuals in publish playbook
-    neo4j-base-uri: ''
-    neo4j-docs-base-uri: /docs
