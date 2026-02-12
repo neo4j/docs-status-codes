@@ -5,13 +5,16 @@ error: syntax error or access rule violation - unsupported request. `{ <<input>>
 
 == Explanation
 
-This error occurs when you try to execute a query on the system database with Cypher clauses that are not allowed against the system database.
+This error occurs when you try to run a query on the system database, which is not allowed.
 
 == Example scenarios
 
+Let's take the following example scenarios:
+
 === Invalid clause
 
-For example, `MATCH` clauses are not allowed on the system database.
+You try to run a query containing a Cypher clause that is not allowed on the system database.
+For example, `MATCH` clauses are not allowed on the system database:
 
 [source,cypher]
 ----
@@ -26,11 +29,12 @@ The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42NA9.ado
 error: syntax error or access rule violation - unsupported request. `MATCH` is not allowed on the system database.
 ----
 
-To solve this, run the query against a user database instead of the system database.
+To solve this, run the query against a standard database.
 
 === Invalid procedure
 
-Not all procedures are allowed against the system database, for example the `db.createLabel` procedure is not while `db.index.fulltext.listAvailableAnalyzers` is allowed.
+You try to run a procedure that is not allowed on the system database.
+For example, you run the following query that contains the `db.createLabel()` procedure, which is not allowed, and `db.index.fulltext.listAvailableAnalyzers()`, which is allowed:
 
 [source,cypher]
 ----
@@ -48,11 +52,12 @@ The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42NA9.ado
 error: syntax error or access rule violation - unsupported request. `CALL db.createLabel` is not allowed on the system database.
 ----
 
-To solve this, either remove the disallowed procedure or run the query against a user database instead of the system database.
+To solve this, either remove the disallowed procedure or run the query against a standard database.
 
 === Invalid procedure call structure
 
-While the `YIELD` clause is allowed for procedure calls the `WHERE` clause isn't.
+You try to run a query that contains an allowed procedure but an unallowed clause.
+For example, the `YIELD` clause in the following query is allowed for procedure calls, but the `WHERE` clause is not:
 
 [source,cypher]
 ----
@@ -70,16 +75,16 @@ The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42NA9.ado
 error: syntax error or access rule violation - unsupported request. `WHERE` is not allowed on the system database.
 ----
 
-To solve this, either remove the `WHERE` clause or run the query against a user database instead of the system database.
+To solve this, either remove the `WHERE` clause or run the query against a standard database.
 
 [NOTE]
 ====
-In difference to the procedure calls, `WHERE` is allowed for the show and terminate commands.
+In contrast to procedure calls, the `WHERE` clause is allowed for the `SHOW` and `TERMINATE` commands.
 ====
 
 === Invalid show command
 
-Not all show commands are allowed against the system database, for example `SHOW INDEXES` is not allowed.
+You try to run a `SHOW` command that is not allowed on the system database, for example, `SHOW INDEXES`:
 
 [source,cypher]
 ----
@@ -96,7 +101,7 @@ The query returns an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[4200
 error: syntax error or access rule violation - unsupported request. `SHOW INDEXES` is not allowed on the system database.
 ----
 
-To solve this, run the query against a user database instead of the system database.
+To solve this, run the query against a standard database.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
