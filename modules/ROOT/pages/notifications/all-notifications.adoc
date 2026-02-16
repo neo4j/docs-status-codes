@@ -1892,6 +1892,7 @@ MATCH (a)-[:A|B|C]-() RETURN *
 ======
 =====
 
+[role=label--cypher-5]
 .Setting properties using a node
 [.tabbed-example]
 =====
@@ -1901,6 +1902,7 @@ Query::
 +
 [source,cypher]
 ----
+CYPHER 5
 MATCH (a)-[]-(b)
 SET a = b
 ----
@@ -1918,6 +1920,7 @@ Use the `properties()` function to get all properties from `b`.
 +
 [source,cypher]
 ----
+CYPHER 5
 MATCH (a)-[]-(b)
 SET a = properties(b)
 ----
@@ -1949,7 +1952,7 @@ SET a = properties(b)
 ======
 =====
 
-
+[role=label--cypher-5]
 .Setting properties using a relationship
 [.tabbed-example]
 =====
@@ -1959,6 +1962,7 @@ Query::
 +
 [source,cypher]
 ----
+CYPHER 5
 MATCH (a)-[r]-(b)
 SET a += r
 ----
@@ -1976,6 +1980,7 @@ Use the `properties()` function to get all properties from `r`.
 +
 [source,cypher]
 ----
+CYPHER 5
 MATCH (a)-[r]-(b)
 SET a += properties(r)
 ----
@@ -4495,7 +4500,7 @@ The requested topology matched the current topology. No allocations were changed
 ======
 =====
 
-[role=label--new-2025.01 label--Cypher25]
+[role=label--new-2025.01 label--cypher-25]
 [#_neo_clientnotification_cluster_servercaughtup]
 === Server has caught up during `WAIT` command
 
@@ -4565,7 +4570,7 @@ Server `ServerId\{0e020000}` at address `localhost:20026` has caught up.
 ======
 =====
 
-[role=label--new-2025.01 label--Cypher25]
+[role=label--new-2025.01 label--cypher-25]
 [#_neo_clientnotification_cluster_serverfailed]
 === Server failed during `WAIT` command
 
@@ -4642,7 +4647,7 @@ Investigate the failing server using the provided message.
 ======
 =====
 
-[role=label--new-2025.01 label--Cypher25]
+[role=label--new-2025.01 label--cypher-25]
 [#_neo_clientnotification_cluster_servercatchingup]
 === Server is still catching up during `WAIT` command
 
@@ -4720,7 +4725,7 @@ Investigate the server and network for performance issues or increase the wait t
 ======
 =====
 
-[role=label--new-2025.01 label--Cypher25]
+[role=label--new-2025.01 label--cypher-25]
 [#_neo_clientnotification_cluster_serverunavailable]
 === Server is not available during `WAIT` command
 

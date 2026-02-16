@@ -1,0 +1,33 @@
+= 22NCG
+
+== Status description
+error: data exception - wrong index type. Expected the index `{ <<idx>> }` to be a `{ <<idxType>>1 }` index but was a `{ <<idxType>>2 }` index.
+
+== Example scenario
+For example, assuming that you have a range index called `rangeIdx`, when trying to use it in a `SEARCH` clause:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (movie:Movie)
+  SEARCH movie IN (
+    VECTOR INDEX rangeIdx
+    FOR [1, 2, 3]
+    LIMIT 5
+  )
+RETURN movie.title AS title
+----
+
+You will receive an error with GQLSTATUS 22NCG and status description:
+
+[source]
+----
+error: data exception - wrong index type. Expected the index `rangeIdx` to be a vector index but was a range index.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

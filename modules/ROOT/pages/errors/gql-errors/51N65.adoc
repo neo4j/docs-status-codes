@@ -1,8 +1,73 @@
 = 51N65
 
 == Status description
-error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a dimensionality of `{ <<dim>>1 }`, but indexed vectors have `{ $dim2 }`.
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `{ <<idx>> }` has a configured dimensionality of `{ <<dim>>1 }`, but the provided vector has a dimension `{ <<dim>>2 }`.
 
+== Example scenario
+For example, given that you have created the following vector index:
+
+[source,cypher]
+----
+CREATE VECTOR INDEX indexName
+FOR (n: Label) ON n.prop
+OPTIONS {
+  indexConfig: {`vector.dimensions`: 1048}
+}
+----
+
+When querying it with a vector with a dimension other than 1048:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (n)
+  SEARCH n IN (
+    VECTOR INDEX indexName
+    FOR vector([1, 2, 3], 3, INTEGER)
+    LIMIT 5
+  )
+RETURN n
+----
+
+or
+
+[source,cypher]
+----
+CALL db.index.vector.queryNodes('indexName', 5, [1, 2, 3])
+----
+
+You will receive an error with GQLSTATUS 51N65 and a status description:
+
+[source]
+----
+error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `indexName` has a configured dimensionality of 1048, but the provided vector has a dimension 3.
+----
+
+== Possible solution
+
+If you want to store and query vectors of varying dimensions in the same vector index, it cannot have a configured dimension.
+For example:
+
+. Drop the index you want to change the configuration of:
++
+[source,cypher]
+----
+DROP INDEX indexName
+----
+
+. Recreate the index without the configured dimension:
++
+[source,cypher]
+----
+CREATE VECTOR INDEX indexName
+FOR (n: Label) ON n.prop
+----
+
+[NOTE]
+====
+Depending on what you want to do with the failing query, the solution might be to omit the dimension when creating the index on vectors with different dimensions.
+However, keep in mind that in all other cases, it is recommended to provide a dimension, as this adds additional checks that ensure only vectors with the configured dimensions are indexed.
+====
 
 ifndef::backend-pdf[]
 [discrete.glossary]
