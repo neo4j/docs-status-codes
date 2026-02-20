@@ -73,6 +73,8 @@ The following table lists the GQLSTATUS classes and their meanings:
 |Class
 |*Condition*
 
+| 2D
+| invalid transaction termination
 | 08
 | connection exception
 | 22
@@ -89,6 +91,10 @@ The following table lists the GQLSTATUS classes and their meanings:
 | system configuration or operation exception
 | 52
 | procedure exception
+| 53
+| function exception
+| G1
+| dependent object error
 |===
 
 [[neo4j-error-object]]
