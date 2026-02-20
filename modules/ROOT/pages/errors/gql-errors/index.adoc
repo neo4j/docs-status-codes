@@ -1637,7 +1637,7 @@ Status description:: error: syntax error or access rule violation - invalid refe
 
 === xref:errors/gql-errors/42NA9.adoc[42NA9]
 
-Status description:: error: syntax error or access rule violation - system database rules. The system database supports a restricted set of Cypher clauses. The supported clauses include procedure calls (if the procedure is allowed), a subset of show and terminate commands, and combinations of the two. YIELD and RETURN are also permitted when combined with procedure calls, show, or terminate commands.
+Status description:: error: syntax error or access rule violation - system database rules. The system database supports a restricted set of Cypher clauses. The supported clauses include procedure calls (if the procedure is allowed), a subset of show and terminate commands, and combinations of the two. `YIELD` and `RETURN` are also permitted when combined with procedure calls, show, or terminate commands.
 
 === xref:errors/gql-errors/42NAA.adoc[42NAA]
 
