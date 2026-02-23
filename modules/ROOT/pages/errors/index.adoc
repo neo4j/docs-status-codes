@@ -73,14 +73,14 @@ The following table lists the GQLSTATUS classes and their meanings:
 |Class
 |*Condition*
 
-| 2D
-| invalid transaction termination
 | 08
 | connection exception
 | 22
 | data exception
 | 25
 | invalid transaction state
+| 2D
+| invalid transaction termination
 | 40
 | transaction rollback
 | 42
