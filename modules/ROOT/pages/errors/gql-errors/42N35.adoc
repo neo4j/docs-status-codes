@@ -3,6 +3,28 @@
 == Status description
 error: syntax error or access rule violation - unsupported path selector or explicit path mode in path pattern. The path selector or explicit path mode `{ <<selectorOrPathMode>> }` is not supported within quantified or parenthesized path patterns.
 
+[#_example_scenario]
+== Example scenario
+
+For example, when trying to use `SHORTEST` or an explicit path mode like `ACYCLIC` within a quantified path pattern:
+
+[source,cypher]
+----
+MATCH ()(SHORTEST 5 PATHS (a)-[r]->(b))*() RETURN r;
+MATCH ()(ACYCLIC (a)-[r]->(b))*() RETURN r;
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N35.
+
+== Possible solution
+Move the `SHORTEST` clause or an explicit path mode outside of the quantified path pattern:
+
+[source,cypher]
+----
+MATCH SHORTEST 5 PATHS ()((a)-[r]->(b))*() RETURN r;
+MATCH ACYCLIC ()((a)-[r]->(b))*() RETURN r;
+----
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
