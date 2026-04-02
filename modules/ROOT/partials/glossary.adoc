@@ -118,6 +118,7 @@
 [[schemaDescr]]$schemaDescr:: Schema descriptor, for example, `(:Label1 \{prop1})`.
 [[schemaDescrType]]$schemaDescrType:: Freeform type of schema descriptor, for example, `label property existence constraint`.
 [[selector]]$selector:: GPM path selector, for example, `ALL PATHS`, `SHORTEST 2`, etc.
+[[selectorOrPathMode]]$selectorOrPathMode:: GPM path selector, for example, `ALL PATHS`, `SHORTEST 2`, etc, or GPM path mode, for example `ACYCLIC`, `TRAIL`, etc.
 [[selectorType]]$selectorType:: Selector type.
 //Ask Lasse about $selectorType (releated to CDC) and has nothing to do with $selector.
 [[server]]$server:: Server name or ID, for example, `25a7efc7-d063-44b8-bdee-f23357f89f01`.
