@@ -2,9 +2,54 @@
 
 
 == Status description
-error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<variable>> }` is not defined for this procedure. Verify that the spelling is correct.
+error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<variable>> }` is not defined for this procedure. Available output columns are: `{ <<variableList>> }`. Verify that the spelling is correct.
 
+== Explanation
+When calling a procedure with a YIELD clause, all yielded column names must match the procedure's output signature.
+If a column name is misspelled or does not exist in the procedure's output, the query will fail at compile time.
+The error message includes the available output columns to help identify the correct name.
 
+== Example scenario
+For example, calling the built-in dbms.components() procedure and yielding a non-existent column:
+
+[source,cypher]
+----
+CALL dbms.components() YIELD nonExistent
+RETURN nonExistent
+----
+
+An error will be thrown with GQLSTATUS 42N50 and the following status description:
+
+[source]
+
+----
+error: syntax error or access rule violation - procedure return column not defined. The procedure return column `nonExistent` is not defined for this procedure. Available output columns are: `edition`, `name` and `versions`. Verify that the spelling is correct.
+----
+
+== Possible solutions
+
+To resolve this issue, replace the invalid column name with one of the available output columns listed in the error message:
+
+[source,cypher]
+----
+CALL dbms.components() YIELD name, versions, edition
+RETURN name, versions, edition
+----
+
+If you only need specific columns, yield just those:
+
+[source,cypher]
+----
+CALL dbms.components() YIELD name
+RETURN name
+----
+
+To discover a procedure's output signature, use SHOW PROCEDURES:
+
+[source,cypher]
+----
+SHOW PROCEDURES YIELD name, signature WHERE name = 'dbms.components'
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]
