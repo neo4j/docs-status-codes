@@ -5156,6 +5156,94 @@ Verify that this is the intended constraint and that it is spelled correctly.
 ======
 =====
 
+[#_neo_clientnotification_schema_vectorindexdimensionsnotspecified]
+=== Vector index created without configured dimensions
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Schema.VectorIndexDimensionsNotSpecified
+|Title
+a|Vector index created without configured dimensions.
+|Description
+a|The vector index was created without `vector.dimensions`. This is allowed, but providing dimensions when creating a vector index is recommended, as it ensures that only vectors of that size are indexed and makes dimension mismatches fail clearly at query time. For example, set `OPTIONS { indexConfig: { `vector.dimensions`: 1536 } }` when creating the index.
+|Category
+m|SCHEMA
+|GQLSTATUS code
+m|00NA2
+|Status description
+a|note: successful completion - vector index dimensions not specified.
+The vector index was created without `vector.dimensions`. This is allowed, but providing dimensions when creating a vector index is recommended, as it ensures that only vectors of that size are indexed and makes dimension mismatches fail clearly at query time. For example, set `OPTIONS { indexConfig: { `vector.dimensions`: 1536 } }` when creating the index.
+|SeverityLevel
+m|INFORMATION
+|===
+
+.Creating a vector index without configured dimensions
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Command::
++
+[source,cypher]
+----
+CREATE VECTOR INDEX movieEmbeddingIndex
+FOR (m:Movie) ON (m.embedding)
+----
+
+Returned GQLSTATUS code::
+00NA2
+
+Returned status description::
+note: successful completion - vector index dimensions not specified.
+The vector index was created without `vector.dimensions`. This is allowed, but providing dimensions when creating a vector index is recommended, as it ensures that only vectors of that size are indexed and makes dimension mismatches fail clearly at query time. For example, set `OPTIONS { indexConfig: { `vector.dimensions`: 1536 } }` when creating the index.
+
+Suggestions for improvement::
+If the indexed vectors are expected to have the same size, recreate the index with an explicit `vector.dimensions` value.
++
+[source,cypher]
+----
+CREATE VECTOR INDEX movieEmbeddingIndex
+FOR (m:Movie) ON (m.embedding)
+OPTIONS {
+  indexConfig: {`vector.dimensions`: 1536}
+}
+----
+
+======
+[.include-with-neo4j-code]
+======
+
+Command::
++
+[source,cypher]
+----
+CREATE VECTOR INDEX movieEmbeddingIndex
+FOR (m:Movie) ON (m.embedding)
+----
+
+Title of the returned code::
+Vector index created without configured dimensions.
+
+Full description of the returned code::
+The vector index was created without `vector.dimensions`. This is allowed, but providing dimensions when creating a vector index is recommended, as it ensures that only vectors of that size are indexed and makes dimension mismatches fail clearly at query time. For example, set `OPTIONS { indexConfig: { `vector.dimensions`: 1536 } }` when creating the index.
+
+Suggestions for improvement::
+If the indexed vectors are expected to have the same size, recreate the index with an explicit `vector.dimensions` value.
++
+[source,cypher]
+----
+CREATE VECTOR INDEX movieEmbeddingIndex
+FOR (m:Movie) ON (m.embedding)
+OPTIONS {
+  indexConfig: {`vector.dimensions`: 1536}
+}
+----
+
+======
+=====
+
 [#_generic]
 == `GENERIC` notifications
 

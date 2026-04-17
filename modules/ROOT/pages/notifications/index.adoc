@@ -152,6 +152,9 @@ The following table lists the Neo4j-defined groups of GQLSTATUS codes and their 
 | 00N8[y]
 | Topology information under successful completion
 
+| 00NA[y]
+| Schema information under successful completion
+
 |===
 
 [role=label--deprecated-5.26]
