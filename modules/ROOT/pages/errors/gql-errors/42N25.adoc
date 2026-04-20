@@ -5,7 +5,7 @@ error: syntax error or access rule violation - missing `YIELD`. Procedure call i
 
 == Explanation
 When a non-void procedure is called inside a query, the results must be explicitly named using a `YIELD` clause.
-Without `YIELD`, the query fails at compile time.
+Without `YIELD`, the query fails.
 The error message includes the available output columns to help construct the correct YIELD clause.
 
 == Example scenario
