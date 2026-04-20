@@ -6,7 +6,7 @@ error: syntax error or access rule violation - procedure return column not defin
 
 == Explanation
 When calling a procedure with a YIELD clause, all yielded column names must match the procedure's output signature.
-If a column name is misspelled or does not exist in the procedure's output, the query will fail at compile time.
+If a column name is misspelled or does not exist in the procedure's output, the query will fail.
 The error message includes the available output columns to help identify the correct name.
 
 == Example scenario
