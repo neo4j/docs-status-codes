@@ -1,12 +1,12 @@
 = 42I72
 
 == Status description
-error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a MATCH statement can not have any selectors.
+error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement cannot have any selectors.
 
 [#_example_scenarios]
 == Example scenarios
 
-The following is an example of a scenario that will produce this error:
+For example, when trying to match any shortest path to a movie and then use a `SEARCH` clause to filter the movies:
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a selector
 [source,cypher]
@@ -21,12 +21,13 @@ MATCH ANY SHORTEST ()-->(movie:Movie)
 RETURN movie.title AS title
 ----
 
-In the above case, you will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I72.
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I72.
 
 == Possible solution
+
 The first iteration of the `SEARCH` clause comes with some restrictions on the `MATCH` statement.
 It is likely that some of these restriction will be lifted in future versions of Neo4j.
-For the time being, the Cypher query under xref:errors/gql-errors/42I72.adoc#_example_scenarios[Example scenarios] can be rewritten like this:
+For the time being, you can rewrite the query to first find the movies and then filter them with a `SEARCH` clause, like this:
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a selector
 [source,cypher]
