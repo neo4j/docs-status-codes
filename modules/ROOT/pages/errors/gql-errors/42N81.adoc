@@ -1,10 +1,23 @@
 = 42N81
 
-
 == Status description
-error: syntax error or access rule violation - missing request parameter. Expected `{ <<param>> }`, but got `{ <<paramList>> }`.
+error: syntax error or access rule violation - missing request parameter. Expected `{ <<paramList>>1 }`, but got `{ <<paramList>>2 }`.
 
+== Example scenario
+For example, when running the following Cypher query, but only providing the parameter `$a`:
 
+[source,cypher]
+----
+RETURN $a + $b + $c
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I71.
+and the status description:
+
+[source]
+----
+error: syntax error or access rule violation - missing request parameter. Expected $`b` and $`c`, but got $`a`.
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]
