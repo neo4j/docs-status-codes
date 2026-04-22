@@ -1659,6 +1659,10 @@ Status description:: error: syntax error or access rule violation - no such auth
 
 Status description:: error: syntax error or access rule violation - auth rule already exists. An auth rule with the name `{ <<authRule>> }` already exists.
 
+=== xref:errors/gql-errors/42NAM.adoc[42NAM]
+
+Status description:: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `{ <<input>> }` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `{ <<replacement>> }` instead.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.

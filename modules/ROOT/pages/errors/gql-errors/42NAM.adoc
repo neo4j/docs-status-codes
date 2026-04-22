@@ -1,0 +1,80 @@
+= 42NAM
+
+== Status description
+error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `{ <<input>> }` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `{ <<replacement>> }` instead.
+
+== Explanation
+
+Auth rule conditions are evaluated at a different point in time than regular queries.
+When a temporal function such as `date()`, `datetime()`, `localdatetime()`, `localtime()`, or `time()` is called with a map argument whose only key is `timezone` (e.g. `date({timezone: 'UTC'})`), it retrieves the current time.
+Because the current time is not available during auth rule evaluation — only the transaction start time is — these calls are not allowed in auth rule conditions.
+
+Use the `.transaction()` form of the temporal function instead, which returns the transaction start time:
+
+[cols="1,1", options="header"]
+|===
+| Disallowed form | Suggested replacement
+| `date({timezone: 'UTC'})` | `date.transaction('UTC')`
+| `datetime({timezone: 'Europe/Stockholm'})` | `datetime.transaction('Europe/Stockholm')`
+|===
+
+This error is returned as the cause of xref:errors/gql-errors/42001.adoc[42001].
+
+== Example scenarios
+
+=== CREATE AUTH RULE with disallowed temporal function
+
+You try to create an auth rule whose condition uses `date({timezone: 'UTC'})`:
+
+[source,cypher]
+----
+CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date({timezone: 'UTC'})
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAM is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAM: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `date({timezone: 'UTC'})` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `date.transaction('UTC')` instead.
+42001: error: syntax error or access rule violation - invalid syntax
+----
+
+To resolve this, replace the function call with the `.transaction()` form:
+
+[source,cypher]
+----
+CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date.transaction('UTC')
+----
+
+=== ALTER AUTH RULE with disallowed temporal function
+
+You try to alter an auth rule whose condition uses `datetime({timezone: 'Europe/Stockholm'})`:
+
+[source,cypher]
+----
+ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime({timezone: 'Europe/Stockholm'})
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAM is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAM: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `datetime({timezone: 'Europe/Stockholm'})` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `datetime.transaction('Europe/Stockholm')` instead.
+42001: error: syntax error or access rule violation - invalid syntax
+----
+
+To resolve this, replace the function call with the `.transaction()` form:
+
+[source,cypher]
+----
+ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime.transaction('Europe/Stockholm')
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
