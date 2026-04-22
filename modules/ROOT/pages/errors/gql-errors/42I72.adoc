@@ -3,8 +3,8 @@
 == Status description
 error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement cannot have any selectors.
 
-[#_example_scenarios]
-== Example scenarios
+[#_example_scenario]
+== Example scenario
 
 For example, when trying to match any shortest path to a movie and then use a `SEARCH` clause to filter the movies:
 
