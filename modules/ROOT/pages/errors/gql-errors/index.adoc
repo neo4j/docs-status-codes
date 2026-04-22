@@ -1533,7 +1533,7 @@ Status description:: error: syntax error or access rule violation - invalid `USE
 
 === xref:errors/gql-errors/42N81.adoc[42N81]
 
-Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ <<param>> }`, but got `{ <<paramList>> }`.
+Status description:: error: syntax error or access rule violation - missing request parameter. Expected `{ <<paramList>>1 }`, but got `{ <<paramList>>2 }`.
 
 === xref:errors/gql-errors/42N82.adoc[42N82]
 
