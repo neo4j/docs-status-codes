@@ -6,10 +6,10 @@ error: syntax error or access rule violation - missing `YIELD`. Procedure call i
 == Explanation
 When a non-void procedure is called inside a query, the results must be explicitly named using a `YIELD` clause.
 Without `YIELD`, the query fails.
-The error message includes the available output columns to help construct the correct YIELD clause.
+The error message includes the available output columns to help construct the correct `YIELD` clause.
 
 == Example scenario
-For example, calling the built-in db.labels() procedure inside a query without YIELD:
+For example, when calling the built-in `db.labels()` procedure inside a query without `YIELD`:
 
 [source,cypher]
 ----
@@ -27,7 +27,7 @@ error: syntax error or access rule violation - missing YIELD. Procedure call ins
 
 == Possible solutions
 
-To resolve this issue, add a YIELD clause naming the output columns you need:
+To resolve this issue, add a `YIELD` clause naming the output columns you need:
 
 [source,cypher]
 ----
@@ -36,7 +36,7 @@ CALL db.labels() YIELD label
 RETURN n, label
 ----
 
-To discover a procedure's output signature, use SHOW PROCEDURES:
+To discover a procedure's output signature, use `SHOW PROCEDURES`:
 
 [source,cypher]
 ----
