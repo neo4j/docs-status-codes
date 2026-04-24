@@ -981,7 +981,7 @@ Status description:: error: syntax error or access rule violation - invalid quan
 
 === xref:errors/gql-errors/42I18.adoc[42I18]
 
-Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ <<variableList>> }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
+Status description:: error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `{ <<variableList>> }`. In an aggregating context, only grouping sub-expressions and constants are allowed.
 
 === xref:errors/gql-errors/42I19.adoc[42I19]
 
