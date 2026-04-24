@@ -1,18 +1,18 @@
 = 42I18
 
 == Status description
-error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains non-grouping sub-expression `{ <<variableList>> }`. In an aggregating context only grouping sub-expressions and constants are allowed.
+error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `{ <<variableList>> }`. In an aggregating context, only grouping sub-expressions and constants are allowed.
 
 == Explanation
 An aggregating expression can only consist of grouping sub-expressions and constants.
 A reference outside of this set is not possible to unambiguously aggregate over.
 
 == Example scenario
-For example, the following query projects `a.name` as a grouping key but then references the non-grouped variable `a` inside a map together with a collect(...) aggregation:
+For example, the following query projects `a.name` as a grouping key but then references the non-grouped variable `a` inside a map together with a `collect(...)` aggregation:
 
 [source,cypher]
 ----
-MATCH (a {name: 'Andres'})<-[:FATHER]-(child)
+MATCH (a {name: 'Andres'})<-[:HAS_FATHER]-(child)
 RETURN a.name, {foo: a.partner = 'Andres', kids: collect(child.name)}
 ----
 
@@ -20,7 +20,7 @@ An error will be thrown with GQLSTATUS 42I18 and the following status descriptio
 
 [source]
 ----
-error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains non-grouping sub-expression `a`. In an aggregating context only grouping sub-expressions and constants are allowed.
+error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `a`. In an aggregating context, only grouping sub-expressions and constants are allowed.
 ----
 
 == Possible solutions
@@ -29,11 +29,11 @@ To resolve this issue, you can add the non-grouping expression as a grouping key
 
 [source,cypher]
 ----
-MATCH (a {name: 'Andres'})<-[:FATHER]-(child)
+MATCH (a {name: 'Andres'})<-[:HAS_FATHER]-(child)
 RETURN a.name, a.partner, {foo: a.partner = 'Andres', kids: collect(child.name)}
 ----
 
-Alternatively, add the missing variable, `a`, as its own grouping key:
+Alternatively, you can add the missing variable `a` as a grouping key on its own.
 
 [source,cypher]
 ----
