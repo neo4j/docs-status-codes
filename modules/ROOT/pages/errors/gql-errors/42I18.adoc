@@ -25,7 +25,8 @@ error: syntax error or access rule violation - reference to non-grouping sub-exp
 
 == Possible solutions
 
-To resolve this issue, you can add the non-grouping expression as a grouping key. Observe this may change the result.
+To resolve this issue, you can add the non-grouping expression as a grouping key.
+Be aware that this may change the result.
 
 [source,cypher]
 ----
