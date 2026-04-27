@@ -4,8 +4,10 @@
 error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `{ <<variableList>> }`. In an aggregating context, only grouping sub-expressions and constants are allowed.
 
 == Explanation
-An aggregating expression can only consist of grouping sub-expressions and constants.
-A reference outside of this set is not possible to unambiguously aggregate over.
+An aggregating expression can only consist of grouping sub-expressions, constants, and aggregate functions.
+A variable that are neither sub-expressions nor constants nor arguments to an aggregate function cannot be use in an aggregating expression.
+
+To be usable in an aggregating expression, the variables need to be a) aggregated or b) single-valued per group regardless of the queried graph. Grouping sub-expressions and constants are guaranteed to be single-valued per group. In contrast, variables that are neither a grouping sub-expressions nor a constants may have multiple values per group.
 
 == Example scenario
 For example, the following query projects `a.name` as a grouping key but then references the non-grouped variable `a` inside a map together with a `collect(...)` aggregation:
