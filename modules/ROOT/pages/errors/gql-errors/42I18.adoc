@@ -5,9 +5,11 @@ error: syntax error or access rule violation - reference to non-grouping sub-exp
 
 == Explanation
 An aggregating expression can only consist of grouping sub-expressions, constants, and aggregate functions.
-A variable that are neither sub-expressions nor constants nor arguments to an aggregate function cannot be use in an aggregating expression.
+A variable that is not a sub-expression, a constant, or an argument to an aggregate function cannot be used in an aggregating expression.
 
-To be usable in an aggregating expression, the variables need to be a) aggregated or b) single-valued per group regardless of the queried graph. Grouping sub-expressions and constants are guaranteed to be single-valued per group. In contrast, variables that are neither a grouping sub-expressions nor a constants may have multiple values per group.
+To be usable in an aggregating expression, variables must be either aggregated or single-valued per group, regardless of the queried graph. 
+Grouping sub-expressions and constants ensures that each group is single-valued.
+In contrast, variables that are neither a grouping sub-expression nor a constant may have multiple values per group.
 
 == Example scenario
 For example, the following query projects `a.name` as a grouping key but then references the non-grouped variable `a` inside a map together with a `collect(...)` aggregation:
