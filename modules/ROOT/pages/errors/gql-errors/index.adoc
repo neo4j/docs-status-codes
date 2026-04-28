@@ -1421,7 +1421,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N50.adoc[42N50]
 
-Status description:: error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<variable>> }` is not defined for this procedure. Available output columns are: `{ <<variableList>> }`. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<arg>> }` is not defined for this procedure. Available output columns are: `{ <<argList>> }`. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N51.adoc[42N51]
 
