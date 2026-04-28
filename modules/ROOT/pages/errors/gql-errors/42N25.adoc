@@ -40,7 +40,15 @@ To discover a procedure's output signature, use `SHOW PROCEDURES`:
 
 [source,cypher]
 ----
-SHOW PROCEDURES YIELD name, signature WHERE name = 'db.labels'
+neo4j@system> SHOW PROCEDURES YIELD name, signature WHERE name = 'db.labels';
++--------------------------------------------------+
+| name        | signature                          |
++--------------------------------------------------+
+| "db.labels" | "db.labels() :: (label :: STRING)" |
++--------------------------------------------------+
+
+1 row
+ready to start consuming query after 55 ms, results consumed after another 2 ms
 ----
 
 ifndef::backend-pdf[]

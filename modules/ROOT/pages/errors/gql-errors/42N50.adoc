@@ -12,6 +12,7 @@ The error message includes the available output columns to help identify the cor
 == Example scenario
 For example, when calling the built-in `dbms.components()` procedure and yielding a non-existent column:
 
+.Returns a non-existent column `nonExistent`
 [source,cypher]
 ----
 CALL dbms.components() YIELD nonExistent
@@ -28,16 +29,16 @@ error: syntax error or access rule violation - procedure return column not defin
 
 == Possible solutions
 
-To resolve this issue, replace the invalid column name with one of the available output columns listed in the error message:
+To resolve this issue, replace the invalid column name with at least one of the available output columns listed in the error message:
 
+.Returns all available columns
 [source,cypher]
 ----
 CALL dbms.components() YIELD name, versions, edition
 RETURN name, versions, edition
 ----
 
-If you only need specific columns, yield just those:
-
+.Returns only the `name` column
 [source,cypher]
 ----
 CALL dbms.components() YIELD name
@@ -48,7 +49,15 @@ To discover a procedure's output signature, use `SHOW PROCEDURES`:
 
 [source,cypher]
 ----
-SHOW PROCEDURES YIELD name, signature WHERE name = 'dbms.components'
+neo4j@system> SHOW PROCEDURES YIELD name, signature WHERE name = 'dbms.components';
++----------------------------------------------------------------------------------------------------------+
+| name              | signature                                                                            |
++----------------------------------------------------------------------------------------------------------+
+| "dbms.components" | "dbms.components() :: (name :: STRING, versions :: LIST<STRING>, edition :: STRING)" |
++----------------------------------------------------------------------------------------------------------+
+
+1 row
+ready to start consuming query after 321 ms, results consumed after another 11 ms
 ----
 
 ifndef::backend-pdf[]
