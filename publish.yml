@@ -36,6 +36,8 @@ asciidoc:
   - "@neo4j-antora/mark-terms"
   - "@neo4j-antora/antora-table-footnotes"
   
+  - "@neo4j-antora/antora-table-footnotes"
+  
   attributes:
     page-theme: docs
     page-type: Docs
