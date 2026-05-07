@@ -34,6 +34,8 @@ asciidoc:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
   - "@neo4j-antora/mark-terms"
+  - "@neo4j-antora/antora-table-footnotes"
+  
   attributes:
     page-theme: docs
     page-type: Docs
