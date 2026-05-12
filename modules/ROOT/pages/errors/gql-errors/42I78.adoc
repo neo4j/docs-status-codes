@@ -1,0 +1,34 @@
+= 42I78
+
+== Status description
+error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER { <<version>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<version>>1 }`.
+
+== Example scenario
+
+For example, when calling a procedure or function that is only available in `CYPHER 25` from a `CYPHER 5` query:
+
+[source,cypher]
+----
+CYPHER 5
+RETURN coll.indexOf() AS result
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
+This error has a cause detailed in xref:errors/gql-errors/42I78.adoc[42I78] and status description:
+
+[source]
+----
+error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER 25`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER 25`.
+----
+
+== Possible solutions
+
+* Prefix the query with the Cypher version in which the procedure or function is available, for example, `CYPHER 25`.
+* Change the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
