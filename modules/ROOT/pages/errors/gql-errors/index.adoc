@@ -1207,6 +1207,10 @@ Status description:: error: syntax error or access rule violation - self-referen
 
 Status description:: error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint `{ <<item>> }` `{ <<input>> }` (`{ <<bytes>>1 }` bytes) exceeded limit of `{ <<bytes>>2 }` bytes.
 
+=== xref:errors/gql-errors/42I78.adoc[42I78]
+
+Status description:: error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER { <<version>>1 }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<version>>1 }`.
+
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
 Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
