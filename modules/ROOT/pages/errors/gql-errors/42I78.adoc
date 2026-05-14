@@ -13,7 +13,7 @@ CYPHER 5
 RETURN coll.indexOf() AS result
 ----
 
-The query returns a chain of errors where GQLSTATUS xref:errors/gql-errors/42I78.adoc[42I78] is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+The query returns a chain of errors where GQLSTATUS 42I78 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
 .GQLSTATUS error chain
 [source, error]
