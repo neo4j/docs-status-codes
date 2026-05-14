@@ -13,12 +13,13 @@ CYPHER 5
 RETURN coll.indexOf() AS result
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause detailed in xref:errors/gql-errors/42I78.adoc[42I78] and status description:
+The query returns a chain of errors where GQLSTATUS xref:errors/gql-errors/42I78.adoc[42I78] is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER 25`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER 25`.
+42I78: error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER 25`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER 25`.
+42001: error: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
