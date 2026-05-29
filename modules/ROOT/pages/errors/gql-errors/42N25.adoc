@@ -1,8 +1,55 @@
 = 42N25
 
 == Status description
+error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead. Available output columns are: `{ <<variableList>> }`.
 
-error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead.
+== Explanation
+When a non-void procedure is called inside a query, the results must be explicitly named using a `YIELD` clause.
+Without `YIELD`, the query fails.
+The error message includes the available output columns to help construct the correct `YIELD` clause.
+
+== Example scenario
+For example, when calling the built-in `db.labels()` procedure inside a query without `YIELD`:
+
+[source,cypher]
+----
+MATCH (n)
+CALL db.labels()
+RETURN *
+----
+
+An error will be thrown with GQLSTATUS 42N25 and the following status description:
+
+[source]
+----
+error: syntax error or access rule violation - missing YIELD. Procedure call inside a query does not support naming results implicitly. Use YIELD instead. Available output columns are: label.
+----
+
+== Possible solutions
+
+To resolve this issue, add a `YIELD` clause naming the output columns you need:
+
+[source,cypher]
+----
+MATCH (n)
+CALL db.labels() YIELD label
+RETURN n, label
+----
+
+To discover a procedure's output signature, use `SHOW PROCEDURES`:
+
+[source,cypher]
+----
+neo4j@system> SHOW PROCEDURES YIELD name, signature WHERE name = 'db.labels';
++--------------------------------------------------+
+| name        | signature                          |
++--------------------------------------------------+
+| "db.labels" | "db.labels() :: (label :: STRING)" |
++--------------------------------------------------+
+
+1 row
+ready to start consuming query after 55 ms, results consumed after another 2 ms
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]

@@ -981,7 +981,7 @@ Status description:: error: syntax error or access rule violation - invalid quan
 
 === xref:errors/gql-errors/42I18.adoc[42I18]
 
-Status description:: error: syntax error or access rule violation - invalid reference to implicitly grouped expressions. The aggregation column contains implicit grouping expressions referenced by the variables `{ <<variableList>> }`. Implicit grouping expressions are variables not explicitly declared as grouping keys.
+Status description:: error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `{ <<variableList>> }`. In an aggregating context, only grouping sub-expressions and constants are allowed.
 
 === xref:errors/gql-errors/42I19.adoc[42I19]
 
@@ -1333,7 +1333,7 @@ Status description:: error: syntax error or access rule violation - missing `WIT
 
 === xref:errors/gql-errors/42N25.adoc[42N25]
 
-Status description:: error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead.
+Status description:: error: syntax error or access rule violation - missing `YIELD`. Procedure call inside a query does not support naming results implicitly. Use `YIELD` instead. Available output columns are: `{ <<variableList>> }`.
 
 === xref:errors/gql-errors/42N26.adoc[42N26]
 
@@ -1425,7 +1425,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N50.adoc[42N50]
 
-Status description:: error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<variable>> }` is not defined for this procedure. Verify that the spelling is correct.
+Status description:: error: syntax error or access rule violation - procedure return column not defined. The procedure return column `{ <<arg>> }` is not defined for this procedure. Available output columns are: `{ <<argList>> }`. Verify that the spelling is correct.
 
 === xref:errors/gql-errors/42N51.adoc[42N51]
 
