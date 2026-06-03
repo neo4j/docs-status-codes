@@ -1,0 +1,11 @@
+= 42N7B
+
+== Status description
+error: syntax error or access rule violation - non-deterministic disjoint by expression. `DISJOINT BY` expressions must be deterministic.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

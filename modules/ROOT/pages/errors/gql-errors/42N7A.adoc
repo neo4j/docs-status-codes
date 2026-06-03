@@ -1,0 +1,11 @@
+= 42N7A
+
+== Status description
+error: syntax error or access rule violation - disjoint by requires concurrent transactions. `DISJOINT BY` can only be used in `CALL { ... } IN CONCURRENT TRANSACTIONS`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
