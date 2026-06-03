@@ -668,13 +668,13 @@ m|Neo.ClientNotification.Statement.VirtualGraphPostProcessing
 |Title
 a|The query plan against a virtual graph contains a potentially expensive post-processing step.
 |Description
-a|The virtual graph query execution plan contains a post-processing step that requires the local engine to fully materialize intermediate results. This may transfer large amounts of data from the remote source, increasing memory usage. Consider rewriting the query so that aggregation, `ORDER BY`, `DISTINCT`, and `LIMIT` can be pushed down to the remote source.
+a|The query execution plan contains a post-processing step that materialize intermediate results. This may transfer large amounts of data from the remote source and increase memory usage. Consider rewriting the query so that aggregation, `ORDER BY`, `DISTINCT`, and `LIMIT` can be pushed down to the remote source.
 |Category
 m|PERFORMANCE
 |GQLSTATUS code
-m|01V00
+m|03N97
 |Status description
-a|warn: virtual graph post-processing. The virtual graph query execution plan contains a post-processing step that requires the local engine to fully materialize intermediate results. This may transfer large amounts of data from the remote source, increasing memory usage. Consider rewriting the query so that aggregation, `ORDER BY`, `DISTINCT`, and `LIMIT` can be pushed down to the remote source.
+a|info: virtual graph post-processing. The query execution plan contains a post-processing step that materialize intermediate results. This may transfer large amounts of data from the remote source and increase memory usage. Consider rewriting the query so that aggregation, `ORDER BY`, `DISTINCT`, and `LIMIT` can be pushed down to the remote source.
 |Classification
 m|PERFORMANCE
 |SeverityLevel
