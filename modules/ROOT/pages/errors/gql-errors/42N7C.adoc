@@ -1,0 +1,44 @@
+= 42N7C
+
+== Status description
+error: syntax error or access rule violation - subquery in disjoint by expression. `'DISJOINT BY'` expressions must not contain subquery expressions.
+
+== Example scenario
+For example, when the `DISJOINT BY` expression contains a subquery expression, such as `COUNT { ... }`:
+
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS i
+CALL (i) {
+  MATCH (n {count: COUNT { MATCH (m) WHERE m.id = i RETURN m }})
+  SET n.processed = true
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (COUNT { MATCH (m) WHERE m.id = i RETURN m })
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7C and the status description:
+
+[source]
+----
+error: syntax error or access rule violation - subquery in disjoint by expression. 'DISJOINT BY' expressions must not contain subquery expressions.
+----
+
+== Possible solutions
+
+To resolve this issue, project the subquery expression before the `CALL` clause and import the result as a variable.
+
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS i
+WITH COUNT { MATCH (m) WHERE m.id = i RETURN m } AS c
+CALL (c) {
+  MATCH (n {count: c})
+  SET n.processed = true
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (c)
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
