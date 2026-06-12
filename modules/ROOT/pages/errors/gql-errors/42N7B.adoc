@@ -12,7 +12,7 @@ UNWIND [1, 2, 3] AS i
 CALL (i) {
   MATCH (n {id: i})
   SET n.processed = true
-} IN CONCURRENT TRANSACTIONS DISJOINT BY rand()
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (rand())
 ----
 
 You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7B and the status description:
@@ -20,6 +20,19 @@ You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001
 [source]
 ----
 error: syntax error or access rule violation - non-deterministic disjoint by expression. 'DISJOINT BY' expressions must be deterministic.
+----
+
+== Possible solutions
+
+To resolve this issue, replace the non-deterministic expression with a deterministic expression over the row variables, for example the variable itself.
+
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS i
+CALL (i) {
+  MATCH (n {id: i})
+  SET n.processed = true
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (i)
 ----
 
 ifndef::backend-pdf[]
