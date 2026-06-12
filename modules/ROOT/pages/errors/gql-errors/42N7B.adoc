@@ -1,7 +1,7 @@
 = 42N7B
 
 == Status description
-error: syntax error or access rule violation - non-deterministic disjoint by expression. 'DISJOINT BY' expressions must be deterministic.
+error: syntax error or access rule violation - non-deterministic disjoint by expression. `'DISJOINT BY'` expressions must be deterministic.
 
 == Example scenario
 For example, when the `DISJOINT BY` expression is non-deterministic, such as `rand()`:

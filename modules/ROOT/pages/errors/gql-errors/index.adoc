@@ -1541,7 +1541,7 @@ Status description:: error: syntax error or access rule violation - disjoint by 
 
 === xref:errors/gql-errors/42N7B.adoc[42N7B]
 
-Status description:: error: syntax error or access rule violation - non-deterministic disjoint by expression. 'DISJOINT BY' expressions must be deterministic.
+Status description:: error: syntax error or access rule violation - non-deterministic disjoint by expression. `'DISJOINT BY'` expressions must be deterministic.
 
 === xref:errors/gql-errors/42N7C.adoc[42N7C]
 
