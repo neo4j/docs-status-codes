@@ -1,7 +1,7 @@
 = 42N7C
 
 == Status description
-error: syntax error or access rule violation - subquery in disjoint by expression. `DISJOINT BY` expressions must not contain subquery expressions.
+error: syntax error or access rule violation - subquery in disjoint by expression. `'DISJOINT BY'` expressions must not contain subquery expressions.
 
 == Example scenario
 For example, when the `DISJOINT BY` expression contains a subquery expression, such as `COUNT { ... }`:
@@ -15,12 +15,11 @@ CALL (i) {
 } IN CONCURRENT TRANSACTIONS DISJOINT BY COUNT { MATCH (m) WHERE m.id = i RETURN m }
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7C
-and the status description:
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7C and the status description:
 
 [source]
 ----
-error: syntax error or access rule violation - subquery in disjoint by expression. `DISJOINT BY` expressions must not contain subquery expressions.
+error: syntax error or access rule violation - subquery in disjoint by expression. 'DISJOINT BY' expressions must not contain subquery expressions.
 ----
 
 ifndef::backend-pdf[]

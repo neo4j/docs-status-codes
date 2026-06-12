@@ -1,7 +1,7 @@
 = 42N7A
 
 == Status description
-error: syntax error or access rule violation - disjoint by requires concurrent transactions. `DISJOINT BY` can only be used in `CALL { ... } IN CONCURRENT TRANSACTIONS`.
+error: syntax error or access rule violation - disjoint by requires concurrent transactions. `'DISJOINT BY'` can only be used in `'CALL { ... } IN CONCURRENT TRANSACTIONS'`.
 
 == Example scenario
 For example, when using `DISJOINT BY` in a `CALL` subquery that runs `IN TRANSACTIONS` without the `CONCURRENT` keyword:
@@ -15,12 +15,11 @@ CALL (i) {
 } IN TRANSACTIONS DISJOINT BY i
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7A
-and the status description:
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7A and the status description:
 
 [source]
 ----
-error: syntax error or access rule violation - disjoint by requires concurrent transactions. `DISJOINT BY` can only be used in `CALL { ... } IN CONCURRENT TRANSACTIONS`.
+error: syntax error or access rule violation - disjoint by requires concurrent transactions. 'DISJOINT BY' can only be used in 'CALL { ... } IN CONCURRENT TRANSACTIONS'.
 ----
 
 ifndef::backend-pdf[]
