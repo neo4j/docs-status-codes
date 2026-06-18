@@ -16,15 +16,18 @@ For example, when calling the built-in `dbms.components()` procedure and yieldin
 [source,cypher]
 ----
 CALL dbms.components() YIELD nonExistent
-RETURN nonExistent
+RETURN nonExistent;
 ----
 
-An error will be thrown with GQLSTATUS 42N50 and the following status description:
+The query returns a chain of errors where GQLSTATUS 42N50 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
-
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - procedure return column not defined. The procedure return column `nonExistent` is not defined for this procedure. Available output columns are: `edition`, `name` and `versions`. Verify that the spelling is correct.
+42N50: syntax error or access rule violation - procedure return column not defined. The procedure return column 'nonExistent' is not defined for this procedure. Available output columns are: 'edition', 'name' and 'versions'. Verify that the spelling is correct. (line 1, column 30 (offset: 29))
+"CALL dbms.components() YIELD nonExistent"
+                              ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -35,14 +38,14 @@ To resolve this issue, replace the invalid column name with at least one of the 
 [source,cypher]
 ----
 CALL dbms.components() YIELD name, versions, edition
-RETURN name, versions, edition
+RETURN name, versions, edition;
 ----
 
 .Returns only the `name` column
 [source,cypher]
 ----
 CALL dbms.components() YIELD name
-RETURN name
+RETURN name;
 ----
 
 To discover a procedure's output signature, use `SHOW PROCEDURES`:

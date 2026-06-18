@@ -4,19 +4,24 @@
 error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `{ <<fun>> }` function with path selectors, explicit match modes, or explicit path modes is not allowed.
 
 == Example scenario
-For example, in the following query `REPEATABLE ELEMENTS` is used with the `shortestPath()` function:
+Try running the following query `REPEATABLE ELEMENTS` with the `shortestPath()` function:
 
 [source,cypher]
 ----
-MATCH p = ACYCLIC shortestPath((:A)-[:R*0..10]->(:B))
-  WHERE any(x IN nodes(p) WHERE x:X)
-RETURN p
+MATCH REPEATABLE ELEMENTS p = shortestPath((:A)-[:R*0..10]->(:B))
+WHERE any(x IN nodes(p) WHERE x:X)
+RETURN p;
 ----
-This will result in an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001], with a cause detailed in xref:errors/gql-errors/42I39.adoc[42I39] and the following status description:
 
-[source]
+The query returns a chain of errors where GQLSTATUS 42I39 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - invalid use of shortest path function. Mixing the `shortestPath()` function with path selectors, explicit match modes, or explicit path modes is not allowed.
+42I39: syntax error or access rule violation - invalid use of shortest path function. Mixing the shortestPath() function with path selectors, explicit match modes or explicit path modes is not allowed. (line 1, column 31 (offset: 30))
+"MATCH REPEATABLE ELEMENTS p = shortestPath((:A)-[:R*0..10]->(:B))"
+                               ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solution
@@ -26,9 +31,9 @@ For example, the query above can be rewritten as:
 
 [source,cypher]
 ----
-MATCH p = SHORTEST 1 ACYCLIC (:A)-[:R*0..10]->(:B)
+MATCH REPEATABLE ELEMENTS p = SHORTEST 1 (:A)-[:R*0..10]->(:B)
   WHERE any(x IN nodes(p) WHERE x:X)
-RETURN p
+RETURN p;
 ----
 
 ifndef::backend-pdf[]

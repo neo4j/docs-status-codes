@@ -6,18 +6,24 @@ error: data exception - omitting mandatory field for property type constraints f
 
 == Example scenario
 
-For example, try to create a property type constraint for a vector, omitting the dimension:
+Try creating a property type constraint for a vector, omitting the dimension:
 
 [source,cypher]
 ----
 CREATE CONSTRAINT myConstraint
 FOR (n:Label)
-REQUIRE n.prop IS :: VECTOR<INTEGER>
+REQUIRE n.prop IS :: VECTOR<INTEGER>;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11].
-This error has a cause detailed in xref:errors/gql-errors/22N90.adoc[22N90], which also has a subsequent cause with GQLSTATUS 22NBA and the status description above.
+The query returns a chain of errors where GQLSTATUS 22NBA is the cause of GQLSTATUS xref:errors/gql-errors/22N90.adoc[22N90], which is the cause of GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11]:
 
+.GQLSTATUS error chain
+[source, error]
+----
+22NBA: data exception - omitting mandatory field for property type constraints for vectors. Property type constraints for vectors need to define both coordinate type and dimension.
+  22N90: data exception - property type unsupported in constraint. VECTOR<INTEGER NOT NULL> is not supported in property type constraints.
+  50N11: general processing exception - constraint creation failed. Unable to create 'node property type constraint'.
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]

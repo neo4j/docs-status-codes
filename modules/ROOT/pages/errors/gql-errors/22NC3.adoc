@@ -12,20 +12,24 @@ To be effective, a relationship element type must define at least one of the fol
 * at least one property type
 
 == Example scenario
-For example, try to set a graph type as follows:
+Try setting a graph type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
     ()-[:REL =>]->()
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC3 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC3 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - relationship element type has no effect. The relationship element type `REL` must define a source or destination, or at least one property type.
+22NC3: data exception - relationship element type has no effect. The relationship element type `REL` must define a source, destination, or at least one property type. (line 2, column 5 (offset: 35))
+"    ()-[:REL =>]->()"
+     ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, define at least one property type or add a node element type, for example:
@@ -34,7 +38,7 @@ To fix this, define at least one property type or add a node element type, for e
 ----
 ALTER CURRENT GRAPH TYPE SET {
     ()-[:REL => {prop: ANY NOT NULL }]->()
-}
+};
 ----
 
 ifndef::backend-pdf[]

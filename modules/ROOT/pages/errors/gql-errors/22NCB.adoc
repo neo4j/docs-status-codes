@@ -15,23 +15,25 @@ Given the existing graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     ()-[r:REL => {name :: STRING }]->()
-}
+};
 ----
 
-Execute the query:
+Try adding a new relationship element type with the same type `:REL` as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE ADD {
      ()-[r:REL => {name :: STRING, age :: INT }]->()
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCB and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCB is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - relationship element type already exists. A relationship element type identified by the relationship type `REL` already exists in the graph type.
+22NCB: data exception - relationship element type already exists. A relationship element type identified by the relationship type `REL` already exists in the graph type.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -40,7 +42,7 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE ALTER {
      ()-[r:REL => {name :: STRING, age :: INT }]->()
-}
+};
 ----
 
 

@@ -13,21 +13,25 @@ Let's take the following example scenarios:
 
 === Aliases
 
-For example, try to define two node element types using the same alias as follows:
+Try defining two node element types using the same alias as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   ( p: Person => { prop :: STRING } ),
   ( p: Property => { prop :: STRING } )
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC9 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC8 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name 'p' more than once.
+22NC8: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name 'p' more than once. (line 3, column 5 (offset: 74))
+"  ( p: Property => { prop :: STRING } )"
+     ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, rename one of the aliases, for example:
@@ -37,26 +41,30 @@ To fix this, rename one of the aliases, for example:
 ALTER CURRENT GRAPH TYPE SET {
   ( pers: Person => { prop :: STRING } ),
   ( prop: Property => { prop :: STRING } )
-}
+};
 ----
 
 === Identifiers
 
-For example, try to define two relationship element types using the same relationship type as follows:
+Try defining two relationship element types using the same relationship type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   ()-[n:REL => { prop :: STRING }]->(),
   ()-[m:REL => { prop :: STRING }]->()
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC9 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC8 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name ':REL' more than once.
+22NC8: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name 'REL' more than once. (line 3, column 9 (offset: 79))
+"  ()-[m:REL => { prop :: STRING }]->()"
+         ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, delete the duplicate relationship type definition, since they are both equivalent:
@@ -65,7 +73,7 @@ To fix this, delete the duplicate relationship type definition, since they are b
 ----
 ALTER CURRENT GRAPH TYPE SET {
   ()-[n:REL => { prop :: STRING }]->()
-}
+};
 ----
 
 ifndef::backend-pdf[]

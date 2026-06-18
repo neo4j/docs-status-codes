@@ -4,7 +4,7 @@
 
 error: system configuration or operation exception - not supported in this store format. `{ <<feat>> }` is not supported in `{ <<storeFormat>> }` store format.
 
-== Scenario
+== Example scenario
 
 This error code is used when the user tries to use a feature that is unsupported by the store format, e.g. writing a property with an unsupported data type.
 

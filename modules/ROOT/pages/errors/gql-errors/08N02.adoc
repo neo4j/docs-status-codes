@@ -3,10 +3,10 @@
 == Status description
 error: connection exception - unable to connect to database. Unable to connect to database `{ <<db>> }`. Server-side routing is disabled. Either connect to `{ $db }` directly, or enable server-side routing by setting `{ <<cfgSetting>> }=true`.
 
-.Example of error message
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: connection exception - unable to connect to database. Unable to connect to database `mydb`. Server-side routing is disabled. Either connect to `mydb` directly, or enable server-side routing by setting `dbms.routing.enabled=true`.
+08N02: connection exception - unable to connect to database. Unable to connect to database `mydb`. Server-side routing is disabled. Either connect to `mydb` directly, or enable server-side routing by setting `dbms.routing.enabled=true`.
 ----
 
 == Possible solution

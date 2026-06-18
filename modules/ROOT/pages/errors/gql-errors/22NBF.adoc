@@ -3,7 +3,7 @@
 == Status description
 error: data exception - property value too big. Property value of type `{ <<typeDescription>> }` is too big (more than `{ <<bytes>> }` bytes): `{ <<value>> }`
 
-== Scenario
+== Example scenario
 
 This error occurs when a property value cannot be stored because its size exceeds the limit.
 

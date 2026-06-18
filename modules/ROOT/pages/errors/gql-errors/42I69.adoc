@@ -5,7 +5,7 @@ error: syntax error or access rule violation - invalid search variable reference
 
 == Example scenario
 
-For example, when trying to use a variable from a previous `MATCH` statement as variable reference in a `SEARCH` clause:
+Try using a variable from a previous `MATCH` statement as variable reference in a `SEARCH` clause:
 
 [source,cypher]
 ----
@@ -17,14 +17,18 @@ MATCH (m:Movie {title:'Matrix, The'})
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I69 and status description:
+The query returns a chain of errors where GQLSTATUS 42I69 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - invalid search variable reference. `movie` must reference a variable from the same `MATCH` statement.
+42I69: syntax error or access rule violation - invalid search variable reference. `movie` must reference a variable from the same MATCH statement. (line 4, column 10 (offset: 77))
+"  SEARCH movie IN ("
+          ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 ifndef::backend-pdf[]

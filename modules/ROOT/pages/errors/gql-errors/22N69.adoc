@@ -7,19 +7,20 @@ error: data exception - index does not exist. The index `{ <<idxDescrOrName>> }`
 
 == Example scenario
 
-For example, try to drop a non-existing index:
+Try dropping a nonexistent index:
 
 [source,cypher]
 ----
-DROP INDEX `nonExisting`
+DROP INDEX `nonExisting`;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/50N10.adoc[50N10].
-This error has a cause with GQLSTATUS 22N69 and status description:
+The query returns a chain of errors where GQLSTATUS 22N69 is the cause of GQLSTATUS xref:errors/gql-errors/50N10.adoc[50N10]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - index does not exist. The index 'nonExisting' does not exist.
+22N69: data exception - index does not exist. The index 'nonExisting' does not exist.
+  50N10: general processing exception - index drop failed. Unable to drop 'nonExisting'.
 ----
 
 

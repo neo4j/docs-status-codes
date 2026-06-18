@@ -13,24 +13,26 @@ Given the following graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING }),
-    (p)-[:DRIVES]->(:Car)
-}
+    (p)-[:DRIVES=>]->(:Car)
+};
 ----
 
-Execute the query:
+Try dropping the node element type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     (p:Person => )
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCE and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCE is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - node element type in use. The node element type identified by the label `Car` is referenced in the graph type element '()-[:`DRIVES` =>]->()' and cannot be dropped.
+22NCE: data exception - node element type in use. The node element type identified by the label `Person` is referenced in the graph type element '()-[:`DRIVES` =>]->()' and cannot be dropped.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this and drop both types, change the query as follows:
@@ -39,9 +41,8 @@ To fix this and drop both types, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     (:Person => ),
-    ()-[:DRIVES]->()
-}
-
+    ()-[:DRIVES =>]->()
+};
 ----
 
 
