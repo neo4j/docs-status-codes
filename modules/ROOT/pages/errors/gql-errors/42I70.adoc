@@ -6,7 +6,7 @@ error: syntax error or access rule violation - search clause with multiple bound
 [#_example_scenario]
 == Example scenario
 
-For example, when trying to use a `SEARCH` clause in a `MATCH` statement with more than one bound variable:
+Try using a `SEARCH` clause in a `MATCH` statement with more than one bound variable:
 
 [source,cypher]
 ----
@@ -17,10 +17,19 @@ MATCH (movie:Movie)-[r]->()
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title, r.prop AS prop
+RETURN movie.title AS title, r.prop AS prop;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I70.
+The query returns a chain of errors where GQLSTATUS 42I70 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I70: syntax error or access rule violation - search clause with multiple bound variables. In order to have a search clause, a MATCH statement can only have one bound variable. (line 2, column 22 (offset: 31))
+"MATCH (movie:Movie)-[r]->()"
+                      ^
+  42001: syntax error or access rule violation - invalid syntax
+----
 
 == Possible solution
 The first iteration of the `SEARCH` clause comes with many restrictions on the `MATCH` statement.
@@ -37,7 +46,7 @@ MATCH (movie:Movie)
     LIMIT 5
   )
 MATCH (movie)-[r]->()
-RETURN movie.title AS title, r.prop AS prop
+RETURN movie.title AS title, r.prop AS prop;
 ----
 
 ifndef::backend-pdf[]

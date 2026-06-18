@@ -8,19 +8,26 @@ When creating an authorization rule, the specified auth rule name must be unique
 If an auth rule with the same name already exists, the operation will fail with this error.
 
 == Example scenario
-Try to create an auth rule using the following command:
+Try creating an auth rule using the following command:
 
 [source,cypher]
 ----
-CREATE AUTH RULE authRuleName SET CONDTION abac.oidc.user_attribute('department') = 'sales';
+CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date.transaction('UTC');
 ----
-If the auth rule `authRuleName` does already exist, an error will be thrown with GQLSTATUS 42NAD.
+If the auth rule `authRule` does already exist, the query will return a chain of errors where GQLSTATUS 42NAE is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAE: syntax error or access rule violation - auth rule already exists. An auth rule with the name `authRule` already exists.
+  42001: syntax error or access rule violation - invalid syntax
+----
 
 == Possible solutions
 
 To resolve this issue, make sure that there is no existing auth rule with the same name before calling the create command.
 
-Another solution is to use the `IF NOT EXISTS` clause in the create command to avoid the error if the auth rule already exists. 
+Another solution is to use the `IF NOT EXISTS` clause in the create command to avoid the error if the auth rule already exists.
 Then the auth rule will only be created if the name of the auth rule is unique.
 
 It is also possible to use the `OR REPLACE` clause in the create auth rule command to overwrite the existing auth rule with the new definition.

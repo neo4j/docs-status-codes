@@ -12,10 +12,10 @@ CREATE VECTOR INDEX indexName
 FOR (n: Label) ON n.prop
 OPTIONS {
   indexConfig: {`vector.dimensions`: 1048}
-}
+};
 ----
 
-When querying it with a vector with a dimension other than 1048:
+Try querying it with a vector with a dimension other than 1048:
 
 [source,cypher]
 ----
@@ -26,21 +26,22 @@ MATCH (n)
     FOR vector([1, 2, 3], 3, INTEGER)
     LIMIT 5
   )
-RETURN n
+RETURN n;
 ----
 
 or
 
 [source,cypher]
 ----
-CALL db.index.vector.queryNodes('indexName', 5, [1, 2, 3])
+CALL db.index.vector.queryNodes('indexName', 5, [1, 2, 3]);
 ----
 
-You will receive an error with GQLSTATUS 51N65 and a status description:
+The query returns an error with GQLSTATUS 51N65 and a status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: system configuration or operation exception - vector index dimensionality mismatch. Vector index `indexName` has a configured dimensionality of 1048, but the provided vector has a dimension 3.
+51N65: system configuration or operation exception - vector index dimensionality mismatch. Vector index `indexName` has a configured dimensionality of 1048, but the provided vector has a dimension 3.
 ----
 
 == Possible solution
@@ -52,7 +53,7 @@ For example:
 +
 [source,cypher]
 ----
-DROP INDEX indexName
+DROP INDEX indexName;
 ----
 
 . Recreate the index without the configured dimension:
@@ -60,7 +61,7 @@ DROP INDEX indexName
 [source,cypher]
 ----
 CREATE VECTOR INDEX indexName
-FOR (n: Label) ON n.prop
+FOR (n: Label) ON n.prop;
 ----
 
 [NOTE]

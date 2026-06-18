@@ -22,15 +22,15 @@ When you run the following Cypher statement:
 [source,cypher]
 ----
 CREATE INDEX $largeIndexName
-FOR (n:Person) ON (n.name)
+FOR (n:Person) ON (n.name);
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42I76.adoc[42I76]:
+The query returns an error with GQLSTATUS 42I76 and the status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: syntax error or access rule violation - index or constraint value too long. The provided index or constraint name 'A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be ...' (8315 bytes) exceeded limit of 8136 bytes.
-
+42I76: syntax error or access rule violation - index or constraint value too long. The provided index or constraint name 'A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be ...' (8315 bytes) exceeded limit of 8136 bytes.
 ----
 
 == Possible solution

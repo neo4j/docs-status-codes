@@ -6,7 +6,7 @@ error: syntax error or access rule violation - unsupported path selector or expl
 [#_example_scenario]
 == Example scenario
 
-For example, when trying to use `SHORTEST` or an explicit path mode like `ACYCLIC` within a quantified path pattern:
+Try using `SHORTEST` or an explicit path mode like `ACYCLIC` within a quantified path pattern:
 
 [source,cypher]
 ----
@@ -14,7 +14,16 @@ MATCH ()(SHORTEST 5 PATHS (a)-[r]->(b))*() RETURN r;
 MATCH ()(ACYCLIC (a)-[r]->(b))*() RETURN r;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N35.
+The query returns a chain of errors where GQLSTATUS 42N35 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N35: syntax error or access rule violation - unsupported path selector or explicit path mode in path pattern. The path selector or explicit path mode SHORTEST 5 PATHS is not supported within quantified or parenthesized path patterns. (line 1, column 27 (offset: 26))
+"MATCH ()(SHORTEST 5 PATHS (a)-[r]->(b))*() RETURN r"
+                           ^
+  42001: syntax error or access rule violation - invalid syntax
+----
 
 == Possible solution
 Move the `SHORTEST` clause or an explicit path mode outside of the quantified path pattern:

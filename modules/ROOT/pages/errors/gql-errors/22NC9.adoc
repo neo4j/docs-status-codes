@@ -7,20 +7,24 @@ error: data exception - invalid element type constraints in graph type. A `{ <<e
 Property type and existence constraints must be defined as part of the property description, not as inline constraints on graph type elements.
 
 == Example scenario
-For example, try to define an existence constraint inline of a node element type as follows:
+Try defining an existent constraint inline of a node element type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING, age :: INT}) REQUIRE p.studId IS NOT NULL
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC9 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC9 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - invalid element type constraints in graph type. A node element type property existence constraint cannot be specified inline of a node element type.
+22NC9: data exception - invalid element type constraints in graph type. A node element type property existence constraint cannot be specified inline of a node element type. (line 2, column 48 (offset: 78))
+"    (p:Person => {name :: STRING, age :: INT}) REQUIRE p.studId IS NOT NULL"
+                                                ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -29,7 +33,7 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p :Person => {name :: STRING, age :: INT, studId :: ANY NOT NULL })
-}
+};
 ----
 
 

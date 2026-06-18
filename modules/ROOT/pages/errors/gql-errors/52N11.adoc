@@ -12,12 +12,13 @@ For example, trying to set default number of primaries to 12:
 CALL dbms.setDefaultAllocationNumbers(12,0);
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/52N02.adoc[52N02].
-This error has a cause detailed in xref:errors/gql-errors/52N11.adoc[52N11] and status description:
+The query returns a chain of errors where GQLSTATUS 52N11 is the cause of GQLSTATUS xref:errors/gql-errors/52N02.adoc[52N02]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: procedure exception - generic topology procedure error. An unexpected error has occurred: Number of primaries '12' may not exceed 11 and needs to be at least 1.
+52N11: procedure exception - generic topology procedure error. An unexpected error has occurred: Number of primaries '12' may not exceed 11 and needs to be at least 1
+  52N02: procedure exception - procedure execution client error. Execution of the procedure dbms.setDefaultAllocationNumbers() failed due to a client error.
 ----
 
 ifndef::backend-pdf[]

@@ -6,7 +6,7 @@ error: syntax error or access rule violation - search clause with invalid predic
 [#_example_scenario]
 == Example scenario
 
-For example, when trying to use a `SEARCH` clause in a `MATCH` statement with predicates on other parts of the pattern than the bound variable:
+Try using a `SEARCH` clause in a `MATCH` statement with predicates on other parts of the pattern than the bound variable:
 
 [source,cypher]
 ----
@@ -17,10 +17,20 @@ MATCH (movie:Movie)-[]->(:Actor)
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I71.
+The query returns a chain of errors where GQLSTATUS 42I71 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I71: syntax error or access rule violation - search clause with invalid predicates. In order to have a search clause, a MATCH statement can only have predicates on the bound node or relationship. (line 2, column 27 (offset: 36))
+"MATCH (movie:Movie)-[]->(:Actor)"
+                           ^
+  42001: syntax error or access rule violation - invalid syntax
+----
+
 
 == Possible solution
 The first iteration of the `SEARCH` clause comes with many restrictions on the `MATCH` statement.
@@ -37,7 +47,7 @@ MATCH (movie:Movie)
     LIMIT 5
   )
 MATCH (movie)-[]->(:Actor)
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
 ifndef::backend-pdf[]

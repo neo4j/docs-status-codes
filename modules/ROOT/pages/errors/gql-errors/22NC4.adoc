@@ -9,21 +9,25 @@ A label cannot be both "identifying" (to uniquely identify nodes) and "implied" 
 Attempting to define a label as both will result in this error, as it creates ambiguity in the schema definition and node identification process.
 
 == Example scenario
-For example, try to set a graph type which defines the node element types `Person` and `Student` with the label `Person` also declared as an implied label on the `Student` node element type as follows:
+Try setting a graph type that defines the node element types `Person` and `Student` with the label `Person` also declared as an implied label on the `Student` node element type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING}),
     (s:Student => :Person )
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC4 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC4 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - a label cannot be both identifying and implied. The label(s) `Person` are defined as both identifying and implied.
+22NC4: data exception - a label cannot be both identifying and implied. The label(s) `Person` are defined as both identifying and implied. (line 3, column 20 (offset: 86))
+"    (s:Student => :Person )"
+                    ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 One way to fix this is to add another label to both nodes and capture the property type on `name` there:
@@ -34,7 +38,7 @@ ALTER CURRENT GRAPH TYPE SET {
     (p:Person => :Named),
     (s:Student => :Named),
     CONSTRAINT FOR (:Named) REQUIRE name IS :: STRING
-}
+};
 ----
 
 ifndef::backend-pdf[]

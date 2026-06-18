@@ -9,13 +9,18 @@ For example, in the following query `REPEATABLE ELEMENTS` is used with the `TRAI
 [source,cypher]
 ----
 MATCH REPEATABLE ELEMENTS p = TRAIL (:A)-[:R]->{,10}(:B)
-RETURN p
+RETURN p;
 ----
-This will result in an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001], with a cause detailed in xref:errors/gql-errors/42N60.adoc[42N60] and the following status description:
 
-[source]
+The query returns a chain of errors where GQLSTATUS 42N60 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - unsupported combination of match mode and path mode. `REPEATABLE ELEMENTS` with `TRAIL` path mode is not supported.
+42N60: syntax error or access rule violation - unsupported combination of match mode and path mode. REPEATABLE ELEMENTS with TRAIL path mode is not supported. (line 1, column 31 (offset: 30))
+"MATCH REPEATABLE ELEMENTS p = TRAIL (:A)-[:R]->{,10}(:B)"
+                               ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 ifndef::backend-pdf[]

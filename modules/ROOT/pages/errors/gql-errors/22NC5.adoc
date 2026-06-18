@@ -10,71 +10,85 @@ If the referenced node or relationship type does not exist, the operation cannot
 == Example scenarios
 
 === Node element reference does not exist
-For example, try to set a graph type with an identifying node element reference that does not exist as follows:
+Try setting a graph type with an identifying node element reference that does not exist as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   (:Node =>)-[e:REL => { prop :: STRING }]->()
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC5 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC5 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type element not found. The node type element referenced by '(:Node =>)' does not exist.
+22NC5: data exception - graph type element not found. The node element type referenced by '(:`Node` =>)' does not exist. (line 2, column 3 (offset: 33))
+"  (:Node =>)-[e:REL => { prop :: STRING }]->()"
+   ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
+
 In this case, you can make the reference non-identifying, or you can define the node type element before this operation:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   (:Node)-[e:REL => { prop :: STRING }]->()
-}
+};
 ----
 
 === Relationship element reference does not exist
-For example, try to set a graph type with a relationship element reference that does not exist as follows:
+Try setting a graph type with a relationship element reference that does not exist as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   CONSTRAINT FOR ()-[b]->() REQUIRE (b.prop) IS KEY
-}
+};
 
 ----
 
-The query returns an error with GQLSTATUS 22NC5 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC5 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type element not found. The relationship type element referenced by 'b' does not exist.
+22NC5: data exception - graph type element not found. The relationship element type referenced by 'b' does not exist. (line 2, column 18 (offset: 48))
+"  CONSTRAINT FOR ()-[b]->() REQUIRE (b.prop) IS KEY"
+                  ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
+
 In this case, the reference could be fixed by providing a relationship type:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   CONSTRAINT FOR ()-[b:REL]->() REQUIRE (b.prop) IS KEY
-}
+};
 ----
 
 === Element reference omitted from constraint definition
-For example, try to define a constraint with an empty node element type reference, which is not allowed as follows:
+Try defining a constraint with an empty node element type reference, which is not allowed as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
     CONSTRAINT FOR () REQUIRE n.prop IS UNIQUE
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC5 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC5 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type element not found. The node type element referenced by 'n' was does not exist.
+22NC5: data exception - graph type element not found. The node element type referenced by 'n' does not exist. (line 2, column 31 (offset: 61))
+"    CONSTRAINT FOR () REQUIRE n.prop IS UNIQUE"
+                               ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 In this case, the reference can be fixed by providing a label for the constraint:
 
@@ -82,7 +96,7 @@ In this case, the reference can be fixed by providing a label for the constraint
 ----
 ALTER CURRENT GRAPH TYPE SET {
     CONSTRAINT FOR (n:Node) REQUIRE n.prop IS UNIQUE
-}
+};
 ----
 
 

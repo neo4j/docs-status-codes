@@ -9,18 +9,22 @@ Either the whole name must be quoted, or the whole name must be unquoted.
 A recommended approach, which is consistent between different commands and Cypher versions, is to send in the database name or alias as a parameter rather than a string literal.
 
 == Example scenario
-For example, try to create a database with using the following Cypher 25 command:
+Try creating a database with using the following Cypher 25 command:
 
 [source,cypher]
 ----
-CYPHER 25 CREATE ALIAS `foo`.`bar` FOR DATABASE baz
+CYPHER 25 CREATE ALIAS `foo`.`bar` FOR DATABASE baz;
 ----
 
-An error will be thrown with GQLSTATUS 42NAA and the following status description:
+The query returns a chain of errors where GQLSTATUS 42NAA is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference '`foo`.`bar`'. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually.
+42NAA: syntax error or access rule violation - incorrectly formatted graph reference. Incorrectly formatted graph reference '`foo`.`bar`'. Expected a single quoted or unquoted identifier. Separate name parts should not be quoted individually. (line 1, column 24 (offset: 23))
+"CYPHER 25 CREATE ALIAS `foo`.`bar` FOR DATABASE baz"
+                        ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -38,21 +42,21 @@ To resolve this issue, the preferred way is to replace the alias name with a par
 .Query
 [source, cypher]
 ----
-CREATE ALIAS $aliasName FOR DATABASE baz
+CREATE ALIAS $aliasName FOR DATABASE baz;
 ----
 
 Alternatively, if you use a string literal, the correct quoting for Cypher 25 will either be
 
 [source,cypher]
 ----
-CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE baz
+CYPHER 25 CREATE ALIAS `foo.bar` FOR DATABASE baz;
 ----
 
 or
 
 [source,cypher]
 ----
-CYPHER 25 CREATE ALIAS foo.bar FOR DATABASE baz
+CYPHER 25 CREATE ALIAS foo.bar FOR DATABASE baz;
 ----
 
 ifndef::backend-pdf[]

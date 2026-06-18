@@ -12,12 +12,13 @@ For example, trying to lift a quarantine which does not exist:
 CALL dbms.unquarantineDatabase("0c000000", "neo4j");
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/52N02.adoc[52N02].
-This error has a cause detailed in xref:errors/gql-errors/52N17.adoc[52N11] and status description:
 
-[source]
-----
-error: quarantine change failed. Setting/removing the quarantine marker failed: Database 'neo4j' on server '0c000000-aa21-4ab4-b1c1-aed40bfcb875' is not in quarantine.
+The query returns a chain of errors where GQLSTATUS 52N17 is the cause of GQLSTATUS xref:errors/gql-errors/52N02.adoc[52N02]:
+
+.GQLSTATUS error chain
+[source, error]
+52N17: procedure exception - quarantine change failed. Setting/removing the quarantine marker failed: Cannot find server: 0c000000
+  52N02: procedure exception - procedure execution client error. Execution of the procedure dbms.unquarantineDatabase() failed due to a client error.
 ----
 
 ifndef::backend-pdf[]

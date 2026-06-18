@@ -14,20 +14,22 @@ In Cypher 5, this last example gives a notification instead, see xref:notificati
 
 == Example scenario
 
-For example, given that `role1` exists but `role2` does not, try to grant a privilege to both roles:
+For example, given that `role1` exists but `role2` does not, try granting a privilege to both roles:
 
 [source,cypher]
 ----
-GRANT WRITE ON GRAPH * TO role1, role2
+GRANT WRITE ON GRAPH * TO role1, role2;
 ----
 
-[source]
-----
-error: syntax error or access rule violation - invalid reference in command. Invalid reference in command `GRANT WRITE ON GRAPH * NODES * TO role2`.
-----
+The query returns a chain of errors where GQLSTATUS xref:errors/gql-errors/42N10.adoc[42N10] is the cause of GQLSTATUS 42NA8, which is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-The command returns an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] and a cause with this GQLSTATUS 42NA8 and the status description above.
-The cause has a subsequent cause with GQLSTATUS xref:errors/gql-errors/42N10.adoc[42N10].
+.GQLSTATUS error chain
+[source, error]
+----
+42N10: syntax error or access rule violation - no such role. A role with the name `role2` was not found. Verify that the spelling is correct.
+  42NA8: syntax error or access rule violation - invalid reference in command. Invalid reference in command 'GRANT WRITE ON GRAPH * TO role2'.
+  42001: syntax error or access rule violation - invalid syntax
+----
 
 [NOTE]
 ====

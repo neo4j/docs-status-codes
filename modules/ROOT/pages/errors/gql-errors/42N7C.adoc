@@ -12,14 +12,18 @@ UNWIND [1, 2, 3] AS i
 CALL (i) {
   MATCH (n {count: COUNT { MATCH (m) WHERE m.id = i RETURN m }})
   SET n.processed = true
-} IN CONCURRENT TRANSACTIONS DISJOINT BY (COUNT { MATCH (m) WHERE m.id = i RETURN m })
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (COUNT { MATCH (m) WHERE m.id = i RETURN m });
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7C and the status description:
+The query returns a chain of errors where GQLSTATUS 42N7C is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - subquery in disjoint by expression. 'DISJOINT BY' expressions must not contain subquery expressions.
+42N7C: syntax error or access rule violation - subquery in disjoint by expression. 'DISJOINT BY' expressions must not contain subquery expressions. (line 5, column 43 (offset: 165))
+"} IN CONCURRENT TRANSACTIONS DISJOINT BY (COUNT { MATCH (m) WHERE m.id = i RETURN m })"
+                                           ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -33,7 +37,7 @@ WITH COUNT { MATCH (m) WHERE m.id = i RETURN m } AS c
 CALL (c) {
   MATCH (n {count: c})
   SET n.processed = true
-} IN CONCURRENT TRANSACTIONS DISJOINT BY (c)
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (c);
 ----
 
 ifndef::backend-pdf[]

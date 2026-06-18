@@ -7,20 +7,24 @@ error: data exception - graph type element contains duplicated tokens. The graph
 When defining a graph type, node and relationship element types may only define a property once.
 
 == Example scenario
-For example, try to set a graph type as follows:
+Try setting a graph type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (n:Node => {prop::STRING, prop::INTEGER})
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NC1 and the status description:
+The query returns a chain of errors where GQLSTATUS 22NC1 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `prop` more than once.
+22NC1: data exception - graph type element contains duplicated tokens. The graph type element includes a property key with name `prop` more than once. (line 2, column 31 (offset: 61))
+"    (n:Node => {prop::STRING, prop::INTEGER})"
+                               ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, remove the duplicate property key definition or uniquely name the property keys:
@@ -29,7 +33,7 @@ To fix this, remove the duplicate property key definition or uniquely name the p
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Node => {prop :: STRING, prop2 :: INTEGER})
-}
+};
 ----
 
 ifndef::backend-pdf[]
