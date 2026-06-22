@@ -16,27 +16,13 @@ Try showing all the databases with a `USE` clause in the query:
 USE system
 SHOW DATABASES;
 ----
-// //The query returns the following result:
-// neo4j@neo4j> USE system
-//              SHOW DATABASES;
-// +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-// | name     | type       | aliases | access       | address          | role      | writer | requestedStatus | currentStatus | statusMessage | default | home  | constituents |
-// +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-// | "neo4j"  | "standard" | []      | "read-write" | "localhost:7687" | "primary" | TRUE   | "online"        | "online"      | ""            | TRUE    | TRUE  | []           |
-// | "system" | "system"   | []      | "read-write" | "localhost:7687" | "primary" | TRUE   | "online"        | "online"      | ""            | FALSE   | FALSE | []           |
-// +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-// 2 rows
-// ready to start consuming query after 67 ms, results consumed after another 2 ms
-// neo4j@neo4j>
-// and not the following error message:
+The query returns an error with GQLSTATUS 42N79 and status description:
 
-// Error message will be:
-
-// [source]
-// ----
-// error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
-// ----
+[source]
+----
+42N79: syntax error or access rule violation - invalid USE clause. The USE clause is not required for administration commands. Retry the query without the USE clause, and it will be routed automatically.
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]
