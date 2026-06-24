@@ -1309,6 +1309,65 @@ Upgrade your client to a version that supports this type.
 ======
 =====
 
+[#_neo_clientnotification_statement_plannerversionunsupportedwarning]
+=== Retired planner version
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Statement.PlannerVersionUnsupportedWarning
+|Title
+a|The requested planner version is retired and no longer supported.
+|Description
+|The Cypher planner version is retired. The default planner version is used instead.
+|Category
+m|UNSUPPORTED
+|GQLSTATUS code
+m|01N84
+|Status description
+a|warn: retired planner version. The Cypher planner version { <<preparserInput>> } is retired. The default planner version is used instead.
+|Classification
+m|UNSUPPORTED
+|SeverityLevel
+m|WARNING
+|===
+
+.Requesting a retired planner version
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+CYPHER plannerVersion=v2026_03 RETURN 1 AS result
+----
+
+Returned GQLSTATUS code::
+01N84
+
+Returned status description::
+warn: retired planner version. The Cypher planner version 'v2026_03' is retired. The default planner version is used instead.
+Suggestions for improvement::
+Remove the `plannerVersion` option to use the default planner version, or specify a supported planner version.
+======
+[.include-with-neo4j-code]
+======
+Query::
+
+[source,cypher]
+----
+CYPHER plannerVersion=v2026_03 RETURN 1 AS result
+----
+Description of the returned code::
+The Cypher planner version 'v2026_03' is retired. The default planner version is used instead.
+Suggestions for improvement::
+Remove the `plannerVersion` option to use the default planner version, or specify a supported planner version.
+======
+=====
+
 
 [#_deprecated_notifications]
 == `DEPRECATION` notifications
