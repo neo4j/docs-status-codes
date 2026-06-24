@@ -4,25 +4,25 @@
 error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause { <<argList>> }.
 
 == Explanation
-A subclause expression is an expression in a subclause, e.g. ORDER BY or WHERE, that belongs to a projection clause.
-If that expression is aggregating it is not allowed to reference aliases introduced in the same projection clause,
-only variables incoming to the clause.
+A subclause expression is an expression used in a subclause (e.g., `WHERE` or `ORDER BY`) that belongs to a projection clause.
+If that expression is aggregating, it is not allowed to reference aliases introduced in the same projection clause; only variables incoming to the clause are allowed.
 
 == Example scenario
-For example, sorting by an aggregation over a variable that the same `RETURN` clause introduces:
+Try sorting by an aggregation over a variable that the same `RETURN` clause introduces:
 
 .Aggregates over parity, which is declared in the same clause
 [source,cypher]
 ----
 UNWIND [1, 2, 3, 4] AS x
 RETURN x % 2 AS parity, sum(x) AS total
-  ORDER BY sum(parity)
+  ORDER BY sum(parity);
 ----
 
 `sum(parity)` is an aggregation, and `parity` is introduced by the same `RETURN` clause.
-An error will be thrown with GQLSTATUS 42I79 and the following status description:
+The query returns an error with GQLSTATUS 42I79 and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 
 ----
 error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause parity.
@@ -34,34 +34,31 @@ To resolve this issue, aggregate over the underlying incoming expression instead
 
 .Aggregates over the underlying expression x % 2
 [source,cypher]
-
 ----
 UNWIND [1, 2, 3, 4] AS x
 RETURN x % 2 AS parity, sum(x) AS total
-  ORDER BY sum(x % 2)
+  ORDER BY sum(x % 2);
 ----
 
 Alternatively, compute the value in a preceding clause so it is an incoming variable rather than one declared in the same clause:
 
 .Introduces parity in an earlier clause
 [source,cypher]
-
 ----
 UNWIND [1, 2, 3, 4] AS x
 LET parity = x % 2
 RETURN parity, sum(x) AS total
-  ORDER BY sum(parity)
+  ORDER BY sum(parity);
 ----
 
 If the aggregation is meant to reuse a value already projected by the clause, reference that return item by its alias without re-aggregating it:
 
 .Sorts by the existing total aggregation
 [source,cypher]
-
 ----
 UNWIND [1, 2, 3, 4] AS x
 RETURN x % 2 AS parity, sum(x) AS total
-  ORDER BY total
+  ORDER BY total;
 ----
 
 ifndef::backend-pdf[]
