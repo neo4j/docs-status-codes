@@ -655,6 +655,32 @@ m|INFORMATION
 //TO ADD EXAMPLES
 //To update the description when the code is spit out
 
+[#_neo_clientnotification_statement_virtualgraphpostprocessing]
+=== Virtual graph post-processing
+
+This notification is returned when the query execution plan against a virtual graph contains a post-processing step that requires the local engine to fully materialize intermediate results from the remote source.
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j code
+m|Neo.ClientNotification.Statement.VirtualGraphPostProcessing
+|Title
+a|The query plan against a virtual graph contains a potentially expensive post-processing step.
+|Description
+a|The query execution plan contains a post-processing step that materialize intermediate results. This may transfer large amounts of data from the remote source and increase memory usage. Consider rewriting the query so that aggregation, `ORDER BY`, `DISTINCT`, and `LIMIT` can be pushed down to the remote source.
+|Category
+m|PERFORMANCE
+|GQLSTATUS code
+m|03N97
+|Status description
+a|info: virtual graph post-processing. The query execution plan contains a post-processing step that materialize intermediate results. This may transfer large amounts of data from the remote source and increase memory usage. Consider rewriting the query so that aggregation, `ORDER BY`, `DISTINCT`, and `LIMIT` can be pushed down to the remote source.
+|Classification
+m|PERFORMANCE
+|SeverityLevel
+m|INFORMATION
+|===
+
 [#_hint_notifications]
 == `HINT` notifications
 
