@@ -678,7 +678,7 @@ a|info: virtual graph post-processing. The query execution plan contains a post-
 |Classification
 m|PERFORMANCE
 |SeverityLevel
-m|WARNING
+m|INFORMATION
 |===
 
 [#_hint_notifications]
