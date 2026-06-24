@@ -4,13 +4,13 @@
 error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using { <<groupingConstructs>> }.
 
 == Explanation
-A `WITH` or `RETURN` clause that uses `DISTINCT`, an aggregation, or a `GROUP BY` clause defines a new set of available variables: the grouping keys, projection item aliases and the aggregation results.
-Any of its subclauses (`ORDER BY`, `WHERE`) can therefore only reference those grouping keys, projection item aliases, and aggregation results, not the variables that were in scope before the clause.
-Referencing a variable that was declared before such a clause, and that is neither a grouping key, projection item alias nor an aggregation result, is not possible and results in this error.
+A `WITH` or `RETURN` clause that uses `DISTINCT`, an aggregation, or a `GROUP BY` clause defines a new set of available variables: grouping keys, projection item aliases, and aggregation results.
+Any of its subclauses (`ORDER BY`, `WHERE`) can therefore only reference those grouping keys, projection item aliases, and aggregation results, not the variables that are in scope before the clause.
+Referencing a variable that is declared before such a clause, and that is not a grouping key, projection item alias, or an aggregation result, is not possible and results in this error.
 
 == Example scenario
 
-For example, the following query groups by `a` and aggregates with `count(*)`, but then tries to sort on `b`, which is neither a grouping key, projection item, nor an aggregation result:
+Try grouping by `a` and aggregating with `count(*)`, but then sorting on `b`, which is not a grouping key, projection item, or an aggregation result:
 
 [source,cypher]
 ----
@@ -18,15 +18,16 @@ UNWIND [{a: 1, b: 10}, {a: 1, b: 20}, {a: 2, b: 30}] AS row
 WITH row.a AS a, row.b AS b
 RETURN a, count(*) AS cnt
   GROUP BY a
-  ORDER BY b
+  ORDER BY b;
 ----
 
-Because `b` was declared before the `RETURN` clause and is not part of the grouping, it cannot be accessed in the `ORDER BY` subclause.
-You will receive an error with GQLSTATUS 42N44 and status description:
+Because `b` is declared before the `RETURN` clause and is not part of the grouping, it cannot be accessed by the `ORDER BY` subclause.
+The query returns an error with GQLSTATUS 42N44 and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `b` declared before the RETURN clause when using `DISTINCT`, an aggregation, or a `GROUP BY` clause.
+42N44: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `b` declared before the RETURN clause when using `DISTINCT`, an aggregation, or a `GROUP BY` clause.
 ----
 
 To resolve the error, either add `b` as a grouping key (`GROUP BY a, b`), or order by a grouping key or aggregation result (for example, `ORDER BY a` or `ORDER BY cnt`).
