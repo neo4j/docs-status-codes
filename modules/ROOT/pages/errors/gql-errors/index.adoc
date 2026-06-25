@@ -1189,7 +1189,7 @@ Status description:: error: syntax error or access rule violation - search claus
 
 === xref:errors/gql-errors/42I72.adoc[42I72]
 
-Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement can only have a single node or relationship pattern and no selectors.
+Status description:: error: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a `MATCH` statement cannot have any selectors.
 
 === xref:errors/gql-errors/42I73.adoc[42I73]
 
