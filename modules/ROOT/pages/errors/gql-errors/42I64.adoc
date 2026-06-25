@@ -1,5 +1,8 @@
 = 42I64
 
+This error occurs only in Neo4j 2025.07.
+In later versions, the behavior of `NEXT` has been changed to allow aggregations in a `UNION` query.
+
 == Status description
 error: syntax error or access rule violation - unsupported operation. `{ <<msg>> }` currently not supported after `+NEXT+` `{ <<context>> }`.
 
@@ -9,6 +12,7 @@ For example, when aggregating in a `UNION` query after a `NEXT`:
 
 [source,cypher]
 ----
+CYPHER 25
 UNWIND [1, 2] AS x
 RETURN x
 
@@ -16,16 +20,16 @@ NEXT
 
 RETURN COUNT(x)
 UNION ALL
-RETURN COUNT(x)
+RETURN COUNT(x);
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause detailed in xref:errors/gql-errors/42I64.adoc[42I64] and status description:
+The query returns a chain of errors where GQLSTATUS 42I64 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - unsupported operation. Aggregations are currently not supported in `NEXT` when used in a `UNION`.
+42I64: syntax error or access rule violation - unsupported operation. Aggregations are currently not supported in `NEXT` when used in a `UNION`.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 

@@ -5,20 +5,20 @@ error: syntax error or access rule violation - invalid pattern character. An inv
 
 == Example scenario
 
-For example, when trying to format using a year character on a time-only type:
+Try formatting using a year character on a time-only type:
 
 [source,cypher]
 ----
-RETURN format(time(), "yyyy") AS formatted
+RETURN format(time(), "yyyy") AS formatted;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause detailed in xref:errors/gql-errors/42I65.adoc[42I65] and status description:
+The query returns a chain of errors where GQLSTATUS 42I65 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `ZONED TIME`.
+42I65: syntax error or access rule violation - invalid pattern character. An invalid character is used in the pattern. Verify that all characters are supported by `ZONED TIME`.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 

@@ -8,18 +8,23 @@ A standalone call of a procedure does not support a `WHERE` clause, i.e., it doe
 Either remove the `WHERE` clause or add a `RETURN` clause after the call to turn it into an in-query call.
 
 == Example scenario
-For example, trying to filter the result of the procedure `db.labels()` in a standalone call:
+Try filtering the result of the procedure `db.labels()` in a standalone call:
 
 [source,cypher]
 ----
-CALL db.labels() YIELD label WHERE label <> 'A'
+CALL db.labels() YIELD label WHERE label <> 'A';
 ----
 
-An error will be thrown with GQLSTATUS 42NAB and the following status description:
+The query returns a chain of errors where GQLSTATUS 42NAB is the cause of GQLSTATUS xref:errors/gql-errors/42N71.adoc[42N71], which is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - not supported standalone call. WHERE is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead.
+42NAB: syntax error or access rule violation - not supported standalone call. WHERE is not supported in a standalone call. Use `CALL ... YIELD ... WHERE ... RETURN ...` instead. (line 1, column 30 (offset: 29))
+"CALL db.labels() YIELD label WHERE label <> 'A'"
+                              ^
+  42N71: syntax error or access rule violation - incomplete query. A query must conclude with a RETURN clause, a FINISH clause, an update clause, a unit subquery call, or a procedure call without a YIELD clause.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -28,7 +33,7 @@ You can abstain from filtering to get a valid query:
 
 [source,cypher]
 ----
-CALL db.labels() YIELD label
+CALL db.labels() YIELD label;
 ----
 
 However, if you still want to filter the result of the procedure `db.labels()`, you can add a `RETURN` clause:
@@ -36,7 +41,7 @@ However, if you still want to filter the result of the procedure `db.labels()`, 
 .Query
 [source, cypher]
 ----
-CALL db.labels() YIELD label WHERE label <> 'A' RETURN label
+CALL db.labels() YIELD label WHERE label <> 'A' RETURN label;
 ----
 
 ifndef::backend-pdf[]

@@ -3,7 +3,7 @@
 == Status description
 error: invalid transaction state - implicit transaction required. The attempted operation requires an implicit transaction.
 
-== Scenario
+== Example scenario
 
 This error occurs when running a query using the `CALL { ... } IN TRANSACTIONS` construct in an explicit transaction.
 

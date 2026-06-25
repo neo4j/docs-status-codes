@@ -24,11 +24,11 @@ This error is returned as the cause of xref:errors/gql-errors/42001.adoc[42001].
 
 === CREATE AUTH RULE with disallowed temporal function
 
-You try to create an auth rule whose condition uses `date({timezone: 'UTC'})`:
+Try creating an auth rule whose condition uses `date({timezone: 'UTC'})`:
 
 [source,cypher]
 ----
-CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date({timezone: 'UTC'})
+CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date({timezone: 'UTC'});
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAM is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -36,24 +36,26 @@ The query returns a chain of errors where GQLSTATUS 42NAM is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-42NAM: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `date({timezone: 'UTC'})` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `date.transaction('UTC')` instead.
-42001: error: syntax error or access rule violation - invalid syntax
+42NAM: syntax error or access rule violation - unsupported temporal function form in auth rule condition. 'date({timezone: 'UTC'})' cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use 'date.transaction('UTC')' instead. (line 1, column 82 (offset: 81))
+"CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date({timezone: 'UTC'})"
+                                                                                  ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To resolve this, replace the function call with the `.transaction()` form:
 
 [source,cypher]
 ----
-CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date.transaction('UTC')
+CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date.transaction('UTC');
 ----
 
 === ALTER AUTH RULE with disallowed temporal function
 
-You try to alter an auth rule whose condition uses `datetime({timezone: 'Europe/Stockholm'})`:
+Try changing an auth rule whose condition uses `datetime({timezone: 'Europe/Stockholm'})`:
 
 [source,cypher]
 ----
-ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime({timezone: 'Europe/Stockholm'})
+ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime({timezone: 'Europe/Stockholm'});
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAM is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -61,15 +63,17 @@ The query returns a chain of errors where GQLSTATUS 42NAM is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-42NAM: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `datetime({timezone: 'Europe/Stockholm'})` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `datetime.transaction('Europe/Stockholm')` instead.
-42001: error: syntax error or access rule violation - invalid syntax
+42NAM: syntax error or access rule violation - unsupported temporal function form in auth rule condition. 'datetime({timezone: 'Europe/Stockholm'})' cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use 'datetime.transaction('Europe/Stockholm')' instead. (line 1, column 81 (offset: 80))
+"ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime({timezone: 'Europe/Stockholm'})"
+                                                                                 ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To resolve this, replace the function call with the `.transaction()` form:
 
 [source,cypher]
 ----
-ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime.transaction('Europe/Stockholm')
+ALTER AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > datetime.transaction('Europe/Stockholm');
 ----
 
 ifndef::backend-pdf[]

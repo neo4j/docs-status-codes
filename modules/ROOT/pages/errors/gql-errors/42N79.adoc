@@ -9,19 +9,19 @@ This error occurs when an administration command is prepended with a `USE` claus
 
 == Example scenario
 
-For example, try to show all the databases with a `USE` clause in the query:
+Try showing all the databases with a `USE` clause in the query:
 
 [source,cypher]
 ----
 USE system
-SHOW DATABASES
+SHOW DATABASES;
 ----
 
-Error message will be:
+The query returns an error with GQLSTATUS 42N79 and status description:
 
 [source]
 ----
-error: syntax error or access rule violation - invalid `USE` clause. The `USE` clause is not required for administration commands. Retry the query without the `USE` clause, and it will be routed automatically.
+42N79: syntax error or access rule violation - invalid USE clause. The USE clause is not required for administration commands. Retry the query without the USE clause, and it will be routed automatically.
 ----
 
 ifndef::backend-pdf[]

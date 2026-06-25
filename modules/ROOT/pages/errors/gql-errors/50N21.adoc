@@ -3,9 +3,10 @@
 == Status description
 error: general processing exception - no such schema descriptor. The `{ <<schemaDescrType>> }` was not found for `{ <<schemaDescr>> }`. Verify that the spelling is correct.
 
-For example:
+== Example scenario
 
-[source, shell]
+.GQLSTATUS error
+[source, error]
 ----
 error: general processing exception - no such schema descriptor. The label property existence constraint was not found for '(:Label1 {prop1})'. Verify that the spelling is correct.")
 ----

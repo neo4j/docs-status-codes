@@ -9,20 +9,24 @@ Without `YIELD`, the query fails.
 The error message includes the available output columns to help construct the correct `YIELD` clause.
 
 == Example scenario
-For example, when calling the built-in `db.labels()` procedure inside a query without `YIELD`:
+Try calling the built-in `db.labels()` procedure inside a query without `YIELD`:
 
 [source,cypher]
 ----
 MATCH (n)
 CALL db.labels()
-RETURN *
+RETURN *;
 ----
 
-An error will be thrown with GQLSTATUS 42N25 and the following status description:
+The query returns a chain of errors where GQLSTATUS 42N25 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error
+[source, errror]
 ----
-error: syntax error or access rule violation - missing YIELD. Procedure call inside a query does not support naming results implicitly. Use YIELD instead. Available output columns are: label.
+42N25: syntax error or access rule violation - missing YIELD. Procedure call inside a query does not support naming results implicitly. Use YIELD instead. Available output columns are: `label`. (line 2, column 1 (offset: 10))
+"CALL db.labels()"
+ ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -33,7 +37,7 @@ To resolve this issue, add a `YIELD` clause naming the output columns you need:
 ----
 MATCH (n)
 CALL db.labels() YIELD label
-RETURN n, label
+RETURN n, label;
 ----
 
 To discover a procedure's output signature, use `SHOW PROCEDURES`:

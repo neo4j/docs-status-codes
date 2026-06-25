@@ -6,22 +6,23 @@ error: data exception - invalid inner list type. Lists cannot have `{ <<typeDesc
 
 == Example scenario
 
-For example, try to create a property type constraint with a list of a union as property type:
+Try creating a property type constraint with a list of a union as property type:
 
 [source,cypher]
 ----
 CREATE CONSTRAINT myConstraint
 FOR (n:Label)
-REQUIRE n.prop IS :: LIST<INTEGER NOT NULL | FLOAT NOT NULL>
+REQUIRE n.prop IS :: LIST<INTEGER NOT NULL | FLOAT NOT NULL>;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11].
-This error has a cause detailed in xref:errors/gql-errors/22N90.adoc[22N90], which also has a subsequent cause with GQLSTATUS 22NB9 and status description:
+The query returns a chain of errors where GQLSTATUS 22NB9 is the cause of GQLSTATUS xref:errors/gql-errors/22N90.adoc[22N90], which is the cause of GQLSTATUS xref:errors/gql-errors/50N11.adoc[50N11]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - invalid inner list type. Lists cannot have a union of types as an inner type in this context.
+22NB9: data exception - invalid inner list type. Lists cannot have a union of types as an inner type in this context.
+  22N90: data exception - property type unsupported in constraint. LIST<INTEGER NOT NULL | FLOAT NOT NULL> is not supported in property type constraints.
+  50N11: general processing exception - constraint creation failed. Unable to create 'node property type constraint'.
 ----
 
 

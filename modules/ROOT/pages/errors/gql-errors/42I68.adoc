@@ -5,20 +5,20 @@ error: syntax error or access rule violation - mismatched pattern. Pattern, `{ <
 
 == Example scenario
 
-For example, when parsing a duration string value:
+Try parsing a duration string value:
 
 [source,cypher]
 ----
-RETURN duration("5 hours 12 minutes 15 seconds", "h 'hours' m 'minutes'") AS d
+RETURN duration("5 hours 12 minutes 15 seconds", "h 'hours' m 'minutes'") AS d;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause detailed in xref:errors/gql-errors/42I68.adoc[42I68] and status description:
+The query returns a chain of errors where GQLSTATUS 42I68 is the cause of GQLSTATUS xref:errors/gql-errors/22007.adoc[22007]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - mismatched pattern. Pattern, `"h 'hours' m 'minutes'"`, does not match input, `"5 hours 12 minutes 15 seconds"`. Verify that the pattern is valid for constructing `DURATION`.
+42I68: syntax error or access rule violation - mismatched pattern. Pattern, `'h 'hours' m 'minutes''`, does not match input, `'5 hours 12 minutes 15 seconds'`. Verify that the pattern is valid for constructing `DURATION`.
+  22007: data exception - invalid date, time, or datetime format
 ----
 
 ifndef::backend-pdf[]

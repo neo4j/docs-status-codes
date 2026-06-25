@@ -11,9 +11,9 @@ If no valid admin user candidate can be found, the system will throw this error.
 == Example scenario
 For example, before the database starts up for the first time, execute the following command to set a default admin user that does not exist:
 
-[source]
+[source, shell]
 ----
-neo4j-admin dbms set-default-admin user-that-does-not-exist
+bin/neo4j-admin dbms set-default-admin user-that-does-not-exist
 ----
 
 == Possible solutions

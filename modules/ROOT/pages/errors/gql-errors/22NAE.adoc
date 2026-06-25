@@ -20,17 +20,20 @@ x,y
 
 And that the `neo4j` database logging is configured with specific allowed multiline files, but where `somefile.csv` is not among them.
 
-Then, when you run the following query:
+Try running the following query:
+
 [source,cypher]
 ----
 LOAD CSV 'somefile.csv' AS line
-RETURN count(line)
+RETURN count(line);
 ----
 
-you will receive an error with GQLSTATUS 22NAE and status description:
-[source]
+The query returns an error with GQLSTATUS 22NAE and status description:
+
+.GQLSTATUS error
+[source, error]
 ----
-error: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in 'somefile.csv' at position 15.
+22NAE: data exception - multi-line field in illegal CSV context. Multi-line fields are illegal in this context. Verify that there is not a missing end quote in 'somefile.csv' at position 15.
 ----
 
 ifndef::backend-pdf[]

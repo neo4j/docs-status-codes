@@ -19,19 +19,21 @@ This exception is thrown when attempting to grant a role to an auth rule when th
 Given that a role has denied privileges:
 [source, cypher]
 ----
-DENY MATCH {*} ON GRAPH secret-db NODES * TO role
+DENY MATCH {*} ON GRAPH secret-db NODES * TO role;
 ----
 
-When attempting to assign the role to an auth rule:
+Try assigning the role to an auth rule:
 [source, cypher]
 ----
-CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule
+CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule;
 ----
 
-The following error will be thrown:
-[source]
+The query returns an error with GQLSTATUS 22ND2 and the status description:
+
+.GQLSTATUS error
+[source, error]
 ----
-error: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with `DENY` privileges.
+22ND2: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with `DENY` privileges.
 ----
 
 [NOTE]
@@ -47,7 +49,7 @@ Consider whether it is possible to implement the security model without using de
 For example, you can replace the generic grant from the <<example-scenario-22nd2, Example scenario>> with the following more fine-grained alternative:
 [source, cypher]
 ----
-GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole
+GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole;
 ----
 
 If a `DENY` is required, it must be set to a role that is directly assigned to users without using auth rules, to guarantee that it will always be applied.

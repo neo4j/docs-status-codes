@@ -4,7 +4,7 @@
 
 error: data exception - index belongs to constraint. Index belongs to constraint `{ <<constrDescrOrName>> }`.
 
-== Scenario
+== Example scenario
 
 This error code is used when the user tries drop an index belonging to a constraint.
 

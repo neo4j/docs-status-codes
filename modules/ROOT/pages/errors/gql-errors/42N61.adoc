@@ -10,13 +10,19 @@ For example, in the following query `TRAIL` and `ACYCLIC` are used:
 ----
 MATCH p = ACYCLIC (a:A)-[:P]->+(b:B),
       q = TRAIL (b)-[:Q]->+(a)
-RETURN p, q
+RETURN p, q;
 ----
-This will result in an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001], with a cause detailed in xref:errors/gql-errors/42N61.adoc[42N61] and the following status description:
 
-[source]
+
+The query returns a chain of errors where GQLSTATUS 42N61 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - unsupported mixing of different path modes. Mixing `ACYCLIC` and  `TRAIL` in the same graph pattern is not supported. Split the pattern into separate `MATCH` clauses instead.
+42N61: syntax error or access rule violation - unsupported mixing of different path modes. Mixing ACYCLIC and TRAIL in the same graph pattern is not supported. Split the pattern into separate MATCH clauses instead. (line 1, column 7 (offset: 6))
+"MATCH p = ACYCLIC (a:A)-[:P]->+(b:B),"
+       ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solution
@@ -28,7 +34,7 @@ For example, the above query can be rewritten as:
 ----
 MATCH p = ACYCLIC (a:A)-[r1:P]->+(b:B)
 MATCH q = TRAIL (b)-[r2:Q WHERE NOT r2 IN r1]->+(a)
-RETURN p, q
+RETURN p, q;
 ----
 
 Here the predicate `NOT r2 IN r1` ensures that the relationships in path `q` do not overlap with those in path `p`, replicating the effect of Cypher's default match mode `DIFFERENT RELATIONSHIPS`.

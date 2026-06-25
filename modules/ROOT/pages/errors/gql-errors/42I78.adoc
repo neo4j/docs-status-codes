@@ -5,21 +5,24 @@ error: syntax error or access rule violation - unsupported procedure or function
 
 == Example scenario
 
-For example, when calling a procedure or function that is only available in `CYPHER 25` from a `CYPHER 5` query:
+Try calling a procedure or function that is only available in `CYPHER 25` from a `CYPHER 5` query:
 
 [source,cypher]
 ----
 CYPHER 5
-RETURN coll.indexOf() AS result
+RETURN coll.indexOf() AS result;
 ----
 
-The query returns a chain of errors where GQLSTATUS 42I78 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+The query returns a chain of errors where GQLSTATUS 42I78 is the cause of GQLSTATUS xref:errors/gql-errors/42N48.adoc[42N48], which is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
 .GQLSTATUS error chain
 [source, error]
 ----
-42I78: error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER 25`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER 25`.
-42001: error: syntax error or access rule violation - invalid syntax
+42I78: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER 25`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER 25`. (line 2, column 8 (offset: 16))
+"RETURN coll.indexOf() AS result"
+        ^
+  42N48: syntax error or access rule violation - no such function. The function coll.indexOf() was not found. Verify that the spelling is correct.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions

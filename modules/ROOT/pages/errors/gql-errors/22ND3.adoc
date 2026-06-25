@@ -11,10 +11,10 @@ For example, assuming that you have a vector index created by the following comm
 CYPHER 25
 CREATE VECTOR INDEX moviePlots
 FOR (m:Movie) ON m.embedding
-WITH [m.rating]
+WITH [m.rating];
 ----
 
-When using a property key other than `rating` in the `WHERE` clause property predicate in a `SEARCH` clause:
+Try using a property key other than `rating` in the `WHERE` clause property predicate in a `SEARCH` clause:
 
 [source,cypher]
 ----
@@ -26,14 +26,15 @@ MATCH (movie:Movie)
     WHERE movie.votes > 1000
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
-You will receive an error with GQLSTATUS 22ND3 and status description:
+The query returns an error with GQLSTATUS 22ND3 and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: data exception - wrong property for vector search with filters. The property `votes` is not an additional property for vector search with filters on the vector index 'moviePlots'.
+22ND3: data exception - wrong property for vector search with filters. The property `votes` is not an additional property for vector search with filters on the vector index `moviePlots`.
 ----
 
 == Possible solution
@@ -45,7 +46,7 @@ For example:
 +
 [source,cypher]
 ----
-DROP INDEX moviePlots
+DROP INDEX moviePlots;
 ----
 
 . Recreate the index by adding the new property to the index:
@@ -55,7 +56,7 @@ DROP INDEX moviePlots
 CYPHER 25
 CREATE VECTOR INDEX moviePlots
 FOR (m:Movie) ON m.embedding
-WITH [m.rating, m.votes]
+WITH [m.rating, m.votes];
 ----
 
 ifndef::backend-pdf[]

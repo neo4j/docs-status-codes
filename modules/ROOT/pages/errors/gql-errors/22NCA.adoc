@@ -15,23 +15,25 @@ Given the existing graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING })
-}
+};
 ----
 
-Execute the query:
+Try adding a new node element type with the same label `:Person` as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE ADD {
     (p:Person => {name :: STRING, age :: INT })
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCA and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCA is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - node element type already exists. A node element type identified by the label `:Person` already exists in the graph type.
+22NCA: data exception - node element type already exists. A node element type identified by the label `Person` already exists in the graph type.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -40,7 +42,7 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE ALTER {
     (p:Person => {name :: STRING, age :: INT })
-}
+};
 ----
 
 
