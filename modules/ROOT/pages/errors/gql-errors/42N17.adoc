@@ -86,6 +86,8 @@ To solve this, either remove the `WHERE` clause or run the query against a stand
 [NOTE]
 ====
 In contrast to procedure calls, the `WHERE` clause is allowed for the `SHOW` and `TERMINATE` commands.
+
+Starting with Neo4j 2026.06, the `WHERE` clause is also allowed on the `system` database when combined with procedure calls, and the above example query works as expected.
 ====
 
 === Invalid show command
