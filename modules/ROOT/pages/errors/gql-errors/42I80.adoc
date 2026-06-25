@@ -1,0 +1,90 @@
+= 42I80
+
+== Status description
+error: syntax error or access rule violation - invalid grouping element. The grouping element '{ <<expr>> }' is not a valid grouping key. { <<cause>> }
+
+== Explanation
+A grouping element that references a projection item alias (a name introduced by a return item of the same `WITH` or `RETURN` clause) must reference it as a simple variable — the bare alias on its own.
+A non-simple reference to an alias, such as a property access, a function call, or an arithmetic expression, is not a valid grouping element.
+A grouping element can also never reference an aggregation result, since an aggregation is computed per group and cannot itself be a grouping key.
+
+== Example scenario
+
+Try projecting `b AS a`, so that `a` is a projection item alias that shadows the incoming `a`, and then grouping by `a.p` — a property access on that alias:
+
+[source,cypher]
+----
+UNWIND [{a: {p: 1}, b: 20}, {a: {p: 2}, b: 10}] AS row
+WITH row.a AS a, row.b AS b
+RETURN b AS a, count(*) AS cnt
+  GROUP BY a.p;
+----
+
+Because `a` is a projection item alias, the only valid way to group by it is the simple reference `a`; the property access `a.p` is not a valid grouping element.
+The query returns an error with GQLSTATUS 42I80 and status description:
+
+.GQLSTATUS error
+[source, error]
+----
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference.
+----
+
+A second form of this error occurs when a grouping element references an aggregation result. Try grouping by the aggregation alias `cnt`:
+
+[source,cypher]
+----
+UNWIND [{a: 1}, {a: 2}] AS row
+WITH row.a AS a
+RETURN a, count(*) AS cnt
+  GROUP BY a, cnt;
+----
+
+The query returns an error with GQLSTATUS 42I80 and status description:
+
+.GQLSTATUS error
+[source, error]
+----
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`.
+----
+
+== Possible solutions
+
+To resolve the first example, the preferred way is to reference the alias as a simple variable:
+
+.Group by the alias as a simple variable
+[source, cypher]
+----
+UNWIND [{a: {p: 1}, b: 20}, {a: {p: 2}, b: 10}] AS row
+WITH row.a AS a, row.b AS b
+RETURN b AS a, count(*) AS cnt
+  GROUP BY a;
+----
+
+To group on the incoming value, rename the projection item so it no longer shadows the incoming variable, then group by that expression:
+
+.Avoid shadowing the incoming variable
+[source, cypher]
+----
+UNWIND [{a: {p: 1}, b: 20}, {a: {p: 2}, b: 10}] AS row
+WITH row.a AS a, row.b AS b
+RETURN b AS bb, count(*) AS cnt
+  GROUP BY a.p;
+----
+
+For the second example, remove the aggregation result from the grouping elements:
+
+.Group only by non-aggregating expressions
+[source, cypher]
+----
+UNWIND [{a: 1}, {a: 2}] AS row
+WITH row.a AS a
+RETURN a, count(*) AS cnt
+  GROUP BY a;
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
