@@ -66,7 +66,7 @@ For example, the `YIELD` clause in the following query is allowed for procedure 
 [NOTE]
 ====
 This example is valid only for versions prior to Neo4j 2026.06.
-From 2026.06 onwards, the `WHERE` clause, when combined with procedure calls, is allowed on the `system` database, and the following example query works as expected.
+From 2026.06 onwards, the `WHERE` clause, when part of procedure calls, is allowed on the `system` database, and the following example query works as expected.
 ====
 
 [source,cypher]
