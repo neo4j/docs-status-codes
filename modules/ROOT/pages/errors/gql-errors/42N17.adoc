@@ -113,11 +113,6 @@ The query returns a chain of errors where GQLSTATUS xref:errors/gql-errors/42NA9
 
 To solve this, run the query against a standard database.
 
-[NOTE]
-====
-In contrast to procedure calls, the `WHERE` clause is allowed for the `SHOW` and `TERMINATE` commands.
-====
-
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
