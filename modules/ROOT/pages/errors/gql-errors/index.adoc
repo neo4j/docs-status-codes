@@ -1409,7 +1409,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N44.adoc[42N44]
 
-Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `{ <<groupingConstructs>> }`.
 
 === xref:errors/gql-errors/42N45.adoc[42N45]
 
