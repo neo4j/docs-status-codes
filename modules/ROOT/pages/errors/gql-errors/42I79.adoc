@@ -19,13 +19,17 @@ RETURN x % 2 AS parity, sum(x) AS total
 ----
 
 `sum(parity)` is an aggregation, and `parity` is introduced by the same `RETURN` clause.
-The query returns an error with GQLSTATUS 42I79 and status description:
 
-.GQLSTATUS error
+The query returns a chain of errors where GQLSTATUS 42I79 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
 [source, error]
 
 ----
-error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause parity.
+42I79: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause: `parity`. (line 3, column 12 (offset: 76))
+"  ORDER BY sum(parity)"
+            ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
