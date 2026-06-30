@@ -8,7 +8,10 @@ A grouping element that references a projection item alias (a name introduced by
 A non-simple reference to an alias, such as a property access, a function call, or an arithmetic expression, is not a valid grouping element.
 A grouping element can also never reference an aggregation result, since an aggregation is computed per group and cannot itself be a grouping key.
 
-== Example scenario
+== Example scenarios
+
+Let's take the following example scenarios:
+
 
 Try projecting `b AS a`, so that `a` is a projection item alias that shadows the incoming `a`, and then grouping by `a.p` — a property access on that alias:
 
@@ -29,7 +32,9 @@ The query returns an error with GQLSTATUS 42I80 and status description:
 42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference.
 ----
 
-A second form of this error occurs when a grouping element references an aggregation result. Try grouping by the aggregation alias `cnt`:
+===  Grouping element references an aggregation result
+
+Try grouping by the aggregation alias `cnt`:
 
 [source,cypher]
 ----
