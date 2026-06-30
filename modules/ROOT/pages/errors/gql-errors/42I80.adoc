@@ -1,7 +1,7 @@
 = 42I80
 
 == Status description
-error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. { <<cause>> }
+error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
 
 == Explanation
 A grouping element that references a projection item alias (a name introduced by a return item of the same `WITH` or `RETURN` clause) must reference it as a simple variable — the bare alias on its own.
