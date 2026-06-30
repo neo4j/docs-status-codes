@@ -1,7 +1,7 @@
 = 42I79
 
 == Status description
-error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause { <<argList>> }.
+error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause `{ <<argList>> }`.
 
 == Explanation
 A subclause expression is an expression used in a subclause (e.g., `WHERE` or `ORDER BY`) that belongs to a projection clause.
