@@ -1,7 +1,7 @@
 = 42I80
 
 == Status description
-error: syntax error or access rule violation - invalid grouping element. The grouping element '{ <<expr>> }' is not a valid grouping key. { <<cause>> }
+error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. { <<cause>> }
 
 == Explanation
 A grouping element that references a projection item alias (a name introduced by a return item of the same `WITH` or `RETURN` clause) must reference it as a simple variable — the bare alias on its own.
@@ -12,6 +12,7 @@ A grouping element can also never reference an aggregation result, since an aggr
 
 Let's take the following example scenarios:
 
+=== Invalid grouping on projection item alias
 
 Try projecting `b AS a`, so that `a` is a projection item alias that shadows the incoming `a`, and then grouping by `a.p` — a property access on that alias:
 
@@ -32,27 +33,7 @@ The query returns an error with GQLSTATUS 42I80 and status description:
 42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference.
 ----
 
-===  Grouping element references an aggregation result
-
-Try grouping by the aggregation alias `cnt`:
-
-[source,cypher]
-----
-UNWIND [{a: 1}, {a: 2}] AS row
-WITH row.a AS a
-RETURN a, count(*) AS cnt
-  GROUP BY a, cnt;
-----
-
-The query returns an error with GQLSTATUS 42I80 and status description:
-
-.GQLSTATUS error
-[source, error]
-----
-42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`.
-----
-
-== Possible solutions
+==== Possible solutions
 
 To resolve the first example, the preferred way is to reference the alias as a simple variable:
 
@@ -76,7 +57,29 @@ RETURN b AS bb, count(*) AS cnt
   GROUP BY a.p;
 ----
 
-For the second example, remove the aggregation result from the grouping elements:
+===  Grouping element references an aggregation result
+
+Try grouping by the aggregation alias `cnt`:
+
+[source,cypher]
+----
+UNWIND [{a: 1}, {a: 2}] AS row
+WITH row.a AS a
+RETURN a, count(*) AS cnt
+  GROUP BY a, cnt;
+----
+
+The query returns an error with GQLSTATUS 42I80 and status description:
+
+.GQLSTATUS error
+[source, error]
+----
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`.
+----
+
+==== Possible solutions
+
+To resolve the error remove the aggregation result from the grouping elements:
 
 .Group only by non-aggregating expressions
 [source, cypher]
