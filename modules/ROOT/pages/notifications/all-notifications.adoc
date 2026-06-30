@@ -1326,7 +1326,7 @@ m|UNSUPPORTED
 |GQLSTATUS code
 m|01N84
 |Status description
-a|warn: unsupported planner version. The Cypher planner version { <<preparserInput>> } is no longer supported. The default planner version is used instead.
+a|warn: unsupported planner version. The Cypher planner version `{ <<value>> }` is no longer supported. The default planner version is used instead.
 |Classification
 m|UNSUPPORTED
 |SeverityLevel
@@ -1349,7 +1349,7 @@ Returned GQLSTATUS code::
 01N84
 
 Returned status description::
-warn: unsupported planner version. The Cypher planner version 'v2026_03' is no longer supported. The default planner version is used instead.
+warn: unsupported planner version. The Cypher planner version v2026_03 is no longer supported. The default planner version is used instead.
 Suggestions for improvement::
 Remove the `plannerVersion` option to use the default planner version, or specify a supported planner version.
 ======
@@ -1362,7 +1362,7 @@ Query::
 CYPHER plannerVersion=v2026_03 RETURN 1 AS result
 ----
 Description of the returned code::
-The Cypher planner version 'v2026_03' is no longer supported. The default planner version is used instead.
+The Cypher planner version v2026_03 is no longer supported. The default planner version is used instead.
 Suggestions for improvement::
 Remove the `plannerVersion` option to use the default planner version, or specify a supported planner version.
 ======
