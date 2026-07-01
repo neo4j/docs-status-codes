@@ -1211,6 +1211,10 @@ Status description:: error: syntax error or access rule violation - index or con
 
 Status description:: error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER { <<version>> }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<version>> }`.
 
+=== xref:errors/gql-errors/42I80.adoc[42I80]
+
+Status description:: error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
+
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
 Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
