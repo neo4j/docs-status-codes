@@ -4,7 +4,7 @@
 error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
 
 == Explanation
-The `GROUP BY` clause is used to group the results of a query by one or more expressions.
+The `GROUP BY` clause is used to group the results of a clause by one or more expressions.
 Each expression in the `GROUP BY` clause is called a grouping element.
 
 * A grouping element may reference an alias introduced by the same `WITH` or `RETURN` clause only if the grouping element is exactly that alias.
