@@ -28,12 +28,15 @@ RETURN b AS a, count(*) AS cnt
 ----
 
 Because `a` is a projection item alias, the only valid way to group by it is the simple reference `a`; the property access `a.p` is not a valid grouping element.
-The query returns an error with GQLSTATUS 42I80 and status description:
+The query returns a chain of errors where GQLSTATUS 42I80 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-.GQLSTATUS error
+.GQLSTATUS error chain
 [source, error]
 ----
-42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference.
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference. (line 4, column 13 (offset: 126))
+"  GROUP BY a.p"
+             ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 
@@ -71,12 +74,15 @@ RETURN a, count(*) AS cnt
   GROUP BY a, cnt;
 ----
 
-The query returns an error with GQLSTATUS 42I80 and status description:
+The query returns a chain of errors where GQLSTATUS 42I80 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-.GQLSTATUS error
+.GQLSTATUS error chain
 [source, error]
 ----
-42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`.
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`. (line 4, column 15 (offset: 87))
+"  GROUP BY a, cnt"
+               ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 
