@@ -4,9 +4,12 @@
 error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
 
 == Explanation
-A grouping element that references a projection item alias (a name introduced by a return item of the same `WITH` or `RETURN` clause) must reference it as a simple variable — the bare alias on its own.
-A non-simple reference to an alias, such as a property access, a function call, or an arithmetic expression, is not a valid grouping element.
-A grouping element can also never reference an aggregation result, since an aggregation is computed per group and cannot itself be a grouping key.
+The `GROUP BY` clause is used to group the results of a query by one or more expressions.
+Each expression in the `GROUP BY` clause is called a grouping element.
+
+* A grouping element may reference an alias introduced by the same `WITH` or `RETURN` clause only if the grouping element is exactly that alias.
+* A non-simple grouping element, such as a property access, a function call, or an arithmetic expression, cannot contain an alias.
+* A grouping element cannot contain an aggregation result, since aggregations are computed per group and cannot be grouping keys.
 
 == Example scenarios
 
@@ -33,9 +36,8 @@ The query returns an error with GQLSTATUS 42I80 and status description:
 42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference.
 ----
 
-==== Possible solutions
 
-To resolve the first example, the preferred way is to reference the alias as a simple variable:
+To fix the query, the preferred way is to reference the alias as a simple variable:
 
 .Group by the alias as a simple variable
 [source, cypher]
@@ -77,7 +79,6 @@ The query returns an error with GQLSTATUS 42I80 and status description:
 42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`.
 ----
 
-==== Possible solutions
 
 To resolve the error remove the aggregation result from the grouping elements:
 
