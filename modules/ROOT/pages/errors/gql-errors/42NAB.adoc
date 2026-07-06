@@ -41,7 +41,8 @@ However, if you still want to filter the result of the procedure `db.labels()`, 
 .Query
 [source, cypher]
 ----
-CALL db.labels() YIELD label WHERE label <> 'A' RETURN label;
+CALL db.labels() YIELD label WHERE label <> 'A'
+RETURN label;
 ----
 
 ifndef::backend-pdf[]
