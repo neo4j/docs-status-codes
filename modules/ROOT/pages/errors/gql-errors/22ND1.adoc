@@ -16,7 +16,7 @@ This exception is thrown when attempting to `DENY` a privilege from a role that 
 == Example scenario
 
 The example assumes that you have a database called `secretDb` and you want to deny access to all nodes in that database for a role called `role`.
-You also have an auth rule called `authrule` that grants the role `role` to users who meet certain criteria.
+You also have two roles, called `role` and `otherrole`, and an auth rule, called `authrule`.
 
 . Grant the role `role` to the auth rule:
 +

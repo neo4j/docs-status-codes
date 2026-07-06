@@ -54,8 +54,6 @@ For example, you can replace the generic grant from step 2 in the <<example-scen
 +
 [source, cypher]
 ----
-REVOKE ROLE role FROM AUTH RULE authrule;
-REVOKE ROLE otherrole FROM AUTH RULE authrule;
 REVOKE DENY MATCH {*} ON GRAPH secretDb NODES * FROM role;
 ----
 
