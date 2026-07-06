@@ -4,16 +4,16 @@
 error: data exception - graph type contains duplicated tokens. The graph type includes a label, a relationship type, or an alias with the name `{ <<token>> }` more than once.
 
 == Explanation
-This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or alias within the same scope.
-Each label, relationship type, or alias must have a unique name to avoid ambiguity in the graph schema.
-To resolve this error, ensure all labels, relationship types, and aliases are uniquely named within the graph type definition.
+This error occurs when a graph type definition attempts to use the same name for more than one label, relationship type, or a type alias within the same scope.
+Each label, relationship type, or type alias must have a unique name to avoid ambiguity in the graph schema.
+To resolve this error, ensure all labels, relationship types, and type aliases are uniquely named within the graph type definition.
 
 == Example scenarios
 Let's take the following example scenarios:
 
 === Aliases
 
-Try defining two node element types using the same alias as follows:
+Try defining two node element types using the same type alias as follows:
 
 [source,cypher]
 ----
@@ -34,7 +34,7 @@ The query returns a chain of errors where GQLSTATUS 22NC8 is the cause of GQLSTA
   42001: syntax error or access rule violation - invalid syntax
 ----
 
-To fix this, rename one of the aliases, for example:
+To fix this, rename one of the type aliases, for example:
 
 [source,cypher]
 ----
