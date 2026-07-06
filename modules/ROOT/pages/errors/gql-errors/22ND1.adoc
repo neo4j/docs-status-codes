@@ -41,11 +41,8 @@ The query returns a chain of errors where GQLSTATUS 22ND1 is the cause of GQLSTA
   42001: syntax error or access rule violation - invalid syntax
 ----
 +
-[NOTE]
-====
 The error message contains a subset of the original query that caused the issue.
 Since `otherrole` is not granted to an auth rule, it is not included.
-====
 
 == Possible solutions
 

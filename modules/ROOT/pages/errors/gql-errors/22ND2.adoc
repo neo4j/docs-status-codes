@@ -34,7 +34,7 @@ CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule;
 +
 The query returns a chain of errors where GQLSTATUS 22ND2 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 +
-.GQLSTATUS error
+.GQLSTATUS error chain
 [source, error]
 ----
 22ND2: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with DENY privileges.
