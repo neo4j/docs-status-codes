@@ -14,7 +14,7 @@ For example, `$largeIndexName` is approximately 8KiB long, and starts with the f
 
 [source,cypher]
 ----
-:param largeIndexName => `A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be gracefully handled, etc...`
+:param { largeIndexName:  "A very long index name that would be encoded to around 8KiB of UTF-8 encoded data should ideally be gracefully handled, etc.." };
 ----
 
 When you run the following Cypher statement:

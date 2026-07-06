@@ -24,7 +24,7 @@ The query returns an error chain where GQLSTATUS 42N0D is the cause of GQLSTATUS
 [source, error]
 ----
 42N0D: syntax error or access rule violation - cannot call function from this context. The function abac.oidc.user_attribute() cannot be called from the current context. It can only be used in 'CREATE AUTH RULE' and 'ALTER AUTH RULE' commands.
-  53N37: function exception - function execution error. Execution of the function abac.oidc.user_attribute() failed.
+  53N37: function exception - function execution error. Execution of the function abac.oidc.user_attribute() failed.SHOW FUNCTIONS
 ----
 
 == Possible solution
@@ -33,10 +33,9 @@ You can rewrite the query to avoid calling the function from an unsupported cont
 
 [source,cypher]
 ----
-CYPHER 25
-CREATE AUTH RULE FOR (n:Person) REQUIRE abac.oidc.user_attribute('attribute1') = 'value';
+CREATE AUTH RULE authrule
+  SET CONDITION abac.oidc.user_attribute('attribute1') = 'value';
 ----
-
 
 ifndef::backend-pdf[]
 [discrete.glossary]

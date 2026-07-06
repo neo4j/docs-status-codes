@@ -17,7 +17,7 @@ MATCH (movie:Movie)-[r]->()
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title, r.prop AS prop;
+RETURN movie.title AS title, r.rating AS rating;
 ----
 
 The query returns a chain of errors where GQLSTATUS 42I70 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -46,7 +46,7 @@ MATCH (movie:Movie)
     LIMIT 5
   )
 MATCH (movie)-[r]->()
-RETURN movie.title AS title, r.prop AS prop;
+RETURN movie.title AS title, r.rating AS rating;
 ----
 
 ifndef::backend-pdf[]
