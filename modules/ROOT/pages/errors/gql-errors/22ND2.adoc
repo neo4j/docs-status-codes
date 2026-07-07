@@ -64,6 +64,15 @@ REVOKE DENY MATCH {*} ON GRAPH secretDb NODES * FROM role;
 GRANT MATCH {*} ON GRAPH publicDb, documentationDb NODES * TO role, otherrole;
 ----
 +
+Then it is possible to assign both roles to the `authrule`.
++
+. Try assigning both roles to the `authrule`:
++
+[source, cypher]
+----
+CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule;
+----
++
 If a `DENY` is required, it must be set to a role that is directly assigned to users without using auth rules, to guarantee that it will always be applied.
 
 ifndef::backend-pdf[]
