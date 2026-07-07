@@ -41,7 +41,7 @@ To fix this and drop both types, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     (:Person => ),
-    ()-[:DRIVES =>]->()
+    ()-[:DRIVES => ]->()
 };
 ----
 
