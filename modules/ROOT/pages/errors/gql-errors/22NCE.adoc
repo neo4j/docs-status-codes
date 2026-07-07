@@ -13,7 +13,7 @@ Given the following graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING }),
-    (p)-[:DRIVES=>]->(:Car)
+    (p)-[:DRIVES => ]->(:Car)
 };
 ----
 
