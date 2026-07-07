@@ -24,7 +24,7 @@ The query returns an error chain where GQLSTATUS 42N0D is the cause of GQLSTATUS
 [source, error]
 ----
 42N0D: syntax error or access rule violation - cannot call function from this context. The function abac.oidc.user_attribute() cannot be called from the current context. It can only be used in 'CREATE AUTH RULE' and 'ALTER AUTH RULE' commands.
-  53N37: function exception - function execution error. Execution of the function abac.oidc.user_attribute() failed.SHOW FUNCTIONS
+  53N37: function exception - function execution error. Execution of the function abac.oidc.user_attribute() failed.
 ----
 
 == Possible solution

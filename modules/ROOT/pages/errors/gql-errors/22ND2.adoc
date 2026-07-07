@@ -48,9 +48,9 @@ Since `otherrole` does not have denied privileges, it is not included.
 
 Consider whether it is possible to implement the security model without using denied privileges, for example, by revoking granted privileges or reducing the scope of the grant statements.
 
-For example, you can replace the generic grant from step 2 in the <<example-scenario-22nd2, Example scenario>> with the following more fine-grained alternative:
+For example, you can replace the generic deny from step 1 in the <<example-scenario-22nd2, Example scenario>> with the following more fine-grained alternative:
 
-. Revoke both roles from the `authrule` and the denied privileges to reproduce the original scenario:
+. Revoke the denied privilege to reproduce the original scenario:
 +
 [source, cypher]
 ----

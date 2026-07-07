@@ -16,31 +16,24 @@ This exception is thrown when attempting to `DENY` a privilege from a role that 
 == Example scenario
 
 The example assumes that you have a database called `secretDb` and you want to deny access to all nodes in that database for a role called `role`.
-You also have two roles, called `role` and `otherrole`, and an auth rule, called `authrule`.
+You also have two roles, called `role` and `otherrole`, and an auth rule, called `authrule`, where `role` is granted to `authrule` and `otherrole` is not.
 
-. Grant the role `role` to the auth rule:
-+
-[source, cypher]
-----
-CYPHER 25 GRANT ROLE role TO AUTH RULE authrule;
-----
+Try denying privileges to the role:
 
-. Try denying privileges to the role:
-+
 [source, cypher]
 ----
 DENY MATCH {*} ON GRAPH secretDb NODES * TO otherrole, role;
 ----
-+
+
 The query returns a chain of errors where GQLSTATUS 22ND1 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
-+
+
 .GQLSTATUS error chain
 [source, error]
 ----
 22ND1: data exception - operation not allowed for roles that are granted to an AUTH RULE. Invalid input: 'DENY MATCH {*} ON GRAPH secretDb NODES * TO role' is not allowed for roles that are granted to an AUTH RULE.
   42001: syntax error or access rule violation - invalid syntax
 ----
-+
+
 The error message contains a subset of the original query that caused the issue.
 Since `otherrole` is not granted to an auth rule, it is not included.
 
@@ -48,7 +41,7 @@ Since `otherrole` is not granted to an auth rule, it is not included.
 
 Consider if it is possible to implement the security model without using denied privileges.
 
-For example, you can replace the generic grant from step 1 in the <<example-scenario-22nd1, Example scenario>> with the following more fine-grained alternative:
+For example, you can replace the generic deny from step 1 in the <<example-scenario-22nd1, Example scenario>> with the following more fine-grained alternative:
 
 . Revoke the role from the auth rule to reproduce the original scenario:
 +
