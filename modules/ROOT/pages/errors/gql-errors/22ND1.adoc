@@ -25,7 +25,7 @@ You also have two roles, called `role` and `otherrole`, and an auth rule, called
 CYPHER 25 GRANT ROLE role TO AUTH RULE authrule;
 ----
 
-. Try denying privileges from the role:
+. Try denying privileges to the role:
 +
 [source, cypher]
 ----
