@@ -14,7 +14,7 @@ Try creating an auth rule using the following command:
 ----
 CREATE AUTH RULE authRule SET CONDITION abac.oidc.user_attribute('start_date') > date.transaction('UTC');
 ----
-If the auth rule `authRule` does already exist, the query will return a chain of errors where GQLSTATUS 42NAE is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+If an auth rule named `authRule` does already exist, the query will return a chain of errors where GQLSTATUS 42NAE is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
 .GQLSTATUS error chain
 [source, error]
