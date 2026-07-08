@@ -9,7 +9,7 @@ This error occurs when an administration command is prepended with a `USE` claus
 
 == Example scenario
 
-Try showing all the databases with a `USE` clause in the query:
+Try showing all the users with a `USE` clause in the query:
 
 [source,cypher]
 ----
