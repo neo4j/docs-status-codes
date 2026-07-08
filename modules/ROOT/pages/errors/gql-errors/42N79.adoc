@@ -14,7 +14,7 @@ Try showing all the users with a `USE` clause in the query:
 [source,cypher]
 ----
 USE system
-SHOW DATABASES;
+SHOW USERS;
 ----
 
 The query returns an error with GQLSTATUS 42N79 and status description:
