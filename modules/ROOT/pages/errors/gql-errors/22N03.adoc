@@ -5,29 +5,29 @@ error: data exception - specified numeric value out of range. Expected `{ <<comp
 
 == Example scenario
 
-Provide a value of `1000` for the `millisecond` field
+Try providing a value of `1000` for the `millisecond` field:
 
 [source,cypher]
 ----
-RETURN time({hour: 1, minute: 1, second: 1, millisecond: 1005})
+RETURN time({hour: 1, minute: 1, second: 1, millisecond: 1005});
 ----
 
-will raise an error with GQLSTATUS xref:errors/gql-errors/22007.adoc[22007].
-This error has a cause detailed in xref:errors/gql-errors/22N03.adoc[22N03] and status description:
+The query returns a chain of errors where GQLSTATUS 22N03 is the cause of GQLSTATUS xref:errors/gql-errors/22007.adoc[22007]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - specified numeric value out of range. Expected 'Millisecond' to be of type INTEGER and in the range 0 to 999 but found 1005.
+22N03: data exception - specified numeric value out of range. Expected 'Millisecond' to be of type INTEGER and in the range 0 to 999 but found 1005.
+  22007: data exception - invalid date, time, or datetime format
 ----
 
 == Possible solution
 
-Provide an integer value in the valid range for the `millisecond` field
+Provide an integer value in the valid range for the `millisecond` field:
 
 [source,cypher]
 ----
-RETURN time({hour: 1, minute: 1, second: 2, millisecond: 5})
+RETURN time({hour: 1, minute: 1, second: 2, millisecond: 5});
 ----
 
 ifndef::backend-pdf[]

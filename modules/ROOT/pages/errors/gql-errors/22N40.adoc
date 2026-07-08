@@ -5,20 +5,20 @@ error: data exception - non-assignable temporal component. Cannot assign `{ <<co
 
 == Example scenario
 
-Provide a string value for the `minute` field
+Try providing a string value for the `minute` field:
 
 [source,cypher]
 ----
-RETURN time({hour: 10, minute: '20', secound: 23})
+RETURN time({hour: 10, minute: '20', second: 23});
 ----
 
-will raise an error with GQLSTATUS xref:errors/gql-errors/22G06.adoc[22G06].
-This error has a cause detailed in xref:errors/gql-errors/22N40.adoc[22N40] and status description:
+The query returns a chain of errors where GQLSTATUS 22N40 is the cause of GQLSTATUS xref:errors/gql-errors/22G06.adoc[22G06]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - non-assignable temporal component. Cannot assign 'minute' of a STRING.
+22N40: data exception - non-assignable temporal component. Cannot assign 'minute' of a STRING.
+  22G06: data exception - invalid date, time, or datetime function field value
 ----
 
 == Possible solution
@@ -27,7 +27,7 @@ Provide an integer value for the `minute` field
 
 [source,cypher]
 ----
-RETURN time({hour: 10, minute: 20, secound: 23})
+RETURN time({hour: 10, minute: 20, secound: 23});
 ----
 
 
