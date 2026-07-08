@@ -27,7 +27,7 @@ Provide an integer value for the `minute` field
 
 [source,cypher]
 ----
-RETURN time({hour: 10, minute: 20, secound: 23});
+RETURN time({hour: 10, minute: 20, second: 23});
 ----
 
 
