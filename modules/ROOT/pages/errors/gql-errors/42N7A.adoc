@@ -1,0 +1,56 @@
+= 42N7A
+
+== Status description
+error: syntax error or access rule violation - disjoint by requires concurrent transactions. `'DISJOINT BY'` can only be used in `'CALL { ... } IN CONCURRENT TRANSACTIONS'`.
+
+== Example scenario
+For example, when using `DISJOINT BY` in a `CALL` subquery that runs `IN TRANSACTIONS` without the `CONCURRENT` keyword:
+
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS i
+CALL (i) {
+  MATCH (n {id: i})
+  SET n.processed = true
+} IN TRANSACTIONS DISJOINT BY (i)
+----
+
+You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7A and the status description:
+
+[source]
+----
+error: syntax error or access rule violation - disjoint by requires concurrent transactions. 'DISJOINT BY' can only be used in 'CALL { ... } IN CONCURRENT TRANSACTIONS'.
+----
+
+== Possible solutions
+
+To resolve this issue, you can add the `CONCURRENT` keyword if concurrent execution is intended.
+Be aware that this changes how the query executes, as the transaction batches then run concurrently.
+
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS i
+CALL (i) {
+  MATCH (n {id: i})
+  SET n.processed = true
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (i)
+----
+
+Alternatively, you can remove the `DISJOINT BY` clause if sequential execution is intended.
+Sequential transactions run one at a time and do not need disjoint partitioning.
+
+[source,cypher]
+----
+UNWIND [1, 2, 3] AS i
+CALL (i) {
+  MATCH (n {id: i})
+  SET n.processed = true
+} IN TRANSACTIONS
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

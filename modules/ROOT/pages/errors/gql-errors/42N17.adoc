@@ -63,6 +63,12 @@ To solve this, either remove the disallowed procedure or run the query against a
 You try to run a query that contains an allowed procedure but an unallowed clause.
 For example, the `YIELD` clause in the following query is allowed for procedure calls, but the `WHERE` clause is not:
 
+[NOTE]
+====
+This example is valid only for versions prior to Neo4j 2026.06.
+From 2026.06 onwards, the `WHERE` clause, when part of procedure calls, is allowed on the `system` database, and the following example query works as expected.
+====
+
 [source,cypher]
 ----
 CALL db.index.fulltext.listAvailableAnalyzers()
@@ -82,11 +88,6 @@ The query returns a chain of errors where GQLSTATUS xref:errors/gql-errors/42NA9
 ----
 
 To solve this, either remove the `WHERE` clause or run the query against a standard database.
-
-[NOTE]
-====
-In contrast to procedure calls, the `WHERE` clause is allowed for the `SHOW` and `TERMINATE` commands.
-====
 
 === Invalid show command
 
