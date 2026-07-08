@@ -1211,6 +1211,10 @@ Status description:: error: syntax error or access rule violation - index or con
 
 Status description:: error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER { <<version>> }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<version>> }`.
 
+=== xref:errors/gql-errors/42I79.adoc[42I79]
+
+Status description:: error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause `{ <<argList>> }`.
+
 === xref:errors/gql-errors/42I80.adoc[42I80]
 
 Status description:: error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
@@ -1409,7 +1413,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N44.adoc[42N44]
 
-Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `{ <<groupingConstructs>> }`.
 
 === xref:errors/gql-errors/42N45.adoc[42N45]
 
