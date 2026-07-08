@@ -3,6 +3,32 @@
 == Status description
 error: data exception - specified numeric value out of range. Expected `{ <<component>> }` to be of type `{ <<valueType>> }` and in the range `{ <<lower>> }` to `{ <<upper>> }` but found `{ <<value>> }`.
 
+== Example scenario
+
+Provide a value of `1000` for the `millisecond` field
+
+[source,cypher]
+----
+RETURN time({hour: 1, minute: 1, second: 1, millisecond: 1005})
+----
+
+will raise an error with GQLSTATUS xref:errors/gql-errors/22007.adoc[22007].
+This error has a cause detailed in xref:errors/gql-errors/22N03.adoc[22N03] and status description:
+
+
+[source]
+----
+error: data exception - specified numeric value out of range. Expected 'Millisecond' to be of type INTEGER and in the range 0 to 999 but found 1005.
+----
+
+== Possible solution
+
+Provide an integer value in the valid range for the `millisecond` field
+
+[source,cypher]
+----
+RETURN time({hour: 1, minute: 1, second: 2, millisecond: 5})
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]

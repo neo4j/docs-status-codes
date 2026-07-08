@@ -1,0 +1,20 @@
+= 22G06
+
+
+== Status description
+error: data exception - invalid date, time, or datetime function field value
+
+== Scenario
+
+A temporal field, such as `year`, `day`, `hour`, `minute`, in the map provided argument of one of the temporal functions `date()`, `time()`, `localtime()`, `datetime()`, `localdatetime()` has an invalid value.
+
+== Possible solution
+
+Adjust the value.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

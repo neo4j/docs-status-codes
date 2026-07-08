@@ -3,6 +3,34 @@
 == Status description
 error: data exception - non-assignable temporal component. Cannot assign `{ <<component>> }` of a `{ <<valueType>> }`.
 
+== Example scenario
+
+Provide a string value for the `minute` field
+
+[source,cypher]
+----
+RETURN time({hour: 10, minute: '20', secound: 23})
+----
+
+will raise an error with GQLSTATUS xref:errors/gql-errors/22G06.adoc[22G06].
+This error has a cause detailed in xref:errors/gql-errors/22N40.adoc[22N40] and status description:
+
+
+[source]
+----
+error: data exception - non-assignable temporal component. Cannot assign 'minute' of a STRING.
+----
+
+== Possible solution
+
+Provide an integer value for the `minute` field
+
+[source,cypher]
+----
+RETURN time({hour: 10, minute: 20, secound: 23})
+----
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

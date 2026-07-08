@@ -155,6 +155,14 @@ Status description:: error: data exception - invalid value type
 
 Status description:: error: data exception - invalid date, time, or datetime function field name
 
+=== xref:errors/gql-errors/22G06.adoc[22G06]
+
+Status description:: error: data exception - invalid date, time, or datetime function field value
+
+=== xref:errors/gql-errors/22G08.adoc[22G08]
+
+Status description:: error: data exception - invalid duration function field value
+
 === xref:errors/gql-errors/22G0I.adoc[22G0I]
 
 Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.

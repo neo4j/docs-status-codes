@@ -1,0 +1,20 @@
+= 22G06
+
+
+== Status description
+error: data exception - invalid duration function field value
+
+== Scenario
+
+A temporal field, such as `years`, `days`, `hours`, `minutes`, in the map provided argument of one of the temporal functions `duration()` has an invalid value.
+
+== Possible solution
+
+Adjust the value.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
