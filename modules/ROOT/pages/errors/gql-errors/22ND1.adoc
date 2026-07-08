@@ -42,13 +42,13 @@ Consider if it is possible to implement the security model without using denied 
 
 For example, you can replace the generic deny from the <<example-scenario-22nd1, Example scenario>> with the following more fine-grained alternative:
 
-. Grant match privileges to the role for specific graphs instead of denying access to all nodes in the `secretDb` graph:
-+
+Grant match privileges to the role for specific graphs instead of denying access to all nodes in the `secretDb` graph:
+
 [source, cypher]
 ----
 GRANT MATCH {*} ON GRAPH publicDb, documentationDb NODES * TO role, otherrole;
 ----
-+
+
 If a `DENY` is required, it must be set to a role that is directly assigned to users without using auth rules, to guarantee that it will always be applied.
 
 ifndef::backend-pdf[]
