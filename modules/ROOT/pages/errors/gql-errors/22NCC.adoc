@@ -15,23 +15,25 @@ Given the following graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     (p:Person => {name :: STRING })
-}
+};
 ----
 
-Execute the query:
+Try running the following query:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     (p:Person => :Student)
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCC and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCC is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - node element type specified incorrectly. The node element type (`p`:`Person` => {`name` :: STRING }) identified by the label `Person` is different to the one specified in the query (`p`:`Person` => :`Student`).
+22NCC: data exception - node element type specified incorrectly. The node element type (:`Person` => {`name` :: STRING}) identified by the label `Person` is different to the one specified in the query (:`Person` => :`Student`).
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -40,7 +42,7 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     (p:Person => )
-}
+};
 ----
 It is not necessary to specify the full element type to drop it.
 

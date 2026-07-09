@@ -11,10 +11,10 @@ For example, assuming that you have a vector index created by the following comm
 CYPHER 25
 CREATE VECTOR INDEX moviePlots
 FOR (m:Movie) ON m.embedding
-WITH [m.rating]
+WITH [m.rating];
 ----
 
-When trying to use a variable other than `movie` inside the `WHERE` subclause predicate in a `SEARCH` clause in the following query:
+Try using a variable other than `movie` inside the `WHERE` subclause predicate in a `SEARCH` clause in the following query:
 
 [source,cypher]
 ----
@@ -27,14 +27,18 @@ MATCH (movie:Movie)
     WHERE m.rating >= 8
     LIMIT 5
   )
-RETURN movie.title AS title, movie.rating AS rating
+RETURN movie.title AS title, movie.rating AS rating;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I74 and status description:
+The query returns a chain of errors where GQLSTATUS 42I74 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - wrong variable for vector search with filters. The variable `m` in a vector search filter property predicate must be the same as the search clause binding variable `movie`.
+42I74: syntax error or access rule violation - wrong variable for vector search with filters. The variable `m` in a vector search filter property predicate must be the same as the search clause binding variable `movie`. (line 7, column 11 (offset: 146))
+"    WHERE m.rating >= 8"
+           ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 ifndef::backend-pdf[]

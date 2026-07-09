@@ -10,31 +10,36 @@ The `{ <<hint>> }` segment is optional. When present, it contains additional gui
 
 == Example scenario
 
-For example, consider the following query, which expects a map but receives a node or relationship:
+Try running the following query, which expects a map but receives a node or relationship:
 
 [source,cypher]
 ----
 CYPHER 25
 MATCH (a)-->(b)
-SET a = b
+SET a = b;
 ----
 
-You will receive an error with GQLSTATUS 22N27 and status description:
+The query returns a chain of errors where GQLSTATUS 22N27 is the cause of GQLSTATUS xref:errors/gql-errors/22G03.adoc[22G03]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - invalid entity type. Invalid input `RELATIONSHIP` for `b`. Expected to be `MAP`. Hint: use properties(...) on the right-hand side.
+22N27: data exception - invalid entity type. Invalid input 'NODE' for b. Expected to be MAP. Hint: use properties(...) on the right-hand side. (line 3, column 9 (offset: 34))
+"SET a = b"
+         ^
+  22G03: data exception - invalid value type
 ----
 
 == Possible solution
 
-To resolve this error, ensure that the input for `b` is a map. You can modify the query as follows:
+To resolve this error, ensure that the input for `b` is a map.
+You can modify the query as follows:
 
 [source,cypher]
 ----
 CYPHER 25
 MATCH (a)-->(b)
-SET a = properties(b)
+SET a = properties(b);
 ----
 
 

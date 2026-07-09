@@ -5,20 +5,20 @@ error: syntax error or access rule violation - pattern parsing failed. Pattern p
 
 == Example scenario
 
-For example, when formatting a duration:
+Try formatting a duration:
 
 [source,cypher]
 ----
-RETURN format(duration("P1Y"), "y 'year")
+RETURN format(duration("P1Y"), "y 'year");
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001].
-This error has a cause detailed in xref:errors/gql-errors/42I66.adoc[42I66] and status description:
+The query returns a chain of errors where GQLSTATUS 42I66 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
+42I66: syntax error or access rule violation - pattern parsing failed. Pattern parsing failed. Make sure that an even number of escapes are used in the pattern.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 

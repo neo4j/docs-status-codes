@@ -4,7 +4,7 @@
 error: syntax error or access rule violation - disjoint by requires concurrent transactions. `'DISJOINT BY'` can only be used in `'CALL { ... } IN CONCURRENT TRANSACTIONS'`.
 
 == Example scenario
-For example, when using `DISJOINT BY` in a `CALL` subquery that runs `IN TRANSACTIONS` without the `CONCURRENT` keyword:
+Try using `DISJOINT BY` in a `CALL` subquery that runs `IN TRANSACTIONS` without the `CONCURRENT` keyword:
 
 [source,cypher]
 ----
@@ -12,14 +12,18 @@ UNWIND [1, 2, 3] AS i
 CALL (i) {
   MATCH (n {id: i})
   SET n.processed = true
-} IN TRANSACTIONS DISJOINT BY (i)
+} IN TRANSACTIONS DISJOINT BY (i);
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42N7A and the status description:
+The query returns a chain of errors where GQLSTATUS 42N7A is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - disjoint by requires concurrent transactions. 'DISJOINT BY' can only be used in 'CALL { ... } IN CONCURRENT TRANSACTIONS'.
+42N7A: syntax error or access rule violation - disjoint by requires concurrent transactions. 'DISJOINT BY' can only be used in 'CALL { ... } IN CONCURRENT TRANSACTIONS'. (line 5, column 19 (offset: 96))
+"} IN TRANSACTIONS DISJOINT BY (i)"
+                   ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -33,7 +37,7 @@ UNWIND [1, 2, 3] AS i
 CALL (i) {
   MATCH (n {id: i})
   SET n.processed = true
-} IN CONCURRENT TRANSACTIONS DISJOINT BY (i)
+} IN CONCURRENT TRANSACTIONS DISJOINT BY (i);
 ----
 
 Alternatively, you can remove the `DISJOINT BY` clause if sequential execution is intended.
@@ -45,7 +49,7 @@ UNWIND [1, 2, 3] AS i
 CALL (i) {
   MATCH (n {id: i})
   SET n.processed = true
-} IN TRANSACTIONS
+} IN TRANSACTIONS;
 ----
 
 ifndef::backend-pdf[]

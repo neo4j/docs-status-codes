@@ -4,19 +4,20 @@
 error: syntax error or access rule violation - missing request parameter. Expected `{ <<paramList>>1 }`, but got `{ <<paramList>>2 }`.
 
 == Example scenario
-For example, when running the following Cypher query, but only providing the parameter `$a`:
+Try running the following Cypher query without providing the parameters:
 
 [source,cypher]
 ----
-RETURN $a + $b + $c
+RETURN $a + $b + $c;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I71.
-and the status description:
+The query returns a chain of errors where GQLSTATUS 42N81 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - missing request parameter. Expected $`b` and $`c`, but got $`a`.
+42N81: syntax error or access rule violation - missing request parameter. Expected $`a`, $`b` and $`c`, but got nothing.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 ifndef::backend-pdf[]
