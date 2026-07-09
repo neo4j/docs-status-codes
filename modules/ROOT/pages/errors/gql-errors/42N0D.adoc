@@ -10,12 +10,14 @@ This error is thrown when a function is called from a context that is not allowe
 
 == Example scenario
 
-Try calling an internal security function like `abac.oidc.user_attribute()` from a regular Cypher query.
+The example assumes that you have at least one OIDC auth provider present in both `dbms.security.authorization_providers` and in `dbms.security.abac.authorization_providers`.
+
+Try calling an internal security function like `abac.oidc.user_attribute('sub')` from a regular Cypher query.
 
 [source,cypher]
 ----
 CYPHER 25
-RETURN abac.oidc.user_attribute('attribute1');
+RETURN abac.oidc.user_attribute('sub');
 ----
 
 The query returns an error chain where GQLSTATUS 42N0D is the cause of GQLSTATUS xref:errors/gql-errors/53N37.adoc[53N37].
