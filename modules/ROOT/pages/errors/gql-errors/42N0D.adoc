@@ -12,12 +12,12 @@ This error is thrown when a function is called from a context that is not allowe
 
 The example assumes that you have at least one OIDC auth provider present in both `dbms.security.authorization_providers` and in `dbms.security.abac.authorization_providers`.
 
-Try calling an internal security function like `abac.oidc.user_attribute('sub')` from a regular Cypher query.
+Try calling an internal security function like `abac.oidc.user_attribute('clearance')` from a regular Cypher query.
 
 [source,cypher]
 ----
 CYPHER 25
-RETURN abac.oidc.user_attribute('sub');
+RETURN abac.oidc.user_attribute('clearance');
 ----
 
 The query returns an error chain where GQLSTATUS 42N0D is the cause of GQLSTATUS xref:errors/gql-errors/53N37.adoc[53N37].
@@ -36,7 +36,7 @@ You can rewrite the query to avoid calling the function from an unsupported cont
 [source,cypher]
 ----
 CREATE AUTH RULE authrule
-  SET CONDITION abac.oidc.user_attribute('attribute1') = 'value';
+  SET CONDITION abac.oidc.user_attribute('clearance') = 'high';
 ----
 
 ifndef::backend-pdf[]
