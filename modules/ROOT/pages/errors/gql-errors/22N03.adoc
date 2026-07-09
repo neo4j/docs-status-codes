@@ -5,7 +5,7 @@ error: data exception - specified numeric value out of range. Expected `{ <<comp
 
 == Example scenario
 
-Try providing a value of `1000` for the `millisecond` field:
+Try providing a value of `1005` for the `millisecond` field:
 
 [source,cypher]
 ----
