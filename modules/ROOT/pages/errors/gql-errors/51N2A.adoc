@@ -7,25 +7,26 @@ error: system configuration or operation exception - not supported with auth dis
 This error occurs when auth is disabled and a user attempts to run a command that is not available unless auth is enabled.
 
 == Example scenario
-For example, try to change the current user's password when auth is disabled:
+Try changing the current user's password when auth is disabled:
 
 [source,cypher]
 ----
-ALTER CURRENT USER SET PASSWORD FROM $oldPassword TO $newPassword
+ALTER CURRENT USER SET PASSWORD FROM $oldPassword TO $newPassword;
 ----
 
-You will receive the following error:
+The query returns an error with GQLSTATUS 51N2A and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: system configuration or operation exception - not supported with auth disabled. The command 'ALTER CURRENT USER SET PASSWORD' is not available with auth disabled.
+51N2A: system configuration or operation exception - not supported with auth disabled. The command 'ALTER CURRENT USER SET PASSWORD' is not available with auth disabled.
 ----
 
 To fix this, either enable auth or change the password using the `ALTER USER` command:
 
 [source,cypher]
 ----
-ALTER USER $currentUsername SET PASSWORD $newPassword CHANGE NOT REQUIRED
+ALTER USER $currentUsername SET PASSWORD $newPassword CHANGE NOT REQUIRED;
 ----
 
 ifndef::backend-pdf[]

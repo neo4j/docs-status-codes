@@ -11,12 +11,12 @@ For example, assuming that you have a vector index created by the following comm
 CYPHER 25
 CREATE VECTOR INDEX moviePlots
 FOR (m:Movie) ON m.embedding
-WITH [m.rating]
+WITH [m.rating];
 ----
 
 .Using the search binding variable in the `FOR` subclause of a vector search
 =====
-When trying to use the search binding variable `movie` in the `FOR` subclause in the following query:
+Try using the search binding variable `movie` in the `FOR` subclause in the following query:
 
 [source,cypher]
 ----
@@ -27,20 +27,24 @@ MATCH (movie:Movie)
     FOR movie.embedding
     LIMIT 5
   )
-RETURN movie.title AS title, movie.rating AS rating
+RETURN movie.title AS title, movie.rating AS rating;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I75 and status description:
+The query returns a chain of errors where GQLSTATUS 42I75 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - self-referencing in vector search. The expression `movie.embedding` in the search clause may not depend on the search clause binding variable `movie`.
+42I75: syntax error or access rule violation - self-referencing in vector search. The expression 'movie.embedding' in the search clause may not depend on the search clause binding variable `movie`. (line 5, column 14 (offset: 91))
+"    FOR movie.embedding"
+              ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 =====
 
 .Using the search binding variable in the `WHERE` subclause of a `SEARCH` clause
 =====
-When trying to use the search binding variable `movie` in both the left-hand and right-hand side of the predicate in the `WHERE` subclause in the following query:
+Try using the search binding variable `movie` in both the left-hand and right-hand side of the predicate in the `WHERE` subclause in the following query:
 
 [source,cypher]
 ----
@@ -53,14 +57,18 @@ MATCH (movie:Movie)
     WHERE movie.rating = movie.year
     LIMIT 5
   )
-RETURN movie.title AS title, movie.rating AS rating
+RETURN movie.title AS title, movie.rating AS rating;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I75 and status description:
+The query returns a chain of errors where GQLSTATUS 42I75 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - self-referencing in vector search. The expression `movie.year` in the search clause may not depend on the search clause binding variable `movie`.
+42I75: syntax error or access rule violation - self-referencing in vector search. The expression 'movie.year' in the search clause may not depend on the search clause binding variable `movie`. (line 7, column 31 (offset: 166))
+"    WHERE movie.rating = movie.year"
+                               ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 =====
 

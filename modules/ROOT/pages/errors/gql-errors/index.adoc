@@ -366,7 +366,7 @@ Status description:: error: data exception - graph reference not found. A graph 
 
 === xref:errors/gql-errors/22N52.adoc[22N52]
 
-Status description:: error: data exception - invalid combination of PROFILE and EXPLAIN. `PROFILE` and `EXPLAIN` cannot be combined.
+Status description:: error: data exception - invalid combination of `PROFILE` and `EXPLAIN`. `PROFILE` and `EXPLAIN` cannot be combined.
 
 === xref:errors/gql-errors/22N53.adoc[22N53]
 
@@ -482,7 +482,7 @@ Status description:: error: data exception - input contains invalid characters. 
 
 === xref:errors/gql-errors/22N83.adoc[22N83]
 
-Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ <<upper>> }` components separated by '.'.
+Status description:: error: data exception - input consists of too many components. Expected name to contain at most `{ <<upper>> }` components separated by `'.'`.
 
 === xref:errors/gql-errors/22N84.adoc[22N84]
 
@@ -518,11 +518,11 @@ Status description:: error: data exception - missing RETURN. This query requires
 
 === xref:errors/gql-errors/22N93.adoc[22N93]
 
-Status description:: error: data exception - missing YIELD. A required YIELD clause is missing.
+Status description:: error: data exception - missing `YIELD`. A required `YIELD` clause is missing.
 
 === xref:errors/gql-errors/22N94.adoc[22N94]
 
-Status description:: error: data exception - invalid YIELD *. `YIELD *` is not supported in this context. Explicitly specify which columns to yield.
+Status description:: error: data exception - invalid `YIELD *`. `YIELD *` is not supported in this context. Explicitly specify which columns to yield.
 
 === xref:errors/gql-errors/22N95.adoc[22N95]
 
@@ -1101,7 +1101,7 @@ Status description:: error: syntax error or access rule violation - parser error
 
 === xref:errors/gql-errors/42I48.adoc[42I48]
 
-Status description:: error: syntax error or access rule violation - invalid use of a subquery in MERGE. Subqueries are not allowed in a MERGE clause.
+Status description:: error: syntax error or access rule violation - invalid use of a subquery in `MERGE`. Subqueries are not allowed in a `MERGE` clause.
 
 === xref:errors/gql-errors/42I49.adoc[42I49]
 
@@ -1317,7 +1317,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N17.adoc[42N17]
 
-Status description:: error: syntax error or access rule violation - unsupported request. `{ <<input>> }` is not allowed on the system database.
+Status description:: error: syntax error or access rule violation - unsupported request. `{ <<input>> }` is not allowed on the `system` database.
 
 === xref:errors/gql-errors/42N18.adoc[42N18]
 
@@ -1609,7 +1609,7 @@ Status description:: error: syntax error or access rule violation - cannot combi
 
 === xref:errors/gql-errors/42N94.adoc[42N94]
 
-Status description:: error: syntax error or access rule violation - incomplete `ALTER USER` command. 'ALTER USER' requires at least one clause.
+Status description:: error: syntax error or access rule violation - incomplete `ALTER USER` command. `'ALTER USER'` requires at least one clause.
 
 === xref:errors/gql-errors/42N95.adoc[42N95]
 

@@ -5,18 +5,19 @@ error: data exception - invalid duration field. `{ <<field>> }` is not a valid d
 
 == Example scenario
 
-For example, when executing the following invalid query:
+Try running the following invalid query:
 
 [source,cypher]
 ----
-RETURN duration({dogYears: datetime()})
+RETURN duration({dogYears: datetime()});
 ----
 
-You will receive an error with GQLSTATUS 22G0I and status description:
+The query returns an error with GQLSTATUS 22G0I and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: data exception - invalid duration field. `dogYears` is not a valid duration field.
+22G0I: data exception - invalid duration field. `dogYears` is not a valid duration field.
 ----
 
 ifndef::backend-pdf[]

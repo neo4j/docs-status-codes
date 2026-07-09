@@ -7,7 +7,7 @@ error: syntax error or access rule violation - reference to non-grouping sub-exp
 An aggregating expression can only consist of grouping sub-expressions, constants, and aggregate functions.
 A variable that is not a sub-expression, a constant, or an argument to an aggregate function cannot be used in an aggregating expression.
 
-To be usable in an aggregating expression, variables must be either aggregated or single-valued per group, regardless of the queried graph. 
+To be usable in an aggregating expression, variables must be either aggregated or single-valued per group, regardless of the queried graph.
 Grouping sub-expressions and constants ensures that each group is single-valued.
 In contrast, variables that are neither a grouping sub-expression nor a constant may have multiple values per group.
 
@@ -17,14 +17,18 @@ For example, the following query projects `a.name` as a grouping key but then re
 [source,cypher]
 ----
 MATCH (a {name: 'Andres'})<-[:HAS_FATHER]-(child)
-RETURN a.name, {foo: a.partner = 'Andres', kids: collect(child.name)}
+RETURN a.name, {foo: a.partner = 'Andres', kids: collect(child.name)};
 ----
 
-An error will be thrown with GQLSTATUS 42I18 and the following status description:
+The query returns a chain of errors where GQLSTATUS 42I18 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `a`. In an aggregating context, only grouping sub-expressions and constants are allowed.
+42I18: syntax error or access rule violation - reference to non-grouping sub-expression. The expression contains a non-grouping sub-expression `a`. In an aggregating context only grouping sub-expressions and constants are allowed. (line 2, column 22 (offset: 71))
+"RETURN a.name, {foo: a.partner = 'Andres', kids: collect(child.name)}"
+                      ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 == Possible solutions
@@ -35,7 +39,7 @@ Be aware that this may change the result.
 [source,cypher]
 ----
 MATCH (a {name: 'Andres'})<-[:HAS_FATHER]-(child)
-RETURN a.name, a.partner, {foo: a.partner = 'Andres', kids: collect(child.name)}
+RETURN a.name, a.partner, {foo: a.partner = 'Andres', kids: collect(child.name)};
 ----
 
 Alternatively, you can add the missing variable `a` as a grouping key on its own.
@@ -43,7 +47,7 @@ Alternatively, you can add the missing variable `a` as a grouping key on its own
 [source,cypher]
 ----
 MATCH (a {name: 'Andres'})<-[:FATHER]-(child)
-RETURN a.name, a, {foo: a.partner = 'Andres', kids: collect(child.name)}
+RETURN a.name, a, {foo: a.partner = 'Andres', kids: collect(child.name)};
 ----
 
 ifndef::backend-pdf[]

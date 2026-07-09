@@ -13,24 +13,26 @@ Because `MERGE` must be able to match or create a concrete graph element, these 
 Let's take the following example scenarios:
 
 === Null property value in a `MERGE` pattern
-For example, try to merge a node with a `null` property value as follows:
+Try merging a node with a `null` property value as follows:
 
 [source,cypher]
 ----
-MERGE (p:Person {age: null})
+MERGE (p:Person {age: null});
 ----
 
-The query returns an error with GQLSTATUS 22N31 and the status description:
+The query returns a chain of errors where GQLSTATUS 22N31 is the cause of GQLSTATUS xref:errors/gql-errors/22G03.adoc[22G03]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - invalid properties in merge pattern. The node property 'age' in '(:Person {age: null})' is invalid. `MERGE` cannot be used with a graph element property value that is null.
+22N31: data exception - invalid properties in merge pattern. The node property `age` in '(:Person {age: null})' is invalid. 'MERGE' cannot be used with a graph element property value that is null.
+  22G03: data exception - invalid value type
 ----
 
 In this case, provide a concrete value for the property, or remove it from the `MERGE` pattern.
 
 === NaN property value in a `MERGE` pattern
-For example, try to merge a relationship with a `NaN` property value as follows:
+Try merging a relationship with a `NaN` property value as follows:
 
 [source,cypher]
 ----

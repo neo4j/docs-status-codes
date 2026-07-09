@@ -18,24 +18,27 @@ Given the existing graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: INTEGER
-}
+};
 ----
 
-Execute the query:
+Try altering the constraint as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE ALTER {
     CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: STRING
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCF and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCF is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE ALTER` operation.
+22NCF: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE ALTER` operation. (line 2, column 5 (offset: 37))
+"    CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: STRING"
+     ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -44,11 +47,11 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     CONSTRAINT c1
-}
+};
 
 ALTER CURRENT GRAPH TYPE ADD {
     CONSTRAINT c1 FOR (s:Student) REQUIRE s.studentId :: STRING
-}
+};
 ----
 
 === Add a `KEY` constraint using `ALTER`
@@ -59,24 +62,27 @@ Given the existing graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     ( :Person => {name :: STRING })
-}
+};
 ----
 
-Execute the query:
+Try altering the constraint as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE ALTER {
     ( :Person => {name :: STRING IS KEY } )
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCF and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCF is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE ALTER` operation.
+22NCF: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE ALTER` operation. (line 2, column 34 (offset: 66))
+"    ( :Person => {name :: STRING IS KEY } )"
+                                  ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -84,28 +90,30 @@ To fix this, change the query as follows:
 [source, cypher]
 ----
 ALTER CURRENT GRAPH TYPE ADD {
-    CONSTRAINT nameForKeyConstraint FOR (p:Person) REQUIRE p.name IS KEY
-}
-
+    CONSTRAINT nameOfKeyConstraint FOR (p:Person) REQUIRE p.name IS KEY
+};
 ----
 
 === `DROP` an undesignated constraint
 
-For example, try to drop an undesignated constraint with an `ALTER CURRENT GRAPH TYPE DROP` query.
+Try dropping an undesignated constraint with an `ALTER CURRENT GRAPH TYPE DROP` query.
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     ( :Person => {name :: STRING IS KEY})
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCF and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCF is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE DROP` operation.
+22NCF: data exception - graph type constraint not supported. Graph type constraint definitions are not supported in the `ALTER GRAPH TYPE DROP` operation. (line 2, column 34 (offset: 65))
+"    ( :Person => {name :: STRING IS KEY})"
+                                  ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -114,8 +122,7 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE DROP {
     CONSTRAINT nameOfKeyConstraint
-}
-
+};
 ----
 
 

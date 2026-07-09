@@ -16,40 +16,63 @@ This exception is thrown when attempting to grant a role to an auth rule when th
 [[example-scenario-22nd2]]
 == Example scenario
 
-Given that a role has denied privileges:
+The example assumes that you have a database, called `secretDb`, two roles, called `role` and `otherrole`, and an auth rule, called `authrule`.
+
+. Deny matching privileges to the role `role` for all nodes in the `secretDb` graph:
++
 [source, cypher]
 ----
-DENY MATCH {*} ON GRAPH secret-db NODES * TO role
+DENY MATCH {*} ON GRAPH secretDb NODES * TO role;
 ----
 
-When attempting to assign the role to an auth rule:
+. Try assigning both roles to the `authrule`:
++
 [source, cypher]
 ----
-CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule
+CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule;
 ----
-
-The following error will be thrown:
-[source]
++
+The query returns a chain of errors where GQLSTATUS 22ND2 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
++
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'CYPHER 25 GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with `DENY` privileges.
+22ND2: data exception - operation not allowed for roles with DENY privileges. Invalid input: 'GRANT ROLE role TO AUTH RULE authrule' is not allowed for roles with DENY privileges.
+  42001: syntax error or access rule violation - invalid syntax
 ----
-
-[NOTE]
-====
++
 The error message contains a subset of the original query that caused the issue.
 Since `otherrole` does not have denied privileges, it is not included.
-====
 
 == Possible solutions
 
 Consider whether it is possible to implement the security model without using denied privileges, for example, by revoking granted privileges or reducing the scope of the grant statements.
 
-For example, you can replace the generic grant from the <<example-scenario-22nd2, Example scenario>> with the following more fine-grained alternative:
+For example, you can replace the generic deny from step 1 in the <<example-scenario-22nd2, Example scenario>> with the following more fine-grained alternative:
+
+. Revoke the denied privilege to reproduce the original scenario:
++
 [source, cypher]
 ----
-GRANT MATCH {*} ON GRAPH public-db, documentation-db NODES * TO role, otherrole
+REVOKE DENY MATCH {*} ON GRAPH secretDb NODES * FROM role;
 ----
 
+. Grant match privileges to the role for specific graphs instead of denying access to all nodes in the `secretDb` graph:
++
+[source, cypher]
+----
+GRANT MATCH {*} ON GRAPH publicDb, documentationDb NODES * TO role, otherrole;
+----
++
+Then it is possible to assign both roles to the `authrule`.
++
+. Try assigning both roles to the `authrule`:
++
+[source, cypher]
+----
+CYPHER 25 GRANT ROLE otherrole, role TO AUTH RULE authrule;
+----
++
 If a `DENY` is required, it must be set to a role that is directly assigned to users without using auth rules, to guarantee that it will always be applied.
 
 ifndef::backend-pdf[]
