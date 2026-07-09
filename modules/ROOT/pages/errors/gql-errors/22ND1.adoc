@@ -40,9 +40,7 @@ Since `otherrole` is not granted to an auth rule, it is not included.
 
 Consider if it is possible to implement the security model without using denied privileges.
 
-For example, you can replace the generic deny from the <<example-scenario-22nd1, Example scenario>> with the following more fine-grained alternative:
-
-Grant match privileges to the role for specific graphs instead of denying access to all nodes in the `secretDb` graph:
+For example, you can replace the generic deny from the <<example-scenario-22nd1, Example scenario>> with the following more fine-grained alternative by granting privileges to the role for specific graphs instead of denying access to all nodes in the `secretDb` graph:
 
 [source, cypher]
 ----
