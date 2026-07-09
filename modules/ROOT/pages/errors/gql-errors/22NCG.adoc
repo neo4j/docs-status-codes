@@ -15,14 +15,15 @@ MATCH (movie:Movie)
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
-You will receive an error with GQLSTATUS 22NCG and status description:
+The query returns an error with GQLSTATUS 22NCG and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: data exception - wrong index type. Expected the index `rangeIdx` to be a vector index but was a range index.
+22NCG: data exception - wrong index type. Expected the index `rangeIdx` to be a vector index but was a range index.
 ----
 
 ifndef::backend-pdf[]

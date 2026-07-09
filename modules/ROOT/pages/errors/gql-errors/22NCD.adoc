@@ -15,23 +15,25 @@ Given the following graph type:
 ----
 ALTER CURRENT GRAPH TYPE SET {
     ()-[r:REL => {name :: STRING }]->()
-}
+};
 ----
 
-Execute the query:
+Try dropping the relationship element type as follows:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE DROP {
      ()-[r:REL => {name :: STRING, age :: INT }]->()
-}
+};
 ----
 
-The query returns an error with GQLSTATUS 22NCD and the status description:
+The query returns a chain of errors where GQLSTATUS 22NCD is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-[source]
+.GQLSTATUS error chain
+[source, error]
 ----
-error: data exception - relationship element type specified incorrectly. The relationship element type ()-[r:`REL` => {`name` :: STRING }]->() identified by the relationship type `REL` is different to the one specified in the query ()-[`r`:`REL` => {`name` :: STRING, `age` :: INT }]->().
+22NCD: data exception - relationship element type specified incorrectly. The relationship element type ()-[:`REL` => {`name` :: STRING}]->() identified by the relationship type `REL` is different to the one specified in the query ()-[:`REL` => {`age` :: INTEGER, `name` :: STRING}]->().
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To fix this, change the query as follows:
@@ -40,7 +42,7 @@ To fix this, change the query as follows:
 ----
 ALTER CURRENT GRAPH TYPE DROP {
      ()-[r:REL => ]->()
-}
+};
 ----
 It is not necessary to specify the full element type to drop it.
 

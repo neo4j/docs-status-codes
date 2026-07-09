@@ -6,7 +6,7 @@ error: syntax error or access rule violation - search clause with too complex pa
 [#_example_scenarios]
 == Example scenarios
 
-The following are examples of scenarios that will produce this error:
+Try using a `SEARCH` clause in a `MATCH` statement with a pattern with several pattern parts, a variable length or a selector:
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a pattern with several pattern parts
 [source,cypher]
@@ -18,8 +18,20 @@ MATCH (movie:Movie), ()
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
+
+The query returns a chain of errors where GQLSTATUS 42I72 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I72: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a MATCH statement can only have a single node or relationship pattern and no selectors. (line 2, column 22 (offset: 31))
+"MATCH (movie:Movie), ()"
+                      ^
+  42001: syntax error or access rule violation - invalid syntax
+----
+
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a variable length
 [source,cypher]
@@ -31,7 +43,18 @@ MATCH (movie:Movie)-[]->{1,3}()
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
+----
+
+The query returns a chain of errors where GQLSTATUS 42I72 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I72: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a MATCH statement can only have a single node or relationship pattern and no selectors. (line 2, column 7 (offset: 16))
+"MATCH (movie:Movie)-[]->{1,3}()"
+       ^
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a selector
@@ -44,12 +67,21 @@ MATCH ANY SHORTEST ()-->(movie:Movie)
     FOR [1, 2, 3]
     LIMIT 5
   )
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
-In all of the above cases, you will receive an error with GQLSTATUS xref:errors/gql-errors/42001.adoc[42001] with a cause with GQLSTATUS 42I72.
+The query returns a chain of errors where GQLSTATUS 42I72 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-== Possible solution
+.GQLSTATUS error chain
+[source, error]
+----
+42I72: syntax error or access rule violation - search clause with too complex pattern. In order to have a search clause, a MATCH statement can only have a single node or relationship pattern and no selectors. (line 2, column 7 (offset: 16))
+"MATCH ANY SHORTEST ()-->(movie:Movie)"
+       ^
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+== Possible solutions
 The first iteration of the `SEARCH` clause comes with many restrictions on the `MATCH` statement.
 It is likely that some of these restriction will be lifted in future versions of Neo4j.
 For the time being, the Cypher queries under xref:errors/gql-errors/42I72.adoc#_example_scenarios[Example scenarios] can be rewritten like this:
@@ -65,7 +97,7 @@ MATCH (movie:Movie)
     LIMIT 5
   )
 MATCH (movie), ()
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a variable length
@@ -79,7 +111,7 @@ MATCH (movie:Movie)
     LIMIT 5
   )
 MATCH (movie)-[]->{1,3}()
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
 .Use of a `SEARCH` clause in a `MATCH` statement with a selector
@@ -93,7 +125,7 @@ MATCH (movie:Movie)
     LIMIT 5
   )
 MATCH ANY SHORTEST ()-->(movie)
-RETURN movie.title AS title
+RETURN movie.title AS title;
 ----
 
 ifndef::backend-pdf[]

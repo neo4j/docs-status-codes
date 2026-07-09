@@ -4,7 +4,7 @@
 
 error: general processing exception - sharded properties transaction handling database error. Unexpected exception while getting transaction state.
 
-== Scenario
+== Example scenario
 
 This error occurs when there is an issue on the graph shard while getting transaction state from a property shard.
 For example, the graph shard receives an unexpected response from a property shard.

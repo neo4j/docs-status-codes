@@ -7,25 +7,27 @@ error: system configuration or operation exception - not supported in this editi
 
 == Explanation
 
-This error occurs when trying to perform an operation that is not supported in the current edition of the database. For example, when you try to alter a user's status, home database, or (after linked users) external auths/remove auth.
+This error occurs when trying to perform an operation that is not supported in the current edition of the database. For example, when you try changing a user's status, home database, or (after linked users) external auths/remove auth.
 
 == Example scenario
 
-For example, try to set status for user `foo` to `suspended` using `SET STATUS` operation in the Neo4j Community edition:
+Try setting status for user `foo` to `suspended` using `SET STATUS` operation in the Neo4j Community edition:
 
 [source,cypher]
 ----
 ALTER USER foo
 SET PASSWORD CHANGE REQUIRED
-SET STATUS SUSPENDED"
+SET STATUS SUSPENDED";
 ----
 
-Error message will be:
+The query returns an error with GQLSTATUS 51N27 and status description:
 
-[source]
+.GQLSTATUS error
+[source, error]
 ----
-error: system configuration or operation exception - not supported in this edition. `SET STATUS` is not supported in community edition.
+51N27: system configuration or operation exception - not supported in this edition. `SET STATUS` is not supported in community edition.
 ----
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

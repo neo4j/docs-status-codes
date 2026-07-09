@@ -8,14 +8,14 @@ When using the `existingMetadata: true` option to restore a database from a back
 If the metadata script contains invalid syntax, the restore operation will fail with this error.
 
 == Example scenario
-For example, try to create a database using the following command:
+Try creating a database using the following command:
 
 [source,cypher]
 ----
-CREATE DATABASE `$databaseString` OPTIONS {existingMetadata:'use', seedUri:'$uri', existingData:'use'}
+CREATE DATABASE `$databaseString` OPTIONS {existingMetadata:'use', seedUri:'$uri', existingData:'use'};
 ----
 
-If the backup at `$uri` contains invalid Cypher syntax in its metadata script, an error will be thrown with GQLSTATUS 50N26.
+If the backup at `$uri` contains invalid Cypher syntax in its metadata script, the command will return an error with GQLSTATUS 50N26.
 
 == Possible solutions
 

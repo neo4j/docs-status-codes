@@ -5,19 +5,18 @@ error: function exception - function invocation failed. Failed to invoke functio
 
 == Example scenario
 
-For example, when parsing a duration string value:
+Try parsing a duration string value:
 
 [source,cypher]
 ----
-RETURN duration({hours: 1}, "hh-mm-ss") as r
+RETURN duration({hours: 1}, "hh-mm-ss") as r;
 ----
 
-You will receive an error with GQLSTATUS xref:errors/gql-errors/53N33.adoc[53N33] and status description:
+The query returns an errors with GQLSTATUS 53N33 and status description:
 
-
-[source]
-----
-error: function exception - function invocation failed. Failed to invoke function duration(input :: ANY, pattern = DEFAULT_TEMPORAL_ARGUMENT :: STRING) :: DURATION caused by: A pattern can only be used in conjunction with a `STRING` input.
+.GQLSTATUS error
+[source, error]
+53N33: function exception - function invocation failed. Failed to invoke function duration(input :: ANY, pattern = DEFAULT_TEMPORAL_ARGUMENT :: STRING) :: DURATION caused by: A pattern can only be used in conjunction with a `STRING` input.
 ----
 
 ifndef::backend-pdf[]
