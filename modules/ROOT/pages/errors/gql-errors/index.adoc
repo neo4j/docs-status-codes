@@ -1317,7 +1317,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N17.adoc[42N17]
 
-Status description:: error: syntax error or access rule violation - unsupported request. `{ <<input>> }` is not allowed on the system database.
+Status description:: error: syntax error or access rule violation - unsupported request. `{ <<input>> }` is not allowed on the `system` database.
 
 === xref:errors/gql-errors/42N18.adoc[42N18]
 
