@@ -1,0 +1,11 @@
+= 42NAP
+
+== Status description
+error: syntax error or access rule violation - unsupported trim specification. Unknown Trim Specification: `{ <<input>> }`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
