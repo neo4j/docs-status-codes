@@ -1,7 +1,32 @@
 = 42NAP
 
 == Status description
-error: syntax error or access rule violation - unsupported trim specification. Unknown Trim Specification: `{ <<input>> }`.
+error: syntax error or access rule violation - unsupported trim specification. Unknown trim specification: `{ <<input>> }`.
+
+== Example scenario
+
+Try trimming a string using an unrecognized trim specification instead of `LEADING`, `TRAILING`, or `BOTH`:
+
+[source,cypher]
+----
+RETURN trim('INVALID', 'x', 'xxxhelloxxx') AS result;
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAP is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAP: syntax error or access rule violation - unsupported trim specification. Unknown trim specification: 'INVALID'.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+To resolve the error, use one of the supported trim specifications: `LEADING`, `TRAILING`, or `BOTH`:
+
+[source,cypher]
+----
+RETURN trim('BOTH', 'x', 'xxxhelloxxx') AS result;
+----
 
 ifndef::backend-pdf[]
 [discrete.glossary]
