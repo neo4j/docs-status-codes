@@ -1,0 +1,27 @@
+= 51N7D
+
+== Status description
+error: system configuration or operation exception - secret provider error. Secret provider `{ <<secretProviderType>> }` returned an error. 
+
+== Explanation
+A call to an upstream secret provider failed with an unexpected error. This could be due to a misconfiguration of the secret provider, network issues, or other problems with the secret provider itself. 
+
+== Example scenarios
+* The DBMS is configured to use Google Secrets Manager, but the DBMS is prevent from making calls to Google Couud due to a firewall.
+* The user attempts to store a secret in Google Secrets Manager, but the secret is larger than Google Secrets Manager supports.
+
+== Possible solutions
+
+To resolve this issue, examine the logs to determine the underlying cause of the error. It may be necessary to resolve it in the underlying provider itself. 
+
+== Related status codes
+
+51N7C - Secret provider error
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
+
