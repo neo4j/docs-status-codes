@@ -51,6 +51,7 @@
 [[graphTypeElement]]$graphTypeElement:: An element of a graph type, for example `(:Node => { name :: STRING})`, or `(:Source)-[:REL =>]->(:Target)`.
 [[graphTypeReference]]$graphTypeReference:: Graph type reference, for example, `(:Node =>)` or `p`.
 [[graphTypeOperation]]$graphTypeOperation:: Graph type operation, for example, one of `SET`, `ADD`, `DROP` or `ALTER`.
+[[groupingConstructs]]$groupingConstructs:: Constructs that establish a grouping and thereby restrict which variables remain accessible, for example, `DISTINCT`, an aggregation, or a `GROUP BY` clause.
 [[hint]]$hint:: Freeform description of a hint, for example, `USING INDEX n:N(prop)`.
 [[hintList]]$hintList:: A list of free form descriptions of hints like `USING INDEX n:N(prop)`.
 [[ident]]$ident:: A generic identifier, for example `my_identifier`.

@@ -155,6 +155,14 @@ Status description:: error: data exception - invalid value type
 
 Status description:: error: data exception - invalid date, time, or datetime function field name
 
+=== xref:errors/gql-errors/22G06.adoc[22G06]
+
+Status description:: error: data exception - invalid date, time, or datetime function field value
+
+=== xref:errors/gql-errors/22G08.adoc[22G08]
+
+Status description:: error: data exception - invalid duration function field value
+
 === xref:errors/gql-errors/22G0I.adoc[22G0I]
 
 Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
@@ -1211,6 +1219,14 @@ Status description:: error: syntax error or access rule violation - index or con
 
 Status description:: error: syntax error or access rule violation - unsupported procedure or function in language version. The procedure or function is available in `CYPHER { <<version>> }`. Consider changing the database default Cypher version using `ALTER DATABASE SET DEFAULT LANGUAGE` or prefix the query with `CYPHER { <<version>> }`.
 
+=== xref:errors/gql-errors/42I79.adoc[42I79]
+
+Status description:: error: syntax error or access rule violation - invalid reference in subclause expression. Aggregation in subclause expression is not allowed to reference variables declared in the same clause `{ <<argList>> }`.
+
+=== xref:errors/gql-errors/42I80.adoc[42I80]
+
+Status description:: error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
+
 === xref:errors/gql-errors/42N00.adoc[42N00]
 
 Status description:: error: syntax error or access rule violation - graph reference not found. A graph reference with the name `{ <<db>> }` was not found. Verify that the spelling is correct.
@@ -1405,7 +1421,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42N44.adoc[42N44]
 
-Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `DISTINCT` or an aggregation.
+Status description:: error: syntax error or access rule violation - inaccessible variable. It is not possible to access the variable `{ <<variable>> }` declared before the `{ <<clause>> }` clause when using `{ <<groupingConstructs>> }`.
 
 === xref:errors/gql-errors/42N45.adoc[42N45]
 
@@ -1678,6 +1694,10 @@ Status description:: error: syntax error or access rule violation - auth rule al
 === xref:errors/gql-errors/42NAM.adoc[42NAM]
 
 Status description:: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `{ <<input>> }` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `{ <<replacement>> }` instead.
+
+=== xref:errors/gql-errors/42NAP.adoc[42NAP]
+
+Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown Trim Specification: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
