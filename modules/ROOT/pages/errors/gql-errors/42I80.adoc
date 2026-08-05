@@ -1,0 +1,105 @@
+= 42I80
+
+== Status description
+error: syntax error or access rule violation - invalid grouping element. The grouping element `{ <<expr>> }` is not a valid grouping key. `{ <<cause>> }`
+
+== Explanation
+The `GROUP BY` clause is used to group the results of a clause by one or more expressions.
+Each expression in the `GROUP BY` clause is called a grouping element.
+
+* A grouping element may reference an alias introduced by the same `WITH` or `RETURN` clause only if the grouping element is exactly that alias.
+* A non-simple grouping element, such as a property access, a function call, or an arithmetic expression, cannot contain an alias.
+* A grouping element cannot contain an aggregation result, since aggregations are computed per group and cannot be grouping keys.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Invalid grouping on projection item alias
+
+Try projecting `b AS a`, so that `a` is a projection item alias that shadows the incoming `a`, and then grouping by `a.p` — a property access on that alias:
+
+[source,cypher]
+----
+UNWIND [{a: {p: 1}, b: 20}, {a: {p: 2}, b: 10}] AS row
+WITH row.a AS a, row.b AS b
+RETURN b AS a, count(*) AS cnt
+  GROUP BY a.p;
+----
+
+Because `a` is a projection item alias, the only valid way to group by it is the simple reference `a`; the property access `a.p` is not a valid grouping element.
+The query returns a chain of errors where GQLSTATUS 42I80 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'a.p' is not a valid grouping key. A grouping element that references the projection item alias `a` must be a simple variable reference. (line 4, column 13 (offset: 126))
+"  GROUP BY a.p"
+             ^
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+
+To fix the query, the preferred way is to reference the alias as a simple variable:
+
+.Group by the alias as a simple variable
+[source, cypher]
+----
+UNWIND [{a: {p: 1}, b: 20}, {a: {p: 2}, b: 10}] AS row
+WITH row.a AS a, row.b AS b
+RETURN b AS a, count(*) AS cnt
+  GROUP BY a;
+----
+
+To group on the incoming value, rename the projection item so it no longer shadows the incoming variable, then group by that expression:
+
+.Avoid shadowing the incoming variable
+[source, cypher]
+----
+UNWIND [{a: {p: 1}, b: 20}, {a: {p: 2}, b: 10}] AS row
+WITH row.a AS a, row.b AS b
+RETURN b AS bb, count(*) AS cnt
+  GROUP BY a.p;
+----
+
+===  Grouping element references an aggregation result
+
+Try grouping by the aggregation alias `cnt`:
+
+[source,cypher]
+----
+UNWIND [{a: 1}, {a: 2}] AS row
+WITH row.a AS a
+RETURN a, count(*) AS cnt
+  GROUP BY a, cnt;
+----
+
+The query returns a chain of errors where GQLSTATUS 42I80 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I80: syntax error or access rule violation - invalid grouping element. The grouping element 'cnt' is not a valid grouping key. A grouping element cannot reference the aggregation `cnt`. (line 4, column 15 (offset: 87))
+"  GROUP BY a, cnt"
+               ^
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+
+To resolve the error remove the aggregation result from the grouping elements:
+
+.Group only by non-aggregating expressions
+[source, cypher]
+----
+UNWIND [{a: 1}, {a: 2}] AS row
+WITH row.a AS a
+RETURN a, count(*) AS cnt
+  GROUP BY a;
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

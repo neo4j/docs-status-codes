@@ -1850,8 +1850,10 @@ Please use a path with a length of 1 [r*1..1] instead or a Match with a limit.
 - The query used a deprecated function. (`%s`)
 - The query used a deprecated procedure. (`%s`)
 - The query used a deprecated runtime option. (`%s`)
--  `text-1.0` and `text-2.0` (from Neo4j 2025.09 onwards) providers for text indexes are deprecated and will be removed in a future version.
+- label:deprecated[Deprecated in 2025.09]`text-1.0` and `text-2.0` providers for text indexes are deprecated and will be removed in a future version.
 Please use `text-3.0` instead.
+- label:deprecated[Deprecated in 2026.07] The subclause expression `%s` contains an ambiguous reference to variable `%s` and is deprecated. It is replaced by referencing the projection item expression by an alias or using the `GROUP BY` clause.
+- label:deprecated[Deprecated in 2026.07] The subclause expression `%s` contains a reference to the complex projection item expression `%s` and is deprecated. It is replaced by referencing the projection item expression by an alias.
 |Category
 m|DEPRECATION
 |GQLSTATUS code
@@ -2873,6 +2875,182 @@ RETURN CASE t.ibanNumber
   ELSE "used different account"
 END AS check
 ----
+======
+=====
+.Ambiguous reference to a variable in a subclause expression
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop AS b, b AS a
+  ORDER BY a.prop
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned status description::
+warn: feature deprecated with replacement.
+The subclause expression `a.prop` contains an ambiguous reference to variable `a` and is deprecated. It is replaced by referencing the projection item expression by an alias or using the `GROUP BY` clause.
+
+Suggestions for improvement::
+Reference the projection item by its alias rather than repeating the expression.
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop AS b, b AS a
+  ORDER BY b
+----
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop AS b, b AS a
+  ORDER BY a.prop
+----
+
+Description of the returned code::
+The subclause expression `a.prop` contains an ambiguous reference to variable `a` and is deprecated. It is replaced by referencing the projection item expression by an alias or using the `GROUP BY` clause.
+
+Suggestions for improvement::
+Reference the projection item by its alias rather than repeating the expression.
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop AS b, b AS a
+  ORDER BY b
+----
+
+======
+=====
+
+.Reference to a complex projection item expression in a subclause expression
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN a.prop * 2 AS x, count(*) AS count
+  ORDER BY a.prop * 2 + 1
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned status description::
+warn: feature deprecated with replacement.
+The subclause expression `a.prop * 2 + 1` contains a reference to the complex projection item expression `a.prop * 2` and is deprecated. It is replaced by referencing the projection item expression by an alias.
+
+Suggestions for improvement::
+Reference the projection item by its alias rather than repeating the expression.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN a.prop * 2 AS x, count(*) AS count
+  ORDER BY x + 1
+----
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a)
+RETURN a.prop * 2 AS x, count(*) AS count
+  ORDER BY a.prop * 2 + 1
+----
+
+Description of the returned code::
+The subclause expression `a.prop * 2 + 1` contains a reference to the complex projection item expression `a.prop * 2` and is deprecated. It is replaced by referencing the projection item expression by an alias.
+
+Suggestions for improvement::
+Reference the projection item by its alias rather than repeating the expression.
++
+[source,cypher]
+----
+MATCH (a)
+RETURN a.prop * 2 AS x, count(*) AS count
+  ORDER BY x + 1
+----
+
+======
+=====
+
+.Ambiguous and complex reference in a subclause expression
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop * 2 AS x, b AS a, count(*) AS count
+  ORDER BY a.prop * 2 + 1
+----
+
+Returned GQLSTATUS code::
+01N01
+
+Returned status description::
+warn: feature deprecated with replacement.
+The subclause expression `a.prop * 2 + 1` contains an ambiguous reference to variable `a` and a reference to the complex projection item expression `a.prop * 2` and is deprecated. It is replaced by referencing the projection item expression by an alias or using the `GROUP BY` clause.
+
+Suggestions for improvement::
+Reference the projection item by its alias rather than repeating the expression.
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop * 2 AS x, b AS a, count(*) AS count
+  ORDER BY x + 1
+----
+
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop * 2 AS x, b AS a, count(*) AS count
+  ORDER BY a.prop * 2 + 1
+----
+
+Description of the returned code::
+The subclause expression `a.prop * 2 + 1` contains an ambiguous reference to variable `a` and a reference to the complex projection item expression `a.prop * 2` and is deprecated. It is replaced by referencing the projection item expression by an alias or using the `GROUP BY` clause.
+
+Suggestions for improvement::
+Reference the projection item by its alias rather than repeating the expression.
++
+[source,cypher]
+----
+MATCH (a), (b)
+RETURN a.prop * 2 AS x, b AS a, count(*) AS count
+  ORDER BY x + 1
+----
+
 ======
 =====
 
