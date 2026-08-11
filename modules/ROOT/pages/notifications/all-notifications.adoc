@@ -1351,7 +1351,7 @@ Returned GQLSTATUS code::
 Returned status description::
 warn: unsupported planner version. The Cypher planner version v2026_03 is no longer supported. The default planner version is used instead.
 Suggestions for improvement::
-Remove the `plannerVersion` option to use the default planner version, or specify a supported planner version.
+Remove the `plannerVersion` option if the issue for which it was introduced has been resolved, or contact Neo4j support.
 ======
 [.include-with-neo4j-code]
 ======
