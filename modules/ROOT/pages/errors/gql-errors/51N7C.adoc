@@ -4,11 +4,12 @@
 error: system configuration or operation exception - secret provider not enabled. Secret provider `{ <<secretProviderType>> }` is not available. Enable it with setting `{ <<cfgSetting>> }`.
 
 == Explanation
-An attempt was made to call a secret provider that has noe been configured. The secret provider must be enabled in the system configuration file before calling any methods on it. 
+An attempt was made to call a secret provider that has not been configured.
+The secret provider must be enabled in the system configuration file before calling any methods on it. 
 
 == Possible solutions
 
-To resolve this issue, add the required secret provider to the list of active providers in the configuration item `dbms.secretmanager.type`.
+To resolve this issue, add the required secret provider to the list of active providers in the configuration setting `dbms.secretmanager.type`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
