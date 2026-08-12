@@ -18,7 +18,7 @@ It may be necessary to resolve it in the underlying provider itself.
 
 == Related status codes
 
-51N7C - Secret provider error
+51N7C - Secret provider is not available.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

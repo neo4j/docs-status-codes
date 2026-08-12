@@ -2126,7 +2126,7 @@ Status description:: error: system configuration or operation exception - no adm
 
 === xref:errors/gql-errors/51N7C.adoc[51N7C]
 
-Status description:: error: system configuration or operation exception - secret provider not enabled. Secret provider `{ <<secretProviderType>> }` is not available. Enable it with setting `{ <<cfgSetting>> }`.
+Status description:: error: system configuration or operation exception - secret provider is not enabled. Secret provider `{ <<secretProviderType>> }` is not available. Enable it with the setting `{ <<cfgSetting>> }`.
 
 === xref:errors/gql-errors/51N7D.adoc[51N7D]
 

@@ -1,7 +1,7 @@
 = 51N7C
 
 == Status description
-error: system configuration or operation exception - secret provider not enabled. Secret provider `{ <<secretProviderType>> }` is not available. Enable it with setting `{ <<cfgSetting>> }`.
+error: system configuration or operation exception - secret provider is not enabled. Secret provider `{ <<secretProviderType>> }` is not available. Enable it with the setting `{ <<cfgSetting>> }`.
 
 == Explanation
 An attempt was made to call a secret provider that has not been configured.
