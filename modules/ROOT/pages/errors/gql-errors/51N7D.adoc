@@ -4,21 +4,22 @@
 error: system configuration or operation exception - secret provider error. Secret provider `{ <<secretProviderType>> }` returned an error. 
 
 == Explanation
-A call to an upstream secret provider failed with an unexpected error. This could be due to a misconfiguration of the secret provider, network issues, or other problems with the secret provider itself. 
+This error occurs when a call to an upstream secret provider fails with an unexpected error.
+This could be due to a misconfiguration of the secret provider, network issues, or other problems with the secret provider itself. 
+
+Related status code xref:errors/gql-errors/51N7C.adoc[51N7C].
 
 == Example scenarios
 
-* The DBMS is configured to use Google Cloud Secret Manager, but the DBMS is prevent from making calls to Google Cloud due to a firewall.
-* The user attempts to store a secret in Google Cloud Secret Manager, but the secret is larger than Google Cloud Secret Manager supports.
+* The DBMS is configured to use Google Cloud Secret Manager, but the DBMS is prevented from making calls to Google Cloud due to a firewall.
+* The length of the secret that you try to store in Google Cloud Secret Manager is not supported.
 
 == Possible solutions
 
 To resolve the issue, examine the logs to determine the underlying cause of the error.
-It may be necessary to resolve it in the underlying provider itself. 
+You may need to resolve it within the underlying provider. 
 
-== Related status codes
 
-51N7C - Secret provider is not available.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
