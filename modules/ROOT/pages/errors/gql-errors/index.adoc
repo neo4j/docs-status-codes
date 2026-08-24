@@ -1697,7 +1697,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42NAP.adoc[42NAP]
 
-Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown Trim Specification: `{ <<input>> }`.
+Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown trim specification: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
@@ -2123,6 +2123,14 @@ Status description:: error: system configuration or operation exception - not su
 === xref:errors/gql-errors/51N7A.adoc[51N7A]
 
 Status description:: error: system configuration or operation exception - no admin user candidate. No admin user candidate is found. Use `neo4j-admin dbms set-default-admin` to select a valid admin.
+
+=== xref:errors/gql-errors/51N7C.adoc[51N7C]
+
+Status description:: error: system configuration or operation exception - secret provider is not enabled. Secret provider `{ <<secretProviderType>> }` is not available. Enable it with the setting `{ <<cfgSetting>> }`.
+
+=== xref:errors/gql-errors/51N7D.adoc[51N7D]
+
+Status description:: error: system configuration or operation exception - secret provider error. Secret provider `{ <<secretProviderType>> }` returned an error.
 
 
 [[procedure-exceptions]]
