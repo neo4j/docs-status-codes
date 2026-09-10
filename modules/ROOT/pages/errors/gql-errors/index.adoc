@@ -1697,7 +1697,7 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 === xref:errors/gql-errors/42NAP.adoc[42NAP]
 
-Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown Trim Specification: `{ <<input>> }`.
+Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown trim specification: `{ <<input>> }`.
 
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
