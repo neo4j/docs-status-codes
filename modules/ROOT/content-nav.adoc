@@ -165,6 +165,7 @@
 **** xref:errors/gql-errors/22NBD.adoc[]
 **** xref:errors/gql-errors/22NBE.adoc[]
 **** xref:errors/gql-errors/22NBF.adoc[]
+**** xref:errors/gql-errors/22NBG.adoc[]
 **** xref:errors/gql-errors/22NC1.adoc[]
 **** xref:errors/gql-errors/22NC2.adoc[]
 **** xref:errors/gql-errors/22NC3.adoc[]
