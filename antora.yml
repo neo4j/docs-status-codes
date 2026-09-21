@@ -9,4 +9,4 @@ asciidoc:
     page-origin-private: false
     neo4j-version: '2026.10'
     neo4j-version-exact: '2026.10.0'
-    neo4j-buildnumber: '2026.10
+    neo4j-buildnumber: '2026.10'
