@@ -1,0 +1,27 @@
+= 22NBG
+
+== Status description
+error: data exception - invalid vector coordinates. Invalid vector coordinates. The vector coordinates must be finite, but are `{ <<value>> }`.
+
+== Example scenario
+Try creating a vector with non-finite coordinates:
+
+[source,cypher]
+----
+RETURN VECTOR([4.4028235e+38f], 1, FLOAT32)
+----
+
+The query returns an error with GQLSTATUS 22NBG and status description:
+
+.GQLSTATUS error
+[source, error]
+----
+22NBG: data exception - invalid vector coordinates. Invalid vector coordinates. The vector coordinates must be finite, but are [Infinity].
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
