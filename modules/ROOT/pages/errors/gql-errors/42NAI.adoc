@@ -1,0 +1,91 @@
+= 42NAI
+
+== Status description
+error: syntax error or access rule violation - missing return column. Return column `{ <<variable>> }` is missing to match output signature of local procedure `{ <<proc>> }`.
+
+== Explanation
+The body of a local procedure has too few result columns to match the output signature of the local procedure.
+The error points to one specific column that is missing.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== FINISH at the end of a local non-void procedure's body
+Ending a procedure body of a local non-void procedure with `FINISH`
+
+[source,cypher]
+----
+DEFINE PROCEDURE one() :: (a :: INT) {
+  FINISH
+}
+
+CALL foo.a()
+RETURN a
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAI: syntax error or access rule violation - missing return column. Return column `a` is missing to match output signature of local procedure `one`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, replace `FINISH` with a `RETURN ... AS <missing column>` instead.
+
+=== Update clause at the end of a local non-void procedure's body
+Ending a procedure body of a local non-void procedure with an update clause (`CREATE`, `INSERT`, `MERGE`, `SET`, `REMOVE` and `DELETE`)
+
+[source,cypher]
+----
+DEFINE PROCEDURE createNode() :: (n :: NODE) {
+  CREATE (n:A)
+}
+
+CALL createNode() YIELD n
+RETURN n
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAI: syntax error or access rule violation - missing return column. Return column `n` is missing to match output signature of local procedure `createNode`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, add a `RETURN ... AS <missing column>` at the end of the local procedure's body.
+
+=== RETURN too few columns in the body of a local procedure
+Try to return fewer columns in the body of a local procedure than listed in the output signature of the local procedure.
+
+[source,cypher]
+----
+DEFINE PROCEDURE two() :: (a :: INT, b :: INT) {
+  RETURN 1 AS a
+}
+
+CALL two() YIELD a AS x, b AS y
+RETURN x, y
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAI: syntax error or access rule violation - missing return column. Return column `b` is missing to match output signature of local procedure `two`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, add a return item `... AS <missing column>` to the `RETURN` at the end of the local procedure's body.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

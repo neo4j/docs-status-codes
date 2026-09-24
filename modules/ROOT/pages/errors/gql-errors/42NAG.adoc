@@ -1,0 +1,68 @@
+= 42NAG
+
+== Status description
+error: syntax error or access rule violation - not supported local function definition. USE clause is not supported in local function definitions.
+
+== Explanation
+The USE clause is not supported in local function definitions, i.e., it cannot be used in the body of a local function definition.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== USE in a local function definition
+Try to query a specific graph in a local function body
+
+[source,cypher]
+----
+DEFINE FUNCTION numberOfNodes() {
+  USE graph
+  MATCH (n)
+  RETURN COUNT(n)
+}
+
+RETURN numberOfNodes()
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAG is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAG: syntax error or access rule violation - not supported local function definition. USE clause is not supported in local function definitions.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `USE` from the function body.
+
+=== USE in a local function definition with expression body
+Try to query a specific graph in a local function expression body
+
+[source,cypher]
+----
+DEFINE function foo.baz() = head(COLLECT {
+  USE graph
+  MATCH (n)
+  RETURN COUNT(n)
+})
+
+RETURN numberOfNodes()
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAG is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAG: syntax error or access rule violation - not supported local function definition. USE clause is not supported in local function definitions.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `USE` from the function body.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

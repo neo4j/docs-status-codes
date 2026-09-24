@@ -1,0 +1,71 @@
+= 42NAF
+
+== Status description
+error: syntax error or access rule violation - not supported local procedure definition. USE clause is not supported in local procedure definitions.
+
+== Explanation
+The USE clause is not supported in local procedure definitions, i.e., it cannot be used in the body of a local procedure definition.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== USE in a local procedure definition
+Try to query a specific graph in a local procedure body
+
+[source,cypher]
+----
+DEFINE PROCEDURE foo.baz() {
+  USE graph
+  FINISH
+}
+
+CALL foo.baz()
+FINISH
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAF is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAF: syntax error or access rule violation - not supported local procedure definition. USE clause is not supported in local procedure definitions.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `USE` from the procedure body.
+
+=== USE with UNION in a local procedure definition
+Try to query fabric graph constituents in a local procedure body
+
+[source,cypher]
+----
+DEFINE PROCEDURE foo.baz() {
+  USE constituent1
+  MATCH (n) RETURN n
+  UNION
+  USE constituent2
+  MATCH (n) RETURN n
+}
+
+CALL foo.baz() YIELD n
+RETURN n
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAF is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAF: syntax error or access rule violation - not supported local procedure definition. USE clause is not supported in local procedure definitions.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `USE` from the procedure body.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
