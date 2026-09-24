@@ -1,10 +1,78 @@
 = 42N59
 
-
 == Status description
 error: syntax error or access rule violation - variable already defined. Variable `{ <<variable>> }` already declared.
 
+== Explanation
+A clause tries to declare a variable already in scope.
 
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Redefine a variable in CREATE
+Try to bind a variable that is already in scope in a `CREATE` clause
+
+[source,cypher]
+----
+MATCH (n)
+CREATE (n)
+----
+
+The query returns a chain of errors where GQLSTATUS 42N59 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N59: syntax error or access rule violation - variable already defined. Variable `n` already declared.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, name the variable differently or descope the original variable using `WITH`.
+
+=== Redefine a variable in LET
+Try to bind a variable that is already in scope in a `LET` clause
+
+[source,cypher]
+----
+UNWIND [1, 2] AS x
+MATCH (n)
+LET x = 2
+RETURN n, x
+----
+
+The query returns a chain of errors where GQLSTATUS 42N59 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N59: syntax error or access rule violation - variable already defined. Variable `x` already declared.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, name the variable differently or descope the original variable using `WITH`.
+
+=== Redefine a variable in UNWIND
+Try to bind a variable that is already in scope in a `UNWIND` clause
+
+[source,cypher]
+----
+WITH 2 AS x
+MATCH (n)
+UNWIND [1, 2] AS x
+RETURN n, x
+----
+
+The query returns a chain of errors where GQLSTATUS 42N59 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N59: syntax error or access rule violation - variable already defined. Variable `x` already declared.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, name the variable differently or descope the original variable using `WITH`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
