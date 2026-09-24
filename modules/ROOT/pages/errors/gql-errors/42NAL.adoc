@@ -1,0 +1,109 @@
+= 42NAL
+
+== Status description
+error: syntax error or access rule violation - not supported local callable parameter type. `{ <<valueType>> }` is not supported as local callable parameter type. Adjust the type of parameter `{ <<variable>> }` of local callable `{ <<procFun>> }`.
+
+== Explanation
+A parameter type of a local procedure or local function is a Cypher type that is not supported as a parameter type.
+The error points to one specific parameter and local callables.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== NOT NULL parameter type of a local procedure
+Try declaring a parameter type of a local procedure as `NOT NULL`
+
+[source,cypher]
+----
+DEFINE PROCEDURE proc(x :: INT, y :: INT NOT NULL) {
+  RETURN x, y
+}
+
+CALL proc(1, 2) YIELD x, y
+RETURN x, y
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - not supported local callable parameter type. `INTEGER NOT NULL` is not supported as local callable parameter type. Adjust the type of parameter `y` of local callable `proc`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove `NOT NULL` from the parameter type.
+
+=== LIST<... NOT NULL> parameter type of a local procedure
+Try declaring a parameter type of a local procedure as a list type with an `NOT NULL`-element type
+
+[source,cypher]
+----
+DEFINE PROCEDURE proc(x :: INT, y :: LIST<INT NOT NULL>) {
+  RETURN x, y
+}
+
+CALL proc(1, [2]) YIELD x, y
+RETURN x, y
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - not supported local callable parameter type. `LIST<INTEGER NOT NULL>` is not supported as local callable parameter type. Adjust the type of parameter `y` of local callable `proc`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove `NOT NULL` from the parameter type.
+
+=== NOT NULL parameter type of a local function
+Try declaring a parameter type of a local function as `NOT NULL`
+
+[source,cypher]
+----
+DEFINE FUNCTION plus(x :: INT, y :: INT NOT NULL) = x + y
+
+RETURN plus(1, 2)
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - not supported local callable parameter type. `INTEGER NOT NULL` is not supported as local callable parameter type. Adjust the type of parameter `y` of local callable `plus`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove `NOT NULL` from the parameter type.
+
+=== LIST<... NOT NULL> parameter type of a local function
+Try declaring a parameter type of a local function as a list type with an `NOT NULL`-element type
+
+[source,cypher]
+----
+DEFINE FUNCTION get(x :: INT, y :: LIST<INT NOT NULL>) = y[x]
+
+RETURN get(0, [1])
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - not supported local callable parameter type. `LIST<INTEGER NOT NULL>` is not supported as local callable parameter type. Adjust the type of parameter `y` of local callable `get`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove `NOT NULL` from the parameter type.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,64 @@
+= 42NAK
+
+== Status description
+error: syntax error or access rule violation - not supported local function return type. `{ <<valueType>> }` is not supported as local function return type. Adjust the return type of local function `{ <<fun>> }`.
+
+== Explanation
+The return type of a local function is a Cypher type that is not supported as a return type.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== NOT NULL return type for a local function
+Try declaring the return type of a local function as `NOT NULL`
+
+[source,cypher]
+----
+DEFINE FUNCTION func() :: INT NOT NULL {
+  RETURN 2 LIMIT 1
+}
+
+RETURN func()
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAK is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAK: syntax error or access rule violation - not supported local function return type. `INTEGER NOT NULL` is not supported as local function return type. Adjust the return type of local function `func`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove `NOT NULL` from the return type of the local function.
+
+=== LIST<... NOT NULL> return type for a local function
+Try declaring the return type of a local function as a list type with an `NOT NULL`-element type
+
+[source,cypher]
+----
+DEFINE FUNCTION func() :: LIST<INT NOT NULL> {
+  RETURN [2] LIMIT 1
+}
+
+RETURN func()
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAK is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAK: syntax error or access rule violation - not supported local function return type. `LIST<INTEGER NOT NULL>` is not supported as local function return type. Adjust the return type of local function `func`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove `NOT NULL` from the return type of the local function.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

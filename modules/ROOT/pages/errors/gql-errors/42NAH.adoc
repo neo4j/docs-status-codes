@@ -1,0 +1,66 @@
+= 42NAH
+
+== Status description
+error: syntax error or access rule violation - return column error. Return column `{ <<variable>> }` does not match output signature of local procedure `{ <<proc>> }`.
+
+== Explanation
+The result columns of a local procedure body do not match the output signature of the local procedure.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== RETURN a column in the body of a local void procedure
+Try to return a column in the body of a local procedure with an empty output signature (`+::+ ()`)
+
+[source,cypher]
+----
+DEFINE PROCEDURE one() :: () {
+  RETURN 1 AS a
+}
+
+CALL one() YIELD a
+RETURN a
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAH is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAH: syntax error or access rule violation - return column error. Return column `a` does not match output signature of local procedure `one`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, use `FINISH` instead of `RETURN`.
+
+=== RETURN an additional column in the body of a local procedure
+Try to return a column in the body of a local procedure that does not appear in the output signature of the local procedure.
+
+[source,cypher]
+----
+DEFINE PROCEDURE one() :: (a :: INT) {
+  RETURN 1 AS a, 2 AS b
+}
+
+CALL one() YIELD a AS x
+RETURN x
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAH is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAH: syntax error or access rule violation - return column error. Return column `b` does not match output signature of local procedure `one`.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the non-matching return column from the `RETURN` of the procedure body.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
