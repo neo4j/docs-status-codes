@@ -3,6 +3,70 @@
 == Status description
 error: syntax error or access rule violation - invalid use of data-modifications in expressions. `{ <<expr>> }` cannot contain any updating clauses.
 
+== Explanation
+The given expression is not allowed to contain updating clauses, `CREATE`, `INSERT`, `MERGE`, `SET`, `REMOVE` and `DELETE`.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Data-modifications in an EXISTS subquery
+Try to set a label in an `EXISTS` subquery
+
+[source,cypher]
+----
+RETURN EXISTS { MATCH (a:A) SET a:Found RETURN a }
+----
+
+The query returns a chain of errors where GQLSTATUS 42N57 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N57: syntax error or access rule violation - invalid use of data-modifications in expressions. 'Exists' cannot contain any updating clauses.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `SET` clause from the `EXISTS` subquery.
+
+=== Data-modifications in an COUNT subquery
+Try to set a property in an `COUNT` subquery
+
+[source,cypher]
+----
+RETURN COUNT { MATCH (a:A) SET a.prop = 1 RETURN a }
+----
+
+The query returns a chain of errors where GQLSTATUS 42N57 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N57: syntax error or access rule violation - invalid use of data-modifications in expressions. 'Count' cannot contain any updating clauses.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `SET` clause from the `COUNT` subquery.
+
+=== Data-modifications in an COLLECT subquery
+Try to set a property in an `COLLECT` subquery
+
+[source,cypher]
+----
+RETURN COLLECT { UNWIND range(1,10) AS x CREATE (a:A {prop: x}) RETURN a }
+----
+
+The query returns a chain of errors where GQLSTATUS 42N57 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N57: syntax error or access rule violation - invalid use of data-modifications in expressions. 'Collect' cannot contain any updating clauses.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove the `CREATE` clause from the `COLLECT` subquery.
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

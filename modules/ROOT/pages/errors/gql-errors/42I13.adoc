@@ -3,6 +3,95 @@
 == Status description
 error: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected `{ <<count>>1 }` but got `{ $count2 }`. The procedure or function `{ <<procFun>> }` has the signature: `{ <<sig>> }`.
 
+== Explanation
+This error occurs when
+
+* a procedure is called with fewer or more arguments than the procedure has mandatory parameters or
+* a function is invoked with fewer or more arguments than the function has mandatory parameters.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Procedure call with fewer arguments than mandatory parameters
+Try to call a procedure with fewer arguments than the procedure has mandatory parameters:
+
+[source,cypher]
+----
+CALL db.resampleIndex()
+----
+
+The query returns a chain of errors where GQLSTATUS 42I13 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I13: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected 1 but got 0. The procedure or function db.resampleIndex() has the signature: db.resampleIndex(indexName :: STRING).
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, provide one argument to the procedure call for the parameter `indexName`.
+
+=== Procedure call with more arguments than mandatory parameters
+Try to call a procedure with more arguments than the procedure has mandatory parameters:
+
+[source,cypher]
+----
+CALL db.resampleIndex("myIndex", "myOtherIndex")
+----
+
+The query returns a chain of errors where GQLSTATUS 42I13 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I13: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected 1 but got 2. The procedure or function db.resampleIndex() has the signature: db.resampleIndex(indexName :: STRING).
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, provide only a single argument to the procedure call for the parameter `indexName`.
+
+=== Function invocation with fewer arguments than mandatory parameters
+Try to invoke a function with fewer arguments than the procedure has mandatory parameters:
+
+[source,cypher]
+----
+RETURN range(1)
+----
+
+The query returns a chain of errors where GQLSTATUS 42I13 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I13: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected 2 but got 1. The procedure or function range() has the signature: range(start :: INTEGER, end :: INTEGER) :: LIST<INTEGER> or range(start :: INTEGER, end :: INTEGER, step :: INTEGER) :: LIST<INTEGER>.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, provide at least two arguments to the invocation of `range`, one argument for parameters, `start` and `end`, respectively.
+Alternatively, `range` also accepts three arguments, one argument for parameters, `start`, `end` and `step`, respectively
+
+=== Function invocation with more arguments than mandatory parameters
+Try to invoke a function with more arguments than the procedure has mandatory parameters:
+
+[source,cypher]
+----
+RETURN range(1, 2, 3, 4)
+----
+
+The query returns a chain of errors where GQLSTATUS 42I13 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42I13: syntax error or access rule violation - invalid number of procedure or function arguments. The procedure or function call does not provide the required number of arguments; expected 3 but got 4. The procedure or function range() has the signature: range(start :: INTEGER, end :: INTEGER) :: LIST<INTEGER> or range(start :: INTEGER, end :: INTEGER, step :: INTEGER) :: LIST<INTEGER>.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, provide at most three arguments to the invocation of `range`, one argument for parameters, `start`, `end` and `step`, respectively.
+Alternatively, `range` also accepts two arguments, one argument for parameters, `start` and `end`, respectively.
+
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary

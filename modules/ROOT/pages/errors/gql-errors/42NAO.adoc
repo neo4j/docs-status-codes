@@ -1,0 +1,121 @@
+= 42NAL
+
+== Status description
+error: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS and local callables. 'CALL { ... } IN TRANSACTIONS' is not supported in combination with 'DEFINE'.
+
+== Explanation
+Any combination of local callable definitions and `CALL IN TRANSACTIONS` is not supported.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== CALL IN TRANSACTIONS and local procedure definition
+Try using `CALL IN TRANSACTIONS` in the same query and a local procedure definition
+
+[source,cypher]
+----
+DEFINE PROCEDURE proc() {
+  RETURN 1 AS x
+}
+
+CALL {
+  CREATE (:A)
+} IN TRANSACTIONS
+RETURN 1 AS x
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS and local callables. 'CALL { ... } IN TRANSACTIONS' is not supported in combination with 'DEFINE'.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove either the local callable definition or `IN TRANSACTIONS`.
+
+=== CALL IN TRANSACTIONS and local function definition
+Try using `CALL IN TRANSACTIONS` in the same query and a local function definition
+
+[source,cypher]
+----
+DEFINE FUNCTION func() = 1
+
+CALL {
+  CREATE (:A)
+} IN TRANSACTIONS
+RETURN 1 AS x
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS and local callables. 'CALL { ... } IN TRANSACTIONS' is not supported in combination with 'DEFINE'.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove either the local callable definition or `IN TRANSACTIONS`.
+
+=== CALL IN TRANSACTIONS in a local procedure body
+Try using `CALL IN TRANSACTIONS` in a local procedure body
+
+[source,cypher]
+----
+DEFINE PROCEDURE proc() {
+  CALL {
+    CREATE (:A)
+  } IN TRANSACTIONS
+  RETURN 1 AS x
+}
+
+RETURN 1 AS x
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS and local callables. 'CALL { ... } IN TRANSACTIONS' is not supported in combination with 'DEFINE'.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove either the local callable definition or `IN TRANSACTIONS`.
+
+=== Local procedure definition in a CALL IN TRANSACTIONS
+Try using local procedure definition in `CALL IN TRANSACTIONS`
+
+[source,cypher]
+----
+CALL {
+  DEFINE PROCEDURE proc() {
+    RETURN 1 AS x
+  }
+
+  CREATE (a:A)
+  RETURN a
+} IN TRANSACTIONS
+RETURN a
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAL is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42NAL: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS and local callables. 'CALL { ... } IN TRANSACTIONS' is not supported in combination with 'DEFINE'.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, remove either the local callable definition or `IN TRANSACTIONS`.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
