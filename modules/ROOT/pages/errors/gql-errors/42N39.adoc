@@ -4,6 +4,79 @@
 == Status description
 error: syntax error or access rule violation - incompatible return column names. All `{ <<context>> }` must have the same return column names. Use `AS` to ensure columns have the same name.
 
+== Explanation
+Where tabular results of branches of a query are combined into one tabular result, e.g. in `UNION` or `WHEN`, the branch results have to have the same column names.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Return columns without explicit names in UNION
+Union queries with unnamed return columns
+
+[source,cypher]
+----
+RETURN 1
+UNION
+RETURN 2
+----
+
+The query returns a chain of errors where GQLSTATUS 42N39 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N39: syntax error or access rule violation - incompatible return column names. All UNION subqueries must have the same return column names. Use `AS` to ensure columns have the same name.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, the unnamed return columns get automatically named which can cause the effective column names to be different (`{backtick}1{backtick}` vs. `{backtick}2{backtick}`).
+Explicitly name the return columns to the same name.
+
+=== Named return columns in UNION
+Union queries with differently named return columns
+
+[source,cypher]
+----
+RETURN 1 AS a
+UNION
+RETURN 2 AS b
+----
+
+The query returns a chain of errors where GQLSTATUS 42N39 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N39: syntax error or access rule violation - incompatible return column names. All UNION subqueries must have the same return column names. Use `AS` to ensure columns have the same name.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, the explicitly provided names of the return columns are different (`a` vs. `b`).
+Adjust the names to be the same.
+
+=== Named return columns in WHEN
+Conditional queries with differently named return columns
+
+[source,cypher]
+----
+WHEN true THEN RETURN 1 AS a
+WHEN false THEN RETURN 2 AS b
+ELSE RETURN 3 AS a
+----
+
+The query returns a chain of errors where GQLSTATUS 42N39 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N39: syntax error or access rule violation - incompatible return column names. All conditional queries must have the same return column names. Use `AS` to ensure columns have the same name.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, the explicitly provided names of the return columns are different (`a` vs. `b` vs. `a`).
+Adjust the names to be the same.
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
