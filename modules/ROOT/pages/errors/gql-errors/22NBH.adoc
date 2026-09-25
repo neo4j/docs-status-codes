@@ -1,0 +1,15 @@
+= 22NBH
+
+== Status description
+error: data exception -  property value size: `{ <<bytes>> }` of element id: `{ <<entityId>> }` is too large for the index: `{ <<idx>> }` you are trying to add it to. See the Operations Manual for index limitations.
+
+== Example scenario
+
+This error occurs when a property value cannot be added to an index because its size exceeds the limit for the index.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
