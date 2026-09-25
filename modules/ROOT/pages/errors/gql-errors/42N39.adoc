@@ -11,8 +11,8 @@ Where tabular results of branches of a query are combined into one tabular resul
 
 Let's take the following example scenarios:
 
-=== Unaliased return columns in UNION
-Union queries with unaliased return columns
+=== Return columns without explicit names in UNION
+Union queries with unnamed return columns
 
 [source,cypher]
 ----
@@ -30,11 +30,11 @@ The query returns a chain of errors where GQLSTATUS 42N39 is the cause of GQLSTA
   42001: syntax error or access rule violation - invalid syntax
 ----
 
-In this case, the unaliased return columns get auto-aliased with name that are different (`{backtick}1{backtick}` vs. `{backtick}2{backtick}`).
-Explicitly alias the return columns to the same name.
+In this case, the unnamed return columns get automatically named which can cause the effective column names to be different (`{backtick}1{backtick}` vs. `{backtick}2{backtick}`).
+Explicitly name the return columns to the same name.
 
-=== Aliased return columns in UNION
-Union queries with differently aliased return columns
+=== Named return columns in UNION
+Union queries with differently named return columns
 
 [source,cypher]
 ----
@@ -52,11 +52,11 @@ The query returns a chain of errors where GQLSTATUS 42N39 is the cause of GQLSTA
   42001: syntax error or access rule violation - invalid syntax
 ----
 
-In this case, the provided aliases of the return columns are different (`a` vs. `b`).
-Adjust the aliases to be the same.
+In this case, the explicitly provided names of the return columns are different (`a` vs. `b`).
+Adjust the names to be the same.
 
-=== Aliased return columns in WHEN
-Conditional queries with differently aliased return columns
+=== Named return columns in WHEN
+Conditional queries with differently named return columns
 
 [source,cypher]
 ----
@@ -74,8 +74,8 @@ The query returns a chain of errors where GQLSTATUS 42N39 is the cause of GQLSTA
   42001: syntax error or access rule violation - invalid syntax
 ----
 
-In this case, the provided aliases of the return columns are different (`a` vs. `b` vs. `a`).
-Adjust the aliases to be the same.
+In this case, the explicitly provided names of the return columns are different (`a` vs. `b` vs. `a`).
+Adjust the names to be the same.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
