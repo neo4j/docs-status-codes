@@ -4,18 +4,18 @@
 error: data exception - type mismatch. Type mismatch: expected to be `{ <<valueTypeList>> }` but was `{ <<input>> }`.
 
 == Explanation
-An operand to operation or the argument to a parameter has a type that is not assignable to an of the types expected for the operand or argument.
+An operand to an operation or the argument to a parameter has a type that is not assignable to one of the types expected for the operand or argument.
 
 == Example scenarios
 
 Let's take the following example scenarios:
 
 === Type mismatch on an operand
-Try to compute a number modulo a string.
+Try computing a number modulo a string:
 
 [source,cypher]
 ----
-RETURN 123 % "abc"
+RETURN 123 % "abc";
 ----
 
 The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -23,7 +23,9 @@ The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-22NB1: data exception - invalid entity type. Type mismatch: expected to be FLOAT or INTEGER but was 'STRING'.
+22NB1: data exception - type mismatch. Type mismatch: expected to be FLOAT or INTEGER but was 'STRING'. (line 1, column 14 (offset: 13))
+"RETURN 123 % "abc""
+              ^
   42001: syntax error or access rule violation - invalid syntax
 ----
 
@@ -34,7 +36,7 @@ Try to invoke the `properties()` function on a string.
 
 [source,cypher]
 ----
-RETURN properties("abc")
+RETURN properties("abc");
 ----
 
 The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTATUS xref:errors/gql-errors/22G03.adoc[22G03]:
@@ -46,7 +48,7 @@ The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTA
   22G03: Data exception - invalid value type
 ----
 
-In this case, the argument of `properties()` function has to be a map or a graph element (`MAP`, `NODE` or `RELATIONSHIP`) but was a string.
+In this case, the argument of `properties()` function has to be a map or a graph element (`MAP`, `NODE`, or `RELATIONSHIP`), but is a string.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
