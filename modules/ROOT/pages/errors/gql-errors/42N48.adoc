@@ -4,7 +4,41 @@
 == Status description
 error: syntax error or access rule violation - no such function. The function `{ <<fun>> }` was not found. Verify that the spelling is correct.
 
+== Explanation
+The function with the given name was not found.
 
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Calling a not existing function
+Try to call a function `piX` that does not exist or is available
+
+[source,cypher]
+----
+RETURN piX();
+----
+
+The query returns a chain of errors where GQLSTATUS 42N48 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+42N48: syntax error or access rule violation - no such function. The function piX() was not found. Verify that the spelling is correct.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, verify the spelling of the function you want to invoke.
+
+Available functions are listed in `SHOW FUNCTIONS`. Hence, you can verify if a function is available to you with
+
+[source,cypher]
+----
+SHOW FUNCTIONS YIELD name, signature WHERE name = "piX";
+----
+
+If the function is not available, this query returns an empty result.
+If the function is available, this query returns the name and the signature of the function.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
