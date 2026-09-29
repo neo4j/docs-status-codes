@@ -32,7 +32,7 @@ The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTA
 In this case, the second operand of the modulo operations (`%`) has to be a number (`FLOAT` or `INTEGER`) but was a string.
 
 === Type mismatch on a function argument
-Try to invoke the `head()` function on a string.
+Try invoking the `head()` function on a string:
 
 [source,cypher]
 ----
