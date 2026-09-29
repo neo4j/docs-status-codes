@@ -44,7 +44,9 @@ The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-22NB1: data exception - type mismatch. Type mismatch: expected to be LIST but was 'STRING'.
+22NB1: data exception - type mismatch. Type mismatch: expected to be LIST but was 'STRING'. (line 1, column 13 (offset: 12))
+"RETURN head("abc")"
+             ^
   22G03: Data exception - invalid value type
 ----
 
