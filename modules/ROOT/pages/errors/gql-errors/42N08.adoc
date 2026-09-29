@@ -6,14 +6,15 @@
 error: syntax error or access rule violation - no such procedure. The procedure `{ <<procFun>> }` was not found. Verify that the spelling is correct.
 
 == Explanation
-The procedure with the given name was not found.
+The procedure with the given name does not exist.
 
 == Example scenarios
 
 Let's take the following example scenarios:
 
 === Calling a not existing procedure
-Try to call a procedure `db.labelsX` that does not exist or is available
+
+Try calling a procedure `db.labelsX` that does not exist or is not available:
 
 [source,cypher]
 ----
@@ -32,7 +33,8 @@ The query returns a chain of errors where GQLSTATUS 42N08 is the cause of GQLSTA
 
 In this case, verify the spelling of the procedure you want to call.
 
-Available procedures are listed in `SHOW PROCEDURES`. Hence, you can verify if a procedure is available to you with
+Available procedures are listed in `SHOW PROCEDURES`.
+Hence, you can verify if a procedure is available to you with:
 
 [source,cypher]
 ----
