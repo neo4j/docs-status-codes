@@ -32,11 +32,11 @@ The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTA
 In this case, the second operand of the modulo operations (`%`) has to be a number (`FLOAT` or `INTEGER`) but was a string.
 
 === Type mismatch on a function argument
-Try to invoke the `properties()` function on a string.
+Try to invoke the `head()` function on a string.
 
 [source,cypher]
 ----
-RETURN properties("abc");
+RETURN head("abc");
 ----
 
 The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTATUS xref:errors/gql-errors/22G03.adoc[22G03]:
@@ -44,11 +44,12 @@ The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-22NB1: data exception - invalid entity type. Invalid input 'STRING' for argument at index 0 of function properties(). Expected to be MAP, NODE or RELATIONSHIP.
+22NB1: data exception - type mismatch. Type mismatch: expected to be LIST but was 'STRING'.
   22G03: Data exception - invalid value type
 ----
 
-In this case, the argument of `properties()` function has to be a map or a graph element (`MAP`, `NODE`, or `RELATIONSHIP`), but is a string.
+In this case, the argument of `head()` function has to be a list but is a string.
+Change the argument to a list or use a different function.
 
 ifndef::backend-pdf[]
 [discrete.glossary]
