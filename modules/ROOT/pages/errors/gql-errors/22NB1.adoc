@@ -3,6 +3,56 @@
 == Status description
 error: data exception - type mismatch. Type mismatch: expected to be `{ <<valueTypeList>> }` but was `{ <<input>> }`.
 
+== Explanation
+An operand to an operation or the argument to a parameter has a type that is not assignable to one of the types expected for the operand or argument.
+
+== Example scenarios
+
+Let's take the following example scenarios:
+
+=== Type mismatch on an operand
+Try computing a number modulo a string:
+
+[source,cypher]
+----
+RETURN 123 % "abc";
+----
+
+The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+22NB1: data exception - type mismatch. Type mismatch: expected to be FLOAT or INTEGER but was 'STRING'. (line 1, column 14 (offset: 13))
+"RETURN 123 % "abc""
+              ^
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+In this case, the second operand of the modulo operations (`%`) has to be a number (`FLOAT` or `INTEGER`) but was a string.
+
+=== Type mismatch on a function argument
+Try invoking the `head()` function on a string:
+
+[source,cypher]
+----
+RETURN head("abc");
+----
+
+The query returns a chain of errors where GQLSTATUS 22NB1 is the cause of GQLSTATUS xref:errors/gql-errors/22G03.adoc[22G03]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+22NB1: data exception - type mismatch. Type mismatch: expected to be LIST but was 'STRING'. (line 1, column 13 (offset: 12))
+"RETURN head("abc")"
+             ^
+  22G03: Data exception - invalid value type
+----
+
+In this case, the argument of `head()` function has to be a list but is a string.
+Change the argument to a list or use a different function.
+
 ifndef::backend-pdf[]
 [discrete.glossary]
 == Glossary
