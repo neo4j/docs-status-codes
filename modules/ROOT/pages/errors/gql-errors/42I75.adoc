@@ -1,7 +1,7 @@
 = 42I75
 
 == Status description
-error: syntax error or access rule violation - self-referencing in vector search. The expression `{ <<expr>> }` in the search clause may not depend on the search clause binding variable `{ <<variable>> }`.
+error: syntax error or access rule violation - self-referencing in search. The expression `{ <<expr>> }` in the search clause may not depend on the search clause binding variable `{ <<variable>> }`.
 
 == Example scenarios
 For example, assuming that you have a vector index created by the following command:
@@ -35,7 +35,7 @@ The query returns a chain of errors where GQLSTATUS 42I75 is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-42I75: syntax error or access rule violation - self-referencing in vector search. The expression 'movie.embedding' in the search clause may not depend on the search clause binding variable `movie`. (line 5, column 14 (offset: 91))
+42I75: syntax error or access rule violation - self-referencing in search. The expression 'movie.embedding' in the search clause may not depend on the search clause binding variable `movie`. (line 5, column 14 (offset: 91))
 "    FOR movie.embedding"
               ^
   42001: syntax error or access rule violation - invalid syntax
@@ -65,7 +65,7 @@ The query returns a chain of errors where GQLSTATUS 42I75 is the cause of GQLSTA
 .GQLSTATUS error chain
 [source, error]
 ----
-42I75: syntax error or access rule violation - self-referencing in vector search. The expression 'movie.year' in the search clause may not depend on the search clause binding variable `movie`. (line 7, column 31 (offset: 166))
+42I75: syntax error or access rule violation - self-referencing in search. The expression 'movie.year' in the search clause may not depend on the search clause binding variable `movie`. (line 7, column 31 (offset: 166))
 "    WHERE movie.rating = movie.year"
                                ^
   42001: syntax error or access rule violation - invalid syntax

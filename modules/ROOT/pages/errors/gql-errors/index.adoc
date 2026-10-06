@@ -1217,7 +1217,7 @@ Status description:: error: syntax error or access rule violation - wrong variab
 
 === xref:errors/gql-errors/42I75.adoc[42I75]
 
-Status description:: error: syntax error or access rule violation - self-referencing in vector search. The expression `{ <<expr>> }` in the search clause may not depend on the search clause binding variable `{ <<variable>> }`.
+Status description:: error: syntax error or access rule violation - self-referencing in search. The expression `{ <<expr>> }` in the search clause may not depend on the search clause binding variable `{ <<variable>> }`.
 
 === xref:errors/gql-errors/42I76.adoc[42I76]
 
