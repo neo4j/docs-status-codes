@@ -37,6 +37,25 @@ What it does::
 * Detects status description mismatches between the index and individual files.
 * Verifies page role consistency.
 
+=== `sync-content-nav.py`
+
+This script compares the files in the _gql-errors_ directory with the entries in _content-nav.adoc_ and adds the missing ones.
+
+What it does::
+* Lists the error files in _gql-errors_, excluding _index.adoc_ and _auto-index.adoc_.
+* Compares them with the `xref:errors/gql-errors/<code>.adoc[]` entries in _content-nav.adoc_.
+* Adds an entry for each file without one, in the section that matches the first two characters of the error code (for example, `42` goes under "Syntax error or access rule violation").
+* Reports nav entries that have no corresponding file, without removing them.
+* Reports error codes whose prefix has no section, so that you can add them manually.
+* Prints its activity: counts, each added entry with its section and line number, and a final summary.
+
+Run it from the repository root:
+
+[source, shell]
+----
+python3 scripts/sync-content-nav.py
+----
+
 === `update-gql-error-index.py`
 This script orchestrates the execution of the other scripts in a specific order to ensure that the error index is generated and validated correctly.
 
