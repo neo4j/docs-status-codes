@@ -1699,9 +1699,45 @@ Status description:: error: syntax error or access rule violation - no such auth
 
 Status description:: error: syntax error or access rule violation - auth rule already exists. An auth rule with the name `{ <<authRule>> }` already exists.
 
+=== xref:errors/gql-errors/42NAF.adoc[42NAF]
+
+Status description:: error: syntax error or access rule violation - not supported local procedure definition. USE clause is not supported in local procedure definitions.
+
+=== xref:errors/gql-errors/42NAG.adoc[42NAG]
+
+Status description:: error: syntax error or access rule violation - not supported local function definition. USE clause is not supported in local function definitions.
+
+=== xref:errors/gql-errors/42NAH.adoc[42NAH]
+
+Status description:: error: syntax error or access rule violation - return column error. Return column `{ <<variable>> }` does not match output signature of local procedure `{ <<proc>> }`.
+
+=== xref:errors/gql-errors/42NAI.adoc[42NAI]
+
+Status description:: error: syntax error or access rule violation - missing return column. Return column `{ <<variable>> }` is missing to match output signature of local procedure `{ <<proc>> }`.
+
+=== xref:errors/gql-errors/42NAJ.adoc[42NAJ]
+
+Status description:: error: syntax error or access rule violation - not supported local procedure output type. `{ <<valueType>> }` is not supported as local procedure output type. Adjust the type of output field `{ <<variable>> }` of local procedure `{ <<proc>> }`.
+
+=== xref:errors/gql-errors/42NAK.adoc[42NAK]
+
+Status description:: error: syntax error or access rule violation - not supported local function return type. `{ <<valueType>> }` is not supported as local function return type. Adjust the return type of local function `{ <<fun>> }`.
+
+=== xref:errors/gql-errors/42NAL.adoc[42NAL]
+
+Status description:: error: syntax error or access rule violation - not supported local callable parameter type. `{ <<valueType>> }` is not supported as local callable parameter type. Adjust the type of parameter `{ <<variable>> }` of local callable `{ <<procFun>> }`.
+
 === xref:errors/gql-errors/42NAM.adoc[42NAM]
 
 Status description:: error: syntax error or access rule violation - unsupported temporal function form in auth rule condition. `{ <<input>> }` cannot be used in auth rule conditions as it retrieves the current time. Only transaction start time is available at the time of auth rule evaluation. Use `{ <<replacement>> }` instead.
+
+=== xref:errors/gql-errors/42NAN.adoc[42NAN]
+
+Status description:: error: syntax error or access rule violation - non-scalar query result in local function definition. Non-scalar query result not supported in local function definitions. Query in local function definition `{ <<fun>> }` requires a `RETURN` clause with a single column and computing a total aggregate or containing `LIMIT 1`.
+
+=== xref:errors/gql-errors/42NAO.adoc[42NAO]
+
+Status description:: error: syntax error or access rule violation - invalid use of CALL IN TRANSACTIONS and local callables. 'CALL { ... } IN TRANSACTIONS' is not supported in combination with 'DEFINE'.
 
 === xref:errors/gql-errors/42NAP.adoc[42NAP]
 
