@@ -4,6 +4,7 @@
 error: syntax error or access rule violation - non-scalar query result in local function definition. Non-scalar query result not supported in local function definitions. Query in local function definition `{ <<fun>> }` requires a `RETURN` clause with a single column and computing a total aggregate or containing `LIMIT 1`.
 
 == Explanation
+
 The query body of a local function definition `{ <<fun>> }` is required to end with a `RETURN` clause with a single column and computing a total aggregate or containing `LIMIT 1`.
 These rules ensure that the query body returns a scalar value in the form of a result table with a single column and a single row.
 
@@ -11,8 +12,9 @@ These rules ensure that the query body returns a scalar value in the form of a r
 
 Let's take the following example scenarios:
 
-=== Missing LIMIT 1
-Try to end a local function body with a `RETURN` with one result column that is not a total aggregate and no `LIMIT 1`
+=== Missing `LIMIT 1`
+
+Try ending a local function body with a `RETURN` with one result column that is not a total aggregate, and without `LIMIT 1`:
 
 [source,cypher]
 ----
@@ -34,8 +36,9 @@ The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTA
 
 In this case, add `LIMIT 1` or make the result column a total aggregate of the form `RETURN <aggregate function>(...)`.
 
-=== Missing LIMIT 1 — LIMIT >1
-Try to end a local function body with a `RETURN ... LIMIT x` with x greater than 1
+=== Ending with `LIMIT > 1`
+
+Try ending a local function body with a `RETURN ... LIMIT x` where x is greater than 1:
 
 [source,cypher]
 ----
@@ -43,7 +46,7 @@ DEFINE FUNCTION func(x :: INT) {
   RETURN count(1) LIMIT 2
 }
 
-RETURN func(1)
+RETURN func(1);
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -57,8 +60,9 @@ The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTA
 
 In this case, relace `LIMIT 2` with `LIMIT 1`.
 
-=== Missing LIMIT 1 — non-total aggregate result
-Try to end a local function body with a `RETURN <aggregate function>(...) GROUP BY ...`
+=== Ending with `GROUP BY` without `LIMIT 1`
+
+Try ending a local function body with a `RETURN <aggregate function>(...) GROUP BY ...`
 
 [source,cypher]
 ----
@@ -66,7 +70,7 @@ DEFINE FUNCTION func(x :: INT) {
   RETURN count(1) GROUP BY x
 }
 
-RETURN func(1)
+RETURN func(1);
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -80,8 +84,9 @@ The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTA
 
 In this case, add `LIMIT 1` or remove `GROUP BY`.
 
-=== More than one result column
-Try to end a local function body with a `RETURN` with more than one result column
+=== Ending with more than one result column
+
+Try ending a local function body with a `RETURN` with more than one result column:
 
 [source,cypher]
 ----
@@ -89,7 +94,7 @@ DEFINE FUNCTION func(x :: INT) {
   RETURN x, x + 1 AS y LIMIT 1
 }
 
-RETURN func(1)
+RETURN func(1);
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -103,8 +108,9 @@ The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTA
 
 In this case, remove result columns until only one is left.
 
-=== More than one total aggregate result column
-Try to end a local function body with a `RETURN` with more than one total aggregate
+=== Ending with more than one total aggregate result column
+
+Try ending a local function body with `RETURN` and more than one total aggregate:
 
 [source,cypher]
 ----
@@ -112,7 +118,7 @@ DEFINE FUNCTION func(x :: INT) {
   RETURN SUM(x), COUNT(x)
 }
 
-RETURN func(1)
+RETURN func(1);
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -126,8 +132,9 @@ The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTA
 
 In this case, remove result columns until only one is left.
 
-=== More than one result column — RETURN *
-Try to end a local function body with `RETURN *`
+=== Ending with more than one result column using `*`:
+
+Try ending a local function body with `RETURN *`:
 
 [source,cypher]
 ----
@@ -135,7 +142,7 @@ DEFINE FUNCTION func(x :: INT) {
   RETURN * LIMIT 1
 }
 
-RETURN func(1)
+RETURN func(1);
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -158,7 +165,7 @@ DEFINE FUNCTION func(x :: INT) {
   FINISH
 }
 
-RETURN func(1)
+RETURN func(1);
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -170,7 +177,7 @@ The query returns a chain of errors where GQLSTATUS 42NAN is the cause of GQLSTA
   42001: syntax error or access rule violation - invalid syntax
 ----
 
-In this case, replace `FINISH` with a `RETURN <one result column> LIMIT 1` or `RETURN <aggregate function>(...)`.
+In this case, replace `FINISH` with `RETURN <one result column> LIMIT 1` or `RETURN <aggregate function>(...)`.
 
 ifndef::backend-pdf[]
 [discrete.glossary]

@@ -4,6 +4,7 @@
 error: syntax error or access rule violation - not supported local procedure output type. `{ <<valueType>> }` is not supported as local procedure output type. Adjust the type of output field `{ <<variable>> }` of local procedure `{ <<proc>> }`.
 
 == Explanation
+
 A return column in the output signature of a local procedure has a Cypher type that is not supported as a return column type.
 The error points to one specific column and procedure.
 
@@ -11,8 +12,9 @@ The error points to one specific column and procedure.
 
 Let's take the following example scenarios:
 
-=== NOT NULL type in the output signature
-Try declaring a return column of a local procedure as `NOT NULL`
+=== `NOT NULL` type in the output signature
+
+Try declaring a return column of a local procedure as `NOT NULL`:
 
 [source,cypher]
 ----
@@ -21,7 +23,7 @@ DEFINE PROCEDURE proc() :: (a :: INT, b :: INT NOT NULL) {
 }
 
 CALL proc() YIELD a AS x, b AS y
-RETURN x, y
+RETURN x, y;
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAJ is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -35,8 +37,9 @@ The query returns a chain of errors where GQLSTATUS 42NAJ is the cause of GQLSTA
 
 In this case, remove `NOT NULL` in the output signature.
 
-=== LIST<... NOT NULL> type in the output signature
-Try declaring a return column as a list type with an `NOT NULL`-element type in the output signature of a local procedure
+=== `LIST<... NOT NULL>` type in the output signature
+
+Try declaring a return column as a list type with an `NOT NULL`-element type in the output signature of a local procedure:
 
 [source,cypher]
 ----
@@ -45,7 +48,7 @@ DEFINE PROCEDURE list() :: (a :: LIST<INT NOT NULL>) {
 }
 
 CALL list() YIELD n
-RETURN n
+RETURN n;
 ----
 
 The query returns a chain of errors where GQLSTATUS 42NAJ is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
