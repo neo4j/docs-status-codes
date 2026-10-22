@@ -119,6 +119,7 @@
 [[runtime]]$runtime:: Cypher runtime name. One of `slotted`, `pipelined`, and `parallel`.
 [[schemaDescr]]$schemaDescr:: Schema descriptor, for example, `(:Label1 \{prop1})`.
 [[schemaDescrType]]$schemaDescrType:: Freeform type of schema descriptor, for example, `label property existence constraint`.
+[[secretProviderType]]$secretProviderType:: The secret provider used by the secret manager, for example 'AWS', 'GCP', etc.
 [[selector]]$selector:: GPM path selector, for example, `ALL PATHS`, `SHORTEST 2`, etc.
 [[selectorOrPathMode]]$selectorOrPathMode:: GPM path selector, for example, `ALL PATHS`, `SHORTEST 2`, etc, or GPM path mode, for example `ACYCLIC`, `TRAIL`, etc.
 [[selectorType]]$selectorType:: Selector type.
