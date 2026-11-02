@@ -1,0 +1,53 @@
+= 22NCK
+
+== Status description
+error: data exception - node element types cannot have circular inheritance. The label `{ <<label>> }` is not allowed as an implied label on the node element type identified by the label `{ <<label>> }`. The node element type identified by label `{ <<label>> }` already implies the label `{ <<label>> }`, either directly or indirectly.
+
+== Explanation
+
+This error occurs when a node element type implies their own identifying label, either directly or further up the chain if its implied labels identify node element types with their own implied labels.
+
+== Example scenario
+
+For example, given a graph type:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:A => :B),
+  (:B => :C),
+  (:C => :D),
+  (:D => :E),
+  (:E => :F),
+  (:F => :G),
+  (:G => :H),
+  (:H => :I),
+  (:I => :J)
+}
+----
+
+Trying to add a new node element type for `J` that implies `A` closes the circle, making `J` effectively imply itself.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE ADD {
+  (:J => :A)
+}
+----
+
+The query returns a chain of errors where GQLSTATUS 22NCK is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error
+[source, error]
+----
+22NCK: data exception - node element types cannot have circular inheritance. The label `A` is not allowed as an implied label on the node element type identified by the label `J`. The node element type identified by label `A` already implies the label `J`, either directly or indirectly.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

@@ -1,0 +1,62 @@
+= 22NCI
+
+== Status description
+error: data exception - invalid property type definition. The property definition `{ <<propType>> }` is not allowed as it is either in conflict with or more permissive than the property definition `{ <<propType>> }` coming from the intersection of property definitions of the implied node element types.
+
+== Explanation
+
+This error occurs when there are a conflict or loosening of restrictions regarding the property types on the node element type compared to the inherited rules for that property.
+The inherited rules come from the implied labels of the node element type, and potentially further up the chain if those implied labels identify node element types with their own implied labels.
+
+== Example scenarios
+
+=== Direct conflict (incompatible types)
+For example, trying to enforce that the property `p` is an `INTEGER` for nodes with label `B` when it is already restricted to `STRING` for label `A` and nodes with label `B` requires also having label `A`.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:A => { p :: STRING }),
+  (:B => :A { p :: INTEGER })
+}
+----
+
+The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error
+[source, error]
+----
+22NCI: data exception - invalid property type definition. The property definition `p :: INTEGER` is not allowed as it is either in conflict with or more permissive than the property definition `p :: STRING` coming from the intersection of property definitions of the implied node element types.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+=== More permissive definition
+Trying to have a less restrictive definition for the same property compared to the definition from the inherited rule.
+For example, the rule on label `B` specifies that the property `p` needs to be either a `STRING` or an `INTEGER`, while label `C` specifies that it needs to be either an `INTERGER` or a `FLOAT` value.
+The only values that satisfies the requirements from label `B` and `C` are `STRING` values, and while the property definition on label `D` also allows for `STRING` values it also allows `INTEGER` and `FLOAT` values, thus being more permissive than the combination of the inherited rules from `B` and `C`.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:A => :B),
+  (:B => { p :: STRING | INTEGER }),
+  (:C => { p :: STRING | FLOAT }),
+  (:D => :A&C { p :: STRING | INTEGER | FLOAT })
+}
+----
+
+The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error
+[source, error]
+----
+22NCI: data exception - invalid property type definition. The property definition `p :: STRING | INTEGER | FLOAT` is not allowed as it is either in conflict with or more permissive than the property definition `p :: STRING` coming from the intersection of property definitions of the implied node element types.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
