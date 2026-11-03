@@ -6,7 +6,7 @@ error: data exception - conflicting default values. `{ <<entityType>> }` (`{ <<e
 == Explanation
 
 The graph type can specify default values that gets added to a property if the user does not specify a value for the property when it is created.
-Attempting to create a node with multiple labels that independently specify default values for the same property is not allowed, as the code would not know which default value to apply.
+Attempting to create a node with multiple labels that independently specify default values for the same property is not allowed, since selecting which value to use would not be deterministic.
 
 == Example scenario
 
