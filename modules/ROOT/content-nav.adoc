@@ -183,6 +183,7 @@
 **** xref:errors/gql-errors/22NCE.adoc[]
 **** xref:errors/gql-errors/22NCF.adoc[]
 **** xref:errors/gql-errors/22NCG.adoc[]
+**** xref:errors/gql-errors/22NCH.adoc[]
 **** xref:errors/gql-errors/22NCI.adoc[]
 **** xref:errors/gql-errors/22NCJ.adoc[]
 **** xref:errors/gql-errors/22NCK.adoc[]

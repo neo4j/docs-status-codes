@@ -1,0 +1,44 @@
+= 22NCH
+
+== Status description
+error: data exception - conflicting default values. `{ <<entityType>> }` (`{ <<entityId>> }`) has more than one default value for the property `{ <<propKey>> }`, defined by the constraints `{ <<constrDescrOrName>> }` and `{ <<constrDescrOrName>> }`.
+
+== Explanation
+
+The graph type can specify default values that gets added to a property if the user does not specify a value for the property when it is created.
+Attempting to create a node with multiple labels that independently specify default values for the same property is not allowed, as the code would not know which default value to apply.
+
+== Example scenario
+
+For example, given a graph type with two separate node element types specifying a default value for the same property:
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:A => {p :: STRING NOT NULL DEFAULT ON COMMIT "Hi :)"}),
+  (:B => {p :: STRING NOT NULL DEFAULT ON COMMIT "Hello!"})
+
+}
+----
+
+Trying to create a node with both label `A` and `B` without specifying the property will fail as the property have two competing default values.
+
+[source,cypher]
+----
+CREATE (:A:B)
+----
+
+The query returns an error with GQLSTATUS 22NCH and status description:
+
+.GQLSTATUS error
+[source, error]
+----
+22NCH: data exception - conflicting default values. NODE (0) has more than one default value for the property `p`, defined by the constraints 'Constraint( id=2, name='nodePropertyTypeConstraint(B:p)', type='NODE PROPERTY TYPE', schema=(:B {p}), graphTypeDependence='DEPENDENT', propertyType=STRING, defaultValue=Constant[value=String("Hello!")] )' and 'Constraint( id=a, name='nodePropertyTypeConstraint(A:p)', type='NODE PROPERTY TYPE', schema=(:A {p}), graphTypeDependence='DEPENDENT', propertyType=STRING, defaultValue=Constant[value=String("Hi :)")] )'.
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
