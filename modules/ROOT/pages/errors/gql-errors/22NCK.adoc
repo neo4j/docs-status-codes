@@ -5,7 +5,7 @@ error: data exception - node element types cannot have circular inheritance. The
 
 == Explanation
 
-This error occurs when a node element type implies their own identifying label, either directly or further up the chain if its implied labels identify node element types with their own implied labels.
+This error occurs when a node element type implies its own identifying label, either directly or further up the chain, if that implied label identifies a node element type with its own implied labels.
 
 == Example scenario
 
@@ -23,16 +23,16 @@ ALTER CURRENT GRAPH TYPE SET {
   (:G => :H),
   (:H => :I),
   (:I => :J)
-}
+};
 ----
 
-Trying to add a new node element type for `J` that implies `A` closes the circle, making `J` effectively imply itself.
+Try adding a new node element type for `J` that implies `A` closes the circle, making `J` effectively imply itself:
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE ADD {
   (:J => :A)
-}
+};
 ----
 
 The query returns a chain of errors where GQLSTATUS 22NCK is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:

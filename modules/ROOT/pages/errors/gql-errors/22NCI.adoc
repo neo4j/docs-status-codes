@@ -5,20 +5,21 @@ error: data exception - invalid property type definition. The property definitio
 
 == Explanation
 
-This error occurs when there are a conflict or loosening of restrictions regarding the property types on the node element type compared to the inherited rules for that property.
-The inherited rules come from the implied labels of the node element type, and potentially further up the chain if those implied labels identify node element types with their own implied labels.
+This error occurs when there is a conflict or loosening of restrictions about the property types on the node element type compared to the inherited rules for that property.
+The inherited rules come from the implied labels of the node element type and, potentially, further up the chain if those implied labels identify node element types with their own implied labels.
 
 == Example scenarios
 
 === Direct conflict (incompatible types)
-For example, trying to enforce that the property `p` is an `INTEGER` for nodes with label `B` when it is already restricted to `STRING` for label `A` and nodes with label `B` requires also having label `A`.
+
+Try enforcing that the property `p` is an `INTEGER` for nodes with label `B`, when it is already restricted to `STRING` for label `A`, and nodes with label `B` are also required to have label `A`.
 
 [source,cypher]
 ----
 ALTER CURRENT GRAPH TYPE SET {
   (:A => { p :: STRING }),
   (:B => :A { p :: INTEGER })
-}
+};
 ----
 
 The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
@@ -31,9 +32,11 @@ The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTA
 ----
 
 === More permissive definition
-Trying to have a less restrictive definition for the same property compared to the definition from the inherited rule.
-For example, the rule on label `B` specifies that the property `p` needs to be either a `STRING` or an `INTEGER`, while label `C` specifies that it needs to be either an `INTERGER` or a `FLOAT` value.
-The only values that satisfies the requirements from label `B` and `C` are `STRING` values, and while the property definition on label `D` also allows for `STRING` values it also allows `INTEGER` and `FLOAT` values, thus being more permissive than the combination of the inherited rules from `B` and `C`.
+
+Try having a less restrictive definition for the same property than the definition in the inherited rule.
+For example, the rule on label `B` specifies that the property `p` needs to be either a `STRING` or an `INTEGER`, while label `C` specifies that it needs to be either an `INTEGER` or a `FLOAT` value.
+The only values that satisfy the requirements from labels `B` and `C` are `STRING` values.
+While the property definition on label `D` also allows `STRING` values, it also allows `INTEGER` and `FLOAT` values, making it more permissive than the combination of the inherited rules from `B` and `C`.
 
 [source,cypher]
 ----
@@ -42,7 +45,7 @@ ALTER CURRENT GRAPH TYPE SET {
   (:B => { p :: STRING | INTEGER }),
   (:C => { p :: STRING | FLOAT }),
   (:D => :A&C { p :: STRING | INTEGER | FLOAT })
-}
+};
 ----
 
 The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:

@@ -5,8 +5,8 @@ error: data exception - conflicting default values. `{ <<entityType>> }` (`{ <<e
 
 == Explanation
 
-The graph type can specify default values that gets added to a property if the user does not specify a value for the property when it is created.
-Attempting to create a node with multiple labels that independently specify default values for the same property is not allowed, since selecting which value to use would not be deterministic.
+The graph type can specify default values that are added to a property if the user does not specify a value for the property when it is created.
+Attempting to create a node with multiple labels that each independently specify default values for the same property is not allowed, since selecting which value to use would be nondeterministic.
 
 == Example scenario
 
@@ -18,17 +18,17 @@ ALTER CURRENT GRAPH TYPE SET {
   (:A => {p :: STRING NOT NULL DEFAULT ON COMMIT "Hi :)"}),
   (:B => {p :: STRING NOT NULL DEFAULT ON COMMIT "Hello!"})
 
-}
+};
 ----
 
-Trying to create a node with both label `A` and `B` without specifying the property will fail as the property have two competing default values.
+Try creating a node with both the labels `A` and `B` without specifying the property:
 
 [source,cypher]
 ----
-CREATE (:A:B)
+CREATE (:A:B);
 ----
 
-The query returns an error with GQLSTATUS 22NCH and status description:
+Because the property has two competing default values, the query returns an error with GQLSTATUS 22NCH and the status description:
 
 .GQLSTATUS error
 [source, error]
