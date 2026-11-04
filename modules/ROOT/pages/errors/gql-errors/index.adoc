@@ -744,7 +744,7 @@ Status description:: error: data exception - conflicting default values. `{ <<en
 
 === xref:errors/gql-errors/22NCI.adoc[22NCI]
 
-Status description:: error: data exception - invalid property type definition. The property definition `{ <<propType>> }` is not allowed as it is either in conflict with or more permissive than the property definition `{ <<propType>> }` coming from the intersection of property definitions of the implied node element types.
+Status description:: error: data exception - invalid property type definition. The property definition `{ <<propType>> }` is not allowed, as it is either in conflict with or more permissive than the property definition `{ <<propType>> }` coming from the intersection of property definitions of the implied node element types.
 
 === xref:errors/gql-errors/22NCJ.adoc[22NCJ]
 
