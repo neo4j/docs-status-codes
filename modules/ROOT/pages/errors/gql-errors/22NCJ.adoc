@@ -1,0 +1,40 @@
+= 22NCJ
+
+== Status description
+error: data exception - invalid inherited property type definition. The property definition `{ <<propType>> }` coming from the intersection of property definitions from multiple implied node element types is not an allowed property type.
+
+== Explanation
+
+This error occurs when the node element type does not specify any rules for a property, but there are inherited rules for it whose combination is not an allowed property type.
+The inherited rules come from the implied labels of the node element type and, potentially, further up the chain if those implied labels identify node element types with their own implied labels.
+
+== Example scenario
+
+For example, try requiring both labels `A` and `B`, where `B` enforces that the property `p` is an `INTEGER` and label `A` enforces that it is a `STRING`.
+The only value that fulfills both requirements is `null,` and the `NULL` type is not allowed as a property type.
+
+[source,cypher]
+----
+ALTER CURRENT GRAPH TYPE SET {
+  (:A => { p :: STRING }),
+  (:B => { p :: INTEGER }),
+  (:C => :A&B)
+};
+----
+
+The query returns a chain of errors where GQLSTATUS 22NCJ is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error
+[source, error]
+----
+22NCJ: data exception - invalid inherited property type definition. The property definition `p :: NULL` coming from the intersection of property definitions from multiple implied node element types is not an allowed property type.
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
