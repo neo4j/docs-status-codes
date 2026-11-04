@@ -1,7 +1,7 @@
 = 22NCI
 
 == Status description
-error: data exception - invalid property type definition. The property definition `{ <<propType>> }` is not allowed as it is either in conflict with or more permissive than the property definition `{ <<propType>> }` coming from the intersection of property definitions of the implied node element types.
+error: data exception - invalid property type definition. The property definition `{ <<propType>> }` is not allowed, as it is either in conflict with or more permissive than the property definition `{ <<propType>> }` coming from the intersection of property definitions of the implied node element types.
 
 == Explanation
 
@@ -27,7 +27,7 @@ The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTA
 .GQLSTATUS error
 [source, error]
 ----
-22NCI: data exception - invalid property type definition. The property definition `p :: INTEGER` is not allowed as it is either in conflict with or more permissive than the property definition `p :: STRING` coming from the intersection of property definitions of the implied node element types.
+22NCI: data exception - invalid property type definition. The property definition `p :: INTEGER` is not allowed, as it is either in conflict with or more permissive than the property definition `p :: STRING` coming from the intersection of property definitions of the implied node element types.
   42001: syntax error or access rule violation - invalid syntax
 ----
 
@@ -53,7 +53,7 @@ The query returns a chain of errors where GQLSTATUS 22NCI is the cause of GQLSTA
 .GQLSTATUS error
 [source, error]
 ----
-22NCI: data exception - invalid property type definition. The property definition `p :: STRING | INTEGER | FLOAT` is not allowed as it is either in conflict with or more permissive than the property definition `p :: STRING` coming from the intersection of property definitions of the implied node element types.
+22NCI: data exception - invalid property type definition. The property definition `p :: STRING | INTEGER | FLOAT` is not allowed, as it is either in conflict with or more permissive than the property definition `p :: STRING` coming from the intersection of property definitions of the implied node element types.
   42001: syntax error or access rule violation - invalid syntax
 ----
 
