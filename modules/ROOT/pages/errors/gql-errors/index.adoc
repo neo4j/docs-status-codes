@@ -750,6 +750,10 @@ Status description:: error: data exception - operation not allowed for roles wit
 
 Status description:: error: data exception - wrong property for vector search with filters. The property `{ <<propKey>> }` is not an additional property for vector search with filters on the vector index `{ <<idx>> }` .
 
+=== xref:errors/gql-errors/22ND6.adoc[22ND6]
+
+Status description:: error: data exception - secret does not exist. The secret `{ <<secret>> }` does not exist. Verify that the spelling is correct.
+
 
 [[invalid-transaction-state]]
 == Invalid transaction state
@@ -1706,6 +1710,14 @@ Status description:: error: syntax error or access rule violation - unsupported 
 === xref:errors/gql-errors/42NAP.adoc[42NAP]
 
 Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown trim specification: `{ <<input>> }`.
+
+=== xref:errors/gql-errors/42NAQ.adoc[42NAQ]
+
+Status description:: error: syntax error or access rule violation - no such secret. A secret with the name `{ <<secret>> }` was not found. Verify that the spelling is correct.
+
+=== xref:errors/gql-errors/42NAR.adoc[42NAR]
+
+Status description:: error: syntax error or access rule violation - secret already exists. A secret with the name `{ <<secret>> }` already exists.
 
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
