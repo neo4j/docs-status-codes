@@ -1,0 +1,31 @@
+= 42NAS
+
+== Status description
+error: syntax error or access rule violation - unnamed annotation parameter. The annotation `{ <<annotation>> }` has more than one parameter, so all of its parameters must be named.
+
+== Example scenario
+
+Use an annotation with more than one parameter where one of the parameters is not named:
+
+[source,cypher]
+----
+@a(x: 1, 2)
+MATCH (n:A)
+RETURN n.id AS id
+----
+
+To resolve the error, name all the parameters of the annotation:
+
+[source,cypher]
+----
+@a(x: 1, y: 2)
+MATCH (n:A)
+RETURN n.id AS id
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

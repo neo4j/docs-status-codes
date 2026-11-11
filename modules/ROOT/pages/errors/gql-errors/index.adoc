@@ -1707,6 +1707,14 @@ Status description:: error: syntax error or access rule violation - unsupported 
 
 Status description:: error: syntax error or access rule violation - unsupported trim specification. Unknown trim specification: `{ <<input>> }`.
 
+=== xref:errors/gql-errors/42NAS.adoc[42NAS]
+
+Status description:: error: syntax error or access rule violation - unnamed annotation parameter. The annotation `{ <<annotation>> }` has more than one parameter, so all of its parameters must be named.
+
+=== xref:errors/gql-errors/42NAT.adoc[42NAT]
+
+Status description:: error: syntax error or access rule violation - duplicate annotation parameter name. Duplicate parameter name `{ <<annotationParam>> }` in the annotation `{ <<annotation>> }`.
+
 === xref:errors/gql-errors/42NFC.adoc[42NFC]
 
 Status description:: error: syntax error or access rule violation - auth info validation error. Authentication and/or authorization could not be validated. See security logs for details.

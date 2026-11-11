@@ -1,0 +1,31 @@
+= 42NAT
+
+== Status description
+error: syntax error or access rule violation - duplicate annotation parameter name. Duplicate parameter name `{ <<annotationParam>> }` in the annotation `{ <<annotation>> }`.
+
+== Example scenario
+
+Use the same parameter name more than once in an annotation:
+
+[source,cypher]
+----
+@a(x: 1, x: 2)
+MATCH (n:A)
+RETURN n.id AS id
+----
+
+To resolve the error, give each parameter of the annotation a unique name:
+
+[source,cypher]
+----
+@a(x: 1, y: 2)
+MATCH (n:A)
+RETURN n.id AS id
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

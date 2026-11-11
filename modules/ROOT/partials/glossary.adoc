@@ -5,6 +5,8 @@
 [[alias]]$alias:: An alias name, `mydb-alias`.
 [[aliasList]]$aliasList:: A list of alias names, for example, `mydb-alias1, mydb-alias2`.
 [[allocType]]$allocType:: Allocation type (`primary` or `secondary`).
+[[annotation]]$annotation:: A Cypher annotation, for example, `@Annotation`.
+[[annotationParam]]$annotationParam:: An annotation parameter name.
 [[arg]]$arg:: Procedure or function argument, for example, `database`, `pause`, `dryrun`, etc.
 [[argList]]$argList:: A list of procedure or function arguments, for example, `edition, name and versions`.
 [[argType]]$argType:: Argument type, either input or output.
