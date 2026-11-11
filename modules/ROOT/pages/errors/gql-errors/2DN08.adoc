@@ -1,12 +1,12 @@
 = 2DN08
 
 == Status description
-error: invalid transaction termination - entity limit exceeded. Failed to commit transaction. The transaction makes the database exceed the Community Edition limit of { <<upper>> } { <<entityType>> }s. Delete some and try again or upgrade to Enterprise Edition.
+error: invalid transaction termination - entity limit exceeded. Failed to commit transaction. The transaction exceeds the Community Edition limit of { <<upper>> } { <<entityType>> }s. Delete some { <<entityType>> }s and try again, or upgrade to Enterprise Edition.
 
 .GQLSTATUS error
 [source, error]
 ----
-2DN08: invalid transaction termination - entity limit exceeded. Failed to commit transaction. The transaction makes the database exceed the Community Edition limit of 34359738368 nodes. Delete some and try again or upgrade to Enterprise Edition.
+2DN08: invalid transaction termination - entity limit exceeded. Failed to commit transaction. The transaction exceeds the Community Edition limit of 34359738368 nodes. Delete some nodes and try again, or upgrade to Enterprise Edition.
 ----
 
 == Possible solution
