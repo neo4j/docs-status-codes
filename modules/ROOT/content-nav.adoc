@@ -211,6 +211,7 @@
 **** xref:errors/gql-errors/2DN05.adoc[]
 **** xref:errors/gql-errors/2DN06.adoc[]
 **** xref:errors/gql-errors/2DN07.adoc[]
+**** xref:errors/gql-errors/2DN08.adoc[]
 *** xref:errors/gql-errors/index.adoc#transaction-rollback[Transaction rollback]
 **** xref:errors/gql-errors/40000.adoc[]
 **** xref:errors/gql-errors/40003.adoc[]

@@ -1,0 +1,21 @@
+= 2DN08
+
+== Status description
+error: invalid transaction termination - entity limit exceeded. Failed to commit transaction. The transaction makes the database exceed the Community Edition limit of { <<upper>> } { <<entityType>> }s. Delete some and try again or upgrade to Enterprise Edition.
+
+.GQLSTATUS error
+[source, error]
+----
+2DN08: invalid transaction termination - entity limit exceeded. Failed to commit transaction. The transaction makes the database exceed the Community Edition limit of 34359738368 nodes. Delete some and try again or upgrade to Enterprise Edition.
+----
+
+== Possible solution
+Delete some of the nodes or relationships in the database, then retry the transaction.
+Alternatively, upgrade to Enterprise Edition, which does not have this limit.
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
