@@ -5,13 +5,22 @@ error: syntax error or access rule violation - unnamed annotation parameter. The
 
 == Example scenario
 
-Use an annotation with more than one parameter where one of the parameters is not named:
+Try using an annotation with more than one parameter where one of the parameters is not named:
 
 [source,cypher]
 ----
 @a(x: 1, 2)
 MATCH (n:A)
 RETURN n.id AS id
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAS is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error
+[source, error]
+----
+42NAS: syntax error or access rule violation - unnamed annotation parameter. The annotation `a` has more than one parameter, so all of its parameters must be named.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To resolve the error, name all the parameters of the annotation:

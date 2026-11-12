@@ -5,13 +5,22 @@ error: syntax error or access rule violation - duplicate annotation parameter na
 
 == Example scenario
 
-Use the same parameter name more than once in an annotation:
+Try using the same parameter name more than once in an annotation:
 
 [source,cypher]
 ----
 @a(x: 1, x: 2)
 MATCH (n:A)
 RETURN n.id AS id
+----
+
+The query returns a chain of errors where GQLSTATUS 42NAT is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error
+[source, error]
+----
+42NAT: syntax error or access rule violation - duplicate annotation parameter name. Duplicate parameter name `x` in the annotation `a`.
+  42001: syntax error or access rule violation - invalid syntax
 ----
 
 To resolve the error, give each parameter of the annotation a unique name:
