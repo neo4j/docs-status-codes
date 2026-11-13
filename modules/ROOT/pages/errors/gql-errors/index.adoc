@@ -738,6 +738,22 @@ Status description:: error: data exception - graph type constraint not supported
 
 Status description:: error: data exception - wrong index type. Expected the index `{ <<idx>> }` to be a `{ <<idxType>>1 }` index but was a `{ <<idxType>>2 }` index.
 
+=== xref:errors/gql-errors/22NCH.adoc[22NCH]
+
+Status description:: error: data exception - conflicting default values. `{ <<entityType>> }` (`{ <<entityId>> }`) has more than one default value for the property `{ <<propKey>> }`, defined by the constraints `{ <<constrDescrOrName>> }` and `{ <<constrDescrOrName>> }`.
+
+=== xref:errors/gql-errors/22NCI.adoc[22NCI]
+
+Status description:: error: data exception - invalid property type definition. The property definition `{ <<propType>> }` is not allowed, as it is either in conflict with or more permissive than the property definition `{ <<propType>> }` coming from the intersection of property definitions of the implied node element types.
+
+=== xref:errors/gql-errors/22NCJ.adoc[22NCJ]
+
+Status description:: error: data exception - invalid inherited property type definition. The property definition `{ <<propType>> }` coming from the intersection of property definitions from multiple implied node element types is not an allowed property type.
+
+=== xref:errors/gql-errors/22NCK.adoc[22NCK]
+
+Status description:: error: data exception - node element types cannot have circular inheritance. The label `{ <<label>> }` is not allowed as an implied label on the node element type identified by the label `{ <<label>> }`. The node element type identified by label `{ <<label>> }` already implies the label `{ <<label>> }`, either directly or indirectly.
+
 === xref:errors/gql-errors/22ND1.adoc[22ND1]
 
 Status description:: error: data exception - operation not allowed for roles that are granted to an `AUTH RULE`. Invalid input: `'{ <<query>> }'` is not allowed for roles that are granted to an `AUTH RULE`.

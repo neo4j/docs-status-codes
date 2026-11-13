@@ -109,6 +109,7 @@
 [[procParam]]$procParam:: User-defined procedure implementation parameter name.
 [[procParamFmt]]$procParamFmt:: Freeform user-defined procedure implementation parameter format, for example, `com.example.*`.
 [[propKey]]$propKey:: Property key name, for example, `name`.
+[[propType]]$propType:: Property key name and Cypher type, for example, `name :: TYPE`.
 [[propKeyList]]$propKeyList:: A list of property key names, for example, `name, age, hometown`.
 [[query]]$query:: A statement that retrieves or writes information to a database, for example, `MATCH (n) WHERE n.prop`.
 [[reasonList]]$reasonList:: A list of reasons of the failure.
