@@ -16,7 +16,7 @@ RETURN n.id AS id
 
 The query returns a chain of errors where GQLSTATUS 42NAT is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
 
-.GQLSTATUS error
+.GQLSTATUS error chain
 [source, error]
 ----
 42NAT: syntax error or access rule violation - duplicate annotation parameter name. Duplicate parameter name `x` in the annotation `a`.
