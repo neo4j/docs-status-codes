@@ -167,6 +167,10 @@ Status description:: error: data exception - invalid duration function field val
 
 Status description:: error: data exception - invalid duration field. `{ <<field>> }` is not a valid duration field.
 
+=== xref:errors/gql-errors/22G0Z.adoc[22G0Z]
+
+Status description:: error: data exception - malformed path
+
 === xref:errors/gql-errors/22N00.adoc[22N00]
 
 Status description:: error: data exception - unsupported value. The provided value is unsupported and cannot be processed.
@@ -749,6 +753,10 @@ Status description:: error: data exception - operation not allowed for roles wit
 === xref:errors/gql-errors/22ND3.adoc[22ND3]
 
 Status description:: error: data exception - wrong property for vector search with filters. The property `{ <<propKey>> }` is not an additional property for vector search with filters on the vector index `{ <<idx>> }` .
+
+=== xref:errors/gql-errors/22ND8.adoc[22ND8]
+
+Status description:: error: data exception - malformed path elements not connected. The relationship at element position `{ <<pos>> }` does not connect the nodes at element positions `{ $pos1 }` and `{ $pos2 }`.
 
 
 [[invalid-transaction-state]]

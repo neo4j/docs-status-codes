@@ -1,0 +1,43 @@
+= 22ND8
+
+== Status description
+error: data exception - malformed path elements not connected. The relationship at element position `{ <<pos>> }` does not connect the nodes at element positions `{ $pos1 }` and `{ $pos2 }`.
+
+== Explanation
+A path value must alternate between node and relationship, starting and ending with a node, and every relationship must connect the nodes immediately before and after it.
+This error occurs when constructing a path with `PATH [...]` in which a relationship does not connect the surrounding nodes.
+
+== Example scenario
+
+Given the following graph:
+[source,cypher]
+----
+CREATE (:Person {name: 'Alice'})-[:LIVES_IN]->(:City {name: 'Malmo'});
+CREATE (:Person {name: 'Bob'})-[:LIVES_IN]->(:City {name: 'Atlantis'});
+----
+
+Try running the following query, in which the second relationship does not connect the nodes around it:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (alice:Person {name: 'Alice'})-[r1:LIVES_IN]->(malmo:City {name: 'Malmo'})
+MATCH (bob:Person {name: 'Bob'})-[r2:LIVES_IN]->(atlantis:City {name: 'Atlantis'})
+RETURN PATH [alice, r1, malmo, r2, bob] AS badPath
+----
+
+The query returns a chain of errors where GQLSTATUS 22ND8 is the cause of GQLSTATUS xref:errors/gql-errors/22G0Z.adoc[22G0Z]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+22ND8: data exception - malformed path elements not connected. The relationship at element position 3 does not connect the nodes at element positions 2 and 4.
+  22G0Z: data exception - malformed path
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]

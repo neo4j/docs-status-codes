@@ -1,0 +1,42 @@
+= 22G0Z
+
+== Status description
+error: data exception - malformed path
+
+== Explanation
+A path value must alternate between node and relationship, starting and ending with a node.
+This error occurs when constructing a path with `PATH [...]` whose elements do not form a valid path, for example when an element is `null`, when a relationship does not connect the surrounding nodes, or when the list does not start and end with a node.
+Neo4j reports the specific problem as a cause: xref:errors/gql-errors/22004.adoc[22004] for a `null` element, and xref:errors/gql-errors/22ND8.adoc[22ND8] for a relationship that does not connect the surrounding nodes.
+
+== Example scenario
+
+Given the following graph:
+[source,cypher]
+----
+CREATE (:Person {name: 'Alice'})-[:LIVES_IN]->(:City {name: 'Malmo'})
+----
+
+Try running the following query, where the path ends with a relationship:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (p:Person {name: 'Alice'})-[r:LIVES_IN]->(c:City)
+RETURN PATH [p, r] AS badPath
+----
+
+The query returns a chain of errors where GQLSTATUS 22G0Z is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
+
+.GQLSTATUS error chain
+[source, error]
+----
+22G0Z: data exception - malformed path
+  42001: syntax error or access rule violation - invalid syntax
+----
+
+ifndef::backend-pdf[]
+[discrete.glossary]
+== Glossary
+
+include::partial$glossary.adoc[]
+endif::[]
