@@ -1,4 +1,4 @@
-= 22ND8
+= 22ND7
 
 == Status description
 error: data exception - malformed path elements not connected. The relationship at element position `{ <<pos>> }` does not connect the nodes at element positions `{ $pos1 }` and `{ $pos2 }`.
@@ -26,12 +26,12 @@ MATCH (bob:Person {name: 'Bob'})-[r2:LIVES_IN]->(atlantis:City {name: 'Atlantis'
 RETURN PATH [alice, r1, malmo, r2, bob] AS badPath
 ----
 
-The query returns a chain of errors where GQLSTATUS 22ND8 is the cause of GQLSTATUS xref:errors/gql-errors/22G0Z.adoc[22G0Z]:
+The query returns a chain of errors where GQLSTATUS 22ND7 is the cause of GQLSTATUS xref:errors/gql-errors/22G0Z.adoc[22G0Z]:
 
 .GQLSTATUS error chain
 [source, error]
 ----
-22ND8: data exception - malformed path elements not connected. The relationship at element position 3 does not connect the nodes at element positions 2 and 4.
+22ND7: data exception - malformed path elements not connected. The relationship at element position 3 does not connect the nodes at element positions 2 and 4.
   22G0Z: data exception - malformed path
 ----
 
