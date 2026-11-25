@@ -4,7 +4,7 @@
 error: data exception - malformed path elements not connected. The relationship at element position `{ <<pos>> }` does not connect the nodes at element positions `{ $pos1 }` and `{ $pos2 }`.
 
 == Explanation
-A path value must alternate between node and relationship, starting and ending with a node, and every relationship must connect the nodes immediately before and after it.
+All relationships in a path value must connect the nodes immediately before and after it.
 This error occurs when constructing a path with `PATH [...]` in which a relationship does not connect the surrounding nodes.
 
 == Example scenario
