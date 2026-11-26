@@ -23,7 +23,7 @@ Try running the following query, in which the second relationship does not conne
 CYPHER 25
 MATCH (alice:Person {name: 'Alice'})-[r1:LIVES_IN]->(malmo:City {name: 'Malmo'})
 MATCH (bob:Person {name: 'Bob'})-[r2:LIVES_IN]->(atlantis:City {name: 'Atlantis'})
-RETURN PATH [alice, r1, malmo, r2, bob] AS badPath
+RETURN PATH [alice, r1, malmo, r2, bob] AS badPath;
 ----
 
 The query returns a chain of errors where GQLSTATUS 22ND7 is the cause of GQLSTATUS xref:errors/gql-errors/22G0Z.adoc[22G0Z]:

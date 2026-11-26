@@ -13,7 +13,7 @@ Neo4j reports the specific problem as a cause: xref:errors/gql-errors/22004.adoc
 Given the following graph:
 [source,cypher]
 ----
-CREATE (:Person {name: 'Alice'})-[:LIVES_IN]->(:City {name: 'Malmo'})
+CREATE (:Person {name: 'Alice'})-[:LIVES_IN]->(:City {name: 'Malmo'});
 ----
 
 Try running the following query, where the path ends with a relationship:
@@ -22,7 +22,7 @@ Try running the following query, where the path ends with a relationship:
 ----
 CYPHER 25
 MATCH (p:Person {name: 'Alice'})-[r:LIVES_IN]->(c:City)
-RETURN PATH [p, r] AS badPath
+RETURN PATH [p, r] AS badPath;
 ----
 
 The query returns a chain of errors where GQLSTATUS 22G0Z is the cause of GQLSTATUS xref:errors/gql-errors/42001.adoc[42001]:
