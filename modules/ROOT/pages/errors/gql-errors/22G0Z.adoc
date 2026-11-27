@@ -8,7 +8,9 @@ A path value must alternate between node and relationship, starting and ending w
 This error occurs when constructing a path with `PATH [...]` whose elements do not form a valid path, for example when an element is `null`, when a relationship does not connect the surrounding nodes, or when the list does not start and end with a node.
 Neo4j reports the specific problem as a cause: xref:errors/gql-errors/22004.adoc[22004] for a `null` element, and xref:errors/gql-errors/22ND7.adoc[22ND7] for a relationship that does not connect the surrounding nodes.
 
-== Example scenario
+== Example scenarios
+
+=== A path ending with a relationship
 
 Given the following graph:
 [source,cypher]
@@ -32,6 +34,32 @@ The query returns a chain of errors where GQLSTATUS 22G0Z is the cause of GQLSTA
 ----
 22G0Z: data exception - malformed path
   42001: syntax error or access rule violation - invalid syntax
+----
+
+=== A path containing a `null` element
+
+Given the following graph:
+[source,cypher]
+----
+CREATE (:Person {name: 'Alice'});
+----
+
+Try running the following query, where an element is `null`:
+
+[source,cypher]
+----
+CYPHER 25
+MATCH (a:Person {name: 'Alice'})
+RETURN PATH [a, null, a] AS badPath;
+----
+
+The query returns a chain of errors where GQLSTATUS xref:errors/gql-errors/22004.adoc[22004] is the cause of GQLSTATUS 22G0Z:
+
+.GQLSTATUS error chain
+[source, error]
+----
+22004: data exception - null value not allowed
+  22G0Z: data exception - malformed path
 ----
 
 ifndef::backend-pdf[]
