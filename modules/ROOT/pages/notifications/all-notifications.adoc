@@ -6096,6 +6096,143 @@ A variable-length relationship variable is bound more than once, which leads to 
 ======
 =====
 
+
+[#_neo_clientnotification_statement_callableshadowing]
+=== Callable shadowing
+
+.Notification details
+[cols="<1s,<4"]
+|===
+|Neo4j  code
+m|Neo.ClientNotification.Statement.CallableShadowing
+|Title
+a|A callable is shadowing another callable in scope.
+|Description
+a|
+- Local procedure `%s` shadows a built-in or external procedure with the same name.
+- Local function `%s` shadows a built-in or external function with the same name.
+|Category
+m|GENERIC
+|GQLSTATUS code
+m|03N64
+|Status description
+a|info: callable shadowing. Local `{ <<item>> }` `{ <<ident>> }` shadows a built-in or external `{ <<item>> }` with the same name.
+|Classification
+m|GENERIC
+|SeverityLevel
+m|INFORMATION
+|===
+
+
+.Local procedure definition shadows a built-in or external procedure
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+DEFINE PROCEDURE dbms.info() {
+  RETURN "hello world!"
+}
+----
+
+Returned GQLSTATUS code::
+03N64
+
+Returned status description::
+info: callable shadowing.
+Local procedure `dbms.info` shadows a built-in or external procedure with the same name.
+
+Suggestions for improvement::
+Rename the local procedure to avoid shadowing, e.g., by putting it in a separate namespace:
++
+[source, cypher, role="noplay"]
+----
+DEFINE PROCEDURE my.dbms.info() {
+  RETURN "hello world!"
+}
+----
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+DEFINE PROCEDURE dbms.info() {
+  RETURN "hello world!"
+}
+
+// ...
+RETURN 123
+----
+Description of the returned code::
+Local procedure `dbms.info` shadows a built-in or external procedure with the same name.
+
+Suggestions for improvement::
+Rename the local procedure to avoid shadowing, e.g., by putting it in a separate namespace:
++
+[source, cypher, role="noplay"]
+----
+DEFINE PROCEDURE my.dbms.info() {
+  RETURN "hello world!"
+}
+----
+======
+=====
+
+
+.Local function definition shadows a built-in or external function
+[.tabbed-example]
+=====
+[.include-with-GQLSTATUS-code]
+======
+Query::
++
+[source,cypher]
+----
+DEFINE FUNCTION reverse() = "!dlrow olleh"
+----
+
+Returned GQLSTATUS code::
+03N64
+
+Returned status description::
+info: callable shadowing.
+Local function `reverse` shadows a built-in or external function with the same name.
+
+Suggestions for improvement::
+Rename the local function to avoid shadowing, e.g., by putting it in a separate namespace:
++
+[source, cypher, role="noplay"]
+----
+DEFINE FUNCTION my.reverse() = "!dlrow olleh"
+----
+======
+[.include-with-neo4j-code]
+======
+Query::
++
+[source,cypher]
+----
+DEFINE FUNCTION reverse() = "!dlrow olleh"
+----
+Description of the returned code::
+Local function `reverse` shadows a built-in or external function with the same name.
+
+Suggestions for improvement::
+Rename the local function to avoid shadowing, e.g., by putting it in a separate namespace:
++
+[source, cypher, role="noplay"]
+----
+DEFINE FUNCTION my.reverse() = "!dlrow olleh"
+----
+======
+=====
+
+
 //Add new notification above this section. //// //// //// //// //// //// ////
 ifndef::backend-pdf[]
 [discrete.glossary]
